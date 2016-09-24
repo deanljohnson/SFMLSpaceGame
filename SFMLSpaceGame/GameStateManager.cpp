@@ -4,8 +4,8 @@
 
 void GameStateManager::Init()
 {
-	m_states.push(new InitialGameState());
-	m_states.top()->Init();
+	m_states.emplace_back(new InitialGameState());
+	m_states.back()->Init();
 }
 
 void GameStateManager::CleanUp() const
@@ -14,31 +14,26 @@ void GameStateManager::CleanUp() const
 
 void GameStateManager::ProcessEvent(const sf::Event& event) const
 {
-	m_states.top()->ProcessEvent(event);
+	m_states.back()->ProcessEvent(event);
 }
 
 void GameStateManager::Update() const
 {
-	m_states.top()->Update();
+	m_states.back()->Update();
 }
 
 void GameStateManager::Render(sf::RenderTarget& target) const
 {
-	m_states.top()->Render(target);
+	m_states.back()->Render(target);
 }
 
 void GameStateManager::ChangeState(GameState* s)
 {
-	m_states.pop();
-	m_states.push(s);
+	m_states.pop_back();
+	m_states.emplace_back(s);
 }
 
 void GameStateManager::PushState(GameState* s)
 {
-	m_states.push(s);
-}
-
-void GameStateManager::PopState()
-{
-	m_states.pop();
+	m_states.emplace_back(s);
 }

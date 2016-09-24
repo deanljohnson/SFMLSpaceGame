@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
-#include <stack>
+#include <memory>
+#include <vector>
 
 namespace sf{
 	class RenderTarget;
@@ -10,7 +11,7 @@ namespace sf{
 class GameStateManager
 {
 private:
-	std::stack<GameState*> m_states;
+	std::vector<std::unique_ptr<GameState>> m_states;
 
 public:
 	void Init();
@@ -22,5 +23,4 @@ public:
 
 	void ChangeState(GameState* s);
 	void PushState(GameState* s);
-	void PopState();
 };
