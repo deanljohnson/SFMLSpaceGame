@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "EntityManager.h"
 
 void Entity::Update()
 {
@@ -45,13 +46,13 @@ bool Entity::HasComponent() const
 	return m_componentBitset[GetComponentTypeID<T>()];
 }
 
-template<typename T>
+/*template<typename T>
 T& Entity::GetComponent() const
 {
-	assert(HasComponent<T>());
+	//assert(HasComponent<T>());
 	auto ptr{ m_componentArray[GetComponentTypeID<T>()] };
 	return *static_cast<T*>(ptr);
-}
+}*/
 
 bool Entity::HasGroup(Group group) const noexcept
 {

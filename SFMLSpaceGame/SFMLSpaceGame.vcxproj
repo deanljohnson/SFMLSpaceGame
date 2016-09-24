@@ -159,6 +159,7 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="InitialGameState.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>

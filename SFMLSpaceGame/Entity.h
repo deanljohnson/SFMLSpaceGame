@@ -4,7 +4,8 @@
 #include "Component.h"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <array>
-#include "EntityManager.h"
+
+class EntityManager;
 
 using Group = size_t;
 
@@ -36,14 +37,22 @@ public:
 
 
 	//****** Component Handling Methods ******
-	template<typename T, typename... TArgs>
-	T& AddComponent(TArgs&&... args);
+	
+	//For some reason the linker cant find this implementation if
+	//I place it in the CPP file...
+	template<typename T>
+	T& GetComponent() const
+	{
+		//assert(HasComponent<T>());
+		auto ptr{ m_componentArray[GetComponentTypeID<T>()] };
+		return *static_cast<T*>(ptr);
+	}
 
 	template<typename T>
 	bool HasComponent() const;
 
-	template<typename T>
-	T& GetComponent() const;
+	template<typename T, typename... TArgs>
+	T& AddComponent(TArgs&&... args);
 
 	
 	//****** Group Handling Methods ******

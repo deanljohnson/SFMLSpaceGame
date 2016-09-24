@@ -3,16 +3,12 @@
 
 class Position : Component
 {
-private:
-	sf::Vector2f m_vec;
 public:
-	Position() : m_vec(sf::Vector2f(0, 0)){}
+	sf::Vector2f position;
 
-	void Set(float x, float y) noexcept { m_vec.x = x; m_vec.y = y; }
+	Position() : position(sf::Vector2f(0, 0)){}
+	Position(const sf::Vector2f& p) : position(sf::Vector2f(p.x, p.y)){}
 
-	void SetX(float x) noexcept { m_vec.x = x; }
-	void SetY(float y) noexcept { m_vec.y = y; }
-
-	float X() const noexcept { return m_vec.x; }
-	float Y() const noexcept { return m_vec.y; }
+	float X() const noexcept { return position.x; }
+	float Y() const noexcept { return position.y; }
 };
