@@ -11,7 +11,7 @@ private:
 	float m_radius;
 
 public:
-	CirclePrimitive(float rad) : m_radius(rad){}
+	explicit CirclePrimitive(float rad) : m_radius(rad){}
 
 	virtual void Init() override;
 	virtual void Update() override;

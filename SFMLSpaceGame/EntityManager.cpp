@@ -39,9 +39,9 @@ void EntityManager::Render(sf::RenderTarget& target)
 		e->Render(target);
 }
 
-Entity* EntityManager::AddEntity()
+Entity* EntityManager::AddEntity(b2World& world)
 {
-	Entity* e{ new Entity(*this) };
+	Entity* e{ new Entity(*this, world) };
 	std::unique_ptr<Entity> uPtr(e);
 	m_entities.emplace_back(move(uPtr));
 	return e;

@@ -12,7 +12,8 @@ void CirclePrimitive::Init()
 
 void CirclePrimitive::Update()
 {
-	m_shape.setPosition(m_position->position);
+	//position is stored in meters, must convert to pixels
+	m_shape.setPosition(m_position->position * PIXELS_PER_METER);
 }
 
 void CirclePrimitive::Render(sf::RenderTarget& target)

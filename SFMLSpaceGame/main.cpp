@@ -11,7 +11,6 @@ int main()
 {
 	sf::RenderWindow window(GetVideoMode(), "SFML Works!");
 	
-
 	GameStateManager game_manager{};
 	game_manager.Init();
 

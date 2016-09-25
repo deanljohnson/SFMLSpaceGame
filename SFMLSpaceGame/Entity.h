@@ -4,6 +4,7 @@
 #include "Component.h"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <array>
+#include <Box2D/Dynamics/b2World.h>
 
 class EntityManager;
 
@@ -16,6 +17,7 @@ class Entity
 {
 private:
 	EntityManager& m_manager;
+	b2World& m_world;
 
 	bool m_alive{ true };
 	std::vector<std::unique_ptr<Component>> m_components;
@@ -25,8 +27,8 @@ private:
 
 	GroupBitset m_groupBitset;
 public:
-	Entity(EntityManager& manager) 
-		: m_manager(manager)
+	Entity(EntityManager& manager, b2World& world) 
+		: m_manager(manager), m_world(world)
 	{ }
 
 	void Update();
@@ -35,6 +37,7 @@ public:
 	bool isAlive() const { return m_alive; }
 	void Destroy() { m_alive = false; }
 
+	b2World& GetWorld() { return m_world; }
 
 	//****** Component Handling Methods ******
 	

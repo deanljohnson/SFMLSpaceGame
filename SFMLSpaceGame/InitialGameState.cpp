@@ -5,7 +5,7 @@
 
 void InitialGameState::Init()
 {
-	auto ent = m_entityManager.AddEntity();
+	auto ent = m_entityManager.AddEntity(m_world);
 
 	ent->AddComponent<Position>();
 	ent->AddComponent<CirclePrimitive, float>(100.f);
