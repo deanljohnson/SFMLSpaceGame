@@ -86,5 +86,11 @@
     <ClInclude Include="Box2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WorldConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsStepper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

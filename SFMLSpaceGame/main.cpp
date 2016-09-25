@@ -38,6 +38,8 @@ int main()
 		window.display();
 
 		Time::deltaTime = clock.getElapsedTime().asSeconds();
+		if (Time::deltaTime > .25f)
+			Time::deltaTime = .25f;
 	}
 
 	return 0;

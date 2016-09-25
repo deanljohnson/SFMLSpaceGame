@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "Position.h"
 #include "CirclePrimitive.h"
+#include "Time.h"
 
 void InitialGameState::Init()
 {
@@ -33,6 +34,8 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 
 void InitialGameState::Update()
 {
+	m_stepper.Step(m_world, Time::deltaTime);
+
 	m_entityManager.Refresh();
 	m_entityManager.Update();
 }

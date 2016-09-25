@@ -1,5 +1,6 @@
 #include "CirclePrimitive.h"
 #include "Entity.h"
+#include "WorldConstants.h"
 
 void CirclePrimitive::Init()
 {
