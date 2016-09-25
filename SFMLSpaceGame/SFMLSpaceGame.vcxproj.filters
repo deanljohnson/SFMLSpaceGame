@@ -83,7 +83,7 @@
     <ClInclude Include="CirclePrimitive.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CodeProjects\CPP\Box2d\Box2D\Box2D\Box2D\Box2D.h">
+    <ClInclude Include="Box2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

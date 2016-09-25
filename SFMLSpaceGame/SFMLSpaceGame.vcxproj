@@ -164,9 +164,9 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Box2D.h" />
     <ClInclude Include="CirclePrimitive.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="D:\CodeProjects\CPP\Box2d\Box2D\Box2D\Box2D\Box2D.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameState.h" />
