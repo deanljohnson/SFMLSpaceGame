@@ -3,6 +3,7 @@
 #include "Position.h"
 #include "CirclePrimitive.h"
 #include "Time.h"
+#include "DirectionalKeyboardInput.h"
 
 void InitialGameState::Init()
 {
@@ -10,6 +11,7 @@ void InitialGameState::Init()
 
 	ent->AddComponent<Position>();
 	ent->AddComponent<CirclePrimitive, float>(100.f);
+	ent->AddComponent<DirectionalKeyboardInput>();
 }
 
 void InitialGameState::CleanUp() const

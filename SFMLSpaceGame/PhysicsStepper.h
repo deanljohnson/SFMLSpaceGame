@@ -2,8 +2,8 @@
 #include <Box2D/Dynamics/b2World.h>
 #include "WorldConstants.h"
 
-/// Keeps the physics simulation running at the proper rate
-/// and with a fixed timestep
+// Keeps the physics simulation running at the proper rate
+// and with a fixed timestep
 class PhysicsStepper
 {
 private:
