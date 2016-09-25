@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "Position.h"
 
-class Physics : Component
+class Physics : public Component
 {
 private:
 	Position* m_position{ nullptr };

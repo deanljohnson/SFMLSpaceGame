@@ -3,7 +3,7 @@
 #include "Position.h"
 #include <SFML/Graphics/CircleShape.hpp>
 
-class CirclePrimitive : Component
+class CirclePrimitive : public Component
 {
 private:
 	Position* m_position{ nullptr };

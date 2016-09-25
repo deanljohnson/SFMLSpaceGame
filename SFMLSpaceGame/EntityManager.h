@@ -14,7 +14,7 @@ public:
 	void Update();
 	void Render(sf::RenderTarget& target);
 
-	Entity& AddEntity();
+	Entity* AddEntity();
 
 	void AddToGroup(Entity* ent, Group group);
 	std::vector<Entity*>& GetEntitiesByGroup(Group group);

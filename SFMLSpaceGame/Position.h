@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-class Position : Component
+class Position : public Component
 {
 public:
 	sf::Vector2f position;

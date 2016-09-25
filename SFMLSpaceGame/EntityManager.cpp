@@ -39,12 +39,12 @@ void EntityManager::Render(sf::RenderTarget& target)
 		e->Render(target);
 }
 
-Entity& EntityManager::AddEntity()
+Entity* EntityManager::AddEntity()
 {
 	Entity* e{ new Entity(*this) };
 	std::unique_ptr<Entity> uPtr(e);
 	m_entities.emplace_back(move(uPtr));
-	return *e;
+	return e;
 }
 
 void EntityManager::AddToGroup(Entity* ent, Group group)

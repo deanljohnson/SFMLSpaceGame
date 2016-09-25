@@ -1,14 +1,14 @@
 #include "InitialGameState.h"
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
+#include "Position.h"
+#include "CirclePrimitive.h"
 
-//nasty global variable is only for testing
-sf::CircleShape shape(100.f);
-
-void InitialGameState::Init() const
+void InitialGameState::Init()
 {
-	shape.setFillColor(sf::Color::Green);
+	auto ent = m_entityManager.AddEntity();
+
+	ent->AddComponent<Position>();
+	ent->AddComponent<CirclePrimitive, float>(100.f);
 }
 
 void InitialGameState::CleanUp() const
@@ -31,12 +31,13 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 	
 }
 
-void InitialGameState::Update() const
+void InitialGameState::Update()
 {
-	
+	m_entityManager.Refresh();
+	m_entityManager.Update();
 }
 
 void InitialGameState::Render(sf::RenderTarget& target)
 {
-	target.draw(shape);
+	m_entityManager.Render(target);
 }
