@@ -1,7 +1,7 @@
 #include "InitialGameState.h"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "Position.h"
-#include "CirclePrimitive.h"
+#include "RectPrimitive.h"
 #include "Time.h"
 #include "DirectionalKeyboardInput.h"
 #include "DirectionalVelocity.h"
@@ -11,7 +11,7 @@ void InitialGameState::Init()
 	auto ent = m_entityManager.AddEntity(m_world);
 
 	ent->AddComponent<Position>();
-	ent->AddComponent<CirclePrimitive, float>(100.f);
+	ent->AddComponent<RectPrimitive, float, float>(50.f, 100.f);
 	ent->AddComponent<Physics>();
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<DirectionalVelocity>();

@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include "Position.h"
 #include <Box2D/Dynamics/b2Body.h>
 

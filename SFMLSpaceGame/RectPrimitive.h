@@ -1,15 +1,15 @@
 #pragma once
 #include "Position.h"
-#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
-class CirclePrimitive : public Component
+class RectPrimitive : public Component
 {
 private:
 	Position* m_position{ nullptr };
-	sf::CircleShape m_shape;
+	sf::RectangleShape m_shape;
 
 public:
-	explicit CirclePrimitive(float rad) : m_shape(rad){}
+	RectPrimitive(float w, float h) : m_shape(sf::Vector2f(w, h)) {}
 
 	virtual void Init() override;
 	virtual void Update() override;

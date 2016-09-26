@@ -163,6 +163,7 @@
     <ClCompile Include="InitialGameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="RectPrimitive.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsStepper.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="RectPrimitive.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
