@@ -12,17 +12,19 @@ private:
 
 public:
 	Physics() 
-		: m_bodyType(b2_dynamicBody),
-		  velocity(sf::Vector2f(0.f, 0.f)) 
+		: m_bodyType(b2_dynamicBody)
 	{}
 
 	explicit Physics(b2BodyType t) 
-		: m_bodyType(t),
-		  velocity(sf::Vector2f(0.f, 0.f)) 
+		: m_bodyType(t)
 	{}
-
-	sf::Vector2f velocity;
 
 	virtual void Init() override;
 	virtual void Update() override;
+
+	void SetPosition(const b2Vec2& v);
+	const b2Vec2 GetPosition() const;
+
+	void SetVelocity(const b2Vec2& v);
+	const b2Vec2 GetVelocity() const;
 };

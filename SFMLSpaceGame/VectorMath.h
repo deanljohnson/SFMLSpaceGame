@@ -1,4 +1,5 @@
 #pragma once
+#include <Box2D/Dynamics/b2Body.h>
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
 
@@ -13,4 +14,14 @@ inline sf::Vector2f Normalize(const sf::Vector2f& a)
 	return (l != 0) 
 		? a / l 
 		: sf::Vector2f(); //length is zero, return zero vector
+}
+
+inline sf::Vector2f B2VecToSFMLVec(const b2Vec2& v) 
+{
+	return sf::Vector2f(v.x, v.y);
+}
+
+inline b2Vec2 SFMLVecToB2Vec(const sf::Vector2f& v) 
+{
+	return b2Vec2(v.x, v.y);
 }
