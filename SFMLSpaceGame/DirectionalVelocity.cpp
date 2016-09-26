@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "VectorMath.h"
 #include "DirectionalVelocity.h"
+#include <Box2D/Common/b2Math.h>
 
 void DirectionalVelocity::Init()
 {
@@ -10,5 +11,5 @@ void DirectionalVelocity::Init()
 
 void DirectionalVelocity::Update() 
 {
-	m_physics->SetVelocity(SFMLVecToB2Vec(m_input->input));
+	m_physics->SetVelocity(SFMLVecToB2Vec(m_input->input * m_maxVelocity));
 }

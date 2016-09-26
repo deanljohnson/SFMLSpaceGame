@@ -1,11 +1,13 @@
 #pragma once
 #include "Position.h"
+#include "Rotation.h"
 #include <SFML/Graphics/CircleShape.hpp>
 
 class CirclePrimitive : public Component
 {
 private:
 	Position* m_position{ nullptr };
+	Rotation* m_rotation{ nullptr };
 	sf::CircleShape m_shape;
 
 public:

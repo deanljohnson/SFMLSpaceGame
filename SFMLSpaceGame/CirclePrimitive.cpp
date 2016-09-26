@@ -5,6 +5,7 @@
 void CirclePrimitive::Init()
 {
 	m_position = &entity->GetComponent<Position>();
+	m_rotation = &entity->GetComponent<Rotation>();
 
 	m_shape.setFillColor(sf::Color::Green);
 	m_shape.setOrigin(m_shape.getRadius(), m_shape.getRadius());

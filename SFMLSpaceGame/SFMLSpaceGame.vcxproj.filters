@@ -60,6 +60,9 @@
     <ClCompile Include="RectPrimitive.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="RotateToFaceMouse.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -111,6 +114,12 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="RectPrimitive.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateToFaceMouse.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rotation.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,11 +1,14 @@
 #pragma once
 #include "Position.h"
+#include "Rotation.h"
+#include <SFML/Graphics/Shape.hpp>
 #include <Box2D/Dynamics/b2Body.h>
 
 class Physics : public Component
 {
 private:
 	Position* m_position{ nullptr };
+	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };
 	b2BodyType m_bodyType;
 
@@ -26,4 +29,7 @@ public:
 
 	void SetVelocity(const b2Vec2& v);
 	const b2Vec2 GetVelocity() const;
+
+	void RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale);
+	void AddShape(const sf::Shape& s, float density = 1.f);
 };

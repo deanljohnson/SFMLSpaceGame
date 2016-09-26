@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include "Time.h"
 #include "GameStateManager.h"
+#include "WorldConstants.h"
+
+sf::RenderWindow* GAME_WINDOW;
 
 sf::VideoMode GetVideoMode()
 {
@@ -11,6 +14,8 @@ int main()
 {
 	sf::RenderWindow window(GetVideoMode(), "SFML Works!");
 	
+	GAME_WINDOW = &window;
+
 	GameStateManager game_manager{};
 	game_manager.Init();
 
