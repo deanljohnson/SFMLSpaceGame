@@ -7,6 +7,10 @@
 #include <Box2D/Dynamics/b2Fixture.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 
+template <typename T> int sgn(T val) {
+	return (T(0) < val) - (val < T(0));
+}
+
 void Physics::Init()
 {
 	m_position = &entity->GetComponent<Position>();
@@ -53,7 +57,11 @@ void Physics::RotateTowards(const b2Vec2& pos, float torqueScale, float smoothin
 
 	//the next angle we will be at. Look ahead 1/3 of a second to smooth the rotation well
 	float nextAngle = m_body->GetAngle() + m_body->GetAngularVelocity() / (3.f * smoothingScale);
-	float totalRotation = targetAngle - nextAngle;//use angle in next time step
+	float totalRotation = targetAngle - nextAngle;
+
+	if (sgn(targetAngle) != sgn(nextAngle))
+		totalRotation = abs(targetAngle - nextAngle) * (sgn(targetAngle));
+
 	float lerpFactor = (totalRotation > 3.f ? totalRotation : (totalRotation * (totalRotation / 3.f)));
 	m_body->ApplyTorque((totalRotation < 0 ? -torqueScale : torqueScale) * lerpFactor, true);
 }
