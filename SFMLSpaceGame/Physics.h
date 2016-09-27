@@ -11,14 +11,15 @@ private:
 	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };
 	b2BodyType m_bodyType;
+	float m_linDamping;
 
 public:
 	Physics() 
 		: m_bodyType(b2_dynamicBody)
 	{}
 
-	explicit Physics(b2BodyType t) 
-		: m_bodyType(t)
+	explicit Physics(b2BodyType t, float linearDamping) 
+		: m_bodyType(t), m_linDamping(linearDamping)
 	{}
 
 	virtual void Init() override;

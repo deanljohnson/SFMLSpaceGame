@@ -1,7 +1,6 @@
 #include "Entity.h"
 #include "VectorMath.h"
 #include "DirectionalVelocity.h"
-#include <Box2D/Common/b2Math.h>
 
 void DirectionalVelocity::Init()
 {

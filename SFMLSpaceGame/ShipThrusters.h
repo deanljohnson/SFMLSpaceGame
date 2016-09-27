@@ -24,9 +24,13 @@ private:
 
 public:
 	ShipThrusters() 
-		: m_strength(.2f,.2f,.2f), 
+		: m_strength(.3f,.3f,.3f), 
 		  m_maxStrength(5.f,5.f,5.f)
 	{};
+	ShipThrusters(const ShipThrust& strength, const ShipThrust& maxStrength)
+		: m_strength(strength), 
+		  m_maxStrength(maxStrength)
+	{}
 
 	void ApplyThrust(ThrustDirection dir);
 	virtual void Init() override;

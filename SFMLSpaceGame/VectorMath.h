@@ -28,7 +28,7 @@ inline b2Vec2 SFMLVecToB2Vec(const sf::Vector2f& v)
 
 inline b2Vec2 Rotate(const b2Vec2& v, float r)
 {
-	auto ca = cosf(r);
-	auto sa = cosf(r);
+	auto ca = cos(r);
+	auto sa = sin(r);
 	return b2Vec2(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }

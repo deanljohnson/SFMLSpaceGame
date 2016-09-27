@@ -2,18 +2,22 @@
 #include "Entity.h"
 #include "VectorMath.h"
 
+#ifndef M_PI_2f
+#define M_PI_2f (float)M_PI_2
+#endif
+
 b2Vec2 ShipThrust::Get(ThrustDirection dir)
 {
 	switch (dir)
 	{
 	case Front:
-		return b2Vec2(Forward, 0);
+		return b2Vec2(0, -Forward);
 	case Left:
-		return b2Vec2(0, -Side);
+		return b2Vec2(-Side, 0);
 	case Right:
-		return b2Vec2(0, Side);
+		return b2Vec2(Side, 0);
 	case ThrustDirection::Reverse:
-		return b2Vec2(-Forward, 0);;
+		return b2Vec2(0, Reverse);
 	}
 	return b2Vec2();
 }
@@ -27,12 +31,13 @@ void ShipThrusters::Init()
 void ShipThrusters::ApplyThrust(ThrustDirection dir)
 {
 	b2Body* b = m_physics->GetBody();
-
-	b2Vec2 thrust = Rotate(m_strength.Get(dir), b->GetAngle());
-	b2Vec2 curVel = Rotate(b->GetLinearVelocity(), b->GetAngle());
 	
-	curVel += thrust;
-	curVel = b2Clamp(curVel, b2Vec2(m_maxStrength.Reverse, -m_maxStrength.Side), b2Vec2(m_maxStrength.Forward, m_maxStrength.Side));
+	b2Vec2 thrust = m_strength.Get(dir);
+	//the current velocity, irrespective of the body's angle
+	b2Vec2 curVel = Rotate(b->GetLinearVelocity(), -(b->GetAngle() + M_PI_2f));
 
-	b->SetLinearVelocity(curVel);
+	curVel += thrust;
+	curVel = b2Clamp(curVel, b2Vec2(-m_maxStrength.Side, -m_maxStrength.Forward), b2Vec2(m_maxStrength.Side, m_maxStrength.Reverse));
+
+	b->SetLinearVelocity(Rotate(curVel, b->GetAngle() + M_PI_2f));
 }

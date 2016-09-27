@@ -7,6 +7,8 @@
 #include "DirectionalKeyboardInput.h"
 #include "DirectionalVelocity.h"
 #include "RotatetoFaceMouse.h"
+#include "ShipThrusters.h"
+#include "ThrusterInput.h"
 
 void InitialGameState::Init()
 {
@@ -15,12 +17,14 @@ void InitialGameState::Init()
 	ent->AddComponent<Position>();
 	ent->AddComponent<Rotation>();
 	auto rp = ent->AddComponent<RectPrimitive, float, float>(100.f, 50.f);
-	auto phys = ent->AddComponent<Physics>();
+	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<DirectionalKeyboardInput>();
-	ent->AddComponent<DirectionalVelocity, float>(5.f);
-	ent->AddComponent<RotateToFaceMouse>();
+	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.01f, .001f, .005f), ShipThrust(5.f, 3.f, 3.f));
+	ent->AddComponent<ThrusterInput>();
+	ent->AddComponent<RotateToFaceMouse, float, float>(.1f, 2.f);
 
 	phys.AddShape(rp.GetShape());
+	phys.SetPosition(b2Vec2(5, 5));
 }
 
 void InitialGameState::CleanUp() const

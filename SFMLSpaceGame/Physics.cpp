@@ -33,6 +33,7 @@ void Physics::Init()
 	bodyDef.position.Set(m_position->X(), m_position->Y());
 	bodyDef.type = m_bodyType;
 	bodyDef.fixedRotation = false;
+	bodyDef.linearDamping = m_linDamping;
 	
 	m_body = entity->GetWorld().CreateBody(&bodyDef);
 }

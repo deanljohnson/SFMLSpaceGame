@@ -19,5 +19,5 @@ void RotateToFaceMouse::Update()
 {
 	auto mousePos = GetWorldMouseLocation();
 
-	m_physics->RotateTowards(mousePos, .2f, 1.f);
+	m_physics->RotateTowards(mousePos, m_torqueScale, m_smoothingScale);
 }
