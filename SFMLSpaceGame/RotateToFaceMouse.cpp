@@ -2,7 +2,6 @@
 #include <SFML/Window/Mouse.hpp>
 #include "WorldConstants.h"
 #include "Entity.h"
-#include "VectorMath.h"
 #include <Box2D/Common/b2Math.h>
 
 b2Vec2 GetWorldMouseLocation() 
@@ -20,5 +19,5 @@ void RotateToFaceMouse::Update()
 {
 	auto mousePos = GetWorldMouseLocation();
 
-	m_physics->RotateTowards(mousePos, 2.5f, 1.f);
+	m_physics->RotateTowards(mousePos, .2f, 1.f);
 }

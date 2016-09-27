@@ -25,10 +25,10 @@ public:
 	virtual void Update() override;
 
 	void SetPosition(const b2Vec2& v);
-	const b2Vec2 GetPosition() const;
+	b2Vec2 GetPosition() const;
 
 	void SetVelocity(const b2Vec2& v);
-	const b2Vec2 GetVelocity() const;
+	b2Vec2 GetVelocity() const;
 
 	void RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale);
 	void AddShape(const sf::Shape& s, float density = 1.f);

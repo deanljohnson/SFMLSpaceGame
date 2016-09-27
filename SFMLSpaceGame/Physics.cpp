@@ -1,14 +1,27 @@
 #include "Physics.h"
 #include "Entity.h"
-#include "Time.h"
 #include "VectorMath.h"
 #include "WorldConstants.h"
 #include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Dynamics/b2Fixture.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 
-template <typename T> int sgn(T val) {
-	return (T(0) < val) - (val < T(0));
+#ifndef M_TAU
+#define M_TAU M_PI + M_PI
+#endif
+
+//constrains a body's angle to be in the range [0, 2PI)
+void WrapBodyAngle(b2Body& body)
+{
+	if (body.GetAngle() >= M_TAU || body.GetAngle() < 0)
+	{
+		auto a = body.GetAngle();
+
+		while (a < 0)
+			a += M_TAU;
+		while (a > M_TAU)
+			a -= M_TAU;
+		body.SetTransform(body.GetPosition(), a);
+	}
 }
 
 void Physics::Init()
@@ -35,7 +48,7 @@ void Physics::SetPosition(const b2Vec2& v)
 	m_body->SetTransform(v, m_body->GetAngle());
 }
 
-const b2Vec2 Physics::GetPosition() const
+b2Vec2 Physics::GetPosition() const
 {
 	return m_body->GetPosition();
 }
@@ -45,24 +58,31 @@ void Physics::SetVelocity(const b2Vec2& v)
 	m_body->SetLinearVelocity(v);
 }
 
-const b2Vec2 Physics::GetVelocity() const
+b2Vec2 Physics::GetVelocity() const
 {
 	return m_body->GetLinearVelocity();
 }
 
 void Physics::RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale) 
 {
-	b2Vec2 difVector = pos - m_body->GetPosition();
-	float targetAngle = (atan2f(difVector.y, difVector.x));
+	WrapBodyAngle(*m_body);
 
-	//the next angle we will be at. Look ahead 1/3 of a second to smooth the rotation well
+	b2Vec2 difVector = pos - m_body->GetPosition();
+	float targetAngle = atan2f(difVector.y, difVector.x);
+
+	//the next angle we will be at. Look ahead 1/3 (* a scaling factor) of a second to smooth the rotation well
 	float nextAngle = m_body->GetAngle() + m_body->GetAngularVelocity() / (3.f * smoothingScale);
 	float totalRotation = targetAngle - nextAngle;
 
-	if (sgn(targetAngle) != sgn(nextAngle))
-		totalRotation = abs(targetAngle - nextAngle) * (sgn(targetAngle));
+	while (totalRotation < -M_PI)
+		totalRotation += M_TAU;
+	while (totalRotation > M_PI)
+		totalRotation -= M_TAU;
 
-	float lerpFactor = (totalRotation > 3.f ? totalRotation : (totalRotation * (totalRotation / 3.f)));
+	float lerpFactor = abs(totalRotation) > 3.f 
+						? 1.f 
+						: abs(totalRotation) / 3.f;
+
 	m_body->ApplyTorque((totalRotation < 0 ? -torqueScale : torqueScale) * lerpFactor, true);
 }
 
