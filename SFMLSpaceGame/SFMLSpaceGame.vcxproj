@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="CirclePrimitive.cpp" />
     <ClCompile Include="DirectionalKeyboardInput.cpp" />
     <ClCompile Include="DirectionalVelocity.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Box2D.h" />
     <ClInclude Include="CirclePrimitive.h" />
     <ClInclude Include="Component.h" />
@@ -184,6 +186,8 @@
     <ClInclude Include="PhysicsStepper.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="RectPrimitive.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="RotateToFaceMouse.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="ShipThrusters.h" />
@@ -191,6 +195,17 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFMLSpaceGame.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Images\basic_back.png" />
+    <Image Include="..\Images\basic_down.png" />
+    <Image Include="..\Images\basic_front.png" />
+    <Image Include="..\Images\basic_left.png" />
+    <Image Include="..\Images\basic_right.png" />
+    <Image Include="..\Images\basic_up.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,14 +29,24 @@ void EntityManager::Refresh()
 
 void EntityManager::Update()
 {
-	for (auto& e : m_entities)
-		e->Update();
+	for (auto i(0u); i < maxGroups; i++)
+	{
+		auto& curGroup(m_groupedEntities[i]);
+
+		for (auto& e : curGroup)
+			e->Update();
+	}
 }
 
 void EntityManager::Render(sf::RenderTarget& target)
 {
-	for (auto& e : m_entities)
-		e->Render(target);
+	for (auto i(0u); i < maxGroups; i++)
+	{
+		auto& curGroup(m_groupedEntities[i]);
+
+		for (auto& e : curGroup)
+			e->Render(target);
+	}
 }
 
 Entity* EntityManager::AddEntity(b2World& world)
@@ -44,6 +54,17 @@ Entity* EntityManager::AddEntity(b2World& world)
 	Entity* e{ new Entity(*this, world) };
 	std::unique_ptr<Entity> uPtr(e);
 	m_entities.emplace_back(move(uPtr));
+	return e;
+}
+
+Entity* EntityManager::AddEntity(b2World& world, Group group)
+{
+	Entity* e{ new Entity(*this, world) };
+	std::unique_ptr<Entity> uPtr(e);
+	m_entities.emplace_back(move(uPtr));
+
+	e->AddToGroup(group);
+
 	return e;
 }
 

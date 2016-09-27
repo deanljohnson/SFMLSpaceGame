@@ -9,10 +9,11 @@
 #include "RotatetoFaceMouse.h"
 #include "ShipThrusters.h"
 #include "ThrusterInput.h"
+#include "Background.h"
 
 void InitialGameState::Init()
 {
-	auto ent = m_entityManager.AddEntity(m_world);
+	auto ent = m_entityManager.AddEntity(m_world, Group(1));
 
 	ent->AddComponent<Position>();
 	ent->AddComponent<Rotation>();
@@ -25,6 +26,11 @@ void InitialGameState::Init()
 
 	phys.AddShape(rp.GetShape());
 	phys.SetPosition(b2Vec2(5, 5));
+
+	auto bg = m_entityManager.AddEntity(m_world, Group(0));
+
+	bg->AddComponent<Position>();
+	bg->AddComponent<Background, std::wstring>(L"BGONE_FRONT");
 }
 
 void InitialGameState::CleanUp() const

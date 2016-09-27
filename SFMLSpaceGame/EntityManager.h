@@ -15,6 +15,7 @@ public:
 	void Render(sf::RenderTarget& target);
 
 	Entity* AddEntity(b2World& world);
+	Entity* AddEntity(b2World& world, Group group);
 
 	void AddToGroup(Entity* ent, Group group);
 	std::vector<Entity*>& GetEntitiesByGroup(Group group);

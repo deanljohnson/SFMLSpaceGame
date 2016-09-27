@@ -69,6 +69,9 @@
     <ClCompile Include="ThrusterInput.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -134,5 +137,39 @@
     <ClInclude Include="ThrusterInput.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFMLSpaceGame.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Images\basic_back.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Images\basic_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Images\basic_front.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Images\basic_left.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Images\basic_right.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Images\basic_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
