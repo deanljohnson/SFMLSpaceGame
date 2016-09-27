@@ -26,7 +26,6 @@ void EntityManager::Refresh()
 	);
 }
 
-
 void EntityManager::Update()
 {
 	for (auto i(0u); i < maxGroups; i++)

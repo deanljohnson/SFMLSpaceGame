@@ -12,6 +12,7 @@ private:
 	sf::Texture m_tex;
 	sf::Sprite m_sprite;
 	std::wstring m_path;
+
 public:
 	explicit Background(std::wstring path) 
 		: m_path(path)

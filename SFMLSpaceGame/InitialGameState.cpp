@@ -10,12 +10,13 @@
 #include "ShipThrusters.h"
 #include "ThrusterInput.h"
 #include "Background.h"
+#include "ParallaxMovement.h"
 
 void InitialGameState::Init()
 {
 	auto ent = m_entityManager.AddEntity(m_world, Group(1));
 
-	ent->AddComponent<Position>();
+	auto pos = ent->AddComponent<Position>();
 	ent->AddComponent<Rotation>();
 	auto rp = ent->AddComponent<RectPrimitive, float, float>(100.f, 50.f);
 	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
@@ -31,6 +32,7 @@ void InitialGameState::Init()
 
 	bg->AddComponent<Position>();
 	bg->AddComponent<Background, std::wstring>(L"BGONE_FRONT");
+	bg->AddComponent<ParallaxMovement, Entity&, float>(*ent, .05f);
 }
 
 void InitialGameState::CleanUp() const

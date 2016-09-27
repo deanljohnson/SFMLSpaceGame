@@ -18,9 +18,7 @@ void Background::Update()
 	m_sprite.setPosition(m_position->position * PIXELS_PER_METER);
 }
 
-
 void Background::Render(sf::RenderTarget& target)
 {
-	
 	target.draw(m_sprite);
 }

@@ -163,6 +163,7 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ParallaxMovement.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="RectPrimitive.cpp" />
     <ClCompile Include="RotateToFaceMouse.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="InitialGameState.h" />
     <ClInclude Include="DirectionalKeyboardInput.h" />
+    <ClInclude Include="ParallaxMovement.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsStepper.h" />
     <ClInclude Include="Position.h" />

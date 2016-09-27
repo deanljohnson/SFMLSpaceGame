@@ -72,6 +72,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ParallaxMovement.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="ResourceLoader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParallaxMovement.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
