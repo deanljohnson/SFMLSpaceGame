@@ -165,6 +165,7 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="RectPrimitive.cpp" />
     <ClCompile Include="RotateToFaceMouse.cpp" />
+    <ClCompile Include="ShipThrusters.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="RectPrimitive.h" />
     <ClInclude Include="RotateToFaceMouse.h" />
     <ClInclude Include="Rotation.h" />
+    <ClInclude Include="ShipThrusters.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />

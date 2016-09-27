@@ -30,6 +30,8 @@ public:
 	void SetVelocity(const b2Vec2& v);
 	b2Vec2 GetVelocity() const;
 
+	b2Body* GetBody() { return m_body; }
+
 	void RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale);
 	void AddShape(const sf::Shape& s, float density = 1.f);
 };

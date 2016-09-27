@@ -6,7 +6,7 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 
 #ifndef M_TAU
-#define M_TAU M_PI + M_PI
+#define M_TAU (float)(M_PI + M_PI)
 #endif
 
 //constrains a body's angle to be in the range [0, 2PI)
