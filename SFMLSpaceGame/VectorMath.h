@@ -32,3 +32,8 @@ inline b2Vec2 Rotate(const b2Vec2& v, float r)
 	auto sa = sin(r);
 	return b2Vec2(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }
+
+inline sf::Vector2f Lerp(sf::Vector2f a, sf::Vector2f b, float d)
+{
+	return a + ((b - a) * d);
+}

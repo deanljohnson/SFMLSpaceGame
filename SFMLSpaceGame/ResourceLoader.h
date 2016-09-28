@@ -1,6 +1,5 @@
 #pragma once
 #include <windows.h>
-#include <memory>
 #include <string>
 #include <SFML/Graphics/Image.hpp>
 

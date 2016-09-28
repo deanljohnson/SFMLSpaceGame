@@ -10,6 +10,7 @@ private:
 	float m_movementScale;
 
 	sf::Vector2f m_targetLastPosition;
+	sf::Vector2f m_accumulatedOffset;
 
 public:
 	explicit ParallaxMovement(Entity& target, float movementScale)

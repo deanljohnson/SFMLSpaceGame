@@ -11,6 +11,7 @@
 #include "ThrusterInput.h"
 #include "Background.h"
 #include "ParallaxMovement.h"
+#include "SmoothCameraFollow.h"
 
 void InitialGameState::Init()
 {
@@ -24,6 +25,7 @@ void InitialGameState::Init()
 	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.01f, .001f, .005f), ShipThrust(5.f, 3.f, 3.f));
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float, float>(.1f, 2.f);
+	ent->AddComponent<SmoothCameraFollow>();
 
 	phys.AddShape(rp.GetShape());
 	phys.SetPosition(b2Vec2(5, 5));
@@ -32,7 +34,7 @@ void InitialGameState::Init()
 
 	bg->AddComponent<Position>();
 	bg->AddComponent<Background, std::wstring>(L"BGONE_FRONT");
-	bg->AddComponent<ParallaxMovement, Entity&, float>(*ent, .05f);
+	bg->AddComponent<ParallaxMovement, Entity&, float>(*ent, .1f);
 }
 
 void InitialGameState::CleanUp() const

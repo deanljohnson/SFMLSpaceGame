@@ -10,7 +10,7 @@ void Background::Init()
 	m_position = &entity->GetComponent<Position>();
 	m_tex.loadFromImage(LoadImageResource(m_path));
 	m_sprite = sf::Sprite(m_tex);
-	m_sprite.scale(1.f, 1.f);
+	m_sprite.scale(2.f, 2.f);
 }
 
 void Background::Update()
