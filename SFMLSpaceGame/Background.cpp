@@ -8,7 +8,7 @@
 void Background::Init()
 {
 	m_position = &entity->GetComponent<Position>();
-	m_tex.loadFromImage(LoadImageResource(m_path));
+	m_tex.loadFromImage(*LoadImageResource(m_path).get());
 	m_sprite = sf::Sprite(m_tex);
 	m_sprite.scale(2.f, 2.f);
 }

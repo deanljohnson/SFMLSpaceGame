@@ -13,10 +13,8 @@ void ParallaxMovement::Update()
 	auto dif = m_targetPosition->position - m_targetLastPosition;
 	dif *= m_movementScale;
 
-	m_accumulatedOffset += dif;
+	m_position->position += dif;
 
-	m_position->position = m_targetPosition->position - m_accumulatedOffset;
-	
 	m_targetLastPosition = m_targetPosition->position;
 }
 

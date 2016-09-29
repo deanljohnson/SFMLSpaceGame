@@ -166,6 +166,7 @@
     <ClCompile Include="ParallaxMovement.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="RectPrimitive.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="RotateToFaceMouse.cpp" />
     <ClCompile Include="ShipThrusters.cpp" />
     <ClCompile Include="SmoothCameraFollow.cpp" />

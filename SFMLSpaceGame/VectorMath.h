@@ -1,4 +1,5 @@
 #pragma once
+#include <Box2D/Common/b2Math.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
@@ -33,7 +34,13 @@ inline b2Vec2 Rotate(const b2Vec2& v, float r)
 	return b2Vec2(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }
 
-inline sf::Vector2f Lerp(sf::Vector2f a, sf::Vector2f b, float d)
+inline sf::Vector2f Lerp(const sf::Vector2f& a, const sf::Vector2f& b, float d)
 {
 	return a + ((b - a) * d);
+}
+
+inline b2Vec2 Lerp(const b2Vec2& a, const b2Vec2& b, float d)
+{
+	auto t = b - a;
+	return a + (b2Vec2(t.x * d, t.y * d));
 }
