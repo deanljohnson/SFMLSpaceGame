@@ -12,6 +12,7 @@
 #include "Background.h"
 #include "ParallaxMovement.h"
 #include "SmoothCameraFollow.h"
+#include "resource.h"
 
 void InitialGameState::Init()
 {
@@ -33,7 +34,7 @@ void InitialGameState::Init()
 	auto bg = m_entityManager.AddEntity(m_world, Group(0));
 
 	bg->AddComponent<Position>();
-	bg->AddComponent<Background, std::wstring>(L"BGONE_FRONT");
+	bg->AddComponent<Background, int>(BGONE_FRONT);
 	bg->AddComponent<ParallaxMovement, Entity&, float>(*ent, .1f);
 }
 

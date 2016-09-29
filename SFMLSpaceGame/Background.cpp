@@ -1,5 +1,4 @@
 #include "Background.h"
-#include <SFML/Graphics/Texture.hpp>
 #include "ResourceLoader.h"
 #include "Entity.h"
 #include "Position.h"
@@ -8,8 +7,8 @@
 void Background::Init()
 {
 	m_position = &entity->GetComponent<Position>();
-	m_tex.loadFromImage(*LoadImageResource(m_path).get());
-	m_sprite = sf::Sprite(m_tex);
+	m_tex = LoadTextureResource(m_resourceID);
+	m_sprite = sf::Sprite(*m_tex.get());
 	m_sprite.scale(2.f, 2.f);
 }
 

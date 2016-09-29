@@ -5,7 +5,8 @@
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
-	std::map<std::wstring, std::shared_ptr<sf::Image>> loadedImages;
+	std::map<int, std::shared_ptr<sf::Image>> loadedImages;
+	std::map<int, std::shared_ptr<sf::Texture>> loadedTextures;
 }
 
 //Takes a map with shared_ptr value and removes elements
@@ -26,11 +27,12 @@ void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>&
 void UnloadUnusedResources()
 {
 	UnloadUnusedSharedPtrResources(loadedImages);
+	UnloadUnusedSharedPtrResources(loadedTextures);
 }
 
-std::pair<LPVOID, DWORD> LoadRCData(const std::wstring& name)
+std::pair<LPVOID, DWORD> LoadRCData(int id)
 {
-	HRSRC rsrcData = FindResource(nullptr, name.c_str(), RT_RCDATA);
+	HRSRC rsrcData = FindResource(nullptr, MAKEINTRESOURCE(id), RT_RCDATA);
 	if (!rsrcData)
 		throw std::runtime_error("Failed to find resource.");
 
@@ -49,25 +51,44 @@ std::pair<LPVOID, DWORD> LoadRCData(const std::wstring& name)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<sf::Image> LoadImageResource(const std::wstring& name)
+std::shared_ptr<sf::Image> LoadImageResource(int id)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedImages.find(name);
+	auto it = loadedImages.find(id);
 	if (it != loadedImages.end())
 	{
 		return it->second;
 	}
 
-	auto dataPair = LoadRCData(name);
+	auto dataPair = LoadRCData(id);
 
 	sf::Image image;
 	if (!image.loadFromMemory(dataPair.first, dataPair.second))
 		throw std::runtime_error("Failed to load image from memory.");
 
 	auto elem = std::make_shared<sf::Image>(image);
-	loadedImages.insert(std::pair<std::wstring, std::shared_ptr<sf::Image>>(name, elem));
+	loadedImages.insert(make_pair(id, elem));
 
 	return elem;
 }
 
+std::shared_ptr<sf::Texture> LoadTextureResource(int id)
+{
+	//If the resource is already loaded, return it
+	auto it = loadedTextures.find(id);
+	if (it != loadedTextures.end())
+	{
+		return it->second;
+	}
 
+	auto dataPair = LoadRCData(id);
+
+	sf::Texture tex;
+	if (!tex.loadFromMemory(dataPair.first, dataPair.second))
+		throw std::runtime_error("Failed to load image from memory.");
+
+	auto elem = std::make_shared<sf::Texture>(tex);
+	loadedTextures.insert(make_pair(id, elem));
+
+	return elem;
+}

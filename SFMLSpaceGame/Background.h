@@ -2,6 +2,7 @@
 #include "Component.h"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <memory>
 
 class Position;
 
@@ -9,13 +10,13 @@ class Background : public Component
 {
 private:
 	Position* m_position{ nullptr };
-	sf::Texture m_tex;
+	std::shared_ptr<sf::Texture> m_tex;
 	sf::Sprite m_sprite;
-	std::wstring m_path;
+	int m_resourceID;
 
 public:
-	explicit Background(std::wstring path) 
-		: m_path(path)
+	explicit Background(int resourceID) 
+		: m_resourceID(resourceID)
 	{}
 
 	virtual void Init() override;
