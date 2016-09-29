@@ -170,6 +170,7 @@
     <ClCompile Include="RotateToFaceMouse.cpp" />
     <ClCompile Include="ShipThrusters.cpp" />
     <ClCompile Include="SmoothCameraFollow.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="ThrusterInput.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
@@ -196,6 +197,7 @@
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="ShipThrusters.h" />
     <ClInclude Include="SmoothCameraFollow.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="ThrusterInput.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="VectorMath.h" />

@@ -1,23 +1,21 @@
 #pragma once
-#include "Component.h"
+#include "Position.h"
+#include "Rotation.h"
 #include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <memory>
 #include "ResourceLoader.h"
 
-class Position;
-
-class Background : public Component
+class Sprite : public Component
 {
 private:
 	Position* m_position{ nullptr };
-	std::shared_ptr<sf::Texture> m_tex;
+	Rotation* m_rotation{ nullptr };
 	sf::Sprite m_sprite;
 	ResourceID m_resourceID;
+	std::shared_ptr<sf::Texture> m_tex;
 
 public:
-	explicit Background(ResourceID resourceID) 
-		: m_resourceID(resourceID)
+	explicit Sprite(ResourceID id) 
+		: m_resourceID(id)
 	{}
 
 	virtual void Init() override;

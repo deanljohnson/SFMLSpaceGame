@@ -81,6 +81,9 @@
     <ClCompile Include="ResourceLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Time.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="SmoothCameraFollow.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

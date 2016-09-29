@@ -5,8 +5,8 @@
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
-	std::map<int, std::shared_ptr<sf::Image>> loadedImages;
-	std::map<int, std::shared_ptr<sf::Texture>> loadedTextures;
+	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
+	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
 }
 
 //Takes a map with shared_ptr value and removes elements
@@ -30,7 +30,7 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedTextures);
 }
 
-std::pair<LPVOID, DWORD> LoadRCData(int id)
+std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 {
 	HRSRC rsrcData = FindResource(nullptr, MAKEINTRESOURCE(id), RT_RCDATA);
 	if (!rsrcData)
@@ -51,7 +51,7 @@ std::pair<LPVOID, DWORD> LoadRCData(int id)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<sf::Image> LoadImageResource(int id)
+std::shared_ptr<sf::Image> LoadImageResource(ResourceID id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedImages.find(id);
@@ -72,7 +72,7 @@ std::shared_ptr<sf::Image> LoadImageResource(int id)
 	return elem;
 }
 
-std::shared_ptr<sf::Texture> LoadTextureResource(int id)
+std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedTextures.find(id);
