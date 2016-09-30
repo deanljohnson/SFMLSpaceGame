@@ -1,8 +1,8 @@
 #pragma once
-#include "GameState.h"
-#include "EntityManager.h"
+#include <GameState.h>
+#include <EntityManager.h>
 #include <Box2D/Dynamics/b2World.h>
-#include "PhysicsStepper.h"
+#include <PhysicsStepper.h>
 
 class InitialGameState : public GameState
 {

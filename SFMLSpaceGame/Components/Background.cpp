@@ -1,8 +1,8 @@
-#include "Background.h"
-#include "ResourceLoader.h"
-#include "Entity.h"
-#include "Position.h"
-#include "WorldConstants.h"
+#include <Components/Background.h>
+#include <ResourceLoader.h>
+#include <Entity.h>
+#include <Components/Position.h>
+#include <WorldConstants.h>
 
 void Background::Init()
 {

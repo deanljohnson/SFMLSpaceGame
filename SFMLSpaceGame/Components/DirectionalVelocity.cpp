@@ -1,6 +1,6 @@
-#include "Entity.h"
-#include "VectorMath.h"
-#include "DirectionalVelocity.h"
+#include <Entity.h>
+#include <VectorMath.h>
+#include <Components/DirectionalVelocity.h>
 
 void DirectionalVelocity::Init()
 {

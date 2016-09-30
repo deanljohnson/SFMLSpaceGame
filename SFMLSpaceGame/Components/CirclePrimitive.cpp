@@ -1,24 +1,23 @@
-#include "RectPrimitive.h"
-#include "Entity.h"
-#include "WorldConstants.h"
+#include <Components/CirclePrimitive.h>
+#include <Entity.h>
+#include <WorldConstants.h>
 
-void RectPrimitive::Init() 
+void CirclePrimitive::Init()
 {
 	m_position = &entity->GetComponent<Position>();
 	m_rotation = &entity->GetComponent<Rotation>();
 
 	m_shape.setFillColor(sf::Color::Green);
-	m_shape.setOrigin(m_shape.getSize() / 2.f);
+	m_shape.setOrigin(m_shape.getRadius(), m_shape.getRadius());
 }
 
-void RectPrimitive::Update() 
+void CirclePrimitive::Update()
 {
 	//position is stored in meters, must convert to pixels
 	m_shape.setPosition(m_position->position * PIXELS_PER_METER);
-	m_shape.setRotation(m_rotation->GetDegrees());
 }
 
-void RectPrimitive::Render(sf::RenderTarget& target)
+void CirclePrimitive::Render(sf::RenderTarget& target)
 {
 	target.draw(m_shape);
 }

@@ -1,6 +1,6 @@
 #pragma once
-#include "DirectionalKeyboardInput.h"
-#include "ShipThrusters.h"
+#include <Components/DirectionalKeyboardInput.h>
+#include <Components/ShipThrusters.h>
 
 class ThrusterInput : public Component
 {

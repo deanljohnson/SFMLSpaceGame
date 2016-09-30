@@ -1,6 +1,6 @@
-#include "Sprite.h"
-#include "Entity.h"
-#include "WorldConstants.h"
+#include <Components/Sprite.h>
+#include <Entity.h>
+#include <WorldConstants.h>
 
 void Sprite::Init()
 {

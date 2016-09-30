@@ -1,6 +1,6 @@
-#include "SmoothCameraFollow.h"
-#include "Entity.h"
-#include "WorldConstants.h"
+#include <Components/SmoothCameraFollow.h>
+#include <Entity.h>
+#include <WorldConstants.h>
 
 void SmoothCameraFollow::Init()
 {

@@ -1,10 +1,10 @@
 #pragma once
 
-class Time
+class GameTime
 {
 public:
 	static float deltaTime;
 
 private: 
-	Time::Time();
+	GameTime::GameTime();
 };

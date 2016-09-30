@@ -1,7 +1,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "Component.h"
+#include <Components/Component.h>
 
 #ifndef DEG_TO_RAD
 #define DEG_TO_RAD(__val__) __val__ * (float)M_PI / 180.f

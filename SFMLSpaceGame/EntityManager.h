@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "Entity.h"
+#include <Entity.h>
 
 class EntityManager
 {

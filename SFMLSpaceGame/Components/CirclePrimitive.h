@@ -1,6 +1,6 @@
 #pragma once
-#include "Position.h"
-#include "Rotation.h"
+#include <Components/Position.h>
+#include <Components/Rotation.h>
 #include <SFML/Graphics/CircleShape.hpp>
 
 class CirclePrimitive : public Component

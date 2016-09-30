@@ -1,5 +1,5 @@
-#include "Entity.h"
-#include "EntityManager.h"
+#include <Entity.h>
+#include <EntityManager.h>
 
 void Entity::Update()
 {

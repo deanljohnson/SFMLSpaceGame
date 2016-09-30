@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,7 +104,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\CodeProjects\CPP\Box2d\Box2D\Box2D;D:\CodeProjects\CPP\Box2d\Box2D\Box2D\Box2D;D:\CodeProjects\CPP\SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\CodeProjects\CPP\Box2d\Box2D\Box2D;D:\CodeProjects\CPP\Box2d\Box2D\Box2D\Box2D;D:\CodeProjects\CPP\SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +122,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir);$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +142,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\CodeProjects\CPP\Box2d\Box2D\Box2D;D:\CodeProjects\CPP\SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);D:\CodeProjects\CPP\Box2d\Box2D\Box2D;D:\CodeProjects\CPP\SFML-2.4.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,52 +154,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="CirclePrimitive.cpp" />
-    <ClCompile Include="DirectionalKeyboardInput.cpp" />
-    <ClCompile Include="DirectionalVelocity.cpp" />
+    <ClCompile Include="Components\Background.cpp" />
+    <ClCompile Include="Components\CirclePrimitive.cpp" />
+    <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
+    <ClCompile Include="Components\DirectionalVelocity.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ParallaxMovement.cpp" />
-    <ClCompile Include="Physics.cpp" />
-    <ClCompile Include="RectPrimitive.cpp" />
+    <ClCompile Include="Components\ParallaxMovement.cpp" />
+    <ClCompile Include="Components\Physics.cpp" />
+    <ClCompile Include="Components\RectPrimitive.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
-    <ClCompile Include="RotateToFaceMouse.cpp" />
-    <ClCompile Include="ShipThrusters.cpp" />
-    <ClCompile Include="SmoothCameraFollow.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="ThrusterInput.cpp" />
-    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Components\RotateToFaceMouse.cpp" />
+    <ClCompile Include="Components\ShipThrusters.cpp" />
+    <ClCompile Include="Components\SmoothCameraFollow.cpp" />
+    <ClCompile Include="Components\Sprite.cpp" />
+    <ClCompile Include="Components\ThrusterInput.cpp" />
+    <ClCompile Include="GameTime.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Background.h" />
+    <ClInclude Include="Components\Background.h" />
     <ClInclude Include="Box2D.h" />
-    <ClInclude Include="CirclePrimitive.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="DirectionalVelocity.h" />
+    <ClInclude Include="Components\CirclePrimitive.h" />
+    <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\DirectionalVelocity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="InitialGameState.h" />
-    <ClInclude Include="DirectionalKeyboardInput.h" />
-    <ClInclude Include="ParallaxMovement.h" />
-    <ClInclude Include="Physics.h" />
+    <ClInclude Include="Components\DirectionalKeyboardInput.h" />
+    <ClInclude Include="Components\ParallaxMovement.h" />
+    <ClInclude Include="Components\Physics.h" />
     <ClInclude Include="PhysicsStepper.h" />
-    <ClInclude Include="Position.h" />
-    <ClInclude Include="RectPrimitive.h" />
+    <ClInclude Include="Components\Position.h" />
+    <ClInclude Include="Components\RectPrimitive.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceLoader.h" />
-    <ClInclude Include="RotateToFaceMouse.h" />
-    <ClInclude Include="Rotation.h" />
-    <ClInclude Include="ShipThrusters.h" />
-    <ClInclude Include="SmoothCameraFollow.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="ThrusterInput.h" />
-    <ClInclude Include="Time.h" />
+    <ClInclude Include="Components\RotateToFaceMouse.h" />
+    <ClInclude Include="Components\Rotation.h" />
+    <ClInclude Include="Components\ShipThrusters.h" />
+    <ClInclude Include="Components\SmoothCameraFollow.h" />
+    <ClInclude Include="Components\Sprite.h" />
+    <ClInclude Include="Components\ThrusterInput.h" />
+    <ClInclude Include="GameTime.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

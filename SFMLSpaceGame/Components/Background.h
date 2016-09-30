@@ -1,9 +1,9 @@
 #pragma once
-#include "Component.h"
+#include <Components/Component.h>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <memory>
-#include "ResourceLoader.h"
+#include <ResourceLoader.h>
 
 class Position;
 

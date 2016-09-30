@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "Time.h"
-#include "GameStateManager.h"
-#include "WorldConstants.h"
+#include <GameStateManager.h>
+#include <WorldConstants.h>
+#include <GameTime.h>
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -13,6 +13,7 @@ sf::VideoMode GetVideoMode()
 int main()
 {
 	sf::RenderWindow window(GetVideoMode(), "SFML Works!");
+	window.setFramerateLimit(60);
 	
 	GAME_WINDOW = &window;
 
@@ -42,9 +43,9 @@ int main()
 		game_manager.Render(window);
 		window.display();
 
-		Time::deltaTime = clock.getElapsedTime().asSeconds();
-		if (Time::deltaTime > .25f)
-			Time::deltaTime = .25f;
+		GameTime::deltaTime = clock.getElapsedTime().asSeconds();
+		if (GameTime::deltaTime > .25f)
+			GameTime::deltaTime = .25f;
 	}
 
 	return 0;

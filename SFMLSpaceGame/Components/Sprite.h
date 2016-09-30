@@ -1,8 +1,8 @@
 #pragma once
-#include "Position.h"
-#include "Rotation.h"
+#include <Components/Position.h>
+#include <Components/Rotation.h>
 #include <SFML/Graphics/Sprite.hpp>
-#include "ResourceLoader.h"
+#include <ResourceLoader.h>
 
 class Sprite : public Component
 {

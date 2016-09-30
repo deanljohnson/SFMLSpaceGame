@@ -1,6 +1,6 @@
-#include "ShipThrusters.h"
-#include "Entity.h"
-#include "VectorMath.h"
+#include <Components/ShipThrusters.h>
+#include <Entity.h>
+#include <VectorMath.h>
 
 #ifndef M_PI_2f
 #define M_PI_2f (float)M_PI_2

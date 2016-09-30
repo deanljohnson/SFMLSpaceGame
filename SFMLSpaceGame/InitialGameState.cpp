@@ -1,19 +1,19 @@
-#include "InitialGameState.h"
+#include <InitialGameState.h>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include "Position.h"
-#include "Rotation.h"
-#include "RectPrimitive.h"
-#include "Time.h"
-#include "DirectionalKeyboardInput.h"
-#include "DirectionalVelocity.h"
-#include "RotatetoFaceMouse.h"
-#include "ShipThrusters.h"
-#include "ThrusterInput.h"
-#include "Background.h"
-#include "ParallaxMovement.h"
-#include "SmoothCameraFollow.h"
-#include "Sprite.h"
-#include "resource.h"
+#include <Components/Position.h>
+#include <Components/Rotation.h>
+#include <Components/RectPrimitive.h>
+#include <GameTime.h>
+#include <Components/DirectionalKeyboardInput.h>
+#include <Components/DirectionalVelocity.h>
+#include <Components/RotatetoFaceMouse.h>
+#include <Components/ShipThrusters.h>
+#include <Components/ThrusterInput.h>
+#include <Components/Background.h>
+#include <Components/ParallaxMovement.h>
+#include <Components/SmoothCameraFollow.h>
+#include <Components/Sprite.h>
+#include <resource.h>
 
 void InitialGameState::Init()
 {
@@ -22,16 +22,16 @@ void InitialGameState::Init()
 	auto pos = ent->AddComponent<Position>();
 	ent->AddComponent<Rotation>();
 	auto sp = ent->AddComponent<Sprite, ResourceID>(SHIP_HUMAN_FIGHTER);
-	//auto rp = ent->AddComponent<RectPrimitive, float, float>(100.f, 50.f);
 	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<DirectionalKeyboardInput>();
-	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.01f, .001f, .005f), ShipThrust(5.f, 3.f, 3.f));
+	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.08f, .06f, .04f), ShipThrust(7.f, 5.f, 5.f));
 	ent->AddComponent<ThrusterInput>();
-	ent->AddComponent<RotateToFaceMouse, float, float>(.1f, 2.f);
+	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
 	ent->AddComponent<SmoothCameraFollow>();
 
 	auto spriteBox = sp.GetPixelLocalBounds();
 	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	shape.setOrigin(shape.getSize() / 2.f);
 	phys.AddShape(shape, .2f);
 	phys.SetPosition(b2Vec2(5, 5));
 
@@ -64,7 +64,7 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 
 void InitialGameState::Update()
 {
-	m_stepper.Step(m_world, Time::deltaTime);
+	m_stepper.Step(m_world, GameTime::deltaTime);
 
 	m_entityManager.Refresh();
 	m_entityManager.Update();

@@ -1,4 +1,4 @@
-#include "ParallaxMovement.h"
+#include <Components/ParallaxMovement.h>
 
 void ParallaxMovement::Init()
 {

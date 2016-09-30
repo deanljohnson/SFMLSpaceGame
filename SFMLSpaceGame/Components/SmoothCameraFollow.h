@@ -1,5 +1,5 @@
 #pragma once
-#include "Position.h"
+#include <Components/Position.h>
 
 class SmoothCameraFollow : public Component
 {

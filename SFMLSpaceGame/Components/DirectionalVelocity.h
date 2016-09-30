@@ -1,7 +1,7 @@
 #pragma once
-#include "Component.h"
-#include "Physics.h"
-#include "DirectionalKeyboardInput.h"
+#include <Components/Component.h>
+#include <Components/Physics.h>
+#include <Components/DirectionalKeyboardInput.h>
 
 class DirectionalVelocity : public Component
 {

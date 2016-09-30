@@ -1,7 +1,7 @@
-#include "RotateToFaceMouse.h"
+#include <Components/RotateToFaceMouse.h>
 #include <SFML/Window/Mouse.hpp>
-#include "WorldConstants.h"
-#include "Entity.h"
+#include <WorldConstants.h>
+#include <Entity.h>
 #include <Box2D/Common/b2Math.h>
 
 b2Vec2 GetWorldMouseLocation() 

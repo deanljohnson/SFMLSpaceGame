@@ -1,5 +1,5 @@
-#include "ThrusterInput.h"
-#include "Entity.h"
+#include <Components/ThrusterInput.h>
+#include <Entity.h>
 
 void ThrusterInput::Init()
 {

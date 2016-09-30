@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "Component.h"
+#include <Components/Component.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <array>
 #include <Box2D/Dynamics/b2World.h>
+#include <bitset>
 
 class EntityManager;
 

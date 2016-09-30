@@ -1,6 +1,5 @@
 #pragma once
 #include <Box2D/Common/b2Math.h>
-#include <Box2D/Dynamics/b2Body.h>
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Physics.h"
+#include <Components/Physics.h>
 
 class RotateToFaceMouse : public Component
 {

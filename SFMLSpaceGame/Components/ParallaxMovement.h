@@ -1,6 +1,6 @@
 #pragma once
-#include "Position.h"
-#include "Entity.h"
+#include <Components/Position.h>
+#include <Entity.h>
 
 class ParallaxMovement : public Component
 {
