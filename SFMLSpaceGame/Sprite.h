@@ -21,4 +21,6 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target) override;
+
+	virtual sf::IntRect GetPixelLocalBounds() const;
 };

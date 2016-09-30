@@ -12,6 +12,7 @@
 #include "Background.h"
 #include "ParallaxMovement.h"
 #include "SmoothCameraFollow.h"
+#include "Sprite.h"
 #include "resource.h"
 
 void InitialGameState::Init()
@@ -20,7 +21,8 @@ void InitialGameState::Init()
 
 	auto pos = ent->AddComponent<Position>();
 	ent->AddComponent<Rotation>();
-	auto rp = ent->AddComponent<RectPrimitive, float, float>(100.f, 50.f);
+	auto sp = ent->AddComponent<Sprite, ResourceID>(SHIP_HUMAN_FIGHTER);
+	//auto rp = ent->AddComponent<RectPrimitive, float, float>(100.f, 50.f);
 	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.01f, .001f, .005f), ShipThrust(5.f, 3.f, 3.f));
@@ -28,13 +30,15 @@ void InitialGameState::Init()
 	ent->AddComponent<RotateToFaceMouse, float, float>(.1f, 2.f);
 	ent->AddComponent<SmoothCameraFollow>();
 
-	phys.AddShape(rp.GetShape());
+	auto spriteBox = sp.GetPixelLocalBounds();
+	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	phys.AddShape(shape, .2f);
 	phys.SetPosition(b2Vec2(5, 5));
 
 	auto bg = m_entityManager.AddEntity(m_world, Group(0));
 
 	bg->AddComponent<Position>();
-	bg->AddComponent<Background, int>(BGONE_FRONT);
+	bg->AddComponent<Background, ResourceID>(BGONE_FRONT);
 	bg->AddComponent<ParallaxMovement, Entity&, float>(*ent, .1f);
 }
 
