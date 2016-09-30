@@ -19,7 +19,8 @@ void GameWorldClickListener::Update()
 			m_clickedState = Down;
 			break;
 		}
-	}else
+	}
+	else
 	{
 		switch (m_clickedState)
 		{
@@ -36,4 +37,29 @@ void GameWorldClickListener::Update()
 			break;
 		}
 	}
+
+	if (m_clickedState == Down || m_clickedState == Held) 
+	{
+		for (auto listener : m_heldListeners) 
+		{
+			listener();
+		}
+	}
+	else if (m_clickedState == Click) 
+	{
+		for (auto listener : m_clickListeners)
+		{
+			listener();
+		}
+	}
+}
+
+void GameWorldClickListener::AddClickListener(std::function<void()> listener) 
+{
+	m_clickListeners.push_back(listener);
+}
+
+void GameWorldClickListener::AddHeldListener(std::function<void()> listener) 
+{
+	m_heldListeners.push_back(listener);
 }
