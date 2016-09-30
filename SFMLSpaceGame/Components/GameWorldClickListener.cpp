@@ -8,7 +8,7 @@ void GameWorldClickListener::Update()
 		switch (m_clickedState)
 		{
 		case None:
-			m_clickedState = None; 
+			m_clickedState = Down; 
 			break;
 		case Down:
 			m_clickedState = Held;

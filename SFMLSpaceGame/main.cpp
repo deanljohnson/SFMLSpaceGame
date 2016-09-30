@@ -44,8 +44,9 @@ int main()
 		window.display();
 
 		GameTime::deltaTime = clock.getElapsedTime().asSeconds();
-		if (GameTime::deltaTime > .25f)
+		if (GameTime::deltaTime > .25f) //limit jump in case of massive lag
 			GameTime::deltaTime = .25f;
+		//GameTime::totalTime += GameTime::deltaTime;
 	}
 
 	return 0;

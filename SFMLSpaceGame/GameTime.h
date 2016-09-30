@@ -3,6 +3,7 @@
 class GameTime
 {
 public:
+	static float totalTime;
 	static float deltaTime;
 
 private: 

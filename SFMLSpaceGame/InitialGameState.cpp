@@ -13,6 +13,8 @@
 #include <Components/ParallaxMovement.h>
 #include <Components/SmoothCameraFollow.h>
 #include <Components/Sprite.h>
+#include <Components/GameWorldClickListener.h>
+#include <Components/DirectionalGun.h>
 #include <resource.h>
 
 void InitialGameState::Init()
@@ -28,6 +30,9 @@ void InitialGameState::Init()
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
 	ent->AddComponent<SmoothCameraFollow>();
+	ent->AddComponent<DirectionalGun>();
+	ent->AddComponent<GameWorldClickListener>();
+	
 
 	auto spriteBox = sp.GetPixelLocalBounds();
 	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

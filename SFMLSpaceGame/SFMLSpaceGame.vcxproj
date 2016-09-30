@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Components\Background.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
+    <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
     <ClCompile Include="Components\DirectionalVelocity.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Components\CirclePrimitive.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\DirectionalVelocity.h" />
+    <ClInclude Include="Components\DirectionalGun.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameState.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Components\DirectionalKeyboardInput.h" />
     <ClInclude Include="Components\ParallaxMovement.h" />
     <ClInclude Include="Components\Physics.h" />
+    <ClInclude Include="Interfaces\ClickListener.h" />
     <ClInclude Include="PhysicsStepper.h" />
     <ClInclude Include="Components\Position.h" />
     <ClInclude Include="Components\RectPrimitive.h" />
