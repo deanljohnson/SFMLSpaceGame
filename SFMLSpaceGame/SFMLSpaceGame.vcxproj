@@ -162,6 +162,7 @@
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Components\DirectionalGun.h" />
     <ClInclude Include="Components\FireGunOnClick.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
