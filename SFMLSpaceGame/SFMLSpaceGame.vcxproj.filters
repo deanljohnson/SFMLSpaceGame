@@ -93,6 +93,9 @@
     <ClCompile Include="Components\DirectionalGun.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\FireGunOnClick.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -182,7 +185,13 @@
     <ClInclude Include="Components\DirectionalGun.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\ClickListener.h">
+    <ClInclude Include="Interfaces\MouseListener.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FireGunOnClick.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\Gun.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

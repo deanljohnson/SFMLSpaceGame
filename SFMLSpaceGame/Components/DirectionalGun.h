@@ -1,8 +1,9 @@
 #pragma once
 #include <Components/Position.h>
 #include <Components/Rotation.h>
+#include <Interfaces/Gun.h>
 
-class DirectionalGun : public Component 
+class DirectionalGun : public Component, Gun
 {
 private:
 	Position* m_position{ nullptr };
@@ -10,5 +11,5 @@ private:
 public:
 	virtual void Init() override;
 
-	void Shoot() const;
+	virtual void Shoot();
 };

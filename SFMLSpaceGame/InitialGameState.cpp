@@ -15,6 +15,7 @@
 #include <Components/Sprite.h>
 #include <Components/GameWorldClickListener.h>
 #include <Components/DirectionalGun.h>
+#include <Components/FireGunOnClick.h>
 #include <resource.h>
 
 void InitialGameState::Init()
@@ -32,7 +33,7 @@ void InitialGameState::Init()
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<DirectionalGun>();
 	ent->AddComponent<GameWorldClickListener>();
-	
+	ent->AddComponent<FireGunOnClick>();
 
 	auto spriteBox = sp.GetPixelLocalBounds();
 	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

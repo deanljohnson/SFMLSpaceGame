@@ -38,28 +38,29 @@ void GameWorldClickListener::Update()
 		}
 	}
 
+	b2Vec2 mousePos;
 	if (m_clickedState == Down || m_clickedState == Held) 
 	{
 		for (auto listener : m_heldListeners) 
 		{
-			listener();
+			listener->OnHeld(mousePos);
 		}
 	}
 	else if (m_clickedState == Click) 
 	{
 		for (auto listener : m_clickListeners)
 		{
-			listener();
+			listener->OnClick(mousePos);
 		}
 	}
 }
 
-void GameWorldClickListener::AddClickListener(std::function<void()> listener) 
+void GameWorldClickListener::AddClickListener(MouseListener* listener)
 {
 	m_clickListeners.push_back(listener);
 }
 
-void GameWorldClickListener::AddHeldListener(std::function<void()> listener) 
+void GameWorldClickListener::AddHeldListener(MouseListener* listener)
 {
 	m_heldListeners.push_back(listener);
 }

@@ -7,7 +7,7 @@ void DirectionalGun::Init()
 	m_rotation = &entity->GetComponent<Rotation>();
 }
 
-void DirectionalGun::Shoot() const
+void DirectionalGun::Shoot()
 {
 	printf("Shooting!\n");
 }

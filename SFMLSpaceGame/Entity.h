@@ -42,8 +42,6 @@ public:
 
 	//****** Component Handling Methods ******
 	
-	//For some reason the linker cant find this implementation if
-	//I place it in the CPP file...
 	template<typename T>
 	T& GetComponent() const
 	{
@@ -53,7 +51,10 @@ public:
 	}
 
 	template<typename T>
-	bool HasComponent() const;
+	bool HasComponent() const 
+	{
+		return m_componentBitset[GetComponentTypeID<T>()];
+	}
 
 	template<typename T, typename... TArgs>
 	T& AddComponent(TArgs&&... args) 
