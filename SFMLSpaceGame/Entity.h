@@ -39,6 +39,7 @@ public:
 	void Destroy() { m_alive = false; }
 
 	b2World& GetWorld() { return m_world; }
+	EntityManager& GetManager() { return m_manager; }
 
 	//****** Component Handling Methods ******
 	

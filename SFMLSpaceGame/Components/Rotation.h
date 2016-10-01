@@ -14,9 +14,16 @@
 class Rotation : public Component
 {
 private:
-	float m_radians{ 0.f };
-	float m_degrees{ 0.f };
+	float m_radians;
+	float m_degrees;
 public:
+	Rotation() 
+		: m_radians(0.f), m_degrees(0.f)
+	{}
+	explicit Rotation(float radians)
+		: m_radians(radians), m_degrees(RAD_TO_DEG(radians))
+	{}
+
 	float GetDegrees() const { return m_degrees; }
 	float GetRadians() const { return m_radians; }
 

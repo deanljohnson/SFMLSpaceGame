@@ -1,4 +1,5 @@
 #include <Components/BulletPhysics.h>
+#include <VectorMath.h>
 #include <Box2D/Dynamics/b2Fixture.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Entity.h>
@@ -32,5 +33,5 @@ void BulletPhysics::Update()
 	m_position->position = m_body->GetPosition();
 	m_rotation->SetRadians(m_body->GetAngle());
 
-	m_body->SetLinearVelocity(b2Vec2(cosf(m_speed), -sinf(m_speed)));
+	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation->GetRadians()), sin(m_rotation->GetRadians())) * m_speed);
 }

@@ -1,22 +1,6 @@
 #include <InitialGameState.h>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <Components/Position.h>
-#include <Components/Rotation.h>
-#include <Components/RectPrimitive.h>
-#include <Components/DirectionalKeyboardInput.h>
-#include <Components/DirectionalVelocity.h>
-#include <Components/RotatetoFaceMouse.h>
-#include <Components/ShipThrusters.h>
-#include <Components/ThrusterInput.h>
-#include <Components/Background.h>
-#include <Components/ParallaxMovement.h>
-#include <Components/SmoothCameraFollow.h>
-#include <Components/Sprite.h>
-#include <Components/GameWorldClickListener.h>
-#include <Components/DirectionalGun.h>
-#include <Components/FireGunOnClick.h>
 #include <GameTime.h>
-#include <resource.h>
 #include <EntityFactory.h>
 
 void InitialGameState::Init()

@@ -1,7 +1,7 @@
+#include <GameTime.h>
 #include <SFML/Graphics.hpp>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
-#include <GameTime.h>
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -46,7 +46,7 @@ int main()
 		GameTime::deltaTime = clock.getElapsedTime().asSeconds();
 		if (GameTime::deltaTime > .25f) //limit jump in case of massive lag
 			GameTime::deltaTime = .25f;
-		//GameTime::totalTime += GameTime::deltaTime;
+		GameTime::totalTime += GameTime::deltaTime;
 	}
 
 	return 0;
