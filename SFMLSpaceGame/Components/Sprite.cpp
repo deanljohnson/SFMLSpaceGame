@@ -1,6 +1,7 @@
 #include <Components/Sprite.h>
 #include <Entity.h>
 #include <WorldConstants.h>
+#include <VectorMath.h>
 
 void Sprite::Init()
 {
@@ -15,7 +16,7 @@ void Sprite::Init()
 void Sprite::Update()
 {
 	//position is stored in meters, must convert to pixels
-	m_sprite.setPosition(m_position->position * PIXELS_PER_METER);
+	m_sprite.setPosition(MultB2VecToSFMLVec(m_position->position, PIXELS_PER_METER));
 	m_sprite.setRotation(m_rotation->GetDegrees());
 }
 

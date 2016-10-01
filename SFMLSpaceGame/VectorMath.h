@@ -43,3 +43,13 @@ inline b2Vec2 Lerp(const b2Vec2& a, const b2Vec2& b, float d)
 	auto t = b - a;
 	return a + (b2Vec2(t.x * d, t.y * d));
 }
+
+inline sf::Vector2f MultB2VecToSFMLVec(const b2Vec2& a, float b)
+{
+	return sf::Vector2f(a.x * b, a.y * b);
+}
+
+inline b2Vec2 operator *(const b2Vec2& a, float b)
+{
+	return b2Vec2(a.x * b, a.y * b);
+}

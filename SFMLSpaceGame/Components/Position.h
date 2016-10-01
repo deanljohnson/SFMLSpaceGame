@@ -1,13 +1,14 @@
 #pragma once
 #include <Components/Component.h>
+#include <Box2D/Common/b2Math.h>
 
 class Position : public Component
 {
 public:
-	sf::Vector2f position;
+	b2Vec2 position;
 
-	Position() : position(sf::Vector2f(0, 0)){}
-	explicit Position(const sf::Vector2f& p) : position(p){}
+	Position() : position(b2Vec2(0, 0)){}
+	explicit Position(const b2Vec2& p) : position(p){}
 
 	float X() const noexcept { return position.x; }
 	float Y() const noexcept { return position.y; }

@@ -3,6 +3,7 @@
 #include <Entity.h>
 #include <Components/Position.h>
 #include <WorldConstants.h>
+#include <VectorMath.h>
 
 void Background::Init()
 {
@@ -14,7 +15,7 @@ void Background::Init()
 
 void Background::Update()
 {
-	m_sprite.setPosition(m_position->position * PIXELS_PER_METER);
+	m_sprite.setPosition(MultB2VecToSFMLVec(m_position->position, PIXELS_PER_METER));
 }
 
 void Background::Render(sf::RenderTarget& target)

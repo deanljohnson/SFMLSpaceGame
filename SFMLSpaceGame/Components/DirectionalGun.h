@@ -11,5 +11,5 @@ private:
 public:
 	virtual void Init() override;
 
-	virtual void Shoot();
+	virtual void Shoot() override;
 };

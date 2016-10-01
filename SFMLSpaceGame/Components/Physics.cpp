@@ -1,6 +1,5 @@
 #include <Components/Physics.h>
 #include <Entity.h>
-#include <VectorMath.h>
 #include <WorldConstants.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
@@ -31,6 +30,7 @@ void Physics::Init()
 
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(m_position->X(), m_position->Y());
+	bodyDef.angle = m_rotation->GetRadians();
 	bodyDef.type = m_bodyType;
 	bodyDef.fixedRotation = false;
 	bodyDef.linearDamping = m_linDamping;
@@ -40,7 +40,7 @@ void Physics::Init()
 
 void Physics::Update()
 {
-	m_position->position = B2VecToSFMLVec(m_body->GetPosition());
+	m_position->position = m_body->GetPosition();
 	m_rotation->SetRadians(m_body->GetAngle());
 }
 

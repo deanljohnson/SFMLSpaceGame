@@ -5,7 +5,7 @@ class SmoothCameraFollow : public Component
 {
 private:
 	Position* m_position{ nullptr };
-	sf::Vector2f m_LastPosition;
+	b2Vec2 m_LastPosition;
 
 public:
 	virtual void Init() override;
