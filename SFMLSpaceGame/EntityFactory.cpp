@@ -28,10 +28,14 @@ void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians)
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
 	ent->AddComponent<SmoothCameraFollow>();
-	ent->AddComponent<DirectionalGun, DirectionalGunData>(DirectionalGunData(.1f, {b2Vec2()}));
+	ent->AddComponent<DirectionalGun, DirectionalGunData>(DirectionalGunData(.1f, 
+	{
+		HardPoint(b2Vec2(.5f, -.1f), 0.f),
+		HardPoint(b2Vec2(.5f, .1f), 0.f)
+	}));
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
-
+	
 	auto spriteBox = sp.GetPixelLocalBounds();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(shape.getSize() / 2.f);

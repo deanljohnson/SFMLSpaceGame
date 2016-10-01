@@ -9,22 +9,22 @@ const int BOX2D_POSITION_ITERATIONS = 3;
 
 extern sf::RenderWindow* GAME_WINDOW;
 
-inline b2Vec2 MapSFMLToWorld(const b2Vec2& v)
+inline b2Vec2 MapPixelToWorld(const b2Vec2& v)
 {
 	return b2Vec2(v.x / PIXELS_PER_METER, v.y / PIXELS_PER_METER);
 }
 
-inline b2Vec2 MapSFMLToWorld(const sf::Vector2f& v)
+inline b2Vec2 MapPixelToWorld(const sf::Vector2f& v)
 {
 	return b2Vec2(v.x / PIXELS_PER_METER, v.y / PIXELS_PER_METER);
 }
 
-inline sf::Vector2f MapWorldToSFML(const b2Vec2& v)
+inline sf::Vector2f MapWorldToPixel(const b2Vec2& v)
 {
 	return sf::Vector2f(v.x * PIXELS_PER_METER, v.y * PIXELS_PER_METER);
 }
 
-inline sf::Vector2f MapWorldToSFML(const sf::Vector2f& v)
+inline sf::Vector2f MapWorldToPixel(const sf::Vector2f& v)
 {
 	return sf::Vector2f(v.x * PIXELS_PER_METER, v.y * PIXELS_PER_METER);
 }

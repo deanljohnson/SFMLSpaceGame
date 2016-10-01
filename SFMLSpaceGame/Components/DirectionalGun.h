@@ -4,15 +4,29 @@
 #include <Interfaces/Gun.h>
 #include <vector>
 
+struct HardPoint
+{
+	HardPoint(b2Vec2 offset, float angle)
+		: positionOffset(offset),
+		  angleOffset(angle)
+	{}
+
+	//Offset from the ships center to the HardPoint location. 
+	//+x = towards the ships nose 
+	//+y = towards the ships right side
+	b2Vec2 positionOffset;
+	float angleOffset;
+};
+
 struct DirectionalGunData
 {
-	DirectionalGunData(float cd, std::initializer_list<b2Vec2> hardPointLocations)
+	DirectionalGunData(float cd, std::initializer_list<HardPoint> hardPointLocations)
 		: cooldown(cd), 
 		  hardPoints(hardPointLocations)
 	{}
 
 	float cooldown;
-	std::vector<b2Vec2> hardPoints;
+	std::vector<HardPoint> hardPoints;
 };
 
 class DirectionalGun : public Component, Gun
@@ -22,7 +36,7 @@ private:
 	Rotation* m_rotation{ nullptr };
 	float m_cooldown;
 	float m_lastFiringTime;
-	std::vector<b2Vec2> m_hardPoints;
+	std::vector<HardPoint> m_hardPoints;
 
 public:
 	explicit DirectionalGun(DirectionalGunData data)

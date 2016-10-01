@@ -92,7 +92,7 @@ void Physics::AddShape(const sf::Shape& s, float density)
 	b2Vec2* points = new b2Vec2[s.getPointCount()];
 	for (size_t i = 0; i < s.getPointCount(); i++)
 	{
-		points[i] = MapSFMLToWorld(s.getPoint(i) - s.getOrigin());
+		points[i] = MapPixelToWorld(s.getPoint(i) - s.getOrigin());
 	}
 
 	b2PolygonShape poly;

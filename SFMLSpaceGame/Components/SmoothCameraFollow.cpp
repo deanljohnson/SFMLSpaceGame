@@ -11,7 +11,7 @@ void SmoothCameraFollow::Init()
 void SmoothCameraFollow::Update()
 {
 	auto v = GAME_WINDOW->getView();
-	v.setCenter(MapWorldToSFML(m_LastPosition));
+	v.setCenter(MapWorldToPixel(m_LastPosition));
 	GAME_WINDOW->setView(v);
 
 	m_LastPosition = m_position->position;

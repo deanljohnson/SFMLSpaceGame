@@ -7,7 +7,7 @@
 b2Vec2 GetWorldMouseLocation() 
 {
 	auto sfPos = GAME_WINDOW->mapPixelToCoords(sf::Mouse::getPosition(*GAME_WINDOW));
-	return MapSFMLToWorld(sfPos);
+	return MapPixelToWorld(sfPos);
 }
 
 void RotateToFaceMouse::Init() 
