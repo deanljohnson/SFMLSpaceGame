@@ -39,7 +39,7 @@ private:
 	std::vector<HardPoint> m_hardPoints;
 
 public:
-	explicit DirectionalGun(DirectionalGunData data)
+	explicit DirectionalGun(const DirectionalGunData& data)
 		: m_cooldown(data.cooldown),
 		  m_hardPoints(data.hardPoints)
 	{}

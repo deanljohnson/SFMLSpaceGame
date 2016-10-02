@@ -19,28 +19,15 @@
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
-	auto pos = ent->AddComponent<Position, b2Vec2>(b2Vec2(p));
-	ent->AddComponent<Rotation>(radians);
-	auto sp = ent->AddComponent<Sprite, ResourceID>(SHIP_HUMAN_FIGHTER);
-	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
+	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians);
+
+	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
-	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(1.1f, .8f, .5f), ShipThrust(7.f, 5.f, 5.f));
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
 	ent->AddComponent<SmoothCameraFollow>();
-	ent->AddComponent<DirectionalGun, DirectionalGunData>(DirectionalGunData(.1f, 
-	{
-		HardPoint(b2Vec2(.5f, -.1f), 0.f),
-		HardPoint(b2Vec2(.5f, .1f), 0.f)
-	}));
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
-	
-	auto spriteBox = sp.GetPixelLocalBounds();
-	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
-	shape.setOrigin(shape.getSize() / 2.f);
-	phys.AddShape(shape, .2f);
-	phys.SetPosition(b2Vec2(5, 5));
 }
 
 void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget) 
@@ -52,8 +39,29 @@ void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget)
 
 void EntityFactory::MakeIntoBullet(Entity* ent, const b2Vec2& p, float radians)
 {
-	ent->AddComponent<Position>(b2Vec2(p));
+	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
 	ent->AddComponent<BulletPhysics, b2Vec2, float>(b2Vec2(.3f, .03f), 15.f);
 	ent->AddComponent<RectPrimitive>(.3f, .03f);
+}
+
+void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians)
+{
+	//TODO: load ship stats based on ID
+	ent->AddComponent<Position, const b2Vec2&>(p);
+	ent->AddComponent<Rotation>(radians);
+	auto sp = ent->AddComponent<Sprite, ResourceID>(shipID);
+	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
+	ent->AddComponent<ShipThrusters, const ShipThrust&>(ShipThrust(1.1f, .8f, .5f));
+	ent->AddComponent<DirectionalGun, const DirectionalGunData&>(DirectionalGunData(.1f,
+	{
+		HardPoint(b2Vec2(.5f, -.1f), 0.f),
+		HardPoint(b2Vec2(.5f, .1f), 0.f)
+	}));
+
+	auto spriteBox = sp.GetPixelLocalBounds();
+	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	shape.setOrigin(shape.getSize() / 2.f);
+	phys.AddShape(shape, .2f);
+	phys.SetPosition(p);
 }

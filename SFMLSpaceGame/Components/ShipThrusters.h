@@ -20,16 +20,14 @@ class ShipThrusters : public Component
 private:
 	Physics* m_physics{ nullptr };
 	ShipThrust m_strength;
-	ShipThrust m_maxStrength;
 
 public:
 	ShipThrusters() 
-		: m_strength(.3f,.3f,.3f), 
-		  m_maxStrength(5.f,5.f,5.f)
+		: m_strength(.3f,.3f,.3f) 
 	{};
-	ShipThrusters(const ShipThrust& strength, const ShipThrust& maxStrength)
-		: m_strength(strength), 
-		  m_maxStrength(maxStrength)
+
+	explicit ShipThrusters(const ShipThrust& strength)
+		: m_strength(strength) 
 	{}
 
 	void ApplyThrust(ThrustDirection dir);

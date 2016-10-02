@@ -58,7 +58,7 @@ public:
 	}
 
 	template<typename T, typename... TArgs>
-	T& AddComponent(TArgs&&... args) 
+	T& AddComponent(TArgs... args) 
 	{
 		//we only allow entities to have a single component of a type
 		//assert(!HasComponent<T>());
