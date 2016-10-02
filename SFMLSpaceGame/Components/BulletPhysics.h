@@ -6,16 +6,21 @@
 class BulletPhysics : public Component
 {
 private:
+	const int BULLET_COLLISION_GROUP = -1;
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };
 	b2Vec2 m_size;
 	float m_speed;
 
+	//returns whether or not a collision happened
+	bool HandleCollisions();
+
 public:
 	explicit BulletPhysics(b2Vec2 size, float speed) 
 		: m_size(size), m_speed(speed)
 	{}
+	~BulletPhysics();
 
 	virtual void Init() override;
 	virtual void Update() override;

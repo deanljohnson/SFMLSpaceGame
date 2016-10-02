@@ -38,6 +38,11 @@ inline b2Vec2 Rotate(const b2Vec2& v, float r)
 	return b2Vec2(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }
 
+inline sf::Vector2f MultComponents(const sf::Vector2f& a, const sf::Vector2f& b)
+{
+	return sf::Vector2f(a.x * b.x, a.y * b.y);
+}
+
 inline sf::Vector2f Lerp(const sf::Vector2f& a, const sf::Vector2f& b, float d)
 {
 	return a + ((b - a) * d);

@@ -22,5 +22,5 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
 };

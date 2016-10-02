@@ -3,6 +3,7 @@
 #include <EntityManager.h>
 #include <Box2D/Dynamics/b2World.h>
 #include <PhysicsStepper.h>
+#include "ContactFilter.h"
 
 class InitialGameState : public GameState
 {
@@ -10,14 +11,14 @@ private:
 	EntityManager m_entityManager;
 	b2World m_world;
 	PhysicsStepper m_stepper;
+	ContactFilter m_contactListener;
 
 public:
 	InitialGameState() 
 		: m_entityManager(), 
 		  m_world(b2Vec2(0, 0)),
 		  m_stepper()
-	{
-	}
+	{}
 
 	virtual void Init() override;
 	virtual void CleanUp() const override;

@@ -2,7 +2,6 @@
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <SFML/Graphics/CircleShape.hpp>
-#include <WorldConstants.h>
 
 class CirclePrimitive : public Component
 {
@@ -12,9 +11,9 @@ private:
 	sf::CircleShape m_shape;
 
 public:
-	explicit CirclePrimitive(float rad) : m_shape(rad * PIXELS_PER_METER){}
+	explicit CirclePrimitive(float rad) : m_shape(rad){}
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
 };

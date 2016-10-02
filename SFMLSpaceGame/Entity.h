@@ -16,10 +16,28 @@ using GroupBitset = std::bitset<maxGroups>;
 
 class Entity
 {
-private:
-	EntityManager& m_manager;
-	b2World& m_world;
+public:
+	Entity(const Entity& other) = delete;
 
+	Entity(Entity&& other)
+		: m_alive{other.m_alive},
+		  m_components{std::move(other.m_components)},
+		  m_componentBitset{std::move(other.m_componentBitset)},
+		  m_groupBitset{std::move(other.m_groupBitset)},
+		  m_manager{other.m_manager},
+		  m_world{other.m_world}
+	{
+		m_componentArray = other.m_componentArray;
+	}
+
+	Entity& operator=(Entity other)
+	{
+		using std::swap;
+		swap(*this, other);
+		return *this;
+	}
+
+private:
 	bool m_alive{ true };
 	std::vector<std::unique_ptr<Component>> m_components;
 	
@@ -27,26 +45,30 @@ private:
 	ComponentBitset m_componentBitset;
 
 	GroupBitset m_groupBitset;
+
+	EntityManager* m_manager;
+	b2World* m_world;
+
 public:
-	Entity(EntityManager& manager, b2World& world) 
+	Entity(EntityManager* manager, b2World* world) 
 		: m_manager(manager), m_world(world)
 	{ }
 
 	void Update();
-	void Render(sf::RenderTarget& target);
+	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
 	bool isAlive() const { return m_alive; }
 	void Destroy() { m_alive = false; }
 
-	b2World& GetWorld() { return m_world; }
-	EntityManager& GetManager() { return m_manager; }
+	b2World* GetWorld() const { return m_world; }
+	EntityManager* GetManager() const { return m_manager; }
 
 	//****** Component Handling Methods ******
 	
 	template<typename T>
 	T& GetComponent() const
 	{
-		//assert(HasComponent<T>());
+		assert(HasComponent<T>());
 		auto ptr{ m_componentArray[GetComponentTypeID<T>()] };
 		return *static_cast<T*>(ptr);
 	}

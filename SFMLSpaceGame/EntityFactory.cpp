@@ -17,6 +17,7 @@
 #include <Components/FireGunOnClick.h>
 #include <Components/BulletPhysics.h>
 #include <Components/Lifetime.h>
+#include "Components/CollisionFilterComponent.h"
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
@@ -38,11 +39,12 @@ void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget)
 	ent->AddComponent<ParallaxMovement, Entity&, float>(*parallaxTarget, .1f);
 }
 
-void EntityFactory::MakeIntoBullet(Entity* ent, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(Entity* ent, Entity* sourceEntity, const b2Vec2& p, float radians)
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	ent->AddComponent<BulletPhysics, b2Vec2, float>(b2Vec2(.3f, .03f), 15.f);
+	ent->AddComponent<BulletPhysics, const b2Vec2&, float>(b2Vec2(.3f, .03f), 15.f);
+	ent->AddComponent<CollisionFilterComponent, Entity*>(sourceEntity);
 	ent->AddComponent<RectPrimitive>(.3f, .03f);
 	ent->AddComponent<Lifetime, float>(5.f);
 }
@@ -52,8 +54,8 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 	//TODO: load ship stats based on ID
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	auto sp = ent->AddComponent<Sprite, ResourceID>(shipID);
-	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
+	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
+	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, const ShipThrust&>(ShipThrust(1.1f, .8f, .5f));
 	ent->AddComponent<DirectionalGun, const DirectionalGunData&>(DirectionalGunData(.1f,
 	{
@@ -61,7 +63,7 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 		HardPoint(b2Vec2(.5f, .1f), 0.f)
 	}));
 
-	auto spriteBox = sp.GetPixelLocalBounds();
+	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(shape.getSize() / 2.f);
 	phys.AddShape(shape, .2f);

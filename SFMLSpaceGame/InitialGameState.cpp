@@ -3,16 +3,20 @@
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <resource.h>
+#include <ContactFilter.h>
 
 void InitialGameState::Init()
 {
-	auto player = m_entityManager.AddEntity(m_world, Group(1));
+	m_contactListener = ContactFilter();
+	m_world.SetContactFilter(&m_contactListener);
+
+	auto player = m_entityManager.AddEntity(&m_world, Group(1));
 	EntityFactory::MakeIntoPlayer(player);
 
-	auto bg = m_entityManager.AddEntity(m_world, Group(0));
+	auto bg = m_entityManager.AddEntity(&m_world, Group(0));
 	EntityFactory::MakeIntoBackgroundOne(bg, player);
 
-	auto enemy = m_entityManager.AddEntity(m_world, Group(1));
+	auto enemy = m_entityManager.AddEntity(&m_world, Group(1));
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 }
 
@@ -46,5 +50,7 @@ void InitialGameState::Update()
 
 void InitialGameState::Render(sf::RenderTarget& target)
 {
-	m_entityManager.Render(target);
+	sf::RenderStates rendStates;
+	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
+	m_entityManager.Render(target, rendStates);
 }

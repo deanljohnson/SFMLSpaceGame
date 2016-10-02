@@ -15,10 +15,10 @@ void CirclePrimitive::Init()
 void CirclePrimitive::Update()
 {
 	//position is stored in meters, must convert to pixels
-	m_shape.setPosition(MultB2VecToSFMLVec(m_position->position, PIXELS_PER_METER));
+	m_shape.setPosition(B2VecToSFMLVec(m_position->position));
 }
 
-void CirclePrimitive::Render(sf::RenderTarget& target)
+void CirclePrimitive::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	target.draw(m_shape);
+	target.draw(m_shape, states);
 }

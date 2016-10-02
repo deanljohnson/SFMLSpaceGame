@@ -7,10 +7,10 @@ void Entity::Update()
 		c->Update();
 }
 
-void Entity::Render(sf::RenderTarget& target)
+void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
 	for (auto& c : m_components) 
-		c->Render(target);
+		c->Render(target, states);
 }
 
 bool Entity::HasGroup(Group group) const noexcept
@@ -26,5 +26,5 @@ void Entity::DeleteFromGroup(Group group) noexcept
 void Entity::AddToGroup(Group group) noexcept 
 {
 	m_groupBitset[group] = true;
-	m_manager.AddToGroup(this, group);
+	m_manager->AddToGroup(this, group);
 }

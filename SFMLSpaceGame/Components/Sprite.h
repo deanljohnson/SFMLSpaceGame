@@ -20,7 +20,8 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
 
-	virtual sf::IntRect GetPixelLocalBounds() const;
+	// Returns the dimensions of this sprite in meters
+	virtual sf::FloatRect GetDimensions() const;
 };

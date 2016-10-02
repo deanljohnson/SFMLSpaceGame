@@ -1,6 +1,5 @@
 #include <Components/RectPrimitive.h>
 #include <Entity.h>
-#include <WorldConstants.h>
 #include <VectorMath.h>
 
 void RectPrimitive::Init() 
@@ -15,11 +14,11 @@ void RectPrimitive::Init()
 void RectPrimitive::Update() 
 {
 	//position is stored in meters, must convert to pixels
-	m_shape.setPosition(MultB2VecToSFMLVec(m_position->position, PIXELS_PER_METER));
+	m_shape.setPosition(B2VecToSFMLVec(m_position->position));
 	m_shape.setRotation(m_rotation->GetDegrees());
 }
 
-void RectPrimitive::Render(sf::RenderTarget& target)
+void RectPrimitive::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	target.draw(m_shape);
+	target.draw(m_shape, states);
 }

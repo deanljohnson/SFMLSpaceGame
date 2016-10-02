@@ -7,6 +7,7 @@
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
+#include <VectorMath.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 void WrapBodyAngle(b2Body& body)
@@ -35,7 +36,9 @@ void Physics::Init()
 	bodyDef.fixedRotation = false;
 	bodyDef.linearDamping = m_linDamping;
 	
-	m_body = entity->GetWorld().CreateBody(&bodyDef);
+	m_body = entity->GetWorld()->CreateBody(&bodyDef);
+
+	m_body->SetUserData(entity);
 }
 
 void Physics::Update()
@@ -92,7 +95,7 @@ void Physics::AddShape(const sf::Shape& s, float density)
 	b2Vec2* points = new b2Vec2[s.getPointCount()];
 	for (size_t i = 0; i < s.getPointCount(); i++)
 	{
-		points[i] = MapPixelToWorld(s.getPoint(i) - s.getOrigin());
+		points[i] = SFMLVecToB2Vec(s.getPoint(i) - s.getOrigin());
 	}
 
 	b2PolygonShape poly;

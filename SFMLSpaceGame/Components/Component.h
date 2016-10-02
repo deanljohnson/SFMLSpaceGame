@@ -37,11 +37,13 @@ using ComponentArray = std::array<Component*, maxComponents>;
 class Component
 {
 public:
+	Component() : entity(nullptr) {}
+
 	Entity* entity{ nullptr };
 
 	virtual ~Component(){};
 
 	virtual void Init(){}
 	virtual void Update(){};
-	virtual void Render(sf::RenderTarget& target){};
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states){};
 };

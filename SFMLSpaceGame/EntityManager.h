@@ -12,10 +12,10 @@ private:
 public:
 	void Refresh();
 	void Update();
-	void Render(sf::RenderTarget& target);
+	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	Entity* AddEntity(b2World& world);
-	Entity* AddEntity(b2World& world, Group group);
+	Entity* AddEntity(b2World* world);
+	Entity* AddEntity(b2World* world, Group group);
 
 	void AddToGroup(Entity* ent, Group group);
 	std::vector<Entity*>& GetEntitiesByGroup(Group group);
