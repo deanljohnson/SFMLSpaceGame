@@ -24,7 +24,7 @@ void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians)
 	auto sp = ent->AddComponent<Sprite, ResourceID>(SHIP_HUMAN_FIGHTER);
 	auto phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<DirectionalKeyboardInput>();
-	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(.08f, .06f, .04f), ShipThrust(7.f, 5.f, 5.f));
+	ent->AddComponent<ShipThrusters, ShipThrust, ShipThrust>(ShipThrust(1.1f, .8f, .5f), ShipThrust(7.f, 5.f, 5.f));
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
 	ent->AddComponent<SmoothCameraFollow>();
