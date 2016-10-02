@@ -16,6 +16,7 @@
 #include <Components/DirectionalGun.h>
 #include <Components/FireGunOnClick.h>
 #include <Components/BulletPhysics.h>
+#include <Components/Lifetime.h>
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
@@ -43,6 +44,7 @@ void EntityFactory::MakeIntoBullet(Entity* ent, const b2Vec2& p, float radians)
 	ent->AddComponent<Rotation>(radians);
 	ent->AddComponent<BulletPhysics, b2Vec2, float>(b2Vec2(.3f, .03f), 15.f);
 	ent->AddComponent<RectPrimitive>(.3f, .03f);
+	ent->AddComponent<Lifetime, float>(5.f);
 }
 
 void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians)

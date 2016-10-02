@@ -102,6 +102,9 @@
     <ClCompile Include="Components\BulletPhysics.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Lifetime.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\BulletPhysics.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Lifetime.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
