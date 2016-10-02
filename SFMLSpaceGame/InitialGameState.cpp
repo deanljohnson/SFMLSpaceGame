@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <GameTime.h>
 #include <EntityFactory.h>
+#include <resource.h>
 
 void InitialGameState::Init()
 {
@@ -10,6 +11,9 @@ void InitialGameState::Init()
 
 	auto bg = m_entityManager.AddEntity(m_world, Group(0));
 	EntityFactory::MakeIntoBackgroundOne(bg, player);
+
+	auto enemy = m_entityManager.AddEntity(m_world, Group(1));
+	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 }
 
 void InitialGameState::CleanUp() const
