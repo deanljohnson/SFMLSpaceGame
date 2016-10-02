@@ -14,10 +14,12 @@ namespace Steering
 	b2Vec2 Flee(const b2Vec2& current, const b2Vec2& target);
 
 	// Returns a unit vector towards a targets future position
-	b2Vec2 Pursue(const b2Vec2& current, const b2Vec2& target, const b2Vec2& targetVelocity, float maxSpeed);
+	b2Vec2 Pursue(Physics* self, Physics* target, float maxSpeed);
 
 	// Returns a unit vector away from a targets future position
-	b2Vec2 Evade(const b2Vec2& current, const b2Vec2& target, const b2Vec2& targetVelocity, float maxSpeed);
+	b2Vec2 Evade(Physics* self, Physics* target, float maxSpeed);
+
+	b2Vec2 Follow(Physics* self, Physics* target, float followDistance);
 
 	// Returns a unit vector that represents the alignment 
 	// vector based on the given Physics component's angles

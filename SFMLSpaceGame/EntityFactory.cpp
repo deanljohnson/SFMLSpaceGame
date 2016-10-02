@@ -26,7 +26,7 @@ void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians)
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ThrusterInput>();
-	ent->AddComponent<RotateToFaceMouse, float, float>(.8f, .5f);
+	ent->AddComponent<RotateToFaceMouse, float>(.5f);
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
@@ -56,7 +56,7 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 	ent->AddComponent<Rotation>(radians);
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
-	ent->AddComponent<ShipThrusters, const ShipThrust&>(ShipThrust(1.1f, .8f, .5f));
+	ent->AddComponent<ShipThrusters, const ShipThrust&>(ShipThrust(1.1f, .8f, .5f, .8f));
 	ent->AddComponent<DirectionalGun, const DirectionalGunData&>(DirectionalGunData(.1f,
 	{
 		HardPoint(b2Vec2(.5f, -.1f), 0.f),

@@ -2,7 +2,7 @@
 #include <Entity.h>
 #include <VectorMath.h>
 
-b2Vec2 ShipThrust::Get(ThrustDirection dir)
+b2Vec2 ShipThrust::GetMoveForce(ThrustDirection dir)
 {
 	switch (dir)
 	{
@@ -18,6 +18,20 @@ b2Vec2 ShipThrust::Get(ThrustDirection dir)
 	return b2Vec2();
 }
 
+float ShipThrust::GetTurningForce(ThrustDirection dir)
+{
+	switch(dir)
+	{
+	case SteerLeft:
+		return -Steer;
+	case SteerRight:
+		return Steer;
+	}
+
+	return 0.f;
+}
+
+
 
 void ShipThrusters::Init()
 {
@@ -28,6 +42,14 @@ void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 {
 	b2Body* b = m_physics->GetBody();
 	
-	b2Vec2 thrust = m_strength.Get(dir);
-	b->ApplyForceToCenter(Rotate(thrust * amount, b->GetAngle()), true);
+	if (dir != SteerLeft && dir != SteerRight)
+	{
+		b2Vec2 thrust = m_strength.GetMoveForce(dir);
+		b->ApplyForceToCenter(Rotate(thrust * amount, b->GetAngle()), true);
+	}
+	else
+	{
+		float torque = m_strength.GetTurningForce(dir);
+		b->ApplyTorque(torque * amount, true);
+	}
 }

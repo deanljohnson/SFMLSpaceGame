@@ -69,32 +69,16 @@ b2Vec2 Physics::GetVelocity() const
 	return m_body->GetLinearVelocity();
 }
 
-float Physics::GetRotationRadians() const
+float Physics::GetAngularVelocity() const
 {
-	return fmodf(m_rotation->GetRadians(), M_TAU);
+	return m_body->GetAngularVelocity();
 }
 
-void Physics::RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale) 
+
+float Physics::GetRotationRadians()
 {
 	WrapBodyAngle(*m_body);
-
-	b2Vec2 difVector = pos - m_body->GetPosition();
-	float targetAngle = atan2f(difVector.y, difVector.x);
-
-	//the next angle we will be at. Look ahead 1/3 (* a scaling factor) of a second to smooth the rotation well
-	float nextAngle = m_body->GetAngle() + m_body->GetAngularVelocity() / (3.f * smoothingScale);
-	float totalRotation = targetAngle - nextAngle;
-
-	while (totalRotation < -M_PI)
-		totalRotation += M_TAU;
-	while (totalRotation > M_PI)
-		totalRotation -= M_TAU;
-
-	float lerpFactor = abs(totalRotation) > 3.f 
-						? 1.f 
-						: abs(totalRotation) / 3.f;
-
-	m_body->ApplyTorque((totalRotation < 0 ? -torqueScale : torqueScale) * lerpFactor, true);
+	return m_body->GetAngle();
 }
 
 void Physics::AddShape(const sf::Shape& s, float density)

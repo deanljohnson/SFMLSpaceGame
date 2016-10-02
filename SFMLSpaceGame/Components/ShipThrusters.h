@@ -3,16 +3,22 @@
 
 enum ThrustDirection
 {
-	Front, Left, Right, Reverse
+	Front, Left, Right, Reverse, SteerLeft, SteerRight
 };
 
 struct ShipThrust
 {
-	ShipThrust(float f, float s, float r)
-		: Forward(f), Side(s), Reverse(r) {}
-	float Forward, Side, Reverse;
+	ShipThrust(float front, float side, float reverse, float steer)
+		: Forward(front), Side(side), Reverse(reverse), Steer(steer) {}
+	float Forward, Side, Reverse, Steer;
 
-	b2Vec2 ShipThrust::Get(ThrustDirection dir);
+	// Gets the force to apply to a ship for the
+	// Forward, Side, or Reverse ThrustDirection's
+	b2Vec2 ShipThrust::GetMoveForce(ThrustDirection dir);
+
+	// Gets the torque to apply to a ship for the
+	// SteerLeft and SteerRight ThrustDirection's
+	float ShipThrust::GetTurningForce(ThrustDirection dir);
 };
 
 class ShipThrusters : public Component
@@ -22,10 +28,6 @@ private:
 	ShipThrust m_strength;
 
 public:
-	ShipThrusters() 
-		: m_strength(.3f,.3f,.3f) 
-	{};
-
 	explicit ShipThrusters(const ShipThrust& strength)
 		: m_strength(strength) 
 	{}

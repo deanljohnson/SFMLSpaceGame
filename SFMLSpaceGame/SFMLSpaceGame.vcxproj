@@ -193,6 +193,7 @@
     <ClInclude Include="Components\DirectionalVelocity.h" />
     <ClInclude Include="Components\DirectionalGun.h" />
     <ClInclude Include="Components\FireGunOnClick.h" />
+    <ClInclude Include="Components\LeaderFollowing.h" />
     <ClInclude Include="Components\Lifetime.h" />
     <ClInclude Include="ContactFilter.h" />
     <ClInclude Include="Entity.h" />

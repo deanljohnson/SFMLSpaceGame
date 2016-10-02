@@ -230,6 +230,9 @@
     <ClInclude Include="Steering.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\LeaderFollowing.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
