@@ -181,6 +181,7 @@
     <ClCompile Include="Components\Sprite.cpp" />
     <ClCompile Include="Components\ThrusterInput.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="Steering.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\BulletPhysics.h" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Components\Sprite.h" />
     <ClInclude Include="Components\ThrusterInput.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="Steering.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

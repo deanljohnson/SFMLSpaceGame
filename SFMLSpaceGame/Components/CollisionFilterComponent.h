@@ -11,5 +11,5 @@ public:
 		: m_noCollision(noCollision)
 	{}
 
-	bool ShouldCollide(Entity* other);
+	bool ShouldCollide(Entity* other) const;
 };

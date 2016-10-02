@@ -1,4 +1,5 @@
 #pragma once
+#include <GameTime.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Interfaces/Gun.h>
@@ -20,7 +21,7 @@ struct HardPoint
 
 struct DirectionalGunData
 {
-	DirectionalGunData(float cd, std::initializer_list<HardPoint> hardPointLocations)
+	DirectionalGunData(float cd, const std::initializer_list<HardPoint>& hardPointLocations)
 		: cooldown(cd), 
 		  hardPoints(hardPointLocations)
 	{}
@@ -41,6 +42,7 @@ private:
 public:
 	explicit DirectionalGun(const DirectionalGunData& data)
 		: m_cooldown(data.cooldown),
+		  m_lastFiringTime(GameTime::totalTime - data.cooldown),
 		  m_hardPoints(data.hardPoints)
 	{}
 

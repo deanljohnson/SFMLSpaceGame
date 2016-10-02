@@ -1,13 +1,15 @@
 #include <Components/Physics.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
 #include <Entity.h>
 #include <WorldConstants.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <VectorMath.h>
 
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
-#include <VectorMath.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 void WrapBodyAngle(b2Body& body)
@@ -65,6 +67,11 @@ void Physics::SetVelocity(const b2Vec2& v)
 b2Vec2 Physics::GetVelocity() const
 {
 	return m_body->GetLinearVelocity();
+}
+
+float Physics::GetRotationRadians() const
+{
+	return fmodf(m_rotation->GetRadians(), M_TAU);
 }
 
 void Physics::RotateTowards(const b2Vec2& pos, float torqueScale, float smoothingScale) 

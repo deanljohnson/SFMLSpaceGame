@@ -63,3 +63,8 @@ inline b2Vec2 operator *(const b2Vec2& a, float b)
 {
 	return b2Vec2(a.x * b, a.y * b);
 }
+
+inline b2Vec2 operator /(const b2Vec2& a, float b)
+{
+	return b2Vec2(a.x / b, a.y / b);
+}

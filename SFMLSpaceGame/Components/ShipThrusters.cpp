@@ -24,10 +24,10 @@ void ShipThrusters::Init()
 	m_physics = &entity->GetComponent<Physics>();
 }
 
-void ShipThrusters::ApplyThrust(ThrustDirection dir)
+void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 {
 	b2Body* b = m_physics->GetBody();
 	
 	b2Vec2 thrust = m_strength.Get(dir);
-	b->ApplyForceToCenter(Rotate(thrust, b->GetAngle()), true);
+	b->ApplyForceToCenter(Rotate(thrust * amount, b->GetAngle()), true);
 }

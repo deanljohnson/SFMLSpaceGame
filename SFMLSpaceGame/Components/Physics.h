@@ -1,8 +1,10 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
+#include <Components/Component.h>
 #include <SFML/Graphics/Shape.hpp>
 #include <Box2D/Dynamics/b2Body.h>
+
+class Position;
+class Rotation;
 
 class Physics : public Component
 {
@@ -15,7 +17,7 @@ private:
 
 public:
 	Physics() 
-		: m_bodyType(b2_dynamicBody)
+		: m_bodyType(b2_dynamicBody), m_linDamping(0.f)
 	{}
 
 	explicit Physics(b2BodyType t, float linearDamping) 
@@ -30,6 +32,8 @@ public:
 
 	void SetVelocity(const b2Vec2& v);
 	b2Vec2 GetVelocity() const;
+
+	float GetRotationRadians() const;
 
 	b2Body* GetBody() { return m_body; }
 

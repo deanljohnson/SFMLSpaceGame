@@ -10,6 +10,10 @@ private:
 	float m_accumulator;
 	
 public:
+	PhysicsStepper()
+		: m_accumulator(0.f)
+	{}
+
 	void Step(b2World& world, float frameTime)
 	{
 		m_accumulator += frameTime;

@@ -19,5 +19,5 @@ public:
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
 	
-	const sf::RectangleShape& GetShape() { return m_shape; }
+	const sf::RectangleShape& GetShape() const { return m_shape; }
 };

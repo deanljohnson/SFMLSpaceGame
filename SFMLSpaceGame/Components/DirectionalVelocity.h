@@ -11,7 +11,7 @@ private:
 	float m_maxVelocity;
 
 public:
-	DirectionalVelocity(float maxVel) : m_maxVelocity(maxVel) {}
+	explicit DirectionalVelocity(float maxVel) : m_maxVelocity(maxVel) {}
 
 	virtual void Init() override;
 	virtual void Update() override;

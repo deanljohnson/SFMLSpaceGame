@@ -30,6 +30,6 @@ public:
 		: m_strength(strength) 
 	{}
 
-	void ApplyThrust(ThrustDirection dir);
+	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
 	virtual void Init() override;
 };
