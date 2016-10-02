@@ -31,25 +31,45 @@ float ShipThrust::GetTurningForce(ThrustDirection dir)
 	return 0.f;
 }
 
-
-
 void ShipThrusters::Init()
 {
 	m_physics = &entity->GetComponent<Physics>();
 }
 
+void ShipThrusters::Update()
+{
+	if (m_currentMoveForce.LengthSquared() != 0)
+	{
+		m_currentMoveForce = b2Clamp(m_currentMoveForce, 
+									b2Vec2(-m_strength.Reverse, -m_strength.Side), 
+									b2Vec2(m_strength.Forward, m_strength.Side));
+
+		b2Body* b = m_physics->GetBody();
+		b->ApplyForceToCenter(Rotate(m_currentMoveForce, b->GetAngle()), true);
+
+		m_currentMoveForce.SetZero();
+	}
+	
+	if (m_currentTorque != 0.f)
+	{
+		m_currentTorque = std::max(-m_strength.Steer, std::min(m_currentTorque, m_strength.Steer));
+		
+		b2Body* b = m_physics->GetBody();
+		b->ApplyTorque(m_currentTorque, true);
+		m_currentTorque = 0.f;
+	}
+}
+
 void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 {
-	b2Body* b = m_physics->GetBody();
-	
 	if (dir != SteerLeft && dir != SteerRight)
 	{
 		b2Vec2 thrust = m_strength.GetMoveForce(dir);
-		b->ApplyForceToCenter(Rotate(thrust * amount, b->GetAngle()), true);
+		m_currentMoveForce += thrust * amount;
 	}
 	else
 	{
 		float torque = m_strength.GetTurningForce(dir);
-		b->ApplyTorque(torque * amount, true);
+		m_currentTorque += torque * amount;
 	}
 }

@@ -43,8 +43,8 @@ void RotateToFaceMouse::Update()
 		? 1.f
 		: abs(totalRotation) / 3.f;
 
-	if (totalRotation <= 0)
+	if (totalRotation < -0.01f)
 		m_thrusters->ApplyThrust(SteerLeft, lerpFactor);
-	else if (totalRotation > 0)
+	else if (totalRotation > 0.01f)
 		m_thrusters->ApplyThrust(SteerRight, lerpFactor);
 }

@@ -26,6 +26,8 @@ class ShipThrusters : public Component
 private:
 	Physics* m_physics{ nullptr };
 	ShipThrust m_strength;
+	b2Vec2 m_currentMoveForce;
+	float m_currentTorque;
 
 public:
 	explicit ShipThrusters(const ShipThrust& strength)
@@ -34,4 +36,5 @@ public:
 
 	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
 	virtual void Init() override;
+	virtual void Update() override;
 };

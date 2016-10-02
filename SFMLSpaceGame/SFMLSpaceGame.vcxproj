@@ -163,6 +163,7 @@
     <ClCompile Include="Components\DirectionalVelocity.cpp" />
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
+    <ClCompile Include="Components\LeaderFollowing.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
     <ClCompile Include="Entity.cpp" />
