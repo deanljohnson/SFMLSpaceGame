@@ -245,6 +245,12 @@
     <ClInclude Include="Components\ShipController.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="EntityGroups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionGroups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

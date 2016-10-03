@@ -186,6 +186,7 @@
     <ClCompile Include="Steering.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
     <ClInclude Include="Components\Background.h" />
     <ClInclude Include="Box2D.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Components\FireGunOnClick.h" />
     <ClInclude Include="Components\Lifetime.h" />
     <ClInclude Include="Components\ShipController.h" />
+    <ClInclude Include="EntityGroups.h" />
     <ClInclude Include="ExtendedMath.h" />
     <ClInclude Include="ContactFilter.h" />
     <ClInclude Include="Entity.h" />

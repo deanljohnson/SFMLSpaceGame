@@ -28,17 +28,17 @@ void EntityManager::Refresh()
 
 void EntityManager::Update()
 {
-	for (auto i = 0u; i < m_entities.size(); i++)
+	/*for (auto i = 0u; i < m_entities.size(); i++)
 	{
 		m_entities[i]->Update();
-	}
-	/*for (auto i(0u); i < maxGroups; i++)
+	}*/
+	for (auto i(0u); i < maxGroups; i++)
 	{
 		auto& curGroup(m_groupedEntities[i]);
 
 		for (auto& e : curGroup)
 			e->Update();
-	}*/
+	}
 }
 
 void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)

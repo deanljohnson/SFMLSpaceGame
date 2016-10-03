@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 
+// Prevents collisions between this entity and one other
 class CollisionFilterComponent : public Component
 {
 private:

@@ -6,7 +6,6 @@
 class BulletPhysics : public Component
 {
 private:
-	const int BULLET_COLLISION_GROUP = -1;
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };

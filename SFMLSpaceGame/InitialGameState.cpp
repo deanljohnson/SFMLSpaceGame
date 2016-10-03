@@ -5,10 +5,11 @@
 #include <resource.h>
 #include <ContactFilter.h>
 #include "Components/ShipController.h"
+#include <EntityGroups.h>
 
 void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 {
-	auto enemy = entMan->AddEntity(world, Group(1));
+	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 	auto& sc = enemy->GetComponent<ShipController>();
 	sc.Set(FaceTargetAndFireDirectionalGuns);
@@ -20,10 +21,10 @@ void InitialGameState::Init()
 	m_contactListener = ContactFilter();
 	m_world.SetContactFilter(&m_contactListener);
 
-	auto player = m_entityManager.AddEntity(&m_world, Group(1));
+	auto player = m_entityManager.AddEntity(&m_world, PLAYER_GROUP);
 	EntityFactory::MakeIntoPlayer(player);
 
-	auto bg = m_entityManager.AddEntity(&m_world, Group(0));
+	auto bg = m_entityManager.AddEntity(&m_world, BACKGROUND_GROUP);
 	EntityFactory::MakeIntoBackgroundOne(bg, player);
 
 	AddEnemy(player, &m_entityManager, &m_world);

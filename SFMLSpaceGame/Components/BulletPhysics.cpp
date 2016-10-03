@@ -4,10 +4,12 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Entity.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
+#include <CollisionGroups.h>
 
 BulletPhysics::~BulletPhysics()
 {
-	entity->GetWorld()->DestroyBody(m_body);
+	if (m_body != nullptr)
+		entity->GetWorld()->DestroyBody(m_body);
 }
 
 void BulletPhysics::Init()
