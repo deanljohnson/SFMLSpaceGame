@@ -12,6 +12,8 @@ void Sprite::Init()
 	m_sprite.setScale(METERS_PER_PIXEL, METERS_PER_PIXEL); //Render method will convert meters back to pixels
 
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));
+	m_sprite.setPosition(B2VecToSFMLVec(m_position->position));
+	m_sprite.setRotation(m_rotation->GetDegrees());
 }
 
 void Sprite::Update()

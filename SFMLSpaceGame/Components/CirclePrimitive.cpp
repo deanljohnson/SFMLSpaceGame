@@ -10,6 +10,9 @@ void CirclePrimitive::Init()
 
 	m_shape.setFillColor(sf::Color::Green);
 	m_shape.setOrigin(m_shape.getRadius(), m_shape.getRadius());
+
+	m_shape.setPosition(B2VecToSFMLVec(m_position->position));
+	m_shape.setRotation(m_rotation->GetDegrees());
 }
 
 void CirclePrimitive::Update()

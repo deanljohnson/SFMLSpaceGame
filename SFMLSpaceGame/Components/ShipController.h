@@ -12,7 +12,7 @@ enum Maneuvers
 	FaceTargetAndFireDirectionalGuns, 
 	StrafeLeftForAttack, 
 	StrafeRightForAttack, 
-	StrafeToTargetsRear,
+	StrafeToTargetsRearForAttack,
 	COUNT
 };
 
@@ -41,6 +41,7 @@ private:
 	void FireGuns();
 	void FaceTargetAndFireDirectionalGuns();
 	void StrafeForAttack(ThrustDirection dir);
+	void StrafeToRearForAttack();
 
 public:
 	ShipController(float interceptLead, float followDistance, float approachDistance, float strafeDistance)

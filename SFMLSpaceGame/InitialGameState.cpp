@@ -12,7 +12,7 @@ void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 	auto& sc = enemy->GetComponent<ShipController>();
-	sc.Set(StrafeRightForAttack);
+	sc.Set(StrafeToTargetsRearForAttack);
 	sc.Set(FireGuns);
 	sc.SetTarget(player);
 }
