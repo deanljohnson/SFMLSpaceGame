@@ -35,15 +35,12 @@ class DirectionalGun : public Component, Gun
 private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
-	float m_cooldown;
 	float m_lastFiringTime;
-	std::vector<HardPoint> m_hardPoints;
+	DirectionalGunData* m_gunData;
 
 public:
-	explicit DirectionalGun(const DirectionalGunData& data)
-		: m_cooldown(data.cooldown),
-		  m_lastFiringTime(GameTime::totalTime - data.cooldown),
-		  m_hardPoints(data.hardPoints)
+	explicit DirectionalGun(DirectionalGunData* data)
+		: m_gunData(data)
 	{}
 
 	virtual void Init() override;

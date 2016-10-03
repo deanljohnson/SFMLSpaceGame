@@ -28,19 +28,19 @@ void ShipController::Update()
 void ShipController::FollowTarget()
 {
 	assert(m_target != nullptr);
-	ShipManeuvers::Follow(m_physics, m_thrusters, m_target, m_followDistance);
+	ShipManeuvers::Follow(m_physics, m_thrusters, m_target, m_stats->GetFollowDistance());
 }
 
 void ShipController::InterceptTarget()
 {
 	assert(m_target != nullptr);
-	ShipManeuvers::Intercept(m_physics, m_thrusters, m_target, m_interceptLeadMultiplier);
+	ShipManeuvers::Intercept(m_physics, m_thrusters, m_target, m_stats->GetInterceptLeadMultiplier());
 }
 
 void ShipController::ApproachTarget()
 {
 	assert(m_target != nullptr);
-	ShipManeuvers::Approach(m_physics, m_thrusters, m_target, m_approachDistance);
+	ShipManeuvers::Approach(m_physics, m_thrusters, m_target, m_stats->GetApproachDistance());
 }
 
 void ShipController::FireGuns()
@@ -71,7 +71,7 @@ void ShipController::FaceTargetForAttack()
 void ShipController::StrafeForAttack(ThrustDirection dir)
 {
 	assert(m_target != nullptr && (dir == Left || dir == Right));
-	ShipManeuvers::StrafeAtDistanceForAttack(m_physics, m_thrusters, m_target, dir, 15.f * .90f, m_strafeDistance);
+	ShipManeuvers::StrafeAtDistanceForAttack(m_physics, m_thrusters, m_target, dir, 15.f * .90f, m_stats->GetStrafeDistance());
 }
 
 void ShipController::StrafeToRearForAttack() 

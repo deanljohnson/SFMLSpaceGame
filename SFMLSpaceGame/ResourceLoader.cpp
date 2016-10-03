@@ -1,12 +1,36 @@
 #include <ResourceLoader.h>
+#include <resource.h>
 #include <windows.h>
 #include <map>
+#include <assert.h>
+#include <Components/DirectionalGun.h>
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
+	std::map<ResourceID, std::shared_ptr<ShipStats>> loadedShips;
+
+	bool IsShipID(ResourceID id) 
+	{
+		return id > SHIP_ID_START && id < SHIP_ID_END;
+	}
+}
+
+// Hard Coded ship loading functions. Eventually will be removed
+namespace
+{
+	ShipStats* LoadHumanFighter()
+	{
+		return new ShipStats(5.f, 2.f, 3.5f, 3.5f, 
+							ShipThrust(1.1f, .8f, .5f, .8f),
+							DirectionalGunData(.1f,
+							{
+								HardPoint(b2Vec2(.5f, -.1f), 0.f),
+								HardPoint(b2Vec2(.5f, .1f), 0.f)
+							}));
+	}
 }
 
 //Takes a map with shared_ptr value and removes elements
@@ -29,6 +53,7 @@ void UnloadUnusedResources()
 {
 	UnloadUnusedSharedPtrResources(loadedImages);
 	UnloadUnusedSharedPtrResources(loadedTextures);
+	UnloadUnusedSharedPtrResources(loadedShips);
 }
 
 std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
@@ -92,4 +117,24 @@ std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
 	loadedTextures.insert(make_pair(id, elem));
 
 	return elem;
+}
+
+std::shared_ptr<ShipStats> LoadShip(ResourceID id) 
+{
+	assert(IsShipID(id));
+
+	auto it = loadedShips.find(id);
+	if (it != loadedShips.end())
+	{
+		return it->second;
+	}
+
+	if (id == SHIP_HUMAN_FIGHTER) 
+	{
+		auto elem = std::make_shared<ShipStats>(*LoadHumanFighter());
+		loadedShips.insert(make_pair(id, elem));
+		return elem;
+	}
+
+	return nullptr;
 }

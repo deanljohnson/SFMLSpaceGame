@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "ShipThrusters.h"
 #include "DirectionalGun.h"
+#include <ShipStats.h>
 
 enum Maneuvers
 {
@@ -31,10 +32,7 @@ private:
 
 	ManeuverBitset m_activeBehaviours;
 
-	float m_interceptLeadMultiplier;
-	float m_followDistance;
-	float m_approachDistance;
-	float m_strafeDistance;
+	std::shared_ptr<ShipStats> m_stats;
 
 	void FollowTarget();
 	void InterceptTarget();
@@ -46,11 +44,8 @@ private:
 	void StrafeToRearForAttack();
 
 public:
-	ShipController(float interceptLead, float followDistance, float approachDistance, float strafeDistance)
-		: m_interceptLeadMultiplier(interceptLead),
-		  m_followDistance(followDistance),
-		  m_approachDistance(approachDistance),
-		  m_strafeDistance(strafeDistance)
+	ShipController(std::shared_ptr<ShipStats> stats)
+		: m_stats(stats)
 	{}
 
 	virtual void Init() override;

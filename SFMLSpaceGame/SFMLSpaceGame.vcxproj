@@ -226,6 +226,7 @@
     <ClInclude Include="Components\ThrusterInput.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="ShipManeuvers.h" />
+    <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />

@@ -43,8 +43,8 @@ void ShipThrusters::Update()
 	{
 		// Don't apply more thrust than the thruster strength in any direction
 		m_currentMoveForce = b2Clamp(m_currentMoveForce, 
-									b2Vec2(-m_strength.Reverse, -m_strength.Side), 
-									b2Vec2(m_strength.Forward, m_strength.Side));
+									b2Vec2(-m_strength->Reverse, -m_strength->Side), 
+									b2Vec2(m_strength->Forward, m_strength->Side));
 
 		b2Body* b = m_physics->GetBody();
 		b->ApplyForceToCenter(Rotate(m_currentMoveForce, b->GetAngle()), true);
@@ -55,7 +55,7 @@ void ShipThrusters::Update()
 	if (m_currentTorque != 0.f)
 	{
 		// Don't steer more than the thruster strength in any direction
-		m_currentTorque = std::max(-m_strength.Steer, std::min(m_currentTorque, m_strength.Steer));
+		m_currentTorque = std::max(-m_strength->Steer, std::min(m_currentTorque, m_strength->Steer));
 		
 		b2Body* b = m_physics->GetBody();
 		b->ApplyTorque(m_currentTorque, true);
@@ -67,12 +67,12 @@ void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 {
 	if (dir != SteerLeft && dir != SteerRight)
 	{
-		b2Vec2 thrust = m_strength.GetMoveForce(dir);
+		b2Vec2 thrust = m_strength->GetMoveForce(dir);
 		m_currentMoveForce += thrust * amount;
 	}
 	else
 	{
-		float torque = m_strength.GetTurningForce(dir);
+		float torque = m_strength->GetTurningForce(dir);
 		m_currentTorque += torque * amount;
 	}
 }

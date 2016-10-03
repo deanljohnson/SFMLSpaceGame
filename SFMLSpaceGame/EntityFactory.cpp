@@ -52,20 +52,18 @@ void EntityFactory::MakeIntoBullet(Entity* ent, Entity* sourceEntity, const b2Ve
 
 void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians, bool npc)
 {
+	auto shipStats = LoadShip(shipID);
+
 	//TODO: load ship stats based on ID
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
-	ent->AddComponent<ShipThrusters, const ShipThrust&>(ShipThrust(1.1f, .8f, .5f, .8f));
-	ent->AddComponent<DirectionalGun, const DirectionalGunData&>(DirectionalGunData(.1f,
-	{
-		HardPoint(b2Vec2(.5f, -.1f), 0.f),
-		HardPoint(b2Vec2(.5f, .1f), 0.f)
-	}));
+	ent->AddComponent<ShipThrusters, ShipThrust*>(shipStats->GetShipThrust());
+	ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 
 	if (npc)
-		ent->AddComponent<ShipController, float, float, float>(5.f, 2.f, 3.5f, 3.5f);
+		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
