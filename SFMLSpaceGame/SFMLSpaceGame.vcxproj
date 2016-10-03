@@ -186,6 +186,7 @@
     <ClCompile Include="Steering.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletStats.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
     <ClInclude Include="Components\Background.h" />
