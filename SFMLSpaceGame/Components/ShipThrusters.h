@@ -38,5 +38,6 @@ public:
 	virtual void Update() override;
 
 	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
+	void SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor);
 	void SteerTowardsAngle(float angle, float lookAheadFactor);
 };

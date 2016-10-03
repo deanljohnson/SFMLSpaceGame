@@ -11,8 +11,7 @@ void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 	auto enemy = entMan->AddEntity(world, Group(1));
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 	auto& sc = enemy->GetComponent<ShipController>();
-	sc.activeBehaviours.set(Follow);
-	sc.activeBehaviours.set(Intercept);
+	sc.activeBehaviours.set(Approach);
 	sc.SetTarget(player);
 }
 

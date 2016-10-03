@@ -4,7 +4,7 @@
 
 enum Maneuvers
 {
-	Follow, Intercept, COUNT
+	Follow, Intercept, Approach, COUNT
 };
 
 using ManeuverBitset = std::bitset<COUNT>;
@@ -20,14 +20,17 @@ private:
 
 	float m_interceptLeadMultiplier;
 	float m_followDistance;
+	float m_approachDistance;
 
 	void FollowTarget();
 	void InterceptTarget();
+	void ApproachTarget();
 
 public:
-	ShipController(float interceptLead, float followDistance)
+	ShipController(float interceptLead, float followDistance, float approachDistance)
 		: m_interceptLeadMultiplier(interceptLead),
-		  m_followDistance(followDistance)
+		  m_followDistance(followDistance),
+		  m_approachDistance(approachDistance)
 	{}
 
 	ManeuverBitset activeBehaviours;

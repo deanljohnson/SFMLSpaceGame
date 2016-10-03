@@ -9,4 +9,7 @@ namespace ShipManeuvers
 	
 	// Uses the given selfPhysics and selfThrusters pointers to intercept the target
 	void Intercept(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float leadModifier);
+
+	// Uses the given selfPhysics and selfThrusters pointers to intercept the target
+	void Approach(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float distance);
 }

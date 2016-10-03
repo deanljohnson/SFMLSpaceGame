@@ -75,6 +75,11 @@ void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 	}
 }
 
+void ShipThrusters::SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor)
+{
+	SteerTowardsAngle(atan2f(heading.y, heading.x), lookAheadFactor);
+}
+
 void ShipThrusters::SteerTowardsAngle(float angle, float lookAheadFactor)
 {
 	// figure where our current angular velocity is taking us
