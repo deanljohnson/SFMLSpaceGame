@@ -124,6 +124,7 @@ void ShipManeuvers::StrafeAtDistanceForAttack(Physics* selfPhysics,
 	else if (squaredDist < strafeDistSquared * .95f) 
 	{
 		selfThrusters->ApplyThrust(Reverse, .5f);
+		// continue strafing, even if we are close
 		selfThrusters->ApplyThrust(dir, 1.f);
 	}
 	else 

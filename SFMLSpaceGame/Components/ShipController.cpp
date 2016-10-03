@@ -1,6 +1,8 @@
 #include "ShipController.h"
 #include <Entity.h>
 #include <ShipManeuvers.h>
+#include <VectorMath.h>
+#include <ExtendedMath.h>
 
 void ShipController::Init()
 {
@@ -15,7 +17,8 @@ void ShipController::Update()
 	if (m_activeBehaviours[Intercept]) InterceptTarget();
 	if (m_activeBehaviours[Approach]) ApproachTarget();
 	if (m_activeBehaviours[Maneuvers::FireGuns]) FireGuns();
-	if (m_activeBehaviours[Maneuvers::FaceTargetAndFireDirectionalGuns]) FaceTargetAndFireDirectionalGuns();
+	if (m_activeBehaviours[Maneuvers::FireGunsWhenFacingTarget]) FireGunsWhenFacingTarget();
+	if (m_activeBehaviours[Maneuvers::FaceTargetForAttack]) FaceTargetForAttack();
 	if (m_activeBehaviours[StrafeLeftForAttack]) StrafeForAttack(Left);
 	if (m_activeBehaviours[StrafeRightForAttack]) StrafeForAttack(Right);
 	if (m_activeBehaviours[StrafeToTargetsRearForAttack]) StrafeToRearForAttack();
@@ -44,10 +47,23 @@ void ShipController::FireGuns()
 	m_dirGuns->Shoot();
 }
 
-void ShipController::FaceTargetAndFireDirectionalGuns()
+void ShipController::FireGunsWhenFacingTarget() 
+{
+	assert(m_target != nullptr);
+	b2Vec2 heading = m_physics->GetHeading();
+	b2Vec2 toTarget = m_target->GetPosition() - m_physics->GetPosition();
+	toTarget.Normalize();
+
+	if (b2Dot(heading, toTarget) > COS_15)
+		FireGuns();
+}
+
+void ShipController::FaceTargetForAttack()
 {
 	assert(m_target != nullptr);
 	ShipManeuvers::FaceTargetForAttack(m_physics, m_thrusters, m_target, 15.f * .90f);
+
+	FireGuns();
 }
 
 void ShipController::StrafeForAttack(ThrustDirection dir)
@@ -56,19 +72,13 @@ void ShipController::StrafeForAttack(ThrustDirection dir)
 	ShipManeuvers::StrafeAtDistanceForAttack(m_physics, m_thrusters, m_target, dir, 15.f * .90f, m_strafeDistance);
 }
 
-bool IsRight(b2Vec2 a1, b2Vec2 a2, b2Vec2 b) 
-{
-	return ((a2.x - a1.x)*(b.y - a1.y) - (a2.y - a1.y)*(b.x - a1.x)) > 0;
-}
-
 void ShipController::StrafeToRearForAttack() 
 {
 	assert(m_target != nullptr);
 
-	b2Vec2 targetHeading = m_target->GetHeading();
 	b2Vec2 targetPos = m_target->GetPosition();
 
-	if (IsRight(m_physics->GetPosition(), targetPos, (targetPos + (-targetHeading))))
+	if (IsRight(m_physics->GetPosition(), targetPos, (targetPos -m_target->GetHeading())))
 	{
 		StrafeForAttack(Right);
 	}

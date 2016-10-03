@@ -9,7 +9,8 @@ enum Maneuvers
 	Intercept, 
 	Approach, 
 	FireGuns,
-	FaceTargetAndFireDirectionalGuns, 
+	FireGunsWhenFacingTarget,
+	FaceTargetForAttack, 
 	StrafeLeftForAttack, 
 	StrafeRightForAttack, 
 	StrafeToTargetsRearForAttack,
@@ -39,7 +40,8 @@ private:
 	void InterceptTarget();
 	void ApproachTarget();
 	void FireGuns();
-	void FaceTargetAndFireDirectionalGuns();
+	void FireGunsWhenFacingTarget();
+	void FaceTargetForAttack();
 	void StrafeForAttack(ThrustDirection dir);
 	void StrafeToRearForAttack();
 

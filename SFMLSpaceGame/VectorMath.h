@@ -54,6 +54,13 @@ inline b2Vec2 Lerp(const b2Vec2& a, const b2Vec2& b, float d)
 	return a + (b2Vec2(t.x * d, t.y * d));
 }
 
+// Takes a line A defined by a start point a1 and an end point a2
+// and returns whether a point b is on the right of that line or not
+inline bool IsRight(b2Vec2 a1, b2Vec2 a2, b2Vec2 b)
+{
+	return ((a2.x - a1.x)*(b.y - a1.y) - (a2.y - a1.y)*(b.x - a1.x)) > 0;
+}
+
 inline sf::Vector2f MultB2VecToSFMLVec(const b2Vec2& a, float b)
 {
 	return sf::Vector2f(a.x * b, a.y * b);
