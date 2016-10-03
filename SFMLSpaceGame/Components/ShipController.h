@@ -8,9 +8,12 @@ enum Maneuvers
 	Follow, 
 	Intercept, 
 	Approach, 
+	FireGuns,
 	FaceTargetAndFireDirectionalGuns, 
-	StrafeLeftFacingTarget, 
-	StrafeRightFacingTarget, COUNT
+	StrafeLeftForAttack, 
+	StrafeRightForAttack, 
+	StrafeToTargetsRear,
+	COUNT
 };
 
 using ManeuverBitset = std::bitset<COUNT>;
@@ -35,8 +38,9 @@ private:
 	void FollowTarget();
 	void InterceptTarget();
 	void ApproachTarget();
+	void FireGuns();
 	void FaceTargetAndFireDirectionalGuns();
-	void StrafeFacingTarget(ThrustDirection dir);
+	void StrafeForAttack(ThrustDirection dir);
 
 public:
 	ShipController(float interceptLead, float followDistance, float approachDistance, float strafeDistance)

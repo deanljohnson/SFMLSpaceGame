@@ -17,7 +17,7 @@ namespace ShipManeuvers
 	void FaceTarget(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target);
 
 	// Uses the given selfPhysics and selfThrusters pointers to face the target while compensating for the targets speed
-	void FaceTargetForAttack(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float projectileSpeed);
+	void FaceTargetForAttack(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float projectileSpeed, float steerMultiplier = 1.f);
 
 	void StrafeAtDistanceForAttack(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, ThrustDirection dir, float projectileSpeed, float strafeDistance);
 }

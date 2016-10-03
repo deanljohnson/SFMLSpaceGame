@@ -14,9 +14,10 @@ void ShipController::Update()
 	if (m_activeBehaviours[Follow]) FollowTarget();
 	if (m_activeBehaviours[Intercept]) InterceptTarget();
 	if (m_activeBehaviours[Approach]) ApproachTarget();
+	if (m_activeBehaviours[Maneuvers::FireGuns]) FireGuns();
 	if (m_activeBehaviours[Maneuvers::FaceTargetAndFireDirectionalGuns]) FaceTargetAndFireDirectionalGuns();
-	if (m_activeBehaviours[StrafeLeftFacingTarget]) StrafeFacingTarget(Left);
-	if (m_activeBehaviours[StrafeRightFacingTarget]) StrafeFacingTarget(Right);
+	if (m_activeBehaviours[StrafeLeftForAttack]) StrafeForAttack(Left);
+	if (m_activeBehaviours[StrafeRightForAttack]) StrafeForAttack(Right);
 }
 
 void ShipController::FollowTarget()
@@ -37,15 +38,18 @@ void ShipController::ApproachTarget()
 	ShipManeuvers::Approach(m_physics, m_thrusters, m_target, m_approachDistance);
 }
 
+void ShipController::FireGuns()
+{
+	m_dirGuns->Shoot();
+}
+
 void ShipController::FaceTargetAndFireDirectionalGuns()
 {
 	assert(m_target != nullptr);
 	ShipManeuvers::FaceTargetForAttack(m_physics, m_thrusters, m_target, 15.f * .90f);
-
-	m_dirGuns->Shoot();
 }
 
-void ShipController::StrafeFacingTarget(ThrustDirection dir) 
+void ShipController::StrafeForAttack(ThrustDirection dir)
 {
 	assert(m_target != nullptr && (dir == Left || dir == Right));
 	ShipManeuvers::StrafeAtDistanceForAttack(m_physics, m_thrusters, m_target, dir, 15.f * .90f, m_strafeDistance);

@@ -12,7 +12,8 @@ void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 	auto& sc = enemy->GetComponent<ShipController>();
-	sc.Set(StrafeRightFacingTarget);
+	sc.Set(StrafeRightForAttack);
+	sc.Set(FireGuns);
 	sc.SetTarget(player);
 }
 
@@ -28,13 +29,13 @@ void InitialGameState::Init()
 	EntityFactory::MakeIntoBackgroundOne(bg, player);
 
 	AddEnemy(player, &m_entityManager, &m_world);
+	/*AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
+	AddEnemy(player, &m_entityManager, &m_world);*/
 }
 
 void InitialGameState::CleanUp() const
