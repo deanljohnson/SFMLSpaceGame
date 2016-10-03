@@ -13,6 +13,7 @@ void ShipController::Init()
 
 void ShipController::Update()
 {
+	// Run any active behavior
 	if (m_activeBehaviours[Follow]) FollowTarget();
 	if (m_activeBehaviours[Intercept]) InterceptTarget();
 	if (m_activeBehaviours[Approach]) ApproachTarget();
@@ -54,6 +55,7 @@ void ShipController::FireGunsWhenFacingTarget()
 	b2Vec2 toTarget = m_target->GetPosition() - m_physics->GetPosition();
 	toTarget.Normalize();
 
+	// If heading is within 15 degrees of the toTarget vector
 	if (b2Dot(heading, toTarget) > COS_15)
 		FireGuns();
 }

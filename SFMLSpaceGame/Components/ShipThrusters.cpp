@@ -41,6 +41,7 @@ void ShipThrusters::Update()
 {
 	if (m_currentMoveForce.LengthSquared() != 0)
 	{
+		// Don't apply more thrust than the thruster strength in any direction
 		m_currentMoveForce = b2Clamp(m_currentMoveForce, 
 									b2Vec2(-m_strength.Reverse, -m_strength.Side), 
 									b2Vec2(m_strength.Forward, m_strength.Side));
@@ -53,6 +54,7 @@ void ShipThrusters::Update()
 	
 	if (m_currentTorque != 0.f)
 	{
+		// Don't steer more than the thruster strength in any direction
 		m_currentTorque = std::max(-m_strength.Steer, std::min(m_currentTorque, m_strength.Steer));
 		
 		b2Body* b = m_physics->GetBody();

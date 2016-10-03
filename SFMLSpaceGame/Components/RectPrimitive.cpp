@@ -16,7 +16,6 @@ void RectPrimitive::Init()
 
 void RectPrimitive::Update() 
 {
-	//position is stored in meters, must convert to pixels
 	m_shape.setPosition(B2VecToSFMLVec(m_position->position));
 	m_shape.setRotation(m_rotation->GetDegrees());
 }

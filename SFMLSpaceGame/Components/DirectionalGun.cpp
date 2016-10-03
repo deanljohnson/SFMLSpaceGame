@@ -14,9 +14,11 @@ void DirectionalGun::Init()
 
 void DirectionalGun::Shoot()
 {
+	// If we are on cooldown
 	if ((GameTime::totalTime - m_lastFiringTime) < m_cooldown)
 		return;
 
+	// fire a bullet for each hardpoint
 	b2Rot rot(m_rotation->GetRadians());
 	for (auto hp : m_hardPoints)
 	{
@@ -24,5 +26,6 @@ void DirectionalGun::Shoot()
 		EntityFactory::MakeIntoBullet(bullet, entity, m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 
+	// Store this so we can have a cooldown
 	m_lastFiringTime = GameTime::totalTime;
 }

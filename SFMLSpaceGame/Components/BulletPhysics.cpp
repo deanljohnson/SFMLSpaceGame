@@ -44,9 +44,12 @@ void BulletPhysics::Update()
 	if (HandleCollisions())
 		return;
 
+	// Store pos/rot from physics body into pos/rot components
 	m_position->position = m_body->GetPosition();
 	m_rotation->SetRadians(m_body->GetAngle());
 
+	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
+	// Move the bullet forward at full speed
 	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation->GetRadians()), sin(m_rotation->GetRadians())) * m_speed);
 }
 
@@ -58,6 +61,7 @@ bool BulletPhysics::HandleCollisions()
 	if (m_body->GetContactList()->other == nullptr)
 		return false;
 
+	// We collided with something, doesn't matter what
 	entity->Destroy();
 	return true;
 }

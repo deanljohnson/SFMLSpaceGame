@@ -10,5 +10,6 @@ void DirectionalVelocity::Init()
 
 void DirectionalVelocity::Update() 
 {
+	// Move a vector depending on the keyboard input
 	m_physics->SetVelocity(SFMLVecToB2Vec(m_input->input * m_maxVelocity));
 }

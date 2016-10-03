@@ -3,6 +3,8 @@
 
 void GameWorldClickListener::Update()
 {
+	// TODO: Extract this into an InputManager so that GameWorldClickListener
+	// isn't dealing with raw input checks
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		switch (m_clickedState)

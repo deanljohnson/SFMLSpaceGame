@@ -89,6 +89,7 @@ float Physics::GetRotationRadians()
 
 void Physics::AddShape(const sf::Shape& s, float density)
 {
+	// Convert SFML shape points into b2Vec2's
 	b2Vec2* points = new b2Vec2[s.getPointCount()];
 	for (size_t i = 0; i < s.getPointCount(); i++)
 	{

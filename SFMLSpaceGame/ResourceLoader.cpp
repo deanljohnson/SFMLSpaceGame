@@ -14,6 +14,7 @@ namespace
 template<typename KeyType, typename PtrType>
 void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>& map)
 {
+	// Remove all resources with a unique shared_ptr
 	for (auto iter = map.begin(); iter != map.end();)
 	{
 		if (iter->second.unique())

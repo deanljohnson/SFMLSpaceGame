@@ -54,9 +54,6 @@
     <ClCompile Include="Components\CirclePrimitive.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\DirectionalKeyboardInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\DirectionalVelocity.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\ShipController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\DirectionalKeyboardInput.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
