@@ -1,5 +1,6 @@
 #include "ShipManeuvers.h"
 #include "Steering.h"
+#include <Box2d/Common/b2Math.h>
 
 void ShipManeuvers::Follow(Physics* selfPhysics, 
 						   ShipThrusters* selfThrusters, 
@@ -89,4 +90,41 @@ void ShipManeuvers::FaceTargetForAttack(Physics* selfPhysics,
 	b2Vec2 targetHeading = Steering::Pursue(selfPhysics, target, projectileSpeed);
 
 	selfThrusters->SteerTowardsHeading(targetHeading, 2.f);
+}
+
+void ShipManeuvers::StrafeAtDistanceForAttack(Physics* selfPhysics, 
+											  ShipThrusters* selfThrusters, 
+											  Physics* target, 
+											  ThrustDirection dir, 
+											  float projectileSpeed, 
+											  float strafeDistance)
+{
+	assert(dir == Left || dir == Right);
+
+	FaceTargetForAttack(selfPhysics, selfThrusters, target, projectileSpeed);
+
+	b2Vec2 dif = target->GetPosition() - selfPhysics->GetPosition();
+	float squaredDist = dif.LengthSquared();
+	float strafeDistSquared = strafeDistance * strafeDistance;
+
+	// Too far away, need to move closer
+	if (squaredDist > strafeDistSquared * 1.05f) 
+	{
+		// if we are within 90 degrees of facing the target
+		if (b2Dot(selfPhysics->GetHeading(), dif) > 0)
+		{
+			
+			selfThrusters->ApplyThrust(Front, std::min(1.f, squaredDist / (strafeDistSquared * 1.3f)));
+		}
+			
+	}
+	// Too close, need to back up
+	else if (squaredDist < strafeDistSquared * .95f) 
+	{
+		selfThrusters->ApplyThrust(Reverse, .5f);
+	}
+	else 
+	{
+		selfThrusters->ApplyThrust(dir, 1.f);
+	}
 }

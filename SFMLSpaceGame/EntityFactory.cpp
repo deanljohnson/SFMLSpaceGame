@@ -65,7 +65,7 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 	}));
 
 	if (npc)
-		ent->AddComponent<ShipController, float, float, float>(5.f, 2.f, 3.5f);
+		ent->AddComponent<ShipController, float, float, float>(5.f, 2.f, 3.5f, 3.5f);
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

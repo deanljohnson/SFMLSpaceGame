@@ -5,7 +5,12 @@
 
 enum Maneuvers
 {
-	Follow, Intercept, Approach, FaceTargetAndFireDirectionalGuns, COUNT
+	Follow, 
+	Intercept, 
+	Approach, 
+	FaceTargetAndFireDirectionalGuns, 
+	StrafeLeftFacingTarget, 
+	StrafeRightFacingTarget, COUNT
 };
 
 using ManeuverBitset = std::bitset<COUNT>;
@@ -25,17 +30,20 @@ private:
 	float m_interceptLeadMultiplier;
 	float m_followDistance;
 	float m_approachDistance;
+	float m_strafeDistance;
 
 	void FollowTarget();
 	void InterceptTarget();
 	void ApproachTarget();
 	void FaceTargetAndFireDirectionalGuns();
+	void StrafeFacingTarget(ThrustDirection dir);
 
 public:
-	ShipController(float interceptLead, float followDistance, float approachDistance)
+	ShipController(float interceptLead, float followDistance, float approachDistance, float strafeDistance)
 		: m_interceptLeadMultiplier(interceptLead),
 		  m_followDistance(followDistance),
-		  m_approachDistance(approachDistance)
+		  m_approachDistance(approachDistance),
+		  m_strafeDistance(strafeDistance)
 	{}
 
 	virtual void Init() override;
