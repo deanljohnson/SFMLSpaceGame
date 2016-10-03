@@ -1,6 +1,7 @@
 #include <Components/ShipThrusters.h>
 #include <Entity.h>
 #include <VectorMath.h>
+#include <ExtendedMath.h>
 
 b2Vec2 ShipThrust::GetMoveForce(ThrustDirection dir)
 {
@@ -72,4 +73,24 @@ void ShipThrusters::ApplyThrust(ThrustDirection dir, float amount)
 		float torque = m_strength.GetTurningForce(dir);
 		m_currentTorque += torque * amount;
 	}
+}
+
+void ShipThrusters::SteerTowardsAngle(float angle, float lookAheadFactor)
+{
+	// figure where our current angular velocity is taking us
+	float nextAngle = m_physics->GetRotationRadians()
+		+ (m_physics->GetAngularVelocity() / lookAheadFactor);
+	float totalRotation = angle - nextAngle;
+
+	// constrain rotation to (-M_PI, M_PI)
+	totalRotation = ConstrainToPlusMinusPI(totalRotation);
+
+	float lerpFactor = abs(totalRotation) > 3.f
+		? 1.f
+		: abs(totalRotation) / 3.f;
+
+	if (totalRotation < -0.01f)
+		ApplyThrust(SteerLeft, lerpFactor);
+	else if (totalRotation > 0.01f)
+		ApplyThrust(SteerRight, lerpFactor);
 }

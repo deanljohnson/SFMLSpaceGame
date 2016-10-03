@@ -18,15 +18,16 @@
 #include <Components/BulletPhysics.h>
 #include <Components/Lifetime.h>
 #include "Components/CollisionFilterComponent.h"
+#include "Components/ShipController.h"
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
-	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians);
+	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians, false);
 
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ThrusterInput>();
-	ent->AddComponent<RotateToFaceMouse, float>(.5f);
+	ent->AddComponent<RotateToFaceMouse, float>(1.5f);
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
@@ -49,7 +50,7 @@ void EntityFactory::MakeIntoBullet(Entity* ent, Entity* sourceEntity, const b2Ve
 	ent->AddComponent<Lifetime, float>(5.f);
 }
 
-void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians, bool npc)
 {
 	//TODO: load ship stats based on ID
 	ent->AddComponent<Position, const b2Vec2&>(p);
@@ -62,6 +63,9 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 		HardPoint(b2Vec2(.5f, -.1f), 0.f),
 		HardPoint(b2Vec2(.5f, .1f), 0.f)
 	}));
+
+	if (npc)
+		ent->AddComponent<ShipController, float, float>(5.f, 2.f);
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

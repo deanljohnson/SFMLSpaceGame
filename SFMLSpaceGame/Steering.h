@@ -19,6 +19,7 @@ namespace Steering
 	// Returns a unit vector away from a targets future position
 	b2Vec2 Evade(Physics* self, Physics* target, float maxSpeed);
 
+	// Returns a unit vector towards a positiong behind the target
 	b2Vec2 Follow(Physics* self, Physics* target, float followDistance);
 
 	// Returns a unit vector that represents the alignment 

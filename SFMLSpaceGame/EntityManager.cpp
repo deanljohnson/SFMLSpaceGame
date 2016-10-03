@@ -28,7 +28,7 @@ void EntityManager::Refresh()
 
 void EntityManager::Update()
 {
-	for (int i = 0; i < m_entities.size(); i++)
+	for (auto i = 0u; i < m_entities.size(); i++)
 	{
 		m_entities[i]->Update();
 	}

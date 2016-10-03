@@ -114,7 +114,10 @@
     <ClCompile Include="Steering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\LeaderFollowing.cpp">
+    <ClCompile Include="ShipManeuvers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\ShipController.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,7 +236,13 @@
     <ClInclude Include="Steering.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\LeaderFollowing.h">
+    <ClInclude Include="ExtendedMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipManeuvers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShipController.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

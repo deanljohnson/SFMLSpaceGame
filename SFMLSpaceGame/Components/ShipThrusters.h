@@ -31,10 +31,12 @@ private:
 
 public:
 	explicit ShipThrusters(const ShipThrust& strength)
-		: m_strength(strength) 
+		: m_strength(strength), m_currentTorque(0.f)
 	{}
 
-	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
 	virtual void Init() override;
 	virtual void Update() override;
+
+	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
+	void SteerTowardsAngle(float angle, float lookAheadFactor);
 };

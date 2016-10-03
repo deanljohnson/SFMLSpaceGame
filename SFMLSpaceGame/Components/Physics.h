@@ -33,6 +33,8 @@ public:
 	void SetVelocity(const b2Vec2& v);
 	b2Vec2 GetVelocity() const;
 
+	b2Vec2 GetHeading();
+
 	float GetAngularVelocity() const;
 
 	float GetRotationRadians();

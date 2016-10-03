@@ -69,6 +69,12 @@ b2Vec2 Physics::GetVelocity() const
 	return m_body->GetLinearVelocity();
 }
 
+b2Vec2 Physics::GetHeading()
+{
+	return Rotate(b2Vec2(1, 0), b2Rot(GetRotationRadians()));
+}
+
+
 float Physics::GetAngularVelocity() const
 {
 	return m_body->GetAngularVelocity();
