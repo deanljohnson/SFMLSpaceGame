@@ -1,10 +1,11 @@
 #pragma once
 #include "Component.h"
 #include "ShipThrusters.h"
+#include "DirectionalGun.h"
 
 enum Maneuvers
 {
-	Follow, Intercept, Approach, COUNT
+	Follow, Intercept, Approach, FaceTargetAndFireDirectionalGuns, COUNT
 };
 
 using ManeuverBitset = std::bitset<COUNT>;
@@ -17,6 +18,9 @@ private:
 	Physics* m_physics{ nullptr };
 	ShipThrusters* m_thrusters{ nullptr };
 	Physics* m_target{ nullptr };
+	DirectionalGun* m_dirGuns{ nullptr };
+
+	ManeuverBitset m_activeBehaviours;
 
 	float m_interceptLeadMultiplier;
 	float m_followDistance;
@@ -25,6 +29,7 @@ private:
 	void FollowTarget();
 	void InterceptTarget();
 	void ApproachTarget();
+	void FaceTargetAndFireDirectionalGuns();
 
 public:
 	ShipController(float interceptLead, float followDistance, float approachDistance)
@@ -33,10 +38,9 @@ public:
 		  m_approachDistance(approachDistance)
 	{}
 
-	ManeuverBitset activeBehaviours;
-
 	virtual void Init() override;
 	virtual void Update() override;
 
+	void Set(Maneuvers maneuver, bool val = true);
 	void SetTarget(Entity* target);
 };

@@ -71,3 +71,22 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 		selfThrusters->ApplyThrust(Front, std::min(1.f, distToTarget / (distance * 1.5f)));
 	}
 }
+
+void ShipManeuvers::FaceTarget(Physics* selfPhysics, 
+							   ShipThrusters* selfThrusters, 
+							   Physics* target)
+{
+	b2Vec2 targetHeading = Steering::Seek(selfPhysics->GetPosition(), target->GetPosition());
+
+	selfThrusters->SteerTowardsHeading(targetHeading, 1.5f);
+}
+
+void ShipManeuvers::FaceTargetForAttack(Physics* selfPhysics,
+										ShipThrusters* selfThrusters,
+										Physics* target,
+										float projectileSpeed)
+{
+	b2Vec2 targetHeading = Steering::Pursue(selfPhysics, target, projectileSpeed);
+
+	selfThrusters->SteerTowardsHeading(targetHeading, 2.f);
+}

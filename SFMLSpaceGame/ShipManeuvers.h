@@ -12,4 +12,10 @@ namespace ShipManeuvers
 
 	// Uses the given selfPhysics and selfThrusters pointers to intercept the target
 	void Approach(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float distance);
+
+	// Uses the given selfPhysics and selfThrusters pointers to face the target
+	void FaceTarget(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target);
+
+	// Uses the given selfPhysics and selfThrusters pointers to face the target while compensating for targets speed
+	void FaceTargetForAttack(Physics* selfPhysics, ShipThrusters* selfThrusters, Physics* target, float projectileSpeed);
 }
