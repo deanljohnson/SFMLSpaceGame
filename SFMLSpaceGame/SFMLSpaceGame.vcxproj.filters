@@ -126,10 +126,10 @@
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UIManager.cpp">
+    <ClCompile Include="UI\UIText.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UIText.cpp">
+    <ClCompile Include="UI\UI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,13 +269,13 @@
     <ClInclude Include="ProjectileStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\UIManager.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="UI\UIElement.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIText.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

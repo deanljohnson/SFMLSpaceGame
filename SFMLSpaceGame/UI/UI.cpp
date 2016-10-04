@@ -1,6 +1,10 @@
-#include <UI/UIManager.h>
+#include <UI/UI.h>
 
-void UIManager::Update()
+UI_ID UI::m_nextID = 0;
+long UI::m_updateCounter = 0;
+std::map<UI_ID, UI::ElementRecord> UI::m_elements{};
+
+void UI::Update()
 {
 	m_updateCounter++;
 
@@ -12,7 +16,7 @@ void UIManager::Update()
 	}
 }
 
-void UIManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
 	for (auto iter = m_elements.begin(); iter != m_elements.end(); ++iter)
 	{
@@ -20,7 +24,7 @@ void UIManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
-UI_Result* UIManager::GetResult(UI_ID id)
+UI_Result* UI::GetResult(UI_ID id)
 {
 	return nullptr;
 }

@@ -196,7 +196,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="Steering.cpp" />
-    <ClCompile Include="UI\UIManager.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +244,7 @@
     <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="UI\UIElement.h" />
-    <ClInclude Include="UI\UIManager.h" />
+    <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />

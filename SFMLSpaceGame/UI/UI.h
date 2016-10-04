@@ -3,11 +3,16 @@
 #include <map>
 #include "UIElement.h"
 #include <ResourceLoader.h>
+#include <memory>
 
 #ifndef UI_ID
-#define UI_ID unsigned long long
+#define UI_ID unsigned long
 #endif
-#include <memory>
+
+// Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
+// Subsequent calls will Display the element without passing/evaluating arguments
+#define INIT_AND_DISPLAY(_Type_, _ID_, ...) if (_ID_ == 0) _ID_ = UI::Display<_Type_>(_ID_, __VA_ARGS__); \
+										    else UI::Display<_Type_>(_ID_)
 
 namespace sf{
 	class RenderWindow;
@@ -43,7 +48,7 @@ union UI_Result
 	std::string stringValue;
 };
 
-class UIManager
+class UI
 {
 private:
 	struct ElementRecord
@@ -59,24 +64,41 @@ private:
 		UI_Result result;
 	};
 
-	UI_ID m_nextID{ 0 };
-	long m_updateCounter{ 0 };
-	sf::RenderWindow* m_window;
+	static UI_ID m_nextID;
+	static long m_updateCounter;
 
-	std::map<UI_ID, ElementRecord> m_elements;
+	static std::map<UI_ID, ElementRecord> m_elements;
 
 public:
-	explicit UIManager(sf::RenderWindow* window)
-		: m_window(window)
-	{}
+	static void Update();
+	static void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	void Update();
-	void Render(sf::RenderTarget& target, sf::RenderStates& states);
+	static UI_Result* GetResult(UI_ID id);
 
-	UI_Result* GetResult(UI_ID id);
+	template<typename T>
+	static UI_ID Display(UI_ID prevID)
+	{
+		static_assert(std::is_base_of<UIElement, T>::value,
+			"T must inherit from UIElement");
+
+		auto it = m_elements.find(prevID);
+		if (it != m_elements.end())
+		{
+			// mark the element as having just been updated
+			it->second.lastUpdate = m_updateCounter;
+
+			// Call refresh
+			it->second.element.get()->Refresh();
+
+			// This was a pre-existing item so it keeps it's ID
+			return prevID;
+		}
+
+		throw prevID + " is not a pre-existing UI_ID";
+	}
 
 	template<typename T, typename... TArgs>
-	UI_ID Display(UI_ID prevID, TArgs... args)
+	static UI_ID Display(UI_ID prevID, TArgs... args)
 	{
 		static_assert(std::is_base_of<UIElement, T>::value,
 			"T must inherit from UIElement");
