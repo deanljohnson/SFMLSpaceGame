@@ -6,6 +6,8 @@
 #include <ContactFilter.h>
 #include "Components/ShipController.h"
 #include <EntityGroups.h>
+#include "UI/UIManager.h"
+#include "UI/UIText.h"
 
 void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 {
@@ -57,9 +59,14 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 {
 	
 }
+UIManager uiMan{ GAME_WINDOW };
+UI_ID id;
 
 void InitialGameState::Update()
 {
+	uiMan.Update();
+
+	id = uiMan.Display<UIText>(id, "hello world!", FONT_ONE);
 	m_stepper.Step(m_world, GameTime::deltaTime);
 
 	m_entityManager.Refresh();
@@ -71,4 +78,10 @@ void InitialGameState::Render(sf::RenderTarget& target)
 	sf::RenderStates rendStates;
 	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
 	m_entityManager.Render(target, rendStates);
+
+	rendStates = sf::RenderStates::Default;
+	auto center = GAME_WINDOW->getView().getCenter();
+	rendStates.transform.translate(center); // this puts (0,0) at the center of the screen
+	rendStates.transform.translate(-GAME_WINDOW->getView().getSize() / 2.f); // and now we move (0,0) to the top-left
+	uiMan.Render(target, rendStates);
 }

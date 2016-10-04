@@ -5,6 +5,7 @@
 #include <EntityFactory.h>
 #include <VectorMath.h>
 #include <EntityGroups.h>
+#include <resource.h>
 
 void DirectionalGun::Init() 
 {
@@ -23,7 +24,7 @@ void DirectionalGun::Shoot()
 	for (auto hp : m_gunData->hardPoints)
 	{
 		auto bullet = entity->GetManager()->AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
-		EntityFactory::MakeIntoBullet(bullet, entity, m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
+		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, entity, m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 
 	// Store this so we can have a cooldown

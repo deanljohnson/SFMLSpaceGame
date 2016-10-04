@@ -96,6 +96,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)libs\debug;$(SolutionDir)SFML-2.4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +115,9 @@
       <AdditionalLibraryDirectories>C:\Users\Dean\Documents\Visual Studio 2015\Projects\SFMLSpaceGame\libs\debug;D:\CodeProjects\CPP\SFML-2.4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -132,6 +138,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)libs\release;$(SolutionDir)SFML-2.4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,6 +161,9 @@
       <AdditionalLibraryDirectories>C:\Users\Dean\Documents\Visual Studio 2015\Projects\SFMLSpaceGame\libs\release;D:\CodeProjects\CPP\SFML-2.4.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Background.cpp" />
@@ -184,9 +196,11 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="UI\UIManager.cpp" />
+    <ClCompile Include="UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BulletStats.h" />
+    <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
     <ClInclude Include="Components\Background.h" />
@@ -229,6 +243,9 @@
     <ClInclude Include="ShipManeuvers.h" />
     <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
+    <ClInclude Include="UI\UIElement.h" />
+    <ClInclude Include="UI\UIManager.h" />
+    <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

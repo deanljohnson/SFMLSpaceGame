@@ -4,7 +4,6 @@
 #include <Components/Rotation.h>
 #include <Components/RectPrimitive.h>
 #include <Components/DirectionalKeyboardInput.h>
-#include <Components/DirectionalVelocity.h>
 #include <Components/RotatetoFaceMouse.h>
 #include <Components/ShipThrusters.h>
 #include <Components/ThrusterInput.h>
@@ -40,14 +39,16 @@ void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget)
 	ent->AddComponent<ParallaxMovement, Entity&, float>(*parallaxTarget, .1f);
 }
 
-void EntityFactory::MakeIntoBullet(Entity* ent, Entity* sourceEntity, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(Entity* ent, ResourceID id, Entity* sourceEntity, const b2Vec2& p, float radians)
 {
+	auto projStats = LoadProjectile(id);
+
 	ent->AddComponent<Position, const b2Vec2&>(p);
-	ent->AddComponent<Rotation>(radians);
-	ent->AddComponent<BulletPhysics, const b2Vec2&, float>(b2Vec2(.3f, .03f), 15.f);
+	ent->AddComponent<Rotation, float>(radians);
+	ent->AddComponent<BulletPhysics, std::shared_ptr<ProjectileStats>>(projStats);
 	ent->AddComponent<CollisionFilterComponent, Entity*>(sourceEntity);
-	ent->AddComponent<RectPrimitive>(.3f, .03f);
-	ent->AddComponent<Lifetime, float>(5.f);
+	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
+	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
 }
 
 void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians, bool npc)

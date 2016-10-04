@@ -4,21 +4,34 @@
 #include <map>
 #include <assert.h>
 #include <Components/DirectionalGun.h>
+#include "ProjectileStats.h"
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
+	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID, std::shared_ptr<ShipStats>> loadedShips;
+	std::map<ResourceID, std::shared_ptr<ProjectileStats>> loadedProjectiles;
 
 	bool IsShipID(ResourceID id) 
 	{
 		return id > SHIP_ID_START && id < SHIP_ID_END;
 	}
+
+	bool IsProjectileID(ResourceID id)
+	{
+		return id > PROJECTILE_ID_START && id < PROJECTILE_ID_END;
+	}
+
+	bool IsFontID(ResourceID id)
+	{
+		return id > FONT_ID_START && id < FONT_ID_END;
+	}
 }
 
-// Hard Coded ship loading functions. Eventually will be removed
+// Hard Coded ship/projectile/font loading functions. Eventually will be removed
 namespace
 {
 	ShipStats* LoadHumanFighter()
@@ -30,6 +43,18 @@ namespace
 								HardPoint(b2Vec2(.5f, -.1f), 0.f),
 								HardPoint(b2Vec2(.5f, .1f), 0.f)
 							}));
+	}
+
+	ProjectileStats* LoadLaserOne()
+	{
+		return new ProjectileStats(15.f, 5.f, b2Vec2(.3f, .03f));
+	}
+
+	sf::Font* LoadFontOne()
+	{
+		sf::Font* font = new sf::Font();
+		font->loadFromFile("Fonts/arial.ttf");
+		return font;
 	}
 }
 
@@ -53,7 +78,9 @@ void UnloadUnusedResources()
 {
 	UnloadUnusedSharedPtrResources(loadedImages);
 	UnloadUnusedSharedPtrResources(loadedTextures);
+	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedShips);
+	UnloadUnusedSharedPtrResources(loadedProjectiles);
 }
 
 std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
@@ -119,6 +146,24 @@ std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
 	return elem;
 }
 
+std::shared_ptr<sf::Font> LoadFont(ResourceID id)
+{
+	assert(IsFontID(id));
+
+	auto it = loadedFonts.find(id);
+	if (it != loadedFonts.end())
+	{
+		return it->second;
+	}
+
+	if (id == FONT_ONE)
+	{
+		auto elem = std::make_shared<sf::Font>(*LoadFontOne());
+		loadedFonts.insert(make_pair(id, elem));
+		return elem;
+	}
+}
+
 std::shared_ptr<ShipStats> LoadShip(ResourceID id) 
 {
 	assert(IsShipID(id));
@@ -133,6 +178,26 @@ std::shared_ptr<ShipStats> LoadShip(ResourceID id)
 	{
 		auto elem = std::make_shared<ShipStats>(*LoadHumanFighter());
 		loadedShips.insert(make_pair(id, elem));
+		return elem;
+	}
+
+	return nullptr;
+}
+
+std::shared_ptr<ProjectileStats> LoadProjectile(ResourceID id)
+{
+	assert(IsProjectileID(id));
+
+	auto it = loadedProjectiles.find(id);
+	if (it != loadedProjectiles.end())
+	{
+		return it->second;
+	}
+
+	if (id == PROJECTILE_LASER_ONE)
+	{
+		auto elem = std::make_shared<ProjectileStats>(*LoadLaserOne());
+		loadedProjectiles.insert(make_pair(id, elem));
 		return elem;
 	}
 

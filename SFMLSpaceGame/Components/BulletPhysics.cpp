@@ -31,7 +31,7 @@ void BulletPhysics::Init()
 	fixDef.isSensor = true;
 	fixDef.filter.groupIndex = BULLET_COLLISION_GROUP;
 	b2PolygonShape shape;
-	shape.SetAsBox(m_size.x / 2.f, m_size.y / 2.f);
+	shape.SetAsBox(m_projStats->GetSize().x / 2.f, m_projStats->GetSize().y / 2.f);
 	fixDef.shape = &shape;
 	
 	m_body->CreateFixture(&fixDef);
@@ -50,7 +50,7 @@ void BulletPhysics::Update()
 
 	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
 	// Move the bullet forward at full speed
-	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation->GetRadians()), sin(m_rotation->GetRadians())) * m_speed);
+	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation->GetRadians()), sin(m_rotation->GetRadians())) * m_projStats->GetSpeed());
 }
 
 bool BulletPhysics::HandleCollisions()

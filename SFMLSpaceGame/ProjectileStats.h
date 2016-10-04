@@ -1,14 +1,14 @@
 #pragma once
 #include <Box2d/Common/b2Math.h>
 
-class BulletStats 
+class ProjectileStats 
 {
 private:
 	float m_speed;
 	float m_lifeTime;
 	b2Vec2 m_size;
 public:
-	BulletStats(float speed, float lifeTime, b2Vec2 size)
+	ProjectileStats(float speed, float lifeTime, b2Vec2 size)
 		: m_speed(speed),
 		  m_lifeTime(lifeTime),
 		  m_size(size)
