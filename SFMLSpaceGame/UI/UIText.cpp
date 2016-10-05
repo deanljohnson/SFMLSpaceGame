@@ -17,7 +17,7 @@ void UIText::Refresh(std::string text, ResourceID fontID)
 	m_text.setFont(*m_font.get());
 }
 
-void UIText::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void UIText::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_text, states);
 }

@@ -1,13 +1,16 @@
 #pragma once
+#include <vector>
+#include <memory>
+#include <SFML/Window/Event.hpp>
 
 namespace sf{
 	class RenderTarget;
-	class Event;
 }
 
 class GameState
 {
 public:
+	static std::vector<std::unique_ptr<sf::Event>> pendingEvents;
 	virtual ~GameState()
 	{
 	}

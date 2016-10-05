@@ -1,8 +1,15 @@
 #include <UI/UI.h>
 
-UI_ID UI::m_nextID = 0;
+UI_ID UI::m_nextID = UI_ID_NULL + 1;
 long UI::m_updateCounter = 0;
-std::map<UI_ID, UI::ElementRecord> UI::m_elements{};
+std::unordered_map<UI_ID, UI::ElementRecord> UI::m_elements{};
+std::vector<UI_ID> UI::m_displayOrder{};
+std::stack<UI_ID> UI::m_hierarchyIDs{};
+
+void UI::Init()
+{
+	m_hierarchyIDs.push(UI_ID_NULL);
+}
 
 void UI::Update()
 {
@@ -14,17 +21,54 @@ void UI::Update()
 			m_elements.erase(iter++);
 		else ++iter;
 	}
-}
 
-void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
-{
-	for (auto iter = m_elements.begin(); iter != m_elements.end(); ++iter)
-	{
-		iter->second.element->Render(target, states);
-	}
+	m_displayOrder.clear();
 }
 
 UI_Result* UI::GetResult(UI_ID id)
 {
-	return nullptr;
+	assert(m_elements.find(id) != m_elements.end());
+	auto& record = m_elements.find(id)->second;
+	return &record.result;
+}
+
+bool UI::HandleEvent(const sf::Event& event)
+{
+	return false;
+}
+
+
+void UI::PushHierarchy(UI_ID parentID)
+{
+	m_hierarchyIDs.push(parentID);
+}
+
+void UI::PopHierarchy()
+{
+	m_hierarchyIDs.pop();
+}
+
+void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
+{
+	for (auto id : m_displayOrder)
+	{
+		auto& record = m_elements.find(id)->second;
+
+		if (record.parent == UI_ID_NULL) record.element->Render(target, states);
+		else
+		{
+			sf::RenderStates newStates{ states };
+
+			UI_ID parentID = record.parent;
+			while (parentID != UI_ID_NULL)
+			{
+				auto& parentRecord = m_elements.find(parentID)->second;
+				newStates.transform *= parentRecord.element->m_transform;
+				parentID = parentRecord.parent;
+			}
+
+			record.element->Render(target, newStates);
+		}
+		
+	}
 }

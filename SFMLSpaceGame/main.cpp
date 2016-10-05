@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
+#include "UI/UI.h"
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -16,6 +17,7 @@ int main()
 	window.setFramerateLimit(60);
 	
 	GAME_WINDOW = &window;
+	UI::Init();
 
 	GameStateManager game_manager{};
 	game_manager.Init();
@@ -32,6 +34,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
+				exit(0);
 			}
 
 			game_manager.ProcessEvent(event);

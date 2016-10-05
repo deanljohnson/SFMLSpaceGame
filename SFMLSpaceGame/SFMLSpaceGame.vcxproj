@@ -181,6 +181,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -197,6 +198,8 @@
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\UIButton.cpp" />
+    <ClCompile Include="UI\UIExpandingBackground.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +246,12 @@
     <ClInclude Include="ShipManeuvers.h" />
     <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
+    <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="UI\UIElement.h" />
     <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="UI\UIExpandingBackground.h" />
     <ClInclude Include="UI\UIText.h" />
+    <ClInclude Include="UI\UITransform.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

@@ -7,7 +7,7 @@
 class UIText : public UIElement
 {
 private:
-	std::shared_ptr <sf::Font> m_font;
+	std::shared_ptr<sf::Font> m_font;
 	sf::Text m_text;
 
 public:
@@ -15,5 +15,5 @@ public:
 
 	void Refresh(std::string text, ResourceID fontID);
 
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 };

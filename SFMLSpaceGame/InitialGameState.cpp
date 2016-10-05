@@ -8,6 +8,9 @@
 #include <EntityGroups.h>
 #include "UI/UI.h"
 #include "UI/UIText.h"
+#include "UI/UIExpandingBackground.h"
+#include "UI/UIButton.h"
+#include <SFML/Window/Event.hpp>
 
 void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 {
@@ -57,18 +60,30 @@ void InitialGameState::Resume() const
 
 void InitialGameState::ProcessEvent(const sf::Event& event) const
 {
-	
+	if (!UI::HandleEvent(event))
+	{
+		sf::Event copy = sf::Event(event);
+		pendingEvents.push_back(std::make_unique<sf::Event>(copy));
+	}
 }
-UI_ID id[5];
+UI_ID id[6];
 
 void InitialGameState::Update()
 {
 	UI::Update();
-
-	INIT_AND_DISPLAY(UIText, id[0], "hello world!", FONT_ONE);
-
-	/*if (id == 0) id = UI::Display<UIText>(id, "hello world!", FONT_ONE);
-	else UI::Display<UIText>(id);*/
+	
+	MAKE_HIERARCHY(
+		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(sf::Vector2f(300, 200))),
+		MAKE_HIERARCHY(
+			INIT_AND_DISPLAY(UIExpandingBackground, id[1], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(sf::Vector2f(50, 50))),
+			INIT_AND_DISPLAY(UIText, id[2], "I can't see!", FONT_ONE)
+		),
+		MAKE_HIERARCHY(
+			INIT_AND_DISPLAY(UIExpandingBackground, id[3], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(sf::Vector2f(100, 50))),
+			INIT_AND_DISPLAY(UIText, id[4], "I'm on top!", FONT_ONE)
+		),
+		INIT_AND_DISPLAY(UIButton, id[5], UI_BUTTON_TEST_ONE, UITransform(sf::Vector2f(300, 50)))
+	);
 
 	m_stepper.Step(m_world, GameTime::deltaTime);
 
@@ -78,6 +93,9 @@ void InitialGameState::Update()
 
 void InitialGameState::Render(sf::RenderTarget& target)
 {
+	// TODO: I don't like this being here, but it is simple and it works.
+	pendingEvents.clear();
+
 	sf::RenderStates rendStates;
 	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
 	m_entityManager.Render(target, rendStates);

@@ -162,6 +162,8 @@ std::shared_ptr<sf::Font> LoadFont(ResourceID id)
 		loadedFonts.insert(make_pair(id, elem));
 		return elem;
 	}
+
+	return nullptr;
 }
 
 std::shared_ptr<ShipStats> LoadShip(ResourceID id) 

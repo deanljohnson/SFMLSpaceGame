@@ -1,4 +1,7 @@
 #pragma once
+#include <SFML/Graphics/Transform.hpp>
+
+class UI;
 
 namespace sf{
 	class RenderStates;
@@ -7,6 +10,9 @@ namespace sf{
 
 class UIElement
 {
+	friend UI;
+protected:
+	sf::Transform m_transform;
 public:
 	virtual ~UIElement()
 	{
@@ -14,5 +20,5 @@ public:
 
 	virtual void Refresh() {}
 
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) = 0;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) = 0;
 };
