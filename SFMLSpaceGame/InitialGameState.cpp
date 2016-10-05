@@ -66,8 +66,8 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 		pendingEvents.push_back(std::make_unique<sf::Event>(copy));
 	}
 }
-UI_ID id[7];
-bool display = true;
+/*UI_ID id[7];
+bool display = true;*/
 
 void InitialGameState::Update()
 {
@@ -88,7 +88,7 @@ void InitialGameState::Update()
 		)
 	);*/
 
-	if (display)
+	/*if (display)
 	{
 		MAKE_HIERARCHY(
 			INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(100, 100)),
@@ -101,7 +101,7 @@ void InitialGameState::Update()
 		{
 			display = false;
 		}
-	}
+	}*/
 	
 
 	m_stepper.Step(m_world, GameTime::deltaTime);

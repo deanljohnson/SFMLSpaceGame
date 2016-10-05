@@ -1,5 +1,6 @@
 #include <EntityFactory.h>
 #include <resource.h>
+#include <EntityGroups.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Components/RectPrimitive.h>
@@ -18,6 +19,7 @@
 #include <Components/Lifetime.h>
 #include "Components/CollisionFilterComponent.h"
 #include "Components/ShipController.h"
+#include "Components/EntitySensor.h"
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
@@ -64,7 +66,11 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 	ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 
 	if (npc)
+	{
 		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
+		// All ships can sense the player
+		ent->AddComponent<EntitySensor, float, Group>(shipStats->GetSensorRange(), PLAYER_GROUP);
+	}
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

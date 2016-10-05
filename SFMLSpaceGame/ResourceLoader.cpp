@@ -36,7 +36,7 @@ namespace
 {
 	ShipStats* LoadHumanFighter()
 	{
-		return new ShipStats(5.f, 2.f, 3.5f, 3.5f, 
+		return new ShipStats(5.f, 2.f, 3.5f, 3.5f, 10.f,
 							ShipThrust(1.1f, .8f, .5f, .8f),
 							DirectionalGunData(.1f,
 							{

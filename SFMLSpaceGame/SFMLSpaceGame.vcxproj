@@ -173,6 +173,7 @@
     <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
     <ClCompile Include="Components\DirectionalVelocity.cpp" />
+    <ClCompile Include="Components\EntitySensor.cpp" />
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
@@ -209,6 +210,7 @@
     <ClCompile Include="UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="UI\UIEventResponse.h" />
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
