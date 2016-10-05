@@ -1,11 +1,11 @@
 #pragma once
 #include <string>
-#include <map>
-#include "UIElement.h"
+#include <UI/UIElement.h>
 #include <ResourceLoader.h>
 #include <memory>
 #include <unordered_map>
 #include <stack>
+#include <UI/UI_Result.h>
 
 #ifndef UI_ID
 #define UI_ID unsigned long
@@ -14,7 +14,7 @@
 #ifndef UI_ID_NULL
 #define UI_ID_NULL unsigned long(0)
 #endif
-#include <functional>
+
 
 namespace
 {
@@ -34,43 +34,17 @@ namespace
 #define INIT_AND_REFRESH(_Type_, _ID_, ...) ((_ID_ == 0) ? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
 										    : (UI::Display<_Type_>(_ID_, __VA_ARGS__)))
 
-#define MAKE_HIERARCHY(_PARENT_, _CHILDONE_, ...) ([]()->UI_ID { UI::PushHierarchy(_PARENT_); _CHILDONE_; DoNothing(__VA_ARGS__); UI::PopHierarchy(); return UI_ID_NULL; })()
-
+// Creates a transform hierarchy with the first argument as the parent.
+// The transforms of all subsequent elements will be multiplied by the parents transform.
+#define MAKE_HIERARCHY(_PARENT_, _CHILDONE_, ...) ([]()->UI_ID { UI::PushHierarchy(_PARENT_); \
+																_CHILDONE_; DoNothing(__VA_ARGS__); \
+																UI::PopHierarchy(); \
+																return UI_ID_NULL; })()
 
 namespace sf{
 	class Event;
 	class RenderWindow;
 }
-
-union UI_Result
-{
-	UI_Result(const UI_Result& other)
-		: booleanValue{other.booleanValue},
-		  intValue{other.intValue},
-		  stringValue{other.stringValue}
-	{
-	}
-
-	UI_Result(UI_Result&& other)
-		: booleanValue{other.booleanValue},
-		  intValue{other.intValue},
-		  stringValue{std::move(other.stringValue)}
-	{
-	}
-
-	UI_Result& operator=(UI_Result other)
-	{
-		using std::swap;
-		swap(*this, other);
-		return *this;
-	}
-
-	UI_Result() { booleanValue = false; }
-	~UI_Result() {}
-	bool booleanValue;
-	int intValue;
-	std::string stringValue;
-};
 
 class UI
 {
@@ -104,7 +78,7 @@ public:
 	static void Update();
 	static void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	static UI_Result* GetResult(UI_ID id);
+	static UI_Result& GetResult(UI_ID id);
 
 	static bool HandleEvent(const sf::Event& event);
 

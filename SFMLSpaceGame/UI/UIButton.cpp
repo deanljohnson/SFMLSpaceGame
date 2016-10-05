@@ -1,4 +1,5 @@
 #include <UI/UIButton.h>
+#include <SFML/Window/Event.hpp>
 
 UIButton::UIButton(ResourceID texID, UITransform trans)
 {
@@ -10,7 +11,85 @@ UIButton::UIButton(ResourceID texID, UITransform trans)
 	m_sprite.setScale(trans.scale);
 }
 
+void UIButton::SwitchState(ButtonState newState)
+{
+	int stateHeight = m_tex->getSize().y / 3;
+
+	if (newState == Hover)
+	{
+		// Change the graphic in use
+		m_sprite.setTextureRect(sf::IntRect(0, stateHeight, m_tex->getSize().x, stateHeight));
+	}
+	else if (newState == Click)
+	{
+		m_sprite.setTextureRect(sf::IntRect(0, stateHeight * 2, m_tex->getSize().x, stateHeight));
+	}
+	else
+	{
+		m_sprite.setTextureRect(sf::IntRect(0, 0, m_tex->getSize().x, stateHeight));
+	}
+
+	state = newState;
+}
+
+UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Result* resultTarget)
+{
+	if (m_sprite.getGlobalBounds().contains(localMousePos))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			// Switch to clicked texture
+			SwitchState(Click);
+		}
+		else
+		{
+			if (state == Click)
+			{
+				resultTarget->booleanValue = true;
+			}
+			// Switch to hover texture
+			SwitchState(Hover);
+		}
+
+		return Consume;
+	}
+
+	SwitchState(None);
+	return UIEventResponse::None;
+}
+
+UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget)
+{
+	if (event.type == sf::Event::MouseMoved)
+	{
+		sf::Vector2f mousePos = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
+
+		// Convert mousePos to local coordinates
+		mousePos = transform.getInverse().transformPoint(mousePos);
+
+		return HandleMouse(mousePos, resultTarget);
+	}
+	if (event.type == sf::Event::MouseButtonPressed
+		|| event.type == sf::Event::MouseButtonReleased)
+	{
+		sf::Vector2f mousePos = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+
+		// Convert mousePos to local coordinates
+		mousePos = transform.getInverse().transformPoint(mousePos);
+
+		return HandleMouse(mousePos, resultTarget);
+	}
+	
+	return UIEventResponse::None;
+}
+
 void UIButton::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_sprite, states);
 }
+
+void UIButton::UpdateResult(UI_Result* resultTarget)
+{
+	resultTarget->booleanValue = false;
+}
+

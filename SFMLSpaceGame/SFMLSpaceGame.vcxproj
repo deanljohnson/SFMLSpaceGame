@@ -183,7 +183,12 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
-    <ClCompile Include="InitialGameState.cpp" />
+    <ClCompile Include="InitialGameState.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Components\ParallaxMovement.cpp" />
     <ClCompile Include="Components\Physics.cpp" />
@@ -203,6 +208,7 @@
     <ClCompile Include="UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UI\UIEventResponse.h" />
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
@@ -252,6 +258,7 @@
     <ClInclude Include="UI\UIExpandingBackground.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITransform.h" />
+    <ClInclude Include="UI\UI_Result.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

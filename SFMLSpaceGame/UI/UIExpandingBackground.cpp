@@ -1,11 +1,12 @@
 #include <UI/UIExpandingBackground.h>
+#include <SFML/Window/Event.hpp>
 
 UIExpandingBackground::UIExpandingBackground(ResourceID texID, sf::Vector2i size, UITransform trans)
 {
 	m_tex = LoadTextureResource(texID);
 
-	m_transform.translate(trans.position);
-	m_transform.scale(trans.scale);
+	transform.translate(trans.position);
+	transform.scale(trans.scale);
 
 	int cornerWidth = m_tex->getSize().x / 3;
 	int cornerHeight = m_tex->getSize().y / 3;
@@ -114,9 +115,26 @@ UIExpandingBackground::UIExpandingBackground(ResourceID texID, sf::Vector2i size
 	m_vertArray[35].texCoords = sf::Vector2f(cornerWidth * 2, cornerHeight * 3);
 }
 
+UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget)
+{
+	if (event.type == sf::Event::MouseButtonPressed
+		|| event.type == sf::Event::MouseButtonReleased)
+	{
+		sf::Vector2f mousePos = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+
+		// Convert mousePos to local coordinates
+		mousePos = transform.getInverse().transformPoint(mousePos);
+
+		if (this->transform.transformRect(m_vertArray.getBounds()).contains(mousePos))
+			return PassOn;
+	}
+	return None;
+}
+
+
 void UIExpandingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	states.texture = m_tex.get();
-	states.transform *= m_transform;
+	states.transform *= transform;
 	target.draw(m_vertArray, states);
 }

@@ -1,42 +1,46 @@
 #include <Components/GameWorldClickListener.h>
 #include <SFML/Window/Mouse.hpp>
+#include <GameState.h>
 
 void GameWorldClickListener::Update()
 {
-	// TODO: Extract this into an InputManager so that GameWorldClickListener
-	// isn't dealing with raw input checks
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	for (auto& e : GameState::pendingEvents)
 	{
-		switch (m_clickedState)
+		if (e->type == sf::Event::MouseButtonPressed 
+			&& e->mouseButton.button == sf::Mouse::Left)
 		{
-		case None:
-			m_clickedState = Down; 
-			break;
-		case Down:
-			m_clickedState = Held;
-			break;
-		case Held:
-			break;
-		case Click:
-			m_clickedState = Down;
-			break;
+			switch (m_clickedState)
+			{
+			case None:
+				m_clickedState = Down;
+				break;
+			case Down:
+				m_clickedState = Held;
+				break;
+			case Held:
+				break;
+			case Click:
+				m_clickedState = Down;
+				break;
+			}
 		}
-	}
-	else
-	{
-		switch (m_clickedState)
+		else if (e->type == sf::Event::MouseButtonReleased
+				&& e->mouseButton.button == sf::Mouse::Left)
 		{
-		case None:
-			break;
-		case Down:
-			m_clickedState = Click;
-			break;
-		case Held:
-			m_clickedState = Click;
-			break;
-		case Click:
-			m_clickedState = None;
-			break;
+			switch (m_clickedState)
+			{
+			case None:
+				break;
+			case Down:
+				m_clickedState = Click;
+				break;
+			case Held:
+				m_clickedState = Click;
+				break;
+			case Click:
+				m_clickedState = None;
+				break;
+			}
 		}
 	}
 

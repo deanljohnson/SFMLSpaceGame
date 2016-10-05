@@ -1,24 +1,30 @@
 #pragma once
 #include <SFML/Graphics/Transform.hpp>
-
-class UI;
+#include <UI/UIEventResponse.h>
+#include <UI/UI_Result.h>
 
 namespace sf{
+	class Event;
 	class RenderStates;
 	class RenderTarget;
 }
 
 class UIElement
 {
-	friend UI;
-protected:
-	sf::Transform m_transform;
 public:
+	sf::Transform transform;
+
+	UIElement(){}
 	virtual ~UIElement()
 	{
 	}
 
+	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget) { return None; }
+
 	virtual void Refresh() {}
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) = 0;
+
+	// Used for resetting result state and such. Called after rendering
+	virtual void UpdateResult(UI_Result* resultTarget) {}
 };
