@@ -260,6 +260,7 @@
     <ClInclude Include="UI\UILayoutOption.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITransform.h" />
+    <ClInclude Include="UI\UITransformer.h" />
     <ClInclude Include="UI\UI_ID.h" />
     <ClInclude Include="UI\UI_Result.h" />
     <ClInclude Include="VectorMath.h" />

@@ -11,12 +11,16 @@ void UILayoutOption::Apply()
 	if (applied) return;
 
 	applied = true;
-	if (type == HorizontalGroup)
-		ApplyHorizontalGrouping();
-	else if (type == VerticalGroup)
-		ApplyVerticalGrouping();
-	else if (type == CenterHorizontal)
-		ApplyCenterHorizontal();
+
+	for (auto type : m_layoutOperations) 
+	{
+		if (type == HorizontalGroup)
+			ApplyHorizontalGrouping();
+		else if (type == VerticalGroup)
+			ApplyVerticalGrouping();
+		else if (type == CenterHorizontal)
+			ApplyCenterHorizontal();
+	}
 }
 
 void UILayoutOption::Add(UI_ID id)

@@ -18,7 +18,8 @@ public:
 	{
 	}
 
-	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget) { return None; }
+	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget) 
+	{ return None; }
 
 	virtual void Refresh() {}
 

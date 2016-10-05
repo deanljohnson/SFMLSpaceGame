@@ -8,11 +8,6 @@
 #include "UI_ID.h"
 #include <UI/UI_Result.h>
 
-#ifndef UI_ID_NULL
-#define UI_ID_NULL unsigned long(0)
-#endif
-
-
 #ifndef INIT_HORIZONTAL_GROUP
 #define INIT_HORIZONTAL_GROUP(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
 											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::HorizontalGroup))), UI::PushLayoutOption(_LAYOUT_ID_) \
