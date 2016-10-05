@@ -1,18 +1,21 @@
 #pragma once
 #include <vector>
 #include "UI_ID.h"
+#include <SFML/System/Vector2.hpp>
 
 class UILayoutOption
 {
 public:
 	UILayoutOption(const UILayoutOption& other)
-		: type{other.type},
+		: position{other.position},
+		  type{other.type},
 		  lastUpdate{other.lastUpdate}
 	{
 	}
 
 	UILayoutOption(UILayoutOption&& other)
-		: type{other.type},
+		: position{std::move(other.position)},
+		  type{other.type},
 		  lastUpdate{other.lastUpdate}
 	{
 	}
@@ -26,16 +29,18 @@ public:
 
 private:
 	std::vector<UI_ID> m_elementIDs;
+	sf::Vector2f position;
 	bool applied = false;
 
 	void ApplyHorizontalGrouping();
 	void ApplyVerticalGrouping();
+	void ApplyCenterHorizontal();
 
 public:
-	enum LayoutType { NONE, HorizontalGroup, VerticalGroup } type;
+	enum LayoutType { NONE, HorizontalGroup, VerticalGroup, CenterHorizontal } type;
 
-	explicit UILayoutOption(LayoutType t)
-		: type(t)
+	explicit UILayoutOption(LayoutType t, sf::Vector2f pos = sf::Vector2f(0,0))
+		: position(pos), type(t)
 	{}
 
 	long lastUpdate;

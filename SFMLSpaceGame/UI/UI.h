@@ -18,26 +18,43 @@
 											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::HorizontalGroup))), UI::PushLayoutOption(_LAYOUT_ID_) \
 											: UI::PushLayoutOption(_LAYOUT_ID_))
 #endif
+#ifndef INIT_HORIZONTAL_GROUP_T
+#define INIT_HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_) ((_LAYOUT_ID_ == UI_ID_NULL) \
+											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::HorizontalGroup, _POS_))), UI::PushLayoutOption(_LAYOUT_ID_) \
+											: UI::PushLayoutOption(_LAYOUT_ID_))
+#endif
 
 #ifndef INIT_VERTICAL_GROUP
 #define INIT_VERTICAL_GROUP(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
 											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::VerticalGroup))), UI::PushLayoutOption(_LAYOUT_ID_) \
 											: UI::PushLayoutOption(_LAYOUT_ID_))
 #endif
+#ifndef INIT_VERTICAL_GROUP_T
+#define INIT_VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_) ((_LAYOUT_ID_ == UI_ID_NULL) \
+											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::VerticalGroup, _POS_))), UI::PushLayoutOption(_LAYOUT_ID_) \
+											: UI::PushLayoutOption(_LAYOUT_ID_))
+#endif
 
+#ifndef INIT_CENTER_HORIZONTAL
+#define INIT_CENTER_HORIZONTAL(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
+											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::CenterHorizontal))), UI::PushLayoutOption(_LAYOUT_ID_) \
+											: UI::PushLayoutOption(_LAYOUT_ID_))
+#endif
 
 
 #ifndef INIT_AND_DISPLAY
 // Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
 // Subsequent calls will Display the element without passing/evaluating arguments
-#define INIT_AND_DISPLAY(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) ? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
+#define INIT_AND_DISPLAY(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) \
+											? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
 										    : (UI::Display(_ID_)))
 #endif
 
 #ifndef INIT_AND_REFRESH
 // Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
 // Subsequent calls will Display the element and pass the given arguments to it's Refresh method
-#define INIT_AND_REFRESH(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) ? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
+#define INIT_AND_REFRESH(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) \
+											? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
 										    : (UI::Display<_Type_>(_ID_, __VA_ARGS__)))
 #endif
 
@@ -54,15 +71,32 @@
 #ifndef HORIZONTAL_GROUP
 #define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (INIT_HORIZONTAL_GROUP(_LAYOUT_ID_), \
 											__VA_ARGS__, \
-											UI::PopLayoutOption())
+											UI::PopLayoutOption(), _LAYOUT_ID_)
 #endif
+#ifndef HORIZONTAL_GROUP_T
+#define HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_, ...) (INIT_HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_), \
+											__VA_ARGS__, \
+											UI::PopLayoutOption(), _LAYOUT_ID_)
+#endif
+
 
 // Automatically lays the given elements out vertically. Within a vertical group,
 // an elements transform is relative to the previous elements bottom and a x value of 0
 #ifndef VERTICAL_GROUP
 #define VERTICAL_GROUP(_LAYOUT_ID_, ...) (INIT_VERTICAL_GROUP(_LAYOUT_ID_), \
 											__VA_ARGS__, \
-											UI::PopLayoutOption())
+											UI::PopLayoutOption(), _LAYOUT_ID_)
+#endif
+#ifndef VERTICAL_GROUP_T
+#define VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_, ...) (INIT_VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_), \
+											__VA_ARGS__, \
+											UI::PopLayoutOption(), _LAYOUT_ID_)
+#endif
+
+#ifndef CENTER_HORIZONTAL
+#define CENTER_HORIZONTAL(_LAYOUT_ID_, ...) (INIT_CENTER_HORIZONTAL(_LAYOUT_ID_), \
+											__VA_ARGS__, \
+											UI::PopLayoutOption(), _LAYOUT_ID_)
 #endif
 
 namespace sf{
@@ -96,7 +130,7 @@ private:
 	static std::unordered_map<UI_ID, std::shared_ptr<UILayoutOption>> m_layoutOptions;
 	static std::vector<UI_ID> m_displayOrder;
 	static std::stack<UI_ID> m_hierarchyIDs;
-	static std::stack<UI_ID> m_layoutStack;
+	static std::vector<UI_ID> m_layoutStack;
 
 public:
 	static void Init();
@@ -141,9 +175,9 @@ public:
 
 		m_displayOrder.push_back(id);
 
-		if (!m_layoutStack.empty())
+		for (auto i : m_layoutStack)
 		{
-			auto option = m_layoutOptions.find(m_layoutStack.top())->second;
+			auto option = m_layoutOptions.find(i)->second;
 			option->Add(id);
 		}
 
@@ -169,9 +203,9 @@ public:
 
 			m_displayOrder.push_back(prevID);
 
-			if (!m_layoutStack.empty())
+			for (auto i : m_layoutStack)
 			{
-				auto option = m_layoutOptions.find(m_layoutStack.top())->second;
+				auto option = m_layoutOptions.find(i)->second;
 				option->Add(prevID);
 			}
 
@@ -201,9 +235,9 @@ public:
 			// Call refresh of type T with the given args
 			static_cast<T*>(it->second.element.get())->Refresh(std::forward<TArgs>(args)...);
 
-			if (!m_layoutStack.empty())
+			for (auto i : m_layoutStack)
 			{
-				auto option = m_layoutOptions.find(m_layoutStack.top())->second;
+				auto option = m_layoutOptions.find(i)->second;
 				option->Add(prevID);
 			}
 
@@ -225,9 +259,9 @@ public:
 
 		m_displayOrder.push_back(id);
 
-		if (!m_layoutStack.empty())
+		for (auto i : m_layoutStack)
 		{
-			auto option = m_layoutOptions.find(m_layoutStack.top())->second;
+			auto option = m_layoutOptions.find(i)->second;
 			option->Add(id);
 		}
 

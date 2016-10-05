@@ -6,7 +6,7 @@ std::unordered_map<UI_ID, UI::ElementRecord> UI::m_elements{};
 std::unordered_map<UI_ID, std::shared_ptr<UILayoutOption>> UI::m_layoutOptions{};
 std::vector<UI_ID> UI::m_displayOrder{};
 std::stack<UI_ID> UI::m_hierarchyIDs{};
-std::stack<UI_ID> UI::m_layoutStack{};
+std::vector<UI_ID> UI::m_layoutStack{};
 
 void UI::Init()
 {
@@ -107,14 +107,14 @@ void UI::PushLayoutOption(UI_ID id)
 	auto& option = m_layoutOptions.find(id)->second;
 	option->lastUpdate = m_updateCounter;
 	option->Init();
-	m_layoutStack.push(id);
+	m_layoutStack.push_back(id);
 }
 
 void UI::PopLayoutOption()
 {
-	auto& option = m_layoutOptions.find(m_layoutStack.top())->second;
+	auto& option = m_layoutOptions.find(m_layoutStack.back())->second;
 	option->Apply();
-	m_layoutStack.pop();
+	m_layoutStack.pop_back();
 }
 
 void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)

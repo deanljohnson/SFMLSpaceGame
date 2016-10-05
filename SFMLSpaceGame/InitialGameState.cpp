@@ -92,10 +92,10 @@ void InitialGameState::Update()
 	{
 		MAKE_HIERARCHY(
 			INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(100, 100)),
-			VERTICAL_GROUP(id[1],
-				INIT_AND_DISPLAY(UIText, id[2], "I'm on top!", FONT_ONE, UITransform(20, 10)),
+			VERTICAL_GROUP_T( id[4], sf::Vector2f(35, 10), CENTER_HORIZONTAL(id[1], 
+				INIT_AND_DISPLAY(UIText, id[2], "I'm on top!", FONT_ONE),
 				INIT_AND_DISPLAY(UIButton, id[3], UI_BUTTON_TEST_ONE, UITransform(20, 10))
-			)
+			))
 		);
 		if (UI::GetResult(id[3]).booleanValue)
 		{
