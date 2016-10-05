@@ -27,6 +27,10 @@ struct UITransform
 		: position(), scale(1,1)
 	{}
 
+	UITransform(float x, float y)
+		: position(x, y), scale(1,1)
+	{}
+
 	explicit UITransform(const sf::Vector2f& pos)
 		: position(pos), scale(1,1)
 	{}

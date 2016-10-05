@@ -5,10 +5,16 @@ UIButton::UIButton(ResourceID texID, UITransform trans)
 {
 	m_tex = LoadTextureResource(texID);
 
+	setPosition(trans.position);
+	setScale(trans.scale);
+
 	m_sprite = sf::Sprite(*m_tex.get());
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tex->getSize().x, m_tex->getSize().y / 3));
-	m_sprite.setPosition(trans.position);
-	m_sprite.setScale(trans.scale);
+}
+
+sf::FloatRect UIButton::GetBounds()
+{
+	return getTransform().transformRect(m_sprite.getGlobalBounds());
 }
 
 void UIButton::SwitchState(ButtonState newState)
@@ -34,7 +40,7 @@ void UIButton::SwitchState(ButtonState newState)
 
 UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Result* resultTarget)
 {
-	if (m_sprite.getGlobalBounds().contains(localMousePos))
+	if (getTransform().transformRect(m_sprite.getGlobalBounds()).contains(localMousePos))
 	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
@@ -85,6 +91,7 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 
 void UIButton::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
+	states.transform *= getTransform();
 	target.draw(m_sprite, states);
 }
 

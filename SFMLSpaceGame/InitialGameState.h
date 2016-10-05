@@ -27,6 +27,7 @@ public:
 	virtual void Resume() const override;
 
 	virtual void ProcessEvent(const sf::Event& event) const override;
+
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target) override;
 };

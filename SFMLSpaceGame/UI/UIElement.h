@@ -2,6 +2,7 @@
 #include <SFML/Graphics/Transform.hpp>
 #include <UI/UIEventResponse.h>
 #include <UI/UI_Result.h>
+#include <SFML/Graphics/Transformable.hpp>
 
 namespace sf{
 	class Event;
@@ -9,11 +10,9 @@ namespace sf{
 	class RenderTarget;
 }
 
-class UIElement
+class UIElement : public sf::Transformable
 {
 public:
-	sf::Transform transform;
-
 	UIElement(){}
 	virtual ~UIElement()
 	{
@@ -24,6 +23,7 @@ public:
 	virtual void Refresh() {}
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) = 0;
+	virtual sf::FloatRect GetBounds() = 0;
 
 	// Used for resetting result state and such. Called after rendering
 	virtual void UpdateResult(UI_Result* resultTarget) {}

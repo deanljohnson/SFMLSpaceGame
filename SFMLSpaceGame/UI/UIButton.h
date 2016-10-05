@@ -17,6 +17,9 @@ private:
 	void SwitchState(ButtonState newState);
 	UIEventResponse HandleMouse(const sf::Vector2f& localMousePos, UI_Result* resultTarget);
 
+protected:
+	virtual sf::FloatRect GetBounds() override;
+
 public:
 	explicit UIButton(ResourceID texID, UITransform trans = UITransform());
 

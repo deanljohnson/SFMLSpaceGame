@@ -10,6 +10,9 @@ private:
 	std::shared_ptr<sf::Texture> m_tex;
 	sf::VertexArray m_vertArray;
 	
+protected:
+	virtual sf::FloatRect GetBounds() override;
+
 public:
 	explicit UIExpandingBackground(ResourceID texID, sf::Vector2i size, UITransform trans = UITransform());
 

@@ -141,6 +141,9 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="UI\UILayoutOption.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -300,6 +303,12 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI\UI_Result.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UILayoutOption.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UI_ID.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
