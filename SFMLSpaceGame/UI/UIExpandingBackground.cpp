@@ -141,4 +141,9 @@ void UIExpandingBackground::Render(sf::RenderTarget& target, sf::RenderStates st
 	states.texture = m_tex.get();
 	states.transform *= getTransform();
 	target.draw(m_vertArray, states);
+
+	for (auto elem : children) {
+		elem->Render(target, states);
+	}
+	children.clear();
 }

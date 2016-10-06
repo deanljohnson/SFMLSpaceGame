@@ -23,7 +23,7 @@ protected:
 public:
 	explicit UIButton(ResourceID texID, UITransform trans = UITransform());
 
-	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget) override;
+	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform) override;
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 

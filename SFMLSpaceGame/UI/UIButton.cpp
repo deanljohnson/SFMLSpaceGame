@@ -64,7 +64,7 @@ UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Resu
 	return UIEventResponse::None;
 }
 
-UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget)
+UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transform& transform)
 {
 	if (event.type == sf::Event::MouseMoved)
 	{
@@ -93,6 +93,11 @@ void UIButton::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	states.transform *= getTransform();
 	target.draw(m_sprite, states);
+
+	for (auto elem : children) {
+		elem->Render(target, states);
+	}
+	children.clear();
 }
 
 void UIButton::UpdateResult(UI_Result* resultTarget)

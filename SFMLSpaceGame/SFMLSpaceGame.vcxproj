@@ -206,8 +206,10 @@
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="UI\UIExpandingBackground.cpp" />
+    <ClCompile Include="UI\UIHorizontalGroup.cpp" />
     <ClCompile Include="UI\UILayoutOption.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
+    <ClCompile Include="UI\UIVerticalGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\EntitySensor.h" />
@@ -259,10 +261,12 @@
     <ClInclude Include="UI\UIElement.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIExpandingBackground.h" />
+    <ClInclude Include="UI\UIHorizontalGroup.h" />
     <ClInclude Include="UI\UILayoutOption.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITransform.h" />
     <ClInclude Include="UI\UITransformer.h" />
+    <ClInclude Include="UI\UIVerticalGroup.h" />
     <ClInclude Include="UI\UI_ID.h" />
     <ClInclude Include="UI\UI_Result.h" />
     <ClInclude Include="VectorMath.h" />

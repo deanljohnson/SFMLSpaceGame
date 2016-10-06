@@ -1,41 +1,14 @@
 #pragma once
 #include <UI/UILayoutOption.h>
 #include <UI/UIElement.h>
+#include <UI/UIHorizontalGroup.h>
+#include <UI/UIVerticalGroup.h>
 #include <ResourceLoader.h>
 #include <memory>
 #include <unordered_map>
 #include <stack>
 #include "UI_ID.h"
 #include <UI/UI_Result.h>
-
-#ifndef INIT_HORIZONTAL_GROUP
-#define INIT_HORIZONTAL_GROUP(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
-											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::HorizontalGroup))), UI::PushLayoutOption(_LAYOUT_ID_) \
-											: UI::PushLayoutOption(_LAYOUT_ID_))
-#endif
-#ifndef INIT_HORIZONTAL_GROUP_T
-#define INIT_HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_) ((_LAYOUT_ID_ == UI_ID_NULL) \
-											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::HorizontalGroup, _POS_))), UI::PushLayoutOption(_LAYOUT_ID_) \
-											: UI::PushLayoutOption(_LAYOUT_ID_))
-#endif
-
-#ifndef INIT_VERTICAL_GROUP
-#define INIT_VERTICAL_GROUP(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
-											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::VerticalGroup))), UI::PushLayoutOption(_LAYOUT_ID_) \
-											: UI::PushLayoutOption(_LAYOUT_ID_))
-#endif
-#ifndef INIT_VERTICAL_GROUP_T
-#define INIT_VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_) ((_LAYOUT_ID_ == UI_ID_NULL) \
-											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::VerticalGroup, _POS_))), UI::PushLayoutOption(_LAYOUT_ID_) \
-											: UI::PushLayoutOption(_LAYOUT_ID_))
-#endif
-
-#ifndef INIT_CENTER_HORIZONTAL
-#define INIT_CENTER_HORIZONTAL(_LAYOUT_ID_) ((_LAYOUT_ID_ == UI_ID_NULL) \
-											? (_LAYOUT_ID_ = UI::CreateLayoutOption(UILayoutOption(UILayoutOption::LayoutType::CenterHorizontal))), UI::PushLayoutOption(_LAYOUT_ID_) \
-											: UI::PushLayoutOption(_LAYOUT_ID_))
-#endif
-
 
 #ifndef INIT_AND_DISPLAY
 // Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
@@ -64,34 +37,14 @@
 // Automatically lays the given elements out horizontally. Within a horizontal group,
 // an elements transform is relative to the previous elements right side and a y value of 0
 #ifndef HORIZONTAL_GROUP
-#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (INIT_HORIZONTAL_GROUP(_LAYOUT_ID_), \
-											__VA_ARGS__, \
-											UI::PopLayoutOption(), _LAYOUT_ID_)
-#endif
-#ifndef HORIZONTAL_GROUP_T
-#define HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_, ...) (INIT_HORIZONTAL_GROUP_T(_LAYOUT_ID_, _POS_), \
-											__VA_ARGS__, \
-											UI::PopLayoutOption(), _LAYOUT_ID_)
+#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 
 // Automatically lays the given elements out vertically. Within a vertical group,
 // an elements transform is relative to the previous elements bottom and a x value of 0
 #ifndef VERTICAL_GROUP
-#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (INIT_VERTICAL_GROUP(_LAYOUT_ID_), \
-											__VA_ARGS__, \
-											UI::PopLayoutOption(), _LAYOUT_ID_)
-#endif
-#ifndef VERTICAL_GROUP_T
-#define VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_, ...) (INIT_VERTICAL_GROUP_T(_LAYOUT_ID_, _POS_), \
-											__VA_ARGS__, \
-											UI::PopLayoutOption(), _LAYOUT_ID_)
-#endif
-
-#ifndef CENTER_HORIZONTAL
-#define CENTER_HORIZONTAL(_LAYOUT_ID_, ...) (INIT_CENTER_HORIZONTAL(_LAYOUT_ID_), \
-											__VA_ARGS__, \
-											UI::PopLayoutOption(), _LAYOUT_ID_)
+#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 namespace sf{
@@ -107,25 +60,23 @@ private:
 		ElementRecord(){}
 		explicit ElementRecord(std::unique_ptr<UIElement> elem, long update, UI_ID parentID = UI_ID_NULL)
 			: element(move(elem)),
-			  lastUpdate{update},
-			  parent{parentID}
+			  lastUpdate{update}
 		{
 		}
 
 		std::unique_ptr<UIElement> element;
 		long lastUpdate;
 		UI_Result result;
-		UI_ID parent{ UI_ID_NULL };
+		short childCount{ 0 };
 	};
 
 	static UI_ID m_nextID;
 	static long m_updateCounter;
 
 	static std::unordered_map<UI_ID, ElementRecord> m_elements;
-	static std::unordered_map<UI_ID, std::shared_ptr<UILayoutOption>> m_layoutOptions;
 	static std::vector<UI_ID> m_displayOrder;
 	static std::stack<UI_ID> m_hierarchyIDs;
-	static std::vector<UI_ID> m_layoutStack;
+	static std::vector<UI_ID> m_rootIDs;
 
 public:
 	static void Init();
@@ -133,7 +84,7 @@ public:
 	static void Update();
 	static void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	static UI_Result& GetResult(UI_ID id);
+	static UI_Result* GetResult(UI_ID id);
 	static UIElement* Get(UI_ID id)
 	{
 		auto it = m_elements.find(id);
@@ -145,10 +96,6 @@ public:
 
 	static void PushHierarchy(UI_ID parentID);
 	static void PopHierarchy();
-
-	static UI_ID CreateLayoutOption(const UILayoutOption& option);
-	static void PushLayoutOption(UI_ID id);
-	static void PopLayoutOption();
 
 	template<typename T, typename... TArgs>
 	static UI_ID Init(TArgs... args)
@@ -168,13 +115,16 @@ public:
 		// Create a record for the element
 		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
 
-		m_displayOrder.push_back(id);
-
-		for (auto i : m_layoutStack)
+		// Increase it's parents child count
+		if (m_hierarchyIDs.size() > 1)
 		{
-			auto option = m_layoutOptions.find(i)->second;
-			option->Add(id);
+			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
+			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(elem);
+		} else {
+			m_rootIDs.push_back(id);
 		}
+
+		m_displayOrder.push_back(id);
 
 		// Return to the caller the ID for the newly created element
 		return id;
@@ -189,20 +139,19 @@ public:
 			it->second.lastUpdate = m_updateCounter;
 
 			// keep track of where this object is in the display hierarchy
-			it->second.parent = m_hierarchyIDs.top();
 			m_displayOrder.push_back(prevID);
 
+			// Increase it's parents child count
+			if (m_hierarchyIDs.size() > 1)
+			{
+				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
+				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(it->second.element.get());
+			} else {
+				m_rootIDs.push_back(prevID);
+			}
 			// Call refresh
 			// Note we don't need to cast to T
 			it->second.element.get()->Refresh();
-
-			m_displayOrder.push_back(prevID);
-
-			for (auto i : m_layoutStack)
-			{
-				auto option = m_layoutOptions.find(i)->second;
-				option->Add(prevID);
-			}
 
 			// This was a pre-existing item so it keeps it's ID
 			return prevID;
@@ -224,17 +173,20 @@ public:
 			it->second.lastUpdate = m_updateCounter;
 
 			// keep track of where this object is in the display hierarchy
-			it->second.parent = m_hierarchyIDs.top();
 			m_displayOrder.push_back(prevID);
+
+			// Increase it's parents child count
+			if (m_hierarchyIDs.size() > 1)
+			{
+				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
+				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(it->second.element.get());
+			}
+			else {
+				m_rootIDs.push_back(prevID);
+			}
 
 			// Call refresh of type T with the given args
 			static_cast<T*>(it->second.element.get())->Refresh(std::forward<TArgs>(args)...);
-
-			for (auto i : m_layoutStack)
-			{
-				auto option = m_layoutOptions.find(i)->second;
-				option->Add(prevID);
-			}
 
 			// This was a pre-existing item so it keeps it's ID
 			return prevID;
@@ -252,13 +204,17 @@ public:
 		// Create a record for the element
 		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
 
-		m_displayOrder.push_back(id);
-
-		for (auto i : m_layoutStack)
+		// Increase it's parents child count
+		if (m_hierarchyIDs.size() > 1)
 		{
-			auto option = m_layoutOptions.find(i)->second;
-			option->Add(id);
+			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
+			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(elem);
 		}
+		else {
+			m_rootIDs.push_back(id);
+		}
+
+		m_displayOrder.push_back(id);
 
 		// Return to the caller the ID for the newly created element
 		return id;

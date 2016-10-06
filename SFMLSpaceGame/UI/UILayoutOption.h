@@ -2,6 +2,7 @@
 #include <vector>
 #include "UI_ID.h"
 #include <SFML/System/Vector2.hpp>
+#include <UI/UIElement.h>
 
 class UILayoutOption
 {
@@ -38,6 +39,7 @@ private:
 	void ApplyCenterHorizontal();
 
 public:
+	UILayoutOption() {}
 	explicit UILayoutOption(LayoutType t, sf::Vector2f pos = sf::Vector2f(0,0))
 		: position(pos)
 	{
@@ -53,4 +55,7 @@ public:
 	void Init();
 	void Apply();
 	void Add(UI_ID id);
+	
+	void InitLayout();
+	sf::Transform ApplyLayout(UIElement* elem);
 };

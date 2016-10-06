@@ -29,4 +29,9 @@ void UIText::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	states.transform *= getTransform();
 	target.draw(m_text, states);
+
+	for (auto elem : children) {
+		elem->Render(target, states);
+	}
+	children.clear();
 }

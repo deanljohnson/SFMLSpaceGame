@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <SFML/Graphics/Transform.hpp>
 #include <UI/UIEventResponse.h>
 #include <UI/UI_Result.h>
@@ -13,12 +14,14 @@ namespace sf{
 class UIElement : public sf::Transformable
 {
 public:
+	std::vector<UIElement*> children;
+
 	UIElement(){}
 	virtual ~UIElement()
 	{
 	}
 
-	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget) 
+	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform) 
 	{ return None; }
 
 	virtual void Refresh() {}

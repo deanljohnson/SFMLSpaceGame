@@ -17,6 +17,8 @@ void EntitySensor::Init()
 
 void EntitySensor::Update() 
 {
+	sensedEntities.clear();
+
 	auto contactList = m_physics->GetBody()->GetContactList();
 
 	if (contactList == nullptr
@@ -41,6 +43,5 @@ void EntitySensor::HandleCollisionWithEntity(Entity* ent)
 	if (!ent->HasGroup(m_group))
 		return;
 
-	// "Trigger" the sensor
-	printf("Hello there!\n");
+	sensedEntities.push_back(ent);
 }

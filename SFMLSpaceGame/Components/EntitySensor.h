@@ -16,6 +16,8 @@ public:
 		: m_radius(radius), m_group(group)
 	{}
 
+	std::vector<Entity*> sensedEntities;
+
 	virtual void Init() override;
 	virtual void Update() override;
 };

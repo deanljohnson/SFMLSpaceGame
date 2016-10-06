@@ -66,43 +66,22 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 		pendingEvents.push_back(std::make_unique<sf::Event>(copy));
 	}
 }
-/*UI_ID id[7];
-bool display = true;*/
+UI_ID id[7];
 
 void InitialGameState::Update()
 {
 	UI::Update();
 
-	/*MAKE_HIERARCHY(
-		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(300, 200)),
+	MAKE_HIERARCHY(
+		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(50, 50)),
 		MAKE_HIERARCHY(
-			INIT_AND_DISPLAY(UIExpandingBackground, id[1], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(50, 50)),
-			INIT_AND_DISPLAY(UIText, id[2], "I can't see!", FONT_ONE)
-		),
-		MAKE_HIERARCHY(
-			INIT_AND_DISPLAY(UIExpandingBackground, id[3], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(100, 0)),
-			VERTICAL_GROUP(id[6],
-				INIT_AND_DISPLAY(UIText, id[4], "I'm on top!", FONT_ONE, UITransform(20, 10)),
-				INIT_AND_DISPLAY(UIButton, id[5], UI_BUTTON_TEST_ONE, UITransform(20, 10))
+			INIT_AND_DISPLAY(UIExpandingBackground, id[3], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(20, 20)),
+			VERTICAL_GROUP( id[6],
+				INIT_AND_DISPLAY(UIButton, id[4], UI_BUTTON_TEST_ONE, UITransform(20, 20)),
+				INIT_AND_DISPLAY(UIButton, id[5], UI_BUTTON_TEST_ONE, UITransform(20, 0))
 			)
 		)
-	);*/
-
-	/*if (display)
-	{
-		MAKE_HIERARCHY(
-			INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(100, 100)),
-			VERTICAL_GROUP_T( id[4], sf::Vector2f(35, 10), CENTER_HORIZONTAL(id[1], 
-				INIT_AND_DISPLAY(UIText, id[2], "I'm on top!", FONT_ONE),
-				INIT_AND_DISPLAY(UIButton, id[3], UI_BUTTON_TEST_ONE, UITransform(20, 10))
-			))
-		);
-		if (UI::GetResult(id[3]).booleanValue)
-		{
-			display = false;
-		}
-	}*/
-	
+	);
 
 	m_stepper.Step(m_world, GameTime::deltaTime);
 
