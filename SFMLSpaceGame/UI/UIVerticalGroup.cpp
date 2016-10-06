@@ -22,6 +22,4 @@ void UIVerticalGroup::Render(sf::RenderTarget& target, sf::RenderStates states)
 		elem->Render(target, states);
 		states.transform.translate(0.f, bounds.height + bounds.top);
 	}
-
-	children.clear();
 }

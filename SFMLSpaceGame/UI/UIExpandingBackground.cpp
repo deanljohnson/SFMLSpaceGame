@@ -120,8 +120,10 @@ sf::FloatRect UIExpandingBackground::GetBounds()
 	return getTransform().transformRect(m_vertArray.getBounds());
 }
 
-UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const sf::Transform& transform, UI_Result* resultTarget)
+UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const sf::Transform& transform)
 {
+	UIEventResponse response = None;
+
 	if (event.type == sf::Event::MouseButtonPressed
 		|| event.type == sf::Event::MouseButtonReleased)
 	{
@@ -131,9 +133,12 @@ UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const
 		mousePos = transform.getInverse().transformPoint(mousePos);
 
 		if (this->getTransform().transformRect(m_vertArray.getBounds()).contains(mousePos))
-			return PassOn;
+			response = PassOn;
 	}
-	return None;
+
+	UIEventResponse childResponse = UIElement::HandleEvent(event, transform);
+	if (childResponse == None) return response;
+	return childResponse;
 }
 
 void UIExpandingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)
@@ -145,5 +150,4 @@ void UIExpandingBackground::Render(sf::RenderTarget& target, sf::RenderStates st
 	for (auto elem : children) {
 		elem->Render(target, states);
 	}
-	children.clear();
 }

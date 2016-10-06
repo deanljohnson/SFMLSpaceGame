@@ -1,3 +1,4 @@
+#include <UI/UI.h>
 #include <UI/UIButton.h>
 #include <SFML/Window/Event.hpp>
 
@@ -66,6 +67,8 @@ UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Resu
 
 UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transform& transform)
 {
+	UIEventResponse response = UIEventResponse::None;
+
 	if (event.type == sf::Event::MouseMoved)
 	{
 		sf::Vector2f mousePos = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
@@ -73,7 +76,7 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 		// Convert mousePos to local coordinates
 		mousePos = transform.getInverse().transformPoint(mousePos);
 
-		return HandleMouse(mousePos, resultTarget);
+		response = HandleMouse(mousePos, UI::GetResult(ID));
 	}
 	if (event.type == sf::Event::MouseButtonPressed
 		|| event.type == sf::Event::MouseButtonReleased)
@@ -83,10 +86,17 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 		// Convert mousePos to local coordinates
 		mousePos = transform.getInverse().transformPoint(mousePos);
 
-		return HandleMouse(mousePos, resultTarget);
+		response = HandleMouse(mousePos, UI::GetResult(ID));
 	}
 	
-	return UIEventResponse::None;
+	if (response == PassOn 
+		|| response == UIEventResponse::None) 
+	{
+		UIEventResponse childResponse = UIElement::HandleEvent(event, transform);
+		if (childResponse == None) return response;
+		return childResponse;
+	}
+	return response;
 }
 
 void UIButton::Render(sf::RenderTarget& target, sf::RenderStates states)
@@ -97,7 +107,6 @@ void UIButton::Render(sf::RenderTarget& target, sf::RenderStates states)
 	for (auto elem : children) {
 		elem->Render(target, states);
 	}
-	children.clear();
 }
 
 void UIButton::UpdateResult(UI_Result* resultTarget)

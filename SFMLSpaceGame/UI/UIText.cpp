@@ -33,5 +33,4 @@ void UIText::Render(sf::RenderTarget& target, sf::RenderStates states)
 	for (auto elem : children) {
 		elem->Render(target, states);
 	}
-	children.clear();
 }

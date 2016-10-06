@@ -19,68 +19,45 @@ void UI::Update()
 	// erase old UIElements
 	for (auto iter = m_elements.begin(); iter != m_elements.end(); )
 	{
+		iter->second.element->children.clear();
+
 		if (m_updateCounter - iter->second.lastUpdate > 1)
 			m_elements.erase(iter++);
 		else ++iter;
 	}
 
+	m_rootIDs.clear();
 	m_displayOrder.clear();
 }
 
-UI_Result& UI::GetResult(UI_ID id)
+UI_Result* UI::GetResult(UI_ID id)
 {
 	assert(m_elements.find(id) != m_elements.end());
 	auto& record = m_elements.find(id)->second;
-	return record.result;
+	return &record.result;
 }
 
 bool UI::HandleEvent(const sf::Event& event)
 {
 	bool handled = false;
 	UIEventResponse response = None;
-	std::stack<sf::Transform> transStack;
-	std::stack<short> childCountStack;
 	sf::Transform trans;
 
-	/*for (auto id : m_displayOrder)
+	for (auto id : m_rootIDs) 
 	{
 		auto& record = m_elements.find(id)->second;
-
-		if (!childCountStack.empty())
-		{
-			childCountStack.top()--;
-		}
-
-		response = record.element->HandleEvent(event, trans, &record.result);
-
-		// Push a new transform
-		if (record.childCount > 0)
-		{
-			childCountStack.push(record.childCount);
-			transStack.push(record.element->getTransform());
-
-			// Extend the current transform stack
-			trans.combine(transStack.top());
-		}
-		// Pop a transform
-		else if (!childCountStack.empty()
-			&& childCountStack.top() == 0)
-		{
-			trans.combine(transStack.top().getInverse());
-			transStack.pop();
-			childCountStack.pop();
-		}
+		response = record.element->HandleEvent(event, trans);
 
 		if (response == Consume)
 		{
 			handled = true;
 			break;
-		} 
+		}
 		else if (response == PassOn)
 		{
 			handled = true;
 		}
-	}*/
+	}
 
 	return handled;
 }
@@ -105,8 +82,6 @@ void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
 		auto& record = m_elements.find(id)->second;
 		record.element->Render(target, states);
 	}
-
-	m_rootIDs.clear();
 
 	for (auto& id : m_elements)
 	{

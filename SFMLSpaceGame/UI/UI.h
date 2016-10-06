@@ -111,6 +111,7 @@ public:
 
 		// Get an ID for this new element
 		UI_ID id = m_nextID++;
+		uPtr->ID = id;
 
 		// Create a record for the element
 		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
@@ -200,6 +201,7 @@ public:
 
 		// Get an ID for this new element
 		UI_ID id = m_nextID++;
+		uPtr->ID = id;
 
 		// Create a record for the element
 		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
