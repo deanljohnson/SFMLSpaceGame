@@ -13,7 +13,7 @@
 #ifndef INIT_AND_DISPLAY
 // Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
 // Subsequent calls will Display the element without passing/evaluating arguments
-#define INIT_AND_DISPLAY(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) \
+#define INIT_AND_DISPLAY(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL || !UI::Valid(_ID_)) \
 											? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
 										    : (UI::Display(_ID_)))
 #endif
@@ -40,11 +40,14 @@
 #define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
-
 // Automatically lays the given elements out vertically. Within a vertical group,
 // an elements transform is relative to the previous elements bottom and a x value of 0
 #ifndef VERTICAL_GROUP
 #define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#endif
+
+#ifndef CENTER_ON
+#define CENTER_ON(_TARGET_ID_, _LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UICenterOn, _LAYOUT_ID_, _TARGET_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 namespace sf{
@@ -58,7 +61,7 @@ private:
 	struct ElementRecord
 	{
 		ElementRecord(){}
-		explicit ElementRecord(std::unique_ptr<UIElement> elem, long update, UI_ID parentID = UI_ID_NULL)
+		explicit ElementRecord(std::unique_ptr<UIElement> elem, long update)
 			: element(move(elem)),
 			  lastUpdate{update}
 		{
@@ -92,6 +95,7 @@ public:
 		if (it == m_elements.end()) return nullptr;
 		return it->second.element.get();
 	}
+	static bool Valid(UI_ID id) { return m_elements.find(id) != m_elements.end(); }
 
 	static bool HandleEvent(const sf::Event& event);
 
@@ -161,6 +165,6 @@ public:
 			return prevID;
 		}
 
-		return Init<T, TArgs>(args);
+		return Init<T, TArgs...>(std::forward<TArgs>(args)...);
 	}
 };

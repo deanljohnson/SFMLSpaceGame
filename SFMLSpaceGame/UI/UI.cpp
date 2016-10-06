@@ -81,7 +81,7 @@ void UI::AddElement(UI_ID id, UIElement* elem)
 {
 	elem->ID = id;
 	std::unique_ptr<UIElement> uPtr{ elem };
-	m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
+	m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter)));
 }
 
 void UI::InsertIntoHierarchy(UI_ID id, UIElement* elem)

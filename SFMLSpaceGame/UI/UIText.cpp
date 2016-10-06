@@ -2,6 +2,7 @@
 
 UIText::UIText(std::string text, ResourceID fontID, UITransform trans)
 {
+	m_fontID = fontID;
 	m_font = LoadFont(fontID);
 
 	setPosition(trans.position);
@@ -9,7 +10,7 @@ UIText::UIText(std::string text, ResourceID fontID, UITransform trans)
 
 	m_text.setFont(*m_font.get());
 	m_text.setString(text);
-	m_text.setColor(sf::Color::White);
+	m_text.setFillColor(sf::Color::White);
 }
 
 sf::FloatRect UIText::GetBounds()
@@ -21,8 +22,15 @@ void UIText::Refresh(std::string text, ResourceID fontID)
 {
 	m_text.setString(text);
 
-	m_font = LoadFont(fontID);
+	if (fontID == m_fontID) return;
+	m_fontID = fontID;
+	m_font = LoadFont(m_fontID);
 	m_text.setFont(*m_font.get());
+}
+
+void UIText::Refresh(std::string text)
+{
+	m_text.setString(text);
 }
 
 void UIText::Render(sf::RenderTarget& target, sf::RenderStates states)

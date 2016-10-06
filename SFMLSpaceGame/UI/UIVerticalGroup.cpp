@@ -11,7 +11,7 @@ sf::FloatRect UIVerticalGroup::GetBounds()
 		rect = Union(bounds, rect);
 	}
 
-	return rect;
+	return getTransform().transformRect(rect);
 }
 
 UIEventResponse UIVerticalGroup::HandleEvent(const sf::Event& event, const sf::Transform& transform)

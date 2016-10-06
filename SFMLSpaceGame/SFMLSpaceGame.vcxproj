@@ -178,6 +178,7 @@
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
+    <ClCompile Include="Components\TextOnSensor.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
@@ -204,7 +205,9 @@
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\UIArea.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
+    <ClCompile Include="UI\UICenterOn.cpp" />
     <ClCompile Include="UI\UIExpandingBackground.cpp" />
     <ClCompile Include="UI\UIHorizontalGroup.cpp" />
     <ClCompile Include="UI\UILayoutOption.cpp" />
@@ -213,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\EntitySensor.h" />
+    <ClInclude Include="Components\TextOnSensor.h" />
+    <ClInclude Include="UI\UIArea.h" />
+    <ClInclude Include="UI\UICenterOn.h" />
     <ClInclude Include="UI\UIEventResponse.h" />
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
@@ -265,7 +271,6 @@
     <ClInclude Include="UI\UILayoutOption.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITransform.h" />
-    <ClInclude Include="UI\UITransformer.h" />
     <ClInclude Include="UI\UIVerticalGroup.h" />
     <ClInclude Include="UI\UI_ID.h" />
     <ClInclude Include="UI\UI_Result.h" />

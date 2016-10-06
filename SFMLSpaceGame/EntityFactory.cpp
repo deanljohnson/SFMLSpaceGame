@@ -20,6 +20,7 @@
 #include "Components/CollisionFilterComponent.h"
 #include "Components/ShipController.h"
 #include "Components/EntitySensor.h"
+#include "Components/TextOnSensor.h"
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
@@ -87,6 +88,7 @@ void EntityFactory::MakeIntoStation(Entity* ent, ResourceID stationID, const b2V
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 
 	ent->AddComponent<EntitySensor, float, Group>(5.f, PLAYER_GROUP);
+	ent->AddComponent<TextOnSensor, const std::string&>("Press E to Interact");
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

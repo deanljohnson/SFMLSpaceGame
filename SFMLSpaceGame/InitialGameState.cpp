@@ -11,6 +11,7 @@
 #include "UI/UIExpandingBackground.h"
 #include "UI/UIButton.h"
 #include <SFML/Window/Event.hpp>
+#include "UI/UICenterOn.h"
 
 void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
 {
@@ -74,6 +75,15 @@ UI_ID id[7];
 void InitialGameState::Update()
 {
 	UI::Update();
+
+	/*INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(400, 300), UITransform(400, 50));
+	CENTER_ON(id[0], id[1],
+		MAKE_HIERARCHY(
+			INIT_AND_DISPLAY(UIExpandingBackground, id[2], UI_BACKGROUND_METAL_NINE, sf::Vector2i(150, 150), UITransform(-50, 0)),
+			INIT_AND_DISPLAY(UIButton, id[3], UI_BUTTON_TEST_ONE, UITransform(20, 20))
+		) 
+	);*/
+
 
 	/*MAKE_HIERARCHY(
 		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(50, 50)),
