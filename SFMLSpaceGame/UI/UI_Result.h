@@ -24,7 +24,7 @@ struct UI_Result
 		return *this;
 	}
 
-	UI_Result() { booleanValue = false; intValue = -1; stringValue = ""; }
+	UI_Result() { }
 	~UI_Result() {}
 
 	bool booleanValue;

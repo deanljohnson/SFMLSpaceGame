@@ -31,7 +31,7 @@ void EntitySensor::Update()
 	{
 		auto otherEnt = contactList->other->GetUserData();
 		if (otherEnt != nullptr)
-			HandleCollisionWithEntity((Entity*)otherEnt);
+			HandleCollisionWithEntity(static_cast<Entity*>(otherEnt));
 
 		contactList = contactList->next;
 	}

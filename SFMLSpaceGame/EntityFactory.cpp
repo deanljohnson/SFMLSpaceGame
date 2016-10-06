@@ -47,7 +47,7 @@ void EntityFactory::MakeIntoBullet(Entity* ent, ResourceID id, Entity* sourceEnt
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, std::shared_ptr<ProjectileStats>>(projStats);
+	ent->AddComponent<BulletPhysics, const std::shared_ptr<ProjectileStats>&>(projStats);
 	ent->AddComponent<CollisionFilterComponent, Entity*>(sourceEntity);
 	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
@@ -57,7 +57,6 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 {
 	auto shipStats = LoadShip(shipID);
 
-	//TODO: load ship stats based on ID
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
@@ -71,6 +70,23 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 		// All ships can sense the player
 		ent->AddComponent<EntitySensor, float, Group>(shipStats->GetSensorRange(), PLAYER_GROUP);
 	}
+
+	auto spriteBox = sp.GetDimensions();
+	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	shape.setOrigin(shape.getSize() / 2.f);
+	phys.AddShape(shape, .2f);
+	phys.SetPosition(p);
+}
+
+void EntityFactory::MakeIntoStation(Entity* ent, ResourceID stationID, const b2Vec2& p, float radians)
+{
+	ent->AddComponent<Position, const b2Vec2&>(p);
+	ent->AddComponent<Rotation>(radians);
+
+	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
+	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
+
+	ent->AddComponent<EntitySensor, float, Group>(5.f, PLAYER_GROUP);
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

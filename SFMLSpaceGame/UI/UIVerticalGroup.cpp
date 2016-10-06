@@ -14,6 +14,31 @@ sf::FloatRect UIVerticalGroup::GetBounds()
 	return rect;
 }
 
+UIEventResponse UIVerticalGroup::HandleEvent(const sf::Event& event, const sf::Transform& transform)
+{
+	UIEventResponse response = None;
+	UIEventResponse childResponse = None;
+	sf::Transform trans = transform * getTransform();
+
+	for (auto elem : children)
+	{
+		auto bounds = elem->GetBounds();
+		childResponse = elem->HandleEvent(event, trans);
+		trans.translate(0, bounds.height + bounds.top);
+
+		if (childResponse == Consume)
+		{
+			response = Consume;
+			break;
+		}
+		else if (childResponse == PassOn)
+		{
+			response = PassOn;
+		}
+	}
+	return response;
+}
+
 void UIVerticalGroup::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	for (auto elem : children)

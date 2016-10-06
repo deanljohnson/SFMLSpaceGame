@@ -13,7 +13,7 @@ private:
 	void HandleCollisionWithEntity(Entity* ent);
 public:
 	EntitySensor(float radius, Group group)
-		: m_radius(radius), m_group(group)
+		: m_group(group), m_radius(radius)
 	{}
 
 	std::vector<Entity*> sensedEntities;

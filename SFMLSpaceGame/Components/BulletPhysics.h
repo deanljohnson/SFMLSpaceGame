@@ -17,7 +17,7 @@ private:
 	bool HandleCollisions();
 
 public:
-	explicit BulletPhysics(std::shared_ptr<ProjectileStats> projStats)
+	explicit BulletPhysics(const std::shared_ptr<ProjectileStats>& projStats)
 		: m_projStats(projStats)
 	{}
 	~BulletPhysics();

@@ -41,6 +41,9 @@ void InitialGameState::Init()
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);
 	AddEnemy(player, &m_entityManager, &m_world);*/
+
+	auto station = m_entityManager.AddEntity(&m_world, STATION_GROUP);
+	EntityFactory::MakeIntoStation(station, STATION_HUMAN_ONE, b2Vec2(7, 0));
 }
 
 void InitialGameState::CleanUp() const
@@ -72,7 +75,7 @@ void InitialGameState::Update()
 {
 	UI::Update();
 
-	MAKE_HIERARCHY(
+	/*MAKE_HIERARCHY(
 		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(50, 50)),
 		MAKE_HIERARCHY(
 			INIT_AND_DISPLAY(UIExpandingBackground, id[3], UI_BACKGROUND_METAL_NINE, sf::Vector2i(200, 100), UITransform(20, 20)),
@@ -81,7 +84,7 @@ void InitialGameState::Update()
 				INIT_AND_DISPLAY(UIButton, id[5], UI_BUTTON_TEST_ONE, UITransform(20, 0))
 			)
 		)
-	);
+	);*/
 
 	m_stepper.Step(m_world, GameTime::deltaTime);
 

@@ -3,7 +3,6 @@
 UI_ID UI::m_nextID = UI_ID_NULL + 1;
 long UI::m_updateCounter = 0;
 std::unordered_map<UI_ID, UI::ElementRecord> UI::m_elements{};
-std::vector<UI_ID> UI::m_displayOrder{};
 std::stack<UI_ID> UI::m_hierarchyIDs{};
 std::vector<UI_ID> UI::m_rootIDs{};
 
@@ -27,7 +26,6 @@ void UI::Update()
 	}
 
 	m_rootIDs.clear();
-	m_displayOrder.clear();
 }
 
 UI_Result* UI::GetResult(UI_ID id)
@@ -48,15 +46,8 @@ bool UI::HandleEvent(const sf::Event& event)
 		auto& record = m_elements.find(id)->second;
 		response = record.element->HandleEvent(event, trans);
 
-		if (response == Consume)
-		{
-			handled = true;
-			break;
-		}
-		else if (response == PassOn)
-		{
-			handled = true;
-		}
+		handled = response != None;
+		if (response == Consume) break;
 	}
 
 	return handled;
@@ -74,9 +65,6 @@ void UI::PopHierarchy()
 
 void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	std::stack<sf::Transform> transStack;
-	std::stack<short> childCountStack;
-
 	for (auto id : m_rootIDs) 
 	{
 		auto& record = m_elements.find(id)->second;
@@ -88,3 +76,22 @@ void UI::Render(sf::RenderTarget& target, sf::RenderStates& states)
 		id.second.element->UpdateResult(&id.second.result);
 	}
 }
+
+void UI::AddElement(UI_ID id, UIElement* elem)
+{
+	elem->ID = id;
+	std::unique_ptr<UIElement> uPtr{ elem };
+	m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
+}
+
+void UI::InsertIntoHierarchy(UI_ID id, UIElement* elem)
+{
+	if (m_hierarchyIDs.size() > 1)
+	{
+		m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(elem);
+	}
+	else {
+		m_rootIDs.push_back(id);
+	}
+}
+

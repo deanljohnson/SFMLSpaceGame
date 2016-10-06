@@ -20,9 +20,14 @@ sf::FloatRect UIButton::GetBounds()
 
 void UIButton::SwitchState(ButtonState newState)
 {
+	if (state == newState) return;
 	int stateHeight = m_tex->getSize().y / 3;
 
-	if (newState == Hover)
+	// Kind of a hack here, but reduces the branching.
+	// Equivalent, non-hack code is commented below
+	m_sprite.setTextureRect(sf::IntRect(0, stateHeight * newState, m_tex->getSize().x, stateHeight));
+
+	/*if (newState == Hover)
 	{
 		// Change the graphic in use
 		m_sprite.setTextureRect(sf::IntRect(0, stateHeight, m_tex->getSize().x, stateHeight));
@@ -34,7 +39,7 @@ void UIButton::SwitchState(ButtonState newState)
 	else
 	{
 		m_sprite.setTextureRect(sf::IntRect(0, 0, m_tex->getSize().x, stateHeight));
-	}
+	}*/
 
 	state = newState;
 }
@@ -50,10 +55,8 @@ UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Resu
 		}
 		else
 		{
-			if (state == Click)
-			{
-				resultTarget->booleanValue = true;
-			}
+			resultTarget->booleanValue = (state == Click);
+
 			// Switch to hover texture
 			SwitchState(Hover);
 		}
@@ -71,7 +74,7 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 
 	if (event.type == sf::Event::MouseMoved)
 	{
-		sf::Vector2f mousePos = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
+		sf::Vector2f mousePos = sf::Vector2f(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y));
 
 		// Convert mousePos to local coordinates
 		mousePos = transform.getInverse().transformPoint(mousePos);
@@ -81,7 +84,7 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 	if (event.type == sf::Event::MouseButtonPressed
 		|| event.type == sf::Event::MouseButtonReleased)
 	{
-		sf::Vector2f mousePos = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+		sf::Vector2f mousePos = sf::Vector2f(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y));
 
 		// Convert mousePos to local coordinates
 		mousePos = transform.getInverse().transformPoint(mousePos);
@@ -89,8 +92,7 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 		response = HandleMouse(mousePos, UI::GetResult(ID));
 	}
 	
-	if (response == PassOn 
-		|| response == UIEventResponse::None) 
+	if (response != Consume) 
 	{
 		UIEventResponse childResponse = UIElement::HandleEvent(event, transform);
 		if (childResponse == None) return response;

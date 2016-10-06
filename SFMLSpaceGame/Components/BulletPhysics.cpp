@@ -55,11 +55,25 @@ void BulletPhysics::Update()
 
 bool BulletPhysics::HandleCollisions()
 {
-	if (m_body->GetContactList() == nullptr)
+	if (m_body->GetContactList() == nullptr 
+		|| m_body->GetContactList()->other == nullptr)
 		return false;
 
-	if (m_body->GetContactList()->other == nullptr)
-		return false;
+	auto contact = m_body->GetContactList();
+	while (true)
+	{
+		if (contact == nullptr)
+			return false;
+
+		// If one of the fixtures is a nonsensor
+		if (!contact->contact->GetFixtureA()->IsSensor()
+			|| !contact->contact->GetFixtureB()->IsSensor())
+		{
+			break;
+		}
+
+		contact = contact->next;
+	}
 
 	// We collided with something, doesn't matter what
 	entity->Destroy();

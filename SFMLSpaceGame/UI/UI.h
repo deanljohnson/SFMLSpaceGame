@@ -1,8 +1,8 @@
 #pragma once
 #include <UI/UILayoutOption.h>
 #include <UI/UIElement.h>
-#include <UI/UIHorizontalGroup.h>
-#include <UI/UIVerticalGroup.h>
+#include <UI/UIHorizontalGroup.h> // Keep this for macros
+#include <UI/UIVerticalGroup.h> // Keep this for macros
 #include <ResourceLoader.h>
 #include <memory>
 #include <unordered_map>
@@ -67,16 +67,17 @@ private:
 		std::unique_ptr<UIElement> element;
 		long lastUpdate;
 		UI_Result result;
-		short childCount{ 0 };
 	};
 
 	static UI_ID m_nextID;
 	static long m_updateCounter;
 
 	static std::unordered_map<UI_ID, ElementRecord> m_elements;
-	static std::vector<UI_ID> m_displayOrder;
 	static std::stack<UI_ID> m_hierarchyIDs;
 	static std::vector<UI_ID> m_rootIDs;
+
+	static void AddElement(UI_ID id, UIElement* elem);
+	static void InsertIntoHierarchy(UI_ID id, UIElement* elem);
 
 public:
 	static void Init();
@@ -106,26 +107,11 @@ public:
 		// Create the new UIElement
 		T* elem(new T(std::forward<TArgs>(args)...));
 
-		// Wrap the raw pointer
-		std::unique_ptr<UIElement> uPtr{ elem };
-
 		// Get an ID for this new element
 		UI_ID id = m_nextID++;
-		uPtr->ID = id;
 
-		// Create a record for the element
-		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
-
-		// Increase it's parents child count
-		if (m_hierarchyIDs.size() > 1)
-		{
-			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
-			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(elem);
-		} else {
-			m_rootIDs.push_back(id);
-		}
-
-		m_displayOrder.push_back(id);
+		AddElement(id, elem);
+		InsertIntoHierarchy(id, elem);
 
 		// Return to the caller the ID for the newly created element
 		return id;
@@ -138,21 +124,13 @@ public:
 		{
 			// mark the element as having just been updated
 			it->second.lastUpdate = m_updateCounter;
+			auto elem = it->second.element.get();
 
-			// keep track of where this object is in the display hierarchy
-			m_displayOrder.push_back(prevID);
+			InsertIntoHierarchy(prevID, elem);
 
-			// Increase it's parents child count
-			if (m_hierarchyIDs.size() > 1)
-			{
-				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
-				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(it->second.element.get());
-			} else {
-				m_rootIDs.push_back(prevID);
-			}
 			// Call refresh
 			// Note we don't need to cast to T
-			it->second.element.get()->Refresh();
+			elem->Refresh();
 
 			// This was a pre-existing item so it keeps it's ID
 			return prevID;
@@ -172,53 +150,17 @@ public:
 		{
 			// mark the element as having just been updated
 			it->second.lastUpdate = m_updateCounter;
+			auto elem = it->second.element.get();
 
-			// keep track of where this object is in the display hierarchy
-			m_displayOrder.push_back(prevID);
-
-			// Increase it's parents child count
-			if (m_hierarchyIDs.size() > 1)
-			{
-				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
-				m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(it->second.element.get());
-			}
-			else {
-				m_rootIDs.push_back(prevID);
-			}
+			InsertIntoHierarchy(prevID, elem);
 
 			// Call refresh of type T with the given args
-			static_cast<T*>(it->second.element.get())->Refresh(std::forward<TArgs>(args)...);
+			static_cast<T*>(elem)->Refresh(std::forward<TArgs>(args)...);
 
 			// This was a pre-existing item so it keeps it's ID
 			return prevID;
 		}
 
-		// Create the new UIElement
-		T* elem(new T(std::forward<TArgs>(args)...));
-
-		// Wrap the raw pointer
-		std::unique_ptr<UIElement> uPtr{ elem };
-
-		// Get an ID for this new element
-		UI_ID id = m_nextID++;
-		uPtr->ID = id;
-
-		// Create a record for the element
-		m_elements.emplace(std::make_pair(id, ElementRecord(move(uPtr), m_updateCounter, m_hierarchyIDs.top())));
-
-		// Increase it's parents child count
-		if (m_hierarchyIDs.size() > 1)
-		{
-			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.childCount++;
-			m_elements.find(UI_ID(m_hierarchyIDs.top()))->second.element->children.push_back(elem);
-		}
-		else {
-			m_rootIDs.push_back(id);
-		}
-
-		m_displayOrder.push_back(id);
-
-		// Return to the caller the ID for the newly created element
-		return id;
+		return Init<T, TArgs>(args);
 	}
 };
