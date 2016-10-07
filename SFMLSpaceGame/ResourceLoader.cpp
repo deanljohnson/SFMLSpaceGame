@@ -54,6 +54,7 @@ namespace
 	{
 		sf::Font* font = new sf::Font();
 		font->loadFromFile("Fonts/arial.ttf");
+		system("dir");
 		return font;
 	}
 }

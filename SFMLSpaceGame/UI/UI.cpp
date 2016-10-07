@@ -46,7 +46,7 @@ bool UI::HandleEvent(const sf::Event& event)
 		auto& record = m_elements.find(id)->second;
 		response = record.element->HandleEvent(event, trans);
 
-		handled = response != None;
+		handled |= response != None;
 		if (response == Consume) break;
 	}
 
