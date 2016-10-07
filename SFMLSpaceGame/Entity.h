@@ -1,21 +1,31 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <functional>
 #include <Components/Component.h>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <array>
 #include <Box2D/Dynamics/b2World.h>
-#include <bitset>
-
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <Group.h>
+#include <EntityID.h>
 class EntityManager;
-
-using Group = size_t;
-
-constexpr size_t maxGroups{ 32 };
-using GroupBitset = std::bitset<maxGroups>;
 
 class Entity
 {
+private:
+	bool m_alive{ true };
+	bool m_active{ true };
+	std::vector<std::unique_ptr<Component>> m_components;
+
+	ComponentArray m_componentArray;
+	ComponentBitset m_componentBitset;
+
+	GroupBitset m_groupBitset;
+
+	EntityManager* m_manager;
+	b2World* m_world;
+
+	EntityID m_id;
+
 public:
 	Entity(const Entity& other) = delete;
 
@@ -37,28 +47,23 @@ public:
 		return *this;
 	}
 
-private:
-	bool m_alive{ true };
-	std::vector<std::unique_ptr<Component>> m_components;
-	
-	ComponentArray m_componentArray;
-	ComponentBitset m_componentBitset;
-
-	GroupBitset m_groupBitset;
-
-	EntityManager* m_manager;
-	b2World* m_world;
-
-public:
-	Entity(EntityManager* manager, b2World* world) 
-		: m_manager(manager), m_world(world)
+	Entity(EntityManager* manager, b2World* world, EntityID id) 
+		: m_manager(manager), m_world(world), m_id(id)
 	{ }
 
+	std::function<void(Entity*)> destroyCallback{ nullptr };
 	void Update();
 	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	bool isAlive() const { return m_alive; }
-	void Destroy() { m_alive = false; }
+	inline bool isAlive() const { return m_alive; }
+	inline void Destroy() { m_alive = false; OnDestroy(); }
+
+	inline bool isActive() const { return m_active; }
+	inline bool SetActive(bool val) { m_active = val; }
+
+	inline EntityID GetID() { return m_id; }
+
+	void OnDestroy();
 
 	b2World* GetWorld() const { return m_world; }
 	EntityManager* GetManager() const { return m_manager; }

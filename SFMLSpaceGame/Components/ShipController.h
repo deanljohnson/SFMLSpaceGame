@@ -3,6 +3,7 @@
 #include "ShipThrusters.h"
 #include "DirectionalGun.h"
 #include <ShipStats.h>
+#include <EntityHandle.h>
 
 enum Maneuvers
 {
@@ -52,5 +53,5 @@ public:
 	virtual void Update() override;
 
 	void Set(Maneuvers maneuver, bool val = true);
-	void SetTarget(Entity* target);
+	void SetTarget(std::shared_ptr<EntityHandle> target);
 };

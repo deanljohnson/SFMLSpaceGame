@@ -13,11 +13,13 @@
 #include <SFML/Window/Event.hpp>
 #include "UI/UICenterOn.h"
 
-void AddEnemy(Entity* player, EntityManager* entMan, b2World* world)
+void AddEnemy(std::shared_ptr<EntityHandle> player, EntityManager* entMan, b2World* world)
 {
 	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
-	auto& sc = enemy->GetComponent<ShipController>();
+
+	auto en = *enemy.get();
+	auto& sc = en->GetComponent<ShipController>();
 	sc.Set(StrafeToTargetsRearForAttack);
 	sc.Set(FireGunsWhenFacingTarget);
 	sc.SetTarget(player);

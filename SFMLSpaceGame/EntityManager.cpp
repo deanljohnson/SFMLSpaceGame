@@ -1,4 +1,5 @@
 #include <EntityManager.h>
+#include <Entity.h>
 
 void EntityManager::Refresh()
 {
@@ -28,13 +29,9 @@ void EntityManager::Refresh()
 
 void EntityManager::Update()
 {
-	/*for (auto i = 0u; i < m_entities.size(); i++)
-	{
-		m_entities[i]->Update();
-	}*/
 	for (auto i(0u); i < maxGroups; i++)
 	{
-		auto& curGroup(m_groupedEntities[i]);
+		auto& curGroup{ m_groupedEntities[i] };
 
 		for (auto& e : curGroup)
 			e->Update();
@@ -52,23 +49,41 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
-Entity* EntityManager::AddEntity(b2World* world)
+std::shared_ptr<EntityHandle> EntityManager::AddEntity(b2World* world)
 {
-	Entity* e{ new Entity(this, world) };
+	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
+
+	EntityHandle* handle = new EntityHandle(e);
+	std::shared_ptr<EntityHandle> handPtr(handle);
+
 	m_entities.emplace_back(move(uPtr));
-	return e;
+	m_entityHandles.emplace(std::make_pair(e->GetID(), handPtr));
+	return handPtr;
 }
 
-Entity* EntityManager::AddEntity(b2World* world, Group group)
+std::shared_ptr<EntityHandle> EntityManager::AddEntity(b2World* world, Group group)
 {
-	Entity* e{ new Entity(this, world) };
+	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
+
+	EntityHandle* handle = new EntityHandle(e);
+	std::shared_ptr<EntityHandle> handPtr(handle);
+
 	m_entities.emplace_back(move(uPtr));
+	m_entityHandles.emplace(std::make_pair(e->GetID(), handPtr));
 
 	e->AddToGroup(group);
 
-	return e;
+	return handPtr;
+}
+
+void EntityManager::InvalidateHandle(EntityID id)
+{
+	auto it = m_entityHandles.find(id);
+	if (it != m_entityHandles.end()) {
+		it->second->Invalidate();
+	}
 }
 
 void EntityManager::AddToGroup(Entity* ent, Group group)

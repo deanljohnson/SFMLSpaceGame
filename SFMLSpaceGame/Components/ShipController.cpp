@@ -3,6 +3,7 @@
 #include <ShipManeuvers.h>
 #include <VectorMath.h>
 #include <ExtendedMath.h>
+#include <assert.h>
 
 void ShipController::Init()
 {
@@ -92,8 +93,9 @@ void ShipController::Set(Maneuvers maneuver, bool val)
 	m_activeBehaviours.set(maneuver, val);
 }
 
-void ShipController::SetTarget(Entity* target)
+void ShipController::SetTarget(std::shared_ptr<EntityHandle> target)
 {
-	assert(target->HasComponent<Physics>());
-	m_target = &target->GetComponent<Physics>();
+	auto ent = *target.get();
+	assert(ent->HasComponent<Physics>());
+	m_target = &ent->GetComponent<Physics>();
 }

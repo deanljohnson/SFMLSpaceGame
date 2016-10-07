@@ -219,6 +219,9 @@
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
+    <ClInclude Include="EntityHandle.h" />
+    <ClInclude Include="EntityID.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="UI\UIArea.h" />
     <ClInclude Include="UI\UICenterOn.h" />
     <ClInclude Include="UI\UIEventResponse.h" />

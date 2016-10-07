@@ -1,4 +1,3 @@
-#include <Entity.h>
 #include <EntityManager.h>
 
 void Entity::Update()
@@ -8,7 +7,6 @@ void Entity::Update()
 		if (c->active)
 			c->Update();
 	}
-		
 }
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
@@ -18,6 +16,13 @@ void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 		if (c->active)
 			c->Render(target, states);
 	}
+}
+
+void Entity::OnDestroy() 
+{
+	if (destroyCallback)
+		destroyCallback(this);
+	m_manager->InvalidateHandle(m_id);
 }
 
 bool Entity::HasGroup(Group group) const noexcept

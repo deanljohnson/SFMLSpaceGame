@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <bitset>
+#include <array>
 
 class Entity;
 class Component;

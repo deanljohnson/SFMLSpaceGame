@@ -1,6 +1,7 @@
-#include <EntityFactory.h>
 #include <resource.h>
 #include <EntityGroups.h>
+#include <EntityFactory.h>
+#include <EntityHandle.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Components/RectPrimitive.h>
@@ -23,10 +24,12 @@
 #include "Components/TextOnSensor.h"
 #include "Components/ZoomHandler.h"
 
-void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
+void EntityFactory::MakeIntoPlayer(std::shared_ptr<EntityHandle> entPtr, const b2Vec2& p, float radians)
 {
-	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians, false);
+	auto ent = *entPtr.get();
 
+	MakeIntoShip(entPtr, SHIP_HUMAN_FIGHTER, p, radians, false);
+	
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ThrusterInput>();
@@ -37,15 +40,19 @@ void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians)
 	ent->AddComponent<ZoomHandler>();
 }
 
-void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget) 
+void EntityFactory::MakeIntoBackgroundOne(std::shared_ptr<EntityHandle> entPtr, std::shared_ptr<EntityHandle> parallaxTarget)
 {
+	auto ent = *entPtr.get();
+
 	ent->AddComponent<Position>();
 	ent->AddComponent<Background, ResourceID>(BGONE_FRONT);
-	ent->AddComponent<ParallaxMovement, Entity&, float>(*parallaxTarget, .1f);
+	ent->AddComponent<ParallaxMovement, std::shared_ptr<EntityHandle>, float>(parallaxTarget, .1f);
 }
 
-void EntityFactory::MakeIntoBullet(Entity* ent, ResourceID id, Entity* sourceEntity, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(std::shared_ptr<EntityHandle> entPtr, ResourceID id, Entity* sourceEntity, const b2Vec2& p, float radians)
 {
+	auto ent = *entPtr.get();
+
 	auto projStats = LoadProjectile(id);
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
@@ -56,8 +63,10 @@ void EntityFactory::MakeIntoBullet(Entity* ent, ResourceID id, Entity* sourceEnt
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
 }
 
-void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p, float radians, bool npc)
+void EntityFactory::MakeIntoShip(std::shared_ptr<EntityHandle> entPtr, ResourceID shipID, const b2Vec2& p, float radians, bool npc)
 {
+	auto ent = *entPtr.get();
+
 	auto shipStats = LoadShip(shipID);
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
@@ -81,8 +90,10 @@ void EntityFactory::MakeIntoShip(Entity* ent, ResourceID shipID, const b2Vec2& p
 	phys.SetPosition(p);
 }
 
-void EntityFactory::MakeIntoStation(Entity* ent, ResourceID stationID, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoStation(std::shared_ptr<EntityHandle> entPtr, ResourceID stationID, const b2Vec2& p, float radians)
 {
+	auto ent = *entPtr.get();
+
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
 
