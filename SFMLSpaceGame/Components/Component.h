@@ -40,6 +40,7 @@ public:
 	Component() : entity(nullptr) {}
 
 	Entity* entity{ nullptr };
+	bool active{ true };
 
 	virtual ~Component(){};
 
