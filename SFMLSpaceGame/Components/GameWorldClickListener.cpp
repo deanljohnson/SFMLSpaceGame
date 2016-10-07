@@ -4,8 +4,10 @@
 
 void GameWorldClickListener::Update()
 {
-	for (auto& e : GameState::pendingEvents)
+	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)
 	{
+		auto& e = GameState::pendingEvents[i];
+
 		if (e->type == sf::Event::MouseButtonPressed 
 			&& e->mouseButton.button == sf::Mouse::Left)
 		{
@@ -23,6 +25,8 @@ void GameWorldClickListener::Update()
 				m_clickedState = Down;
 				break;
 			}
+
+			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
 		}
 		else if (e->type == sf::Event::MouseButtonReleased
 				&& e->mouseButton.button == sf::Mouse::Left)
@@ -41,6 +45,8 @@ void GameWorldClickListener::Update()
 				m_clickedState = None;
 				break;
 			}
+
+			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
 		}
 	}
 

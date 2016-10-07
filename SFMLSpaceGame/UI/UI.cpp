@@ -1,4 +1,6 @@
 #include <UI/UI.h>
+#include <assert.h>
+#include <SFML/Graphics/RenderStates.hpp>
 
 UI_ID UI::m_nextID = UI_ID_NULL + 1;
 long UI::m_updateCounter = 0;

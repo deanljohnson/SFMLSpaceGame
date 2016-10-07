@@ -21,6 +21,7 @@
 #include "Components/ShipController.h"
 #include "Components/EntitySensor.h"
 #include "Components/TextOnSensor.h"
+#include "Components/ZoomHandler.h"
 
 void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians) 
 {
@@ -33,6 +34,7 @@ void EntityFactory::MakeIntoPlayer(Entity* ent, const b2Vec2& p, float radians)
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
+	ent->AddComponent<ZoomHandler>();
 }
 
 void EntityFactory::MakeIntoBackgroundOne(Entity* ent, Entity* parallaxTarget) 

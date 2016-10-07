@@ -162,6 +162,9 @@
     <ClCompile Include="UI\UICenterOn.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ZoomHandler.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="UI\UICenterOn.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ZoomHandler.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

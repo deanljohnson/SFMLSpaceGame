@@ -1,7 +1,7 @@
 #include <UI/UICenterOn.h>
 #include <SFML/Graphics/RenderStates.hpp>
-#include <ExtendedMath.h>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <ExtendedMath.h>
 #include "UI.h"
 
 sf::FloatRect UICenterOn::GetBounds()
@@ -23,7 +23,7 @@ UIEventResponse UICenterOn::HandleEvent(const sf::Event& event, const sf::Transf
 
 	UIEventResponse response = None;
 	UIEventResponse childResponse = None;
-	for (auto child : children)
+	for (auto child : children) 
 	{
 		sf::Transform copyTrans = sf::Transform(transform);
 		auto childBounds = child->GetBounds();
@@ -52,7 +52,6 @@ UIEventResponse UICenterOn::HandleEvent(const sf::Event& event, const sf::Transf
 void UICenterOn::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	sf::Vector2f targetCenter;
-
 	if (m_targetID == UI_ID_NULL)
 		m_targetBounds = sf::FloatRect(0, 0, target.getSize().x, target.getSize().y);
 	else

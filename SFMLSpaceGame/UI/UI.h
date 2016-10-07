@@ -3,7 +3,6 @@
 #include <UI/UIElement.h>
 #include <UI/UIHorizontalGroup.h> // Keep this for macros
 #include <UI/UIVerticalGroup.h> // Keep this for macros
-#include <ResourceLoader.h>
 #include <memory>
 #include <unordered_map>
 #include <stack>
