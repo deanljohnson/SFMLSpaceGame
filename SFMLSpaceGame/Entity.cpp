@@ -3,14 +3,21 @@
 
 void Entity::Update()
 {
-	for (auto& c : m_components) 
-		c->Update();
+	for (auto& c : m_components)
+	{
+		if (c->active)
+			c->Update();
+	}
+		
 }
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	for (auto& c : m_components) 
-		c->Render(target, states);
+	for (auto& c : m_components)
+	{
+		if (c->active)
+			c->Render(target, states);
+	}
 }
 
 bool Entity::HasGroup(Group group) const noexcept
