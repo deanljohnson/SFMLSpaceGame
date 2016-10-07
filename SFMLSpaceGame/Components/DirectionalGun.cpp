@@ -13,12 +13,22 @@ void DirectionalGun::Init()
 	m_rotation = &entity->GetComponent<Rotation>();
 }
 
+void DirectionalGun::Update() 
+{
+	m_currentHeat -= m_gunData->cooldownRate * GameTime::deltaTime;
+	if (m_currentHeat < 0) m_currentHeat = 0.f;
+}
+
 void DirectionalGun::Shoot()
 {
 	// If we are on cooldown
-	if ((GameTime::totalTime - m_lastFiringTime) < m_gunData->cooldown)
+	if ((GameTime::totalTime - m_lastFiringTime) < m_gunData->fireRate
+		|| m_currentHeat > m_gunData->heatLimit)
+	{
 		return;
-
+	}
+		
+	printf("%.5f\n", m_currentHeat);
 	// fire a bullet for each hardpoint
 	b2Rot rot(m_rotation->GetRadians());
 	for (auto hp : m_gunData->hardPoints)
@@ -26,6 +36,8 @@ void DirectionalGun::Shoot()
 		auto bullet = entity->GetManager()->AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
 		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, entity, m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
+
+	m_currentHeat += m_gunData->heatGenerated;
 
 	// Store this so we can have a cooldown
 	m_lastFiringTime = GameTime::totalTime;

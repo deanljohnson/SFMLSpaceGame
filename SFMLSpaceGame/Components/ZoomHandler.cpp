@@ -25,7 +25,7 @@ void ZoomHandler::Update()
 
 		if (e->type == sf::Event::MouseWheelScrolled)
 		{
-			float delta = e->mouseWheelScroll.delta / 10.f;
+			float delta = e->mouseWheelScroll.delta * ZOOM_SCALE;
 			m_zoomFactor -= delta;
 
 			// Limit the zoom. If they zoom too far they flip the entire game world around

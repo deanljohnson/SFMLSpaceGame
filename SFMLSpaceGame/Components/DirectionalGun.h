@@ -21,12 +21,18 @@ struct HardPoint
 
 struct DirectionalGunData
 {
-	DirectionalGunData(float cd, const std::initializer_list<HardPoint>& hardPointLocations)
-		: cooldown(cd), 
+	DirectionalGunData(float cd, float heatLim, float coolingRate, float heatGen, const std::initializer_list<HardPoint>& hardPointLocations)
+		: fireRate(cd),
+		  heatLimit(heatLim),
+		  cooldownRate(coolingRate),
+		  heatGenerated(heatGen),
 		  hardPoints(hardPointLocations)
 	{}
 
-	float cooldown;
+	float fireRate; // Time in between two shots
+	float heatLimit; // Time before the gun is overheated
+	float cooldownRate; // How fast heat is dissipated from the gun per second
+	float heatGenerated; // How much heat is generated per shot
 	std::vector<HardPoint> hardPoints;
 };
 
@@ -37,6 +43,7 @@ private:
 	Rotation* m_rotation{ nullptr };
 	float m_lastFiringTime;
 	DirectionalGunData* m_gunData;
+	float m_currentHeat{ 0.f };
 
 public:
 	explicit DirectionalGun(DirectionalGunData* data)
@@ -44,6 +51,7 @@ public:
 	{}
 
 	virtual void Init() override;
+	virtual void Update() override;
 
 	virtual void Shoot() override;
 };
