@@ -59,9 +59,9 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
-EntityHandle EntityManager::AddEntity(b2World* world)
+EntityHandle EntityManager::AddEntity()
 {
-	Entity* e{ new Entity(world, m_nextID++) };
+	Entity* e{ new Entity(m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
 	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };
@@ -73,9 +73,9 @@ EntityHandle EntityManager::AddEntity(b2World* world)
 	return EntityHandle(*hanPtr);
 }
 
-EntityHandle EntityManager::AddEntity(b2World* world, Group group)
+EntityHandle EntityManager::AddEntity(Group group)
 {
-	Entity* e{ new Entity(world, m_nextID++) };
+	Entity* e{ new Entity(m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
 	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };

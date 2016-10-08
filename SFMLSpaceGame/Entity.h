@@ -24,8 +24,6 @@ private:
 
 	GroupBitset m_groupBitset;
 
-	b2World* m_world;
-
 	EntityID m_id;
 
 public:
@@ -37,7 +35,6 @@ public:
 		  m_components{std::move(other.m_components)},
 		  m_componentBitset{std::move(other.m_componentBitset)},
 		  m_groupBitset{std::move(other.m_groupBitset)},
-		  m_world{other.m_world},
 		  m_id{other.m_id},
 		  destroyCallback{std::move(other.destroyCallback)}
 	{
@@ -50,8 +47,8 @@ public:
 		return *this;
 	}
 
-	Entity(b2World* world, EntityID id) 
-		: m_world(world), m_id(id)
+	explicit Entity(EntityID id) 
+		: m_id(id)
 	{
 	}
 
@@ -69,8 +66,6 @@ public:
 	inline void SetActive(bool val) { m_active = val; }
 
 	inline EntityID GetID() { return m_id; }
-
-	b2World* GetWorld() const { return m_world; }
 
 	//****** Component Handling Methods ******
 	

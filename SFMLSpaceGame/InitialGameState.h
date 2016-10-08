@@ -1,21 +1,18 @@
 #pragma once
 #include <GameState.h>
 #include <EntityManager.h>
-#include <Box2D/Dynamics/b2World.h>
 #include <PhysicsStepper.h>
 #include "ContactFilter.h"
 
 class InitialGameState : public GameState
 {
 private:
-	b2World m_world;
 	PhysicsStepper m_stepper;
 	ContactFilter m_contactListener;
 
 public:
 	InitialGameState() 
-		: m_world(b2Vec2(0, 0)),
-		  m_stepper()
+		: m_stepper()
 	{}
 
 	virtual void Init() override;

@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <SFML/Window/Event.hpp>
+#include <Box2D/Dynamics/b2World.h>
 
 namespace sf{
 	class RenderTarget;
@@ -11,6 +12,8 @@ class GameState
 {
 public:
 	static std::vector<std::unique_ptr<sf::Event>> pendingEvents;
+	static b2World world;
+
 	virtual ~GameState()
 	{
 	}

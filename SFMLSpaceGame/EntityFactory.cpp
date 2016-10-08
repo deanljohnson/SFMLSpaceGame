@@ -1,4 +1,5 @@
 #include <resource.h>
+#include "EntityManager.h"
 #include <EntityGroups.h>
 #include <EntityFactory.h>
 #include <EntityHandle.h>
@@ -28,6 +29,41 @@
 #include "Components/DamageOnAttacked.h"
 #include "CollisionGroups.h"
 
+EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
+{
+	auto ent = EntityManager::AddEntity(PLAYER_GROUP);
+	MakeIntoPlayer(ent, p, radians);
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateBackground(ResourceID backgroundID, EntityID parallaxTarget)
+{
+	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
+	MakeIntoBackground(ent, backgroundID, parallaxTarget);
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateProjectile(ResourceID projId, EntityID sourceEntity, const b2Vec2& p, float radians)
+{
+	auto ent = EntityManager::AddEntity(PROJECTILE_GROUP);
+	MakeIntoBullet(ent, PROJECTILE_LASER_ONE, sourceEntity, p, radians);
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateShip(ResourceID shipID, const b2Vec2& p, float radians)
+{
+	auto ent = EntityManager::AddEntity(NON_PLAYER_SHIP_GROUP);
+	MakeIntoShip(ent, shipID, p, radians, true);
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateStation(ResourceID stationID, const b2Vec2& p, float radians)
+{
+	auto ent = EntityManager::AddEntity(STATION_GROUP);
+	MakeIntoStation(ent, stationID, p, radians);
+	return ent.GetID();
+}
+
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
 	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians, false);
@@ -42,10 +78,10 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<ZoomHandler>();
 }
 
-void EntityFactory::MakeIntoBackgroundOne(EntityHandle& ent, EntityID parallaxTarget)
+void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)
 {
 	ent->AddComponent<Position>();
-	ent->AddComponent<Background, ResourceID>(BGONE_FRONT);
+	ent->AddComponent<Background, ResourceID>(backgroundID);
 	ent->AddComponent<ParallaxMovement, EntityID, float>(parallaxTarget, .1f);
 }
 

@@ -3,7 +3,6 @@
 #include <EntityManager.h>
 #include <EntityFactory.h>
 #include <VectorMath.h>
-#include <EntityGroups.h>
 #include <resource.h>
 
 void DirectionalGun::Init() 
@@ -31,8 +30,7 @@ void DirectionalGun::Shoot()
 	b2Rot rot(m_rotation->GetRadians());
 	for (auto hp : m_gunData->hardPoints)
 	{
-		auto bullet = EntityManager::AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
-		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
+		EntityFactory::CreateProjectile(PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 
 	m_currentHeat += m_gunData->heatGenerated;

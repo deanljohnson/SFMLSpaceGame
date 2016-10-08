@@ -3,7 +3,6 @@
 #include <EntityFactory.h>
 #include <resource.h>
 #include <ContactFilter.h>
-#include <EntityGroups.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
 #include "UI/UI.h"
@@ -12,34 +11,30 @@
 #include "UI/UIButton.h"
 #include "UI/UICenterOn.h"
 
-void AddEnemy(b2World* world)
+void AddEnemy()
 {
-	auto enemy = EntityManager::AddEntity(world, NON_PLAYER_SHIP_GROUP);
-	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
+	EntityFactory::CreateShip(SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 }
 
 void InitialGameState::Init()
 {
 	m_contactListener = ContactFilter();
-	m_world.SetContactFilter(&m_contactListener);
+	world.SetContactFilter(&m_contactListener);
 
-	auto player = EntityManager::AddEntity(&m_world, PLAYER_GROUP);
-	EntityFactory::MakeIntoPlayer(player);
+	auto player = EntityFactory::CreatePlayer();
 
-	auto bg = EntityManager::AddEntity(&m_world, BACKGROUND_GROUP);
-	EntityFactory::MakeIntoBackgroundOne(bg, player.GetID());
+	EntityFactory::CreateBackground(BGONE_FRONT, player);
 
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
-	AddEnemy(&m_world);
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
+	AddEnemy();
 
-	auto station = EntityManager::AddEntity(&m_world, STATION_GROUP);
-	EntityFactory::MakeIntoStation(station, STATION_HUMAN_ONE, b2Vec2(7, 0));
+	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
 }
 
 void InitialGameState::CleanUp() const
@@ -90,7 +85,7 @@ void InitialGameState::Update()
 		)
 	);*/
 
-	m_stepper.Step(m_world, GameTime::deltaTime);
+	m_stepper.Step(world, GameTime::deltaTime);
 
 	EntityManager::Refresh();
 	EntityManager::Update();

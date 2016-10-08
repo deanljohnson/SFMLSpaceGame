@@ -4,11 +4,9 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <ShipStats.h>
 #include "ProjectileStats.h"
-
-#ifndef ResourceID
-#define ResourceID int
-#endif
 #include <SFML/Graphics/Font.hpp>
+
+typedef int ResourceID;
 
 void UnloadUnusedResources();
 

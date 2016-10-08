@@ -31,8 +31,8 @@ public:
 	static bool IsValidID(EntityID id);
 	static EntityHandle Get(EntityID id);
 
-	static EntityHandle AddEntity(b2World* world);
-	static EntityHandle AddEntity(b2World* world, Group group);
+	static EntityHandle AddEntity();
+	static EntityHandle AddEntity(Group group);
 
 	static void AddToGroup(Entity* ent, Group group);
 	static std::vector<Entity*>& GetEntitiesByGroup(Group group);

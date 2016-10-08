@@ -5,11 +5,12 @@
 #include <Entity.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <CollisionGroups.h>
+#include <GameState.h>
 
 BulletPhysics::~BulletPhysics()
 {
 	if (m_body != nullptr)
-		entity->GetWorld()->DestroyBody(m_body);
+		GameState::world.DestroyBody(m_body);
 }
 
 void BulletPhysics::Init()
@@ -24,7 +25,7 @@ void BulletPhysics::Init()
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.bullet = true;
 	
-	m_body = entity->GetWorld()->CreateBody(&bodyDef);
+	m_body = GameState::world.CreateBody(&bodyDef);
 	
 	b2FixtureDef fixDef;
 	fixDef.density = 1.f;

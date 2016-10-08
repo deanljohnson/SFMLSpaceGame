@@ -11,6 +11,7 @@
 #define M_TAU (float)(M_PI + M_PI)
 #endif
 #include <Box2D/Dynamics/b2Fixture.h>
+#include <GameState.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 void WrapBodyAngle(b2Body& body)
@@ -30,7 +31,7 @@ void WrapBodyAngle(b2Body& body)
 Physics::~Physics()
 {
 	if (m_body != nullptr)
-		entity->GetWorld()->DestroyBody(m_body);
+		GameState::world.DestroyBody(m_body);
 }
 
 void Physics::Init()
@@ -45,7 +46,7 @@ void Physics::Init()
 	bodyDef.fixedRotation = false;
 	bodyDef.linearDamping = m_linDamping;
 	
-	m_body = entity->GetWorld()->CreateBody(&bodyDef);
+	m_body = GameState::world.CreateBody(&bodyDef);
 
 	m_body->SetUserData(entity);
 }
