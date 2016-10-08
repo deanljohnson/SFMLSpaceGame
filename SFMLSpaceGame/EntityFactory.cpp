@@ -26,6 +26,7 @@
 #include "Components/ShipAI.h"
 #include "Components/Health.h"
 #include "Components/DamageOnAttacked.h"
+#include "CollisionGroups.h"
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
@@ -77,14 +78,14 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 	{
 		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
 		// All ships can sense the player
-		ent->AddComponent<EntitySensor, float, Group>(shipStats->GetSensorRange(), PLAYER_GROUP);
+		ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(shipStats->GetSensorRange(), {PLAYER_GROUP});
 		ent->AddComponent<ShipAI>();
 	}
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(shape.getSize() / 2.f);
-	phys.AddShape(shape, .2f);
+	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
 }
 
@@ -96,12 +97,12 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 
-	ent->AddComponent<EntitySensor, float, Group>(5.f, PLAYER_GROUP);
+	ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
 	ent->AddComponent<TextOnSensor, const std::string&>("Press E to Interact");
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(shape.getSize() / 2.f);
-	phys.AddShape(shape, .2f);
+	phys.AddShape(shape, 1.f, IS_STATION, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
 }

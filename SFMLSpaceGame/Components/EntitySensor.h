@@ -7,13 +7,14 @@ class EntitySensor : public Component
 {
 private:
 	Physics* m_physics{ nullptr };
-	Group m_group;
+	b2Fixture* m_sensingFixture{ nullptr };
+	std::vector<Group> m_groups;
 	float m_radius;
 
 	void HandleCollisionWithEntity(Entity* ent);
 public:
-	EntitySensor(float radius, Group group)
-		: m_group(group), m_radius(radius)
+	EntitySensor(float radius, std::initializer_list<Group> groups)
+		: m_groups(groups), m_radius(radius)
 	{}
 
 	std::vector<Entity*> sensedEntities;

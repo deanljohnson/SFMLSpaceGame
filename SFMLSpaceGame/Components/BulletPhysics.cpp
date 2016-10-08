@@ -29,7 +29,9 @@ void BulletPhysics::Init()
 	b2FixtureDef fixDef;
 	fixDef.density = 1.f;
 	fixDef.isSensor = true;
-	fixDef.filter.groupIndex = BULLET_COLLISION_GROUP;
+	//fixDef.filter.groupIndex = BULLET_COLLISION_GROUP;
+	fixDef.filter.categoryBits = IS_BULLET;
+	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
 	b2PolygonShape shape;
 	shape.SetAsBox(m_projStats->GetSize().x / 2.f, m_projStats->GetSize().y / 2.f);
 	fixDef.shape = &shape;

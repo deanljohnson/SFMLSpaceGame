@@ -10,6 +10,7 @@
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
+#include <Box2D/Dynamics/b2Fixture.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 void WrapBodyAngle(b2Body& body)
@@ -93,7 +94,7 @@ float Physics::GetRotationRadians()
 	return m_body->GetAngle();
 }
 
-void Physics::AddShape(const sf::Shape& s, float density)
+void Physics::AddShape(const sf::Shape& s, float density, int categoryBits, int collidesWithBits)
 {
 	// Convert SFML shape points into b2Vec2's
 	b2Vec2* points = new b2Vec2[s.getPointCount()];
@@ -105,5 +106,11 @@ void Physics::AddShape(const sf::Shape& s, float density)
 	b2PolygonShape poly;
 	poly.Set(points, s.getPointCount());
 
-	m_body->CreateFixture(&poly, density);
+	b2FixtureDef fixDef;
+	fixDef.density = density;
+	fixDef.shape = &poly;
+	fixDef.filter.categoryBits = categoryBits;
+	fixDef.filter.maskBits = collidesWithBits;
+
+	m_body->CreateFixture(&fixDef);
 }

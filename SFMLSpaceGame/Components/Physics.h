@@ -42,5 +42,5 @@ public:
 
 	b2Body* GetBody() { return m_body; }
 
-	void AddShape(const sf::Shape& s, float density = 1.f);
+	void AddShape(const sf::Shape& s, float density, int categoryBits, int collidesWithBits);
 };
