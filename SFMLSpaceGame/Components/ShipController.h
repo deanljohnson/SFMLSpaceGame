@@ -53,6 +53,8 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 
+	void SetThrusterPower(float val);
+
 	void Set(Maneuvers maneuver, bool val = true);
 	void Clear();
 	void SetTarget(EntityID target);

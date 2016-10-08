@@ -29,13 +29,22 @@ private:
 	b2Vec2 m_currentMoveForce;
 	float m_currentTorque;
 
+	float m_power; 
+
 public:
 	explicit ShipThrusters(ShipThrust* thrust)
-		: m_strength(thrust), m_currentTorque(0.f)
+		: m_strength(thrust), m_currentTorque(0.f), m_power(1.f)
 	{}
 
 	virtual void Init() override;
 	virtual void Update() override;
+
+	// Set a multiplier to simulate the thrusters getting less power,
+	// or to simulate the ship cruising calmly
+	void SetPower(float val);
+	float GetPower();
+
+	float GetStrength(ThrustDirection dir);
 
 	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
 	void SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor);

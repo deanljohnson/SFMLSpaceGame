@@ -36,8 +36,8 @@ namespace
 {
 	ShipStats* LoadHumanFighter()
 	{
-		return new ShipStats(5.f, 4.f, 3.5f, 3.5f, 10.f,
-							ShipThrust(1.1f, .8f, .5f, .8f),
+		return new ShipStats(5.f, 4.f, 4.5f, 3.5f, 10.f,
+							ShipThrust(61.f, 50.f, 30.f, 50.f),
 							DirectionalGunData(.1f, 10.f, 3.f, 1.f,
 							{
 								HardPoint(b2Vec2(.5f, -.1f), 0.f),

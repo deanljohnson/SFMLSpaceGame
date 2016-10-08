@@ -91,6 +91,11 @@ void ShipController::StrafeToRearForAttack()
 	else StrafeForAttack(Left);
 }
 
+void ShipController::SetThrusterPower(float val)
+{
+	m_thrusters->SetPower(val);
+}
+
 void ShipController::Set(Maneuvers maneuver, bool val)
 {
 	m_activeBehaviours.set(maneuver, val);

@@ -115,7 +115,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
 		// All ships can sense the player
 		ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(shipStats->GetSensorRange(), {PLAYER_GROUP});
-		ent->AddComponent<ShipAI>();
+		ent->AddComponent<ShipAI, std::shared_ptr<ShipStats>>(shipStats);
 	}
 
 	auto spriteBox = sp.GetDimensions();

@@ -14,6 +14,8 @@
 const float COS_5 = cosf(5.f * (M_PI_f / 180.f));
 const float COS_15 = cosf(15.f * (M_PI_f / 180.f));
 const float COS_30 = cosf(30.f * (M_PI_f / 180.f));
+const float COS_45 = cosf(45.f * (M_PI_f / 180.f));
+const float COS_60 = cosf(60.f * (M_PI_f / 180.f));
 
 inline float ConstrainToPlusMinusPI(float angle)
 {

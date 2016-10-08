@@ -1,7 +1,7 @@
 #include <EntityHelpers.h>
 #include "Components/Position.h"
 
-Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entity*>& source)
+Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entity*>& source, std::function<bool(Entity*)> filter)
 {
 	// Reject invalid base cases
 	if (subject == nullptr
@@ -16,7 +16,7 @@ Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entit
 	for (auto e : source)
 	{
 		// If an entity doesn't have a position, we are done with it
-		if (!e->HasComponent<Position>())
+		if ((filter != nullptr && !filter(e)) || !e->HasComponent<Position>())
 			continue;
 
 		// Get the distance between the two positions

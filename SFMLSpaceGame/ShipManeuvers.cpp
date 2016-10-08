@@ -1,6 +1,7 @@
 #include "ShipManeuvers.h"
 #include "Steering.h"
 #include <Box2d/Common/b2Math.h>
+#include "ExtendedMath.h"
 
 void ShipManeuvers::Follow(Physics* selfPhysics, 
 						   ShipThrusters* selfThrusters, 
@@ -46,13 +47,33 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 	b2Vec2 dif = target->GetPosition() - selfPhysics->GetPosition();
 	float distToTarget = dif.Length();
 
-	// We are too close and moving towards target
-	if (distToTarget < distance * .95f)
+
+	if (distToTarget > distance * 1.f)
+	{
+		float toApproachPoint = distToTarget - distance;
+		float reverseStrength = selfThrusters->GetStrength(Reverse);
+		float currentSpeed = selfPhysics->GetVelocity().Length();
+		float timeToApproach = toApproachPoint / currentSpeed;
+		float possibleSpeedReduction = reverseStrength * timeToApproach;
+
+		if (possibleSpeedReduction < currentSpeed)
+			selfThrusters->ApplyThrust(Reverse, 1.f);
+		else
+		{
+			if (b2Dot(selfPhysics->GetHeading(), dif) > COS_30)
+				selfThrusters->ApplyThrust(Front, 1.f);
+		}
+			
+	}
+	else if (distToTarget < distance * .95f)
 	{
 		selfThrusters->ApplyThrust(Reverse, .1f);
 	}
-	// We are close enough and need to slow down to 0
-	else if (distToTarget < distance * 1.1f)
+	else selfThrusters->ApplyThrust(Front, .3f);
+
+	
+	/*// We are close enough and need to slow down to 0
+	else if (distToTarget < distance * 1.2f)
 	{
 		// We are moving slow enough we will let damping slow us down
 		if (selfPhysics->GetVelocity().LengthSquared() < .2f)
@@ -60,17 +81,17 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 
 		// Moving fast and towards target
 		if (b2Dot(dif, selfPhysics->GetVelocity()) > 0)
-			selfThrusters->ApplyThrust(Reverse, .1f);
+			selfThrusters->ApplyThrust(Reverse, .2f);
 		// Moving fast and away from target
 		else
-			selfThrusters->ApplyThrust(Front, .1f);
+			selfThrusters->ApplyThrust(Front, .3f);
 	}
 	// We are far enough away to approach regularly
 	else
 	{
 		// Apply thrust that gets weaker within (distance * 1.5f)
 		selfThrusters->ApplyThrust(Front, std::min(1.f, distToTarget / (distance * 1.5f)));
-	}
+	}*/
 }
 
 void ShipManeuvers::FaceTarget(Physics* selfPhysics, 

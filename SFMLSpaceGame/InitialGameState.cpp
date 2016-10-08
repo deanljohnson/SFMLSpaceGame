@@ -35,6 +35,7 @@ void InitialGameState::Init()
 	AddEnemy();
 
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
+	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(25, 15));
 }
 
 void InitialGameState::CleanUp() const
