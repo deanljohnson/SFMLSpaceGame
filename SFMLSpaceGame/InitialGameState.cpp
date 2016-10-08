@@ -36,6 +36,8 @@ void InitialGameState::Init()
 
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(25, 15));
+
+	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
 }
 
 void InitialGameState::CleanUp() const

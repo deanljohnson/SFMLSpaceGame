@@ -180,6 +180,7 @@
     <ClCompile Include="Components\Lifetime.cpp" />
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
+    <ClCompile Include="Components\ShipSpawner.cpp" />
     <ClCompile Include="Components\TextOnSensor.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
@@ -209,6 +210,8 @@
     <ClCompile Include="Components\ThrusterInput.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="ShipManeuvers.cpp" />
+    <ClCompile Include="ShipResourceSelector.cpp" />
+    <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIArea.cpp" />
@@ -225,6 +228,7 @@
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\ShipAI.h" />
+    <ClInclude Include="Components\ShipSpawner.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
     <ClInclude Include="EntityHandle.h" />
@@ -233,6 +237,8 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="ShipResourceSelector.h" />
+    <ClInclude Include="SpawnLocationSelector.h" />
     <ClInclude Include="UI\UIArea.h" />
     <ClInclude Include="UI\UICenterOn.h" />
     <ClInclude Include="UI\UIEventResponse.h" />

@@ -34,6 +34,12 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{30ab4d45-7f42-4f71-bede-c6aa2c5edbc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Spawning">
+      <UniqueIdentifier>{b89f9e71-6eb6-46d2-a29b-c4161da3b74d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Spawning">
+      <UniqueIdentifier>{73e788da-cef8-4037-a6ae-35a4b0967661}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -178,6 +184,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\DamageOnAttacked.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipResourceSelector.cpp">
+      <Filter>Source Files\Spawning</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnLocationSelector.cpp">
+      <Filter>Source Files\Spawning</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\ShipSpawner.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -394,6 +409,15 @@
     </ClInclude>
     <ClInclude Include="Components\DamageOnAttacked.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShipSpawner.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipResourceSelector.h">
+      <Filter>Header Files\Spawning</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnLocationSelector.h">
+      <Filter>Header Files\Spawning</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

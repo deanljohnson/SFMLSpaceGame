@@ -48,6 +48,7 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 	float distToTarget = dif.Length();
 
 
+	// Still a good distance away
 	if (distToTarget > distance * 1.f)
 	{
 		float toApproachPoint = distToTarget - distance;
@@ -56,10 +57,12 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 		float timeToApproach = toApproachPoint / currentSpeed;
 		float possibleSpeedReduction = reverseStrength * timeToApproach;
 
+		// Need to start slowing down or we will overshoot
 		if (possibleSpeedReduction < currentSpeed)
 			selfThrusters->ApplyThrust(Reverse, 1.f);
 		else
 		{
+			// Only accelerate forward if we are within 30 degrees of facing the target
 			if (b2Dot(selfPhysics->GetHeading(), dif) > COS_30)
 				selfThrusters->ApplyThrust(Front, 1.f);
 		}
@@ -70,28 +73,6 @@ void ShipManeuvers::Approach(Physics* selfPhysics,
 		selfThrusters->ApplyThrust(Reverse, .1f);
 	}
 	else selfThrusters->ApplyThrust(Front, .3f);
-
-	
-	/*// We are close enough and need to slow down to 0
-	else if (distToTarget < distance * 1.2f)
-	{
-		// We are moving slow enough we will let damping slow us down
-		if (selfPhysics->GetVelocity().LengthSquared() < .2f)
-			return;
-
-		// Moving fast and towards target
-		if (b2Dot(dif, selfPhysics->GetVelocity()) > 0)
-			selfThrusters->ApplyThrust(Reverse, .2f);
-		// Moving fast and away from target
-		else
-			selfThrusters->ApplyThrust(Front, .3f);
-	}
-	// We are far enough away to approach regularly
-	else
-	{
-		// Apply thrust that gets weaker within (distance * 1.5f)
-		selfThrusters->ApplyThrust(Front, std::min(1.f, distToTarget / (distance * 1.5f)));
-	}*/
 }
 
 void ShipManeuvers::FaceTarget(Physics* selfPhysics, 

@@ -9,6 +9,7 @@ namespace EntityFactory
 	EntityID CreateProjectile(ResourceID projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateShip(ResourceID shipID, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateStation(ResourceID stationID, const b2Vec2& p = b2Vec2(0, 0), float radians = 0);
+	EntityID CreateSpawner(float time, ResourceID shipID, const b2Vec2& p = b2Vec2(0, 0));
 
 	void MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget);

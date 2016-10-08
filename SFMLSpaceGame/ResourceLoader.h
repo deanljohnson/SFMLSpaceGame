@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Font.hpp>
 
 typedef int ResourceID;
+constexpr ResourceID NullResource(-1);
 
 void UnloadUnusedResources();
 

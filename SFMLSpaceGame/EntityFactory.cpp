@@ -28,6 +28,7 @@
 #include "Components/Health.h"
 #include "Components/DamageOnAttacked.h"
 #include "CollisionGroups.h"
+#include "Components/ShipSpawner.h"
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
@@ -61,6 +62,14 @@ EntityID EntityFactory::CreateStation(ResourceID stationID, const b2Vec2& p, flo
 {
 	auto ent = EntityManager::AddEntity(STATION_GROUP);
 	MakeIntoStation(ent, stationID, p, radians);
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec2& pos)
+{
+	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
+	ent->AddComponent<Position>(pos);
+	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector(shipID), SpawnLocationSelector());
 	return ent.GetID();
 }
 
