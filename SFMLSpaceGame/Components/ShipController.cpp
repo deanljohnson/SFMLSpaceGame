@@ -103,7 +103,7 @@ void ShipController::Clear()
 
 void ShipController::SetTarget(EntityID target)
 {
-	m_targetHandle = entity->GetManager()->Get(target);
+	m_targetHandle = EntityManager::Get(target);
 
 	assert(m_targetHandle->HasComponent<Physics>()
 		&& m_targetHandle->GetID() != entity->GetID());

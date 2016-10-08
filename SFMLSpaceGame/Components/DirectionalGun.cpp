@@ -31,7 +31,7 @@ void DirectionalGun::Shoot()
 	b2Rot rot(m_rotation->GetRadians());
 	for (auto hp : m_gunData->hardPoints)
 	{
-		auto bullet = entity->GetManager()->AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
+		auto bullet = EntityManager::AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
 		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 

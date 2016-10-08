@@ -3,7 +3,7 @@
 
 void ParallaxMovement::Init()
 {
-	m_targetHandle = entity->GetManager()->Get(m_targetID);
+	m_targetHandle = EntityManager::Get(m_targetID);
 	m_targetPosition = &m_targetHandle->GetComponent<Position>();
 
 	m_position = &entity->GetComponent<Position>();

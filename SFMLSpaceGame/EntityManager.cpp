@@ -1,6 +1,11 @@
 #include <EntityManager.h>
 #include <Entity.h>
 
+EntityID EntityManager::m_nextID = ENTITY_ID_NULL;
+std::vector<std::unique_ptr<Entity>> EntityManager::m_entities{};
+std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> EntityManager::m_entityHandles{};
+std::array<std::vector<Entity*>, maxGroups> EntityManager::m_groupedEntities{};
+
 void EntityManager::Refresh()
 {
 	//Remove entities from groups they are not in, or when they are dead
@@ -20,7 +25,7 @@ void EntityManager::Refresh()
 	//Remove dead entities
 	m_entities.erase(
 		std::remove_if(begin(m_entities), end(m_entities),
-			[this](const std::unique_ptr<Entity>& entity)
+			[](const std::unique_ptr<Entity>& entity)
 			{
 				if (!entity->isAlive())
 				{
@@ -56,10 +61,10 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 
 EntityHandle EntityManager::AddEntity(b2World* world)
 {
-	Entity* e{ new Entity(this, world, m_nextID++) };
+	Entity* e{ new Entity(world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
-	EntityHandle* hanPtr{ new EntityHandle(this, e, e->GetID()) };
+	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };
 	std::unique_ptr<EntityHandle> handle(hanPtr);
 
 	m_entities.emplace_back(move(uPtr));
@@ -70,10 +75,10 @@ EntityHandle EntityManager::AddEntity(b2World* world)
 
 EntityHandle EntityManager::AddEntity(b2World* world, Group group)
 {
-	Entity* e{ new Entity(this, world, m_nextID++) };
+	Entity* e{ new Entity(world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
-	EntityHandle* hanPtr{ new EntityHandle(this, e, e->GetID()) };
+	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };
 	std::unique_ptr<EntityHandle> handle(hanPtr);
 
 	m_entities.emplace_back(move(uPtr));

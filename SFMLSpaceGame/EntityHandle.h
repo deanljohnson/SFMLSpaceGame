@@ -15,11 +15,10 @@ public:
 private:
 	EntityID m_ID;
 	Entity* m_entity;
-	EntityManager* m_manager;
 
 public:
 	EntityHandle() {}
-	EntityHandle(EntityManager* manager, Entity* ent, EntityID id);
+	EntityHandle(Entity* ent, EntityID id);
 
 	bool IsValid();
 

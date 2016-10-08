@@ -4,7 +4,7 @@
 
 void CollisionFilterComponent::Init()
 {
-	m_noCollision = entity->GetManager()->Get(m_noCollisionID);
+	m_noCollision = EntityManager::Get(m_noCollisionID);
 }
 
 bool CollisionFilterComponent::ShouldCollide(Entity* other)

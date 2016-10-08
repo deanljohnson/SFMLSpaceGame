@@ -12,9 +12,9 @@
 #include "UI/UIButton.h"
 #include "UI/UICenterOn.h"
 
-void AddEnemy(EntityManager* entMan, b2World* world)
+void AddEnemy(b2World* world)
 {
-	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
+	auto enemy = EntityManager::AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 }
 
@@ -23,22 +23,22 @@ void InitialGameState::Init()
 	m_contactListener = ContactFilter();
 	m_world.SetContactFilter(&m_contactListener);
 
-	auto player = m_entityManager.AddEntity(&m_world, PLAYER_GROUP);
+	auto player = EntityManager::AddEntity(&m_world, PLAYER_GROUP);
 	EntityFactory::MakeIntoPlayer(player);
 
-	auto bg = m_entityManager.AddEntity(&m_world, BACKGROUND_GROUP);
+	auto bg = EntityManager::AddEntity(&m_world, BACKGROUND_GROUP);
 	EntityFactory::MakeIntoBackgroundOne(bg, player.GetID());
 
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
-	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
+	AddEnemy(&m_world);
 
-	auto station = m_entityManager.AddEntity(&m_world, STATION_GROUP);
+	auto station = EntityManager::AddEntity(&m_world, STATION_GROUP);
 	EntityFactory::MakeIntoStation(station, STATION_HUMAN_ONE, b2Vec2(7, 0));
 }
 
@@ -92,8 +92,8 @@ void InitialGameState::Update()
 
 	m_stepper.Step(m_world, GameTime::deltaTime);
 
-	m_entityManager.Refresh();
-	m_entityManager.Update();
+	EntityManager::Refresh();
+	EntityManager::Update();
 }
 
 void InitialGameState::Render(sf::RenderTarget& target)
@@ -103,7 +103,7 @@ void InitialGameState::Render(sf::RenderTarget& target)
 
 	sf::RenderStates rendStates;
 	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
-	m_entityManager.Render(target, rendStates);
+	EntityManager::Render(target, rendStates);
 
 	auto view = GAME_WINDOW->getView();
 	GAME_WINDOW->setView(GAME_WINDOW->getDefaultView());

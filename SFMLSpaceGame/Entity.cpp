@@ -40,5 +40,5 @@ void Entity::DeleteFromGroup(Group group) noexcept
 void Entity::AddToGroup(Group group) noexcept 
 {
 	m_groupBitset[group] = true;
-	m_manager->AddToGroup(this, group);
+	EntityManager::AddToGroup(this, group);
 }

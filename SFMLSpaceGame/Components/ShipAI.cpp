@@ -47,7 +47,7 @@ void ShipAI::ProcessAIState()
 
 void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
 {
-	auto ent = entity->GetManager()->Get(event.attackerID);
+	auto ent = EntityManager::Get(event.attackerID);
 
 	// Make sure the handle is still valid
 	if (!ent.IsValid()) return;
@@ -63,12 +63,12 @@ void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
 
 void ShipAI::FindStation()
 {
-	auto& stations = entity->GetManager()->GetEntitiesByGroup(STATION_GROUP);
+	auto& stations = EntityManager::GetEntitiesByGroup(STATION_GROUP);
 	Entity* closest = EntityHelpers::GetClosestEntity(entity, stations);
 
 	if (closest == nullptr) return;
 
-	m_targetHandle = entity->GetManager()->Get(closest->GetID());
+	m_targetHandle = EntityManager::Get(closest->GetID());
 	m_controller->SetTarget(m_targetHandle->GetID());
 	m_controller->Set(Maneuvers::Approach);
 }

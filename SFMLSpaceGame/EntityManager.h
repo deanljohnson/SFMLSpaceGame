@@ -18,22 +18,22 @@ class b2World;
 class EntityManager
 {
 private:
-	EntityID m_nextID = ENTITY_ID_NULL;
-	std::vector<std::unique_ptr<Entity>> m_entities;
-	std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> m_entityHandles;
-	std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
+	static EntityID m_nextID;
+	static std::vector<std::unique_ptr<Entity>> m_entities;
+	static std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> m_entityHandles;
+	static std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
 public:
-	void Refresh();
-	void Update();
-	void Render(sf::RenderTarget& target, sf::RenderStates& states);
+	static void Refresh();
+	static void Update();
+	static void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	bool IsValidID(EntityID id);
-	EntityHandle Get(EntityID id);
+	static bool IsValidID(EntityID id);
+	static EntityHandle Get(EntityID id);
 
-	EntityHandle AddEntity(b2World* world);
-	EntityHandle AddEntity(b2World* world, Group group);
+	static EntityHandle AddEntity(b2World* world);
+	static EntityHandle AddEntity(b2World* world, Group group);
 
-	void AddToGroup(Entity* ent, Group group);
-	std::vector<Entity*>& GetEntitiesByGroup(Group group);
+	static void AddToGroup(Entity* ent, Group group);
+	static std::vector<Entity*>& GetEntitiesByGroup(Group group);
 };
