@@ -20,9 +20,14 @@ void EntityManager::Refresh()
 	//Remove dead entities
 	m_entities.erase(
 		std::remove_if(begin(m_entities), end(m_entities),
-			[](const std::unique_ptr<Entity>& entity)
+			[this](const std::unique_ptr<Entity>& entity)
 			{
-				return !entity->isAlive();
+				if (!entity->isAlive())
+				{
+					m_entityHandles.erase(entity->GetID());
+					return true;
+				}
+				return false;
 			}), end(m_entities)
 	);
 }
@@ -31,7 +36,7 @@ void EntityManager::Update()
 {
 	for (auto i(0u); i < maxGroups; i++)
 	{
-		auto& curGroup{ m_groupedEntities[i] };
+		auto& curGroup( m_groupedEntities[i] );
 
 		for (auto& e : curGroup)
 			e->Update();
@@ -49,41 +54,43 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
-std::shared_ptr<EntityHandle> EntityManager::AddEntity(b2World* world)
+EntityHandle& EntityManager::AddEntity(b2World* world)
 {
 	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
-	EntityHandle* handle = new EntityHandle(e);
-	std::shared_ptr<EntityHandle> handPtr(handle);
+	EntityHandle* hanPtr{ new EntityHandle(this, e, e->GetID()) };
+	std::unique_ptr<EntityHandle> handle(hanPtr);
 
 	m_entities.emplace_back(move(uPtr));
-	m_entityHandles.emplace(std::make_pair(e->GetID(), handPtr));
-	return handPtr;
+	m_entityHandles.emplace(std::make_pair(e->GetID(), move(handle)));
+	return *hanPtr;
 }
 
-std::shared_ptr<EntityHandle> EntityManager::AddEntity(b2World* world, Group group)
+EntityHandle& EntityManager::AddEntity(b2World* world, Group group)
 {
 	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
 
-	EntityHandle* handle = new EntityHandle(e);
-	std::shared_ptr<EntityHandle> handPtr(handle);
+	EntityHandle* hanPtr{ new EntityHandle(this, e, e->GetID()) };
+	std::unique_ptr<EntityHandle> handle(hanPtr);
 
 	m_entities.emplace_back(move(uPtr));
-	m_entityHandles.emplace(std::make_pair(e->GetID(), handPtr));
+	m_entityHandles.emplace(make_pair(e->GetID(), move(handle)));
 
 	e->AddToGroup(group);
 
-	return handPtr;
+	return *hanPtr;
 }
 
-void EntityManager::InvalidateHandle(EntityID id)
+bool EntityManager::IsValidID(EntityID id)
 {
-	auto it = m_entityHandles.find(id);
-	if (it != m_entityHandles.end()) {
-		it->second->Invalidate();
-	}
+	return m_entityHandles.find(id) != m_entityHandles.end();
+}
+
+EntityHandle& EntityManager::Get(EntityID id)
+{
+	return *m_entityHandles.find(id)->second.get();
 }
 
 void EntityManager::AddToGroup(Entity* ent, Group group)

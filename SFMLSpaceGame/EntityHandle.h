@@ -1,27 +1,21 @@
 #pragma once
-#include <Entity.h>
+#include <EntityID.h>
+
+class Entity;
+class EntityManager;
 
 class EntityHandle 
 {
 private:
+	EntityID m_ID;
 	Entity* m_entity;
-	bool m_valid;
+	EntityManager* m_manager;
 
 public:
-	EntityHandle(Entity* entity)
-		: m_entity(entity)
+	EntityHandle(EntityManager* manager, Entity* ent, EntityID id)
+		: m_ID(id), m_entity(ent), m_manager(manager)
 	{}
-	inline bool IsValid() { return m_valid; }
-	inline void Invalidate() { m_valid = false; }
+	inline bool IsValid();
 
-	Entity* operator->()
-	{
-		if (!m_valid) return nullptr;
-		return m_entity;
-	}
-
-	/*Entity &operator->() const
-	{
-		return *m_entity;
-	}*/
+	Entity* operator->();
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include <Components/Position.h>
 #include <EntityHandle.h>
+#include <Entity.h>
 
 class ParallaxMovement : public Component
 {
@@ -12,11 +13,10 @@ private:
 	b2Vec2 m_targetLastPosition;
 
 public:
-	explicit ParallaxMovement(std::shared_ptr<EntityHandle> target, float movementScale)
+	explicit ParallaxMovement(EntityHandle& target, float movementScale)
 		: m_movementScale(movementScale)
 	{
-		auto t = *target.get();
-		m_targetPosition = &t->GetComponent<Position>();
+		m_targetPosition = &target->GetComponent<Position>();
 	}
 
 	virtual void Init() override;

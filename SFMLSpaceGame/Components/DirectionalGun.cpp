@@ -27,8 +27,7 @@ void DirectionalGun::Shoot()
 	{
 		return;
 	}
-		
-	printf("%.5f\n", m_currentHeat);
+
 	// fire a bullet for each hardpoint
 	b2Rot rot(m_rotation->GetRadians());
 	for (auto hp : m_gunData->hardPoints)

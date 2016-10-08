@@ -13,7 +13,8 @@ sf::VideoMode GetVideoMode()
 
 int main()
 {
-	sf::RenderWindow window(GetVideoMode(), "SFML Works!");
+	const std::string TITLE = "Space Game";
+	sf::RenderWindow window(GetVideoMode(), TITLE);
 	window.setFramerateLimit(60);
 	
 	GAME_WINDOW = &window;
@@ -41,6 +42,11 @@ int main()
 		}
 
 		game_manager.Update();
+		
+#ifdef _DEBUG
+		float updateTime = clock.getElapsedTime().asSeconds();
+		GAME_WINDOW->setTitle(TITLE + " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime)));
+#endif
 
 		window.clear();
 		game_manager.Render(window);

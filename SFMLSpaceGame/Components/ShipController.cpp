@@ -93,9 +93,8 @@ void ShipController::Set(Maneuvers maneuver, bool val)
 	m_activeBehaviours.set(maneuver, val);
 }
 
-void ShipController::SetTarget(std::shared_ptr<EntityHandle> target)
+void ShipController::SetTarget(EntityHandle& target)
 {
-	auto ent = *target.get();
-	assert(ent->HasComponent<Physics>());
-	m_target = &ent->GetComponent<Physics>();
+	assert(target->HasComponent<Physics>());
+	m_target = &target->GetComponent<Physics>();
 }

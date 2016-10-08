@@ -183,7 +183,9 @@
     <ClCompile Include="ContactFilter.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
+    <ClCompile Include="EntityHandle.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp">
@@ -221,6 +223,8 @@
     <ClInclude Include="Components\ZoomHandler.h" />
     <ClInclude Include="EntityHandle.h" />
     <ClInclude Include="EntityID.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="UI\UIArea.h" />
     <ClInclude Include="UI\UICenterOn.h" />

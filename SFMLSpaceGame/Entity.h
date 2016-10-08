@@ -7,6 +7,8 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <Group.h>
 #include <EntityID.h>
+#include "EventQueue.h"
+
 class EntityManager;
 
 class Entity
@@ -14,6 +16,7 @@ class Entity
 private:
 	bool m_alive{ true };
 	bool m_active{ true };
+
 	std::vector<std::unique_ptr<Component>> m_components;
 
 	ComponentArray m_componentArray;
@@ -52,18 +55,19 @@ public:
 	{ }
 
 	std::function<void(Entity*)> destroyCallback{ nullptr };
+	EventQueue events;
+
 	void Update();
 	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
 	inline bool isAlive() const { return m_alive; }
 	inline void Destroy() { m_alive = false; OnDestroy(); }
+	void OnDestroy();
 
 	inline bool isActive() const { return m_active; }
-	inline bool SetActive(bool val) { m_active = val; }
+	inline void SetActive(bool val) { m_active = val; }
 
 	inline EntityID GetID() { return m_id; }
-
-	void OnDestroy();
 
 	b2World* GetWorld() const { return m_world; }
 	EntityManager* GetManager() const { return m_manager; }

@@ -13,13 +13,12 @@
 #include <SFML/Window/Event.hpp>
 #include "UI/UICenterOn.h"
 
-void AddEnemy(std::shared_ptr<EntityHandle> player, EntityManager* entMan, b2World* world)
+void AddEnemy(EntityHandle& player, EntityManager* entMan, b2World* world)
 {
 	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
 
-	auto en = *enemy.get();
-	auto& sc = en->GetComponent<ShipController>();
+	auto& sc = enemy->GetComponent<ShipController>();
 	sc.Set(StrafeToTargetsRearForAttack);
 	sc.Set(FireGunsWhenFacingTarget);
 	sc.SetTarget(player);
@@ -85,7 +84,6 @@ void InitialGameState::Update()
 			INIT_AND_DISPLAY(UIButton, id[3], UI_BUTTON_TEST_ONE, UITransform(20, 20))
 		) 
 	);
-
 
 	/*MAKE_HIERARCHY(
 		INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(1000, 500), UITransform(50, 50)),

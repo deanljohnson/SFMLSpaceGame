@@ -53,5 +53,5 @@ public:
 	virtual void Update() override;
 
 	void Set(Maneuvers maneuver, bool val = true);
-	void SetTarget(std::shared_ptr<EntityHandle> target);
+	void SetTarget(EntityHandle& target);
 };

@@ -1,7 +1,10 @@
+#include <Entity.h>
 #include <EntityManager.h>
 
 void Entity::Update()
 {
+	events.Update();
+
 	for (auto& c : m_components)
 	{
 		if (c->active)
@@ -22,7 +25,6 @@ void Entity::OnDestroy()
 {
 	if (destroyCallback)
 		destroyCallback(this);
-	m_manager->InvalidateHandle(m_id);
 }
 
 bool Entity::HasGroup(Group group) const noexcept
