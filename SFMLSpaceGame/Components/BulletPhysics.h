@@ -3,6 +3,7 @@
 #include <Components/Rotation.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <ProjectileStats.h>
+#include <EntityHandle.h>
 
 class BulletPhysics : public Component
 {
@@ -10,6 +11,7 @@ private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };
+	EntityHandle& m_sourceEntity;
 
 	std::shared_ptr<ProjectileStats> m_projStats;
 
@@ -17,8 +19,8 @@ private:
 	bool HandleCollisions();
 
 public:
-	explicit BulletPhysics(const std::shared_ptr<ProjectileStats>& projStats)
-		: m_projStats(projStats)
+	explicit BulletPhysics(EntityHandle& sourceEnt, const std::shared_ptr<ProjectileStats>& projStats)
+		: m_sourceEntity(sourceEnt), m_projStats(projStats)
 	{}
 	~BulletPhysics();
 

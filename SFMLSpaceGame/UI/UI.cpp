@@ -40,7 +40,7 @@ UI_Result* UI::GetResult(UI_ID id)
 bool UI::HandleEvent(const sf::Event& event)
 {
 	bool handled = false;
-	UIEventResponse response = None;
+	UIEventResponse response = UIEventResponse::None;
 	sf::Transform trans;
 
 	for (auto id : m_rootIDs) 
@@ -48,8 +48,8 @@ bool UI::HandleEvent(const sf::Event& event)
 		auto& record = m_elements.find(id)->second;
 		response = record.element->HandleEvent(event, trans);
 
-		handled |= response != None;
-		if (response == Consume) break;
+		handled |= response != UIEventResponse::None;
+		if (response == UIEventResponse::Consume) break;
 	}
 
 	return handled;

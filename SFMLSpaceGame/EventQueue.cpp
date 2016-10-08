@@ -13,6 +13,7 @@ void EventQueue::Update()
 	while (m_lastEventsSinceUpdate > 0)
 	{
 		m_events.pop_front();
+		m_lastEventsSinceUpdate--;
 	}
 	m_lastEventsSinceUpdate = m_eventsSinceUpdate;
 	m_eventsSinceUpdate = 0;

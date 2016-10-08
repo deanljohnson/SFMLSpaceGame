@@ -171,6 +171,9 @@
     <ClCompile Include="EventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ShipAI.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShipAI.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

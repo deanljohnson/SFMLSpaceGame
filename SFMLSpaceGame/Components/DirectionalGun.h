@@ -1,5 +1,4 @@
 #pragma once
-#include <GameTime.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Interfaces/Gun.h>

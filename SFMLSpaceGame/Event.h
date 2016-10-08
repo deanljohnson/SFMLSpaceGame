@@ -1,20 +1,27 @@
 #pragma once
 
-struct AttackedEvent
-{
-	
-};
+#include <EntityID.h>
+
+namespace sf{
+	class Event;
+}
 
 enum EventType
 {
-	Attacked
+	None, Attacked
 };
 
 struct Event
 {
-	EventType type;
+	struct AttackedEvent
+	{
+		EntityID attackerID;
+	};
+	
 	union
 	{
 		AttackedEvent attacked;
 	};
+
+	EventType type;
 };

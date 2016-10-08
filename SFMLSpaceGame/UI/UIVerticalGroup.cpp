@@ -16,8 +16,8 @@ sf::FloatRect UIVerticalGroup::GetBounds()
 
 UIEventResponse UIVerticalGroup::HandleEvent(const sf::Event& event, const sf::Transform& transform)
 {
-	UIEventResponse response = None;
-	UIEventResponse childResponse = None;
+	UIEventResponse response = UIEventResponse::None;
+	UIEventResponse childResponse = UIEventResponse::None;
 	sf::Transform trans = transform * getTransform();
 
 	for (auto elem : children)
@@ -26,14 +26,14 @@ UIEventResponse UIVerticalGroup::HandleEvent(const sf::Event& event, const sf::T
 		childResponse = elem->HandleEvent(event, trans);
 		trans.translate(0, bounds.height + bounds.top);
 
-		if (childResponse == Consume)
+		if (childResponse == UIEventResponse::Consume)
 		{
-			response = Consume;
+			response = UIEventResponse::Consume;
 			break;
 		}
-		else if (childResponse == PassOn)
+		else if (childResponse == UIEventResponse::PassOn)
 		{
-			response = PassOn;
+			response = UIEventResponse::PassOn;
 		}
 	}
 	return response;

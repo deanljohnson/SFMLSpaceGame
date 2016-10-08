@@ -61,7 +61,7 @@ UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Resu
 			SwitchState(Hover);
 		}
 
-		return Consume;
+		return UIEventResponse::Consume;
 	}
 
 	SwitchState(None);
@@ -92,10 +92,10 @@ UIEventResponse UIButton::HandleEvent(const sf::Event& event, const sf::Transfor
 		response = HandleMouse(mousePos, UI::GetResult(ID));
 	}
 	
-	if (response != Consume) 
+	if (response != UIEventResponse::Consume) 
 	{
 		UIEventResponse childResponse = UIElement::HandleEvent(event, transform);
-		if (childResponse == None) return response;
+		if (childResponse == UIEventResponse::None) return response;
 		return childResponse;
 	}
 	return response;

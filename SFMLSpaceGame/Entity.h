@@ -34,13 +34,15 @@ public:
 
 	Entity(Entity&& other)
 		: m_alive{other.m_alive},
+		  m_active{other.m_active},
 		  m_components{std::move(other.m_components)},
 		  m_componentBitset{std::move(other.m_componentBitset)},
 		  m_groupBitset{std::move(other.m_groupBitset)},
 		  m_manager{other.m_manager},
-		  m_world{other.m_world}
+		  m_world{other.m_world},
+		  m_id{other.m_id},
+		  destroyCallback{std::move(other.destroyCallback)}
 	{
-		m_componentArray = other.m_componentArray;
 	}
 
 	Entity& operator=(Entity other)

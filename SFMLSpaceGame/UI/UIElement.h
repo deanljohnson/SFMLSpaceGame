@@ -28,25 +28,25 @@ public:
 		if (!children.empty()) 
 		{
 			sf::Transform trans = transform * getTransform();
-			UIEventResponse response = None;
+			UIEventResponse response = UIEventResponse::None;
 			UIEventResponse childResponse = UIEventResponse::None;
 			for (auto ch : children)
 			{
 				childResponse = ch->HandleEvent(event, trans);
 
-				if (childResponse == Consume)
+				if (childResponse == UIEventResponse::Consume)
 				{
-					response = Consume;
+					response = UIEventResponse::Consume;
 					break;
 				}
-				else if (childResponse == PassOn)
+				else if (childResponse == UIEventResponse::PassOn)
 				{
-					response = PassOn;
+					response = UIEventResponse::PassOn;
 				}
 			}
 			return response;
 		}
-		else return None;
+		else return UIEventResponse::None;
 	}
 
 	virtual void Refresh() {}

@@ -69,6 +69,17 @@ bool BulletPhysics::HandleCollisions()
 		if (!contact->contact->GetFixtureA()->IsSensor()
 			|| !contact->contact->GetFixtureB()->IsSensor())
 		{
+			auto userData = contact->other->GetUserData();
+			if (userData != nullptr) // If contact is not with a body with defined entity data
+			{
+				auto otherEnt = static_cast<Entity*>(userData);
+				Event attackedEvent;
+				attackedEvent.attacked = Event::AttackedEvent();
+				attackedEvent.attacked.attackerID = m_sourceEntity->GetID();
+				attackedEvent.type = Attacked;
+				otherEnt->events.Push(attackedEvent);
+			}
+			
 			break;
 		}
 

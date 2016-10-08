@@ -21,8 +21,8 @@ UIEventResponse UICenterOn::HandleEvent(const sf::Event& event, const sf::Transf
 	sf::Vector2f targetCenter = sf::Vector2f(m_targetBounds.left + (m_targetBounds.width / 2.f),
 											m_targetBounds.top + (m_targetBounds.height / 2.f));
 
-	UIEventResponse response = None;
-	UIEventResponse childResponse = None;
+	UIEventResponse response = UIEventResponse::None;
+	UIEventResponse childResponse = UIEventResponse::None;
 	for (auto child : children) 
 	{
 		sf::Transform copyTrans = sf::Transform(transform);
@@ -34,14 +34,14 @@ UIEventResponse UICenterOn::HandleEvent(const sf::Event& event, const sf::Transf
 
 		childResponse = child->HandleEvent(event, copyTrans);
 
-		if (childResponse == Consume)
+		if (childResponse == UIEventResponse::Consume)
 		{
-			response = Consume;
+			response = UIEventResponse::Consume;
 			break;
 		}
-		else if (childResponse == PassOn)
+		else if (childResponse == UIEventResponse::PassOn)
 		{
-			response = PassOn;
+			response = UIEventResponse::PassOn;
 		}
 	}
 

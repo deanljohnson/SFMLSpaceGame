@@ -45,7 +45,7 @@ private:
 	void StrafeToRearForAttack();
 
 public:
-	ShipController(std::shared_ptr<ShipStats> stats)
+	explicit ShipController(std::shared_ptr<ShipStats> stats)
 		: m_stats(stats)
 	{}
 
@@ -53,5 +53,6 @@ public:
 	virtual void Update() override;
 
 	void Set(Maneuvers maneuver, bool val = true);
+	void Clear();
 	void SetTarget(EntityHandle& target);
 };

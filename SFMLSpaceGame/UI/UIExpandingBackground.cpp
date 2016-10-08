@@ -122,7 +122,7 @@ sf::FloatRect UIExpandingBackground::GetBounds()
 
 UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const sf::Transform& transform)
 {
-	UIEventResponse response = None;
+	UIEventResponse response = UIEventResponse::None;
 
 	if (event.type == sf::Event::MouseButtonPressed
 		|| event.type == sf::Event::MouseButtonReleased)
@@ -133,11 +133,11 @@ UIEventResponse UIExpandingBackground::HandleEvent(const sf::Event& event, const
 		mousePos = transform.getInverse().transformPoint(mousePos);
 
 		if (this->getTransform().transformRect(m_vertArray.getBounds()).contains(mousePos))
-			response = PassOn;
+			response = UIEventResponse::PassOn;
 	}
 
 	UIEventResponse childResponse = UIElement::HandleEvent(event, transform);
-	if (childResponse == None) return response;
+	if (childResponse == UIEventResponse::None) return response;
 	return childResponse;
 }
 

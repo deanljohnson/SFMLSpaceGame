@@ -93,8 +93,15 @@ void ShipController::Set(Maneuvers maneuver, bool val)
 	m_activeBehaviours.set(maneuver, val);
 }
 
+void ShipController::Clear()
+{
+	m_activeBehaviours.reset();
+}
+
 void ShipController::SetTarget(EntityHandle& target)
 {
-	assert(target->HasComponent<Physics>());
+	assert(target->HasComponent<Physics>()
+		&& target->GetID() != entity->GetID());
 	m_target = &target->GetComponent<Physics>();
+	printf("%d\n", target->GetID());
 }

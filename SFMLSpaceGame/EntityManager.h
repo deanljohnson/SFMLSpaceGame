@@ -22,13 +22,14 @@ private:
 	std::vector<std::unique_ptr<Entity>> m_entities;
 	std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> m_entityHandles;
 	std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
+
 public:
 	void Refresh();
 	void Update();
 	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	inline bool IsValidID(EntityID id);
-	inline EntityHandle& Get(EntityID id);
+	bool IsValidID(EntityID id);
+	EntityHandle& Get(EntityID id);
 
 	EntityHandle& AddEntity(b2World* world);
 	EntityHandle& AddEntity(b2World* world, Group group);

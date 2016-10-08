@@ -23,6 +23,7 @@
 #include "Components/EntitySensor.h"
 #include "Components/TextOnSensor.h"
 #include "Components/ZoomHandler.h"
+#include "Components/ShipAI.h"
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
@@ -45,14 +46,14 @@ void EntityFactory::MakeIntoBackgroundOne(EntityHandle& ent, EntityHandle& paral
 	ent->AddComponent<ParallaxMovement, EntityHandle&, float>(parallaxTarget, .1f);
 }
 
-void EntityFactory::MakeIntoBullet(EntityHandle& ent, ResourceID id, Entity* sourceEntity, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(EntityHandle& ent, ResourceID id, EntityHandle& sourceEntity, const b2Vec2& p, float radians)
 {
 	auto projStats = LoadProjectile(id);
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, const std::shared_ptr<ProjectileStats>&>(projStats);
-	ent->AddComponent<CollisionFilterComponent, Entity*>(sourceEntity);
+	ent->AddComponent<BulletPhysics, EntityHandle&, const std::shared_ptr<ProjectileStats>&>(sourceEntity, projStats);
+	ent->AddComponent<CollisionFilterComponent, EntityHandle&>(sourceEntity);
 	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
 }
@@ -73,6 +74,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
 		// All ships can sense the player
 		ent->AddComponent<EntitySensor, float, Group>(shipStats->GetSensorRange(), PLAYER_GROUP);
+		ent->AddComponent<ShipAI>();
 	}
 
 	auto spriteBox = sp.GetDimensions();

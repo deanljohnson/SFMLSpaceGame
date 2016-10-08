@@ -1,14 +1,15 @@
 #pragma once
 #include "Component.h"
+#include <EntityHandle.h>
 
 // Prevents collisions between this entity and one other
 class CollisionFilterComponent : public Component
 {
 private:
-	Entity* m_noCollision{nullptr};
+	EntityHandle& m_noCollision;
 
 public:
-	explicit CollisionFilterComponent(Entity* noCollision)
+	explicit CollisionFilterComponent(EntityHandle& noCollision)
 		: m_noCollision(noCollision)
 	{}
 

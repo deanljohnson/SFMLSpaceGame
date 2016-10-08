@@ -177,6 +177,7 @@
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
+    <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
     <ClCompile Include="Components\TextOnSensor.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
@@ -219,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\EntitySensor.h" />
+    <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
     <ClInclude Include="EntityHandle.h" />
