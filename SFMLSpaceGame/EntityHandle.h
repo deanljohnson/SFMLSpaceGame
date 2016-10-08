@@ -18,10 +18,12 @@ private:
 	EntityManager* m_manager;
 
 public:
-	EntityHandle();
+	EntityHandle() {}
 	EntityHandle(EntityManager* manager, Entity* ent, EntityID id);
 
 	bool IsValid();
 
 	Entity* operator->();
+
+	EntityID GetID() { return m_ID; };
 };

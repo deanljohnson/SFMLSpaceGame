@@ -75,7 +75,8 @@ bool BulletPhysics::HandleCollisions()
 				auto otherEnt = static_cast<Entity*>(userData);
 				Event attackedEvent;
 				attackedEvent.attacked = Event::AttackedEvent();
-				attackedEvent.attacked.attackerID = m_sourceEntity->GetID();
+				attackedEvent.attacked.attackerID = m_sourceEntity;
+				attackedEvent.attacked.damage = m_projStats->GetDamage();
 				attackedEvent.type = Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}

@@ -11,7 +11,7 @@ private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
 	b2Body* m_body{ nullptr };
-	EntityHandle& m_sourceEntity;
+	EntityID m_sourceEntity;
 
 	std::shared_ptr<ProjectileStats> m_projStats;
 
@@ -19,7 +19,7 @@ private:
 	bool HandleCollisions();
 
 public:
-	explicit BulletPhysics(EntityHandle& sourceEnt, const std::shared_ptr<ProjectileStats>& projStats)
+	explicit BulletPhysics(EntityID sourceEnt, const std::shared_ptr<ProjectileStats>& projStats)
 		: m_sourceEntity(sourceEnt), m_projStats(projStats)
 	{}
 	~BulletPhysics();

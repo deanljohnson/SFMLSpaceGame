@@ -1,27 +1,21 @@
 #include <InitialGameState.h>
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <resource.h>
 #include <ContactFilter.h>
-#include "Components/ShipController.h"
 #include <EntityGroups.h>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Window/Event.hpp>
 #include "UI/UI.h"
 #include "UI/UIText.h"
 #include "UI/UIExpandingBackground.h"
 #include "UI/UIButton.h"
-#include <SFML/Window/Event.hpp>
 #include "UI/UICenterOn.h"
 
-void AddEnemy(EntityHandle& player, EntityManager* entMan, b2World* world)
+void AddEnemy(EntityManager* entMan, b2World* world)
 {
 	auto enemy = entMan->AddEntity(world, NON_PLAYER_SHIP_GROUP);
 	EntityFactory::MakeIntoShip(enemy, SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
-
-	auto& sc = enemy->GetComponent<ShipController>();
-	//sc.Set(StrafeToTargetsRearForAttack);
-	//sc.Set(FireGunsWhenFacingTarget);
-	//sc.SetTarget(player);
 }
 
 void InitialGameState::Init()
@@ -33,16 +27,16 @@ void InitialGameState::Init()
 	EntityFactory::MakeIntoPlayer(player);
 
 	auto bg = m_entityManager.AddEntity(&m_world, BACKGROUND_GROUP);
-	EntityFactory::MakeIntoBackgroundOne(bg, player);
+	EntityFactory::MakeIntoBackgroundOne(bg, player.GetID());
 
-	AddEnemy(player, &m_entityManager, &m_world);
-	/*AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);
-	AddEnemy(player, &m_entityManager, &m_world);*/
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
+	AddEnemy(&m_entityManager, &m_world);
 
 	auto station = m_entityManager.AddEntity(&m_world, STATION_GROUP);
 	EntityFactory::MakeIntoStation(station, STATION_HUMAN_ONE, b2Vec2(7, 0));

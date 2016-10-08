@@ -1,6 +1,8 @@
 #include <Components/ShipAI.h>
 #include <EntityManager.h>
+#include <EntityGroups.h>
 #include <Event.h>
+#include <EntityHelpers.h>
 
 void ShipAI::Init()
 {
@@ -17,14 +19,10 @@ void ShipAI::ProcessEvents()
 {
 	if (entity->events.Count() > 0)
 	{
-		auto it = entity->events.Begin();
-		while (it != entity->events.End())
+		Event event;
+		if (entity->events.Get(Attacked, event))
 		{
-			if (it->type == Attacked)
-			{
-				HandleAttackedEvent(it->attacked);
-			}
-			++it;
+			HandleAttackedEvent(event.attacked);
 		}
 	}
 }
@@ -34,8 +32,10 @@ void ShipAI::ProcessAIState()
 	switch(m_currentState)
 	{
 	case AIState::None:
+		FindStation();
 		break;
 	case AIState::AttackingShip:
+		// target is dead or otherwise "gone"
 		if (!m_targetHandle.IsValid())
 		{
 			m_controller->Clear();
@@ -47,16 +47,29 @@ void ShipAI::ProcessAIState()
 
 void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
 {
-	auto& ent = entity->GetManager()->Get(event.attackerID);
+	auto ent = entity->GetManager()->Get(event.attackerID);
 
 	// Make sure the handle is still valid
 	if (!ent.IsValid()) return;
 
 	m_targetHandle = ent;
 
-	m_controller->SetTarget(ent);
+	m_controller->SetTarget(event.attackerID);
 	m_controller->Set(StrafeToTargetsRearForAttack);
 	m_controller->Set(FireGunsWhenFacingTarget);
 
 	m_currentState = AIState::AttackingShip;
 }
+
+void ShipAI::FindStation()
+{
+	auto& stations = entity->GetManager()->GetEntitiesByGroup(STATION_GROUP);
+	Entity* closest = EntityHelpers::GetClosestEntity(entity, stations);
+
+	if (closest == nullptr) return;
+
+	m_targetHandle = entity->GetManager()->Get(closest->GetID());
+	m_controller->SetTarget(m_targetHandle->GetID());
+	m_controller->Set(Maneuvers::Approach);
+}
+

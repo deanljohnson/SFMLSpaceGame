@@ -4,6 +4,7 @@
 #include <VectorMath.h>
 #include <ExtendedMath.h>
 #include <assert.h>
+#include <EntityManager.h>
 
 void ShipController::Init()
 {
@@ -15,6 +16,8 @@ void ShipController::Init()
 void ShipController::Update()
 {
 	// Run any active behavior
+	if (m_target == nullptr || !m_targetHandle.IsValid()) return; // From here down requires a valid ID
+
 	if (m_activeBehaviours[Follow]) FollowTarget();
 	if (m_activeBehaviours[Intercept]) InterceptTarget();
 	if (m_activeBehaviours[Approach]) ApproachTarget();
@@ -98,10 +101,11 @@ void ShipController::Clear()
 	m_activeBehaviours.reset();
 }
 
-void ShipController::SetTarget(EntityHandle& target)
+void ShipController::SetTarget(EntityID target)
 {
-	assert(target->HasComponent<Physics>()
-		&& target->GetID() != entity->GetID());
-	m_target = &target->GetComponent<Physics>();
-	printf("%d\n", target->GetID());
+	m_targetHandle = entity->GetManager()->Get(target);
+
+	assert(m_targetHandle->HasComponent<Physics>()
+		&& m_targetHandle->GetID() != entity->GetID());
+	m_target = &m_targetHandle->GetComponent<Physics>();
 }

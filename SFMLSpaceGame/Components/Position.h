@@ -12,4 +12,7 @@ public:
 
 	float X() const noexcept { return position.x; }
 	float Y() const noexcept { return position.y; }
+
+	b2Vec2 operator+(const Position& other) { return position + other.position; }
+	b2Vec2 operator-(const Position& other) { return position - other.position; }
 };

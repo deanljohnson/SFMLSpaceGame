@@ -29,10 +29,10 @@ public:
 	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
 	bool IsValidID(EntityID id);
-	EntityHandle& Get(EntityID id);
+	EntityHandle Get(EntityID id);
 
-	EntityHandle& AddEntity(b2World* world);
-	EntityHandle& AddEntity(b2World* world, Group group);
+	EntityHandle AddEntity(b2World* world);
+	EntityHandle AddEntity(b2World* world, Group group);
 
 	void AddToGroup(Entity* ent, Group group);
 	std::vector<Entity*>& GetEntitiesByGroup(Group group);

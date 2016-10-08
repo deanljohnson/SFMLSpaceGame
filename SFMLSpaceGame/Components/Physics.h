@@ -23,6 +23,7 @@ public:
 	explicit Physics(b2BodyType t, float linearDamping) 
 		: m_bodyType(t), m_linDamping(linearDamping)
 	{}
+	~Physics();
 
 	virtual void Init() override;
 	virtual void Update() override;

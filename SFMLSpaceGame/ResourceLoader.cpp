@@ -36,7 +36,7 @@ namespace
 {
 	ShipStats* LoadHumanFighter()
 	{
-		return new ShipStats(5.f, 2.f, 3.5f, 3.5f, 10.f,
+		return new ShipStats(5.f, 4.f, 3.5f, 3.5f, 10.f,
 							ShipThrust(1.1f, .8f, .5f, .8f),
 							DirectionalGunData(.1f, 10.f, 3.f, 1.f,
 							{
@@ -47,14 +47,13 @@ namespace
 
 	ProjectileStats* LoadLaserOne()
 	{
-		return new ProjectileStats(15.f, 5.f, b2Vec2(.3f, .03f));
+		return new ProjectileStats(15.f, 5.f, 5.f, b2Vec2(.3f, .03f));
 	}
 
 	sf::Font* LoadFontOne()
 	{
 		sf::Font* font = new sf::Font();
 		font->loadFromFile("Fonts/arial.ttf");
-		system("dir");
 		return font;
 	}
 }

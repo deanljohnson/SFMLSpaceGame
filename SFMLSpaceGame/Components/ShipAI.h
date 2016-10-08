@@ -6,7 +6,7 @@
 class ShipAI : public Component
 {
 private:
-	enum class AIState{ None, AttackingShip } m_currentState;
+	enum class AIState{ None, AttackingShip } m_currentState { AIState::None };
 
 	ShipController* m_controller{ nullptr };
 	EntityHandle m_targetHandle;
@@ -14,7 +14,10 @@ private:
 	void ProcessEvents();
 	void ProcessAIState();
 	void HandleAttackedEvent(Event::AttackedEvent event);
+
+	void FindStation();
 public:
+	ShipAI(){}
 	virtual void Init() override;
 	virtual void Update() override;
 };

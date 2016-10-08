@@ -26,6 +26,12 @@ void WrapBodyAngle(b2Body& body)
 	}
 }
 
+Physics::~Physics()
+{
+	if (m_body != nullptr)
+		entity->GetWorld()->DestroyBody(m_body);
+}
+
 void Physics::Init()
 {
 	m_position = &entity->GetComponent<Position>();

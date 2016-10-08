@@ -29,6 +29,7 @@ private:
 	Physics* m_physics{ nullptr };
 	ShipThrusters* m_thrusters{ nullptr };
 	Physics* m_target{ nullptr };
+	EntityHandle m_targetHandle;
 	DirectionalGun* m_dirGuns{ nullptr };
 
 	ManeuverBitset m_activeBehaviours;
@@ -54,5 +55,5 @@ public:
 
 	void Set(Maneuvers maneuver, bool val = true);
 	void Clear();
-	void SetTarget(EntityHandle& target);
+	void SetTarget(EntityID target);
 };

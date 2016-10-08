@@ -16,6 +16,7 @@ struct Event
 	struct AttackedEvent
 	{
 		EntityID attackerID;
+		float damage;
 	};
 	
 	union

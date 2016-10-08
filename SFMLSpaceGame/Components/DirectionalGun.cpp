@@ -32,8 +32,7 @@ void DirectionalGun::Shoot()
 	for (auto hp : m_gunData->hardPoints)
 	{
 		auto bullet = entity->GetManager()->AddEntity(entity->GetWorld(), PROJECTILE_GROUP);
-		auto& handle = entity->GetManager()->Get(entity->GetID());
-		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, handle, m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
+		EntityFactory::MakeIntoBullet(bullet, PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 
 	m_currentHeat += m_gunData->heatGenerated;

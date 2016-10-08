@@ -54,7 +54,8 @@ public:
 
 	Entity(EntityManager* manager, b2World* world, EntityID id) 
 		: m_manager(manager), m_world(world), m_id(id)
-	{ }
+	{
+	}
 
 	std::function<void(Entity*)> destroyCallback{ nullptr };
 	EventQueue events;

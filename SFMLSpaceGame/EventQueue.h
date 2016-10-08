@@ -12,6 +12,22 @@ private:
 
 public:
 	void Push(Event e);
+
+	bool Get(EventType type, Event& target)
+	{
+		auto it = m_events.begin();
+		while (it != m_events.end())
+		{
+			if (it->type == type)
+			{
+				target = (*it);
+				return true;
+			}
+			++it;
+		}
+		return false;
+	}
+
 	void Update();
 	std::deque<Event>::iterator Begin();
 	std::deque<Event>::iterator End();

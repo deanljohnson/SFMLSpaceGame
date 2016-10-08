@@ -54,7 +54,7 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
-EntityHandle& EntityManager::AddEntity(b2World* world)
+EntityHandle EntityManager::AddEntity(b2World* world)
 {
 	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
@@ -64,10 +64,11 @@ EntityHandle& EntityManager::AddEntity(b2World* world)
 
 	m_entities.emplace_back(move(uPtr));
 	m_entityHandles.emplace(std::make_pair(e->GetID(), move(handle)));
-	return *hanPtr;
+
+	return EntityHandle(*hanPtr);
 }
 
-EntityHandle& EntityManager::AddEntity(b2World* world, Group group)
+EntityHandle EntityManager::AddEntity(b2World* world, Group group)
 {
 	Entity* e{ new Entity(this, world, m_nextID++) };
 	std::unique_ptr<Entity> uPtr(e);
@@ -80,7 +81,7 @@ EntityHandle& EntityManager::AddEntity(b2World* world, Group group)
 
 	e->AddToGroup(group);
 
-	return *hanPtr;
+	return EntityHandle(*hanPtr);
 }
 
 bool EntityManager::IsValidID(EntityID id)
@@ -88,7 +89,7 @@ bool EntityManager::IsValidID(EntityID id)
 	return m_entityHandles.find(id) != m_entityHandles.end();
 }
 
-EntityHandle& EntityManager::Get(EntityID id)
+EntityHandle EntityManager::Get(EntityID id)
 {
 	return *m_entityHandles.find(id)->second.get();
 }
