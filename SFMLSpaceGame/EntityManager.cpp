@@ -6,6 +6,18 @@ std::vector<std::unique_ptr<Entity>> EntityManager::m_entities{};
 std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> EntityManager::m_entityHandles{};
 std::array<std::vector<Entity*>, maxGroups> EntityManager::m_groupedEntities{};
 
+void EntityManager::Clear()
+{
+	for (auto i(0u); i < maxGroups; i++)
+	{
+		auto& v(m_groupedEntities[i]);
+		v.clear();
+	}
+
+	m_entityHandles.clear();
+	m_entities.clear();
+}
+
 void EntityManager::Refresh()
 {
 	//Remove entities from groups they are not in, or when they are dead

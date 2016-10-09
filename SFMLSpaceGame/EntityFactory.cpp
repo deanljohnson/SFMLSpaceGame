@@ -29,6 +29,7 @@
 #include "Components/DamageOnAttacked.h"
 #include "CollisionGroups.h"
 #include "Components/ShipSpawner.h"
+#include "Components/PlayerDeathBroadcaster.h"
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
@@ -73,6 +74,14 @@ EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec
 	return ent.GetID();
 }
 
+EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
+{
+	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
+	ent->AddComponent<Position>(pos);
+	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(EventType::PlayerDied, ShipResourceSelector(SHIP_HUMAN_FIGHTER), SpawnLocationSelector(), true);
+	return ent.GetID();
+}
+
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
 	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians, false);
@@ -85,6 +94,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<GameWorldClickListener>();
 	ent->AddComponent<FireGunOnClick>();
 	ent->AddComponent<ZoomHandler>();
+	ent->AddComponent<PlayerDeathBroadcaster>();
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)

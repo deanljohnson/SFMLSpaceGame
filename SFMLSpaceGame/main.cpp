@@ -34,8 +34,9 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 			{
+				game_manager.CleanUp();
 				window.close();
-				exit(0);
+				return 0;
 			}
 
 			game_manager.ProcessEvent(event);

@@ -38,11 +38,13 @@ void InitialGameState::Init()
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(25, 15));
 
 	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
+	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 }
 
-void InitialGameState::CleanUp() const
+void InitialGameState::CleanUp()
 {
-	
+	//GameState::world = b2World(b2Vec2());
+	EntityManager::Clear();
 }
 
 void InitialGameState::Pause() const
@@ -68,6 +70,7 @@ UI_ID id[7];
 void InitialGameState::Update()
 {
 	UI::Update();
+	pendingGameEvents.Update();
 
 	/*INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(400, 300), UITransform(400, 50));
 	CENTER_ON(id[0], id[1],

@@ -16,7 +16,7 @@ public:
 	{}
 
 	virtual void Init() override;
-	virtual void CleanUp() const override;
+	virtual void CleanUp() override;
 
 	virtual void Pause() const override;
 	virtual void Resume() const override;

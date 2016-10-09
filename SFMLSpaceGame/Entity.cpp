@@ -25,6 +25,11 @@ void Entity::OnDestroy()
 {
 	if (destroyCallback)
 		destroyCallback(this);
+
+	for (auto& c : m_components)
+	{
+		c->OnDestroy();
+	}
 }
 
 bool Entity::HasGroup(Group group) const noexcept

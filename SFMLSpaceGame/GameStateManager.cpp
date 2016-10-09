@@ -8,8 +8,13 @@ void GameStateManager::Init()
 	m_states.back()->Init();
 }
 
-void GameStateManager::CleanUp() const
+void GameStateManager::CleanUp()
 {
+	while (!m_states.empty())
+	{
+		m_states.back()->CleanUp();
+		m_states.pop_back();
+	}
 }
 
 void GameStateManager::ProcessEvent(const sf::Event& event) const

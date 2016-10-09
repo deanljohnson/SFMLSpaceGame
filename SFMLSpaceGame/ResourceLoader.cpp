@@ -53,7 +53,7 @@ namespace
 	sf::Font* LoadFontOne()
 	{
 		sf::Font* font = new sf::Font();
-		font->loadFromFile("Fonts/arial.ttf");
+		font->loadFromFile("Fonts/Musica.ttf");
 		return font;
 	}
 }

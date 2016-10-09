@@ -166,6 +166,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Components\Background.cpp" />
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
+    <ClCompile Include="Components\PlayerDeathBroadcaster.cpp" />
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
     <ClCompile Include="Components\ShipSpawner.cpp" />
@@ -224,9 +226,11 @@
     <ClCompile Include="UI\UIVerticalGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Components\DamageOnAttacked.h" />
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
     <ClInclude Include="Components\TextOnSensor.h" />

@@ -15,7 +15,7 @@ private:
 
 public:
 	void Init();
-	void CleanUp() const;
+	void CleanUp();
 
 	void ProcessEvent(const sf::Event& event) const;
 	void Update() const;

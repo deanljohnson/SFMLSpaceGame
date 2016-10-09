@@ -9,12 +9,14 @@ class Sprite : public Component
 private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
+
 	sf::Sprite m_sprite;
+
 	ResourceID m_resourceID;
 	std::shared_ptr<sf::Texture> m_tex;
 
 public:
-	explicit Sprite(ResourceID id) 
+	explicit Sprite(ResourceID id)
 		: m_resourceID(id)
 	{}
 

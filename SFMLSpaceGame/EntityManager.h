@@ -24,6 +24,8 @@ private:
 	static std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
 public:
+	static void Clear();
+
 	static void Refresh();
 	static void Update();
 	static void Render(sf::RenderTarget& target, sf::RenderStates& states);
