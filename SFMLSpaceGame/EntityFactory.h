@@ -4,6 +4,8 @@
 
 namespace EntityFactory
 {
+	void Init();
+
 	EntityID CreatePlayer(const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateBackground(ResourceID backgroundID, EntityID parallaxTarget);
 	EntityID CreateProjectile(ResourceID projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);

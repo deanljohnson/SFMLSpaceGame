@@ -38,8 +38,9 @@ using ComponentArray = std::array<Component*, maxComponents>;
 class Component
 {
 public:
-	Component() : entity(nullptr) {}
+	Component() : next(nullptr), entity(nullptr) {}
 
+	Component* next{ nullptr }; // allows multiple components of a single type on an entity
 	Entity* entity{ nullptr };
 	bool active{ true };
 

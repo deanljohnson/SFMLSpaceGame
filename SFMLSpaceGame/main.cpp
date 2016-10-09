@@ -3,6 +3,7 @@
 #include <GameStateManager.h>
 #include <WorldConstants.h>
 #include "UI/UI.h"
+#include "EntityFactory.h"
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -19,6 +20,8 @@ int main()
 	
 	GAME_WINDOW = &window;
 	UI::Init();
+
+	EntityFactory::Init();
 
 	GameStateManager game_manager{};
 	game_manager.Init();

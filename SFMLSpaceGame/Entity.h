@@ -101,8 +101,20 @@ public:
 		//add to our set of components
 		m_components.emplace_back(move(uPtr));
 
-		m_componentArray[GetComponentTypeID<T>()] = c;
-		m_componentBitset[GetComponentTypeID<T>()] = true;
+		// The entity already has a component of this type
+		// add it to the component linked list
+		if (m_componentBitset[GetComponentTypeID<T>()])
+		{
+			Component* existing = m_componentArray[GetComponentTypeID<T>()];
+			while (existing->next != nullptr) existing = existing->next;
+			existing->next = c;
+		}
+		else
+		{
+			m_componentArray[GetComponentTypeID<T>()] = c;
+			m_componentBitset[GetComponentTypeID<T>()] = true;
+		}
+		
 
 		c->Init();
 

@@ -50,8 +50,9 @@ void ShipThrusters::Update()
 		b2Body* b = m_physics->GetBody();
 		b->ApplyForceToCenter(Rotate(m_currentMoveForce * GameTime::deltaTime, b->GetAngle()), true);
 
+		m_lastMoveForce = m_currentMoveForce;
 		m_currentMoveForce.SetZero();
-	}
+	} else m_lastMoveForce = m_currentMoveForce;
 	
 	if (m_currentTorque != 0.f)
 	{
@@ -105,6 +106,11 @@ float ShipThrusters::GetStrength(ThrustDirection dir)
 	}
 
 	return 0.f;
+}
+
+b2Vec2 ShipThrusters::GetCurrentForce() const
+{
+	return m_lastMoveForce;
 }
 
 void ShipThrusters::SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor)

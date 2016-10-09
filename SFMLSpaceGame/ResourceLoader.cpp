@@ -5,12 +5,14 @@
 #include <assert.h>
 #include <Components/DirectionalGun.h>
 #include "ProjectileStats.h"
+#include <Animation.h>
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
+	std::map<ResourceID, std::shared_ptr<Animation>> loadedAnimations;
 	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID, std::shared_ptr<ShipStats>> loadedShips;
 	std::map<ResourceID, std::shared_ptr<ProjectileStats>> loadedProjectiles;
@@ -78,6 +80,7 @@ void UnloadUnusedResources()
 {
 	UnloadUnusedSharedPtrResources(loadedImages);
 	UnloadUnusedSharedPtrResources(loadedTextures);
+	UnloadUnusedSharedPtrResources(loadedAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedShips);
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
@@ -144,6 +147,32 @@ std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
 	loadedTextures.insert(make_pair(id, elem));
 
 	return elem;
+}
+
+std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
+{
+	//If the resource is already loaded, return it
+	auto it = loadedAnimations.find(id);
+	if (it != loadedAnimations.end())
+	{
+		return it->second;
+	}
+
+	std::shared_ptr<Animation> animPtr;
+	switch (id)
+	{
+	case ANIMATION_EXHAUST_ONE:
+		animPtr = std::make_shared<Animation>(id, sf::Vector2f(46, 14));
+		animPtr->SetLength(5.f);
+		break;
+	default:
+		printf("The given ResourceID %d does not correspond to a recognized animation\n", id);
+		return nullptr;
+	}
+
+	loadedAnimations.insert(make_pair(id, animPtr));
+
+	return animPtr;
 }
 
 std::shared_ptr<sf::Font> LoadFont(ResourceID id)

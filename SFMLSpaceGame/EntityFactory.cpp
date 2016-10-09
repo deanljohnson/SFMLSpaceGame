@@ -30,6 +30,26 @@
 #include "CollisionGroups.h"
 #include "Components/ShipSpawner.h"
 #include "Components/PlayerDeathBroadcaster.h"
+#include "Components/AnimatedSprite.h"
+#include "Components/ThrusterAnimator.h"
+
+void EntityFactory::Init()
+{
+	// This is where we can setup a component update order because 
+	// components are updated in the order of their TypeID's, which
+	// are set by calling these functions
+
+	GetComponentTypeID<Position>();
+	GetComponentTypeID<Rotation>();
+	GetComponentTypeID<Sprite>();
+	GetComponentTypeID<AnimatedSprite>();
+	GetComponentTypeID<Physics>();
+	GetComponentTypeID<SmoothCameraFollow>();
+	GetComponentTypeID<ParallaxMovement>();
+	GetComponentTypeID<DirectionalKeyboardInput>();
+	GetComponentTypeID<ThrusterInput>();
+	GetComponentTypeID<ShipThrusters>();
+}
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
@@ -142,6 +162,14 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 	shape.setOrigin(shape.getSize() / 2.f);
 	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
+
+	auto& as1 = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
+	as1.SetOffset(b2Vec2(-.63f, -.12f));
+
+	auto& as2 = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
+	as2.SetOffset(b2Vec2(-.63f, .12f));
+
+	ent->AddComponent<ThrusterAnimator, AnimatedSprite*, AnimatedSprite*>(&as1, &as2);
 }
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, const b2Vec2& p, float radians)

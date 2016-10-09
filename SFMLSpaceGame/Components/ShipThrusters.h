@@ -27,6 +27,7 @@ private:
 	Physics* m_physics{ nullptr };
 	ShipThrust* m_strength;
 	b2Vec2 m_currentMoveForce;
+	b2Vec2 m_lastMoveForce;
 	float m_currentTorque;
 
 	float m_power; 
@@ -45,6 +46,8 @@ public:
 	float GetPower();
 
 	float GetStrength(ThrustDirection dir);
+
+	b2Vec2 GetCurrentForce() const;
 
 	void ApplyThrust(ThrustDirection dir, float amount = 1.f);
 	void SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor);

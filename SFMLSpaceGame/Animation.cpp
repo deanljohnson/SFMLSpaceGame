@@ -2,8 +2,6 @@
 
 Animation::Animation(ResourceID atlasID, sf::Vector2f frameSize)
 {
-	assert(numFrames > 0);
-
 	m_atlas = LoadTextureResource(atlasID);
 
 	for (int j = 0; j < m_atlas->getSize().y / frameSize.y; j++)
@@ -15,6 +13,12 @@ Animation::Animation(ResourceID atlasID, sf::Vector2f frameSize)
 	}
 
 	m_frames.shrink_to_fit();
+
+	m_counter = 0;
+	m_length = 1.f;
+	m_frameLength = 1.f / m_frames.size();
+	m_speed = 1.f;
+	m_currentFrame = 0;
 }
 
 void Animation::Update(float deltaTime)

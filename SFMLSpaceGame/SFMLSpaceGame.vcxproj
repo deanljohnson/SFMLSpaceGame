@@ -167,6 +167,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Components\AnimatedSprite.cpp" />
     <ClCompile Include="Components\Background.cpp" />
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Components\ShipController.cpp" />
     <ClCompile Include="Components\ShipSpawner.cpp" />
     <ClCompile Include="Components\TextOnSensor.cpp" />
+    <ClCompile Include="Components\ThrusterAnimator.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -214,6 +216,7 @@
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="ShipResourceSelector.cpp" />
     <ClCompile Include="SpawnLocationSelector.cpp" />
+    <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIArea.cpp" />
@@ -227,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Components\AnimatedSprite.h" />
     <ClInclude Include="Components\DamageOnAttacked.h" />
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\Health.h" />
@@ -234,6 +238,7 @@
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
+    <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
     <ClInclude Include="EntityHandle.h" />
     <ClInclude Include="EntityHelpers.h" />
@@ -241,8 +246,10 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="OriginOption.h" />
     <ClInclude Include="ShipResourceSelector.h" />
     <ClInclude Include="SpawnLocationSelector.h" />
+    <ClInclude Include="SpriteHelpers.h" />
     <ClInclude Include="UI\UIArea.h" />
     <ClInclude Include="UI\UICenterOn.h" />
     <ClInclude Include="UI\UIEventResponse.h" />

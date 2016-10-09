@@ -36,3 +36,8 @@ inline sf::FloatRect Union(const sf::FloatRect& a, const sf::FloatRect& b)
 
 	return sf::FloatRect(left, top, right - left, bottom - top);
 }
+
+inline float Lerp(float a, float b, float t)
+{
+	return a + ((b - a) * t);
+}

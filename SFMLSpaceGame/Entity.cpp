@@ -5,20 +5,31 @@ void Entity::Update()
 {
 	events.Update();
 
-	for (auto& c : m_components)
+	for (int i = 0; i < maxComponents; i++)
+	{
+		if (m_componentBitset[i] && m_componentArray[i]->active)
+			m_componentArray[i]->Update();
+	}
+
+	/*for (auto& c : m_components)
 	{
 		if (c->active)
 			c->Update();
-	}
+	}*/
 }
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	for (auto& c : m_components)
+	for (int i = 0; i < maxComponents; i++)
+	{
+		if (m_componentBitset[i] && m_componentArray[i]->active)
+			m_componentArray[i]->Render(target, states);
+	}
+	/*for (auto& c : m_components)
 	{
 		if (c->active)
 			c->Render(target, states);
-	}
+	}*/
 }
 
 void Entity::OnDestroy() 
