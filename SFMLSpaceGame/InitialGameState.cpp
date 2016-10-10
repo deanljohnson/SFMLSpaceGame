@@ -23,6 +23,7 @@ void InitialGameState::Init()
 
 	auto player = EntityFactory::CreatePlayer();
 
+	EntityFactory::CreateMusicPlayer(MUSIC_ONE);
 	EntityFactory::CreateBackground(BGONE_FRONT, player);
 
 	AddEnemy();
@@ -35,7 +36,9 @@ void InitialGameState::Init()
 	AddEnemy();
 
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
-	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(25, 15));
+	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(40, 0));
+	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 40));
+	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(40, 40));
 
 	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
 	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));

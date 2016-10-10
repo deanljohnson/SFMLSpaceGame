@@ -34,6 +34,7 @@
 #include "Components/ThrusterAnimator.h"
 #include "Components/SoundSource.h"
 #include "Components/SoundListener.h"
+#include "Components/MusicSource.h"
 
 void EntityFactory::Init()
 {
@@ -102,6 +103,13 @@ EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
 	ent->AddComponent<Position>(pos);
 	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(EventType::PlayerDied, ShipResourceSelector(SHIP_HUMAN_FIGHTER), SpawnLocationSelector(), true);
 	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
+{
+	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
+	ent->AddComponent<MusicSource, const std::string&>(fileName);
+	return ent->GetID();
 }
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)

@@ -188,6 +188,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
+    <ClCompile Include="Components\MusicSource.cpp" />
     <ClCompile Include="Components\PlayerDeathBroadcaster.cpp" />
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
@@ -244,6 +245,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClInclude Include="Components\DamageOnAttacked.h" />
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="Components\MusicSource.h" />
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />

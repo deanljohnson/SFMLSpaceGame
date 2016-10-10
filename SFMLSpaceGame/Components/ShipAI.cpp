@@ -86,12 +86,17 @@ void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
 void ShipAI::FindStation()
 {
 	auto& stations = EntityManager::GetEntitiesByGroup(STATION_GROUP);
-	Entity* closest = EntityHelpers::GetClosestEntity(entity, stations, [this](Entity* e) { return e->GetID() != m_lastStationReached; });
 
-	if (closest == nullptr) 
-		return;
+	int index = rand() % stations.size();
+	while (stations[index]->GetID() == m_lastStationReached)
+		index = rand() % stations.size();
 
-	m_targetHandle = EntityManager::Get(closest->GetID());
+	Entity* station = stations[index];
+	/*Entity* station = EntityHelpers::GetClosestEntity(entity, stations, [this](Entity* e) { return e->GetID() != m_lastStationReached; });
+	if (station == nullptr)
+		return;*/
+
+	m_targetHandle = EntityManager::Get(station->GetID());
 	m_stationPosition = &m_targetHandle->GetComponent<Position>();
 	m_controller->SetTarget(m_targetHandle->GetID());
 	m_controller->Set(Maneuvers::Approach);
