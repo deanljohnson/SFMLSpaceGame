@@ -1,4 +1,5 @@
 #include <UI/UIText.h>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 UIText::UIText(std::string text, ResourceID fontID, UITransform trans)
 {

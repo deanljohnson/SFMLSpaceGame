@@ -37,6 +37,7 @@ void InitialGameState::Init()
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(25, 15));
 
+	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
 	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 }
 
@@ -65,8 +66,21 @@ void InitialGameState::ProcessEvent(const sf::Event& event) const
 }
 UI_ID id[7];
 
+namespace
+{
+	float m_unusedResourcesTimer = 0.f;
+	float m_unusedResourcesTimerLimit = 1.f;
+}
+
 void InitialGameState::Update()
 {
+	m_unusedResourcesTimer += GameTime::deltaTime;
+	if (m_unusedResourcesTimer > m_unusedResourcesTimerLimit)
+	{
+		m_unusedResourcesTimer = 0.f;
+		UnloadUnusedResources();
+	}
+
 	UI::Update();
 	pendingGameEvents.Update();
 

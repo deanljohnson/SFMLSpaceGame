@@ -3,6 +3,8 @@
 #include <Components/Rotation.h>
 #include <Interfaces/Gun.h>
 #include <vector>
+#include <ResourceLoader.h>
+#include "SoundSource.h"
 
 struct HardPoint
 {
@@ -20,12 +22,13 @@ struct HardPoint
 
 struct DirectionalGunData
 {
-	DirectionalGunData(float cd, float heatLim, float coolingRate, float heatGen, const std::initializer_list<HardPoint>& hardPointLocations)
+	DirectionalGunData(float cd, float heatLim, float coolingRate, float heatGen, ResourceID shotSoundID, const std::initializer_list<HardPoint>& hardPointLocations)
 		: fireRate(cd),
 		  heatLimit(heatLim),
 		  cooldownRate(coolingRate),
 		  heatGenerated(heatGen),
-		  hardPoints(hardPointLocations)
+		  hardPoints(hardPointLocations),
+		  soundID(shotSoundID)
 	{}
 
 	float fireRate; // Time in between two shots
@@ -33,6 +36,7 @@ struct DirectionalGunData
 	float cooldownRate; // How fast heat is dissipated from the gun per second
 	float heatGenerated; // How much heat is generated per shot
 	std::vector<HardPoint> hardPoints;
+	ResourceID soundID;
 };
 
 class DirectionalGun : public Component, Gun
@@ -40,6 +44,7 @@ class DirectionalGun : public Component, Gun
 private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
+	SoundSource* m_shotSound{ nullptr };
 	float m_lastFiringTime;
 	DirectionalGunData* m_gunData;
 	float m_currentHeat{ 0.f };
@@ -53,4 +58,6 @@ public:
 	virtual void Update() override;
 
 	virtual void Shoot() override;
+
+	void SetSoundSource(SoundSource* source);
 };

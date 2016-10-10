@@ -97,7 +97,8 @@
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +117,8 @@
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,7 +141,8 @@
       <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,7 +165,8 @@
       <AdditionalDependencies>sfml-graphics.lib;sfml-audio.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies);Box2D.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y</Command>
+      <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -184,6 +188,8 @@
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
     <ClCompile Include="Components\ShipSpawner.cpp" />
+    <ClCompile Include="Components\SoundListener.cpp" />
+    <ClCompile Include="Components\SoundSource.cpp" />
     <ClCompile Include="Components\TextOnSensor.cpp" />
     <ClCompile Include="Components\ThrusterAnimator.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
@@ -237,6 +243,8 @@
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
+    <ClInclude Include="Components\SoundListener.h" />
+    <ClInclude Include="Components\SoundSource.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\ZoomHandler.h" />

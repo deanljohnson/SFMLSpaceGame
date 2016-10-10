@@ -33,8 +33,16 @@ void DirectionalGun::Shoot()
 		EntityFactory::CreateProjectile(PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(hp.positionOffset, rot), m_rotation->GetRadians() + hp.angleOffset);
 	}
 
+	if (m_shotSound != nullptr)
+		m_shotSound->Play();
+
 	m_currentHeat += m_gunData->heatGenerated;
 
 	// Store this so we can have a cooldown
 	m_lastFiringTime = GameTime::totalTime;
+}
+
+void DirectionalGun::SetSoundSource(SoundSource* source)
+{
+	m_shotSound = source;
 }

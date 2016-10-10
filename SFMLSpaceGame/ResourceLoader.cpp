@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <Components/DirectionalGun.h>
 #include "ProjectileStats.h"
+#include "ShipStats.h"
 #include <Animation.h>
 
 //wrap in anon. namespace to effectively make these private to this file
@@ -14,6 +15,7 @@ namespace
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID, std::shared_ptr<Animation>> loadedAnimations;
 	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
+	std::map<ResourceID, std::shared_ptr<sf::SoundBuffer>> loadedSounds;
 	std::map<ResourceID, std::shared_ptr<ShipStats>> loadedShips;
 	std::map<ResourceID, std::shared_ptr<ProjectileStats>> loadedProjectiles;
 
@@ -31,6 +33,11 @@ namespace
 	{
 		return id > FONT_ID_START && id < FONT_ID_END;
 	}
+
+	bool IsSoundID(ResourceID id)
+	{
+		return id > SOUND_ID_START && id < SOUND_ID_END;
+	}
 }
 
 // Hard Coded ship/projectile/font loading functions. Eventually will be removed
@@ -40,7 +47,7 @@ namespace
 	{
 		return new ShipStats(5.f, 4.f, 4.5f, 3.5f, 10.f,
 							ShipThrust(61.f, 50.f, 30.f, 50.f),
-							DirectionalGunData(.1f, 10.f, 3.f, 1.f,
+							DirectionalGunData(.1f, 10.f, 3.f, 1.f, SOUND_LASER_ONE,
 							{
 								HardPoint(b2Vec2(.5f, -.1f), 0.f),
 								HardPoint(b2Vec2(.5f, .1f), 0.f)
@@ -193,6 +200,33 @@ std::shared_ptr<sf::Font> LoadFont(ResourceID id)
 	}
 
 	return nullptr;
+}
+
+std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id)
+{
+	assert(IsSoundID(id));
+
+	auto it = loadedSounds.find(id);
+	if (it != loadedSounds.end())
+	{
+		return it->second;
+	}
+
+	sf::SoundBuffer soundBuffer;
+	switch (id)
+	{
+	case SOUND_LASER_ONE:
+		soundBuffer.loadFromFile("Sounds/laser_one.ogg");
+		break;
+	default:
+		printf("The given ResourceID %d does not correspond to a recognized sound\n", id);
+		return nullptr;
+	}
+
+	auto elem = std::make_shared<sf::SoundBuffer>(soundBuffer);
+	loadedSounds.insert(make_pair(id, elem));
+
+	return elem;
 }
 
 std::shared_ptr<ShipStats> LoadShip(ResourceID id) 

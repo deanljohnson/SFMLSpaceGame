@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
 #include <ShipResourceSelector.h>
 #include <SpawnLocationSelector.h>
 #include <Event.h>
+#include "Position.h"
 
 class ShipSpawner : public Component
 {

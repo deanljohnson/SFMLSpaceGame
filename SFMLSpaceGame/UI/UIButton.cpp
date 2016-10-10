@@ -1,6 +1,7 @@
 #include <UI/UI.h>
 #include <UI/UIButton.h>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 UIButton::UIButton(ResourceID texID, UITransform trans)
 {

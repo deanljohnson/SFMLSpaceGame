@@ -1,5 +1,6 @@
 #include <UI/UIExpandingBackground.h>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 UIExpandingBackground::UIExpandingBackground(ResourceID texID, sf::Vector2i size, UITransform trans)
 {

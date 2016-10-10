@@ -32,6 +32,8 @@
 #include "Components/PlayerDeathBroadcaster.h"
 #include "Components/AnimatedSprite.h"
 #include "Components/ThrusterAnimator.h"
+#include "Components/SoundSource.h"
+#include "Components/SoundListener.h"
 
 void EntityFactory::Init()
 {
@@ -115,6 +117,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<FireGunOnClick>();
 	ent->AddComponent<ZoomHandler>();
 	ent->AddComponent<PlayerDeathBroadcaster>();
+	ent->AddComponent<SoundListener>();
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)
@@ -145,7 +148,9 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, ShipThrust*>(shipStats->GetShipThrust());
-	ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
+	auto& shotSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
+	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
+	gun.SetSoundSource(&shotSound);
 	ent->AddComponent<Health>();
 	ent->AddComponent<DamageOnAttacked>();
 
