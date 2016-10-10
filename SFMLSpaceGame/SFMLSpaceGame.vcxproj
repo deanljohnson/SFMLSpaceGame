@@ -98,7 +98,8 @@
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
-XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +119,8 @@ XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
-XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -142,7 +144,8 @@ XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
-XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,7 +169,8 @@ XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
-XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y</Command>
+XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
