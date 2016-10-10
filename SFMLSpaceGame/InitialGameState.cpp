@@ -10,6 +10,7 @@
 #include "UI/UIExpandingBackground.h"
 #include "UI/UIButton.h"
 #include "UI/UICenterOn.h"
+#include "UI/UISlider.h"
 
 void AddEnemy()
 {
@@ -86,6 +87,8 @@ void InitialGameState::Update()
 
 	UI::Update();
 	pendingGameEvents.Update();
+
+	INIT_AND_DISPLAY(UISlider, id[0], 11, 11, UI_SLIDER_ONE);
 
 	/*INIT_AND_DISPLAY(UIExpandingBackground, id[0], UI_BACKGROUND_METAL_NINE, sf::Vector2i(400, 300), UITransform(400, 50));
 	CENTER_ON(id[0], id[1],

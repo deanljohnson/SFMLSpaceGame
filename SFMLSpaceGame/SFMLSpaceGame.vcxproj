@@ -236,6 +236,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClCompile Include="UI\UIExpandingBackground.cpp" />
     <ClCompile Include="UI\UIHorizontalGroup.cpp" />
     <ClCompile Include="UI\UILayoutOption.cpp" />
+    <ClCompile Include="UI\UISlider.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
     <ClCompile Include="UI\UIVerticalGroup.cpp" />
   </ItemGroup>
@@ -316,6 +317,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClInclude Include="UI\UIExpandingBackground.h" />
     <ClInclude Include="UI\UIHorizontalGroup.h" />
     <ClInclude Include="UI\UILayoutOption.h" />
+    <ClInclude Include="UI\UISlider.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITransform.h" />
     <ClInclude Include="UI\UIVerticalGroup.h" />
