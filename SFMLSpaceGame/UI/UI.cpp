@@ -7,6 +7,7 @@ long UI::m_updateCounter = 0;
 std::unordered_map<UI_ID, UI::ElementRecord> UI::m_elements{};
 std::stack<UI_ID> UI::m_hierarchyIDs{};
 std::vector<UI_ID> UI::m_rootIDs{};
+EventQueue UI::events{};
 
 void UI::Init()
 {
@@ -28,6 +29,7 @@ void UI::Update()
 	}
 
 	m_rootIDs.clear();
+	events.Clear();
 }
 
 UI_Result* UI::GetResult(UI_ID id)

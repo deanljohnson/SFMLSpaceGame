@@ -1,13 +1,14 @@
 #pragma once
+#include "UI_ID.h"
+#include <UI/UI_Result.h>
 #include <UI/UILayoutOption.h>
 #include <UI/UIElement.h>
 #include <UI/UIHorizontalGroup.h> // Keep this for macros
 #include <UI/UIVerticalGroup.h> // Keep this for macros
+#include <EventQueue.h>
 #include <memory>
 #include <unordered_map>
 #include <stack>
-#include "UI_ID.h"
-#include <UI/UI_Result.h>
 
 #ifndef INIT_AND_DISPLAY
 // Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
@@ -82,6 +83,10 @@ private:
 	static void InsertIntoHierarchy(UI_ID id, UIElement* elem);
 
 public:
+	// A queue of events posted to the UI for UIElements to consume
+	// This queue is cleared at the end of every update to the UI
+	static EventQueue events;
+
 	static void Init();
 
 	static void Update();

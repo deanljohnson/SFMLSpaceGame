@@ -5,7 +5,6 @@
 #include <UI/UI_Result.h>
 #include <UI/UI_ID.h>
 
-
 namespace sf{
 	class Event;
 	class RenderStates;

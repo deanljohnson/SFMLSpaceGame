@@ -31,5 +31,7 @@ public:
 
 	EventType type;
 	bool handled = false;
-	long id = m_nextID++; // a unique ID for this event
+	// a unique ID for this event. 
+	// A copy of an event will have the same ID
+	long id = m_nextID++;
 };

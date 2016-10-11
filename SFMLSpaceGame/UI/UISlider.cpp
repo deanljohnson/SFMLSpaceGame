@@ -25,6 +25,11 @@ void UISlider::SetValue(float val)
 	m_fill.setScale(val, 1);
 }
 
+void UISlider::Refresh(float val) 
+{
+	SetValue(val);
+}
+
 void UISlider::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	states.texture = m_tex.get();

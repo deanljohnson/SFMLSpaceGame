@@ -35,6 +35,7 @@
 #include "Components/SoundSource.h"
 #include "Components/SoundListener.h"
 #include "Components/MusicSource.h"
+#include "Components/GunHeatUIDisplay.h"
 
 void EntityFactory::Init()
 {
@@ -126,6 +127,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<ZoomHandler>();
 	ent->AddComponent<PlayerDeathBroadcaster>();
 	ent->AddComponent<SoundListener>();
+	ent->AddComponent<GunHeatUIDisplay<DirectionalGun>>();
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)

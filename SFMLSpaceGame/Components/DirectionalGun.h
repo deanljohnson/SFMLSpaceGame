@@ -58,6 +58,7 @@ public:
 	virtual void Update() override;
 
 	virtual void Shoot() override;
+	virtual float GetNormalizedHeat() override;
 
 	void SetSoundSource(SoundSource* source);
 };

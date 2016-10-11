@@ -31,3 +31,10 @@ std::deque<Event>::iterator EventQueue::End()
 }
 
 int EventQueue::Count() { return m_events.size(); }
+
+void EventQueue::Clear() 
+{
+	m_events.clear();
+	m_lastEventsSinceUpdate = 0;
+	m_eventsSinceUpdate = 0;
+}

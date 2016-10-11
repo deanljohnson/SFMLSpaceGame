@@ -476,6 +476,9 @@
     <ClInclude Include="UI\UISlider.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Components\GunHeatUIDisplay.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

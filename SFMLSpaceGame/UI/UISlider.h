@@ -1,7 +1,7 @@
 #pragma once
 #include "UIElement.h"
-#include <ResourceLoader.h>
 #include "UITransform.h"
+#include <ResourceLoader.h>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
@@ -15,8 +15,9 @@ private:
 
 public:
 	UISlider(float barOffsetX, float barOffsetY, ResourceID texID, UITransform trans = UITransform());
-
+	
 	void SetValue(float val);
+	virtual void Refresh(float val);
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 	virtual sf::FloatRect GetBounds() override;

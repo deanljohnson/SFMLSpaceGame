@@ -32,4 +32,5 @@ public:
 	std::deque<Event>::iterator Begin();
 	std::deque<Event>::iterator End();
 	int Count();
+	void Clear();
 };

@@ -42,6 +42,11 @@ void DirectionalGun::Shoot()
 	m_lastFiringTime = GameTime::totalTime;
 }
 
+float DirectionalGun::GetNormalizedHeat() 
+{
+	return m_currentHeat / m_gunData->heatLimit;
+}
+
 void DirectionalGun::SetSoundSource(SoundSource* source)
 {
 	m_shotSound = source;
