@@ -18,7 +18,7 @@ void Background::Update()
 	m_sprite.setPosition(B2VecToSFMLVec(m_position->position));
 }
 
-void Background::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void Background::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_sprite, states);
 }

@@ -1,12 +1,11 @@
 #pragma once
-#include <Components/Component.h>
-#include <SFML/Graphics/Sprite.hpp>
-#include <memory>
+#include "Component.h"
 #include <ResourceLoader.h>
+#include <SFML/Graphics/Sprite.hpp>
 
 class Position;
 
-class Background : public Component
+class TilingBackground : public Component
 {
 private:
 	Position* m_position{ nullptr };
@@ -15,7 +14,7 @@ private:
 	ResourceID m_resourceID;
 
 public:
-	explicit Background(ResourceID resourceID) 
+	explicit TilingBackground(ResourceID resourceID)
 		: m_resourceID(resourceID)
 	{}
 

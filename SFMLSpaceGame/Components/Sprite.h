@@ -22,7 +22,7 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 
 	// Returns the dimensions of this sprite in meters
 	virtual sf::FloatRect GetDimensions() const;

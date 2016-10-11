@@ -479,6 +479,9 @@
     <ClInclude Include="Components\GunHeatUIDisplay.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Components\TilingBackground.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

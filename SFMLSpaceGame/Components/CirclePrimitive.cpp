@@ -22,7 +22,7 @@ void CirclePrimitive::Update()
 	// NOTE: circle rotation is essentially meaningless, don't bother setting it
 }
 
-void CirclePrimitive::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void CirclePrimitive::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_shape, states);
 }

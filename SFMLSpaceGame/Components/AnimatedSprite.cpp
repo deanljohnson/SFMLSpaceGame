@@ -34,7 +34,7 @@ void AnimatedSprite::Update()
 	if (next != nullptr) next->Update();
 }
 
-void AnimatedSprite::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void AnimatedSprite::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_sprite, states);
 

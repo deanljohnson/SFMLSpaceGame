@@ -11,14 +11,14 @@ namespace {
 void TextOnSensor::Init()
 {
 	m_sensor = &entity->GetComponent<EntitySensor>();
-	//INIT_AND_DISPLAY(UIText, m_textID, m_text, FONT_ONE, UITransform(0, 100));
 }
 
 void TextOnSensor::Update()
 {
 	if (!m_sensor->sensedEntities.empty())
 		CENTER_ON(UI_ID_NULL, centerID,
-			INIT_AND_DISPLAY(UIText, m_textID, m_text, FONT_ONE, UITransform(0, 100))
+			INIT_AND_REFRESH(UIText, m_textID,
+				ON_INIT(m_text, FONT_ONE, UITransform(0, 100)))
 		);
 		
 }

@@ -2,7 +2,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-UISlider::UISlider(float barOffsetX, float barOffsetY, ResourceID texID, UITransform trans)
+UISlider::UISlider(float barOffsetX, float barOffsetY, ResourceID texID, sf::Color color, UITransform trans)
 	: m_barOffset(barOffsetX, barOffsetY)
 {
 	m_tex = LoadTextureResource(texID);
@@ -13,7 +13,7 @@ UISlider::UISlider(float barOffsetX, float barOffsetY, ResourceID texID, UITrans
 
 	m_backSprite = sf::Sprite(*m_tex.get());
 	m_fill = sf::RectangleShape(sf::Vector2f(texSize.x - barOffsetX * 2, texSize.y - barOffsetY * 2));
-	m_fill.setFillColor(sf::Color::Red);
+	m_fill.setFillColor(color);
 	m_fill.setPosition(barOffsetX, barOffsetY + (texSize.y - barOffsetY * 2) / 2);
 	m_fill.setOrigin(0, (texSize.y - barOffsetY * 2) / 2);
 }

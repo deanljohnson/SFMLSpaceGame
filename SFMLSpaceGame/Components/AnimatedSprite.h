@@ -28,7 +28,7 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states) override;
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 
 	void SetOffset(const b2Vec2& v);
 	void SetScale(float x, float y);

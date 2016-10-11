@@ -23,7 +23,7 @@ void Sprite::Update()
 	m_sprite.setRotation(m_rotation->GetDegrees());
 }
 
-void Sprite::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void Sprite::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_sprite, states);
 }

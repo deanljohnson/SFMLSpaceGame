@@ -19,6 +19,7 @@ public:
 
 	void Refresh(std::string text, ResourceID fontID);
 	void Refresh(std::string text);
+	virtual void Refresh() override {}
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 };

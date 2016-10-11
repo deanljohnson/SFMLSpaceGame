@@ -255,6 +255,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClInclude Include="Components\SoundSource.h" />
     <ClInclude Include="Components\TextOnSensor.h" />
     <ClInclude Include="Components\ThrusterAnimator.h" />
+    <ClInclude Include="Components\TilingBackground.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
     <ClInclude Include="EntityHandle.h" />
     <ClInclude Include="EntityHelpers.h" />

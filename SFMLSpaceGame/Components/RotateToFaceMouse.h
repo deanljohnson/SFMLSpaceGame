@@ -10,7 +10,7 @@ private:
 	float m_smoothingScale;
 
 public:
-	RotateToFaceMouse(float smoothingScale)
+	explicit RotateToFaceMouse(float smoothingScale)
 		: m_smoothingScale(smoothingScale)
 	{}
 

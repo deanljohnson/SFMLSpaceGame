@@ -20,7 +20,7 @@ void RectPrimitive::Update()
 	m_shape.setRotation(m_rotation->GetDegrees());
 }
 
-void RectPrimitive::Render(sf::RenderTarget& target, sf::RenderStates& states)
+void RectPrimitive::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
 	target.draw(m_shape, states);
 }

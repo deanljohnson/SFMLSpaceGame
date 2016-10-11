@@ -49,5 +49,5 @@ public:
 	virtual void Init(){}
 	virtual void Update(){};
 	virtual void OnDestroy(){};
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates& states){};
+	virtual void Render(sf::RenderTarget& target, sf::RenderStates states){};
 };

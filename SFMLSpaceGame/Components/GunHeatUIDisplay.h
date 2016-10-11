@@ -9,8 +9,9 @@ class GunHeatUIDisplay : public Component
 private:
 	UI_ID m_sliderID;
 	TGunComponent* m_gunType{ nullptr };
+
 public:
-	virtual void Init() 
+	virtual void Init() override
 	{
 		static_assert(std::is_base_of<Gun, TGunComponent>::value,
 			"TGunComponent must implement Gun interface");
@@ -18,12 +19,11 @@ public:
 			"TGunComponent must inherit from Component");
 
 		m_gunType = &entity->GetComponent<TGunComponent>();
-
-		m_sliderID = UI::Init<UISlider, float, float, ResourceID>(11.f, 11.f, UI_SLIDER_ONE);
-		//INIT_AND_DISPLAY(UISlider, m_sliderID, 11.f, 11.f, UI_SLIDER_ONE);
 	}
-	virtual void Update() 
+	virtual void Update() override
 	{
-		m_sliderID = UI::Display<UISlider, float>(m_sliderID, m_gunType->GetNormalizedHeat());
+		INIT_AND_UPDATE(UISlider, m_sliderID,
+			ON_INIT(11.f, 11.f, UI_SLIDER_ONE, sf::Color::Red),
+			ON_UPDATE(m_gunType->GetNormalizedHeat()));
 	};
 };

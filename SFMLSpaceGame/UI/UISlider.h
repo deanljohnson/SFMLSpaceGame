@@ -14,10 +14,11 @@ private:
 	sf::RectangleShape m_fill;
 
 public:
-	UISlider(float barOffsetX, float barOffsetY, ResourceID texID, UITransform trans = UITransform());
-	
+	UISlider(float barOffsetX, float barOffsetY, ResourceID texID, sf::Color color, UITransform trans = UITransform());
+
 	void SetValue(float val);
 	virtual void Refresh(float val);
+	virtual void Refresh() override{}
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 	virtual sf::FloatRect GetBounds() override;

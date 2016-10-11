@@ -10,20 +10,45 @@
 #include <unordered_map>
 #include <stack>
 
-#ifndef INIT_AND_DISPLAY
-// Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
-// Subsequent calls will Display the element without passing/evaluating arguments
-#define INIT_AND_DISPLAY(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL || !UI::Valid(_ID_)) \
-											? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
-										    : (UI::Display(_ID_)))
+#ifndef ON_INIT
+#define ON_INIT(...) __VA_ARGS__
+#endif
+
+#ifndef ON_UPDATE
+#define ON_UPDATE(...) __VA_ARGS__
+#endif
+
+#ifndef INIT
+#define INIT(_TYPE_, _ID_, ...) (_ID_ = UI::Init<_TYPE_>(__VA_ARGS__))
+#endif
+
+#ifndef UPDATE
+#define UPDATE(_TYPE_, _ID_, ...) (_ID_ = UI::Display<_TYPE_>(_ID_, __VA_ARGS__))
+#endif
+
+#ifndef REFRESH
+#define REFRESH(_ID_) (_ID_ = UI::Display(_ID_))
+#endif
+
+#ifndef INIT_AND_UPDATE
+// Creates a UIElement of the given type on it's first execution,
+// assigning it's ID to the lvalue _ID_. The _INIT_BRANCH_ is used
+// as a constructor call, and the _UPDATE_BRANCH_ is used on subsequent
+// calls to this macros in the UIElement's Refresh method
+#define INIT_AND_UPDATE(_TYPE_, _ID_, _INIT_BRANCH_, _UPDATE_BRANCH_) \
+								_ID_ = (_ID_ == UI_ID_NULL || !UI::Valid(_ID_)) \
+										? (UI::Init<_TYPE_>(_INIT_BRANCH_)) : (UI::Display<_TYPE_>(_ID_, _UPDATE_BRANCH_))
 #endif
 
 #ifndef INIT_AND_REFRESH
-// Initializes a UIElement of the given type with the given args, assigning it's UI_ID to the given ID
-// Subsequent calls will Display the element and pass the given arguments to it's Refresh method
-#define INIT_AND_REFRESH(_Type_, _ID_, ...) ((_ID_ == UI_ID_NULL) \
-											? (_ID_ = UI::Init<_Type_>(__VA_ARGS__)) \
-										    : (UI::Display<_Type_>(_ID_, __VA_ARGS__)))
+// Creates a UIElement of the given type on it's first execution,
+// assigning it's ID to the lvalue _ID_. The _INIT_BRANCH_ is used
+// as arguments for a constructor call. Subsequent calls of this 
+// macro with the same ID argument will call Refresh on the UIElement
+// with no arguments
+#define INIT_AND_REFRESH(_TYPE_, _ID_, _INIT_BRANCH_) \
+								_ID_ = (_ID_ == UI_ID_NULL || !UI::Valid(_ID_)) \
+										? (UI::Init<_TYPE_>(_INIT_BRANCH_)) : (UI::Display<_TYPE_>(_ID_))
 #endif
 
 #ifndef MAKE_HIERARCHY
@@ -37,17 +62,17 @@
 // Automatically lays the given elements out horizontally. Within a horizontal group,
 // an elements transform is relative to the previous elements right side and a y value of 0
 #ifndef HORIZONTAL_GROUP
-#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 // Automatically lays the given elements out vertically. Within a vertical group,
 // an elements transform is relative to the previous elements bottom and a x value of 0
 #ifndef VERTICAL_GROUP
-#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 #ifndef CENTER_ON
-#define CENTER_ON(_TARGET_ID_, _LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_DISPLAY(UICenterOn, _LAYOUT_ID_, _TARGET_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define CENTER_ON(_TARGET_ID_, _LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_UPDATE(UICenterOn, _LAYOUT_ID_, _TARGET_ID_, _TARGET_ID_), __VA_ARGS__), _LAYOUT_ID_)
 #endif
 
 namespace sf{
@@ -169,6 +194,6 @@ public:
 			return prevID;
 		}
 
-		return Init<T, TArgs...>(std::forward<TArgs>(args)...);
+		throw prevID + " is not a pre-existing UI_ID";
 	}
 };
