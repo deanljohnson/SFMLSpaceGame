@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Spawning">
       <UniqueIdentifier>{73e788da-cef8-4037-a6ae-35a4b0967661}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataManagement">
+      <UniqueIdentifier>{b31f8dbd-04f8-43a9-973d-4d84f71c8533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataManagement">
+      <UniqueIdentifier>{df64e560-7550-440d-815d-d0da29969408}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceLoader.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Background.cpp">
       <Filter>Source Files\Components</Filter>
@@ -225,6 +228,9 @@
     <ClCompile Include="Components\TilingBackground.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceLoader.cpp">
+      <Filter>Source Files\DataManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -255,9 +261,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Background.h">
@@ -484,6 +487,12 @@
     </ClInclude>
     <ClInclude Include="Components\TilingBackground.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceLoader.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
