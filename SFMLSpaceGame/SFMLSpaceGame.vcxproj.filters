@@ -491,9 +491,6 @@
     <ClInclude Include="ResourceLoader.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>Header Files\DataManagement</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
