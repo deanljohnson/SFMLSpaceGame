@@ -359,12 +359,6 @@
     <ClInclude Include="CollisionGroups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShipStats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileStats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\UIElement.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
@@ -489,6 +483,12 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="ResourceLoader.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipStats.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileStats.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
   </ItemGroup>
