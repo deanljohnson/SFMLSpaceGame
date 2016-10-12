@@ -36,6 +36,7 @@
 #include "Components/SoundListener.h"
 #include "Components/MusicSource.h"
 #include "Components/GunHeatUIDisplay.h"
+#include "Components/TilingBackground.h"
 
 void EntityFactory::Init()
 {
@@ -133,7 +134,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)
 {
 	ent->AddComponent<Position>();
-	ent->AddComponent<Background, ResourceID>(backgroundID);
+	ent->AddComponent<TilingBackground, ResourceID>(backgroundID);
 	ent->AddComponent<ParallaxMovement, EntityID, float>(parallaxTarget, .1f);
 }
 

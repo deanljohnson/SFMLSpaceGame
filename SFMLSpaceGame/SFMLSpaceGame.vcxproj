@@ -197,6 +197,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <ClCompile Include="Components\SoundSource.cpp" />
     <ClCompile Include="Components\TextOnSensor.cpp" />
     <ClCompile Include="Components\ThrusterAnimator.cpp" />
+    <ClCompile Include="Components\TilingBackground.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
     <ClCompile Include="Entity.cpp" />
