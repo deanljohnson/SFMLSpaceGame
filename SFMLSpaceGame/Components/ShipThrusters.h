@@ -1,5 +1,6 @@
 #pragma once
 #include <Components/Physics.h>
+#include <cereal\cereal.hpp>
 
 enum ThrustDirection
 {
@@ -8,6 +9,9 @@ enum ThrustDirection
 
 struct ShipThrust
 {
+	ShipThrust() 
+		: Forward(0), Side(0), Reverse(0), Steer(0)
+	{}
 	ShipThrust(float front, float side, float reverse, float steer)
 		: Forward(front), Side(side), Reverse(reverse), Steer(steer) {}
 	float Forward, Side, Reverse, Steer;
@@ -19,6 +23,15 @@ struct ShipThrust
 	// Gets the torque to apply to a ship for the
 	// SteerLeft and SteerRight ThrustDirection's
 	float ShipThrust::GetTurningForce(ThrustDirection dir);
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(cereal::make_nvp("Forward", Forward),
+			cereal::make_nvp("Side", Side),
+			cereal::make_nvp("Reverse", Reverse),
+			cereal::make_nvp("Steer", Steer));
+	}
 };
 
 class ShipThrusters : public Component

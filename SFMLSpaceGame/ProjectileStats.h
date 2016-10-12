@@ -10,6 +10,12 @@ private:
 	float m_damage;
 	b2Vec2 m_size;
 public:
+	ProjectileStats()
+		: m_speed(0),
+		  m_lifeTime(0),
+		  m_damage(0),
+		  m_size(0, 0)
+	{}
 	ProjectileStats(float speed, float lifeTime, float damage, b2Vec2 size)
 		: m_speed(speed),
 		  m_lifeTime(lifeTime),
@@ -25,6 +31,9 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(m_speed, m_lifeTime, m_damage, m_size);
+		archive(cereal::make_nvp("Speed", m_speed), 
+				cereal::make_nvp("Lifetime", m_lifeTime), 
+				cereal::make_nvp("Damage", m_damage), 
+				cereal::make_nvp("Size", m_size));
 	}
 };

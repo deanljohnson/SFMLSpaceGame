@@ -7,6 +7,6 @@ namespace cereal {
 	template<class Archive>
 	void serialize(Archive& archive, b2Vec2& v) 
 	{
-		archive(v.x, v.y);
+		archive(CEREAL_NVP(v.x), CEREAL_NVP(v.y));
 	}
 }

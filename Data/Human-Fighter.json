@@ -1,0 +1,38 @@
+{
+    "Human-Fighter": {
+        "InterLeadMult": 5.0,
+        "FollowDist": 4.0,
+        "ApproachDist": 4.5,
+        "StrafeDist": 3.5,
+        "SensorRange": 10.0,
+        "ShipThrust": {
+            "Forward": 61.0,
+            "Side": 50.0,
+            "Reverse": 30.0,
+            "Steer": 50.0
+        },
+        "DirGunData": {
+            "FireRate": 0.10000000149011612,
+            "HealLimit": 10.0,
+            "CooldownRate": 3.0,
+            "HeatGenerated": 1.0,
+            "HardPoints": [
+                {
+                    "Position": {
+                        "v.x": 0.5,
+                        "v.y": -0.10000000149011612
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 0.5,
+                        "v.y": 0.10000000149011612
+                    },
+                    "Angle": 0.0
+                }
+            ],
+            "SoundID": 801
+        }
+    }
+}

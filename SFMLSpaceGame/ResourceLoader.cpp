@@ -7,10 +7,23 @@
 #include "ProjectileStats.h"
 #include "ShipStats.h"
 #include <Animation.h>
+#include <iostream>
+#include <fstream>
+
+#define JSON_SERIALIZATION
+
+#ifdef JSON_SERIALIZATION
+#include <cereal\archives\json.hpp>
+#define SERIALIZATION_EXTENSION ".json"
+#define SERIALIZATION_IN_ARCHIVE cereal::JSONInputArchive
+#define SERIALIZATION_OUT_ARCHIVE cereal::JSONOutputArchive
+#endif
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
+	std::string DATA_PATH = "..//Data//";
+
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID, std::shared_ptr<Animation>> loadedAnimations;
@@ -40,24 +53,40 @@ namespace
 	}
 }
 
+#include <Box2DSerialization.h>
 // Hard Coded ship/projectile/font loading functions. Eventually will be removed
 namespace
 {
+	template<class T>
+	T* Load(std::string name)
+	{
+		name += SERIALIZATION_EXTENSION;
+
+		T* t = new T();
+		std::ifstream is(DATA_PATH + name);
+		SERIALIZATION_IN_ARCHIVE ar(is);
+		ar(*t);
+		return t;
+	}
+
+	template<class T>
+	void Save(T* obj, std::string fileName, std::string rootName) 
+	{
+		fileName += SERIALIZATION_EXTENSION;
+
+		std::ofstream os(DATA_PATH + fileName);
+		SERIALIZATION_OUT_ARCHIVE ar(os);
+		ar(cereal::make_nvp(rootName, *obj));
+	}
+
 	ShipStats* LoadHumanFighter()
 	{
-		return new ShipStats(5.f, 4.f, 4.5f, 3.5f, 10.f,
-							ShipThrust(61.f, 50.f, 30.f, 50.f),
-							DirectionalGunData(.1f, 10.f, 3.f, 1.f, SOUND_LASER_ONE,
-							{
-								HardPoint(b2Vec2(.5f, -.1f), 0.f),
-								HardPoint(b2Vec2(.5f, .1f), 0.f)
-							}));
+		return Load<ShipStats>("Human-Fighter");
 	}
 
 	ProjectileStats* LoadLaserOne()
 	{
-		auto* ps = new ProjectileStats(15.f, 5.f, 5.f, b2Vec2(.3f, .03f));
-		return ps;
+		return Load<ProjectileStats>("LaserOne");
 	}
 
 	sf::Font* LoadFontOne()

@@ -46,6 +46,9 @@
     <Filter Include="Source Files\DataManagement">
       <UniqueIdentifier>{df64e560-7550-440d-815d-d0da29969408}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{5a585dfd-6bd7-4bfb-b8b9-94c3cdf5f341}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -519,5 +522,10 @@
     <Image Include="..\Images\basic_up.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\LaserOne.json">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>

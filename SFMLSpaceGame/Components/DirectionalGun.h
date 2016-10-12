@@ -5,9 +5,15 @@
 #include <vector>
 #include <ResourceLoader.h>
 #include "SoundSource.h"
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
 
 struct HardPoint
 {
+	HardPoint() 
+		: positionOffset(),
+		  angleOffset()
+	{}
 	HardPoint(b2Vec2 offset, float angle)
 		: positionOffset(offset),
 		  angleOffset(angle)
@@ -18,10 +24,25 @@ struct HardPoint
 	//+y = towards the ships right side
 	b2Vec2 positionOffset;
 	float angleOffset;
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(cereal::make_nvp("Position", positionOffset),
+				cereal::make_nvp("Angle", angleOffset));
+	}
 };
 
 struct DirectionalGunData
 {
+	DirectionalGunData() 
+		: fireRate(0),
+		  heatLimit(0),
+		  cooldownRate(0),
+		  heatGenerated(0),
+		  hardPoints(),
+		  soundID(0)
+	{}
 	DirectionalGunData(float cd, float heatLim, float coolingRate, float heatGen, ResourceID shotSoundID, const std::initializer_list<HardPoint>& hardPointLocations)
 		: fireRate(cd),
 		  heatLimit(heatLim),
@@ -37,6 +58,17 @@ struct DirectionalGunData
 	float heatGenerated; // How much heat is generated per shot
 	std::vector<HardPoint> hardPoints;
 	ResourceID soundID;
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(cereal::make_nvp("FireRate", fireRate),
+				cereal::make_nvp("HealLimit", heatLimit),
+				cereal::make_nvp("CooldownRate", cooldownRate),
+				cereal::make_nvp("HeatGenerated", heatGenerated),
+				cereal::make_nvp("HardPoints", hardPoints),
+				cereal::make_nvp("SoundID", soundID));
+	}
 };
 
 class DirectionalGun : public Component, Gun

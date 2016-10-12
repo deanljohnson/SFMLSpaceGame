@@ -14,6 +14,15 @@ private:
 	DirectionalGunData m_dirGunData;
 
 public:
+	ShipStats() 
+		: m_interceptLeadMultiplier(0),
+		  m_followDistance(0),
+		  m_approachDistance(0),
+		  m_strafeDistance(0),
+		  m_sensorRange(0),
+		  m_shipThrust(),
+		  m_dirGunData()
+	{}
 	ShipStats(float interceptLead, float followDistance, float approachDistance, float strafeDistance, float sensorRange, ShipThrust thrust, DirectionalGunData dirData)
 		: m_interceptLeadMultiplier(interceptLead),
 		  m_followDistance(followDistance),
@@ -31,4 +40,16 @@ public:
 	inline float GetSensorRange() const { return m_sensorRange; }
 	inline ShipThrust* GetShipThrust() { return &m_shipThrust; }
 	inline DirectionalGunData* GetDirGunData() { return &m_dirGunData; }
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(cereal::make_nvp("InterLeadMult", m_interceptLeadMultiplier),
+			cereal::make_nvp("FollowDist", m_followDistance),
+			cereal::make_nvp("ApproachDist", m_approachDistance),
+			cereal::make_nvp("StrafeDist", m_strafeDistance),
+			cereal::make_nvp("SensorRange", m_sensorRange),
+			cereal::make_nvp("ShipThrust", m_shipThrust),
+			cereal::make_nvp("DirGunData", m_dirGunData));
+	}
 };
