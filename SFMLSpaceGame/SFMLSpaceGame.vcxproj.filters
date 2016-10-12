@@ -491,6 +491,9 @@
     <ClInclude Include="ProjectileStats.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
+    <ClInclude Include="Box2DSerialization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

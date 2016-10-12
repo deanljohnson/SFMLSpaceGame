@@ -1,5 +1,6 @@
 #pragma once
 #include <Box2d/Common/b2Math.h>
+#include <cereal\cereal.hpp>
 
 class ProjectileStats 
 {
@@ -20,4 +21,10 @@ public:
 	inline float GetLifeTime() const { return m_lifeTime; }
 	inline float GetDamage() const { return m_damage; }
 	inline b2Vec2 GetSize() const { return m_size; }
+
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_speed, m_lifeTime, m_damage, m_size);
+	}
 };

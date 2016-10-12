@@ -243,6 +243,7 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Box2DSerialization.h" />
     <ClInclude Include="Components\AnimatedSprite.h" />
     <ClInclude Include="Components\DamageOnAttacked.h" />
     <ClInclude Include="Components\EntitySensor.h" />

@@ -56,7 +56,8 @@ namespace
 
 	ProjectileStats* LoadLaserOne()
 	{
-		return new ProjectileStats(15.f, 5.f, 5.f, b2Vec2(.3f, .03f));
+		auto* ps = new ProjectileStats(15.f, 5.f, 5.f, b2Vec2(.3f, .03f));
+		return ps;
 	}
 
 	sf::Font* LoadFontOne()
