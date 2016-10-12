@@ -37,12 +37,13 @@ using ComponentArray = std::array<Component*, maxComponents>;
 
 class Component
 {
+private:
+	bool m_active{ true };
 public:
 	Component() : next(nullptr), entity(nullptr) {}
 
 	Component* next{ nullptr }; // allows multiple components of a single type on an entity
 	Entity* entity{ nullptr };
-	bool active{ true };
 
 	virtual ~Component(){};
 
@@ -50,4 +51,7 @@ public:
 	virtual void Update(){};
 	virtual void OnDestroy(){};
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states){};
+
+	inline bool IsActive() const noexcept { return m_active; }
+	inline void SetActive(bool active) noexcept { m_active = active; }
 };
