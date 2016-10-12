@@ -48,18 +48,17 @@ void TilingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)
 	max.x++;
 	max.y++;
 
-	// Move the min/max points to account for what
-	// the current center tile is
+	// Adjust the min/max coordinates to adjust for
+	// where the window is centered
 	min.x += centerCoord.x / bounds.width;
 	min.y += centerCoord.y / bounds.height;
 	max.x += centerCoord.x / bounds.width;
 	max.y += centerCoord.y / bounds.height;
 
 	// Move the transform to the min tile position
+	bounds = m_sprite.getGlobalBounds();
 	states.transform.translate(bounds.width * (min.x - 1), bounds.height * (min.y - 1));
 
-	// Need an untransfored bounds to adjust by
-	bounds = m_sprite.getGlobalBounds();
 	for (int j = min.y; j <= max.y + 1; j++)
 	{
 		for (int i = min.x; i <= max.x + 1; i++)
