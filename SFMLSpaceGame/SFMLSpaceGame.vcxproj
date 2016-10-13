@@ -182,6 +182,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
     <ClCompile Include="Components\CollisionFilterComponent.cpp" />
+    <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\DamageOnAttacked.cpp" />
     <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />

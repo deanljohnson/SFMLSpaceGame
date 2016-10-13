@@ -243,6 +243,9 @@
     <ClCompile Include="UI\ShipEditorWindow.cpp">
       <Filter>Source Files\UI\GameSpecific</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Component.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">

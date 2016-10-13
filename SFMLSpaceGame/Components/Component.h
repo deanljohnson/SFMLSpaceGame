@@ -5,6 +5,7 @@
 
 class Entity;
 class Component;
+class Sensor;
 
 using ComponentID = size_t;
 
@@ -54,4 +55,8 @@ public:
 
 	inline bool IsActive() const noexcept { return m_active; }
 	inline void SetActive(bool active) noexcept { m_active = active; }
+
+	// Makes this component's activation state reliant on
+	// the given Sensor's triggered state.
+	void AttachToSensor(Sensor* sensor);
 };
