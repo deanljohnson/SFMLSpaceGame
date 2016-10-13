@@ -22,7 +22,7 @@ public:
 	{
 		
 	};
-	
+
 	union
 	{
 		AttackedEvent attacked;

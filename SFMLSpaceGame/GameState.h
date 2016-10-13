@@ -14,6 +14,7 @@ class GameState
 public:
 	static std::vector<std::unique_ptr<sf::Event>> pendingEvents;
 	static EventQueue pendingGameEvents;
+	static bool playerInputLocked;
 
 	static b2World world;
 
