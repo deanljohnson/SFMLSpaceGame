@@ -3,6 +3,7 @@
 #include <UI/UIText.h>
 #include <UI/UICenterOn.h>
 #include <resource.h>
+#include "EntitySensor.h"
 
 namespace {
 	UI_ID centerID;

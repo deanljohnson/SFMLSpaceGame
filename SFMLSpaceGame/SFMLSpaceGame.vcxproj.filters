@@ -49,6 +49,12 @@
     <Filter Include="Data">
       <UniqueIdentifier>{5a585dfd-6bd7-4bfb-b8b9-94c3cdf5f341}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI\GameSpecific">
+      <UniqueIdentifier>{8fef8845-4575-47d0-b678-09bb536e0244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\GameSpecific">
+      <UniqueIdentifier>{3d523bf2-fce5-49a2-a0b9-3d9174346f44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -233,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="ResourceLoader.cpp">
       <Filter>Source Files\DataManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ShipEditorWindow.cpp">
+      <Filter>Source Files\UI\GameSpecific</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +508,9 @@
     </ClInclude>
     <ClInclude Include="Serializer.h">
       <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ShipEditorWindow.h">
+      <Filter>Header Files\UI\GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

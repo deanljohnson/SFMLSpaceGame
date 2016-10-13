@@ -26,6 +26,7 @@ void EntitySensor::Update()
 
 	if (contactList == nullptr
 		|| contactList->other == nullptr) {
+		SetTriggered(false);
 		return;
 	}
 
@@ -42,6 +43,8 @@ void EntitySensor::Update()
 
 		contactList = contactList->next;
 	}
+
+	SetTriggered(sensedEntities.size() > 0);
 }
 
 void EntitySensor::HandleCollisionWithEntity(Entity* ent) 
@@ -55,4 +58,19 @@ void EntitySensor::HandleCollisionWithEntity(Entity* ent)
 			break;
 		}
 	}
+}
+
+void EntitySensor::SetTriggered(bool val) 
+{
+	// If the sensor just switched states
+	// trigger the callbacks and pass in
+	// our current state
+
+	// no change of state
+	if (m_triggered == val) return;
+
+	m_triggered = val;
+
+	for (auto callback : m_callbacks)
+		callback(m_triggered, this);
 }

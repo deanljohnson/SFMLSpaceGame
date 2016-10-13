@@ -232,6 +232,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIArea.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
@@ -272,6 +273,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="ShipResourceSelector.h" />
     <ClInclude Include="SpawnLocationSelector.h" />
     <ClInclude Include="SpriteHelpers.h" />
+    <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\UIArea.h" />
     <ClInclude Include="UI\UICenterOn.h" />
     <ClInclude Include="UI\UIEventResponse.h" />

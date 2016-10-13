@@ -1,7 +1,8 @@
 #pragma once
 #include "Component.h"
-#include "EntitySensor.h"
 #include <UI/UI_ID.h>
+
+class EntitySensor;
 
 class TextOnSensor : public Component
 {
