@@ -7,9 +7,9 @@ class EntitySensor;
 class TextOnSensor : public Component
 {
 private:
-	EntitySensor* m_sensor{ nullptr };
 	std::string m_text;
 	UI_ID m_textID{ UI_ID_NULL };
+	bool m_display{ false };
 
 public:
 	explicit TextOnSensor(const std::string& text)

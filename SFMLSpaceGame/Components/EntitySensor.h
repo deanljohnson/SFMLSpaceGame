@@ -2,8 +2,9 @@
 
 #include <Components/Physics.h>
 #include <Entity.h>
+#include <Interfaces\Sensor.h>
 
-class EntitySensor : public Component 
+class EntitySensor : public Component, public Sensor
 {
 private:
 	bool m_triggered{ false };
@@ -11,7 +12,7 @@ private:
 	b2Fixture* m_sensingFixture{ nullptr };
 	std::vector<Group> m_groups;
 	float m_radius;
-	std::vector<std::function<void(bool, EntitySensor*)>> m_callbacks{};
+	std::vector<std::function<void(bool, Sensor*)>> m_callbacks{};
 
 	void HandleCollisionWithEntity(Entity* ent);
 	void SetTriggered(bool val);
@@ -25,7 +26,7 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 
-	inline void AddCallback(std::function<void(bool, EntitySensor*)> callback) 
+	inline void AddCallback(std::function<void(bool, Sensor*)> callback) 
 	{
 		m_callbacks.push_back(callback);
 	}

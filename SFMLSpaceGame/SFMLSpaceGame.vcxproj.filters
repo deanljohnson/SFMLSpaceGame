@@ -512,6 +512,9 @@
     <ClInclude Include="UI\ShipEditorWindow.h">
       <Filter>Header Files\UI\GameSpecific</Filter>
     </ClInclude>
+    <ClInclude Include="Interfaces\Sensor.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
