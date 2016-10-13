@@ -62,17 +62,17 @@
 // Automatically lays the given elements out horizontally. Within a horizontal group,
 // an elements transform is relative to the previous elements right side and a y value of 0
 #ifndef HORIZONTAL_GROUP
-#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define HORIZONTAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIHorizontalGroup, _LAYOUT_ID_), __VA_ARGS__))
 #endif
 
 // Automatically lays the given elements out vertically. Within a vertical group,
 // an elements transform is relative to the previous elements bottom and a x value of 0
 #ifndef VERTICAL_GROUP
-#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define VERTICAL_GROUP(_LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_REFRESH(UIVerticalGroup, _LAYOUT_ID_), __VA_ARGS__))
 #endif
 
 #ifndef CENTER_ON
-#define CENTER_ON(_TARGET_ID_, _LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_UPDATE(UICenterOn, _LAYOUT_ID_, _TARGET_ID_, _TARGET_ID_), __VA_ARGS__), _LAYOUT_ID_)
+#define CENTER_ON(_TARGET_ID_, _LAYOUT_ID_, ...) (MAKE_HIERARCHY(INIT_AND_UPDATE(UICenterOn, _LAYOUT_ID_, _TARGET_ID_, _TARGET_ID_), __VA_ARGS__))
 #endif
 
 namespace sf{

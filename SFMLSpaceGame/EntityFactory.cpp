@@ -21,7 +21,6 @@
 #include "Components/CollisionFilterComponent.h"
 #include "Components/ShipController.h"
 #include "Components/EntitySensor.h"
-#include "Components/Text.h"
 #include "Components/ZoomHandler.h"
 #include "Components/ShipAI.h"
 #include "Components/Health.h"
@@ -37,6 +36,9 @@
 #include "Components/GunHeatUIDisplay.h"
 #include "Components/TilingBackground.h"
 #include "Components/KeyListener.h"
+
+#include <Components/UI/Text.h>
+#include <Components/UI/ShipEditorWindow.h>
 
 void EntityFactory::Init()
 {
@@ -199,12 +201,14 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
 	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");
 	auto& keyListener = ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
+	auto shipWindow = &ent->AddComponent<ShipEditorWindow>();
+	shipWindow->SetActive(false);
 	sensor.AttachComponent(&text);
 	sensor.AttachComponent(&keyListener);
 
 	keyListener.AddCallback(
-		[](sf::Keyboard::Key){
-			printf("Hello from listener");
+		[shipWindow](sf::Keyboard::Key){
+			shipWindow->SetActive(true);
 		});
 
 	auto spriteBox = sp.GetDimensions();
