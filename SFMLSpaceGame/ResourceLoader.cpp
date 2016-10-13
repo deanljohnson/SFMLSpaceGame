@@ -7,10 +7,12 @@
 #include "ProjectileStats.h"
 #include "ShipStats.h"
 #include <Animation.h>
+
+// Change this to change the type of serialization used
+#define JSON_SERIALIZATION
+#include <Box2DSerialization.h>
 #include <iostream>
 #include <fstream>
-
-#define JSON_SERIALIZATION
 
 #ifdef JSON_SERIALIZATION
 #include <cereal\archives\json.hpp>
@@ -22,7 +24,11 @@
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
+#ifdef RELEASE
+	std::string DATA_PATH = "Data//";
+#else
 	std::string DATA_PATH = "..//Data//";
+#endif
 
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
@@ -51,20 +57,24 @@ namespace
 	{
 		return id > SOUND_ID_START && id < SOUND_ID_END;
 	}
-}
 
-#include <Box2DSerialization.h>
-// Hard Coded ship/projectile/font loading functions. Eventually will be removed
-namespace
-{
 	template<class T>
 	T* Load(std::string name)
 	{
 		name += SERIALIZATION_EXTENSION;
 
-		T* t = new T();
+		// Open the input file stream
 		std::ifstream is(DATA_PATH + name);
+		if (is.fail())
+		{
+			std::cout << "Unable to fine the file " << name << "\n";
+		}
+
+		// Create the cereal archive from the input stream
 		SERIALIZATION_IN_ARCHIVE ar(is);
+
+		// Load the object
+		T* t = new T();
 		ar(*t);
 		return t;
 	}

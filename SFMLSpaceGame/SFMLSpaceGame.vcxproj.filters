@@ -527,5 +527,8 @@
     <None Include="..\Data\LaserOne.json">
       <Filter>Data</Filter>
     </None>
+    <None Include="..\Data\Human-Fighter.json">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>
