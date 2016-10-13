@@ -171,9 +171,6 @@
     <ClCompile Include="UI\UIVerticalGroup.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Components\TextOnSensor.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="UI\UIArea.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -243,7 +240,7 @@
     <ClCompile Include="UI\ShipEditorWindow.cpp">
       <Filter>Source Files\UI\GameSpecific</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Component.cpp">
+    <ClCompile Include="Components\Text.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -413,9 +410,6 @@
     <ClInclude Include="UI\UIVerticalGroup.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Components\TextOnSensor.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="UI\UIArea.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
@@ -517,6 +511,12 @@
     </ClInclude>
     <ClInclude Include="Interfaces\Sensor.h">
       <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\ComponentSensor.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Text.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

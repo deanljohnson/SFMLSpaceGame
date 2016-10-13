@@ -1,4 +1,5 @@
 #include <Components/EntitySensor.h>
+#include <Components/Physics.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <CollisionGroups.h>
@@ -45,6 +46,22 @@ void EntitySensor::Update()
 	}
 
 	SetTriggered(sensedEntities.size() > 0);
+}
+
+void EntitySensor::AddCallback(std::function<void(bool, Sensor*)> callback)
+{
+	m_callbacks.push_back(callback);
+}
+
+void EntitySensor::AttachComponent(Component* c)
+{
+	c->SetActive(m_triggered);
+
+	AddCallback(
+		[c](bool state, Sensor* sensor)
+	{
+		c->SetActive(state);
+	});
 }
 
 void EntitySensor::HandleCollisionWithEntity(Entity* ent) 

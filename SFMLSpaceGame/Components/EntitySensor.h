@@ -1,10 +1,12 @@
 #pragma once
 
-#include <Components/Physics.h>
 #include <Entity.h>
-#include <Interfaces\Sensor.h>
+#include <Components/Component.h>
+#include <Interfaces/ComponentSensor.h>
 
-class EntitySensor : public Component, public Sensor
+class Physics;
+
+class EntitySensor : public Component, public ComponentSensor
 {
 private:
 	bool m_triggered{ false };
@@ -26,8 +28,6 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 
-	inline void AddCallback(std::function<void(bool, Sensor*)> callback) 
-	{
-		m_callbacks.push_back(callback);
-	}
+	virtual void AddCallback(std::function<void(bool, Sensor*)> callback) override;
+	virtual void AttachComponent(Component* c) override;
 };

@@ -182,7 +182,6 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
     <ClCompile Include="Components\CollisionFilterComponent.cpp" />
-    <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\DamageOnAttacked.cpp" />
     <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
@@ -198,7 +197,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="Components\ShipSpawner.cpp" />
     <ClCompile Include="Components\SoundListener.cpp" />
     <ClCompile Include="Components\SoundSource.cpp" />
-    <ClCompile Include="Components\TextOnSensor.cpp" />
+    <ClCompile Include="Components\Text.cpp" />
     <ClCompile Include="Components\ThrusterAnimator.cpp" />
     <ClCompile Include="Components\TilingBackground.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
@@ -259,7 +258,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="Components\ShipSpawner.h" />
     <ClInclude Include="Components\SoundListener.h" />
     <ClInclude Include="Components\SoundSource.h" />
-    <ClInclude Include="Components\TextOnSensor.h" />
+    <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\TilingBackground.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
@@ -269,6 +268,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="Interfaces\ComponentSensor.h" />
     <ClInclude Include="Interfaces\Sensor.h" />
     <ClInclude Include="OriginOption.h" />
     <ClInclude Include="Serializer.h" />

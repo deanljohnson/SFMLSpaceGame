@@ -10,7 +10,6 @@
 #include <Components/RotatetoFaceMouse.h>
 #include <Components/ShipThrusters.h>
 #include <Components/ThrusterInput.h>
-#include <Components/Background.h>
 #include <Components/ParallaxMovement.h>
 #include <Components/SmoothCameraFollow.h>
 #include <Components/Sprite.h>
@@ -22,7 +21,7 @@
 #include "Components/CollisionFilterComponent.h"
 #include "Components/ShipController.h"
 #include "Components/EntitySensor.h"
-#include "Components/TextOnSensor.h"
+#include "Components/Text.h"
 #include "Components/ZoomHandler.h"
 #include "Components/ShipAI.h"
 #include "Components/Health.h"
@@ -196,8 +195,9 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 
-	ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
-	ent->AddComponent<TextOnSensor, const std::string&>("Press E to Interact");
+	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
+	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");
+	sensor.AttachComponent(&text);
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
