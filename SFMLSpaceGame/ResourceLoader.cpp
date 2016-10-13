@@ -7,28 +7,12 @@
 #include "ProjectileStats.h"
 #include "ShipStats.h"
 #include <Animation.h>
-
-// Change this to change the type of serialization used
-#define JSON_SERIALIZATION
-#include <Box2DSerialization.h>
-#include <iostream>
-#include <fstream>
-
-#ifdef JSON_SERIALIZATION
-#include <cereal\archives\json.hpp>
-#define SERIALIZATION_EXTENSION ".json"
-#define SERIALIZATION_IN_ARCHIVE cereal::JSONInputArchive
-#define SERIALIZATION_OUT_ARCHIVE cereal::JSONOutputArchive
-#endif
+#include <Serializer.h>
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
-#ifdef RELEASE
-	std::string DATA_PATH = "Data//";
-#else
-	std::string DATA_PATH = "..//Data//";
-#endif
+	Serializer serializer = Serializer();
 
 	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
@@ -58,45 +42,14 @@ namespace
 		return id > SOUND_ID_START && id < SOUND_ID_END;
 	}
 
-	template<class T>
-	T* Load(std::string name)
-	{
-		name += SERIALIZATION_EXTENSION;
-
-		// Open the input file stream
-		std::ifstream is(DATA_PATH + name);
-		if (is.fail())
-		{
-			std::cout << "Unable to fine the file " << name << "\n";
-		}
-
-		// Create the cereal archive from the input stream
-		SERIALIZATION_IN_ARCHIVE ar(is);
-
-		// Load the object
-		T* t = new T();
-		ar(*t);
-		return t;
-	}
-
-	template<class T>
-	void Save(T* obj, std::string fileName, std::string rootName) 
-	{
-		fileName += SERIALIZATION_EXTENSION;
-
-		std::ofstream os(DATA_PATH + fileName);
-		SERIALIZATION_OUT_ARCHIVE ar(os);
-		ar(cereal::make_nvp(rootName, *obj));
-	}
-
 	ShipStats* LoadHumanFighter()
 	{
-		return Load<ShipStats>("Human-Fighter");
+		return serializer.Load<ShipStats>("Human-Fighter");
 	}
 
 	ProjectileStats* LoadLaserOne()
 	{
-		return Load<ProjectileStats>("LaserOne");
+		return serializer.Load<ProjectileStats>("LaserOne");
 	}
 
 	sf::Font* LoadFontOne()

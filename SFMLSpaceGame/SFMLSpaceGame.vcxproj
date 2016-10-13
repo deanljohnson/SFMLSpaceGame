@@ -268,6 +268,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="OriginOption.h" />
+    <ClInclude Include="Serializer.h" />
     <ClInclude Include="ShipResourceSelector.h" />
     <ClInclude Include="SpawnLocationSelector.h" />
     <ClInclude Include="SpriteHelpers.h" />
