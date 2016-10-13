@@ -55,12 +55,6 @@
     <Filter Include="Source Files\UI\GameSpecific">
       <UniqueIdentifier>{3d523bf2-fce5-49a2-a0b9-3d9174346f44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\UI">
-      <UniqueIdentifier>{41285a2c-3335-44d1-a2ce-bbd002e66f25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Components\UI">
-      <UniqueIdentifier>{a55438ce-10e3-47bd-9be4-7b9c464f1715}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -243,14 +237,14 @@
     <ClCompile Include="ResourceLoader.cpp">
       <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
-    <ClCompile Include="Components\KeyListener.cpp">
+    <ClCompile Include="UI\ShipEditorWindow.cpp">
+      <Filter>Source Files\UI\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Text.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\UI\ShipEditorWindow.cpp">
-      <Filter>Source Files\Components\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\UI\Text.cpp">
-      <Filter>Source Files\Components\UI</Filter>
+    <ClCompile Include="Components\KeyListener.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -515,20 +509,20 @@
     <ClInclude Include="Serializer.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
+    <ClInclude Include="UI\ShipEditorWindow.h">
+      <Filter>Header Files\UI\GameSpecific</Filter>
+    </ClInclude>
     <ClInclude Include="Interfaces\Sensor.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\ComponentSensor.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Components\KeyListener.h">
+    <ClInclude Include="Components\Text.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\UI\ShipEditorWindow.h">
-      <Filter>Header Files\Components\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\UI\Text.h">
-      <Filter>Header Files\Components\UI</Filter>
+    <ClInclude Include="Components\KeyListener.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

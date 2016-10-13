@@ -1,7 +1,7 @@
 #include <UI/UIText.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-UIText::UIText(std::string text, ResourceID fontID, size_t fontSize, UITransform trans)
+UIText::UIText(std::string text, ResourceID fontID, UITransform trans)
 {
 	m_fontID = fontID;
 	m_font = LoadFont(fontID);
@@ -12,13 +12,6 @@ UIText::UIText(std::string text, ResourceID fontID, size_t fontSize, UITransform
 	m_text.setFont(*m_font.get());
 	m_text.setString(text);
 	m_text.setFillColor(sf::Color::White);
-	m_text.setCharacterSize(fontSize);
-}
-
-UIText::UIText(UITextOption option, UITransform trans)
-	: UIText(option.text, option.fontID, option.fontSize, trans)
-{
-	m_text.setFillColor(option.color);
 }
 
 sf::FloatRect UIText::GetBounds()

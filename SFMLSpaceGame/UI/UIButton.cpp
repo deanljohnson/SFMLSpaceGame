@@ -14,19 +14,6 @@ UIButton::UIButton(ResourceID texID, UITransform trans)
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tex->getSize().x, m_tex->getSize().y / 3));
 }
 
-UIButton::UIButton(ResourceID texID, std::function<void(UIButton*)> callback, UITransform trans)
-{
-	m_tex = LoadTextureResource(texID);
-
-	setPosition(trans.position);
-	setScale(trans.scale);
-
-	m_sprite = sf::Sprite(*m_tex.get());
-	m_sprite.setTextureRect(sf::IntRect(0, 0, m_tex->getSize().x, m_tex->getSize().y / 3));
-
-	m_callback = callback;
-}
-
 sf::FloatRect UIButton::GetBounds()
 {
 	return getTransform().transformRect(m_sprite.getGlobalBounds());
@@ -69,8 +56,7 @@ UIEventResponse UIButton::HandleMouse(const sf::Vector2f& localMousePos, UI_Resu
 		}
 		else
 		{
-			resultTarget->booleanValue = state == Click;
-			if (state == Click && m_callback != nullptr) m_callback(this);
+			resultTarget->booleanValue = (state == Click);
 
 			// Switch to hover texture
 			SwitchState(Hover);

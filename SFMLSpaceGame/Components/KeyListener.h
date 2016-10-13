@@ -5,9 +5,6 @@
 #include <vector>
 #include <functional>
 
-// Provides a way for entity's to listen
-// for certain single key events and call
-// any number of callbacks in response
 class KeyListener : public Component
 {
 private:
