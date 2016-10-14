@@ -2,8 +2,6 @@
 #include <SFGUI/SFGUI.hpp>
 #include <SFGUI/Desktop.hpp>
 #include <SFGUI/Alignment.hpp>
-#include <SFGUI/Box.hpp>
-#include <SFGUI/Window.hpp>
 
 namespace sf{
 	class RenderWindow;
@@ -16,9 +14,6 @@ private:
 	sfg::SFGUI m_sfgui;
 	sfg::Desktop m_desktop;
 	sf::Vector2u m_size;
-
-	sfg::Box::Ptr m_centerAlignmentBox;
-	sfg::Window::Ptr m_screenWindow;
 public:
 	static UI* Singleton;
 

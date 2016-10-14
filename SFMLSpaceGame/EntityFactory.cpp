@@ -37,6 +37,7 @@
 #include "Components/TilingBackground.h"
 #include "Components/KeyListener.h"
 #include "Components/Text.h"
+#include "UI/GameWindow.h"
 
 void EntityFactory::Init()
 {
@@ -202,7 +203,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	sensor.AttachComponent(&keyListener);
 	sensor.AttachComponent(&text);
 
-	keyListener += [](sf::Keyboard::Key) {printf("Hello!\n"); };
+	keyListener += [](sf::Keyboard::Key) { GameWindow::GetWindow("ship_editor")->Show(true); };
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

@@ -37,6 +37,8 @@ void InitialGameState::Init()
 
 	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
 	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
+
+	m_shipEditor.Show(false);
 }
 
 void InitialGameState::CleanUp()

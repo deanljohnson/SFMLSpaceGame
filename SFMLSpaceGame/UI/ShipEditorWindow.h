@@ -9,4 +9,6 @@ private:
 
 public:
 	ShipEditorWindow();
+
+	virtual void Show(bool val = true) override;
 };
