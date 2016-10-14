@@ -11,6 +11,7 @@ class UIButton : public UIElement
 private:
 	std::shared_ptr<sf::Texture> m_tex;
 	sf::Sprite m_sprite;
+	std::function<void(UIButton*)> m_callback;
 
 	enum ButtonState{ None, Hover, Click } state;
 
@@ -22,6 +23,7 @@ protected:
 
 public:
 	explicit UIButton(ResourceID texID, UITransform trans = UITransform());
+	explicit UIButton(ResourceID texID, std::function<void(UIButton*)> callback, UITransform trans = UITransform());
 
 	virtual UIEventResponse HandleEvent(const sf::Event& event, const sf::Transform& transform) override;
 
