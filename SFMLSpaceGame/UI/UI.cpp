@@ -11,6 +11,9 @@ UI::UI()
 	m_screenWindow = sfg::Window::Create(sfg::Window::NO_STYLE);
 	m_screenWindow->Add(m_centerAlignmentBox);
 
+	// Hiding this keeps it from capturing input
+	m_centerAlignmentBox->Show(false);
+
 	m_desktop.Add(m_centerAlignmentBox);
 }
 
@@ -57,6 +60,7 @@ void UI::SetSize(const sf::Vector2u& size)
 {
 	m_size = size;
 	m_screenWindow->SetRequisition(sf::Vector2f(m_size.x, m_size.y));
+	m_screenWindow->SetAllocation(sf::FloatRect(0, 0, m_size.x, m_size.y));
 }
 
 sf::Vector2u UI::GetSize()

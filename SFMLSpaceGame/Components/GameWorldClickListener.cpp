@@ -64,6 +64,7 @@ void GameWorldClickListener::Update()
 		{
 			listener->OnClick(mousePos);
 		}
+		m_clickedState = None;
 	}
 }
 
