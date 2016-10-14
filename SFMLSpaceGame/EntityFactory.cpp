@@ -37,9 +37,6 @@
 #include "Components/TilingBackground.h"
 #include "Components/KeyListener.h"
 
-#include <Components/UI/Text.h>
-#include <Components/UI/ShipEditorWindow.h>
-
 void EntityFactory::Init()
 {
 	// This is where we can setup a component update order because 
@@ -199,17 +196,8 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 
 	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
-	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");
 	auto& keyListener = ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
-	auto shipWindow = &ent->AddComponent<ShipEditorWindow>();
-	shipWindow->SetActive(false);
-	sensor.AttachComponent(&text);
 	sensor.AttachComponent(&keyListener);
-
-	keyListener.AddCallback(
-		[shipWindow](sf::Keyboard::Key){
-			shipWindow->SetActive(true);
-		});
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

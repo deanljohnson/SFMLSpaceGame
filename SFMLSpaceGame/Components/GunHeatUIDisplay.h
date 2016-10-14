@@ -1,13 +1,10 @@
 #pragma once
 #include <Components\Component.h>
-#include <UI/UI.h>
-#include <UI/UISlider.h>
 
 template<typename TGunComponent>
 class GunHeatUIDisplay : public Component 
 {
 private:
-	UI_ID m_sliderID;
 	TGunComponent* m_gunType{ nullptr };
 
 public:
@@ -22,8 +19,5 @@ public:
 	}
 	virtual void Update() override
 	{
-		INIT_AND_UPDATE(UISlider, m_sliderID,
-			ON_INIT(11.f, 11.f, UI_SLIDER_ONE, sf::Color::Red),
-			ON_UPDATE(m_gunType->GetNormalizedHeat()));
 	};
 };

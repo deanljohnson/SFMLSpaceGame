@@ -28,12 +28,6 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{73b5c19c-0538-4085-9139-c79c29e36f08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{5bf68f90-b982-49e6-bab9-42d15a672aea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{30ab4d45-7f42-4f71-bede-c6aa2c5edbc0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Spawning">
       <UniqueIdentifier>{b89f9e71-6eb6-46d2-a29b-c4161da3b74d}</UniqueIdentifier>
     </Filter>
@@ -48,12 +42,6 @@
     </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{5a585dfd-6bd7-4bfb-b8b9-94c3cdf5f341}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\UI\GameSpecific">
-      <UniqueIdentifier>{8fef8845-4575-47d0-b678-09bb536e0244}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI\GameSpecific">
-      <UniqueIdentifier>{3d523bf2-fce5-49a2-a0b9-3d9174346f44}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Components\UI">
       <UniqueIdentifier>{41285a2c-3335-44d1-a2ce-bbd002e66f25}</UniqueIdentifier>
@@ -150,38 +138,11 @@
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UIText.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UI.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIExpandingBackground.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIButton.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UILayoutOption.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Components\EntitySensor.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIHorizontalGroup.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIVerticalGroup.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UIArea.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UICenterOn.cpp">
-      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="Components\ZoomHandler.cpp">
       <Filter>Source Files\Components</Filter>
@@ -234,9 +195,6 @@
     <ClCompile Include="Components\MusicSource.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UISlider.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Components\TilingBackground.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -245,12 +203,6 @@
     </ClCompile>
     <ClCompile Include="Components\KeyListener.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\UI\ShipEditorWindow.cpp">
-      <Filter>Source Files\Components\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\UI\Text.cpp">
-      <Filter>Source Files\Components\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,50 +332,8 @@
     <ClInclude Include="CollisionGroups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\UIElement.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIText.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UI.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIExpandingBackground.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UITransform.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIButton.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIEventResponse.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UI_Result.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UILayoutOption.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UI_ID.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Components\EntitySensor.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIHorizontalGroup.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIVerticalGroup.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UIArea.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UICenterOn.h">
-      <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Components\ZoomHandler.h">
       <Filter>Header Files\Components</Filter>
@@ -491,9 +401,6 @@
     <ClInclude Include="Components\MusicSource.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="UI\UISlider.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Components\GunHeatUIDisplay.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -523,12 +430,6 @@
     </ClInclude>
     <ClInclude Include="Components\KeyListener.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\UI\ShipEditorWindow.h">
-      <Filter>Header Files\Components\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\UI\Text.h">
-      <Filter>Header Files\Components\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

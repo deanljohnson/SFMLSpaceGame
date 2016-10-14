@@ -5,12 +5,6 @@
 #include <ContactFilter.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
-#include "UI/UI.h"
-#include "UI/UIText.h"
-#include "UI/UIExpandingBackground.h"
-#include "UI/UIButton.h"
-#include "UI/UICenterOn.h"
-#include "UI/UISlider.h"
 
 void AddEnemy()
 {
@@ -62,13 +56,9 @@ void InitialGameState::Resume() const
 
 void InitialGameState::ProcessEvent(const sf::Event& event) const
 {
-	if (!UI::HandleEvent(event))
-	{
-		sf::Event copy = sf::Event(event);
-		pendingEvents.push_back(std::make_unique<sf::Event>(copy));
-	}
+	sf::Event copy = sf::Event(event);
+	pendingEvents.push_back(std::make_unique<sf::Event>(copy));
 }
-UI_ID id[7];
 
 namespace
 {
@@ -85,7 +75,6 @@ void InitialGameState::Update()
 		UnloadUnusedResources();
 	}
 
-	UI::Update();
 	pendingGameEvents.Update();
 
 	m_stepper.Step(world, GameTime::deltaTime);
@@ -107,7 +96,6 @@ void InitialGameState::Render(sf::RenderTarget& target)
 	GAME_WINDOW->setView(GAME_WINDOW->getDefaultView());
 
 	rendStates = sf::RenderStates::Default;
-	UI::Render(target, rendStates);
 
 	GAME_WINDOW->setView(view);
 }

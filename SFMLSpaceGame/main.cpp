@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
-#include "UI/UI.h"
 #include "EntityFactory.h"
 
 sf::RenderWindow* GAME_WINDOW;
@@ -19,8 +18,6 @@ int main()
 	window.setFramerateLimit(60);
 	
 	GAME_WINDOW = &window;
-
-	UI::Init();
 
 	EntityFactory::Init();
 
