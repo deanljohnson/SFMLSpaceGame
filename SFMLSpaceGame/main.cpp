@@ -3,6 +3,7 @@
 #include <GameStateManager.h>
 #include <WorldConstants.h>
 #include "EntityFactory.h"
+#include "UI/UI.h"
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -17,6 +18,9 @@ int main()
 	sf::RenderWindow window(GetVideoMode(), TITLE);
 	window.setFramerateLimit(60);
 	
+	UI ui;
+	ui.SetSize(window.getSize());
+
 	GAME_WINDOW = &window;
 
 	EntityFactory::Init();
@@ -33,6 +37,8 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+			ui.HandleEvent(event);
+			
 			if (event.type == sf::Event::Closed)
 			{
 				game_manager.CleanUp();
@@ -43,6 +49,7 @@ int main()
 			game_manager.ProcessEvent(event);
 		}
 
+		ui.Update(GameTime::deltaTime);
 		game_manager.Update();
 		
 #ifdef _DEBUG
@@ -52,6 +59,7 @@ int main()
 
 		window.clear();
 		game_manager.Render(window);
+		ui.Display(window);
 		window.display();
 
 		GameTime::deltaTime = clock.getElapsedTime().asSeconds();

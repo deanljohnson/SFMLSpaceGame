@@ -43,11 +43,11 @@
     <Filter Include="Data">
       <UniqueIdentifier>{5a585dfd-6bd7-4bfb-b8b9-94c3cdf5f341}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\UI">
-      <UniqueIdentifier>{41285a2c-3335-44d1-a2ce-bbd002e66f25}</UniqueIdentifier>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{409a4269-ad4b-4f33-8028-5fad1f6fee90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components\UI">
-      <UniqueIdentifier>{a55438ce-10e3-47bd-9be4-7b9c464f1715}</UniqueIdentifier>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{d589846b-00e5-43c4-8f1a-5a0d3250edf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +202,12 @@
       <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
     <ClCompile Include="Components\KeyListener.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Text.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -429,6 +435,12 @@
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Components\KeyListener.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Text.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

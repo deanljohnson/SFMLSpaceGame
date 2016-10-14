@@ -71,7 +71,7 @@ struct DirectionalGunData
 	}
 };
 
-class DirectionalGun : public Component, Gun
+class DirectionalGun : public Component, public Gun
 {
 private:
 	Position* m_position{ nullptr };

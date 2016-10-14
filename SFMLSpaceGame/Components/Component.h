@@ -53,5 +53,19 @@ public:
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states){};
 
 	inline bool IsActive() const noexcept { return m_active; }
-	inline void SetActive(bool active) noexcept { m_active = active; }
+	inline void SetActive(bool active) noexcept
+	{ 
+		if (active == m_active) return; 
+		m_active = active; 
+
+		if (m_active) OnEnable();
+		else OnDisable();
+	}
+
+	// Called when the component is enabled.
+	// Not called when a component is created.
+	virtual void OnEnable() {}
+
+	// Called when a component is disabled.
+	virtual void OnDisable() {}
 };

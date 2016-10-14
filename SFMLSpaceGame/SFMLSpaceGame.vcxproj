@@ -198,6 +198,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="Components\ShipSpawner.cpp" />
     <ClCompile Include="Components\SoundListener.cpp" />
     <ClCompile Include="Components\SoundSource.cpp" />
+    <ClCompile Include="Components\Text.cpp" />
     <ClCompile Include="Components\ThrusterAnimator.cpp" />
     <ClCompile Include="Components\TilingBackground.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
@@ -232,6 +233,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -248,6 +250,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="Components\ShipSpawner.h" />
     <ClInclude Include="Components\SoundListener.h" />
     <ClInclude Include="Components\SoundSource.h" />
+    <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\TilingBackground.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
@@ -307,6 +310,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="ShipManeuvers.h" />
     <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
+    <ClInclude Include="UI\UI.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>

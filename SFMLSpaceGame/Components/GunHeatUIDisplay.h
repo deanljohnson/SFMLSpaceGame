@@ -1,11 +1,14 @@
 #pragma once
 #include <Components\Component.h>
+#include <SFGUI/ProgressBar.hpp>
+#include <UI/UI.h>
 
 template<typename TGunComponent>
 class GunHeatUIDisplay : public Component 
 {
 private:
-	TGunComponent* m_gunType{ nullptr };
+	Gun* m_gunType{ nullptr };
+	sfg::ProgressBar::Ptr m_progressBar;
 
 public:
 	virtual void Init() override
@@ -16,8 +19,23 @@ public:
 			"TGunComponent must inherit from Component");
 
 		m_gunType = &entity->GetComponent<TGunComponent>();
+
+		m_progressBar = sfg::ProgressBar::Create();
+		UI::Singleton->Add(m_progressBar);
 	}
+
 	virtual void Update() override
 	{
+		m_progressBar->SetFraction(m_gunType->GetNormalizedHeat());
 	};
+
+	virtual void OnEnable() override
+	{
+		UI::Singleton->Add(m_progressBar);
+	}
+
+	virtual void OnDisable() override
+	{
+		UI::Singleton->Remove(m_progressBar);
+	}
 };
