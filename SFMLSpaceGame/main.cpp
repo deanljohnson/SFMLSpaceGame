@@ -19,6 +19,7 @@ int main()
 	window.setFramerateLimit(60);
 	
 	GAME_WINDOW = &window;
+
 	UI::Init();
 
 	EntityFactory::Init();
