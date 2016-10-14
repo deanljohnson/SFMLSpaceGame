@@ -233,6 +233,8 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="UI\GameWindow.cpp" />
+    <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +312,8 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="ShipManeuvers.h" />
     <ClInclude Include="ShipStats.h" />
     <ClInclude Include="Steering.h" />
+    <ClInclude Include="UI\GameWindow.h" />
+    <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />

@@ -3,12 +3,15 @@
 #include <EntityManager.h>
 #include <PhysicsStepper.h>
 #include "ContactFilter.h"
+#include "UI/ShipEditorWindow.h"
 
 class InitialGameState : public GameState
 {
 private:
 	PhysicsStepper m_stepper;
 	ContactFilter m_contactListener;
+
+	ShipEditorWindow m_shipEditor;
 
 public:
 	InitialGameState() 

@@ -202,7 +202,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	sensor.AttachComponent(&keyListener);
 	sensor.AttachComponent(&text);
 
-	keyListener.AddCallback([](sf::Keyboard::Key) {printf("Hello!\n"); });
+	keyListener += [](sf::Keyboard::Key) {printf("Hello!\n"); };
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

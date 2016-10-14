@@ -4,6 +4,7 @@
 #include <WorldConstants.h>
 #include "EntityFactory.h"
 #include "UI/UI.h"
+#include "UI/GameWindow.h"
 
 sf::RenderWindow* GAME_WINDOW;
 
@@ -44,6 +45,13 @@ int main()
 				game_manager.CleanUp();
 				window.close();
 				return 0;
+			}
+			else if (event.type == sf::Event::MouseButtonPressed
+				|| event.type == sf::Event::MouseButtonReleased
+				|| event.type == sf::Event::MouseMoved)
+			{
+				if (GameWindow::MouseInWindow())
+					continue;
 			}
 
 			game_manager.ProcessEvent(event);

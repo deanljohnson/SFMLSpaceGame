@@ -210,6 +210,12 @@
     <ClCompile Include="Components\Text.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ShipEditorWindow.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\GameWindow.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -442,6 +448,12 @@
     </ClInclude>
     <ClInclude Include="Components\Text.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ShipEditorWindow.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\GameWindow.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
