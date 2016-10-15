@@ -19,12 +19,14 @@ private:
 	sfg::Button::Ptr m_newShipButton;
 	sfg::Button::Ptr m_editShipButton;
 	sfg::Button::Ptr m_saveShipButton;
+	sfg::Button::Ptr m_defineColliderButton;
 	sfg::Window::Ptr m_shipWindow;
 	sfg::Canvas::Ptr m_shipCanvas;
 	sfg::Table::Ptr m_propertyTable;
 
 	// Alignment controls
 	sfg::Box::Ptr m_topLevelBox;
+	sfg::Box::Ptr m_mainBox;
 	sfg::Box::Ptr m_leftSideBar;
 	sfg::Box::Ptr m_rightSideBar;
 
@@ -51,7 +53,11 @@ private:
 	void SetupWindowSignals();
 	void SetupButtonSignals();
 	void SetupPropertyTable();
+	void SetupCanvasSignals();
 	void SetupEntryValidationSignals();
+
+	void BeginDefiningCollider();
+	void EndDefiningCollider();
 
 	void LoadShipStatsToEntries();
 	void LoadShipImage();
@@ -61,11 +67,15 @@ private:
 
 	void DrawShipCanvas();
 
+	void OnCanvasClick();
 	void OnShipSelected(const std::string& name);
 	void OnNewShipImageSelected(const std::string& name);
 	void OnNewShipNameSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);
 	void OnSaveShip();
+
+	bool m_definingCollider{false};
+	sf::VertexArray m_colliderVertices;
 
 	std::string m_newShipImageName;
 	std::string m_shipName;

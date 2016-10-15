@@ -5,6 +5,7 @@
 #include "ShipSelector.h"
 #include "ImageSelector.h"
 #include "ShipNameEntry.h"
+#include <WorldConstants.h>
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -20,18 +21,21 @@ ShipEditorWindow::ShipEditorWindow()
 	m_newShipButton = sfg::Button::Create("New Ship");
 	m_editShipButton = sfg::Button::Create("Edit Ship");
 	m_saveShipButton = sfg::Button::Create("Save Ship");
+	m_defineColliderButton = sfg::Button::Create("Begin Defining Collider");
 	SetupButtonSignals();
 
 	m_shipWindow = sfg::Window::Create(sfg::Window::BACKGROUND);
 	m_shipCanvas = sfg::Canvas::Create();
 	m_shipCanvas->SetRequisition(sf::Vector2f(500, 300));
 	m_shipWindow->Add(m_shipCanvas);
+	SetupCanvasSignals();
 
 	m_propertyTable = sfg::Table::Create();
 	SetupPropertyTable();
 
 	// Create layout widgets
 	m_topLevelBox = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
+	m_mainBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 	m_leftSideBar = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 	m_rightSideBar = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 
@@ -39,10 +43,13 @@ ShipEditorWindow::ShipEditorWindow()
 	m_leftSideBar->Pack(m_editShipButton);
 	m_leftSideBar->Pack(m_saveShipButton);
 
-	m_rightSideBar->Pack(m_propertyTable);
+	m_mainBox->Pack(m_shipWindow);
+	m_mainBox->Pack(m_defineColliderButton);
 
+	m_rightSideBar->Pack(m_propertyTable);
+	
 	m_topLevelBox->Pack(m_leftSideBar);
-	m_topLevelBox->Pack(m_shipWindow);
+	m_topLevelBox->Pack(m_mainBox);
 	m_topLevelBox->Pack(m_rightSideBar);
 	m_window->Add(m_topLevelBox);
 }
@@ -77,6 +84,8 @@ void ShipEditorWindow::SetupWindowSignals()
 
 void ShipEditorWindow::SetupButtonSignals()
 {
+	// Displays image selection window. The OnNewShipImageSelected function
+	// will continue the new ship process
 	m_newShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
 	{
@@ -97,6 +106,14 @@ void ShipEditorWindow::SetupButtonSignals()
 		[this]
 		{
 			OnSaveShip();
+		}
+	);
+
+	m_defineColliderButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this] 
+		{ 
+			if (!m_definingCollider) BeginDefiningCollider();
+			else EndDefiningCollider();
 		}
 	);
 }
@@ -186,6 +203,11 @@ void ShipEditorWindow::SetupPropertyTable()
 	SetupEntryValidationSignals();
 }
 
+void ShipEditorWindow::SetupCanvasSignals()
+{
+	m_shipCanvas->GetSignal(sfg::Canvas::OnLeftClick).Connect([this] { OnCanvasClick(); });
+}
+
 void ShipEditorWindow::SetupEntryValidationSignals()
 {
 	m_interLeadEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
@@ -216,6 +238,27 @@ void ShipEditorWindow::SetupEntryValidationSignals()
 		[this] { OnEntryFloatTextValidation(m_heatGenEntry); });
 }
 
+void ShipEditorWindow::BeginDefiningCollider()
+{
+	m_definingCollider = true;
+	m_defineColliderButton->SetLabel("End Collider Definition");
+
+	m_colliderVertices.setPrimitiveType(sf::LineStrip);
+	m_colliderVertices.clear();
+}
+
+void ShipEditorWindow::EndDefiningCollider()
+{
+	m_defineColliderButton->SetLabel("Begin Collider Definition");
+
+	// Close the collider shape
+	if (m_colliderVertices.getVertexCount() > 2)
+		m_colliderVertices.append(m_colliderVertices[0]);
+
+	DrawShipCanvas();
+	m_definingCollider = false;
+}
+
 void ShipEditorWindow::LoadShipStatsToEntries()
 {
 	m_interLeadEntry->SetText(std::to_string(m_targetStats->GetInterceptLeadMultiplier()));
@@ -237,7 +280,9 @@ void ShipEditorWindow::LoadShipImage()
 {
 	m_shipTexture = LoadTexture(m_editingStats->GetImageLocation());
 	m_shipImage.setTexture(*m_shipTexture.get());
-	m_shipImage.setTextureRect({ 0, 0, (int)m_shipTexture->getSize().x, (int)m_shipTexture->getSize().y });
+	// Explicitly set the texture rect. Otherwise, changing ships can cause part of
+	// the image to be occluded
+	m_shipImage.setTextureRect({ 0, 0, static_cast<int>(m_shipTexture->getSize().x), static_cast<int>(m_shipTexture->getSize().y) });
 
 	auto canvasSize = m_shipCanvas->GetRequisition();
 	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);
@@ -280,11 +325,37 @@ void ShipEditorWindow::CreateNewShip()
 void ShipEditorWindow::DrawShipCanvas()
 {
 	m_shipCanvas->Bind();
-	m_shipCanvas->Clear(sf::Color::White);
 	m_shipCanvas->Clear(sf::Color::Transparent);
 	m_shipCanvas->Draw(m_shipImage);
+
+	if (m_definingCollider)
+	{
+		m_shipCanvas->Draw(m_colliderVertices);
+	}
+
 	m_shipCanvas->Display();
 	m_shipCanvas->Unbind();
+}
+
+void ShipEditorWindow::OnCanvasClick()
+{
+	if (!m_definingCollider)
+		return;
+
+	auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
+	auto canvasPos = m_shipCanvas->GetAbsolutePosition();
+	auto inCanvasPos = sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
+	auto spriteRelativePos = inCanvasPos - m_shipImage.getPosition();
+
+	if (spriteRelativePos.x < 0) spriteRelativePos.x = 0;
+	if (spriteRelativePos.y < 0) spriteRelativePos.y = 0;
+	if (spriteRelativePos.x > m_shipImage.getLocalBounds().width) 
+		spriteRelativePos.x = m_shipImage.getLocalBounds().width;
+	if (spriteRelativePos.y > m_shipImage.getLocalBounds().height)
+		spriteRelativePos.y = m_shipImage.getLocalBounds().height;
+
+	m_colliderVertices.append(sf::Vertex(spriteRelativePos + m_shipImage.getPosition(), sf::Color::White));
+	DrawShipCanvas();
 }
 
 void ShipEditorWindow::OnShipSelected(const std::string& name)
