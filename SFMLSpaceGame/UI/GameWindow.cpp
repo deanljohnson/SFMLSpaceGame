@@ -34,4 +34,6 @@ void GameWindow::OnMouseLeave()
 {
 	m_windowsWithMouse--;
 	m_containsMouse = false;
+
+	if (m_windowsWithMouse < 0) m_windowsWithMouse = 0;
 }

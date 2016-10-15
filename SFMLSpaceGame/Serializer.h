@@ -5,11 +5,11 @@
 
 #ifdef RELEASE
 #ifndef DATA_PATH
-#define DATA_PATH "Data//"
+#define DATA_PATH "Data\\"
 #endif
 #else
 #ifndef DATA_PATH
-#define DATA_PATH "..//Data//"
+#define DATA_PATH "..\\Data\\"
 #endif
 #endif
 

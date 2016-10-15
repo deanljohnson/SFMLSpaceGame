@@ -219,6 +219,9 @@
     <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ShipSelector.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -460,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="FileSystem.h">
       <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ShipSelector.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
 #include <ResourceLoader.h>
 #include "SoundSource.h"
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
+#include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 
 struct HardPoint
 {

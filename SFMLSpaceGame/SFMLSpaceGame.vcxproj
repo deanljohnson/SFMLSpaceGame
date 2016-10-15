@@ -240,6 +240,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UI\GameWindow.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
+    <ClCompile Include="UI\ShipSelector.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +321,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Steering.h" />
     <ClInclude Include="UI\GameWindow.h" />
     <ClInclude Include="UI\ShipEditorWindow.h" />
+    <ClInclude Include="UI\ShipSelector.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />

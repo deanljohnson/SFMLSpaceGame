@@ -78,10 +78,10 @@ EntityID EntityFactory::CreateProjectile(ResourceID projId, EntityID sourceEntit
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateShip(ResourceID shipID, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateShip(const std::string& shipName, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(NON_PLAYER_SHIP_GROUP);
-	MakeIntoShip(ent, shipID, p, radians, true);
+	MakeIntoShip(ent, shipName, p, radians, true);
 	return ent.GetID();
 }
 
@@ -96,7 +96,7 @@ EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector(shipID), SpawnLocationSelector());
+	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector("Human-Fighter"), SpawnLocationSelector());
 	return ent.GetID();
 }
 
@@ -104,7 +104,7 @@ EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(EventType::PlayerDied, ShipResourceSelector(SHIP_HUMAN_FIGHTER), SpawnLocationSelector(), true);
+	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(EventType::PlayerDied, ShipResourceSelector("Human-Fighter"), SpawnLocationSelector(), true);
 	return ent.GetID();
 }
 
@@ -117,7 +117,7 @@ EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
-	MakeIntoShip(ent, SHIP_HUMAN_FIGHTER, p, radians, false);
+	MakeIntoShip(ent, "Human-Fighter", p, radians, false);
 	
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
@@ -151,9 +151,9 @@ void EntityFactory::MakeIntoBullet(EntityHandle& ent, ResourceID id, EntityID so
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
 }
 
-void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2Vec2& p, float radians, bool npc)
+void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p, float radians, bool npc)
 {
-	auto shipStats = LoadShip(shipID);
+	auto shipStats = LoadShip(shipName);
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);

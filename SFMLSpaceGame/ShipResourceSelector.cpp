@@ -1,6 +1,6 @@
 #include <ShipResourceSelector.h>
 
-ResourceID ShipResourceSelector::Select()
+std::string ShipResourceSelector::Select()
 {
 	switch(m_type)
 	{
@@ -8,5 +8,5 @@ ResourceID ShipResourceSelector::Select()
 		return m_singleID;
 	}
 
-	return NullResource;
+	return "";
 }

@@ -4,7 +4,7 @@
 
 class GameWindow
 {
-private:
+protected:
 	static int m_windowsWithMouse;
 	static std::map<std::string, GameWindow*> m_windows;
 

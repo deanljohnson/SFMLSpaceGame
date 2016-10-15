@@ -4,6 +4,7 @@
 #include <PhysicsStepper.h>
 #include "ContactFilter.h"
 #include "UI/ShipEditorWindow.h"
+#include "UI/ShipSelector.h"
 
 class InitialGameState : public GameState
 {
@@ -12,6 +13,7 @@ private:
 	ContactFilter m_contactListener;
 
 	ShipEditorWindow m_shipEditor;
+	ShipSelector m_shipSelector;
 
 public:
 	InitialGameState() 

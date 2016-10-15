@@ -46,9 +46,9 @@ void ShipSpawner::Spawn()
 {
 	if (!m_spawningPlayer)
 	{
-		auto id = m_shipSelector.Select();
+		auto shipName = m_shipSelector.Select();
 		auto loc = m_locSelector.Select(m_position->position);
-		EntityFactory::CreateShip(id, loc);
+		EntityFactory::CreateShip(shipName, loc);
 	}
 	else
 	{

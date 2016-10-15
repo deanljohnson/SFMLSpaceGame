@@ -8,7 +8,7 @@
 
 void AddEnemy()
 {
-	EntityFactory::CreateShip(SHIP_HUMAN_FIGHTER, b2Vec2(5, 5));
+	EntityFactory::CreateShip("Human-Fighter", b2Vec2(5, 5));
 }
 
 void InitialGameState::Init()
@@ -39,6 +39,7 @@ void InitialGameState::Init()
 	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 
 	m_shipEditor.Show(true);
+	m_shipSelector.Show(false);
 }
 
 void InitialGameState::CleanUp()

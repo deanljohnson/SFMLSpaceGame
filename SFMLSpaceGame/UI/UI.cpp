@@ -1,10 +1,12 @@
 #include <UI/UI.h>
+#include <SFML/Graphics/Color.hpp>
 
 UI* UI::Singleton{nullptr};
 
 UI::UI()
 {
 	Singleton = this;
+	m_desktop.SetProperty("Entry#invalid", "Color", sf::Color(255, 0, 0));
 }
 
 void UI::HandleEvent(const sf::Event& event)

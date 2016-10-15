@@ -5,10 +5,10 @@ class ShipResourceSelector
 {
 private:
 	enum { Single } m_type;
-	ResourceID m_singleID;
+	std::string m_singleID;
 public:
-	explicit ShipResourceSelector(ResourceID id)
-		: m_type(Single), m_singleID(id)
+	explicit ShipResourceSelector(const std::string& name)
+		: m_type(Single), m_singleID(name)
 	{}
-	ResourceID Select();
+	std::string Select();
 };

@@ -34,8 +34,7 @@ public:
 		  m_shipThrust{other.m_shipThrust},
 		  m_dirGunData{other.m_dirGunData},
 		  m_imageLocation{other.m_imageLocation}
-	{
-	}
+	{}
 
 	ShipStats(float interceptLead, float followDistance, 
 				float approachDistance, float strafeDistance, 
@@ -60,6 +59,13 @@ public:
 	inline DirectionalGunData* GetDirGunData() { return &m_dirGunData; }
 	inline std::string GetImageLocation() { return m_imageLocation; }
 
+	inline void SetInterceptLeadMultiplier(float val) { m_interceptLeadMultiplier = val; }
+	inline void SetFollowDistance(float val) { m_followDistance = val; }
+	inline void SetApproachDistance(float val) { m_approachDistance = val; }
+	inline void SetStrafeDistance(float val) { m_strafeDistance = val; }
+	inline void SetSensorRange(float val) { m_sensorRange = val; }
+	inline void SetImageLocation(const std::string& val) { m_imageLocation = val; }
+
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
@@ -73,5 +79,39 @@ public:
 				cereal::make_nvp("ImageLocation", m_imageLocation));
 	}
 
+	void Copy(ShipStats* other);
+
 	static std::string GetTypeName() { return "ship"; }
+	static ShipStats* Clone(ShipStats* other);
 };
+
+inline void ShipStats::Copy(ShipStats* other)
+{
+	m_interceptLeadMultiplier = other->m_interceptLeadMultiplier;
+	m_followDistance = other->m_followDistance;
+	m_approachDistance = other->m_approachDistance;
+	m_strafeDistance = other->m_strafeDistance;
+	m_sensorRange = other->m_sensorRange;
+
+	m_shipThrust.Forward = other->m_shipThrust.Forward;
+	m_shipThrust.Side = other->m_shipThrust.Side;
+	m_shipThrust.Reverse = other->m_shipThrust.Reverse;
+	m_shipThrust.Steer = other->m_shipThrust.Steer;
+
+	m_dirGunData.fireRate = other->m_dirGunData.fireRate;
+	m_dirGunData.heatLimit = other->m_dirGunData.heatLimit;
+	m_dirGunData.cooldownRate = other->m_dirGunData.cooldownRate;
+	m_dirGunData.heatGenerated = other->m_dirGunData.heatGenerated;
+}
+
+inline ShipStats* ShipStats::Clone(ShipStats* other)
+{
+	return new ShipStats(other->m_interceptLeadMultiplier,
+						other->m_followDistance,
+						other->m_approachDistance,
+						other->m_strafeDistance,
+						other->m_sensorRange,
+						ShipThrust(other->m_shipThrust),
+						DirectionalGunData(other->m_dirGunData),
+						other->m_imageLocation);
+}

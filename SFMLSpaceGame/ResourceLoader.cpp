@@ -8,6 +8,16 @@
 #include <Animation.h>
 #include <Serializer.h>
 
+#ifdef RELEASE
+#ifndef IMAGE_PATH
+#define IMAGE_PATH "Images//"
+#endif
+#else
+#ifndef IMAGE_PATH
+#define IMAGE_PATH "Images//"
+#endif
+#endif
+
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
@@ -15,10 +25,12 @@ namespace
 
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
+
+	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
+
 	std::map<ResourceID,  std::shared_ptr<Animation>> loadedAnimations;
 	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
-	std::map<ResourceID,  std::shared_ptr<ShipStats>> loadedShips;
 	std::map<ResourceID,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
 
 	bool IsShipID(ResourceID id) 
@@ -39,11 +51,6 @@ namespace
 	bool IsSoundID(ResourceID id)
 	{
 		return id > SOUND_ID_START && id < SOUND_ID_END;
-	}
-
-	ShipStats* LoadHumanFighter()
-	{
-		return serializer.Load<ShipStats>("Human-Fighter");
 	}
 
 	ProjectileStats* LoadLaserOne()
@@ -81,8 +88,8 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
 	UnloadUnusedSharedPtrResources(loadedAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
-	UnloadUnusedSharedPtrResources(loadedShips);
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
+	UnloadUnusedSharedPtrResources(loadedShips);
 }
 
 std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
@@ -115,7 +122,7 @@ std::shared_ptr<sf::Texture> LoadTexture(std::string name)
 		return it->second;
 	}
 
-	name = "Images\\" + name;
+	name = IMAGE_PATH + name;
 
 	sf::Texture image;
 	if (!image.loadFromFile(name))
@@ -221,24 +228,19 @@ std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id)
 	return elem;
 }
 
-std::shared_ptr<ShipStats> LoadShip(ResourceID id) 
+std::shared_ptr<ShipStats> LoadShip(std::string name)
 {
-	assert(IsShipID(id));
-
-	auto it = loadedShips.find(id);
+	auto it = loadedShips.find(name);
 	if (it != loadedShips.end())
 	{
 		return it->second;
 	}
 
-	if (id == SHIP_HUMAN_FIGHTER) 
-	{
-		auto elem = std::make_shared<ShipStats>(*LoadHumanFighter());
-		loadedShips.insert(make_pair(id, elem));
-		return elem;
-	}
+	auto elem = std::make_shared<ShipStats>(*serializer.Load<ShipStats>(name));
 
-	return nullptr;
+	loadedShips.insert(make_pair(name, elem));
+
+	return elem;
 }
 
 std::shared_ptr<ProjectileStats> LoadProjectile(ResourceID id)
