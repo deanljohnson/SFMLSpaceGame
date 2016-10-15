@@ -8,6 +8,7 @@
 #include <ShipStats.h>
 #include <SFGUI/Entry.hpp>
 #include <Serializer.h>
+#include <SFML/Graphics/Sprite.hpp>
 
 class ShipEditorWindow : public GameWindow
 {
@@ -44,13 +45,19 @@ private:
 	sfg::Entry::Ptr m_cooldownRateEntry;
 	sfg::Entry::Ptr m_heatGenEntry;
 
+	std::shared_ptr<sf::Texture> m_shipTexture;
+	sf::Sprite m_shipImage;
+
 	void SetupWindowSignals();
 	void SetupButtonSignals();
 	void SetupPropertyTable();
 	void SetupEntryValidationSignals();
 
 	void LoadShipStatsToEntries();
+	void LoadShipImage();
 	bool CheckAllEntryValidity();
+
+	void DrawShipCanvas();
 
 	void OnShipSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);

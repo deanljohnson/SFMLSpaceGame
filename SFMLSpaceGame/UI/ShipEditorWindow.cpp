@@ -218,6 +218,19 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_heatGenEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatGenerated));
 }
 
+void ShipEditorWindow::LoadShipImage()
+{
+	m_shipTexture = LoadTexture(m_editingStats->GetImageLocation());
+	m_shipImage.setTexture(*m_shipTexture.get());
+
+	auto canvasSize = m_shipCanvas->GetRequisition();
+	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);
+
+	m_shipImage.setPosition((canvasSize / 2.f) - (shipSize / 2.f));
+
+	DrawShipCanvas();
+}
+
 bool ShipEditorWindow::CheckAllEntryValidity()
 {
 	std::string valid = "valid";
@@ -236,8 +249,19 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 		&& m_heatGenEntry->GetId() == valid;
 }
 
+void ShipEditorWindow::DrawShipCanvas()
+{
+	m_shipCanvas->Bind();
+	m_shipCanvas->Clear(sf::Color::Transparent);
+	m_shipCanvas->Draw(m_shipImage);
+	m_shipCanvas->Unbind();
+}
+
 void ShipEditorWindow::OnShipSelected(const std::string& name)
 {
+	if (name == "")
+		return;
+
 	m_originalName = name;
 
 	m_targetStats = LoadShip(name);
@@ -245,6 +269,7 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	// Clone the ships stats for our use
 	m_editingStats = std::make_unique<ShipStats>(*ShipStats::Clone(m_targetStats.get()));
 	LoadShipStatsToEntries();
+	LoadShipImage();
 }
 
 void ShipEditorWindow::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
