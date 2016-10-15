@@ -222,6 +222,12 @@
     <ClCompile Include="UI\ShipSelector.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ImageSelector.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ShipNameEntry.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -465,6 +471,12 @@
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
     <ClInclude Include="UI\ShipSelector.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ImageSelector.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ShipNameEntry.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

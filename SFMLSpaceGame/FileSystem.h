@@ -3,13 +3,23 @@
 #include <vector>
 
 #ifdef RELEASE
+
 #ifndef DATA_PATH
 #define DATA_PATH "Data\\"
 #endif
+#ifndef IMAGE_PATH
+#define IMAGE_PATH "Images\\"
+#endif
+
 #else
+
 #ifndef DATA_PATH
 #define DATA_PATH "..\\Data\\"
 #endif
+#ifndef IMAGE_PATH
+#define IMAGE_PATH "Images\\"
+#endif
+
 #endif
 
 namespace FileSystem

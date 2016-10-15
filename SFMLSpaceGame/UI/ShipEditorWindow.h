@@ -57,13 +57,18 @@ private:
 	void LoadShipImage();
 	bool CheckAllEntryValidity();
 
+	void CreateNewShip();
+
 	void DrawShipCanvas();
 
 	void OnShipSelected(const std::string& name);
+	void OnNewShipImageSelected(const std::string& name);
+	void OnNewShipNameSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);
 	void OnSaveShip();
 
-	std::string m_originalName;
+	std::string m_newShipImageName;
+	std::string m_shipName;
 	std::unique_ptr<ShipStats> m_editingStats;
 	std::shared_ptr<ShipStats> m_targetStats;
 public:
@@ -71,4 +76,6 @@ public:
 
 	virtual void Show(bool val = true) override;
 	virtual bool IsShown() override;
+
+	void SetPosition(const sf::Vector2f& pos);
 };

@@ -18,16 +18,16 @@ ShipSelector::ShipSelector()
 	m_table = sfg::Table::Create();
 	m_window->Add(m_table);
 
-	auto selectionBox = sfg::ComboBox::Create();
-	m_table->Attach(selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_selectionBox = sfg::ComboBox::Create();
+	m_table->Attach(m_selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	std::vector<std::string> shipFiles;
 	FileSystem::GetFileNamesWithExtension(DATA_PATH, "." + ShipStats::GetTypeName(), shipFiles);
 	for (auto e : shipFiles)
 	{
-		// Strip the extension from the file
+		// Strip the extension from the file name
 		e.erase(e.find_last_of("."), std::string::npos);
-		selectionBox->AppendItem(e);
+		m_selectionBox->AppendItem(e);
 	}
 
 	auto selectButton = sfg::Button::Create("Select");
@@ -36,7 +36,7 @@ ShipSelector::ShipSelector()
 	m_table->Attach(cancelButton, { 1, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	selectButton->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[this, selectionBox] { CallCallback(selectionBox->GetSelectedText()); Show(false); });
+		[this] { CallCallback(m_selectionBox->GetSelectedText()); Show(false); });
 	cancelButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] { CallCallback(""); Show(false); });
 }
@@ -68,6 +68,20 @@ void ShipSelector::Show(bool val)
 
 	if (m_containsMouse && !val)
 		OnMouseLeave();
+
+	if (val)
+	{
+		m_selectionBox->Clear();
+
+		std::vector<std::string> shipFiles;
+		FileSystem::GetFileNamesWithExtension(DATA_PATH, "." + ShipStats::GetTypeName(), shipFiles);
+		for (auto e : shipFiles)
+		{
+			// Strip the extension from the file name
+			e.erase(e.find_last_of("."), std::string::npos);
+			m_selectionBox->AppendItem(e);
+		}
+	}
 }
 
 bool ShipSelector::IsShown()

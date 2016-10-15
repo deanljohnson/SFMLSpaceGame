@@ -40,6 +40,9 @@ void InitialGameState::Init()
 
 	m_shipEditor.Show(true);
 	m_shipSelector.Show(false);
+	m_imageSelector.Show(false);
+	m_shipNameEntry.Show(false);
+	m_shipEditor.SetPosition({ 300, 100 });
 }
 
 void InitialGameState::CleanUp()

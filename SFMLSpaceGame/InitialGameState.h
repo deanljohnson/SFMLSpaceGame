@@ -5,6 +5,8 @@
 #include "ContactFilter.h"
 #include "UI/ShipEditorWindow.h"
 #include "UI/ShipSelector.h"
+#include "UI/ImageSelector.h"
+#include "UI/ShipNameEntry.h"
 
 class InitialGameState : public GameState
 {
@@ -14,6 +16,8 @@ private:
 
 	ShipEditorWindow m_shipEditor;
 	ShipSelector m_shipSelector;
+	ImageSelector m_imageSelector;
+	ShipNameEntry m_shipNameEntry;
 
 public:
 	InitialGameState() 

@@ -7,16 +7,7 @@
 #include "ShipStats.h"
 #include <Animation.h>
 #include <Serializer.h>
-
-#ifdef RELEASE
-#ifndef IMAGE_PATH
-#define IMAGE_PATH "Images//"
-#endif
-#else
-#ifndef IMAGE_PATH
-#define IMAGE_PATH "Images//"
-#endif
-#endif
+#include <FileSystem.h>
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace

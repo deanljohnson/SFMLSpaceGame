@@ -3,6 +3,8 @@
 #include <SFGUI/Label.hpp>
 #include <SFGUI/Entry.hpp>
 #include "ShipSelector.h"
+#include "ImageSelector.h"
+#include "ShipNameEntry.h"
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -61,6 +63,11 @@ bool ShipEditorWindow::IsShown()
 	return m_window->IsLocallyVisible();
 }
 
+void ShipEditorWindow::SetPosition(const sf::Vector2f& pos)
+{
+	m_window->SetPosition(pos);
+}
+
 void ShipEditorWindow::SetupWindowSignals()
 {
 	m_window->GetSignal(sfg::Window::OnMouseEnter).Connect([this] { OnMouseEnter(); });
@@ -70,6 +77,14 @@ void ShipEditorWindow::SetupWindowSignals()
 
 void ShipEditorWindow::SetupButtonSignals()
 {
+	m_newShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this]
+	{
+		auto selectWindow = static_cast<ImageSelector*>(GetWindow("image_select"));
+		selectWindow->SetCallback([this](const std::string& name) { OnNewShipImageSelected(name); });
+		selectWindow->Show(true);
+	});
+
 	m_editShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
 		{ 
@@ -222,6 +237,7 @@ void ShipEditorWindow::LoadShipImage()
 {
 	m_shipTexture = LoadTexture(m_editingStats->GetImageLocation());
 	m_shipImage.setTexture(*m_shipTexture.get());
+	m_shipImage.setTextureRect({ 0, 0, (int)m_shipTexture->getSize().x, (int)m_shipTexture->getSize().y });
 
 	auto canvasSize = m_shipCanvas->GetRequisition();
 	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);
@@ -249,11 +265,25 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 		&& m_heatGenEntry->GetId() == valid;
 }
 
+void ShipEditorWindow::CreateNewShip()
+{
+	if (m_newShipImageName == "" || m_shipName == "")
+		return;
+
+	ShipStats newShip = ShipStats();
+	newShip.SetImageLocation(m_newShipImageName);
+	serializer.Save(&newShip, m_shipName, m_shipName);
+
+	OnShipSelected(m_shipName);
+}
+
 void ShipEditorWindow::DrawShipCanvas()
 {
 	m_shipCanvas->Bind();
+	m_shipCanvas->Clear(sf::Color::White);
 	m_shipCanvas->Clear(sf::Color::Transparent);
 	m_shipCanvas->Draw(m_shipImage);
+	m_shipCanvas->Display();
 	m_shipCanvas->Unbind();
 }
 
@@ -262,7 +292,7 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	if (name == "")
 		return;
 
-	m_originalName = name;
+	m_shipName = name;
 
 	m_targetStats = LoadShip(name);
 
@@ -270,6 +300,27 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	m_editingStats = std::make_unique<ShipStats>(*ShipStats::Clone(m_targetStats.get()));
 	LoadShipStatsToEntries();
 	LoadShipImage();
+}
+
+void ShipEditorWindow::OnNewShipImageSelected(const std::string& name)
+{
+	if (name == "")
+		return;
+
+	m_newShipImageName = name;
+
+	auto selectWindow = static_cast<ShipNameEntry*>(GetWindow("ship_name_entry"));
+	selectWindow->SetCallback([this](const std::string& name) { OnNewShipNameSelected(name); });
+	selectWindow->Show(true);
+}
+
+void ShipEditorWindow::OnNewShipNameSelected(const std::string& name)
+{
+	if (name == "")
+		return;
+
+	m_shipName = name;
+	CreateNewShip();
 }
 
 void ShipEditorWindow::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
@@ -326,5 +377,5 @@ void ShipEditorWindow::OnSaveShip()
 
 	m_targetStats->Copy(m_editingStats.get());
 	
-	serializer.Save(m_targetStats.get(), m_originalName, m_originalName);
+	serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
 }
