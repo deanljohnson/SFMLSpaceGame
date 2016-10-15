@@ -15,8 +15,8 @@ constexpr ResourceID NullResource(-1);
 
 void UnloadUnusedResources();
 
-std::shared_ptr<sf::Image> LoadImageResource(ResourceID id);
-std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id);
+std::shared_ptr<sf::Texture> LoadTexture(std::string name);
+std::shared_ptr<sf::Texture> LoadBuiltInTexture(ResourceID id);
 std::shared_ptr<Animation> LoadAnimationResource(ResourceID id);
 std::shared_ptr<sf::Font> LoadFont(ResourceID id);
 std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id);

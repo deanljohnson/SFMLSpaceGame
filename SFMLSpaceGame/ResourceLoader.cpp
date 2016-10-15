@@ -3,7 +3,6 @@
 #include <windows.h>
 #include <map>
 #include <assert.h>
-#include <Components/DirectionalGun.h>
 #include "ProjectileStats.h"
 #include "ShipStats.h"
 #include <Animation.h>
@@ -14,13 +13,13 @@ namespace
 {
 	Serializer serializer = Serializer();
 
-	std::map<ResourceID, std::shared_ptr<sf::Image>> loadedImages;
-	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedTextures;
-	std::map<ResourceID, std::shared_ptr<Animation>> loadedAnimations;
-	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
-	std::map<ResourceID, std::shared_ptr<sf::SoundBuffer>> loadedSounds;
-	std::map<ResourceID, std::shared_ptr<ShipStats>> loadedShips;
-	std::map<ResourceID, std::shared_ptr<ProjectileStats>> loadedProjectiles;
+	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
+	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
+	std::map<ResourceID,  std::shared_ptr<Animation>> loadedAnimations;
+	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
+	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
+	std::map<ResourceID,  std::shared_ptr<ShipStats>> loadedShips;
+	std::map<ResourceID,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
 
 	bool IsShipID(ResourceID id) 
 	{
@@ -78,8 +77,8 @@ void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>&
 
 void UnloadUnusedResources()
 {
-	UnloadUnusedSharedPtrResources(loadedImages);
 	UnloadUnusedSharedPtrResources(loadedTextures);
+	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
 	UnloadUnusedSharedPtrResources(loadedAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedShips);
@@ -107,32 +106,32 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<sf::Image> LoadImageResource(ResourceID id)
+std::shared_ptr<sf::Texture> LoadTexture(std::string name)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedImages.find(id);
-	if (it != loadedImages.end())
+	auto it = loadedTextures.find(name);
+	if (it != loadedTextures.end())
 	{
 		return it->second;
 	}
 
-	auto dataPair = LoadRCData(id);
+	name = "Images\\" + name;
 
-	sf::Image image;
-	if (!image.loadFromMemory(dataPair.first, dataPair.second))
-		throw std::runtime_error("Failed to load image from memory.");
+	sf::Texture image;
+	if (!image.loadFromFile(name))
+		throw std::runtime_error("Failed to load image from file " + name);
 
-	auto elem = std::make_shared<sf::Image>(image);
-	loadedImages.insert(make_pair(id, elem));
+	auto elem = std::make_shared<sf::Texture>(image);
+	loadedTextures.insert(make_pair(name, elem));
 
 	return elem;
 }
 
-std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
+std::shared_ptr<sf::Texture> LoadBuiltInTexture(ResourceID id)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedTextures.find(id);
-	if (it != loadedTextures.end())
+	auto it = loadedBuiltInTextures.find(id);
+	if (it != loadedBuiltInTextures.end())
 	{
 		return it->second;
 	}
@@ -144,7 +143,7 @@ std::shared_ptr<sf::Texture> LoadTextureResource(ResourceID id)
 		throw std::runtime_error("Failed to load image from memory.");
 
 	auto elem = std::make_shared<sf::Texture>(tex);
-	loadedTextures.insert(make_pair(id, elem));
+	loadedBuiltInTextures.insert(make_pair(id, elem));
 
 	return elem;
 }

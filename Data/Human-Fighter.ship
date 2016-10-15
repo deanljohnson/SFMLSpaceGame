@@ -33,6 +33,7 @@
                 }
             ],
             "SoundID": 801
-        }
+        },
+        "ImageLocation": "Human-Fighter.png"
     }
 }

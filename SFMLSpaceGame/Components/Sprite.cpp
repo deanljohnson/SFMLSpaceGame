@@ -3,11 +3,20 @@
 #include <WorldConstants.h>
 #include <VectorMath.h>
 
+Sprite::Sprite(ResourceID id)
+{
+	m_tex = LoadBuiltInTexture(id);
+}
+
+Sprite::Sprite(const std::string& location)
+{
+	m_tex = LoadTexture(location);
+}
+
 void Sprite::Init()
 {
 	m_position = &entity->GetComponent<Position>();
 	m_rotation = &entity->GetComponent<Rotation>();
-	m_tex = LoadTextureResource(m_resourceID);
 
 	m_sprite = sf::Sprite(*m_tex.get());
 	m_sprite.setScale(METERS_PER_PIXEL, METERS_PER_PIXEL); //Render method will convert meters back to pixels

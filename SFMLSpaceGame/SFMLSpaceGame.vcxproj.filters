@@ -216,6 +216,9 @@
     <ClCompile Include="UI\GameWindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Source Files\DataManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -455,6 +458,9 @@
     <ClInclude Include="UI\GameWindow.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystem.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
@@ -482,10 +488,10 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Data\LaserOne.json">
+    <None Include="..\Data\Human-Fighter.ship">
       <Filter>Data</Filter>
     </None>
-    <None Include="..\Data\Human-Fighter.json">
+    <None Include="..\Data\LaserOne.projectile">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>

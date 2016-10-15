@@ -157,7 +157,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, ResourceID shipID, const b2V
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	auto& sp = ent->AddComponent<Sprite, ResourceID>(shipID);
+	auto& sp = ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, ShipThrust*>(shipStats->GetShipThrust());
 	auto& shotSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);

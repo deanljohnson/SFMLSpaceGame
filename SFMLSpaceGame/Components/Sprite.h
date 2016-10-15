@@ -12,13 +12,11 @@ private:
 
 	sf::Sprite m_sprite;
 
-	ResourceID m_resourceID;
 	std::shared_ptr<sf::Texture> m_tex;
 
 public:
-	explicit Sprite(ResourceID id)
-		: m_resourceID(id)
-	{}
+	explicit Sprite(ResourceID id);
+	explicit Sprite(const std::string& location);
 
 	virtual void Init() override;
 	virtual void Update() override;

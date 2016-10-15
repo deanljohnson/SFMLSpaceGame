@@ -31,8 +31,8 @@ public:
 	template<class T>
 	T* Load(std::string name)
 	{
-		name += SERIALIZATION_EXTENSION;
-
+		name += "." + T::GetTypeName();
+		
 		// Open the input file stream
 		std::ifstream is(DATA_PATH + name);
 		if (is.fail())
@@ -52,7 +52,7 @@ public:
 	template<class T>
 	void Save(T* obj, std::string fileName, std::string rootName)
 	{
-		fileName += SERIALIZATION_EXTENSION;
+		fileName += "." + T::GetTypeName();
 
 		std::ofstream os(DATA_PATH + fileName);
 		SERIALIZATION_OUT_ARCHIVE ar(os);

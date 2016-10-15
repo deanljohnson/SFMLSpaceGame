@@ -99,7 +99,8 @@
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
 XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
-XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y
+XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,7 +121,8 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
     <PostBuildEvent>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
 XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
-XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
+XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y
+XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,7 +148,8 @@ XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y</Command>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
 XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
 XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y
-XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
+XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y
+XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,7 +175,8 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
       <Command>XCOPY "$(SolutionDir)Fonts" "$(TargetDir)\Fonts\" /S /Y
 XCOPY "$(SolutionDir)Sounds" "$(TargetDir)\Sounds\" /S /Y
 XCOPY "$(SolutionDir)Music" "$(TargetDir)\Music\" /S /Y
-XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
+XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y
+XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -209,6 +213,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClCompile Include="EntityHelpers.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InitialGameState.cpp">
@@ -261,6 +266,7 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <ClInclude Include="EntityID.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="Interfaces\ComponentSensor.h" />
     <ClInclude Include="Interfaces\Sensor.h" />
@@ -330,8 +336,8 @@ XCOPY "$(SolutionDir)Data" "$(TargetDir)\Data\" /S /Y</Command>
     <Image Include="..\Images\basic_up.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Data\Human-Fighter.json" />
-    <None Include="..\Data\LaserOne.json" />
+    <None Include="..\Data\Human-Fighter.ship" />
+    <None Include="..\Data\LaserOne.projectile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,4 +21,5 @@ public:
 	void OnMouseLeave();
 
 	virtual void Show(bool val = true) = 0;
+	virtual bool IsShown() = 0;
 };

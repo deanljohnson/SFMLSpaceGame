@@ -2,7 +2,7 @@
 #include <Box2d/Common/b2Math.h>
 #include <cereal\cereal.hpp>
 
-class ProjectileStats 
+class ProjectileStats
 {
 private:
 	float m_speed;
@@ -36,4 +36,6 @@ public:
 				cereal::make_nvp("Damage", m_damage), 
 				cereal::make_nvp("Size", m_size));
 	}
+
+	static std::string GetTypeName() { return "projectile"; }
 };
