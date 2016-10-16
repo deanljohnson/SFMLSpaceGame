@@ -90,7 +90,7 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 		throw std::runtime_error("Failed to find resource.");
 
 	DWORD rsrcDataSize = SizeofResource(nullptr, rsrcData);
-	if (rsrcDataSize <= 0)
+	if (rsrcDataSize == 0)
 		throw std::runtime_error("Size of resource is 0.");
 
 	HGLOBAL grsrcData = LoadResource(nullptr, rsrcData);

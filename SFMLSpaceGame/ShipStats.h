@@ -44,7 +44,7 @@ public:
 	ShipStats(float interceptLead, float followDistance, 
 				float approachDistance, float strafeDistance, 
 				float sensorRange, ShipThrust thrust, 
-				DirectionalGunData dirData, std::string imageLocation,
+				DirectionalGunData dirData, const std::string& imageLocation,
 				const std::vector<sf::Vector2f>& colliderVertices)
 		: m_interceptLeadMultiplier(interceptLead),
 		  m_followDistance(followDistance),
@@ -64,7 +64,7 @@ public:
 	inline float GetSensorRange() const { return m_sensorRange; }
 	inline ShipThrust* GetShipThrust() { return &m_shipThrust; }
 	inline DirectionalGunData* GetDirGunData() { return &m_dirGunData; }
-	inline std::string GetImageLocation() { return m_imageLocation; }
+	inline std::string GetImageLocation() const { return m_imageLocation; }
 	inline std::vector<sf::Vector2f>& GetColliderVertices() { return m_colliderVertices; }
 
 	inline void SetInterceptLeadMultiplier(float val) { m_interceptLeadMultiplier = val; }

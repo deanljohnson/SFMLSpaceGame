@@ -6,7 +6,7 @@
 class EventQueue
 {
 private:
-	std::deque<Event> m_events;
+	std::deque<Event> m_events{};
 	int m_lastEventsSinceUpdate{ 0 };
 	int m_eventsSinceUpdate{ 0 };
 
