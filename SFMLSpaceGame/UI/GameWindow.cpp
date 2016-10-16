@@ -1,4 +1,5 @@
 #include <UI/GameWindow.h>
+#include "UI.h"
 
 int GameWindow::m_windowsWithMouse = 0;
 std::map<std::string, GameWindow*> GameWindow::m_windows{};
@@ -36,4 +37,40 @@ void GameWindow::OnMouseLeave()
 	m_containsMouse = false;
 
 	if (m_windowsWithMouse < 0) m_windowsWithMouse = 0;
+}
+
+void GameWindow::SetupWindowSignals()
+{
+	m_window->GetSignal(sfg::Window::OnMouseEnter).Connect([this] { OnMouseEnter(); });
+	m_window->GetSignal(sfg::Window::OnMouseLeave).Connect([this] { OnMouseLeave(); });
+	m_window->GetSignal(sfg::Window::OnCloseButton).Connect([this] { Show(false); });
+}
+
+void GameWindow::Show(bool val)
+{
+	if (m_window->IsLocallyVisible() == val)
+		return;
+
+	m_window->Show(val);
+
+	if (val)
+		UI::Singleton->BringToFront(m_window);
+
+	if (m_containsMouse && !val)
+		OnMouseLeave();
+}
+
+bool GameWindow::IsShown()
+{
+	return m_window->IsLocallyVisible();
+}
+
+void GameWindow::CenterOnScreen()
+{
+	// Center window on screen
+	m_window->SetPosition(
+		sf::Vector2f(
+		(UI::Singleton->GetSize().x / 2.f) - m_window->GetAllocation().width / 2.f,
+		(UI::Singleton->GetSize().y / 2.f) - m_window->GetAllocation().height / 2.f));
+
 }

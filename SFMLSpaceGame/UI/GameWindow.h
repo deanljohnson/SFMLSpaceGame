@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <SFGUI/Window.hpp>
 
 class GameWindow
 {
@@ -10,6 +11,9 @@ protected:
 
 	bool m_containsMouse;
 	std::string m_id;
+	sfg::Window::Ptr m_window;
+
+	virtual void SetupWindowSignals();
 public:
 	explicit GameWindow(std::string id);
 	virtual ~GameWindow();
@@ -20,6 +24,8 @@ public:
 	void OnMouseEnter();
 	void OnMouseLeave();
 
-	virtual void Show(bool val = true) = 0;
-	virtual bool IsShown() = 0;
+	virtual void Show(bool val = true);
+	virtual bool IsShown();
+
+	virtual void CenterOnScreen();
 };

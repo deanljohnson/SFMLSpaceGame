@@ -26,7 +26,7 @@ public:
 		  m_sensorRange(0),
 		  m_shipThrust(),
 		  m_dirGunData(),
-		m_colliderVertices()
+		  m_colliderVertices()
 	{}
 
 	ShipStats(const ShipStats& other)
@@ -112,6 +112,7 @@ inline void ShipStats::Copy(ShipStats* other)
 	m_dirGunData.heatLimit = other->m_dirGunData.heatLimit;
 	m_dirGunData.cooldownRate = other->m_dirGunData.cooldownRate;
 	m_dirGunData.heatGenerated = other->m_dirGunData.heatGenerated;
+	m_dirGunData.hardPoints = { other->m_dirGunData.hardPoints };
 
 	m_colliderVertices = { other->m_colliderVertices };
 }

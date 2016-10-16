@@ -40,6 +40,8 @@
 #include "UI/GameWindow.h"
 #include <SFML/Graphics/ConvexShape.hpp>
 #include "WorldConstants.h"
+#include "GameState.h"
+#include "Components/ShipStatsSink.h"
 
 void EntityFactory::Init()
 {
@@ -106,7 +108,7 @@ EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(EventType::PlayerDied, ShipResourceSelector("Human-Fighter"), SpawnLocationSelector(), true);
+	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(PlayerDied, ShipResourceSelector([] {return GameState::playerShipName; }), SpawnLocationSelector(), true);
 	return ent.GetID();
 }
 
@@ -119,8 +121,11 @@ EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
-	MakeIntoShip(ent, "Human-Fighter", p, radians, false);
+	MakeIntoShip(ent, GameState::playerShipName, p, radians, false);
 	
+	// This makes sure the the players ship stats stay loaded
+	ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(GameState::playerShipName));
+
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ThrusterInput>();
@@ -211,7 +216,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	sensor.AttachComponent(&keyListener);
 	sensor.AttachComponent(&text);
 
-	keyListener += [](sf::Keyboard::Key) { GameWindow::GetWindow("ship_editor")->Show(true); };
+	keyListener += [](sf::Keyboard::Key) { GameWindow::GetWindow("station_window")->Show(true); };
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

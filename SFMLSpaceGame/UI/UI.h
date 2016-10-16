@@ -22,8 +22,9 @@ public:
 	void HandleEvent(const sf::Event& event);
 	void Update(float dt);
 	void Display(sf::RenderWindow& target);
-	void Add(std::shared_ptr<sfg::Widget> widget, bool centered = false);
-	void Remove(std::shared_ptr<sfg::Widget> widget, bool centered = false);
+	void Add(std::shared_ptr<sfg::Widget> widget);
+	void Remove(std::shared_ptr<sfg::Widget> widget);
+	void BringToFront(std::shared_ptr<sfg::Widget> widget);
 
 	void SetSize(const sf::Vector2u& size);
 	sf::Vector2u GetSize();

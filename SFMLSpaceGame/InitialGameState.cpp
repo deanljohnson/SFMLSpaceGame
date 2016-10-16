@@ -38,11 +38,16 @@ void InitialGameState::Init()
 	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
 	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 
-	m_shipEditor.Show(true);
+	m_shipEditor.Show(false);
 	m_shipSelector.Show(false);
 	m_imageSelector.Show(false);
 	m_shipNameEntry.Show(false);
-	m_shipEditor.SetPosition({ 300, 100 });
+	m_stationWindow.Show(false);
+	m_shipEditor.CenterOnScreen();
+	m_shipSelector.CenterOnScreen();
+	m_imageSelector.CenterOnScreen();
+	m_shipNameEntry.CenterOnScreen();
+	m_stationWindow.CenterOnScreen();
 }
 
 void InitialGameState::CleanUp()

@@ -6,6 +6,8 @@ std::string ShipResourceSelector::Select()
 	{
 	case Single:
 		return m_singleID;
+	case Func:
+		return m_sourceFunc();
 	}
 
 	return "";

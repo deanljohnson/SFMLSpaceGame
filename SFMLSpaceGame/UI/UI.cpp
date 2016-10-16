@@ -24,14 +24,19 @@ void UI::Display(sf::RenderWindow& target)
 	m_sfgui.Display(target);
 }
 
-void UI::Add(std::shared_ptr<sfg::Widget> widget, bool centered)
+void UI::Add(std::shared_ptr<sfg::Widget> widget)
 {
 	m_desktop.Add(widget);
 }
 
-void UI::Remove(std::shared_ptr<sfg::Widget> widget, bool centered)
+void UI::Remove(std::shared_ptr<sfg::Widget> widget)
 {
 	m_desktop.Remove(widget);
+}
+
+void UI::BringToFront(std::shared_ptr<sfg::Widget> widget)
+{
+	m_desktop.BringToFront(widget);
 }
 
 void UI::SetSize(const sf::Vector2u& size)

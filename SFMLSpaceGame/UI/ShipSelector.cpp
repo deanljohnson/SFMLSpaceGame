@@ -4,6 +4,7 @@
 #include <SFGUI/ComboBox.hpp>
 #include <SFGUI/Button.hpp>
 #include <ShipStats.h>
+#include <SFGUI/Table.hpp>
 
 ShipSelector::ShipSelector()
 	: GameWindow("ship_select")
@@ -15,11 +16,11 @@ ShipSelector::ShipSelector()
 	UI::Singleton->Add(m_window);
 	SetupWindowSignals();
 
-	m_table = sfg::Table::Create();
-	m_window->Add(m_table);
+	auto table = sfg::Table::Create();
+	m_window->Add(table);
 
 	m_selectionBox = sfg::ComboBox::Create();
-	m_table->Attach(m_selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(m_selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	std::vector<std::string> shipFiles;
 	FileSystem::GetFileNamesWithExtension(DATA_PATH, "." + ShipStats::GetTypeName(), shipFiles);
@@ -32,8 +33,8 @@ ShipSelector::ShipSelector()
 
 	auto selectButton = sfg::Button::Create("Select");
 	auto cancelButton = sfg::Button::Create("Cancel");
-	m_table->Attach(selectButton, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_table->Attach(cancelButton, { 1, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(selectButton, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(cancelButton, { 1, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	selectButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] { CallCallback(m_selectionBox->GetSelectedText()); Show(false); });
@@ -46,13 +47,6 @@ void ShipSelector::SetCallback(std::function<void(const std::string&)> callback)
 	m_callback = callback;
 }
 
-void ShipSelector::SetupWindowSignals()
-{
-	m_window->GetSignal(sfg::Window::OnMouseEnter).Connect([this]{ OnMouseEnter(); });
-	m_window->GetSignal(sfg::Window::OnMouseLeave).Connect([this]{ OnMouseLeave(); });
-	m_window->GetSignal(sfg::Window::OnCloseButton).Connect([this]{ Show(false); });
-}
-
 void ShipSelector::CallCallback(const std::string& name)
 {
 	if (m_callback != nullptr)
@@ -61,13 +55,7 @@ void ShipSelector::CallCallback(const std::string& name)
 
 void ShipSelector::Show(bool val)
 {
-	if (m_window->IsLocallyVisible() == val)
-		return;
-
-	m_window->Show(val);
-
-	if (m_containsMouse && !val)
-		OnMouseLeave();
+	GameWindow::Show(val);
 
 	if (val)
 	{
@@ -82,9 +70,4 @@ void ShipSelector::Show(bool val)
 			m_selectionBox->AppendItem(e);
 		}
 	}
-}
-
-bool ShipSelector::IsShown()
-{
-	return m_window->IsLocallyVisible();
 }

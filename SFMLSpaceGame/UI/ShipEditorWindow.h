@@ -15,11 +15,11 @@ class ShipEditorWindow : public GameWindow
 private:
 	Serializer serializer;
 
-	sfg::Window::Ptr m_window;
 	sfg::Button::Ptr m_newShipButton;
 	sfg::Button::Ptr m_editShipButton;
 	sfg::Button::Ptr m_saveShipButton;
 	sfg::Button::Ptr m_defineColliderButton;
+	sfg::Button::Ptr m_hardpointEditorButton;
 	sfg::Window::Ptr m_shipWindow;
 	sfg::Canvas::Ptr m_shipCanvas;
 	sfg::Table::Ptr m_propertyTable;
@@ -50,7 +50,6 @@ private:
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;
 
-	void SetupWindowSignals();
 	void SetupButtonSignals();
 	void SetupPropertyTable();
 	void SetupCanvasSignals();
@@ -83,9 +82,6 @@ private:
 	std::shared_ptr<ShipStats> m_targetStats;
 public:
 	ShipEditorWindow();
-
-	virtual void Show(bool val = true) override;
-	virtual bool IsShown() override;
 
 	void SetPosition(const sf::Vector2f& pos);
 };

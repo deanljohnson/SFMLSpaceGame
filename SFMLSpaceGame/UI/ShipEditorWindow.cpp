@@ -22,6 +22,7 @@ ShipEditorWindow::ShipEditorWindow()
 	m_editShipButton = sfg::Button::Create("Edit Ship");
 	m_saveShipButton = sfg::Button::Create("Save Ship");
 	m_defineColliderButton = sfg::Button::Create("Begin Defining Collider");
+	m_hardpointEditorButton = sfg::Button::Create("Edit Hardpoints");
 	SetupButtonSignals();
 
 	m_shipWindow = sfg::Window::Create(sfg::Window::BACKGROUND);
@@ -45,6 +46,7 @@ ShipEditorWindow::ShipEditorWindow()
 
 	m_mainBox->Pack(m_shipWindow);
 	m_mainBox->Pack(m_defineColliderButton);
+	m_mainBox->Pack(m_hardpointEditorButton);
 
 	m_rightSideBar->Pack(m_propertyTable);
 	
@@ -56,32 +58,9 @@ ShipEditorWindow::ShipEditorWindow()
 	m_colliderVertices.setPrimitiveType(sf::LineStrip);
 }
 
-void ShipEditorWindow::Show(bool val)
-{
-	if (m_window->IsLocallyVisible() == val)
-		return;
-
-	m_window->Show(val);
-
-	if (m_containsMouse && !val)
-		OnMouseLeave();
-}
-
-bool ShipEditorWindow::IsShown()
-{
-	return m_window->IsLocallyVisible();
-}
-
 void ShipEditorWindow::SetPosition(const sf::Vector2f& pos)
 {
 	m_window->SetPosition(pos);
-}
-
-void ShipEditorWindow::SetupWindowSignals()
-{
-	m_window->GetSignal(sfg::Window::OnMouseEnter).Connect([this] { OnMouseEnter(); });
-	m_window->GetSignal(sfg::Window::OnMouseLeave).Connect([this] { OnMouseLeave(); });
-	m_window->GetSignal(sfg::Window::OnCloseButton).Connect([this] { Show(false); });
 }
 
 void ShipEditorWindow::SetupButtonSignals()
@@ -369,11 +348,13 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	LoadShipImage();
 
 	m_colliderVertices.clear();
-	for (auto& v : m_editingStats->GetColliderVertices())
+	auto& verts = m_editingStats->GetColliderVertices();
+	for (auto& v : verts)
 	{
 		m_colliderVertices.append(sf::Vertex(m_shipImage.getPosition() + v, sf::Color::White));
 	}
-	m_colliderVertices.append(sf::Vertex(m_shipImage.getPosition() + m_editingStats->GetColliderVertices()[0], sf::Color::White));
+	if (!verts.empty())
+		m_colliderVertices.append(sf::Vertex(m_shipImage.getPosition() + verts[0], sf::Color::White));
 
 	DrawShipCanvas();
 }
@@ -453,7 +434,7 @@ void ShipEditorWindow::OnSaveShip()
 
 	auto colliderVerts = &m_editingStats->GetColliderVertices();
 	colliderVerts->clear();
-	for (int i = 0; i < m_colliderVertices.getVertexCount(); i++)
+	for (int i = 0; i < m_colliderVertices.getVertexCount() - 1; i++)
 	{
 		auto& v = m_colliderVertices[i];
 		colliderVerts->push_back(v.position - m_shipImage.getPosition());

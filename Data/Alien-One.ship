@@ -1,0 +1,50 @@
+{
+    "Alien-One": {
+        "InterLeadMult": 0.0,
+        "FollowDist": 0.0,
+        "ApproachDist": 0.0,
+        "StrafeDist": 0.0,
+        "SensorRange": 0.0,
+        "ShipThrust": {
+            "Forward": 61.0,
+            "Side": 40.0,
+            "Reverse": 30.0,
+            "Steer": 60.0
+        },
+        "DirGunData": {
+            "FireRate": 0.0,
+            "HealLimit": 0.0,
+            "CooldownRate": 0.0,
+            "HeatGenerated": 0.0,
+            "HardPoints": [],
+            "SoundID": 801
+        },
+        "ImageLocation": "1.png",
+        "ColliderVertices": [
+            {
+                "v.x": 0.0,
+                "v.y": 61.0
+            },
+            {
+                "v.x": 25.5,
+                "v.y": 4.0
+            },
+            {
+                "v.x": 88.5,
+                "v.y": 2.0
+            },
+            {
+                "v.x": 134.5,
+                "v.y": 61.0
+            },
+            {
+                "v.x": 89.5,
+                "v.y": 121.0
+            },
+            {
+                "v.x": 25.5,
+                "v.y": 121.0
+            }
+        ]
+    }
+}

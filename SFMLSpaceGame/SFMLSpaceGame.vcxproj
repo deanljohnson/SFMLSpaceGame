@@ -243,6 +243,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\ShipNameEntry.cpp" />
     <ClCompile Include="UI\ShipSelector.cpp" />
+    <ClCompile Include="UI\StationWindow.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +259,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
+    <ClInclude Include="Components\ShipStatsSink.h" />
     <ClInclude Include="Components\SoundListener.h" />
     <ClInclude Include="Components\SoundSource.h" />
     <ClInclude Include="Components\Text.h" />
@@ -327,6 +329,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\ShipNameEntry.h" />
     <ClInclude Include="UI\ShipSelector.h" />
+    <ClInclude Include="UI\StationWindow.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WorldConstants.h" />
