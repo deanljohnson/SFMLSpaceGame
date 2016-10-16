@@ -27,12 +27,12 @@ private:
 	void DoEvent();
 
 public:
-	ShipSpawner(float time, ShipResourceSelector shipSelector, SpawnLocationSelector locSelector)
+	ShipSpawner(float time, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector)
 		: m_type(SpawnType::Timed), m_time(time), m_counter(0.f), 
 		  m_shipSelector(shipSelector), m_locSelector(locSelector),
 		  m_spawningPlayer(false)
 	{}
-	ShipSpawner(EventType eventType, ShipResourceSelector shipSelector, SpawnLocationSelector locSelector, bool spawnPlayer = false)
+	ShipSpawner(EventType eventType, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector, bool spawnPlayer = false)
 		: m_type(SpawnType::Event), m_eventType(eventType), m_shipSelector(shipSelector), 
 		  m_locSelector(locSelector), m_spawningPlayer(spawnPlayer)
 	{}

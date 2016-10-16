@@ -30,7 +30,7 @@ std::deque<Event>::iterator EventQueue::End()
 	return m_events.end();
 }
 
-int EventQueue::Count() { return m_events.size(); }
+int EventQueue::Count() const { return m_events.size(); }
 
 void EventQueue::Clear() 
 {

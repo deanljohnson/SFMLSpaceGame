@@ -19,7 +19,7 @@ public:
 	virtual ~GameWindow();
 
 	static bool MouseInWindow() { return m_windowsWithMouse > 0; }
-	static GameWindow* GetWindow(std::string id);
+	static GameWindow* GetWindow(const std::string& id);
 
 	void OnMouseEnter();
 	void OnMouseLeave();

@@ -17,12 +17,13 @@ private:
 	Entity* m_entity;
 
 public:
-	EntityHandle() {}
+	EntityHandle() 
+	  : m_ID(0), m_entity(nullptr) {}
 	EntityHandle(Entity* ent, EntityID id);
 
 	bool IsValid();
 
 	Entity* operator->();
 
-	EntityID GetID() { return m_ID; };
+	EntityID GetID() const { return m_ID; };
 };

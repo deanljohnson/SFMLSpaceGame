@@ -44,7 +44,7 @@ void UI::SetSize(const sf::Vector2u& size)
 	m_size = size;
 }
 
-sf::Vector2u UI::GetSize()
+sf::Vector2u UI::GetSize() const
 {
 	return m_size;
 }

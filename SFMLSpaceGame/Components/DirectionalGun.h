@@ -83,7 +83,7 @@ private:
 
 public:
 	explicit DirectionalGun(DirectionalGunData* data)
-		: m_gunData(data)
+		: m_lastFiringTime(0), m_gunData(data)
 	{}
 
 	virtual void Init() override;

@@ -16,7 +16,7 @@ GameWindow::~GameWindow()
 		m_windowsWithMouse++;
 }
 
-GameWindow* GameWindow::GetWindow(std::string id)
+GameWindow* GameWindow::GetWindow(const std::string& id)
 {
 	auto it = m_windows.find(id);
 	if (it != m_windows.end())

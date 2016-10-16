@@ -27,5 +27,5 @@ public:
 	void BringToFront(std::shared_ptr<sfg::Widget> widget);
 
 	void SetSize(const sf::Vector2u& size);
-	sf::Vector2u GetSize();
+	sf::Vector2u GetSize() const;
 };

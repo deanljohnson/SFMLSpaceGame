@@ -19,7 +19,7 @@ private:
 	void HandleCollisionWithEntity(Entity* ent);
 	void SetTriggered(bool val);
 public:
-	EntitySensor(float radius, std::initializer_list<Group> groups)
+	EntitySensor(float radius, const std::initializer_list<Group>& groups)
 		: m_groups(groups), m_radius(radius)
 	{}
 

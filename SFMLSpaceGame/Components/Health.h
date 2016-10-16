@@ -7,7 +7,7 @@ class Health : public Component
 private:
 	float m_health{ 100.f };
 public:
-	inline float GetHealth(){ return m_health; }
+	inline float GetHealth() const { return m_health; }
 	inline void SetHealth(float hp)
 	{
 		m_health = std::max(0.f, hp);

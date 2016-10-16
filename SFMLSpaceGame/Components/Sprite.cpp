@@ -4,13 +4,13 @@
 #include <VectorMath.h>
 
 Sprite::Sprite(ResourceID id)
+	: m_tex(LoadBuiltInTexture(id))
 {
-	m_tex = LoadBuiltInTexture(id);
 }
 
 Sprite::Sprite(const std::string& location)
+	: m_tex(LoadTexture(location))
 {
-	m_tex = LoadTexture(location);
 }
 
 void Sprite::Init()

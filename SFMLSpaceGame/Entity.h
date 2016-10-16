@@ -40,7 +40,7 @@ public:
 	{
 	}
 
-	Entity& operator=(Entity other)
+	Entity& operator=(Entity& other)
 	{
 		using std::swap;
 		swap(*this, other);
@@ -65,7 +65,7 @@ public:
 	inline bool isActive() const { return m_active; }
 	inline void SetActive(bool val) { m_active = val; }
 
-	inline EntityID GetID() { return m_id; }
+	inline EntityID GetID() const { return m_id; }
 
 	//****** Component Handling Methods ******
 	

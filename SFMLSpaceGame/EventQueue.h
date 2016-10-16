@@ -31,6 +31,6 @@ public:
 	void Update();
 	std::deque<Event>::iterator Begin();
 	std::deque<Event>::iterator End();
-	int Count();
+	int Count() const;
 	void Clear();
 };
