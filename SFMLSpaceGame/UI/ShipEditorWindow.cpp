@@ -52,6 +52,8 @@ ShipEditorWindow::ShipEditorWindow()
 	m_topLevelBox->Pack(m_mainBox);
 	m_topLevelBox->Pack(m_rightSideBar);
 	m_window->Add(m_topLevelBox);
+
+	m_colliderVertices.setPrimitiveType(sf::LineStrip);
 }
 
 void ShipEditorWindow::Show(bool val)
@@ -243,7 +245,6 @@ void ShipEditorWindow::BeginDefiningCollider()
 	m_definingCollider = true;
 	m_defineColliderButton->SetLabel("End Collider Definition");
 
-	m_colliderVertices.setPrimitiveType(sf::LineStrip);
 	m_colliderVertices.clear();
 }
 
@@ -288,8 +289,6 @@ void ShipEditorWindow::LoadShipImage()
 	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);
 
 	m_shipImage.setPosition((canvasSize / 2.f) - (shipSize / 2.f));
-
-	DrawShipCanvas();
 }
 
 bool ShipEditorWindow::CheckAllEntryValidity()
@@ -328,10 +327,7 @@ void ShipEditorWindow::DrawShipCanvas()
 	m_shipCanvas->Clear(sf::Color::Transparent);
 	m_shipCanvas->Draw(m_shipImage);
 
-	if (m_definingCollider)
-	{
-		m_shipCanvas->Draw(m_colliderVertices);
-	}
+	m_shipCanvas->Draw(m_colliderVertices);
 
 	m_shipCanvas->Display();
 	m_shipCanvas->Unbind();
@@ -371,14 +367,23 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	m_editingStats = std::make_unique<ShipStats>(*ShipStats::Clone(m_targetStats.get()));
 	LoadShipStatsToEntries();
 	LoadShipImage();
+
+	m_colliderVertices.clear();
+	for (auto& v : m_editingStats->GetColliderVertices())
+	{
+		m_colliderVertices.append(sf::Vertex(m_shipImage.getPosition() + v, sf::Color::White));
+	}
+	m_colliderVertices.append(sf::Vertex(m_shipImage.getPosition() + m_editingStats->GetColliderVertices()[0], sf::Color::White));
+
+	DrawShipCanvas();
 }
 
-void ShipEditorWindow::OnNewShipImageSelected(const std::string& name)
+void ShipEditorWindow::OnNewShipImageSelected(const std::string& imageName)
 {
-	if (name == "")
+	if (imageName == "")
 		return;
 
-	m_newShipImageName = name;
+	m_newShipImageName = imageName;
 
 	auto selectWindow = static_cast<ShipNameEntry*>(GetWindow("ship_name_entry"));
 	selectWindow->SetCallback([this](const std::string& name) { OnNewShipNameSelected(name); });
@@ -408,7 +413,7 @@ void ShipEditorWindow::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
 	try
 	{
 		char* error = nullptr;
-		float val = strtof(text.c_str(), &error);
+		auto val = strtof(text.c_str(), &error);
 		if (error[0] != '\0')
 		{
 			entry->SetId("invalid");
@@ -445,6 +450,14 @@ void ShipEditorWindow::OnSaveShip()
 	gunData->heatLimit = stof(m_heatLimitEntry->GetText().toAnsiString());
 	gunData->cooldownRate = stof(m_cooldownRateEntry->GetText().toAnsiString());
 	gunData->heatGenerated = stof(m_heatGenEntry->GetText().toAnsiString());
+
+	auto colliderVerts = &m_editingStats->GetColliderVertices();
+	colliderVerts->clear();
+	for (int i = 0; i < m_colliderVertices.getVertexCount(); i++)
+	{
+		auto& v = m_colliderVertices[i];
+		colliderVerts->push_back(v.position - m_shipImage.getPosition());
+	}
 
 	m_targetStats->Copy(m_editingStats.get());
 	

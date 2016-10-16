@@ -1,6 +1,8 @@
 #pragma once
 #include <Components/ShipThrusters.h>
 #include <Components/DirectionalGun.h>
+#include <cereal/types/vector.hpp> // Need for collider vertices serialization
+#include <SFMLSerialization.h> // Need for collider vertices serialization
 
 class ShipStats
 {
@@ -13,6 +15,7 @@ private:
 	ShipThrust m_shipThrust;
 	DirectionalGunData m_dirGunData;
 	std::string m_imageLocation;
+	std::vector<sf::Vector2f> m_colliderVertices;
 
 public:
 	ShipStats() 
@@ -22,7 +25,8 @@ public:
 		  m_strafeDistance(0),
 		  m_sensorRange(0),
 		  m_shipThrust(),
-		  m_dirGunData()
+		  m_dirGunData(),
+		m_colliderVertices()
 	{}
 
 	ShipStats(const ShipStats& other)
@@ -33,13 +37,15 @@ public:
 		  m_sensorRange{other.m_sensorRange},
 		  m_shipThrust{other.m_shipThrust},
 		  m_dirGunData{other.m_dirGunData},
-		  m_imageLocation{other.m_imageLocation}
+		  m_imageLocation{other.m_imageLocation},
+		  m_colliderVertices{other.m_colliderVertices}
 	{}
 
 	ShipStats(float interceptLead, float followDistance, 
 				float approachDistance, float strafeDistance, 
 				float sensorRange, ShipThrust thrust, 
-				DirectionalGunData dirData, std::string imageLocation)
+				DirectionalGunData dirData, std::string imageLocation,
+				const std::vector<sf::Vector2f>& colliderVertices)
 		: m_interceptLeadMultiplier(interceptLead),
 		  m_followDistance(followDistance),
 		  m_approachDistance(approachDistance),
@@ -47,7 +53,8 @@ public:
 		  m_sensorRange(sensorRange),
 		  m_shipThrust(thrust),
 		  m_dirGunData(dirData),
-		  m_imageLocation(imageLocation)
+		  m_imageLocation(imageLocation),
+		  m_colliderVertices(colliderVertices)
 	{}
 
 	inline float GetInterceptLeadMultiplier() const { return m_interceptLeadMultiplier; }
@@ -58,6 +65,7 @@ public:
 	inline ShipThrust* GetShipThrust() { return &m_shipThrust; }
 	inline DirectionalGunData* GetDirGunData() { return &m_dirGunData; }
 	inline std::string GetImageLocation() { return m_imageLocation; }
+	inline std::vector<sf::Vector2f>& GetColliderVertices() { return m_colliderVertices; }
 
 	inline void SetInterceptLeadMultiplier(float val) { m_interceptLeadMultiplier = val; }
 	inline void SetFollowDistance(float val) { m_followDistance = val; }
@@ -65,6 +73,7 @@ public:
 	inline void SetStrafeDistance(float val) { m_strafeDistance = val; }
 	inline void SetSensorRange(float val) { m_sensorRange = val; }
 	inline void SetImageLocation(const std::string& val) { m_imageLocation = val; }
+	inline void SetColliderVertices(const std::vector<sf::Vector2f>& colliderVertices) { m_colliderVertices = { colliderVertices }; }
 
 	template<class Archive>
 	void serialize(Archive& archive)
@@ -76,7 +85,8 @@ public:
 				cereal::make_nvp("SensorRange", m_sensorRange),
 				cereal::make_nvp("ShipThrust", m_shipThrust),
 				cereal::make_nvp("DirGunData", m_dirGunData),
-				cereal::make_nvp("ImageLocation", m_imageLocation));
+				cereal::make_nvp("ImageLocation", m_imageLocation),
+				cereal::make_nvp("ColliderVertices", m_colliderVertices));
 	}
 
 	void Copy(ShipStats* other);
@@ -102,6 +112,8 @@ inline void ShipStats::Copy(ShipStats* other)
 	m_dirGunData.heatLimit = other->m_dirGunData.heatLimit;
 	m_dirGunData.cooldownRate = other->m_dirGunData.cooldownRate;
 	m_dirGunData.heatGenerated = other->m_dirGunData.heatGenerated;
+
+	m_colliderVertices = { other->m_colliderVertices };
 }
 
 inline ShipStats* ShipStats::Clone(ShipStats* other)
@@ -113,5 +125,6 @@ inline ShipStats* ShipStats::Clone(ShipStats* other)
 						other->m_sensorRange,
 						ShipThrust(other->m_shipThrust),
 						DirectionalGunData(other->m_dirGunData),
-						other->m_imageLocation);
+						other->m_imageLocation,
+						{other->m_colliderVertices});
 }

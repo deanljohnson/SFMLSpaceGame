@@ -34,6 +34,40 @@
             ],
             "SoundID": 801
         },
-        "ImageLocation": "Human-Fighter.png"
+        "ImageLocation": "Human-Fighter.png",
+        "ColliderVertices": [
+            {
+                "v.x": 1.0,
+                "v.y": 17.0
+            },
+            {
+                "v.x": 36.0,
+                "v.y": 0.0
+            },
+            {
+                "v.x": 75.0,
+                "v.y": 2.0
+            },
+            {
+                "v.x": 126.0,
+                "v.y": 34.0
+            },
+            {
+                "v.x": 77.0,
+                "v.y": 67.0
+            },
+            {
+                "v.x": 34.0,
+                "v.y": 67.0
+            },
+            {
+                "v.x": 1.0,
+                "v.y": 51.0
+            },
+            {
+                "v.x": 1.0,
+                "v.y": 17.0
+            }
+        ]
     }
 }

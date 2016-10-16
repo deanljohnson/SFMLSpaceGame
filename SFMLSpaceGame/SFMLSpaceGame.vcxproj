@@ -275,6 +275,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Interfaces\Sensor.h" />
     <ClInclude Include="OriginOption.h" />
     <ClInclude Include="Serializer.h" />
+    <ClInclude Include="SFMLSerialization.h" />
     <ClInclude Include="ShipResourceSelector.h" />
     <ClInclude Include="SpawnLocationSelector.h" />
     <ClInclude Include="SpriteHelpers.h" />

@@ -38,6 +38,8 @@
 #include "Components/KeyListener.h"
 #include "Components/Text.h"
 #include "UI/GameWindow.h"
+#include <SFML/Graphics/ConvexShape.hpp>
+#include "WorldConstants.h"
 
 void EntityFactory::Init()
 {
@@ -175,8 +177,14 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	}
 
 	auto spriteBox = sp.GetDimensions();
-	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
-	shape.setOrigin(shape.getSize() / 2.f);
+	auto origin = sf::Vector2f(spriteBox.width, spriteBox.height) / 2.f;
+	auto& verts = shipStats->GetColliderVertices();
+	auto shape = sf::ConvexShape(verts.size());
+	for (int i = 0; i < verts.size(); i++)
+	{
+		shape.setPoint(i, (verts[i] * METERS_PER_PIXEL) - origin);
+	}
+
 	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
 
