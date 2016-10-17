@@ -4,6 +4,7 @@
 #include <SFGUI/Table.hpp>
 #include <SFGUI/Button.hpp>
 #include <VectorMath.h>
+#include "WidgetHelpers.h"
 
 HardPointEditor::HardPointEditor()
 	: GameWindow("hard_point_editor"),
@@ -97,9 +98,7 @@ void HardPointEditor::OnCanvasLeftClick()
 	if (m_dragOnCanvas)
 		return;
 
-	auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
-	auto canvasPos = m_shipCanvas->GetAbsolutePosition();
-	auto inCanvasPos = sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
+	auto inCanvasPos = WidgetHelpers::GetRelativeMousePos(m_shipCanvas);
 
 	for (int i = 0; i < m_hardPointWidgets.size(); i++)
 	{
@@ -131,9 +130,7 @@ void HardPointEditor::OnCanvasMouseMove()
 	}
 	else if (m_mouseDownOnWidget != -1 && m_mouseDownOnWidget < m_hardPointWidgets.size())
 	{
-		auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
-		auto canvasPos = m_shipCanvas->GetAbsolutePosition();
-		auto inCanvasPos = sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
+		auto inCanvasPos = WidgetHelpers::GetRelativeMousePos(m_shipCanvas);
 
 		if (m_mouseDownOnPositionWidget)
 			m_hardPointWidgets[m_mouseDownOnWidget].SetPositionControlLocation(inCanvasPos.x, inCanvasPos.y);
@@ -146,9 +143,7 @@ void HardPointEditor::OnCanvasMouseMove()
 
 void HardPointEditor::OnCanvasLeftPress()
 {
-	auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
-	auto canvasPos = m_shipCanvas->GetAbsolutePosition();
-	auto inCanvasPos = sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
+	auto inCanvasPos = WidgetHelpers::GetRelativeMousePos(m_shipCanvas);
 
 	for (int i = 0; i < m_hardPointWidgets.size(); i++)
 	{

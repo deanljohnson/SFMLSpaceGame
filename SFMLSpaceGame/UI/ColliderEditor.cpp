@@ -2,6 +2,7 @@
 #include "UI.h"
 #include <SFGUI/Table.hpp>
 #include <SFGUI/Button.hpp>
+#include "WidgetHelpers.h"
 
 ColliderEditor::ColliderEditor()
 	: GameWindow("collider_editor"),
@@ -94,11 +95,7 @@ void ColliderEditor::DrawCanvas()
 
 void ColliderEditor::OnCanvasLeftClick()
 {
-	auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
-	auto canvasPos = m_shipCanvas->GetAbsolutePosition();
-	auto inCanvasPos = sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
-
-	AddVertex(inCanvasPos);
+	AddVertex(WidgetHelpers::GetRelativeMousePos(m_shipCanvas));
 
 	DrawCanvas();
 }
