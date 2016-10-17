@@ -545,6 +545,9 @@
     <ClInclude Include="UI\ConfirmationDialog.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Interfaces\AttackEventModifier.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

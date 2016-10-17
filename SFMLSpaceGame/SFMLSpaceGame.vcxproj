@@ -282,6 +282,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="Interfaces\AttackEventModifier.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="UI\ColliderEditor.h" />
     <ClInclude Include="UI\ConfirmationDialog.h" />

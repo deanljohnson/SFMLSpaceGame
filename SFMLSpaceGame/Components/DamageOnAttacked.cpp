@@ -13,7 +13,17 @@ void DamageOnAttacked::Update()
 		Event event;
 		if (entity->events.Get(Attacked, event))
 		{
-			m_health->RemoveHealth(event.attacked.damage);
+			HandleAttack(event);
 		}
 	}
+}
+
+void DamageOnAttacked::HandleAttack(Event& event) 
+{
+	for (auto m : m_modifiers) 
+	{
+		m->Modify(event);
+	}
+
+	m_health->RemoveHealth(event.attacked.damage);
 }
