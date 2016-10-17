@@ -14,6 +14,7 @@ public:
 
 private:
 	EntityID m_ID;
+	std::string m_name;
 	Entity* m_entity;
 
 public:

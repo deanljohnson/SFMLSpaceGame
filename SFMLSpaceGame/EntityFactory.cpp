@@ -42,6 +42,8 @@
 #include "WorldConstants.h"
 #include "GameState.h"
 #include "Components/ShipStatsSink.h"
+#include "PlayerData.h"
+#include "Components/ParallaxTargetAssigner.h"
 
 void EntityFactory::Init()
 {
@@ -64,6 +66,9 @@ void EntityFactory::Init()
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(PLAYER_GROUP);
+
+	PlayerData::GetActive()->SetID(ent.GetID());
+
 	MakeIntoPlayer(ent, p, radians);
 	return ent.GetID();
 }
@@ -108,7 +113,10 @@ EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(PlayerDied, ShipResourceSelector([] {return GameState::playerShipName; }), SpawnLocationSelector(), true);
+	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(
+		PlayerDied, 
+		ShipResourceSelector([] {return PlayerData::GetActive()->GetPlayerShip(); }), 
+		SpawnLocationSelector(), true);
 	return ent.GetID();
 }
 
@@ -121,10 +129,10 @@ EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
-	MakeIntoShip(ent, GameState::playerShipName, p, radians, false);
+	MakeIntoShip(ent, PlayerData::GetActive()->GetPlayerShip(), p, radians, false);
 	
 	// This makes sure the the players ship stats stay loaded
-	ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(GameState::playerShipName));
+	ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(PlayerData::GetActive()->GetPlayerShip()));
 
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
@@ -144,6 +152,7 @@ void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundI
 	ent->AddComponent<Position>();
 	ent->AddComponent<TilingBackground, ResourceID>(backgroundID);
 	ent->AddComponent<ParallaxMovement, EntityID, float>(parallaxTarget, .1f);
+	ent->AddComponent<ParallaxTargetAssigner>();
 }
 
 void EntityFactory::MakeIntoBullet(EntityHandle& ent, ResourceID id, EntityID sourceEntity, const b2Vec2& p, float radians)

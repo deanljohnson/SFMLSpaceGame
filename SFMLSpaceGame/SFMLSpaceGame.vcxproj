@@ -196,6 +196,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\KeyListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
     <ClCompile Include="Components\MusicSource.cpp" />
+    <ClCompile Include="Components\ParallaxTargetAssigner.cpp" />
     <ClCompile Include="Components\PlayerDeathBroadcaster.cpp" />
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
@@ -226,6 +227,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\ParallaxMovement.cpp" />
     <ClCompile Include="Components\Physics.cpp" />
     <ClCompile Include="Components\RectPrimitive.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Components\RotateToFaceMouse.cpp" />
     <ClCompile Include="Components\ShipThrusters.cpp" />
@@ -258,6 +260,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\KeyListener.h" />
     <ClInclude Include="Components\MusicSource.h" />
+    <ClInclude Include="Components\ParallaxTargetAssigner.h" />
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
@@ -275,6 +278,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="UI\HardPointWidget.h" />
     <ClInclude Include="Interfaces\ComponentSensor.h" />
     <ClInclude Include="Interfaces\Sensor.h" />

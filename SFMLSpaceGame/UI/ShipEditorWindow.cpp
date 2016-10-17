@@ -7,6 +7,7 @@
 #include "ShipNameEntry.h"
 #include <WorldConstants.h>
 #include "HardPointEditor.h"
+#include <PlayerData.h>
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -80,7 +81,7 @@ void ShipEditorWindow::SetupButtonSignals()
 		[this] 
 		{ 
 			auto selectWindow = static_cast<ShipSelector*>(GetWindow("ship_select"));
-			selectWindow->SetCallback([this](const std::string& name) { OnShipSelected(name); });
+			selectWindow->SetCallback([this](const std::string& name) { PlayerData::GetActive()->SetPlayerShip(name); });
 			selectWindow->Show(true);
 		});
 

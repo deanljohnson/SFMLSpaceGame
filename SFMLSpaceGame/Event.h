@@ -4,7 +4,7 @@
 
 enum EventType
 {
-	None, Attacked, PlayerDied
+	None, Attacked, PlayerDied, PlayerSpawned
 };
 
 struct Event
@@ -21,10 +21,16 @@ public:
 		
 	};
 
+	struct PlayerSpawnedEvent
+	{
+		EntityID ID;
+	};
+
 	union
 	{
 		AttackedEvent attacked;
 		PlayerDiedEvent playerDied;
+		PlayerSpawnedEvent playerSpawned;
 	};
 
 	EventType type;

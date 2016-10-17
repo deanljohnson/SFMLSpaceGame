@@ -13,6 +13,9 @@
 class InitialGameState : public GameState
 {
 private:
+	EntityID m_playerID;
+	EntityID m_playerSpawnerID;
+
 	PhysicsStepper m_stepper;
 	ContactFilter m_contactListener;
 

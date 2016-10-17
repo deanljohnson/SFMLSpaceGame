@@ -3,6 +3,8 @@
 #include <EntityFactory.h>
 #include <Entity.h>
 #include <GameState.h>
+#include <EntityManager.h>
+#include <PlayerData.h>
 
 void ShipSpawner::Init()
 {
@@ -53,6 +55,14 @@ void ShipSpawner::Spawn()
 	else
 	{
 		auto loc = m_locSelector.Select(m_position->position);
-		EntityFactory::CreatePlayer(loc);
+		auto playerID = EntityFactory::CreatePlayer(loc);
+		PlayerData::GetActive()->SetID(playerID);
+
+		Event playerSpawned = Event();
+		playerSpawned.playerSpawned = Event::PlayerSpawnedEvent();
+		playerSpawned.playerSpawned.ID = playerID;
+		playerSpawned.type = PlayerSpawned;
+
+		GameState::pendingGameEvents.Push(playerSpawned);
 	}
 }

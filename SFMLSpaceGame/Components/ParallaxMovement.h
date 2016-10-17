@@ -27,5 +27,7 @@ public:
 
 	virtual void Init() override;
 	virtual void Update() override;
-	void SetTarget(EntityHandle& targetHandle);
+
+	void SetTarget(const EntityHandle& targetHandle);
+	bool HasValidTarget();
 };

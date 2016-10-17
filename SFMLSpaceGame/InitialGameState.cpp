@@ -5,6 +5,7 @@
 #include <ContactFilter.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
+#include "PlayerData.h"
 
 void AddEnemy()
 {
@@ -13,13 +14,27 @@ void AddEnemy()
 
 void InitialGameState::Init()
 {
+	PlayerData::SetActive(std::make_shared<PlayerData>("Human-Fighter"));
+
 	m_contactListener = ContactFilter();
 	world.SetContactFilter(&m_contactListener);
 
-	auto player = EntityFactory::CreatePlayer();
+	auto playerID = EntityFactory::CreatePlayer();
+
+	PlayerData::GetActive()->SetShipChangeCallback(
+		[this](const std::string& newName){
+			auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
+			auto playerPos = playerHandle->GetComponent<Position>();
+
+			auto playerSpawner = EntityManager::Get(m_playerSpawnerID);
+			auto spawnerPos = &playerSpawner->GetComponent<Position>();
+			spawnerPos->position = playerPos.position;
+
+			playerHandle->Destroy();
+		});
 
 	EntityFactory::CreateMusicPlayer(MUSIC_ONE);
-	EntityFactory::CreateBackground(BGONE_FRONT, player);
+	EntityFactory::CreateBackground(BGONE_FRONT, playerID);
 
 	AddEnemy();
 	AddEnemy();
@@ -36,7 +51,7 @@ void InitialGameState::Init()
 	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(40, 40));
 
 	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
-	EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
+	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 
 	m_shipEditor.Show(false);
 	m_shipSelector.Show(false);

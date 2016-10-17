@@ -2,6 +2,8 @@
 #include "UI.h"
 #include <SFGUI/Button.hpp>
 #include <SFGUI/Table.hpp>
+#include "ShipSelector.h"
+#include <PlayerData.h>
 
 StationWindow::StationWindow()
 	: GameWindow("station_window")
@@ -27,5 +29,15 @@ StationWindow::StationWindow()
 	shipEditButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] { GetWindow("ship_editor")->Show(true); Show(false); });
 	changeShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[this] { GetWindow("ship_select")->Show(true); Show(false); });
+		[this] 
+		{ 
+			auto selectWindow = static_cast<ShipSelector*>(GetWindow("ship_select"));
+			selectWindow->SetCallback([this](const std::string& name)
+			{
+				if (name.empty()) return;
+				PlayerData::GetActive()->SetPlayerShip(name);
+			});
+			selectWindow->Show(true);
+			Show(false);
+		});
 }

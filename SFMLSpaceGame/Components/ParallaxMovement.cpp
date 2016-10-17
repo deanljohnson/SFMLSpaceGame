@@ -23,11 +23,14 @@ void ParallaxMovement::Update()
 	m_targetLastPosition = m_targetPosition->position;
 }
 
-void ParallaxMovement::SetTarget(EntityHandle& targetHandle)
+void ParallaxMovement::SetTarget(const EntityHandle& targetHandle)
 {
-	assert(targetHandle.IsValid());
 	m_targetHandle = targetHandle;
 	m_targetPosition = &m_targetHandle->GetComponent<Position>();
 }
 
+bool ParallaxMovement::HasValidTarget()
+{
+	return m_targetHandle.IsValid();
+}
 
