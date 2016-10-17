@@ -249,6 +249,9 @@
     <ClCompile Include="Components\ParallaxTargetAssigner.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ColliderEditor.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -520,6 +523,9 @@
     </ClInclude>
     <ClInclude Include="Components\ParallaxTargetAssigner.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ColliderEditor.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

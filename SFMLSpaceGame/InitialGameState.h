@@ -9,6 +9,7 @@
 #include "UI/ShipNameEntry.h"
 #include "UI/StationWindow.h"
 #include "UI/HardPointEditor.h"
+#include "UI/ColliderEditor.h"
 
 class InitialGameState : public GameState
 {
@@ -25,6 +26,7 @@ private:
 	ShipNameEntry m_shipNameEntry;
 	StationWindow m_stationWindow;
 	HardPointEditor m_hardPointEditor;
+	ColliderEditor m_colliderEditor;
 
 public:
 	InitialGameState() 

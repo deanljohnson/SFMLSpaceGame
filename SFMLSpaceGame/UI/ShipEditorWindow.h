@@ -57,9 +57,6 @@ private:
 	void SetupCanvasSignals();
 	void SetupEntryValidationSignals();
 
-	void BeginDefiningCollider();
-	void EndDefiningCollider();
-
 	void LoadShipStatsToEntries();
 	void LoadShipImage();
 	bool CheckAllEntryValidity();
@@ -67,16 +64,11 @@ private:
 	void CreateNewShip();
 
 	void DrawShipCanvas();
-
-	void OnCanvasClick();
 	void OnShipSelected(const std::string& name);
 	void OnNewShipImageSelected(const std::string& name);
 	void OnNewShipNameSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);
 	void OnSaveShip();
-
-	bool m_definingCollider{false};
-	sf::VertexArray m_colliderVertices;
 
 	std::string m_newShipImageName;
 	std::string m_shipName;
