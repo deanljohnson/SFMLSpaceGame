@@ -258,6 +258,9 @@
     <ClCompile Include="UI\ThrusterLocationEditor.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ConfirmationDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -537,6 +540,9 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI\ThrusterLocationEditor.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ConfirmationDialog.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

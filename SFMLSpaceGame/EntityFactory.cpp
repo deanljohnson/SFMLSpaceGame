@@ -106,7 +106,7 @@ EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector("Human-Fighter"), SpawnLocationSelector());
+	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector(std::string("Human-Fighter")), SpawnLocationSelector());
 	return ent.GetID();
 }
 

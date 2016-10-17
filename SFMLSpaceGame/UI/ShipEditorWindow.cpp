@@ -9,6 +9,7 @@
 #include "HardPointEditor.h"
 #include "ColliderEditor.h"
 #include "ThrusterLocationEditor.h"
+#include "ConfirmationDialog.h"
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -24,6 +25,7 @@ ShipEditorWindow::ShipEditorWindow()
 	m_newShipButton = sfg::Button::Create("New Ship");
 	m_editShipButton = sfg::Button::Create("Edit Ship");
 	m_saveShipButton = sfg::Button::Create("Save Ship");
+	m_deleteShipButton = sfg::Button::Create("Delete Ship");
 	m_defineColliderButton = sfg::Button::Create("Edit Collider");
 	m_hardpointEditorButton = sfg::Button::Create("Edit Hardpoints");
 	m_thrusterEditorButton = sfg::Button::Create("Edit Thruster Locations");
@@ -47,6 +49,7 @@ ShipEditorWindow::ShipEditorWindow()
 	m_leftSideBar->Pack(m_newShipButton);
 	m_leftSideBar->Pack(m_editShipButton);
 	m_leftSideBar->Pack(m_saveShipButton);
+	m_leftSideBar->Pack(m_deleteShipButton);
 
 	m_mainBox->Pack(m_shipWindow);
 	m_mainBox->Pack(m_defineColliderButton);
@@ -91,6 +94,17 @@ void ShipEditorWindow::SetupButtonSignals()
 		{
 			OnSaveShip();
 		});
+
+	m_deleteShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this]
+	{
+		if (m_targetStats.get() == nullptr)
+			return;
+		auto editWindow = static_cast<ConfirmationDialog*>(GetWindow("confirmation_dialog"));
+		editWindow->SetCallback([this](bool val) { if (val) OnDeleteShip(); });
+		editWindow->SetText("Are you sure you want to delete this ship? This cannot be undone.");
+		editWindow->Show(true);
+	});
 
 	m_defineColliderButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
@@ -317,6 +331,30 @@ void ShipEditorWindow::CreateNewShip()
 	OnShipSelected(m_shipName);
 }
 
+void ShipEditorWindow::ClearShipEditing() 
+{
+	m_shipImage = sf::Sprite();
+	m_editingStats = nullptr;
+	m_targetStats = nullptr;
+	
+	m_interLeadEntry->SetText("");
+	m_followDistEntry->SetText("");
+	m_approachDistEntry->SetText("");
+	m_strafeDistEntry->SetText("");
+	m_sensorRangeEntry->SetText("");
+	m_forwardThrustEntry->SetText("");
+	m_sideThrustEntry->SetText("");
+	m_reverseThrustEntry->SetText("");
+	m_steerThrustEntry->SetText("");
+	m_fireRateEntry->SetText("");
+	m_heatLimitEntry->SetText("");
+	m_cooldownRateEntry->SetText("");
+	m_heatGenEntry->SetText("");
+	m_hullStrengthEntry->SetText("");
+
+	DrawShipCanvas();
+}
+
 void ShipEditorWindow::DrawShipCanvas()
 {
 	m_shipCanvas->Bind();
@@ -420,4 +458,10 @@ void ShipEditorWindow::OnSaveShip()
 	m_targetStats->Copy(m_editingStats.get());
 	
 	serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
+}
+
+void ShipEditorWindow::OnDeleteShip() 
+{
+	serializer.DeleteRecord(m_editingStats.get(), m_shipName);
+	ClearShipEditing();
 }

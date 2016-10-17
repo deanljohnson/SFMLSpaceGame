@@ -11,6 +11,7 @@
 #include "UI/HardPointEditor.h"
 #include "UI/ColliderEditor.h"
 #include "UI/ThrusterLocationEditor.h"
+#include "UI/ConfirmationDialog.h"
 
 class InitialGameState : public GameState
 {
@@ -29,6 +30,7 @@ private:
 	HardPointEditor m_hardPointEditor;
 	ColliderEditor m_colliderEditor;
 	ThrusterLocationEditor m_thrusterLocationEditor;
+	ConfirmationDialog m_confirmationDialog;
 
 public:
 	InitialGameState() 

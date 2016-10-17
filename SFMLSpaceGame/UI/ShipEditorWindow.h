@@ -18,6 +18,7 @@ private:
 	sfg::Button::Ptr m_newShipButton;
 	sfg::Button::Ptr m_editShipButton;
 	sfg::Button::Ptr m_saveShipButton;
+	sfg::Button::Ptr m_deleteShipButton;
 	sfg::Button::Ptr m_defineColliderButton;
 	sfg::Button::Ptr m_hardpointEditorButton;
 	sfg::Button::Ptr m_thrusterEditorButton;
@@ -63,6 +64,7 @@ private:
 	bool CheckAllEntryValidity();
 
 	void CreateNewShip();
+	void ClearShipEditing();
 
 	void DrawShipCanvas();
 	void OnShipSelected(const std::string& name);
@@ -70,6 +72,7 @@ private:
 	void OnNewShipNameSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);
 	void OnSaveShip();
+	void OnDeleteShip();
 
 	std::string m_newShipImageName;
 	std::string m_shipName;

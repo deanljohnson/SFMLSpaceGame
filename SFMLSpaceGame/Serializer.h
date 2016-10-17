@@ -2,6 +2,7 @@
 #include <Box2DSerialization.h>
 #include <iostream>
 #include <fstream>
+#include <cstdio>
 
 #ifdef RELEASE
 #ifndef DATA_PATH
@@ -57,5 +58,12 @@ public:
 		std::ofstream os(DATA_PATH + fileName);
 		SERIALIZATION_OUT_ARCHIVE ar(os);
 		ar(cereal::make_nvp(rootName, *obj));
+	}
+
+	template<class T>
+	void DeleteRecord(T* obj, std::string fileName) 
+	{
+		fileName += "." + T::GetTypeName();
+		std::remove((DATA_PATH + fileName).c_str());
 	}
 };
