@@ -3,7 +3,6 @@
 #include <WorldConstants.h>
 #include <Entity.h>
 #include <Box2D/Common/b2Math.h>
-#include "ExtendedMath.h"
 
 b2Vec2 GetWorldMouseLocation() 
 {

@@ -6,6 +6,7 @@
 #include "ImageSelector.h"
 #include "ShipNameEntry.h"
 #include <WorldConstants.h>
+#include "HardPointEditor.h"
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -95,6 +96,17 @@ void ShipEditorWindow::SetupButtonSignals()
 		{ 
 			if (!m_definingCollider) BeginDefiningCollider();
 			else EndDefiningCollider();
+		}
+	);
+
+	m_hardpointEditorButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this]
+		{
+			if (m_targetStats.get() == nullptr)
+				return;
+			auto editWindow = static_cast<HardPointEditor*>(GetWindow("hard_point_editor"));
+			editWindow->SetTarget(m_shipName, m_targetStats);
+			editWindow->Show(true);
 		}
 	);
 }

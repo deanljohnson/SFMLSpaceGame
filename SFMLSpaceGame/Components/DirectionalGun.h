@@ -7,6 +7,7 @@
 #include "SoundSource.h"
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
+#include "Sprite.h"
 
 struct HardPoint
 {
@@ -76,6 +77,7 @@ class DirectionalGun : public Component, public Gun
 private:
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
+	Sprite* m_sprite{ nullptr };
 	SoundSource* m_shotSound{ nullptr };
 	float m_lastFiringTime;
 	DirectionalGunData* m_gunData;

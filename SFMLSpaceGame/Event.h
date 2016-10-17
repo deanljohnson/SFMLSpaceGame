@@ -9,8 +9,6 @@ enum EventType
 
 struct Event
 {
-private:
-	long m_nextID = 0;
 public:
 	struct AttackedEvent
 	{
@@ -31,7 +29,4 @@ public:
 
 	EventType type;
 	bool handled = false;
-	// a unique ID for this event. 
-	// A copy of an event will have the same ID
-	long id = m_nextID++;
 };

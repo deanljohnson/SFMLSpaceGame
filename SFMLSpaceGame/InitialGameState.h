@@ -8,6 +8,7 @@
 #include "UI/ImageSelector.h"
 #include "UI/ShipNameEntry.h"
 #include "UI/StationWindow.h"
+#include "UI/HardPointEditor.h"
 
 class InitialGameState : public GameState
 {
@@ -20,6 +21,7 @@ private:
 	ImageSelector m_imageSelector;
 	ShipNameEntry m_shipNameEntry;
 	StationWindow m_stationWindow;
+	HardPointEditor m_hardPointEditor;
 
 public:
 	InitialGameState() 

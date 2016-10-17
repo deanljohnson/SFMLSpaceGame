@@ -45,3 +45,8 @@ sf::FloatRect Sprite::GetDimensions() const
 
 	return sf::FloatRect(bounds.left, bounds.top, bounds.width, bounds.height);
 }
+
+b2Vec2 Sprite::GetOrigin() const
+{
+	return SFMLVecToB2Vec(m_sprite.getOrigin() * METERS_PER_PIXEL);
+}

@@ -39,17 +39,30 @@ void GameWindow::OnMouseLeave()
 	if (m_windowsWithMouse < 0) m_windowsWithMouse = 0;
 }
 
+void GameWindow::OnMouseMove()
+{
+	if (!m_containsMouse)
+	{
+		OnMouseEnter();
+	}
+}
+
 void GameWindow::SetupWindowSignals()
 {
 	m_window->GetSignal(sfg::Window::OnMouseEnter).Connect([this] { OnMouseEnter(); });
 	m_window->GetSignal(sfg::Window::OnMouseLeave).Connect([this] { OnMouseLeave(); });
+	m_window->GetSignal(sfg::Window::OnMouseMove).Connect([this] { OnMouseMove(); });
 	m_window->GetSignal(sfg::Window::OnCloseButton).Connect([this] { Show(false); });
 }
 
 void GameWindow::Show(bool val)
 {
 	if (m_window->IsLocallyVisible() == val)
+	{
+		if (val)
+			UI::Singleton->BringToFront(m_window);
 		return;
+	}
 
 	m_window->Show(val);
 

@@ -49,6 +49,12 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{d589846b-00e5-43c4-8f1a-5a0d3250edf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI\HardPointEditorElements">
+      <UniqueIdentifier>{bcdf8e33-70a3-4ec6-bff7-73b7dfb419d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\HardPointEditorElements">
+      <UniqueIdentifier>{b1252eac-2a7f-49a8-b247-2491577cba9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +236,12 @@
     </ClCompile>
     <ClCompile Include="UI\StationWindow.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\HardPointEditor.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\HardPointWidget.cpp">
+      <Filter>Source Files\UI\HardPointEditorElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +502,12 @@
     </ClInclude>
     <ClInclude Include="Components\ShipStatsSink.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\HardPointEditor.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\HardPointWidget.h">
+      <Filter>Header Files\UI\HardPointEditorElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

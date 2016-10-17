@@ -7,6 +7,7 @@
 class ShipStats
 {
 private:
+	float m_maxHull;
 	float m_interceptLeadMultiplier;
 	float m_followDistance;
 	float m_approachDistance;
@@ -19,7 +20,8 @@ private:
 
 public:
 	ShipStats() 
-		: m_interceptLeadMultiplier(0),
+		: m_maxHull(0),
+		  m_interceptLeadMultiplier(0),
 		  m_followDistance(0),
 		  m_approachDistance(0),
 		  m_strafeDistance(0),
@@ -30,7 +32,8 @@ public:
 	{}
 
 	ShipStats(const ShipStats& other)
-		: m_interceptLeadMultiplier{other.m_interceptLeadMultiplier},
+		: m_maxHull{other.m_maxHull},
+		  m_interceptLeadMultiplier{other.m_interceptLeadMultiplier},
 		  m_followDistance{other.m_followDistance},
 		  m_approachDistance{other.m_approachDistance},
 		  m_strafeDistance{other.m_strafeDistance},
@@ -41,12 +44,13 @@ public:
 		  m_colliderVertices{other.m_colliderVertices}
 	{}
 
-	ShipStats(float interceptLead, float followDistance, 
-				float approachDistance, float strafeDistance, 
-				float sensorRange, ShipThrust thrust, 
-				DirectionalGunData dirData, const std::string& imageLocation,
-				const std::vector<sf::Vector2f>& colliderVertices)
-		: m_interceptLeadMultiplier(interceptLead),
+	ShipStats(float hullStrength, float interceptLead, float followDistance,
+			float approachDistance, float strafeDistance,
+			float sensorRange, ShipThrust thrust,
+			DirectionalGunData dirData, const std::string& imageLocation,
+			const std::vector<sf::Vector2f>& colliderVertices)
+		: m_maxHull(hullStrength),
+		  m_interceptLeadMultiplier(interceptLead),
 		  m_followDistance(followDistance),
 		  m_approachDistance(approachDistance),
 		  m_strafeDistance(strafeDistance),
@@ -57,6 +61,7 @@ public:
 		  m_colliderVertices(colliderVertices)
 	{}
 
+	inline float GetMaxHullStrength() const { return m_maxHull; }
 	inline float GetInterceptLeadMultiplier() const { return m_interceptLeadMultiplier; }
 	inline float GetFollowDistance() const { return m_followDistance; }
 	inline float GetApproachDistance() const { return m_approachDistance; }
@@ -67,6 +72,7 @@ public:
 	inline std::string GetImageLocation() const { return m_imageLocation; }
 	inline std::vector<sf::Vector2f>& GetColliderVertices() { return m_colliderVertices; }
 
+	inline void SetMaxHullStrength(float val) { m_maxHull = val; }
 	inline void SetInterceptLeadMultiplier(float val) { m_interceptLeadMultiplier = val; }
 	inline void SetFollowDistance(float val) { m_followDistance = val; }
 	inline void SetApproachDistance(float val) { m_approachDistance = val; }
@@ -78,7 +84,8 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(cereal::make_nvp("InterLeadMult", m_interceptLeadMultiplier),
+		archive(cereal::make_nvp("HullStrength", m_maxHull),
+				cereal::make_nvp("InterLeadMult", m_interceptLeadMultiplier),
 				cereal::make_nvp("FollowDist", m_followDistance),
 				cereal::make_nvp("ApproachDist", m_approachDistance),
 				cereal::make_nvp("StrafeDist", m_strafeDistance),
@@ -97,6 +104,8 @@ public:
 
 inline void ShipStats::Copy(ShipStats* other)
 {
+	m_maxHull = other->m_maxHull;
+
 	m_interceptLeadMultiplier = other->m_interceptLeadMultiplier;
 	m_followDistance = other->m_followDistance;
 	m_approachDistance = other->m_approachDistance;
@@ -119,7 +128,8 @@ inline void ShipStats::Copy(ShipStats* other)
 
 inline ShipStats* ShipStats::Clone(ShipStats* other)
 {
-	return new ShipStats(other->m_interceptLeadMultiplier,
+	return new ShipStats(other->m_maxHull,
+						other->m_interceptLeadMultiplier,
 						other->m_followDistance,
 						other->m_approachDistance,
 						other->m_strafeDistance,

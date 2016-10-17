@@ -12,11 +12,40 @@
             "Steer": 60.0
         },
         "DirGunData": {
-            "FireRate": 0.0,
-            "HealLimit": 0.0,
-            "CooldownRate": 0.0,
-            "HeatGenerated": 0.0,
-            "HardPoints": [],
+            "FireRate": 0.10000000149011612,
+            "HealLimit": 10.0,
+            "CooldownRate": 3.0,
+            "HeatGenerated": 1.0,
+            "HardPoints": [
+                {
+                    "Position": {
+                        "v.x": 92.5,
+                        "v.y": 44.0
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 93.5,
+                        "v.y": 80.0
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 76.5,
+                        "v.y": 25.0
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 75.5,
+                        "v.y": 99.0
+                    },
+                    "Angle": 0.0
+                }
+            ],
             "SoundID": 801
         },
         "ImageLocation": "1.png",

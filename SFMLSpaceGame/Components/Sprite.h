@@ -24,4 +24,5 @@ public:
 
 	// Returns the dimensions of this sprite in meters
 	virtual sf::FloatRect GetDimensions() const;
+	b2Vec2 GetOrigin() const;
 };
