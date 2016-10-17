@@ -19,5 +19,6 @@ public:
 	{}
 
 	virtual void Update() override;
+
 	void operator +=(std::function<void(sf::Keyboard::Key)> callback);
 };
