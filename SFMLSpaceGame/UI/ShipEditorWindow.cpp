@@ -193,6 +193,16 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_propertyTable->Attach(m_cooldownRateEntry,{ 1, 14, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(m_heatGenEntry,		{ 1, 15, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
+	auto defenseHeaderLabel = sfg::Label::Create("Defense Stats");
+	auto hullStrengthLabel = sfg::Label::Create("Hull Strength");
+	m_hullStrengthEntry = sfg::Entry::Create();
+
+	m_hullStrengthEntry->SetRequisition(sf::Vector2f(50, 0));
+
+	m_propertyTable->Attach(defenseHeaderLabel,		{ 0, 16, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(hullStrengthLabel,		{ 0, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_hullStrengthEntry,	{ 1, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+
 	SetupEntryValidationSignals();
 }
 
@@ -229,6 +239,8 @@ void ShipEditorWindow::SetupEntryValidationSignals()
 		[this] { OnEntryFloatTextValidation(m_cooldownRateEntry); });
 	m_heatGenEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
 		[this] { OnEntryFloatTextValidation(m_heatGenEntry); });
+	m_hullStrengthEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
+		[this] { OnEntryFloatTextValidation(m_hullStrengthEntry); });
 }
 
 void ShipEditorWindow::BeginDefiningCollider()
@@ -266,6 +278,7 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_heatLimitEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatLimit));
 	m_cooldownRateEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->cooldownRate));
 	m_heatGenEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatGenerated));
+	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->GetMaxHullStrength()));
 }
 
 void ShipEditorWindow::LoadShipImage()
@@ -297,7 +310,8 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 		&& m_fireRateEntry->GetId() == valid
 		&& m_heatLimitEntry->GetId() == valid
 		&& m_cooldownRateEntry->GetId() == valid
-		&& m_heatGenEntry->GetId() == valid;
+		&& m_heatGenEntry->GetId() == valid
+		&& m_hullStrengthEntry->GetId() == valid;
 }
 
 void ShipEditorWindow::CreateNewShip()
@@ -431,6 +445,7 @@ void ShipEditorWindow::OnSaveShip()
 	m_editingStats->SetApproachDistance(stof(m_approachDistEntry->GetText().toAnsiString()));
 	m_editingStats->SetStrafeDistance(stof(m_strafeDistEntry->GetText().toAnsiString()));
 	m_editingStats->SetSensorRange(stof(m_sensorRangeEntry->GetText().toAnsiString()));
+	m_editingStats->SetMaxHullStrength(stof(m_hullStrengthEntry->GetText().toAnsiString()));
 
 	auto shipThrust = m_editingStats->GetShipThrust();
 	shipThrust->Forward = stof(m_forwardThrustEntry->GetText().toAnsiString());

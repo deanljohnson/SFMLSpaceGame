@@ -1,5 +1,6 @@
 {
     "Alien-One": {
+		"HullStrength": 100.0,
         "InterLeadMult": 0.0,
         "FollowDist": 0.0,
         "ApproachDist": 0.0,

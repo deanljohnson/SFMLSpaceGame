@@ -1,5 +1,6 @@
 {
     "Human-Fighter": {
+        "HullStrength": 100.0,
         "InterLeadMult": 5.0,
         "FollowDist": 4.0,
         "ApproachDist": 4.5,

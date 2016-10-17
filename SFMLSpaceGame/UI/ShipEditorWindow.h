@@ -47,6 +47,8 @@ private:
 	sfg::Entry::Ptr m_cooldownRateEntry;
 	sfg::Entry::Ptr m_heatGenEntry;
 
+	sfg::Entry::Ptr m_hullStrengthEntry;
+
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;
 
