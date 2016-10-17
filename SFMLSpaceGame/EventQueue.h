@@ -6,11 +6,17 @@
 class EventQueue
 {
 private:
-	std::deque<Event> m_events{};
-	int m_lastEventsSinceUpdate{ 0 };
-	int m_eventsSinceUpdate{ 0 };
+	std::deque<Event> m_events;
+	int m_lastEventsSinceUpdate;
+	int m_eventsSinceUpdate;
 
 public:
+	EventQueue()
+		: m_events(), 
+		  m_lastEventsSinceUpdate(0), 
+		  m_eventsSinceUpdate(0)
+	{}
+
 	void Push(Event e);
 
 	bool Get(EventType type, Event& target)

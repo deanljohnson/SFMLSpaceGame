@@ -31,7 +31,7 @@ public:
 		else
 		{
 			auto mousePosI = sf::Mouse::getPosition(*GAME_WINDOW);
-			auto mousePos = sf::Vector2f(mousePosI.x, mousePosI.y);
+			auto mousePos = sf::Vector2f(static_cast<float>(mousePosI.x), static_cast<float>(mousePosI.y));
 			for(auto& kvp : m_windows)
 			{
 				if (!kvp.second->IsShown())
