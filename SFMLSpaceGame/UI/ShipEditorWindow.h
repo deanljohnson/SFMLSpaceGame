@@ -20,6 +20,7 @@ private:
 	sfg::Button::Ptr m_saveShipButton;
 	sfg::Button::Ptr m_defineColliderButton;
 	sfg::Button::Ptr m_hardpointEditorButton;
+	sfg::Button::Ptr m_thrusterEditorButton;
 	sfg::Window::Ptr m_shipWindow;
 	sfg::Canvas::Ptr m_shipCanvas;
 	sfg::Table::Ptr m_propertyTable;
@@ -72,7 +73,7 @@ private:
 
 	std::string m_newShipImageName;
 	std::string m_shipName;
-	std::unique_ptr<ShipStats> m_editingStats;
+	std::shared_ptr<ShipStats> m_editingStats;
 	std::shared_ptr<ShipStats> m_targetStats;
 public:
 	ShipEditorWindow();

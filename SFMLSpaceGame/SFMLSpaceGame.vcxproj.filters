@@ -255,6 +255,9 @@
     <ClCompile Include="UI\WidgetHelpers.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ThrusterLocationEditor.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -533,6 +536,9 @@
     <ClInclude Include="UI\WidgetHelpers.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI\ThrusterLocationEditor.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
@@ -564,6 +570,9 @@
       <Filter>Data</Filter>
     </None>
     <None Include="..\Data\LaserOne.projectile">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Alien-One.ship">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>

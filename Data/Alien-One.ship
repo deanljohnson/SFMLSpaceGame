@@ -1,6 +1,6 @@
 {
     "Alien-One": {
-		"HullStrength": 100.0,
+        "HullStrength": 100.0,
         "InterLeadMult": 0.0,
         "FollowDist": 0.0,
         "ApproachDist": 0.0,
@@ -52,28 +52,38 @@
         "ImageLocation": "1.png",
         "ColliderVertices": [
             {
-                "v.x": 0.0,
-                "v.y": 61.0
+                "v.x": 17.5,
+                "v.y": 1.5
             },
             {
-                "v.x": 25.5,
-                "v.y": 4.0
+                "v.x": 66.5,
+                "v.y": 1.5
             },
             {
-                "v.x": 88.5,
-                "v.y": 2.0
+                "v.x": 99.5,
+                "v.y": 46.5
             },
             {
-                "v.x": 134.5,
-                "v.y": 61.0
+                "v.x": 66.5,
+                "v.y": 92.5
             },
             {
-                "v.x": 89.5,
-                "v.y": 121.0
+                "v.x": 21.5,
+                "v.y": 93.5
             },
             {
-                "v.x": 25.5,
-                "v.y": 121.0
+                "v.x": -0.5,
+                "v.y": 45.5
+            }
+        ],
+        "ThrusterLocations": [
+            {
+                "v.x": 12.5,
+                "v.y": 35.5
+            },
+            {
+                "v.x": 12.5,
+                "v.y": 55.5
             }
         ]
     }

@@ -60,6 +60,7 @@ void InitialGameState::Init()
 	m_stationWindow.Show(false);
 	m_hardPointEditor.Show(false);
 	m_colliderEditor.Show(false);
+	m_thrusterLocationEditor.Show(false);
 	m_shipEditor.CenterOnScreen();
 	m_shipSelector.CenterOnScreen();
 	m_imageSelector.CenterOnScreen();
@@ -67,6 +68,7 @@ void InitialGameState::Init()
 	m_stationWindow.CenterOnScreen();
 	m_hardPointEditor.CenterOnScreen();
 	m_colliderEditor.CenterOnScreen();
+	m_thrusterLocationEditor.CenterOnScreen();
 }
 
 void InitialGameState::CleanUp()

@@ -22,8 +22,9 @@ void ThrusterAnimator::Update()
 void ThrusterAnimator::ApplyScale()
 {
 	float yScale = std::min(1.f, m_currentScale + .3f);
-	m_thrusterOne->SetScale(m_currentScale, yScale);
 
-	if (m_thrusterTwo != nullptr)
-		m_thrusterTwo->SetScale(m_currentScale, yScale);
+	for (auto t : m_thrusterSprites)
+	{
+		t->SetScale(m_currentScale, yScale);
+	}
 }

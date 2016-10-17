@@ -6,18 +6,14 @@ class ThrusterAnimator : public Component
 {
 private:
 	ShipThrusters* m_thrusters{ nullptr };
-	AnimatedSprite* m_thrusterOne{ nullptr };
-	AnimatedSprite* m_thrusterTwo{ nullptr };
+	std::vector<AnimatedSprite*> m_thrusterSprites;
 
 	float m_currentScale;
 
 	void ApplyScale();
 public:
-	explicit ThrusterAnimator(AnimatedSprite* thruster)
-		: m_thrusterOne(thruster), m_currentScale(0.f)
-	{}
-	ThrusterAnimator(AnimatedSprite* thrusterOne, AnimatedSprite* thrusterTwo)
-		: m_thrusterOne(thrusterOne), m_thrusterTwo(thrusterTwo), m_currentScale(0.f)
+	explicit ThrusterAnimator(const std::vector<AnimatedSprite*>& thrusters)
+		: m_thrusterSprites(thrusters), m_currentScale(0)
 	{}
 
 	virtual void Init() override;

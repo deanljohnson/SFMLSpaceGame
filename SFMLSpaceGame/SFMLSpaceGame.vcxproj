@@ -249,6 +249,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\ShipNameEntry.cpp" />
     <ClCompile Include="UI\ShipSelector.cpp" />
     <ClCompile Include="UI\StationWindow.cpp" />
+    <ClCompile Include="UI\ThrusterLocationEditor.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\WidgetHelpers.cpp" />
   </ItemGroup>
@@ -341,6 +342,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\ShipNameEntry.h" />
     <ClInclude Include="UI\ShipSelector.h" />
     <ClInclude Include="UI\StationWindow.h" />
+    <ClInclude Include="UI\ThrusterLocationEditor.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\WidgetHelpers.h" />
     <ClInclude Include="VectorMath.h" />
@@ -358,6 +360,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <Image Include="..\Images\basic_up.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Data\Alien-One.ship" />
     <None Include="..\Data\Human-Fighter.ship" />
     <None Include="..\Data\LaserOne.projectile" />
   </ItemGroup>

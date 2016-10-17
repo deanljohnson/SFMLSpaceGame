@@ -10,6 +10,7 @@
 #include "UI/StationWindow.h"
 #include "UI/HardPointEditor.h"
 #include "UI/ColliderEditor.h"
+#include "UI/ThrusterLocationEditor.h"
 
 class InitialGameState : public GameState
 {
@@ -27,6 +28,7 @@ private:
 	StationWindow m_stationWindow;
 	HardPointEditor m_hardPointEditor;
 	ColliderEditor m_colliderEditor;
+	ThrusterLocationEditor m_thrusterLocationEditor;
 
 public:
 	InitialGameState() 

@@ -8,6 +8,7 @@
 #include <WorldConstants.h>
 #include "HardPointEditor.h"
 #include "ColliderEditor.h"
+#include "ThrusterLocationEditor.h"
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -25,6 +26,7 @@ ShipEditorWindow::ShipEditorWindow()
 	m_saveShipButton = sfg::Button::Create("Save Ship");
 	m_defineColliderButton = sfg::Button::Create("Edit Collider");
 	m_hardpointEditorButton = sfg::Button::Create("Edit Hardpoints");
+	m_thrusterEditorButton = sfg::Button::Create("Edit Thruster Locations");
 	SetupButtonSignals();
 
 	m_shipWindow = sfg::Window::Create(sfg::Window::BACKGROUND);
@@ -49,6 +51,7 @@ ShipEditorWindow::ShipEditorWindow()
 	m_mainBox->Pack(m_shipWindow);
 	m_mainBox->Pack(m_defineColliderButton);
 	m_mainBox->Pack(m_hardpointEditorButton);
+	m_mainBox->Pack(m_thrusterEditorButton);
 
 	m_rightSideBar->Pack(m_propertyTable);
 	
@@ -69,11 +72,11 @@ void ShipEditorWindow::SetupButtonSignals()
 	// will continue the new ship process
 	m_newShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
-	{
-		auto selectWindow = static_cast<ImageSelector*>(GetWindow("image_select"));
-		selectWindow->SetCallback([this](const std::string& name) { OnNewShipImageSelected(name); });
-		selectWindow->Show(true);
-	});
+		{
+			auto selectWindow = static_cast<ImageSelector*>(GetWindow("image_select"));
+			selectWindow->SetCallback([this](const std::string& name) { OnNewShipImageSelected(name); });
+			selectWindow->Show(true);
+		});
 
 	m_editShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
@@ -87,8 +90,7 @@ void ShipEditorWindow::SetupButtonSignals()
 		[this]
 		{
 			OnSaveShip();
-		}
-	);
+		});
 
 	m_defineColliderButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
@@ -96,10 +98,9 @@ void ShipEditorWindow::SetupButtonSignals()
 			if (m_targetStats.get() == nullptr)
 				return;
 			auto editWindow = static_cast<ColliderEditor*>(GetWindow("collider_editor"));
-			editWindow->SetTarget(m_shipName, m_targetStats);
+			editWindow->SetTarget(m_shipName, m_editingStats);
 			editWindow->Show(true);
-		}
-	);
+		});
 
 	m_hardpointEditorButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
@@ -107,10 +108,19 @@ void ShipEditorWindow::SetupButtonSignals()
 			if (m_targetStats.get() == nullptr)
 				return;
 			auto editWindow = static_cast<HardPointEditor*>(GetWindow("hard_point_editor"));
-			editWindow->SetTarget(m_shipName, m_targetStats);
+			editWindow->SetTarget(m_shipName, m_editingStats);
 			editWindow->Show(true);
-		}
-	);
+		});
+
+	m_thrusterEditorButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this]
+		{
+			if (m_targetStats.get() == nullptr)
+				return;
+			auto editWindow = static_cast<ThrusterLocationEditor*>(GetWindow("thruster_editor"));
+			editWindow->SetTarget(m_shipName, m_editingStats);
+			editWindow->Show(true);
+		});
 }
 
 void ShipEditorWindow::SetupPropertyTable()

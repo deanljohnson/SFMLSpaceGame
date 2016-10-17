@@ -44,6 +44,7 @@
 #include "Components/ShipStatsSink.h"
 #include "PlayerData.h"
 #include "Components/ParallaxTargetAssigner.h"
+#include "VectorMath.h"
 
 void EntityFactory::Init()
 {
@@ -202,13 +203,16 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
 
-	auto& as1 = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
-	as1.SetOffset(b2Vec2(-.63f, -.12f));
+	auto sprites = std::vector<AnimatedSprite*>();
+	for (auto tl : shipStats->GetThrusterLocations())
+	{
+		auto& as = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
+		as.SetOffset(SFMLVecToB2Vec((tl* METERS_PER_PIXEL) - origin));
 
-	auto& as2 = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
-	as2.SetOffset(b2Vec2(-.63f, .12f));
+		sprites.push_back(&as);
+	}
 
-	ent->AddComponent<ThrusterAnimator, AnimatedSprite*, AnimatedSprite*>(&as1, &as2);
+	ent->AddComponent<ThrusterAnimator, const std::vector<AnimatedSprite*>&>(sprites);
 }
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, const b2Vec2& p, float radians)
