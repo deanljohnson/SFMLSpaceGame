@@ -7,36 +7,34 @@ class EventQueue
 {
 private:
 	std::deque<Event> m_events;
-	int m_lastEventsSinceUpdate;
-	int m_eventsSinceUpdate;
+	int m_pendingIndex;
 
 public:
 	EventQueue()
 		: m_events(), 
-		  m_lastEventsSinceUpdate(0), 
-		  m_eventsSinceUpdate(0)
+		  m_pendingIndex(0)
 	{}
 
 	void Push(Event e);
 
 	bool Get(EventType type, Event& target)
 	{
-		auto it = m_events.begin();
-		while (it != m_events.end())
+		// Iterate through events from the last update.
+		// Anything after the pending index has been added 
+		// to the event queue since the last call to 
+		// EventQueue.Update
+		for (size_t i = 0; i < m_pendingIndex; i++) 
 		{
-			if (it->type == type)
+			if (m_events[i].type == type)
 			{
-				target = (*it);
+				target = m_events[i];
 				return true;
 			}
-			++it;
 		}
 		return false;
 	}
 
 	void Update();
-	std::deque<Event>::iterator Begin();
-	std::deque<Event>::iterator End();
 	int Count() const;
 	void Clear();
 };

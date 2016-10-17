@@ -103,6 +103,7 @@ void ShipEditorWindow::SetupButtonSignals()
 		auto editWindow = static_cast<ConfirmationDialog*>(GetWindow("confirmation_dialog"));
 		editWindow->SetCallback([this](bool val) { if (val) OnDeleteShip(); });
 		editWindow->SetText("Are you sure you want to delete this ship? This cannot be undone.");
+		editWindow->CenterOnScreen(); // changing the text can make the window uncentered
 		editWindow->Show(true);
 	});
 
@@ -462,6 +463,7 @@ void ShipEditorWindow::OnSaveShip()
 
 void ShipEditorWindow::OnDeleteShip() 
 {
+	assert(m_editingStats != nullptr);
 	serializer.DeleteRecord(m_editingStats.get(), m_shipName);
 	ClearShipEditing();
 }

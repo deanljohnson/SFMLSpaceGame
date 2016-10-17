@@ -7,27 +7,11 @@ void EventQueue::Push(Event e)
 
 void EventQueue::Update()
 {
-	m_eventsSinceUpdate = m_events.size() - m_lastEventsSinceUpdate;
+	// Erase events from the last update
+	m_events.erase(m_events.begin(), m_events.begin() + m_pendingIndex);
 
-	// Remove events that are too old
-	while (m_lastEventsSinceUpdate > 0)
-	{
-		m_events.pop_front();
-		m_lastEventsSinceUpdate--;
-	}
-	m_lastEventsSinceUpdate = m_eventsSinceUpdate;
-	m_eventsSinceUpdate = 0;
-}
-
-
-std::deque<Event>::iterator EventQueue::Begin()
-{
-	return m_events.begin();
-}
-
-std::deque<Event>::iterator EventQueue::End()
-{
-	return m_events.end();
+	// Set our new pending index to the end of the list
+	m_pendingIndex = m_events.size();
 }
 
 int EventQueue::Count() const { return m_events.size(); }
@@ -35,6 +19,5 @@ int EventQueue::Count() const { return m_events.size(); }
 void EventQueue::Clear() 
 {
 	m_events.clear();
-	m_lastEventsSinceUpdate = 0;
-	m_eventsSinceUpdate = 0;
+	m_pendingIndex = 0;
 }
