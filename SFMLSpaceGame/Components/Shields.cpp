@@ -34,14 +34,14 @@ void Shields::Modify(Event& event)
 
 void Shields::ModifyWithAmount(Event& event, float amount) const
 {
-	event.attacked.damage *= amount / 100.f;
+	event.attacked.damage *= amount / MAX_SHIELD_STRENGTH;
 }
 
 void Shields::ModifyForFrontHit(Event& event) const
 {
 	if (((int)m_activationMask & (int)Direction::Front) > 0)
 	{
-		ModifyWithAmount(event, 100.f - 
+		ModifyWithAmount(event, MAX_SHIELD_STRENGTH -
 			(((int)m_activationMask & (int)Direction::All > 0)
 			? m_data->FrontStrength / 3.f
 			: m_data->FrontStrength));
@@ -52,7 +52,7 @@ void Shields::ModifyForSideHit(Event& event) const
 {
 	if (((int)m_activationMask & (int)Direction::Side) > 0)
 	{
-		ModifyWithAmount(event, 100.f -
+		ModifyWithAmount(event, MAX_SHIELD_STRENGTH -
 			(((int)m_activationMask & (int)Direction::All > 0)
 			? m_data->SideStrength / 3.f
 			: m_data->SideStrength));
@@ -63,7 +63,7 @@ void Shields::ModifyForRearHit(Event& event) const
 {
 	if (((int)m_activationMask & (int)Direction::Rear) > 0)
 	{
-		ModifyWithAmount(event, 100.f -
+		ModifyWithAmount(event, MAX_SHIELD_STRENGTH -
 			(((int)m_activationMask & (int)Direction::All > 0)
 			? m_data->RearStrength / 3.f
 			: m_data->RearStrength));

@@ -5,7 +5,13 @@
 
 struct ShieldData 
 {
-	ShieldData() 
+	ShieldData()
+		: FrontStrength(0), SideStrength(0), RearStrength(0)
+	{}
+	ShieldData(float front, float side, float rear)
+		: FrontStrength(front),
+		  SideStrength(side),
+		  RearStrength(rear)
 	{}
 
 	float FrontStrength, SideStrength, RearStrength;
@@ -30,6 +36,8 @@ public:
 		All = 0x7
 	};
 private:
+	const float MAX_SHIELD_STRENGTH = 100.f;
+
 	Position* m_position;
 	Rotation* m_rotation;
 	Direction m_activationMask;

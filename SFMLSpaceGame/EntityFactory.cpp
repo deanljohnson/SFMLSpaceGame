@@ -37,6 +37,7 @@
 #include "Components/TilingBackground.h"
 #include "Components/KeyListener.h"
 #include "Components/Text.h"
+#include "Components/Shields.h"
 #include "UI/GameWindow.h"
 #include <SFML/Graphics/ConvexShape.hpp>
 #include "WorldConstants.h"
@@ -181,7 +182,8 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 	gun.SetSoundSource(&shotSound);
 	ent->AddComponent<Health>();
-	ent->AddComponent<DamageOnAttacked>();
+	auto& shields = ent->AddComponent<Shields>(new ShieldData(100.f, 100.f, 100.f));
+	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
 
 	if (npc)
 	{
