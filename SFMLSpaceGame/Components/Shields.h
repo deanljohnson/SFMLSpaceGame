@@ -15,6 +15,7 @@ struct ShieldData
 	{}
 
 	float FrontStrength, SideStrength, RearStrength;
+	float RegenSpeed;
 
 	template<class Archive>
 	void serialize(Archive& archive)
@@ -36,17 +37,20 @@ public:
 		All = 0x7
 	};
 private:
-	const float MAX_SHIELD_STRENGTH = 100.f;
-
 	Position* m_position;
 	Rotation* m_rotation;
 	Direction m_activationMask;
 	ShieldData* m_data;
 
-	void ModifyWithAmount(Event& event, float amount) const;
-	void ModifyForFrontHit(Event& event) const;
-	void ModifyForSideHit(Event& event) const;
-	void ModifyForRearHit(Event& event) const;
+	float m_currentFrontStrength;
+	float m_currentSideStrength;
+	float m_currentRearStrength;
+
+	void OnShieldDeplete();
+
+	void AbsorbFrontDamage(Event& event);
+	void AbsorbSideDamage(Event& event);
+	void AbsorbRearDamage(Event& event);
 public:
 
 	explicit Shields(ShieldData* data)
@@ -57,6 +61,7 @@ public:
 	{}
 
 	virtual void Init() override;
+	virtual void Update() override;
 
 	void SetActive(Direction dirMask);
 	void Modify(Event& event);
