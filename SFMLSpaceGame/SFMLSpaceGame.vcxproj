@@ -198,6 +198,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\MusicSource.cpp" />
     <ClCompile Include="Components\ParallaxTargetAssigner.cpp" />
     <ClCompile Include="Components\PlayerDeathBroadcaster.cpp" />
+    <ClCompile Include="Components\ShieldHitAnimator.cpp" />
     <ClCompile Include="Components\Shields.cpp" />
     <ClCompile Include="Components\ShipAI.cpp" />
     <ClCompile Include="Components\ShipController.cpp" />
@@ -267,6 +268,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\MusicSource.h" />
     <ClInclude Include="Components\ParallaxTargetAssigner.h" />
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />
+    <ClInclude Include="Components\ShieldHitAnimator.h" />
     <ClInclude Include="Components\Shields.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />

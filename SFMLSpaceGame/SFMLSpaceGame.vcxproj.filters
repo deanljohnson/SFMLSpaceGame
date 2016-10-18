@@ -264,6 +264,9 @@
     <ClCompile Include="Components\Shields.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ShieldHitAnimator.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -552,6 +555,9 @@
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Components\Shields.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShieldHitAnimator.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

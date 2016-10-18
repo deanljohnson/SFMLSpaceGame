@@ -69,8 +69,9 @@ bool BulletPhysics::HandleCollisions()
 			return false;
 
 		// If one of the fixtures is a nonsensor
-		if (!contact->contact->GetFixtureA()->IsSensor()
+		if ((!contact->contact->GetFixtureA()->IsSensor()
 			|| !contact->contact->GetFixtureB()->IsSensor())
+			&& contact->contact->IsTouching())
 		{
 			auto userData = contact->other->GetUserData();
 			if (userData != nullptr) // If contact is not with a body with defined entity data
@@ -83,8 +84,8 @@ bool BulletPhysics::HandleCollisions()
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
 				attackedEvent.attacked.damage = m_projStats->GetDamage();
-				attackedEvent.attacked.collisionX = manifold.points[0].x;
-				attackedEvent.attacked.collisionY = manifold.points[0].y;
+				attackedEvent.attacked.collisionX = m_position->X();
+				attackedEvent.attacked.collisionY = m_position->Y();
 				attackedEvent.type = Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}

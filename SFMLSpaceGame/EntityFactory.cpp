@@ -46,6 +46,7 @@
 #include "PlayerData.h"
 #include "Components/ParallaxTargetAssigner.h"
 #include "VectorMath.h"
+#include "Components/ShieldHitAnimator.h"
 
 void EntityFactory::Init()
 {
@@ -57,6 +58,7 @@ void EntityFactory::Init()
 	GetComponentTypeID<Rotation>();
 	GetComponentTypeID<Sprite>();
 	GetComponentTypeID<AnimatedSprite>();
+	GetComponentTypeID<ShieldHitAnimator>();
 	GetComponentTypeID<Physics>();
 	GetComponentTypeID<SmoothCameraFollow>();
 	GetComponentTypeID<ParallaxMovement>();
@@ -182,8 +184,10 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 	gun.SetSoundSource(&shotSound);
 	ent->AddComponent<Health>();
-	auto& shields = ent->AddComponent<Shields>(new ShieldData(100.f, 100.f, 100.f));
+	auto& shields = ent->AddComponent<Shields>(new ShieldData(100.f, 100.f, 100.f, 10.f));
+	shields.SetActive(Shields::Direction::All);
 	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
+	ent->AddComponent<ShieldHitAnimator, float>(.75f);
 
 	if (npc)
 	{

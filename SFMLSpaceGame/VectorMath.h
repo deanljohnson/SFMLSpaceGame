@@ -2,6 +2,7 @@
 #include <Box2D/Common/b2Math.h>
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
+#include <ExtendedMath.h>
 
 inline float Length(const sf::Vector2f& a)
 {
@@ -52,6 +53,17 @@ inline b2Vec2 Lerp(const b2Vec2& a, const b2Vec2& b, float d)
 {
 	auto t = b - a;
 	return a + (b2Vec2(t.x * d, t.y * d));
+}
+
+inline sf::Vector2f AtAngleDegrees(float deg)
+{
+	auto rad = deg * static_cast<float>(M_PI) / 180.f;
+	return sf::Vector2f(cosf(rad), sinf(rad));
+}
+
+inline sf::Vector2f AtAngleRad(float rad)
+{
+	return sf::Vector2f(cosf(rad), sinf(rad));
 }
 
 // Takes a line A defined by a start point a1 and an end point a2
