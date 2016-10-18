@@ -14,6 +14,8 @@ public:
 	{
 		EntityID attackerID;
 		float damage;
+		float collisionX;
+		float collisionY;
 	};
 
 	struct PlayerDiedEvent

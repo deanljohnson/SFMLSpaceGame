@@ -75,11 +75,16 @@ bool BulletPhysics::HandleCollisions()
 			auto userData = contact->other->GetUserData();
 			if (userData != nullptr) // If contact is not with a body with defined entity data
 			{
+				b2WorldManifold manifold;
+				contact->contact->GetWorldManifold(&manifold);
+
 				auto otherEnt = static_cast<Entity*>(userData);
 				Event attackedEvent;
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
 				attackedEvent.attacked.damage = m_projStats->GetDamage();
+				attackedEvent.attacked.collisionX = manifold.points[0].x;
+				attackedEvent.attacked.collisionY = manifold.points[0].y;
 				attackedEvent.type = Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}
