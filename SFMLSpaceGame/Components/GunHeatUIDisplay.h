@@ -21,6 +21,7 @@ public:
 		m_gunType = &entity->GetComponent<TGunComponent>();
 
 		m_progressBar = sfg::ProgressBar::Create();
+		m_progressBar->SetRequisition({ 75.f, 25.f });
 		UI::Singleton->Add(m_progressBar);
 	}
 
