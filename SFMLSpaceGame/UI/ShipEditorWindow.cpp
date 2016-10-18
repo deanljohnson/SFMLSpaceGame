@@ -222,13 +222,33 @@ void ShipEditorWindow::SetupPropertyTable()
 
 	auto defenseHeaderLabel = sfg::Label::Create("Defense Stats");
 	auto hullStrengthLabel = sfg::Label::Create("Hull Strength");
+	auto forwardShieldLabel = sfg::Label::Create("Forward Shield Strength");
+	auto sideShieldLabel = sfg::Label::Create("Side Shield Strength");
+	auto rearShieldLabel = sfg::Label::Create("Rear Shield Strength");
+	auto shieldRegenLabel = sfg::Label::Create("Shield Regen Speed");
 	m_hullStrengthEntry = sfg::Entry::Create();
+	m_frontShieldEntry = sfg::Entry::Create();
+	m_sideShieldEntry = sfg::Entry::Create();
+	m_rearShieldEntry = sfg::Entry::Create();
+	m_shieldRegenEntry = sfg::Entry::Create();
 
 	m_hullStrengthEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_frontShieldEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_sideShieldEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_rearShieldEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_shieldRegenEntry->SetRequisition(sf::Vector2f(50, 0));
 
-	m_propertyTable->Attach(defenseHeaderLabel,		{ 0, 16, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(hullStrengthLabel,		{ 0, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_hullStrengthEntry,	{ 1, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(defenseHeaderLabel,	{ 0, 16, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(hullStrengthLabel,	{ 0, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(forwardShieldLabel,	{ 0, 18, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(sideShieldLabel,	{ 0, 19, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(rearShieldLabel,	{ 0, 20, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(shieldRegenLabel,	{ 0, 21, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_hullStrengthEntry,{ 1, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_frontShieldEntry,	{ 1, 18, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_sideShieldEntry,	{ 1, 19, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_rearShieldEntry,	{ 1, 20, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_shieldRegenEntry,	{ 1, 21, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	SetupEntryValidationSignals();
 }
@@ -267,6 +287,14 @@ void ShipEditorWindow::SetupEntryValidationSignals()
 		[this] { OnEntryFloatTextValidation(m_heatGenEntry); });
 	m_hullStrengthEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
 		[this] { OnEntryFloatTextValidation(m_hullStrengthEntry); });
+	m_frontShieldEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
+		[this] { OnEntryFloatTextValidation(m_frontShieldEntry); });
+	m_sideShieldEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
+		[this] { OnEntryFloatTextValidation(m_sideShieldEntry); });
+	m_rearShieldEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
+		[this] { OnEntryFloatTextValidation(m_rearShieldEntry); });
+	m_shieldRegenEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
+		[this] { OnEntryFloatTextValidation(m_shieldRegenEntry); });
 }
 
 void ShipEditorWindow::LoadShipStatsToEntries()
@@ -352,6 +380,10 @@ void ShipEditorWindow::ClearShipEditing()
 	m_cooldownRateEntry->SetText("");
 	m_heatGenEntry->SetText("");
 	m_hullStrengthEntry->SetText("");
+	m_frontShieldEntry->SetText("");
+	m_sideShieldEntry->SetText("");
+	m_rearShieldEntry->SetText("");
+	m_shieldRegenEntry->SetText("");
 
 	DrawShipCanvas();
 }
