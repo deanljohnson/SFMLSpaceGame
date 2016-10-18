@@ -49,6 +49,12 @@
             ],
             "SoundID": 801
         },
+		"Shields": {
+			"FrontStrength": 100.0,
+			"SideStrength": 100.0,
+			"RearStrength": 100.0,
+			"RegenSpeed": 10.0
+		},
         "ImageLocation": "1.png",
         "ColliderVertices": [
             {

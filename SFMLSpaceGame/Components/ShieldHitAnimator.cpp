@@ -13,7 +13,7 @@ ShieldHitAnimator::ShieldHitAnimator(float radius)
 	float curAngle = -M_PI;
 	// now loop through and do all the other vertices
 	// negative side first
-	for (size_t i = 0; i <= NUM_VERTS - 1; i++)
+	for (size_t i = 0; i < NUM_VERTS; i++)
 	{
 		m_vertextArray.append(sf::Vertex(AtAngleRad(curAngle) * radius, sf::Color::Transparent));
 		curAngle += VERT_ARC_LENGTH;
@@ -39,10 +39,12 @@ void ShieldHitAnimator::Update()
 	m_transform.translate(m_position->X(), m_position->Y())
 		.rotate(m_rotation->GetDegrees());
 
+	m_visible = false;
 	for (int i = 0; i < m_vertextArray.getVertexCount(); i++)
 	{
 		if (m_vertextArray[i].color.a > 0)
 		{
+			m_visible = true;
 			m_vertextArray[i].color.a = static_cast<char>(std::max(0.f, Lerp(m_vertextArray[i].color.a, 0.f, GameTime::deltaTime * 5)));
 		}
 	}
@@ -50,6 +52,9 @@ void ShieldHitAnimator::Update()
 
 void ShieldHitAnimator::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
+	if (!m_visible)
+		return;
+
 	states.transform.combine(m_transform);
 
 	target.draw(m_vertextArray, states);
@@ -67,7 +72,9 @@ void ShieldHitAnimator::OnShieldHit(Shields::Direction dir, const b2Vec2& dif)
 		testAngle += VERT_ARC_LENGTH;
 	}
 
-	m_vertextArray[(index - 1) % (m_vertextArray.getVertexCount() + 1)].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index - 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index - 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
 	m_vertextArray[index].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A);
-	m_vertextArray[(index + 1) % (m_vertextArray.getVertexCount() - 1)].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index + 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index + 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
 }

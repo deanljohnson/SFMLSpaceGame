@@ -184,7 +184,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 	gun.SetSoundSource(&shotSound);
 	ent->AddComponent<Health>();
-	auto& shields = ent->AddComponent<Shields>(new ShieldData(100.f, 100.f, 100.f, 10.f));
+	auto& shields = ent->AddComponent<Shields>(shipStats->GetShieldData());
 	shields.SetActive(Shields::Direction::All);
 	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);

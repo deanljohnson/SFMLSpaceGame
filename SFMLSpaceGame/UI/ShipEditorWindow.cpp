@@ -152,11 +152,11 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_strafeDistEntry = sfg::Entry::Create();
 	m_sensorRangeEntry = sfg::Entry::Create();
 
-	m_interLeadEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_followDistEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_approachDistEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_strafeDistEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_sensorRangeEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_interLeadEntry->SetRequisition(ENTRY_SIZE);
+	m_followDistEntry->SetRequisition(ENTRY_SIZE);
+	m_approachDistEntry->SetRequisition(ENTRY_SIZE);
+	m_strafeDistEntry->SetRequisition(ENTRY_SIZE);
+	m_sensorRangeEntry->SetRequisition(ENTRY_SIZE);
 
 	m_propertyTable->Attach(aiHeaderLabel,		{ 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(interLeadMultLabel, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
@@ -180,10 +180,10 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_reverseThrustEntry = sfg::Entry::Create();
 	m_steerThrustEntry = sfg::Entry::Create();
 
-	m_forwardThrustEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_sideThrustEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_reverseThrustEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_steerThrustEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_forwardThrustEntry->SetRequisition(ENTRY_SIZE);
+	m_sideThrustEntry->SetRequisition(ENTRY_SIZE);
+	m_reverseThrustEntry->SetRequisition(ENTRY_SIZE);
+	m_steerThrustEntry->SetRequisition(ENTRY_SIZE);
 
 	m_propertyTable->Attach(thrustHeaderLabel,	  { 0, 6,  2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(forwardThrustLabel,   { 0, 7,  1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
@@ -205,20 +205,20 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_cooldownRateEntry = sfg::Entry::Create();
 	m_heatGenEntry = sfg::Entry::Create();
 
-	m_fireRateEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_heatLimitEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_cooldownRateEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_heatGenEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_fireRateEntry->SetRequisition(ENTRY_SIZE);
+	m_heatLimitEntry->SetRequisition(ENTRY_SIZE);
+	m_cooldownRateEntry->SetRequisition(ENTRY_SIZE);
+	m_heatGenEntry->SetRequisition(ENTRY_SIZE);
 
-	m_propertyTable->Attach(weaponsHeaderLabel, { 0, 11, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(fireRateLabel,		{ 0, 12, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(heatLimitLabel,		{ 0, 13, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(cooldownRateLabel,	{ 0, 14, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(heatGenLabel,		{ 0, 15, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_fireRateEntry,	{ 1, 12, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_heatLimitEntry,	{ 1, 13, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_cooldownRateEntry,{ 1, 14, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_heatGenEntry,		{ 1, 15, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(weaponsHeaderLabel, { 2, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(fireRateLabel,		{ 2, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(heatLimitLabel,		{ 2, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(cooldownRateLabel,	{ 2, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(heatGenLabel,		{ 2, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_fireRateEntry,	{ 3, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_heatLimitEntry,	{ 3, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_cooldownRateEntry,{ 3, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_heatGenEntry,		{ 3, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	auto defenseHeaderLabel = sfg::Label::Create("Defense Stats");
 	auto hullStrengthLabel = sfg::Label::Create("Hull Strength");
@@ -232,23 +232,23 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_rearShieldEntry = sfg::Entry::Create();
 	m_shieldRegenEntry = sfg::Entry::Create();
 
-	m_hullStrengthEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_frontShieldEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_sideShieldEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_rearShieldEntry->SetRequisition(sf::Vector2f(50, 0));
-	m_shieldRegenEntry->SetRequisition(sf::Vector2f(50, 0));
+	m_hullStrengthEntry->SetRequisition(ENTRY_SIZE);
+	m_frontShieldEntry->SetRequisition(ENTRY_SIZE);
+	m_sideShieldEntry->SetRequisition(ENTRY_SIZE);
+	m_rearShieldEntry->SetRequisition(ENTRY_SIZE);
+	m_shieldRegenEntry->SetRequisition(ENTRY_SIZE);
 
-	m_propertyTable->Attach(defenseHeaderLabel,	{ 0, 16, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(hullStrengthLabel,	{ 0, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(forwardShieldLabel,	{ 0, 18, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(sideShieldLabel,	{ 0, 19, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(rearShieldLabel,	{ 0, 20, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(shieldRegenLabel,	{ 0, 21, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_hullStrengthEntry,{ 1, 17, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_frontShieldEntry,	{ 1, 18, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_sideShieldEntry,	{ 1, 19, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_rearShieldEntry,	{ 1, 20, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_shieldRegenEntry,	{ 1, 21, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(defenseHeaderLabel,	{ 2, 5, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(hullStrengthLabel,	{ 2, 6, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(forwardShieldLabel,	{ 2, 7, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(sideShieldLabel,	{ 2, 8, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(rearShieldLabel,	{ 2, 9, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(shieldRegenLabel,	{ 2, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_hullStrengthEntry,{ 3, 6, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_frontShieldEntry,	{ 3, 7, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_sideShieldEntry,	{ 3, 8, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_rearShieldEntry,	{ 3, 9, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_shieldRegenEntry,	{ 3, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	SetupEntryValidationSignals();
 }
@@ -313,6 +313,10 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_cooldownRateEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->cooldownRate));
 	m_heatGenEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatGenerated));
 	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->GetMaxHullStrength()));
+	m_frontShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->FrontStrength));
+	m_sideShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->SideStrength));
+	m_rearShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->RearStrength));
+	m_shieldRegenEntry->SetText(std::to_string(m_targetStats->GetShieldData()->RegenSpeed));
 }
 
 void ShipEditorWindow::LoadShipImage()
@@ -345,7 +349,11 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 		&& m_heatLimitEntry->GetId() == valid
 		&& m_cooldownRateEntry->GetId() == valid
 		&& m_heatGenEntry->GetId() == valid
-		&& m_hullStrengthEntry->GetId() == valid;
+		&& m_hullStrengthEntry->GetId() == valid
+		&& m_frontShieldEntry->GetId() == valid
+		&& m_sideShieldEntry->GetId() == valid
+		&& m_rearShieldEntry->GetId() == valid
+		&& m_shieldRegenEntry->GetId() == valid;
 }
 
 void ShipEditorWindow::CreateNewShip()
@@ -487,6 +495,12 @@ void ShipEditorWindow::OnSaveShip()
 	gunData->heatLimit = stof(m_heatLimitEntry->GetText().toAnsiString());
 	gunData->cooldownRate = stof(m_cooldownRateEntry->GetText().toAnsiString());
 	gunData->heatGenerated = stof(m_heatGenEntry->GetText().toAnsiString());
+
+	auto shieldData = m_editingStats->GetShieldData();
+	shieldData->FrontStrength = stof(m_frontShieldEntry->GetText().toAnsiString());
+	shieldData->SideStrength = stof(m_sideShieldEntry->GetText().toAnsiString());
+	shieldData->RearStrength = stof(m_rearShieldEntry->GetText().toAnsiString());
+	shieldData->RegenSpeed = stof(m_shieldRegenEntry->GetText().toAnsiString());
 
 	m_targetStats->Copy(m_editingStats.get());
 	

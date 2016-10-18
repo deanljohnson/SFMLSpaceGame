@@ -6,11 +6,9 @@
 class ShieldHitAnimator : public Component
 {
 private:
-	// one center, 33 around the edge
-	// with the number of edge points
-	// being odd we get one vertex directly
-	// in front
-	const int NUM_VERTS = 34;
+	bool m_visible;
+
+	const int NUM_VERTS = 20;
 	const float VERT_ARC_LENGTH = M_TAU / (NUM_VERTS - 1);
 
 	const char HIT_R = 0;

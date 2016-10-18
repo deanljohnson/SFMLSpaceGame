@@ -13,6 +13,8 @@
 class ShipEditorWindow : public GameWindow
 {
 private:
+	const sf::Vector2f ENTRY_SIZE = sf::Vector2f(50, 0);
+
 	Serializer serializer;
 
 	sfg::Button::Ptr m_newShipButton;
