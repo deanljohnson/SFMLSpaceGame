@@ -16,6 +16,15 @@ GameWindow::~GameWindow()
 		m_windowsWithMouse++;
 }
 
+void GameWindow::UpdateAllWindows() 
+{
+	for (auto& kvp : m_windows) 
+	{
+		if (kvp.second->IsShown())
+			kvp.second->Update();
+	}
+}
+
 GameWindow* GameWindow::GetWindow(const std::string& id)
 {
 	auto it = m_windows.find(id);
@@ -85,5 +94,9 @@ void GameWindow::CenterOnScreen()
 		sf::Vector2f(
 		(UI::Singleton->GetSize().x / 2.f) - m_window->GetAllocation().width / 2.f,
 		(UI::Singleton->GetSize().y / 2.f) - m_window->GetAllocation().height / 2.f));
+}
 
+void GameWindow::SetPosition(const sf::Vector2f& pos) 
+{
+	m_window->SetPosition(pos);
 }

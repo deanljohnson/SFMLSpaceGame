@@ -12,6 +12,7 @@
 #include "UI/ColliderEditor.h"
 #include "UI/ThrusterLocationEditor.h"
 #include "UI/ConfirmationDialog.h"
+#include "UI/ShieldStateDisplay.h"
 
 class InitialGameState : public GameState
 {
@@ -31,6 +32,7 @@ private:
 	ColliderEditor m_colliderEditor;
 	ThrusterLocationEditor m_thrusterLocationEditor;
 	ConfirmationDialog m_confirmationDialog;
+	ShieldStateDisplay m_shieldStateDisplay;
 
 public:
 	InitialGameState() 

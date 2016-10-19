@@ -20,6 +20,7 @@ void InitialGameState::Init()
 	world.SetContactFilter(&m_contactListener);
 
 	auto playerID = EntityFactory::CreatePlayer();
+	m_shieldStateDisplay.SetTarget(playerID);
 
 	PlayerData::GetActive()->SetShipChangeCallback(
 		[this](const std::string& newName){
@@ -62,6 +63,7 @@ void InitialGameState::Init()
 	m_colliderEditor.Show(false);
 	m_thrusterLocationEditor.Show(false);
 	m_confirmationDialog.Show(false);
+	m_shieldStateDisplay.Show(true);
 	m_shipEditor.CenterOnScreen();
 	m_shipSelector.CenterOnScreen();
 	m_imageSelector.CenterOnScreen();
@@ -71,6 +73,7 @@ void InitialGameState::Init()
 	m_colliderEditor.CenterOnScreen();
 	m_thrusterLocationEditor.CenterOnScreen();
 	m_confirmationDialog.CenterOnScreen();
+	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
 }
 
 void InitialGameState::CleanUp()
@@ -112,6 +115,8 @@ void InitialGameState::Update()
 	pendingGameEvents.Update();
 
 	m_stepper.Step(world, GameTime::deltaTime);
+
+	GameWindow::UpdateAllWindows();
 
 	EntityManager::Refresh();
 	EntityManager::Update();

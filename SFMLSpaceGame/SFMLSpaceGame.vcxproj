@@ -248,6 +248,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\HardPointEditor.cpp" />
     <ClCompile Include="UI\HardPointWidget.cpp" />
     <ClCompile Include="UI\ImageSelector.cpp" />
+    <ClCompile Include="UI\ShieldStateDisplay.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\ShipNameEntry.cpp" />
     <ClCompile Include="UI\ShipSelector.cpp" />
@@ -345,6 +346,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\GameWindow.h" />
     <ClInclude Include="UI\HardPointEditor.h" />
     <ClInclude Include="UI\ImageSelector.h" />
+    <ClInclude Include="UI\ShieldStateDisplay.h" />
     <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\ShipNameEntry.h" />
     <ClInclude Include="UI\ShipSelector.h" />

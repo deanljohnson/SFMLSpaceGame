@@ -46,8 +46,13 @@ public:
 	}
 	static GameWindow* GetWindow(const std::string& id);
 
+	static void UpdateAllWindows();
+
+	virtual void Update() {}
+
 	virtual void Show(bool val = true);
 	virtual bool IsShown();
 
 	virtual void CenterOnScreen();
+	virtual void SetPosition(const sf::Vector2f& pos);
 };

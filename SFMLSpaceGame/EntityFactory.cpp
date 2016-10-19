@@ -149,6 +149,29 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<PlayerDeathBroadcaster>();
 	ent->AddComponent<SoundListener>();
 	ent->AddComponent<GunHeatUIDisplay<DirectionalGun>>();
+
+	auto& shields = ent->GetComponent<Shields>();
+	auto& keyListener = ent->AddComponent<KeyListener, 
+						std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::Num1, sf::Keyboard::Num2, sf::Keyboard::Num3, sf::Keyboard::Num4, });
+	
+	keyListener += [&shields](sf::Keyboard::Key k) 
+	{ 
+		switch (k)
+		{
+		case sf::Keyboard::Num1:
+			shields.SetActive(Shields::Direction::Front);
+			break;
+		case sf::Keyboard::Num2:
+			shields.SetActive(Shields::Direction::Side);
+			break;
+		case sf::Keyboard::Num3:
+			shields.SetActive(Shields::Direction::Rear);
+			break;
+		case sf::Keyboard::Num4:
+			shields.SetActive(Shields::Direction::All);
+			break;
+		}
+	};
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)

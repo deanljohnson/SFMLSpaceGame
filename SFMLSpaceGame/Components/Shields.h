@@ -76,4 +76,7 @@ public:
 	void Modify(Event& event) override;
 
 	void SetShieldHitCallback(std::function<void(Direction, const b2Vec2&)> callback);
+
+	float GetMaxStrength(Direction dir);
+	float GetCurrentStrength(Direction dir);
 };

@@ -114,7 +114,7 @@ void Shields::SetShieldHitCallback(std::function<void(Direction, const b2Vec2&)>
 void Shields::AbsorbFrontDamage(Event& event) 
 {
 	float newShieldStrength = m_currentFrontStrength - event.attacked.damage;
-	printf("front\n");
+
 	if (newShieldStrength > 0) 
 	{
 		// full absorption
@@ -132,7 +132,7 @@ void Shields::AbsorbFrontDamage(Event& event)
 void Shields::AbsorbSideDamage(Event& event)
 {
 	float newShieldStrength = m_currentSideStrength - event.attacked.damage;
-	printf("side\n");
+
 	if (newShieldStrength > 0)
 	{
 		// full absorption
@@ -150,7 +150,7 @@ void Shields::AbsorbSideDamage(Event& event)
 void Shields::AbsorbRearDamage(Event& event)
 {
 	float newShieldStrength = m_currentRearStrength - event.attacked.damage;
-	printf("rear\n");
+
 	if (newShieldStrength > 0)
 	{
 		// full absorption
@@ -168,4 +168,34 @@ void Shields::AbsorbRearDamage(Event& event)
 void Shields::OnShieldDeplete() 
 {
 
+}
+
+float Shields::GetMaxStrength(Direction dir) 
+{
+	switch (dir) 
+	{
+	case Direction::Front:
+		return m_data->FrontStrength;
+	case Direction::Side:
+		return m_data->SideStrength;
+	case Direction::Rear:
+		return m_data->RearStrength;
+	case Direction::All:
+		return m_data->FrontStrength + m_data->SideStrength + m_data->RearStrength;
+	}
+}
+
+float Shields::GetCurrentStrength(Direction dir) 
+{
+	switch (dir)
+	{
+	case Direction::Front:
+		return m_currentFrontStrength;
+	case Direction::Side:
+		return m_currentSideStrength;
+	case Direction::Rear:
+		return m_currentRearStrength;
+	case Direction::All:
+		return m_currentFrontStrength + m_currentSideStrength + m_currentRearStrength;
+	}
 }
