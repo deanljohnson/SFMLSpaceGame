@@ -7,6 +7,7 @@
 ShieldStateDisplay::ShieldStateDisplay() 
 	: GameWindow("shield_display")
 {
+	// dummy window to contain everything
 	m_window = sfg::Window::Create(sfg::Window::NO_STYLE);
 	m_window->SetId("shield_display");
 	UI::Singleton->Add(m_window);
@@ -36,15 +37,18 @@ ShieldStateDisplay::ShieldStateDisplay()
 
 void ShieldStateDisplay::Update() 
 {
+	// Make sure we have a valid target
 	if (!m_targetHandle.IsValid())
 		return;
 
+	// Get what fraction of the shield remains in each direction
 	auto front = m_targetShields->GetCurrentStrength(Shields::Direction::Front) 
 				/ m_targetShields->GetMaxStrength(Shields::Direction::Front);
 	auto side = m_targetShields->GetCurrentStrength(Shields::Direction::Side)
 		/ m_targetShields->GetMaxStrength(Shields::Direction::Side);
 	auto rear = m_targetShields->GetCurrentStrength(Shields::Direction::Rear)
 		/ m_targetShields->GetMaxStrength(Shields::Direction::Rear);
+
 	m_frontState->SetFraction(front);
 	m_sideState->SetFraction(side);
 	m_rearState->SetFraction(rear);

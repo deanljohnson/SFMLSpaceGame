@@ -69,9 +69,9 @@ bool BulletPhysics::HandleCollisions()
 			return false;
 
 		// If one of the fixtures is a nonsensor
-		if ((!contact->contact->GetFixtureA()->IsSensor()
-			|| !contact->contact->GetFixtureB()->IsSensor())
-			&& contact->contact->IsTouching())
+		if (contact->contact->IsTouching() 
+			&& (!contact->contact->GetFixtureA()->IsSensor()
+				|| !contact->contact->GetFixtureB()->IsSensor()))
 		{
 			auto userData = contact->other->GetUserData();
 			if (userData != nullptr) // If contact is not with a body with defined entity data
