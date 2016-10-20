@@ -10,7 +10,7 @@ ShieldHitAnimator::ShieldHitAnimator(float radius)
 	// Center at 0,0
 	m_vertextArray.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Transparent));
 
-	float curAngle = -M_PI;
+	float curAngle = -static_cast<float>(M_PI);
 	// now loop through and do all the other vertices
 	// negative side first
 	for (size_t i = 0; i < NUM_VERTS; i++)
@@ -64,7 +64,7 @@ void ShieldHitAnimator::OnShieldHit(Shields::Direction dir, const b2Vec2& dif)
 {
 	auto angle = atan2f(dif.y, dif.x);
 
-	float testAngle = -M_PI;
+	float testAngle = -static_cast<float>(M_PI);
 	int index = 1;
 	while(testAngle < angle)
 	{
@@ -72,9 +72,9 @@ void ShieldHitAnimator::OnShieldHit(Shields::Direction dir, const b2Vec2& dif)
 		testAngle += VERT_ARC_LENGTH;
 	}
 
-	m_vertextArray[(index - 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
-	m_vertextArray[(index - 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index - 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, static_cast<char>(HIT_A * .75f));
+	m_vertextArray[(index - 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, static_cast<char>(HIT_A * .75f));
 	m_vertextArray[index].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A);
-	m_vertextArray[(index + 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
-	m_vertextArray[(index + 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, HIT_A * .75f);
+	m_vertextArray[(index + 1) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, static_cast<char>(HIT_A * .75f));
+	m_vertextArray[(index + 2) % (m_vertextArray.getVertexCount())].color = sf::Color(HIT_R, HIT_G, HIT_B, static_cast<char>(HIT_A * .75f));
 }

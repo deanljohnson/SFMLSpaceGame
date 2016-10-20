@@ -8,7 +8,7 @@
 void Background::Init()
 {
 	m_position = &entity->GetComponent<Position>();
-	m_tex = LoadBuiltInTexture(m_resourceID);
+	m_tex = LoadTexture(m_resourceID);
 	m_sprite = sf::Sprite(*m_tex.get());
 	m_sprite.scale(2.f * METERS_PER_PIXEL, 2.f * METERS_PER_PIXEL); //scale to be in terms of meters - the render function will scale back to pixels
 }

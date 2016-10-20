@@ -16,7 +16,7 @@ constexpr ResourceID NullResource(-1);
 void UnloadUnusedResources();
 
 std::shared_ptr<sf::Texture> LoadTexture(std::string name);
-std::shared_ptr<sf::Texture> LoadBuiltInTexture(ResourceID id);
+std::shared_ptr<sf::Texture> LoadTexture(ResourceID id);
 
 std::shared_ptr<ShipStats> LoadShip(std::string name);
 

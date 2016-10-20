@@ -15,7 +15,7 @@ private:
 
 	std::vector<sf::Vertex> m_vertices;
 	std::vector<sf::IntRect> m_texRects;
-	std::vector<sf::Vector2f> m_positions;
+	std::vector<sf::Vector2f> m_positions; // TODO: investigate removing this - m_vertices[index * 4].position gives the same information
 	std::vector<sf::Vector2f> m_scales;
 	std::vector<sf::Vector2f> m_origins;
 	std::vector<float> m_angles;

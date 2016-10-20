@@ -2,7 +2,7 @@
 
 Animation::Animation(ResourceID atlasID, sf::Vector2f frameSize)
 {
-	m_atlas = LoadBuiltInTexture(atlasID);
+	m_atlas = LoadTexture(atlasID);
 
 	for (int j = 0; j < m_atlas->getSize().y / frameSize.y; j++)
 	{

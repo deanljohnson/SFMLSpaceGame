@@ -12,9 +12,9 @@ private:
 	const float VERT_ARC_LENGTH = M_TAU / (NUM_VERTS - 1);
 
 	const char HIT_R = 0;
-	const char HIT_G = 225;
-	const char HIT_B = 225;
-	const char HIT_A = 255;
+	const char HIT_G = (char)225;
+	const char HIT_B = (char)225;
+	const char HIT_A = (char)225;
 
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };

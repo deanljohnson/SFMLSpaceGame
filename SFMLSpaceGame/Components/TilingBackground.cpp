@@ -8,7 +8,7 @@
 void TilingBackground::Init()
 {
 	m_position = &entity->GetComponent<Position>();
-	m_tex = LoadBuiltInTexture(m_resourceID);
+	m_tex = LoadTexture(m_resourceID);
 	m_sprite = sf::Sprite(*m_tex.get());
 
 	//scale to be in terms of meters - the render function will scale back to pixels

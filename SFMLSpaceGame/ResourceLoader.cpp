@@ -125,7 +125,7 @@ std::shared_ptr<sf::Texture> LoadTexture(std::string name)
 	return elem;
 }
 
-std::shared_ptr<sf::Texture> LoadBuiltInTexture(ResourceID id)
+std::shared_ptr<sf::Texture> LoadTexture(ResourceID id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedBuiltInTextures.find(id);

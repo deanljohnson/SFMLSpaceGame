@@ -2,13 +2,13 @@
 #include <Entity.h>
 #include <WorldConstants.h>
 #include <VectorMath.h>
+
 Sprite::Sprite(ResourceID id)
-	: m_tex(LoadBuiltInTexture(id))
+	: m_tex(LoadTexture(id))
 {
 }
 
 Sprite::Sprite(const std::string& location)
-	//: m_tex(LoadTexture(location))
 {
 	m_batch = RenderBatch::Get(location);
 	m_batchIndex = m_batch->Add();
