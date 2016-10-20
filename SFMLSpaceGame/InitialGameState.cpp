@@ -6,6 +6,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
 #include "PlayerData.h"
+#include <RenderBatch.h>
 
 void AddEnemy()
 {
@@ -129,7 +130,9 @@ void InitialGameState::Render(sf::RenderTarget& target)
 
 	sf::RenderStates rendStates;
 	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
+	
 	EntityManager::Render(target, rendStates);
+	RenderBatch::RenderAll(target, rendStates);
 
 	auto view = GAME_WINDOW->getView();
 	GAME_WINDOW->setView(GAME_WINDOW->getDefaultView());

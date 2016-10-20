@@ -3,10 +3,14 @@
 #include <Components/Rotation.h>
 #include <SFML/Graphics/Sprite.hpp>
 #include <ResourceLoader.h>
+#include <RenderBatch.h>
 
 class Sprite : public Component
 {
 private:
+	RenderBatch* m_batch{ nullptr };
+	int m_batchIndex = -1;
+
 	Position* m_position{ nullptr };
 	Rotation* m_rotation{ nullptr };
 
