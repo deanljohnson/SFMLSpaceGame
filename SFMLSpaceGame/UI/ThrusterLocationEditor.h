@@ -4,6 +4,7 @@
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <SFGUI/Canvas.hpp>
 #include <Serializer.h>
+#include <SFML/Graphics/Sprite.hpp>
 
 class ThrusterLocationEditor : public GameWindow
 {

@@ -2,7 +2,6 @@
 #include <RenderBatch.h>
 #include <PolarVector.h>
 #include <SFML\Graphics\RenderTarget.hpp>
-#include <ResourceLoader.h>
 
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
@@ -21,9 +20,23 @@ RenderBatch* RenderBatch::Get(const std::string& texName)
 
 	auto batch = std::make_unique<RenderBatch>(LoadTexture(texName));
 	
-	m_batches.insert(make_pair(texName, move(batch)));
+	auto inserted = m_batches.insert(make_pair(texName, move(batch)));
 
-	return m_batches.find(texName)->second.get();
+	return inserted.first->second.get();
+}
+
+RenderBatch* RenderBatch::Get(ResourceID texID)
+{
+	std::string keyString = "id_" + texID;
+	auto it = m_batches.find(keyString);
+	if (it != m_batches.end())
+		return it->second.get();
+
+	auto batch = std::make_unique<RenderBatch>(LoadTexture(texID));
+
+	auto inserted = m_batches.insert(make_pair(keyString, move(batch)));
+
+	return inserted.first->second.get();
 }
 
 void RenderBatch::RenderAll(sf::RenderTarget& target, sf::RenderStates states)

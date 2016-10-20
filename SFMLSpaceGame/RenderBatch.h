@@ -5,6 +5,7 @@
 #include <SFML\System\Vector2.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
+#include <ResourceLoader.h>
 
 class RenderBatch 
 {
@@ -24,6 +25,7 @@ private:
 	void UpdateVertexCoords(const unsigned index, bool reset);
 public:
 	static RenderBatch* Get(const std::string& texName);
+	static RenderBatch* Get(ResourceID texID);
 	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
 	RenderBatch(std::shared_ptr<sf::Texture> tex);
