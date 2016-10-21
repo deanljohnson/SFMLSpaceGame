@@ -10,7 +10,8 @@
 class RenderBatch 
 {
 private:
-	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_batches;
+	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_stringBatches;
+	static std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> m_resourceBatches;
 
 	std::shared_ptr<sf::Texture> m_texture;
 
@@ -22,7 +23,6 @@ private:
 	std::vector<float> m_angles;
 
 	void UpdateTexCoords(const unsigned index);
-	void UpdateVertexCoords(const unsigned index, bool reset);
 public:
 	static RenderBatch* Get(const std::string& texName);
 	static RenderBatch* Get(ResourceID texID);
@@ -40,6 +40,7 @@ public:
 
 	void SetOrigin(const unsigned index, const sf::Vector2f& origin);
 	sf::Vector2f GetOrigin(const unsigned index);
+	sf::Vector2f GetScaledOrigin(const unsigned index);
 
 	void SetRotation(const unsigned index, float rot);
 	float GetRotation(const unsigned index);
@@ -49,6 +50,9 @@ public:
 
 	void SetTextureRect(const unsigned index, const sf::IntRect& rect);
 	sf::IntRect GetTextureRect(const unsigned index);
+
+	void SetColor(const unsigned index, const sf::Color& color);
+	sf::Color GetColor(const unsigned index);
 
 	sf::Texture* GetTexture();
 

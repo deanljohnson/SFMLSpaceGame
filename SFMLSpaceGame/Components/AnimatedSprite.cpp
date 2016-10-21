@@ -5,40 +5,39 @@
 #include <GameTime.h>
 #include <SpriteHelpers.h>
 
+AnimatedSprite::AnimatedSprite(ResourceID id, OriginOption origin)
+{
+	m_animation = LoadAnimationResource(id);
+	
+	m_batch = RenderBatch::Get(id);
+	m_batchIndex = m_batch->Add();
+
+	m_batch->SetTextureRect(m_batchIndex, m_animation->GetCurrentFrame());
+	auto rect = m_batch->GetTextureRect(m_batchIndex);
+
+	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
+}
+
 void AnimatedSprite::Init()
 {
 	m_position = &entity->GetComponent<Position>();
 	m_rotation = &entity->GetComponent<Rotation>();
-	m_animation = LoadAnimationResource(m_resourceID);
-
-	m_sprite = sf::Sprite(*m_animation->GetTexture());
-	m_sprite.setScale(METERS_PER_PIXEL, METERS_PER_PIXEL); //Render method will convert meters back to pixels
-	m_sprite.setTextureRect(m_animation->GetCurrentFrame());
-
-	SpriteHelpers::SetOrigin(&m_sprite, m_origin);
-
-	m_sprite.setPosition(B2VecToSFMLVec(m_position->position + Rotate(m_offset, m_rotation->GetRadians())));
-	m_sprite.setRotation(m_rotation->GetDegrees());
 
 	m_offset = b2Vec2(0, 0);
+
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position + Rotate(m_offset, m_rotation->GetRadians())));
+	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
 }
 
 void AnimatedSprite::Update()
 {
-	m_sprite.setPosition(B2VecToSFMLVec(m_position->position + Rotate(m_offset, m_rotation->GetRadians())));
-	m_sprite.setRotation(m_rotation->GetDegrees());
-
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position + Rotate(m_offset, m_rotation->GetRadians())));
+	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
 	m_animation->Update(GameTime::deltaTime);
-	m_sprite.setTextureRect(m_animation->GetCurrentFrame());
+	m_batch->SetTextureRect(m_batchIndex, m_animation->GetCurrentFrame());
 
 	if (next != nullptr) next->Update();
-}
-
-void AnimatedSprite::Render(sf::RenderTarget& target, sf::RenderStates states)
-{
-	target.draw(m_sprite, states);
-
-	if (next != nullptr) next->Render(target, states);
 }
 
 void AnimatedSprite::SetOffset(const b2Vec2& v)
@@ -48,14 +47,13 @@ void AnimatedSprite::SetOffset(const b2Vec2& v)
 
 void AnimatedSprite::SetScale(float x, float y)
 {
-	m_sprite.setScale(x * METERS_PER_PIXEL, y * METERS_PER_PIXEL);
+	m_batch->SetScale(m_batchIndex, {(x * METERS_PER_PIXEL), (y * METERS_PER_PIXEL) });
 }
 
 sf::FloatRect AnimatedSprite::GetDimensions() const
 {
-	auto bounds = m_sprite.getLocalBounds();
-	bounds.width *= m_sprite.getScale().x;
-	bounds.height *= m_sprite.getScale().y;
+	auto rect = m_batch->GetTextureRect(m_batchIndex);
+	auto scale = m_batch->GetScale(m_batchIndex);
 
-	return sf::FloatRect(bounds.left, bounds.top, bounds.width, bounds.height);
+	return sf::FloatRect(rect.left, rect.top, rect.width * scale.x, rect.height * scale.y);
 }

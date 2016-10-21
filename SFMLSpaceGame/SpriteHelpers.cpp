@@ -18,3 +18,17 @@ void SpriteHelpers::SetOrigin(sf::Sprite* s, OriginOption option)
 		break;
 	}
 }
+
+sf::Vector2f SpriteHelpers::GetOrigin(const sf::IntRect& rect, OriginOption option)
+{
+	switch (option)
+	{
+	case OriginOption::Center:
+		return sf::Vector2f(rect.width / 2.f, rect.height / 2.f);
+	case OriginOption::MiddleRight:
+		return sf::Vector2f(rect.width, rect.height / 2.f);
+	case OriginOption::MiddleLeft:
+		return sf::Vector2f(0, rect.height / 2.f);
+	}
+	return {};
+}

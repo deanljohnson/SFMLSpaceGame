@@ -25,13 +25,13 @@ void Sprite::Init()
 	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
 	m_batch->SetOrigin(m_batchIndex, sf::Vector2f(rect.width / 2.f, rect.height / 2.f));
 	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position));
-	m_batch->SetRotation(m_batchIndex, m_rotation->GetDegrees());
+	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
 }
 
 void Sprite::Update()
 {
 	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position));
-	m_batch->SetRotation(m_batchIndex, m_rotation->GetDegrees());
+	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
 }
 
 sf::FloatRect Sprite::GetDimensions() const
@@ -44,5 +44,5 @@ sf::FloatRect Sprite::GetDimensions() const
 
 b2Vec2 Sprite::GetOrigin() const
 {
-	return SFMLVecToB2Vec(m_batch->GetOrigin(m_batchIndex));
+	return SFMLVecToB2Vec(m_batch->GetScaledOrigin(m_batchIndex));
 }

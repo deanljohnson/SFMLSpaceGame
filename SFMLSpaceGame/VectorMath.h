@@ -32,11 +32,24 @@ inline b2Vec2 Rotate(const b2Vec2& v, const b2Rot& r)
 	return b2Mul(r, v);
 }
 
+/// Rotate a vector
+inline sf::Vector2f Rotate(const sf::Vector2f& v, const b2Rot& q)
+{
+	return sf::Vector2f(q.c * v.x - q.s * v.y, q.s * v.x + q.c * v.y);
+}
+
 inline b2Vec2 Rotate(const b2Vec2& v, float r)
 {
 	auto ca = cos(r);
 	auto sa = sin(r);
 	return b2Vec2(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
+}
+
+inline sf::Vector2f Rotate(const sf::Vector2f& v, float r)
+{
+	auto ca = cos(r);
+	auto sa = sin(r);
+	return sf::Vector2f(ca*v.x - sa*v.y, sa*v.x + ca*v.y);
 }
 
 inline sf::Vector2f MultComponents(const sf::Vector2f& a, const sf::Vector2f& b)
