@@ -90,13 +90,6 @@ BatchIndex* RenderBatch::Add()
 void RenderBatch::Remove(BatchIndex* index)
 {
 	m_removedIndices.push_back(index);
-
-	/*m_vertices.erase(m_vertices.begin() + (index * 4), m_vertices.begin() + (index * 4) + 4);
-	m_texRects.erase(m_texRects.begin() + index);
-	m_positions.erase(m_positions.begin() + index);
-	m_scales.erase(m_scales.begin() + index);
-	m_origins.erase(m_origins.begin() + index);
-	m_rotations.erase(m_rotations.begin() + index);*/
 }
 
 void RenderBatch::Move(BatchIndex* index, float x, float y)
@@ -268,6 +261,7 @@ void RenderBatch::RemoveDeletedElements()
 	int last = 0;
 	for (int i = 0; i < m_texRects.size(); ++i, ++last)
 	{
+		// Set i to the index of the first element that is not to be removed
 		while (true)
 		{
 			bool found = false;
@@ -285,10 +279,11 @@ void RenderBatch::RemoveDeletedElements()
 
 		if (i >= m_texRects.size()) break;
 
-		m_vertices[last * 4] = m_vertices[(last + 1) * 4];
-		m_vertices[(last * 4) + 1] = m_vertices[((last + 1) * 4) + 1];
-		m_vertices[(last * 4) + 2] = m_vertices[((last + 1) * 4) + 2];
-		m_vertices[(last * 4) + 3] = m_vertices[((last + 1) * 4) + 3];
+		// Replace the element being removed with the next element not being removed
+		m_vertices[last * 4] = m_vertices[i * 4];
+		m_vertices[(last * 4) + 1] = m_vertices[(i * 4) + 1];
+		m_vertices[(last * 4) + 2] = m_vertices[(i * 4) + 2];
+		m_vertices[(last * 4) + 3] = m_vertices[(i * 4) + 3];
 
 		m_texRects[last] = m_texRects[i];
 		m_positions[last] = m_positions[i];
@@ -297,6 +292,7 @@ void RenderBatch::RemoveDeletedElements()
 		m_rotations[last] = m_rotations[i];
 	}
 
+	// Truncate vectors so that removed data is deleted
 	m_vertices.resize(last * 4);
 	m_texRects.resize(last);
 	m_positions.resize(last);
@@ -304,20 +300,24 @@ void RenderBatch::RemoveDeletedElements()
 	m_origins.resize(last);
 	m_rotations.resize(last);
 
+	// Adjust indices to account for any removals
 	for (int i = 0; i < m_removedIndices.size(); i++) 
 	{
+		// Need to save this index. Otherwase when the BatchIndex
+		// is removed from m_indices, the unique_ptr destructor
+		// will delete and destroy the index value
+		unsigned indexToRemove = m_removedIndices[i]->index;
 		for (int j = 0; j < m_indices.size(); j++)
 		{
-			if (m_removedIndices[i]->index == m_indices[j]->index) 
+			if (indexToRemove == m_indices[j]->index)
 			{
 				m_indices.erase(m_indices.begin() + j);
 				j--;
 			}
-			else if (m_removedIndices[i]->index < m_indices[j]->index)
+			else if (indexToRemove < m_indices[j]->index)
 			{
 				m_indices[j]->index--;
 			}
-				
 		}
 	}
 }
