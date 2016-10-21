@@ -14,7 +14,7 @@ private:
 	Rotation* m_rotation{ nullptr };
 
 	RenderBatch* m_batch{ nullptr };
-	int m_batchIndex = -1;
+	BatchIndex m_batchIndex = -1;
 
 	std::shared_ptr<Animation> m_animation;
 

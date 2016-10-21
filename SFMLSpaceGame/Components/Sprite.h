@@ -11,7 +11,7 @@ private:
 	Rotation* m_rotation{ nullptr };
 
 	RenderBatch* m_batch{ nullptr };
-	int m_batchIndex = -1;
+	BatchIndex m_batchIndex;
 
 public:
 	explicit Sprite(ResourceID id);

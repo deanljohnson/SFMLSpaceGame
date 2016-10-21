@@ -55,7 +55,7 @@ RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
 	m_texture = tex;
 }
 
-unsigned RenderBatch::Add() 
+BatchIndex RenderBatch::Add()
 {
 	auto index = m_vertices.size() / 4;
 	auto texSize = m_texture->getSize();
@@ -84,7 +84,7 @@ unsigned RenderBatch::Add()
 	return index;
 }
 
-void RenderBatch::Remove(unsigned index)
+void RenderBatch::Remove(BatchIndex index)
 {
 	m_removedIndices.insert(index);
 
@@ -96,7 +96,7 @@ void RenderBatch::Remove(unsigned index)
 	m_rotations.erase(m_rotations.begin() + index);*/
 }
 
-void RenderBatch::Move(const unsigned index, float x, float y)
+void RenderBatch::Move(BatchIndex index, float x, float y)
 {
 	unsigned int limit = (index * 4) + 4;
 	for (unsigned int i = index * 4; i < limit; i++) 
@@ -109,18 +109,18 @@ void RenderBatch::Move(const unsigned index, float x, float y)
 	m_positions[index].y += y;
 }
 
-void RenderBatch::Move(const unsigned index, const sf::Vector2f& amt)
+void RenderBatch::Move(BatchIndex index, const sf::Vector2f& amt)
 {
 	Move(index, amt.x, amt.y);
 }
 
-void RenderBatch::SetPosition(const unsigned index, const sf::Vector2f& pos)
+void RenderBatch::SetPosition(BatchIndex index, const sf::Vector2f& pos)
 {
 	Move(index, pos - (m_positions[index] + Rotate(MultComponents(m_origins[index], m_scales[index]),
 													m_rotations[index])));
 }
 
-sf::Vector2f RenderBatch::GetPosition(const unsigned index)
+sf::Vector2f RenderBatch::GetPosition(BatchIndex index)
 {
 	sf::Vector2f origin = Rotate(MultComponents(m_origins[index], m_scales[index]), 
 									m_rotations[index]);
@@ -128,7 +128,7 @@ sf::Vector2f RenderBatch::GetPosition(const unsigned index)
 	return m_positions[index] + origin;
 }
 
-void RenderBatch::SetOrigin(const unsigned index, const sf::Vector2f& origin)
+void RenderBatch::SetOrigin(BatchIndex index, const sf::Vector2f& origin)
 {
 	sf::Vector2f originDif = origin - m_origins[index];
 	originDif = Rotate(MultComponents(originDif, m_scales[index]), m_rotations[index]);
@@ -136,17 +136,17 @@ void RenderBatch::SetOrigin(const unsigned index, const sf::Vector2f& origin)
 	m_origins[index] = origin;
 }
 
-sf::Vector2f RenderBatch::GetOrigin(const unsigned index)
+sf::Vector2f RenderBatch::GetOrigin(BatchIndex index)
 {
 	return m_origins[index];
 }
 
-sf::Vector2f RenderBatch::GetScaledOrigin(const unsigned index)
+sf::Vector2f RenderBatch::GetScaledOrigin(BatchIndex index)
 {
 	return MultComponents(m_origins[index], m_scales[index]);
 }
 
-void RenderBatch::SetRotation(const unsigned index, float ang)
+void RenderBatch::SetRotation(BatchIndex index, float ang)
 {
 	auto originalRot = m_rotations[index];
 	m_rotations[index] = b2Rot(ang);
@@ -171,12 +171,12 @@ void RenderBatch::SetRotation(const unsigned index, float ang)
 	m_positions[index] = m_vertices[index * 4].position;
 }
 
-float RenderBatch::GetRotation(const unsigned index)
+float RenderBatch::GetRotation(BatchIndex index)
 {
 	return m_rotations[index].GetAngle();
 }
 
-void RenderBatch::SetScale(const unsigned index, const sf::Vector2f& scale)
+void RenderBatch::SetScale(BatchIndex index, const sf::Vector2f& scale)
 {
  	sf::Vector2f originalScale = m_scales[index];
 	m_scales[index] = scale;
@@ -199,12 +199,12 @@ void RenderBatch::SetScale(const unsigned index, const sf::Vector2f& scale)
 	m_positions[index] = m_vertices[i].position;
 }
 
-sf::Vector2f RenderBatch::GetScale(const unsigned index)
+sf::Vector2f RenderBatch::GetScale(BatchIndex index)
 {
 	return m_scales[index];
 }
 
-void RenderBatch::SetTextureRect(const unsigned index, const sf::IntRect& rect)
+void RenderBatch::SetTextureRect(BatchIndex index, const sf::IntRect& rect)
 {
 	sf::IntRect originalRect = m_texRects[index];
 	m_texRects[index] = rect;
@@ -220,12 +220,12 @@ void RenderBatch::SetTextureRect(const unsigned index, const sf::IntRect& rect)
 	}
 }
 
-sf::IntRect RenderBatch::GetTextureRect(const unsigned index) 
+sf::IntRect RenderBatch::GetTextureRect(BatchIndex index)
 {
 	return m_texRects[index];
 }
 
-void RenderBatch::SetColor(const unsigned index, const sf::Color& color)
+void RenderBatch::SetColor(BatchIndex index, const sf::Color& color)
 {
 	unsigned i = index * 4;
 
@@ -235,12 +235,12 @@ void RenderBatch::SetColor(const unsigned index, const sf::Color& color)
 	m_vertices[i].color = color;
 }
 
-sf::Color RenderBatch::GetColor(const unsigned index)
+sf::Color RenderBatch::GetColor(BatchIndex index)
 {
 	return m_vertices[index * 4].color;
 }
 
-void RenderBatch::UpdateTexCoords(const unsigned index) 
+void RenderBatch::UpdateTexCoords(BatchIndex index)
 {
 	float left = static_cast<float>(m_texRects[index].left);
 	float right = left + m_texRects[index].width;
@@ -258,22 +258,6 @@ void RenderBatch::UpdateTexCoords(const unsigned index)
 sf::Texture* RenderBatch::GetTexture() 
 {
 	return m_texture.get();
-}
-
-template<typename T>
-void FilterIndices(std::vector<T>& vec, std::function<bool(unsigned)> filter)
-{
-	int last = 0;
-	for (int i = 0; i<vec.size(); ++i, ++last)
-	{
-		while (filter(i))
-			++i;
-		if (i >= vec.size()) break;
-
-		vec[last] = vec[i];
-	}
-
-	vec.resize(last);
 }
 
 void RenderBatch::RemoveDeletedElements()

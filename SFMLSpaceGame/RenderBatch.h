@@ -7,6 +7,8 @@
 #include <SFML\Graphics\VertexArray.hpp>
 #include <ResourceLoader.h>
 
+typedef unsigned BatchIndex;
+
 class RenderBatch 
 {
 private:
@@ -24,7 +26,7 @@ private:
 	std::vector<sf::Vector2f> m_origins;
 	std::vector<b2Rot> m_rotations;
 
-	void UpdateTexCoords(const unsigned index);
+	void UpdateTexCoords(BatchIndex index);
 	void RemoveDeletedElements();
 public:
 	static RenderBatch* Get(const std::string& texName);
@@ -33,30 +35,30 @@ public:
 
 	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);
 
-	unsigned Add();
-	void Remove(unsigned index);
+	BatchIndex Add();
+	void Remove(BatchIndex index);
 
-	void Move(const unsigned index, float x, float y);
-	void Move(const unsigned index, const sf::Vector2f& amt);
+	void Move(BatchIndex index, float x, float y);
+	void Move(BatchIndex index, const sf::Vector2f& amt);
 
-	void SetPosition(const unsigned index, const sf::Vector2f& pos);
-	sf::Vector2f GetPosition(const unsigned index);
+	void SetPosition(BatchIndex index, const sf::Vector2f& pos);
+	sf::Vector2f GetPosition(BatchIndex index);
 
-	void SetOrigin(const unsigned index, const sf::Vector2f& origin);
-	sf::Vector2f GetOrigin(const unsigned index);
-	sf::Vector2f GetScaledOrigin(const unsigned index);
+	void SetOrigin(BatchIndex index, const sf::Vector2f& origin);
+	sf::Vector2f GetOrigin(BatchIndex index);
+	sf::Vector2f GetScaledOrigin(BatchIndex index);
 
-	void SetRotation(const unsigned index, float rot);
-	float GetRotation(const unsigned index);
+	void SetRotation(BatchIndex index, float rot);
+	float GetRotation(BatchIndex index);
 
-	void SetScale(const unsigned index, const sf::Vector2f& scale);
-	sf::Vector2f GetScale(const unsigned index);
+	void SetScale(BatchIndex index, const sf::Vector2f& scale);
+	sf::Vector2f GetScale(BatchIndex index);
 
-	void SetTextureRect(const unsigned index, const sf::IntRect& rect);
-	sf::IntRect GetTextureRect(const unsigned index);
+	void SetTextureRect(BatchIndex index, const sf::IntRect& rect);
+	sf::IntRect GetTextureRect(BatchIndex index);
 
-	void SetColor(const unsigned index, const sf::Color& color);
-	sf::Color GetColor(const unsigned index);
+	void SetColor(BatchIndex index, const sf::Color& color);
+	sf::Color GetColor(BatchIndex index);
 
 	sf::Texture* GetTexture();
 
