@@ -7,7 +7,13 @@
 #include <SFML\Graphics\VertexArray.hpp>
 #include <ResourceLoader.h>
 
-typedef unsigned BatchIndex;
+struct BatchIndex 
+{
+	BatchIndex(unsigned i)
+		: index(i) 
+	{}
+	unsigned index;
+};
 
 class RenderBatch 
 {
@@ -15,7 +21,8 @@ private:
 	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_stringBatches;
 	static std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> m_resourceBatches;
 
-	std::set<unsigned> m_removedIndices;
+	std::vector<std::unique_ptr<BatchIndex>> m_indices;
+	std::vector<BatchIndex*> m_removedIndices;
 
 	std::shared_ptr<sf::Texture> m_texture;
 
@@ -26,7 +33,7 @@ private:
 	std::vector<sf::Vector2f> m_origins;
 	std::vector<b2Rot> m_rotations;
 
-	void UpdateTexCoords(BatchIndex index);
+	void UpdateTexCoords(BatchIndex* index);
 	void RemoveDeletedElements();
 public:
 	static RenderBatch* Get(const std::string& texName);
@@ -35,30 +42,30 @@ public:
 
 	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);
 
-	BatchIndex Add();
-	void Remove(BatchIndex index);
+	BatchIndex* Add();
+	void Remove(BatchIndex* index);
 
-	void Move(BatchIndex index, float x, float y);
-	void Move(BatchIndex index, const sf::Vector2f& amt);
+	void Move(BatchIndex* index, float x, float y);
+	void Move(BatchIndex* index, const sf::Vector2f& amt);
 
-	void SetPosition(BatchIndex index, const sf::Vector2f& pos);
-	sf::Vector2f GetPosition(BatchIndex index);
+	void SetPosition(BatchIndex* index, const sf::Vector2f& pos);
+	sf::Vector2f GetPosition(BatchIndex* index);
 
-	void SetOrigin(BatchIndex index, const sf::Vector2f& origin);
-	sf::Vector2f GetOrigin(BatchIndex index);
-	sf::Vector2f GetScaledOrigin(BatchIndex index);
+	void SetOrigin(BatchIndex* index, const sf::Vector2f& origin);
+	sf::Vector2f GetOrigin(BatchIndex* index);
+	sf::Vector2f GetScaledOrigin(BatchIndex* index);
 
-	void SetRotation(BatchIndex index, float rot);
-	float GetRotation(BatchIndex index);
+	void SetRotation(BatchIndex* index, float rot);
+	float GetRotation(BatchIndex* index);
 
-	void SetScale(BatchIndex index, const sf::Vector2f& scale);
-	sf::Vector2f GetScale(BatchIndex index);
+	void SetScale(BatchIndex* index, const sf::Vector2f& scale);
+	sf::Vector2f GetScale(BatchIndex* index);
 
-	void SetTextureRect(BatchIndex index, const sf::IntRect& rect);
-	sf::IntRect GetTextureRect(BatchIndex index);
+	void SetTextureRect(BatchIndex* index, const sf::IntRect& rect);
+	sf::IntRect GetTextureRect(BatchIndex* index);
 
-	void SetColor(BatchIndex index, const sf::Color& color);
-	sf::Color GetColor(BatchIndex index);
+	void SetColor(BatchIndex* index, const sf::Color& color);
+	sf::Color GetColor(BatchIndex* index);
 
 	sf::Texture* GetTexture();
 
