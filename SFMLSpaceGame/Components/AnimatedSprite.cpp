@@ -19,6 +19,11 @@ AnimatedSprite::AnimatedSprite(ResourceID id, OriginOption origin)
 	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
 }
 
+AnimatedSprite::~AnimatedSprite()
+{
+	m_batch->Remove(m_batchIndex);
+}
+
 void AnimatedSprite::Init()
 {
 	m_position = &entity->GetComponent<Position>();

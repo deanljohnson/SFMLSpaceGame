@@ -22,6 +22,7 @@ private:
 
 public:
 	explicit AnimatedSprite(ResourceID id, OriginOption origin = OriginOption::Center);
+	~AnimatedSprite();
 
 	virtual void Init() override;
 	virtual void Update() override;

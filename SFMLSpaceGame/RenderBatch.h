@@ -13,6 +13,8 @@ private:
 	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_stringBatches;
 	static std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> m_resourceBatches;
 
+	std::set<unsigned> m_removedIndices;
+
 	std::shared_ptr<sf::Texture> m_texture;
 
 	std::vector<sf::Vertex> m_vertices;
@@ -20,17 +22,19 @@ private:
 	std::vector<sf::Vector2f> m_positions; // TODO: investigate removing this - m_vertices[index * 4].position gives the same information
 	std::vector<sf::Vector2f> m_scales;
 	std::vector<sf::Vector2f> m_origins;
-	std::vector<float> m_angles;
+	std::vector<b2Rot> m_rotations;
 
 	void UpdateTexCoords(const unsigned index);
+	void RemoveDeletedElements();
 public:
 	static RenderBatch* Get(const std::string& texName);
 	static RenderBatch* Get(ResourceID texID);
 	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
-	RenderBatch(std::shared_ptr<sf::Texture> tex);
+	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);
 
 	unsigned Add();
+	void Remove(unsigned index);
 
 	void Move(const unsigned index, float x, float y);
 	void Move(const unsigned index, const sf::Vector2f& amt);

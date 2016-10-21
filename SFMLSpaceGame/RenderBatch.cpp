@@ -50,7 +50,7 @@ RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
 	  m_positions(),
 	  m_scales(),
 	  m_origins(),
-	  m_angles()
+	  m_rotations()
 {
 	m_texture = tex;
 }
@@ -64,7 +64,7 @@ unsigned RenderBatch::Add()
 	m_positions.push_back(sf::Vector2f(0, 0));
 	m_scales.push_back(sf::Vector2f(1, 1));
 	m_origins.push_back(sf::Vector2f(0, 0));
-	m_angles.push_back(0.f);
+	m_rotations.push_back(b2Rot(0));
 
 	auto vert1 = sf::Vertex(sf::Vector2f(0, 0), sf::Color::White);
 	auto vert2 = sf::Vertex(sf::Vector2f(texSize.x, 0), sf::Color::White);
@@ -82,6 +82,18 @@ unsigned RenderBatch::Add()
 	m_vertices.push_back(vert4);
 
 	return index;
+}
+
+void RenderBatch::Remove(unsigned index)
+{
+	m_removedIndices.insert(index);
+
+	/*m_vertices.erase(m_vertices.begin() + (index * 4), m_vertices.begin() + (index * 4) + 4);
+	m_texRects.erase(m_texRects.begin() + index);
+	m_positions.erase(m_positions.begin() + index);
+	m_scales.erase(m_scales.begin() + index);
+	m_origins.erase(m_origins.begin() + index);
+	m_rotations.erase(m_rotations.begin() + index);*/
 }
 
 void RenderBatch::Move(const unsigned index, float x, float y)
@@ -105,13 +117,13 @@ void RenderBatch::Move(const unsigned index, const sf::Vector2f& amt)
 void RenderBatch::SetPosition(const unsigned index, const sf::Vector2f& pos)
 {
 	Move(index, pos - (m_positions[index] + Rotate(MultComponents(m_origins[index], m_scales[index]),
-													m_angles[index])));
+													m_rotations[index])));
 }
 
 sf::Vector2f RenderBatch::GetPosition(const unsigned index)
 {
 	sf::Vector2f origin = Rotate(MultComponents(m_origins[index], m_scales[index]), 
-								 m_angles[index]);
+									m_rotations[index]);
 
 	return m_positions[index] + origin;
 }
@@ -119,7 +131,7 @@ sf::Vector2f RenderBatch::GetPosition(const unsigned index)
 void RenderBatch::SetOrigin(const unsigned index, const sf::Vector2f& origin)
 {
 	sf::Vector2f originDif = origin - m_origins[index];
-	originDif = Rotate(MultComponents(originDif, m_scales[index]), m_angles[index]);
+	originDif = Rotate(MultComponents(originDif, m_scales[index]), m_rotations[index]);
 	Move(index, -originDif);
 	m_origins[index] = origin;
 }
@@ -136,14 +148,14 @@ sf::Vector2f RenderBatch::GetScaledOrigin(const unsigned index)
 
 void RenderBatch::SetRotation(const unsigned index, float ang)
 {
-	auto originalAngle = m_angles[index];
-	m_angles[index] = ang;
+	auto originalRot = m_rotations[index];
+	m_rotations[index] = b2Rot(ang);
 
 	// Determine the amount to rotate by
-	float ang_t = m_angles[index] - originalAngle;
+	float ang_t = ang - originalRot.GetAngle();
 
 	sf::Vector2f originScaled = GetScaledOrigin(index);
-	originScaled = Rotate(originScaled, originalAngle) + m_positions[index];
+	originScaled = Rotate(originScaled, originalRot) + m_positions[index];
 
 	// at this point, originScaled is the origin of our quad
 	float cosT = cosf(ang_t);
@@ -161,7 +173,7 @@ void RenderBatch::SetRotation(const unsigned index, float ang)
 
 float RenderBatch::GetRotation(const unsigned index)
 {
-	return m_angles[index];
+	return m_rotations[index].GetAngle();
 }
 
 void RenderBatch::SetScale(const unsigned index, const sf::Vector2f& scale)
@@ -178,13 +190,11 @@ void RenderBatch::SetScale(const unsigned index, const sf::Vector2f& scale)
 	float topOriginFactor = m_origins[index].y / m_texRects[index].height;
 	float bottomOriginFactor = 1.f - topOriginFactor;
 
-	b2Rot rot(m_angles[index]);
-
 	int i = index * 4;
-	m_vertices[i].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), rot);
-	m_vertices[i + 1].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), rot);
-	m_vertices[i + 2].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), rot);
-	m_vertices[i + 3].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), rot);
+	m_vertices[i].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index]);
+	m_vertices[i + 1].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index]);
+	m_vertices[i + 2].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index]);
+	m_vertices[i + 3].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index]);
 	
 	m_positions[index] = m_vertices[i].position;
 }
@@ -250,8 +260,58 @@ sf::Texture* RenderBatch::GetTexture()
 	return m_texture.get();
 }
 
+template<typename T>
+void FilterIndices(std::vector<T>& vec, std::function<bool(unsigned)> filter)
+{
+	int last = 0;
+	for (int i = 0; i<vec.size(); ++i, ++last)
+	{
+		while (filter(i))
+			++i;
+		if (i >= vec.size()) break;
+
+		vec[last] = vec[i];
+	}
+
+	vec.resize(last);
+}
+
+void RenderBatch::RemoveDeletedElements()
+{
+	int last = 0;
+	for (int i = 0; i < m_texRects.size(); ++i, ++last)
+	{
+		while (m_removedIndices.find(i) != m_removedIndices.end())
+			++i;
+		if (i >= m_texRects.size()) break;
+
+		m_vertices[last * 4] = m_vertices[(last + 1) * 4];
+		m_vertices[(last * 4) + 1] = m_vertices[((last + 1) * 4) + 1];
+		m_vertices[(last * 4) + 2] = m_vertices[((last + 1) * 4) + 2];
+		m_vertices[(last * 4) + 3] = m_vertices[((last + 1) * 4) + 3];
+
+		m_texRects[last] = m_texRects[i];
+		m_positions[last] = m_positions[i];
+		m_scales[last] = m_scales[i];
+		m_origins[last] = m_origins[i];
+		m_rotations[last] = m_rotations[i];
+	}
+
+	m_vertices.resize(last * 4);
+	m_texRects.resize(last);
+	m_positions.resize(last);
+	m_scales.resize(last);
+	m_origins.resize(last);
+	m_rotations.resize(last);
+}
+
 void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states) 
 {
+	if (!m_removedIndices.empty())
+	{
+		RemoveDeletedElements();
+	}
+
 	states.texture = m_texture.get();
 	target.draw(&m_vertices[0], m_vertices.size(), sf::Quads, states);
 }

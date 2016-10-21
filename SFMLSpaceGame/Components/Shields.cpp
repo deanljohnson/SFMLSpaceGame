@@ -170,7 +170,7 @@ void Shields::OnShieldDeplete()
 
 }
 
-float Shields::GetMaxStrength(Direction dir) 
+float Shields::GetMaxStrength(Direction dir)
 {
 	switch (dir) 
 	{
@@ -183,9 +183,10 @@ float Shields::GetMaxStrength(Direction dir)
 	case Direction::All:
 		return m_data->FrontStrength + m_data->SideStrength + m_data->RearStrength;
 	}
+	return 0;
 }
 
-float Shields::GetCurrentStrength(Direction dir) 
+float Shields::GetCurrentStrength(Direction dir)
 {
 	switch (dir)
 	{
@@ -198,4 +199,5 @@ float Shields::GetCurrentStrength(Direction dir)
 	case Direction::All:
 		return m_currentFrontStrength + m_currentSideStrength + m_currentRearStrength;
 	}
+	return 0;
 }

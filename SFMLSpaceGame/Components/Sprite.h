@@ -16,6 +16,7 @@ private:
 public:
 	explicit Sprite(ResourceID id);
 	explicit Sprite(const std::string& location);
+	~Sprite();
 
 	virtual void Init() override;
 	virtual void Update() override;

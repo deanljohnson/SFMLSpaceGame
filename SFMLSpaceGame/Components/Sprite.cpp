@@ -15,6 +15,11 @@ Sprite::Sprite(const std::string& location)
 	m_batchIndex = m_batch->Add();
 }
 
+Sprite::~Sprite()
+{
+	m_batch->Remove(m_batchIndex);
+}
+
 void Sprite::Init()
 {
 	m_position = &entity->GetComponent<Position>();
