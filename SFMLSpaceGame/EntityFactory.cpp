@@ -206,14 +206,10 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 	gun.SetSoundSource(&shotSound);
 	ent->AddComponent<Health>();
-	if (!npc)
-	{
-		auto& shields = ent->AddComponent<Shields>(shipStats->GetShieldData());
-		shields.SetActive(Shields::Direction::All);
-		ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
-		ent->AddComponent<ShieldHitAnimator, float>(.75f);
-	}
-	else ent->AddComponent<DamageOnAttacked>();
+	auto& shields = ent->AddComponent<Shields>(shipStats->GetShieldData());
+	shields.SetActive(Shields::Direction::All);
+	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
+	ent->AddComponent<ShieldHitAnimator, float>(.75f);
 
 	if (npc)
 	{

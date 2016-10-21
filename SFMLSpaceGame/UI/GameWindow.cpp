@@ -2,6 +2,7 @@
 #include "UI.h"
 
 int GameWindow::m_windowsWithMouse = 0;
+int GameWindow::m_elementsWithKeyboardFocus = 0;
 std::map<std::string, GameWindow*> GameWindow::m_windows{};
 
 GameWindow::GameWindow(std::string id)
@@ -32,6 +33,21 @@ GameWindow* GameWindow::GetWindow(const std::string& id)
 		return it->second;
 
 	return nullptr;
+}
+
+void GameWindow::GrabKeyboardFocus()
+{
+	m_elementsWithKeyboardFocus++;
+}
+
+void GameWindow::ReleaseKeyboardFocus()
+{
+	m_elementsWithKeyboardFocus--;
+}
+
+bool GameWindow::WindowHasKeyboardFocus()
+{
+	return m_elementsWithKeyboardFocus > 0;
 }
 
 void GameWindow::OnMouseEnter()

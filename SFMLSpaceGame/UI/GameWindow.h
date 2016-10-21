@@ -7,6 +7,8 @@
 class GameWindow
 {
 protected:
+	static int m_elementsWithKeyboardFocus;
+
 	static int m_windowsWithMouse;
 	static std::map<std::string, GameWindow*> m_windows;
 
@@ -45,6 +47,9 @@ public:
 		return m_windowsWithMouse > 0;
 	}
 	static GameWindow* GetWindow(const std::string& id);
+	static void GrabKeyboardFocus();
+	static void ReleaseKeyboardFocus();
+	static bool WindowHasKeyboardFocus();
 
 	static void UpdateAllWindows();
 

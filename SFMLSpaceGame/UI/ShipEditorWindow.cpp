@@ -64,11 +64,6 @@ ShipEditorWindow::ShipEditorWindow()
 	m_window->Add(m_topLevelBox);
 }
 
-void ShipEditorWindow::SetPosition(const sf::Vector2f& pos)
-{
-	m_window->SetPosition(pos);
-}
-
 void ShipEditorWindow::SetupButtonSignals()
 {
 	// Displays image selection window. The OnNewShipImageSelected function
@@ -251,6 +246,7 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_propertyTable->Attach(m_shieldRegenEntry,	{ 3, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	SetupEntryValidationSignals();
+	SetupEntryFocusSignals();
 }
 
 void ShipEditorWindow::SetupCanvasSignals()
@@ -295,6 +291,47 @@ void ShipEditorWindow::SetupEntryValidationSignals()
 		[this] { OnEntryFloatTextValidation(m_rearShieldEntry); });
 	m_shieldRegenEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
 		[this] { OnEntryFloatTextValidation(m_shieldRegenEntry); });
+}
+
+void ShipEditorWindow::SetupEntryFocusSignals()
+{
+	m_interLeadEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_followDistEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_approachDistEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_strafeDistEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_sensorRangeEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_forwardThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_sideThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_reverseThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_steerThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_fireRateEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_heatLimitEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_cooldownRateEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_heatGenEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_hullStrengthEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_frontShieldEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_sideShieldEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_rearShieldEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+	m_shieldRegenEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
+
+	m_interLeadEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_followDistEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_approachDistEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_strafeDistEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_sensorRangeEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_forwardThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_sideThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_reverseThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_steerThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_fireRateEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_heatLimitEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_cooldownRateEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_heatGenEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_hullStrengthEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_frontShieldEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_sideShieldEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_rearShieldEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
+	m_shieldRegenEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 }
 
 void ShipEditorWindow::LoadShipStatsToEntries()

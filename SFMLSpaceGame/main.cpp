@@ -53,6 +53,12 @@ int main()
 				if (GameWindow::MouseInWindow())
 					continue;
 			}
+			else if (event.type == sf::Event::KeyReleased
+				|| event.type == sf::Event::KeyPressed)
+			{
+				if (GameWindow::WindowHasKeyboardFocus())
+					continue;
+			}
 
 			game_manager.ProcessEvent(event);
 		}

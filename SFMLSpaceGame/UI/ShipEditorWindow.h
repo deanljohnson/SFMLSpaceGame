@@ -64,6 +64,7 @@ private:
 	void SetupPropertyTable();
 	void SetupCanvasSignals();
 	void SetupEntryValidationSignals();
+	void SetupEntryFocusSignals();
 
 	void LoadShipStatsToEntries();
 	void LoadShipImage();
@@ -86,6 +87,4 @@ private:
 	std::shared_ptr<ShipStats> m_targetStats;
 public:
 	ShipEditorWindow();
-
-	void SetPosition(const sf::Vector2f& pos);
 };
