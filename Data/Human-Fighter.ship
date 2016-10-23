@@ -1,6 +1,6 @@
 {
     "Human-Fighter": {
-        "HullStrength": 100.0,
+        "HullStrength": 10.0,
         "InterLeadMult": 5.0,
         "FollowDist": 4.0,
         "ApproachDist": 4.5,
@@ -36,10 +36,10 @@
             "SoundID": 801
         },
         "Shields": {
-            "FrontStrength": 10.0,
-            "SideStrength": 10.0,
-            "RearStrength": 10.0,
-            "RegenSpeed": 3.0
+            "FrontStrength": 3.0,
+            "SideStrength": 3.0,
+            "RearStrength": 3.0,
+            "RegenSpeed": 1.0
         },
         "ImageLocation": "Human-Fighter.png",
         "ColliderVertices": [

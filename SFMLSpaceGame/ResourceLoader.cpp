@@ -5,7 +5,6 @@
 #include <assert.h>
 #include "ProjectileStats.h"
 #include "ShipStats.h"
-#include <Animation.h>
 #include <Serializer.h>
 #include <FileSystem.h>
 
@@ -19,8 +18,8 @@ namespace
 
 	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
 
-	std::map<ResourceID,  std::shared_ptr<Animation>> loadedBuiltInAnimations;
-	std::map<std::string,  std::shared_ptr<Animation>> loadedAnimations;
+	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
+	std::map<std::string, std::shared_ptr<AnimationDefinition>> loadedAnimations;
 	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
 	std::map<ResourceID,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
@@ -147,7 +146,7 @@ std::shared_ptr<sf::Texture> LoadTexture(ResourceID id)
 	return elem;
 }
 
-std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
+std::shared_ptr<AnimationDefinition> LoadAnimationResource(ResourceID id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedBuiltInAnimations.find(id);
@@ -156,16 +155,11 @@ std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
 		return it->second;
 	}
 
-	std::shared_ptr<Animation> animPtr;
+	std::shared_ptr<AnimationDefinition> animPtr;
 	switch (id)
 	{
 	case ANIMATION_EXHAUST_ONE:
-		animPtr = std::make_shared<Animation>(id, sf::Vector2f(46, 14));
-		animPtr->SetLength(5.f);
-		break;
-	case ANIMATION_EXPLOSION_ONE:
-		animPtr = std::make_shared<Animation>(id, sf::Vector2f(256, 256));
-		animPtr->SetLength(5.f);
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 5.f);
 		break;
 	default:
 		printf("The given ResourceID %d does not correspond to a recognized animation\n", id);
@@ -177,7 +171,7 @@ std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
 	return animPtr;
 }
 
-std::shared_ptr<Animation> LoadAnimationResource(const std::string& id)
+std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedAnimations.find(id);
@@ -186,11 +180,10 @@ std::shared_ptr<Animation> LoadAnimationResource(const std::string& id)
 		return it->second;
 	}
 
-	std::shared_ptr<Animation> animPtr;
+	std::shared_ptr<AnimationDefinition> animPtr;
 	if (id == "explosion-one")
 	{
-		animPtr = std::make_shared<Animation>(id, sf::Vector2f(256, 256));
-		animPtr->SetLength(3.f);
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 5.f);
 	}
 
 	loadedAnimations.insert(make_pair(id, animPtr));

@@ -16,7 +16,7 @@ private:
 	RenderBatch* m_batch{ nullptr };
 	BatchIndex* m_batchIndex;
 
-	std::shared_ptr<Animation> m_animation;
+	Animation m_animation;
 
 	b2Vec2 m_offset;
 
@@ -31,7 +31,7 @@ public:
 	void SetOffset(const b2Vec2& v);
 	void SetScale(float x, float y);
 
-	std::shared_ptr<Animation> GetAnimation();
+	Animation* GetAnimation();
 
 	// Returns the dimensions of this sprite in meters
 	virtual sf::FloatRect GetDimensions() const;
