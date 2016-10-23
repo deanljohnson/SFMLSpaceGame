@@ -1,9 +1,7 @@
 #include <Animation.h>
 
-Animation::Animation(ResourceID atlasID, sf::Vector2f frameSize)
+void Animation::InitializeFrames(const sf::Vector2f& frameSize)
 {
-	m_atlas = LoadTexture(atlasID);
-
 	for (int j = 0; j < m_atlas->getSize().y / frameSize.y; j++)
 	{
 		for (int i = 0; i < m_atlas->getSize().x / frameSize.x; i++)
@@ -19,6 +17,18 @@ Animation::Animation(ResourceID atlasID, sf::Vector2f frameSize)
 	m_frameLength = 1.f / m_frames.size();
 	m_speed = 1.f;
 	m_currentFrame = 0;
+}
+
+Animation::Animation(ResourceID atlasID, const sf::Vector2f& frameSize)
+{
+	m_atlas = LoadTexture(atlasID);
+	InitializeFrames(frameSize);
+}
+
+Animation::Animation(const std::string& atlasID, const sf::Vector2f& frameSize)
+{
+	m_atlas = LoadTexture(atlasID);
+	InitializeFrames(frameSize);
 }
 
 void Animation::Update(float deltaTime)
@@ -40,9 +50,19 @@ void Animation::SetLength(float length)
 	m_frameLength = m_length / m_frames.size();
 }
 
+float Animation::GetLength()
+{
+	return m_length;
+}
+
 void Animation::SetSpeed(float speed)
 {
 	m_speed = speed;
+}
+
+float Animation::GetSpeed()
+{
+	return m_speed;
 }
 
 sf::IntRect Animation::GetCurrentFrame() const

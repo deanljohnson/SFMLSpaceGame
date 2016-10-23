@@ -106,6 +106,16 @@ EntityID EntityFactory::CreateStation(ResourceID stationID, const b2Vec2& p, flo
 	return ent.GetID();
 }
 
+EntityID EntityFactory::CreateExplosion(const std::string& explosionID, const b2Vec2& p)
+{
+	auto ent = EntityManager::AddEntity(EXPLOSION_GROUP);
+	ent->AddComponent<Position>(p);
+	ent->AddComponent<Rotation>();
+	auto& spr = ent->AddComponent<AnimatedSprite>(explosionID);
+	ent->AddComponent<Lifetime>(spr.GetAnimation()->GetLength() * spr.GetAnimation()->GetSpeed() * .95f);
+	return ent.GetID();
+}
+
 EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
@@ -249,6 +259,12 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	}
 
 	ent->AddComponent<ThrusterAnimator, const std::vector<AnimatedSprite*>&>(sprites);
+
+	ent->destroyCallback = [](Entity* destoryedEnt)
+	{
+		auto pos = destoryedEnt->GetComponent<Position>();
+		CreateExplosion("explosion-one", pos.position);
+	};
 }
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, const b2Vec2& p, float radians)

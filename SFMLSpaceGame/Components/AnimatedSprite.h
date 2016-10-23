@@ -22,6 +22,7 @@ private:
 
 public:
 	explicit AnimatedSprite(ResourceID id, OriginOption origin = OriginOption::Center);
+	explicit AnimatedSprite(const std::string& id, OriginOption origin = OriginOption::Center);
 	~AnimatedSprite();
 
 	virtual void Init() override;
@@ -29,6 +30,8 @@ public:
 
 	void SetOffset(const b2Vec2& v);
 	void SetScale(float x, float y);
+
+	std::shared_ptr<Animation> GetAnimation();
 
 	// Returns the dimensions of this sprite in meters
 	virtual sf::FloatRect GetDimensions() const;

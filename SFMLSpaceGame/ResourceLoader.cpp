@@ -19,7 +19,8 @@ namespace
 
 	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
 
-	std::map<ResourceID,  std::shared_ptr<Animation>> loadedAnimations;
+	std::map<ResourceID,  std::shared_ptr<Animation>> loadedBuiltInAnimations;
+	std::map<std::string,  std::shared_ptr<Animation>> loadedAnimations;
 	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
 	std::map<ResourceID,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
@@ -77,7 +78,7 @@ void UnloadUnusedResources()
 {
 	UnloadUnusedSharedPtrResources(loadedTextures);
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
-	UnloadUnusedSharedPtrResources(loadedAnimations);
+	UnloadUnusedSharedPtrResources(loadedBuiltInAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
@@ -104,7 +105,7 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<sf::Texture> LoadTexture(std::string name)
+std::shared_ptr<sf::Texture> LoadTexture(const std::string& name)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedTextures.find(name);
@@ -113,11 +114,11 @@ std::shared_ptr<sf::Texture> LoadTexture(std::string name)
 		return it->second;
 	}
 
-	name = IMAGE_PATH + name;
+	auto loadPath = IMAGE_PATH + ((name.find('.') < name.size()) ? name : name + ".png");
 
 	sf::Texture image;
-	if (!image.loadFromFile(name))
-		throw std::runtime_error("Failed to load image from file " + name);
+	if (!image.loadFromFile(loadPath))
+		throw std::runtime_error("Failed to load image from file " + loadPath);
 
 	auto elem = std::make_shared<sf::Texture>(image);
 	loadedTextures.insert(make_pair(name, elem));
@@ -149,8 +150,8 @@ std::shared_ptr<sf::Texture> LoadTexture(ResourceID id)
 std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedAnimations.find(id);
-	if (it != loadedAnimations.end())
+	auto it = loadedBuiltInAnimations.find(id);
+	if (it != loadedBuiltInAnimations.end())
 	{
 		return it->second;
 	}
@@ -162,9 +163,34 @@ std::shared_ptr<Animation> LoadAnimationResource(ResourceID id)
 		animPtr = std::make_shared<Animation>(id, sf::Vector2f(46, 14));
 		animPtr->SetLength(5.f);
 		break;
+	case ANIMATION_EXPLOSION_ONE:
+		animPtr = std::make_shared<Animation>(id, sf::Vector2f(256, 256));
+		animPtr->SetLength(5.f);
+		break;
 	default:
 		printf("The given ResourceID %d does not correspond to a recognized animation\n", id);
 		return nullptr;
+	}
+
+	loadedBuiltInAnimations.insert(make_pair(id, animPtr));
+
+	return animPtr;
+}
+
+std::shared_ptr<Animation> LoadAnimationResource(const std::string& id)
+{
+	//If the resource is already loaded, return it
+	auto it = loadedAnimations.find(id);
+	if (it != loadedAnimations.end())
+	{
+		return it->second;
+	}
+
+	std::shared_ptr<Animation> animPtr;
+	if (id == "explosion-one")
+	{
+		animPtr = std::make_shared<Animation>(id, sf::Vector2f(256, 256));
+		animPtr->SetLength(3.f);
 	}
 
 	loadedAnimations.insert(make_pair(id, animPtr));

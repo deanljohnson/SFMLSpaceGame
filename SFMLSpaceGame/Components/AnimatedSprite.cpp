@@ -19,6 +19,20 @@ AnimatedSprite::AnimatedSprite(ResourceID id, OriginOption origin)
 	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
 }
 
+AnimatedSprite::AnimatedSprite(const std::string& id, OriginOption origin)
+{
+	m_animation = LoadAnimationResource(id);
+
+	m_batch = RenderBatch::Get(id);
+	m_batchIndex = m_batch->Add();
+
+	m_batch->SetTextureRect(m_batchIndex, m_animation->GetCurrentFrame());
+	auto rect = m_batch->GetTextureRect(m_batchIndex);
+
+	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
+}
+
 AnimatedSprite::~AnimatedSprite()
 {
 	m_batch->Remove(m_batchIndex);
@@ -53,6 +67,11 @@ void AnimatedSprite::SetOffset(const b2Vec2& v)
 void AnimatedSprite::SetScale(float x, float y)
 {
 	m_batch->SetScale(m_batchIndex, {(x * METERS_PER_PIXEL), (y * METERS_PER_PIXEL) });
+}
+
+std::shared_ptr<Animation> AnimatedSprite::GetAnimation()
+{
+	return m_animation;
 }
 
 sf::FloatRect AnimatedSprite::GetDimensions() const
