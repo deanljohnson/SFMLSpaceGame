@@ -46,6 +46,8 @@
 #include "Components/ParallaxTargetAssigner.h"
 #include "VectorMath.h"
 #include "Components/ShieldHitAnimator.h"
+#include "Components/Inventory.h"
+#include "UI/InventoryWindow.h"
 
 void EntityFactory::Init()
 {
@@ -151,7 +153,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 
 	auto& shields = ent->GetComponent<Shields>();
 	auto& keyListener = ent->AddComponent<KeyListener, 
-						std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::Num1, sf::Keyboard::Num2, sf::Keyboard::Num3, sf::Keyboard::Num4, });
+						std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::Num1, sf::Keyboard::Num2, sf::Keyboard::Num3, sf::Keyboard::Num4, sf::Keyboard::I });
 	
 	keyListener += [&shields](sf::Keyboard::Key k) 
 	{ 
@@ -168,6 +170,11 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 			break;
 		case sf::Keyboard::Num4:
 			shields.SetActive(Shields::Direction::All);
+			break;
+		case sf::Keyboard::I:
+			auto window = GameWindow::GetWindow<InventoryWindow>("inventory");
+			window->Show(true);
+			window->SetTarget(PlayerData::GetActive()->GetID());
 			break;
 		}
 	};
@@ -210,6 +217,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	shields.SetActive(Shields::Direction::All);
 	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
+	ent->AddComponent<Inventory>();
 
 	if (npc)
 	{

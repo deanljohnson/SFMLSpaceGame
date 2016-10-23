@@ -33,6 +33,14 @@ ThrusterLocationEditor::ThrusterLocationEditor()
 	auto closebutton = sfg::Button::Create("Close Without Saving");
 	table->Attach(closebutton, { 1, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	closebutton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnClose(); });
+
+	m_thrusterDisplayShape = sf::ConvexShape(5);
+	m_thrusterDisplayShape.setPoint(0, { 0, -10 });
+	m_thrusterDisplayShape.setPoint(1, { 0, 10 });
+	m_thrusterDisplayShape.setPoint(2, { -10, 10 });
+	m_thrusterDisplayShape.setPoint(3, { -15, 0 });
+	m_thrusterDisplayShape.setPoint(4, { -10, -10 });
+	m_thrusterDisplayShape.setFillColor(sf::Color::Red);
 }
 
 void ThrusterLocationEditor::SetTarget(const std::string& shipName, std::shared_ptr<ShipStats> stats)

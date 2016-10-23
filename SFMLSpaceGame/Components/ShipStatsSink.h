@@ -9,4 +9,6 @@ public:
 	explicit ShipStatsSink(std::shared_ptr<ShipStats> stats)
 		: m_shipStats(stats)
 	{}
+
+	ShipStats* operator->() { return m_shipStats.get(); };
 };

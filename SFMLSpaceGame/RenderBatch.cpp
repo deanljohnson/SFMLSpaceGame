@@ -330,6 +330,9 @@ void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states)
 		m_removedIndices.clear();
 	}
 
+	if (m_vertices.size() == 0)
+		return;
+
 	states.texture = m_texture.get();
 	target.draw(&m_vertices[0], m_vertices.size(), sf::Quads, states);
 }

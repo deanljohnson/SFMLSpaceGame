@@ -46,7 +46,11 @@ public:
 		}
 		return m_windowsWithMouse > 0;
 	}
+
+	template<typename T>
+	static T* GetWindow(const std::string& id);
 	static GameWindow* GetWindow(const std::string& id);
+
 	static void GrabKeyboardFocus();
 	static void ReleaseKeyboardFocus();
 	static bool WindowHasKeyboardFocus();
@@ -61,3 +65,9 @@ public:
 	virtual void CenterOnScreen();
 	virtual void SetPosition(const sf::Vector2f& pos);
 };
+
+template <typename T>
+T* GameWindow::GetWindow(const std::string& id)
+{
+	return static_cast<T*>(GetWindow(id));
+}

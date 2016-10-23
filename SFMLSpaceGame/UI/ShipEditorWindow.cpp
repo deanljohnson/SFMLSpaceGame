@@ -38,6 +38,8 @@ ShipEditorWindow::ShipEditorWindow()
 	SetupCanvasSignals();
 
 	m_propertyTable = sfg::Table::Create();
+	m_propertyTable->SetRowSpacings(2.f);
+	m_propertyTable->SetColumnSpacings(2.f);
 	SetupPropertyTable();
 
 	// Create layout widgets

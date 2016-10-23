@@ -49,12 +49,12 @@
             ],
             "SoundID": 801
         },
-		"Shields": {
-			"FrontStrength": 100.0,
-			"SideStrength": 100.0,
-			"RearStrength": 100.0,
-			"RegenSpeed": 10.0
-		},
+        "Shields": {
+            "FrontStrength": 100.0,
+            "SideStrength": 100.0,
+            "RearStrength": 100.0,
+            "RegenSpeed": 10.0
+        },
         "ImageLocation": "1.png",
         "ColliderVertices": [
             {
@@ -84,12 +84,12 @@
         ],
         "ThrusterLocations": [
             {
-                "v.x": 12.5,
-                "v.y": 35.5
+                "v.x": 13.5,
+                "v.y": 36.5
             },
             {
                 "v.x": 12.5,
-                "v.y": 55.5
+                "v.y": 57.5
             }
         ]
     }

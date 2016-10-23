@@ -13,6 +13,7 @@
 #include "UI/ThrusterLocationEditor.h"
 #include "UI/ConfirmationDialog.h"
 #include "UI/ShieldStateDisplay.h"
+#include "UI/InventoryWindow.h"
 
 class InitialGameState : public GameState
 {
@@ -33,6 +34,7 @@ private:
 	ThrusterLocationEditor m_thrusterLocationEditor;
 	ConfirmationDialog m_confirmationDialog;
 	ShieldStateDisplay m_shieldStateDisplay;
+	InventoryWindow m_inventoryWindow;
 
 public:
 	InitialGameState() 

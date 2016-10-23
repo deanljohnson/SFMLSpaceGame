@@ -273,6 +273,12 @@
     <ClCompile Include="RenderBatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI\InventoryWindow.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Inventory.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -571,6 +577,12 @@
     </ClInclude>
     <ClInclude Include="RenderBatch.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\InventoryWindow.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Inventory.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
