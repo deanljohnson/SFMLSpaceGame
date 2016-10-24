@@ -1,15 +1,21 @@
 #pragma once
 
 #include <EntityID.h>
+#include <Item.h>
 
-enum EventType
+enum class EventType
 {
-	None, Attacked, PlayerDied, PlayerSpawned
+	None, Attacked, PlayerDied, PlayerSpawned, ItemPickup
 };
 
 struct Event
 {
 public:
+	struct ItemPickupEvent
+	{
+		Item item;
+	};
+
 	struct AttackedEvent
 	{
 		EntityID attackerID;
@@ -33,6 +39,7 @@ public:
 		AttackedEvent attacked;
 		PlayerDiedEvent playerDied;
 		PlayerSpawnedEvent playerSpawned;
+		ItemPickupEvent itemPickup;
 	};
 
 	EventType type;

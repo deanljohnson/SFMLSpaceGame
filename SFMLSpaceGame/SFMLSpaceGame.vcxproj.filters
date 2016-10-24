@@ -282,6 +282,12 @@
     <ClCompile Include="AnimationDefinition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ItemPickup.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -588,6 +594,12 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="AnimationDefinition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ItemPickup.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

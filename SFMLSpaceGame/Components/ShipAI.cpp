@@ -27,7 +27,7 @@ void ShipAI::ProcessEvents()
 	if (entity->events.Count() > 0)
 	{
 		Event event;
-		if (entity->events.Get(Attacked, event))
+		if (entity->events.Get(EventType::Attacked, event))
 		{
 			HandleAttackedEvent(event.attacked);
 		}

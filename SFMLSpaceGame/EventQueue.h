@@ -17,16 +17,19 @@ public:
 
 	void Push(Event e);
 
-	bool Get(EventType type, Event& target)
+	bool Get(EventType type, Event& target, bool markHandled = false)
 	{
 		// Iterate through events from the last update.
 		// Anything after the pending index has been added 
 		// to the event queue since the last call to 
 		// EventQueue.Update
-		for (size_t i = 0; i < m_pendingIndex; i++) 
+		for (int i = 0; i < m_pendingIndex; i++) 
 		{
-			if (m_events[i].type == type)
+			if (m_events[i].type == type && !m_events[i].handled)
 			{
+				if (markHandled)
+					m_events[i].handled = true;
+
 				target = m_events[i];
 				return true;
 			}

@@ -159,7 +159,7 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(ResourceID id)
 	switch (id)
 	{
 	case ANIMATION_EXHAUST_ONE:
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 5.f);
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 1.f);
 		break;
 	default:
 		printf("The given ResourceID %d does not correspond to a recognized animation\n", id);
@@ -183,7 +183,7 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 	std::shared_ptr<AnimationDefinition> animPtr;
 	if (id == "explosion-one")
 	{
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 5.f);
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 3.f);
 	}
 
 	loadedAnimations.insert(make_pair(id, animPtr));

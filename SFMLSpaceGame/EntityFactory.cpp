@@ -48,6 +48,7 @@
 #include "Components/ShieldHitAnimator.h"
 #include "Components/Inventory.h"
 #include "UI/InventoryWindow.h"
+#include "Components/ItemPickup.h"
 
 void EntityFactory::Init()
 {
@@ -116,6 +117,24 @@ EntityID EntityFactory::CreateExplosion(const std::string& explosionID, const b2
 	return ent.GetID();
 }
 
+EntityID EntityFactory::CreatPickup(const std::string& pickupType, const b2Vec2& p)
+{
+	auto ent = EntityManager::AddEntity(PICKUP_GROUP);
+	ent->AddComponent<Position>(p);
+	ent->AddComponent<Rotation>();
+	auto& phys = ent->AddComponent<Physics>();
+	ent->AddComponent<ItemPickup>();
+	auto& spr = ent->AddComponent<Sprite>(pickupType);
+
+	auto dimensions = spr.GetDimensions();
+	auto shape = sf::RectangleShape({dimensions.width, dimensions.height});
+	shape.setOrigin(B2VecToSFMLVec(spr.GetOrigin()));
+
+	phys.AddShape(shape, .2f, IS_SENSOR, COLLIDES_WITH_SHIP);
+
+	return ent.GetID();
+}
+
 EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
@@ -129,7 +148,7 @@ EntityID EntityFactory::CreatePlayerSpawner(const b2Vec2& pos)
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
 	ent->AddComponent<ShipSpawner, EventType, ShipResourceSelector, SpawnLocationSelector, bool>(
-		PlayerDied, 
+		EventType::PlayerDied, 
 		ShipResourceSelector([] {return PlayerData::GetActive()->GetPlayerShip(); }), 
 		SpawnLocationSelector(), true);
 	return ent.GetID();
@@ -227,7 +246,8 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	shields.SetActive(Shields::Direction::All);
 	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
-	ent->AddComponent<Inventory>();
+	auto& invenComp = ent->AddComponent<Inventory>();
+	invenComp.SetCredits(1000); // hard coded for now, will eventually have to remove
 
 	if (npc)
 	{
@@ -262,8 +282,18 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 
 	ent->destroyCallback = [](Entity* destoryedEnt)
 	{
-		auto pos = destoryedEnt->GetComponent<Position>();
+		auto& pos = destoryedEnt->GetComponent<Position>();
+		auto& inventory = destoryedEnt->GetComponent<Inventory>();
+
 		CreateExplosion("explosion-one", pos.position);
+		auto pickupID = CreatPickup("crate", pos.position);
+		auto pickupHandle = EntityManager::Get(pickupID);
+		auto& pickup = pickupHandle->GetComponent<ItemPickup>();
+
+		for (auto& item : inventory)
+		{
+			pickup.AddItem(item);
+		}
 	};
 }
 

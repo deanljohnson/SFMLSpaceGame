@@ -5,7 +5,7 @@ void PlayerDeathBroadcaster::OnDestroy()
 {
 	Event playerDead = Event();
 	playerDead.playerDied = Event::PlayerDiedEvent();
-	playerDead.type = PlayerDied;
+	playerDead.type = EventType::PlayerDied;
 
 	GameState::pendingGameEvents.Push(playerDead);
 }

@@ -61,7 +61,7 @@ void ShipSpawner::Spawn()
 		Event playerSpawned = Event();
 		playerSpawned.playerSpawned = Event::PlayerSpawnedEvent();
 		playerSpawned.playerSpawned.ID = playerID;
-		playerSpawned.type = PlayerSpawned;
+		playerSpawned.type = EventType::PlayerSpawned;
 
 		GameState::pendingGameEvents.Push(playerSpawned);
 	}

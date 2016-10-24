@@ -14,7 +14,7 @@ void ParallaxTargetAssigner::Update()
 		return;
 
 	Event event;
-	if (GameState::pendingGameEvents.Get(PlayerSpawned, event))
+	if (GameState::pendingGameEvents.Get(EventType::PlayerSpawned, event))
 	{
 		m_parallax->SetTarget(EntityManager::Get(event.playerSpawned.ID));
 	}

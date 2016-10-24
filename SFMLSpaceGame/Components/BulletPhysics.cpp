@@ -86,7 +86,7 @@ bool BulletPhysics::HandleCollisions()
 				attackedEvent.attacked.damage = m_projStats->GetDamage();
 				attackedEvent.attacked.collisionX = m_position->X();
 				attackedEvent.attacked.collisionY = m_position->Y();
-				attackedEvent.type = Attacked;
+				attackedEvent.type = EventType::Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}
 			

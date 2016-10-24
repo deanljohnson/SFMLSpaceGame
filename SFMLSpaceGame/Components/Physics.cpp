@@ -12,6 +12,7 @@
 #endif
 #include <Box2D/Dynamics/b2Fixture.h>
 #include <GameState.h>
+#include <CollisionGroups.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 void WrapBodyAngle(b2Body& body)
@@ -112,6 +113,7 @@ void Physics::AddShape(const sf::Shape& s, float density, int categoryBits, int 
 	fixDef.shape = &poly;
 	fixDef.filter.categoryBits = categoryBits;
 	fixDef.filter.maskBits = collidesWithBits;
+	fixDef.isSensor = (categoryBits & IS_SENSOR) > 0;
 
 	m_body->CreateFixture(&fixDef);
 }
