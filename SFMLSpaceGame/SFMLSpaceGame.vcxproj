@@ -247,6 +247,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
+    <ClCompile Include="TextureAtlas.cpp" />
     <ClCompile Include="UI\ColliderEditor.cpp" />
     <ClCompile Include="UI\ConfirmationDialog.cpp" />
     <ClCompile Include="UI\GameWindow.cpp" />
@@ -302,6 +303,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Item.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="RenderBatch.h" />
+    <ClInclude Include="TextureAtlas.h" />
     <ClInclude Include="UI\ColliderEditor.h" />
     <ClInclude Include="UI\ConfirmationDialog.h" />
     <ClInclude Include="UI\HardPointWidget.h" />

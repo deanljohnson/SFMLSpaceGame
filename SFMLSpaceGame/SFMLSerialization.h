@@ -9,4 +9,13 @@ namespace cereal {
 	{
 		archive(CEREAL_NVP(v.x), CEREAL_NVP(v.y));
 	}
+
+	template<class Archive>
+	void serialize(Archive& archive, sf::IntRect& v)
+	{
+		archive(cereal::make_nvp("Left", v.left),
+				cereal::make_nvp("Top", v.top),
+				cereal::make_nvp("Width", v.Width),
+				cereal::make_nvp("Height", v.Height));
+	}
 }

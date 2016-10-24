@@ -294,6 +294,9 @@
     <ClCompile Include="UI\PlayerInventoryWidget.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="TextureAtlas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -613,6 +616,9 @@
     </ClInclude>
     <ClInclude Include="UI\PlayerInventoryWidget.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAtlas.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
