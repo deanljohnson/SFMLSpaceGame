@@ -254,10 +254,12 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\HardPointWidget.cpp" />
     <ClCompile Include="UI\ImageSelector.cpp" />
     <ClCompile Include="UI\InventoryWindow.cpp" />
+    <ClCompile Include="UI\PlayerInventoryWidget.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\ShipNameEntry.cpp" />
     <ClCompile Include="UI\ShipSelector.cpp" />
+    <ClCompile Include="UI\StationTradeWindow.cpp" />
     <ClCompile Include="UI\StationWindow.cpp" />
     <ClCompile Include="UI\ThrusterLocationEditor.cpp" />
     <ClCompile Include="UI\UI.cpp" />
@@ -358,10 +360,12 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\HardPointEditor.h" />
     <ClInclude Include="UI\ImageSelector.h" />
     <ClInclude Include="UI\InventoryWindow.h" />
+    <ClInclude Include="UI\PlayerInventoryWidget.h" />
     <ClInclude Include="UI\ShieldStateDisplay.h" />
     <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\ShipNameEntry.h" />
     <ClInclude Include="UI\ShipSelector.h" />
+    <ClInclude Include="UI\StationTradeWindow.h" />
     <ClInclude Include="UI\StationWindow.h" />
     <ClInclude Include="UI\ThrusterLocationEditor.h" />
     <ClInclude Include="UI\UI.h" />

@@ -24,9 +24,6 @@ InventoryWindow::InventoryWindow()
 	m_shipCanvas->SetRequisition(sf::Vector2f(250, 150));
 	shipWindow->Add(m_shipCanvas);
 
-	m_itemTable = sfg::Table::Create();
-	SetupItemTable();
-
 	m_hullStateLabel = sfg::Label::Create("Hull State: 0%");
 	m_creditsLabel = sfg::Label::Create("Credits: 0");
 
@@ -34,8 +31,10 @@ InventoryWindow::InventoryWindow()
 	leftSideBar->Pack(m_hullStateLabel);
 	leftSideBar->Pack(m_creditsLabel);
 
+	m_invenWidget.SetSize({5, 5});
+
 	mainBar->Pack(leftSideBar);
-	mainBar->Pack(m_itemTable);
+	mainBar->Pack(m_invenWidget.GetWidget());
 
 	m_window->Add(mainBar);
 }
@@ -48,24 +47,6 @@ void InventoryWindow::SetTarget(EntityID id)
 	LoadHullState();
 	LoadCredits();
 	DrawShipCanvas();
-}
-
-void InventoryWindow::SetupItemTable()
-{
-	sf::Vector2i inventorySize{ 5,5 };
-
-	m_itemTable->SetRowSpacings(2.f);
-	m_itemTable->SetColumnSpacings(2.f);
-
-	for (sf::Uint32 j = 0; j < inventorySize.y; j++)
-	{
-		for (sf::Uint32 i = 0; i < inventorySize.x; i++)
-		{
-			auto window = sfg::Window::Create(sfg::Window::BACKGROUND);
-			window->SetRequisition({ 35, 35 });
-			m_itemTable->Attach(window, { i, j, 1, 1 });
-		}
-	}
 }
 
 void InventoryWindow::LoadShipImage()

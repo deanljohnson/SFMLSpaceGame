@@ -39,6 +39,8 @@
 #include "Components/Text.h"
 #include "Components/Shields.h"
 #include "UI/GameWindow.h"
+#include "UI/InventoryWindow.h"
+#include "UI/StationWindow.h"
 #include <SFML/Graphics/ConvexShape.hpp>
 #include "WorldConstants.h"
 #include "Components/ShipStatsSink.h"
@@ -47,7 +49,6 @@
 #include "VectorMath.h"
 #include "Components/ShieldHitAnimator.h"
 #include "Components/Inventory.h"
-#include "UI/InventoryWindow.h"
 #include "Components/ItemPickup.h"
 
 void EntityFactory::Init()
@@ -304,6 +305,8 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
+	auto& inven = ent->AddComponent<Inventory>();
+	inven.AddItem(Item::Create(Item::ItemType::FuelCells, 1000));
 
 	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
 	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");
@@ -311,7 +314,13 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 	sensor.AttachComponent(&keyListener);
 	sensor.AttachComponent(&text);
 
-	keyListener += [](sf::Keyboard::Key) { GameWindow::GetWindow("station_window")->Show(true); };
+	EntityID stationEntID = ent.GetID();
+	keyListener += [stationEntID](sf::Keyboard::Key)
+	{ 
+		auto stationWindow = GameWindow::GetWindow<StationWindow>("station_window");
+		stationWindow->Show(true);
+		stationWindow->SetTarget(stationEntID);
+	};
 
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));

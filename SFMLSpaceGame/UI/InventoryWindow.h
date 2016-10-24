@@ -6,6 +6,7 @@
 #include <SFGUI/Canvas.hpp>
 #include <SFGUI/Label.hpp>
 #include <SFGUI/Table.hpp>
+#include <UI\PlayerInventoryWidget.h>
 
 class InventoryWindow : public GameWindow
 {
@@ -16,12 +17,10 @@ private:
 	sfg::Label::Ptr m_hullStateLabel;
 	sfg::Label::Ptr m_creditsLabel;
 
-	sfg::Table::Ptr m_itemTable;
+	PlayerInventoryWidget m_invenWidget;
 
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;
-
-	void SetupItemTable();
 
 	void LoadShipImage();
 	void LoadHullState();

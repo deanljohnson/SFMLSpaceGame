@@ -1,37 +1,39 @@
 #pragma once
-#include <assert.h>
 
 class Item
 {
+private:
+	void SetAmount(unsigned int amount);
 public:
+	template <typename T>
+	struct ItemBase 
+	{
+		unsigned int amount;
+		void Stack(T other) { amount += other.amount; }
+	};
 
 	enum class ItemType
 	{
-		Credits
+		Credits, FuelCells
 	};
 
-	struct Credits
+	struct Credits : public ItemBase<Credits>
 	{
-		unsigned int amount;
+	};
 
-		void Stack(Credits other) { amount += other.amount; }
+	struct FuelCells : public ItemBase<FuelCells>
+	{
 	};
 
 	union
 	{
 		Credits credits;
+		FuelCells fuelCells;
 	};
 
 	ItemType type;
 
-	void Stack(Item other)
-	{
-		assert(type == other.type);
+	void Stack(Item other);
 
-		switch (other.type)
-		{
-		case ItemType::Credits:
-			credits.Stack(other.credits);
-		}
-	}
+	static Item Create(ItemType type, unsigned int amount);
 };

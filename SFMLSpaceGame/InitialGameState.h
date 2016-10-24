@@ -8,6 +8,7 @@
 #include "UI/ImageSelector.h"
 #include "UI/ShipNameEntry.h"
 #include "UI/StationWindow.h"
+#include "UI/StationTradeWindow.h"
 #include "UI/HardPointEditor.h"
 #include "UI/ColliderEditor.h"
 #include "UI/ThrusterLocationEditor.h"
@@ -29,6 +30,7 @@ private:
 	ImageSelector m_imageSelector;
 	ShipNameEntry m_shipNameEntry;
 	StationWindow m_stationWindow;
+	StationTradeWindow m_stationTradeWindow;
 	HardPointEditor m_hardPointEditor;
 	ColliderEditor m_colliderEditor;
 	ThrusterLocationEditor m_thrusterLocationEditor;
