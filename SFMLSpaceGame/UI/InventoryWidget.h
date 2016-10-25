@@ -5,7 +5,7 @@
 #include <EntityHandle.h>
 #include <UI\InventoryItemWidget.h>
 
-class PlayerInventoryWidget
+class InventoryWidget
 {
 private:
 	sfg::Window::Ptr m_window;
@@ -17,7 +17,7 @@ private:
 
 	sf::Vector2i m_size;
 public:
-	PlayerInventoryWidget();
+	InventoryWidget();
 
 	void Update();
 

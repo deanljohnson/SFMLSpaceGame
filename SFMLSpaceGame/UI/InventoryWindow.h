@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFGUI/Canvas.hpp>
 #include <SFGUI/Label.hpp>
-#include <UI\PlayerInventoryWidget.h>
+#include <UI\InventoryWidget.h>
 
 class InventoryWindow : public GameWindow
 {
@@ -16,7 +16,7 @@ private:
 	sfg::Label::Ptr m_hullStateLabel;
 	sfg::Label::Ptr m_creditsLabel;
 
-	PlayerInventoryWidget m_invenWidget;
+	InventoryWidget m_invenWidget;
 
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;

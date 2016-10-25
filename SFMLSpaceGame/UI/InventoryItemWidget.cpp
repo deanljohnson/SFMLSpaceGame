@@ -46,10 +46,10 @@ const std::string& InventoryItemWidget::GetName() const
 	return name;
 }
 
-void InventoryItemWidget::SetPosition(const sf::Vector2f& p)
+void InventoryItemWidget::SetItem(Item* item)
 {
-	m_position = p;
-	Widget::SetPosition(p);
+	m_item = item;
+	Invalidate();
 }
 
 std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
@@ -57,13 +57,18 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	std::unique_ptr<sfg::RenderQueue> queue(new sfg::RenderQueue());
 	auto* engine = &sfg::Context::Get().GetEngine();
 
-	sf::IntRect texRect{ m_atlas->at(m_item->GetTypeName()) };
-	sf::FloatRect posRect{ m_position.x, m_position.y, static_cast<float>(texRect.width), static_cast<float>(texRect.height)};
-	sf::FloatRect texFloatRect{ static_cast<float>(texRect.left), 
-								static_cast<float>(texRect.top), 
-								static_cast<float>(texRect.width),	
-								static_cast<float>(texRect.height) };
-	queue->Add(sfg::Renderer::Get().CreateSprite(posRect, m_guiTexture, texFloatRect));
+	sf::FloatRect posRect{ 0, 0, 50.f, 50.f };
+
+	if (m_item != nullptr)
+	{
+		sf::IntRect texRect{ m_atlas->at(m_item->GetTypeName()) };
+		posRect = sf::FloatRect{ 0, 0, static_cast<float>(texRect.width), static_cast<float>(texRect.height) };
+		sf::FloatRect texFloatRect{ static_cast<float>(texRect.left),
+			static_cast<float>(texRect.top),
+			static_cast<float>(texRect.width),
+			static_cast<float>(texRect.height) };
+		queue->Add(sfg::Renderer::Get().CreateSprite(posRect, m_guiTexture, texFloatRect));
+	}
 
 	auto borderWidth = engine->GetProperty<float>("BorderWidth", shared_from_this());
 
@@ -75,28 +80,34 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 		sf::Color::Transparent, 
 		engine->GetProperty<sf::Color>("BorderColor", shared_from_this())));
 
-	auto countColor = engine->GetProperty<sf::Color>("Color", shared_from_this());
-	auto fontSize = (int)(engine->GetProperty<unsigned int>("FontSize", shared_from_this()) / 1.5f);
-	const auto& countFontName = engine->GetProperty<std::string>("FontName", shared_from_this());
-	const auto& countFont = engine->GetResourceManager().GetFont(countFontName);
+	if (m_item != nullptr)
+	{
+		auto countColor = engine->GetProperty<sf::Color>("Color", shared_from_this());
+		auto fontSize = static_cast<int>(engine->GetProperty<unsigned int>("FontSize", shared_from_this()) / 1.5f);
+		const auto& countFontName = engine->GetProperty<std::string>("FontName", shared_from_this());
+		const auto& countFont = engine->GetResourceManager().GetFont(countFontName);
 
-	auto countSize = engine->GetFontLineHeight(*countFont, fontSize);
+		auto countSize = engine->GetFontLineHeight(*countFont, fontSize);
 
-	sf::Text countText(StringDisplayHelper::GetRenderedString(m_item->GetAmount()), *countFont, countSize);
-	sf::Vector2f countPosition(
-		borderWidth + 2.f,
-		posRect.height - static_cast<float>(countSize) - borderWidth - 2.f
-	);
-	countText.setPosition(countPosition);
-	countText.setFillColor(countColor);
+		sf::Text countText(StringDisplayHelper::GetRenderedString(m_item->GetAmount()), *countFont, countSize);
+		sf::Vector2f countPosition(
+			borderWidth + 2.f,
+			posRect.height - static_cast<float>(countSize) - borderWidth - 2.f
+		);
+		countText.setPosition(countPosition);
+		countText.setFillColor(countColor);
 
-	queue->Add(sfg::Renderer::Get().CreateText(countText));
+		queue->Add(sfg::Renderer::Get().CreateText(countText));
+	}
 
 	return queue;
 }
 
 sf::Vector2f InventoryItemWidget::CalculateRequisition()
 {
+	if (m_item == nullptr)
+		return{ 50, 50 };
+
 	sf::IntRect texRect{ m_atlas->at(m_item->GetTypeName()) };
 	return{ static_cast<float>(texRect.width), static_cast<float>(texRect.height) };
 }

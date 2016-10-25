@@ -297,14 +297,14 @@
     <ClCompile Include="UI\StationWindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\PlayerInventoryWidget.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="TextureAtlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\InventoryItemWidget.cpp">
       <Filter>Source Files\UI\InventoryElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\InventoryWidget.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -623,9 +623,6 @@
     <ClInclude Include="UI\StationTradeWindow.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\PlayerInventoryWidget.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TextureAtlas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -633,6 +630,9 @@
       <Filter>Header Files\UI\InventoryElements</Filter>
     </ClInclude>
     <ClInclude Include="UI\StringDisplayHelper.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\InventoryWidget.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

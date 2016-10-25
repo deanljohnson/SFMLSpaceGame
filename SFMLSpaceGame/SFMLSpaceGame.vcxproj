@@ -256,7 +256,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\ImageSelector.cpp" />
     <ClCompile Include="UI\InventoryItemWidget.cpp" />
     <ClCompile Include="UI\InventoryWindow.cpp" />
-    <ClCompile Include="UI\PlayerInventoryWidget.cpp" />
+    <ClCompile Include="UI\InventoryWidget.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\ShipNameEntry.cpp" />
@@ -365,7 +365,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\ImageSelector.h" />
     <ClInclude Include="UI\InventoryItemWidget.h" />
     <ClInclude Include="UI\InventoryWindow.h" />
-    <ClInclude Include="UI\PlayerInventoryWidget.h" />
+    <ClInclude Include="UI\InventoryWidget.h" />
     <ClInclude Include="UI\ShieldStateDisplay.h" />
     <ClInclude Include="UI\ShipEditorWindow.h" />
     <ClInclude Include="UI\ShipNameEntry.h" />

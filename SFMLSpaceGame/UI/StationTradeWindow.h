@@ -1,14 +1,13 @@
 #pragma once
 #include <UI\GameWindow.h>
-#include <UI\PlayerInventoryWidget.h>
-#include <Entity.h>
+#include <UI\InventoryWidget.h>
 
 class StationTradeWindow : public GameWindow 
 {
 private:
 	EntityID m_target;
 
-	PlayerInventoryWidget m_playerInvenWidget;
+	InventoryWidget m_playerInvenWidget;
 public:
 	StationTradeWindow();
 

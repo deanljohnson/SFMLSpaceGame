@@ -15,7 +15,7 @@ public:
 
 	const std::string& GetName() const override;
 
-	void SetPosition(const sf::Vector2f& p);
+	void SetItem(Item* item);
 
 	~InventoryItemWidget();
 protected:
@@ -25,7 +25,6 @@ protected:
 	sf::Vector2f CalculateRequisition() override;
 
 private:
-	sf::Vector2f m_position;
 	Item* m_item;
 
 	static int m_widgetCount;
