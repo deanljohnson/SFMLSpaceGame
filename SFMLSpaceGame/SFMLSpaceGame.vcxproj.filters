@@ -55,6 +55,12 @@
     <Filter Include="Source Files\UI\HardPointEditorElements">
       <UniqueIdentifier>{b1252eac-2a7f-49a8-b247-2491577cba9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI\InventoryElements">
+      <UniqueIdentifier>{40e34f93-02c7-4979-a623-b6dd40cb8722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\InventoryElements">
+      <UniqueIdentifier>{2fffccea-7bd1-4e85-b383-fb3d33bb982d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -296,6 +302,9 @@
     </ClCompile>
     <ClCompile Include="TextureAtlas.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\InventoryItemWidget.cpp">
+      <Filter>Source Files\UI\InventoryElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -619,6 +628,9 @@
     </ClInclude>
     <ClInclude Include="TextureAtlas.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\InventoryItemWidget.h">
+      <Filter>Header Files\UI\InventoryElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

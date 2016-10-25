@@ -15,7 +15,7 @@ namespace cereal {
 	{
 		archive(cereal::make_nvp("Left", v.left),
 				cereal::make_nvp("Top", v.top),
-				cereal::make_nvp("Width", v.Width),
-				cereal::make_nvp("Height", v.Height));
+				cereal::make_nvp("Width", v.width),
+				cereal::make_nvp("Height", v.height));
 	}
 }

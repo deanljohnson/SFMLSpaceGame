@@ -254,6 +254,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\HardPointEditor.cpp" />
     <ClCompile Include="UI\HardPointWidget.cpp" />
     <ClCompile Include="UI\ImageSelector.cpp" />
+    <ClCompile Include="UI\InventoryItemWidget.cpp" />
     <ClCompile Include="UI\InventoryWindow.cpp" />
     <ClCompile Include="UI\PlayerInventoryWidget.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
@@ -361,6 +362,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\GameWindow.h" />
     <ClInclude Include="UI\HardPointEditor.h" />
     <ClInclude Include="UI\ImageSelector.h" />
+    <ClInclude Include="UI\InventoryItemWidget.h" />
     <ClInclude Include="UI\InventoryWindow.h" />
     <ClInclude Include="UI\PlayerInventoryWidget.h" />
     <ClInclude Include="UI\ShieldStateDisplay.h" />

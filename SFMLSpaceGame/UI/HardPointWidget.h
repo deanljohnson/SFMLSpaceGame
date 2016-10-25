@@ -13,7 +13,6 @@ private:
 public:
 	explicit HardPointWidget(const sf::Vector2f& position);
 
-
 	HardPointWidget(const HardPointWidget& other)
 		: m_posControl{other.m_posControl},
 		  m_angleControl{other.m_angleControl},

@@ -13,6 +13,22 @@ void Item::Stack(Item other)
 	case ItemType::FuelCells:
 		fuelCells.Stack(other.fuelCells);
 		break;
+	case ItemType::Ore:
+		ore.Stack(other.ore);
+		break;
+	}
+}
+
+std::string Item::GetTypeName() 
+{
+	switch (type)
+	{
+	case ItemType::Credits:
+		return Credits::GetTypeName();
+	case ItemType::FuelCells:
+		return FuelCells::GetTypeName();
+	case ItemType::Ore:
+		return Ore::GetTypeName();
 	}
 }
 
@@ -34,6 +50,9 @@ void Item::SetAmount(unsigned int amount)
 		break;
 	case ItemType::FuelCells:
 		fuelCells.amount = amount;
+		break;
+	case ItemType::Ore:
+		ore.amount = amount;
 		break;
 	}
 }

@@ -1,0 +1,33 @@
+{
+    "trade-icons": {
+        "Rects": [
+            {
+                "key": "food",
+                "value": {
+                    "Left": 70,
+                    "Top": 0,
+                    "Width": 35,
+                    "Height": 35
+                }
+            },
+            {
+                "key": "narcotics",
+                "value": {
+                    "Left": 35,
+                    "Top": 0,
+                    "Width": 35,
+                    "Height": 35
+                }
+            },
+            {
+                "key": "ore",
+                "value": {
+                    "Left": 0,
+                    "Top": 0,
+                    "Width": 35,
+                    "Height": 35
+                }
+            }
+        ]
+    }
+}
