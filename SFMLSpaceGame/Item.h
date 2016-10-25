@@ -19,7 +19,7 @@ public:
 
 	enum class ItemType
 	{
-		Credits, FuelCells, Ore
+		Credits, FuelCells, Ore, Food, Narcotics
 	};
 
 	struct Credits : public ItemBase<Credits>
@@ -37,11 +37,23 @@ public:
 		NAMED_ITEM("Ore")
 	};
 
+	struct Food : public ItemBase<Food>
+	{
+		NAMED_ITEM("Food")
+	};
+
+	struct Narcotics : public ItemBase<Narcotics>
+	{
+		NAMED_ITEM("Narcotics")
+	};
+
 	union
 	{
 		Credits credits;
 		FuelCells fuelCells;
 		Ore ore;
+		Food food;
+		Narcotics narcotics;
 	};
 
 	ItemType type;

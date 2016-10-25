@@ -5,7 +5,6 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFGUI/Canvas.hpp>
 #include <SFGUI/Label.hpp>
-#include <SFGUI/Table.hpp>
 #include <UI\PlayerInventoryWidget.h>
 
 class InventoryWindow : public GameWindow

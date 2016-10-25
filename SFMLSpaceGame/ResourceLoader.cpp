@@ -13,6 +13,7 @@ namespace
 {
 	Serializer serializer = Serializer();
 
+	std::map<std::string, std::shared_ptr<TextureAtlas>> loadedTextureAtlases;
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
 
@@ -75,10 +76,13 @@ void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>&
 
 void UnloadUnusedResources()
 {
+	UnloadUnusedSharedPtrResources(loadedTextureAtlases);
 	UnloadUnusedSharedPtrResources(loadedTextures);
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
+	UnloadUnusedSharedPtrResources(loadedAnimations);
 	UnloadUnusedSharedPtrResources(loadedBuiltInAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
+	UnloadUnusedSharedPtrResources(loadedSounds);
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
 }
@@ -102,6 +106,26 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 		throw std::runtime_error("Failed to lock resource.");
 
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
+}
+
+std::shared_ptr<TextureAtlas> LoadTextureAtlas(const std::string& name)
+{
+	//If the resource is already loaded, return it
+	auto it = loadedTextureAtlases.find(name);
+	if (it != loadedTextureAtlases.end())
+	{
+		return it->second;
+	}
+
+	auto tex = LoadTexture(name);
+
+	TextureAtlas* ta = serializer.Load<TextureAtlas>(name);
+	ta->SetTexture(tex);
+
+	auto elem = std::shared_ptr<TextureAtlas>(ta);
+	loadedTextureAtlases.insert(make_pair(name, elem));
+
+	return elem;
 }
 
 std::shared_ptr<sf::Texture> LoadTexture(const std::string& name)

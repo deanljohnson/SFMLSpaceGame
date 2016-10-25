@@ -1,5 +1,10 @@
 #include <TextureAtlas.h>
 
+TextureAtlas::TextureAtlas()
+	: m_texture(nullptr)
+{
+}
+
 TextureAtlas::TextureAtlas(std::shared_ptr<sf::Texture> tex)
 	: m_texture(tex) 
 {}
@@ -7,6 +12,11 @@ TextureAtlas::TextureAtlas(std::shared_ptr<sf::Texture> tex)
 sf::Texture* TextureAtlas::GetTexture()
 {
 	return m_texture.get();
+}
+
+void TextureAtlas::SetTexture(std::shared_ptr<sf::Texture> tex)
+{
+	m_texture = tex;
 }
 
 void TextureAtlas::Add(const std::string& name, const sf::IntRect& rect) 

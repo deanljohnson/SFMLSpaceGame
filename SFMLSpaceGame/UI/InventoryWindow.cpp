@@ -47,6 +47,8 @@ void InventoryWindow::SetTarget(EntityID id)
 	LoadHullState();
 	LoadCredits();
 	DrawShipCanvas();
+
+	m_invenWidget.SetTarget(id);
 }
 
 void InventoryWindow::LoadShipImage()

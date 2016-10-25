@@ -249,6 +249,8 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
 	auto& invenComp = ent->AddComponent<Inventory>();
 	invenComp.SetCredits(1000); // hard coded for now, will eventually have to remove
+	invenComp.AddItem(Item::Create(Item::ItemType::Ore, 1000));
+	invenComp.AddItem(Item::Create(Item::ItemType::Food, 1000));
 
 	if (npc)
 	{

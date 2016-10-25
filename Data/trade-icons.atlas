@@ -2,30 +2,30 @@
     "trade-icons": {
         "Rects": [
             {
-                "key": "food",
+                "key": "Food",
                 "value": {
-                    "Left": 70,
+                    "Left": 100,
                     "Top": 0,
-                    "Width": 35,
-                    "Height": 35
+                    "Width": 50,
+                    "Height": 50
                 }
             },
             {
-                "key": "narcotics",
+                "key": "Narcotics",
                 "value": {
-                    "Left": 35,
+                    "Left": 50,
                     "Top": 0,
-                    "Width": 35,
-                    "Height": 35
+                    "Width": 50,
+                    "Height": 50
                 }
             },
             {
-                "key": "ore",
+                "key": "Ore",
                 "value": {
                     "Left": 0,
                     "Top": 0,
-                    "Width": 35,
-                    "Height": 35
+                    "Width": 50,
+                    "Height": 50
                 }
             }
         ]

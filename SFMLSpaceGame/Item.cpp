@@ -16,6 +16,12 @@ void Item::Stack(Item other)
 	case ItemType::Ore:
 		ore.Stack(other.ore);
 		break;
+	case ItemType::Food:
+		food.Stack(other.food);
+		break;
+	case ItemType::Narcotics:
+		narcotics.Stack(other.narcotics);
+		break;
 	}
 }
 
@@ -29,10 +35,14 @@ std::string Item::GetTypeName()
 		return FuelCells::GetTypeName();
 	case ItemType::Ore:
 		return Ore::GetTypeName();
+	case ItemType::Food:
+		return Food::GetTypeName();
+	case ItemType::Narcotics:
+		return Narcotics::GetTypeName();
 	}
 }
 
-Item Item::Create(Item::ItemType type, unsigned int amount)
+Item Item::Create(ItemType type, unsigned int amount)
 {
 	Item i;
 	i.type = type;
@@ -53,6 +63,12 @@ void Item::SetAmount(unsigned int amount)
 		break;
 	case ItemType::Ore:
 		ore.amount = amount;
+		break;
+	case ItemType::Food:
+		food.amount = amount;
+		break;
+	case ItemType::Narcotics:
+		narcotics.amount = amount;
 		break;
 	}
 }

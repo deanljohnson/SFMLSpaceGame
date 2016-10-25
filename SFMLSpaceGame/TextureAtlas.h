@@ -11,9 +11,11 @@ private:
 	std::map<std::string, sf::IntRect> m_rects;
 	std::shared_ptr<sf::Texture> m_texture;
 public:
-	TextureAtlas(std::shared_ptr<sf::Texture> tex);
+	TextureAtlas();
+	explicit TextureAtlas(std::shared_ptr<sf::Texture> tex);
 
 	sf::Texture* GetTexture();
+	void SetTexture(std::shared_ptr<sf::Texture> tex);
 
 	void Add(const std::string& name, const sf::IntRect& rect);
 
