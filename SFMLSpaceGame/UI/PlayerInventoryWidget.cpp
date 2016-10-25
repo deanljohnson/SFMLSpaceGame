@@ -14,6 +14,11 @@ void PlayerInventoryWidget::Update()
 {
 	if (!m_targetHandle.IsValid())
 		return;
+
+	for (auto& item : m_itemWidgets)
+	{
+		item->Invalidate();
+	}
 }
 
 void PlayerInventoryWidget::SetSize(const sf::Vector2i& size) 

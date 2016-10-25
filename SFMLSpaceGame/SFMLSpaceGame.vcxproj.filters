@@ -632,6 +632,9 @@
     <ClInclude Include="UI\InventoryItemWidget.h">
       <Filter>Header Files\UI\InventoryElements</Filter>
     </ClInclude>
+    <ClInclude Include="UI\StringDisplayHelper.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

@@ -60,6 +60,7 @@ public:
 
 	void Stack(Item other);
 	std::string GetTypeName();
+	unsigned int GetAmount();
 
 	static Item Create(ItemType type, unsigned int amount);
 };

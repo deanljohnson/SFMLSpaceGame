@@ -304,6 +304,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Item.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="RenderBatch.h" />
+    <ClInclude Include="UI\StringDisplayHelper.h" />
     <ClInclude Include="TextureAtlas.h" />
     <ClInclude Include="UI\ColliderEditor.h" />
     <ClInclude Include="UI\ConfirmationDialog.h" />

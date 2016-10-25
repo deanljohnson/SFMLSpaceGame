@@ -1,5 +1,6 @@
 #include <UI\StationTradeWindow.h>
 #include <UI\UI.h>
+#include <PlayerData.h>
 
 StationTradeWindow::StationTradeWindow() 
 	: GameWindow("station_trade")
@@ -19,4 +20,5 @@ StationTradeWindow::StationTradeWindow()
 void StationTradeWindow::SetTarget(EntityID targetID) 
 {
 	m_target = targetID;
+	m_playerInvenWidget.SetTarget(PlayerData::GetActive()->GetID());
 }

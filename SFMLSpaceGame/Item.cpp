@@ -42,6 +42,23 @@ std::string Item::GetTypeName()
 	}
 }
 
+unsigned Item::GetAmount()
+{
+	switch (type)
+	{
+	case ItemType::Credits:
+		return credits.amount;
+	case ItemType::FuelCells:
+		return fuelCells.amount;
+	case ItemType::Ore:
+		return ore.amount;
+	case ItemType::Food:
+		return food.amount;
+	case ItemType::Narcotics:
+		return narcotics.amount;
+	}
+}
+
 Item Item::Create(ItemType type, unsigned int amount)
 {
 	Item i;
