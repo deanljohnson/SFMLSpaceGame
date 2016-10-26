@@ -14,7 +14,7 @@ private:
 
 	std::vector<InventoryItemWidget::Ptr> m_itemWidgets;
 
-	int m_selected{ -1 };
+	int m_selected;
 
 	sf::Vector2i m_size;
 

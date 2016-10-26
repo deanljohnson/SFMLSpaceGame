@@ -33,6 +33,9 @@ private:
 
 	void OnBuyClick();
 	void OnSellClick();
+
+	void SetInventoryTargets();
+	void ResetScales();
 public:
 	StationTradeWindow();
 

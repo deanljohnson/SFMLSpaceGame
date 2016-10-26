@@ -145,10 +145,8 @@ void StationTradeWindow::OnBuyClick()
 	auto& stationInventory = EntityManager::Get(m_target)->GetComponent<Inventory>();
 	stationInventory.RemoveItem(boughtItem);
 
-	// Forces a recreation of the widget. Not very 
-	// efficient, but simple and works
-	m_stationInvenWidget.SetTarget(m_target);
-	m_playerInvenWidget.SetTarget(playerID);
+	SetInventoryTargets();
+	ResetScales();
 }
 
 void StationTradeWindow::OnSellClick()
@@ -166,8 +164,26 @@ void StationTradeWindow::OnSellClick()
 	auto& playerInventory = EntityManager::Get(playerID)->GetComponent<Inventory>();
 	playerInventory.RemoveItem(soldItem);
 
-	// Forces a recreation of the widget. Not very 
-	// efficient, but simple and works
+	SetInventoryTargets();
+	ResetScales();
+}
+
+void StationTradeWindow::SetInventoryTargets() 
+{
 	m_stationInvenWidget.SetTarget(m_target);
 	m_playerInvenWidget.SetTarget(PlayerData::GetActive()->GetID());
+}
+
+void StationTradeWindow::ResetScales() 
+{
+	auto selectedItem = m_stationInvenWidget.GetSelected();
+	OnBuyItemChange(selectedItem);
+	selectedItem = m_playerInvenWidget.GetSelected();
+	OnSellItemChange(selectedItem);
+
+	m_buyScale->Invalidate();
+	m_sellScale->Invalidate();
+
+	m_buyLabelNeedsUpdate = true;
+	m_sellLabelNeedsUpdate = true;
 }

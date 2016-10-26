@@ -3,6 +3,7 @@
 #include <Components\Inventory.h>
 
 InventoryWidget::InventoryWidget() 
+	: m_selected(-1)
 {
 	m_scrollWindow = sfg::ScrolledWindow::Create();
 	m_scrollWindowBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
@@ -37,8 +38,6 @@ sfg::Widget::Ptr InventoryWidget::GetWidget()
 
 void InventoryWidget::SetTarget(EntityID id)
 {
-	m_selected = -1;
-
 	m_targetHandle = EntityManager::Get(id);
 
 	auto& inven = m_targetHandle->GetComponent<Inventory>();
@@ -81,6 +80,15 @@ void InventoryWidget::SetTarget(EntityID id)
 		item->SetRequisition({ 50,50 });
 		m_scrollWindowBox->Pack(item);
 	}
+
+	// this cast to int is required. The compilers tries
+	// to convert m_selected to an unsigned value otherwise
+	// and in the case that it is -ve, it will give a value of
+	// 1 and screw up this condition
+	if (m_selected >= static_cast<int>(m_itemWidgets.size()))
+		m_selected = m_itemWidgets.size() - 1;
+	if (m_selected >= 0)
+		m_itemWidgets[m_selected]->SetSelected(true);
 }
 
 void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)
