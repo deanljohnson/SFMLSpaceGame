@@ -1,13 +1,21 @@
 #include <UI\InventoryWidget.h>
 #include <EntityManager.h>
 #include <Components\Inventory.h>
+#include <SFGUI/Box.hpp>
+#include <sstream>
 
-InventoryWidget::InventoryWidget() 
+InventoryWidget::InventoryWidget(bool displayCredits) 
 {
 	m_window = sfg::Window::Create(sfg::Window::BACKGROUND);
 	m_itemTable = sfg::Table::Create();
+	m_creditsLabel = sfg::Label::Create("Credits: 0");
 
-	m_window->Add(m_itemTable);
+	auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+	if (displayCredits)
+		box->Pack(m_creditsLabel);
+	box->Pack(m_itemTable);
+
+	m_window->Add(box);
 }
 
 void InventoryWidget::Update()
@@ -54,6 +62,13 @@ void InventoryWidget::SetTarget(EntityID id)
 
 	auto& inven = m_targetHandle->GetComponent<Inventory>();
 	
+	if (m_creditsLabel != nullptr)
+	{
+		std::stringstream ss;
+		ss << "Credits: " << inven.GetCredits();
+		m_creditsLabel->SetText(ss.str());
+	}
+
 	int i = 0;
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{

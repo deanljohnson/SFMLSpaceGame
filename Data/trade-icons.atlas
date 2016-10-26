@@ -4,6 +4,24 @@
             {
                 "key": "Food",
                 "value": {
+                    "Left": 0,
+                    "Top": 0,
+                    "Width": 50,
+                    "Height": 50
+                }
+            },
+			{
+                "key": "Fuel Cells",
+                "value": {
+                    "Left": 50,
+                    "Top": 0,
+                    "Width": 50,
+                    "Height": 50
+                }
+            },
+			{
+                "key": "Ore",
+                "value": {
                     "Left": 100,
                     "Top": 0,
                     "Width": 50,
@@ -13,16 +31,7 @@
             {
                 "key": "Narcotics",
                 "value": {
-                    "Left": 50,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            },
-            {
-                "key": "Ore",
-                "value": {
-                    "Left": 0,
+                    "Left": 150,
                     "Top": 0,
                     "Width": 50,
                     "Height": 50

@@ -7,7 +7,7 @@
 #include <Components/Inventory.h>
 
 InventoryWindow::InventoryWindow()
-	: GameWindow("inventory")
+	: GameWindow("inventory"), m_invenWidget(false)
 {
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");

@@ -1,0 +1,137 @@
+{
+    "Human-Battlecruiser": {
+        "HullStrength": 300.0,
+        "InterLeadMult": 0.0,
+        "FollowDist": 0.0,
+        "ApproachDist": 0.0,
+        "StrafeDist": 0.0,
+        "SensorRange": 0.0,
+        "ShipThrust": {
+            "Forward": 80.0,
+            "Side": 60.0,
+            "Reverse": 50.0,
+            "Steer": 40.0
+        },
+        "DirGunData": {
+            "FireRate": 0.20000000298023225,
+            "HealLimit": 100.0,
+            "CooldownRate": 1.0,
+            "HeatGenerated": 2.0,
+            "HardPoints": [
+                {
+                    "Position": {
+                        "v.x": 195.0,
+                        "v.y": 79.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 151.0,
+                        "v.y": 80.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 67.0,
+                        "v.y": 79.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 232.0,
+                        "v.y": 51.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 230.0,
+                        "v.y": 109.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 112.0,
+                        "v.y": 37.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 111.0,
+                        "v.y": 122.5
+                    },
+                    "Angle": 0.0
+                }
+            ],
+            "SoundID": 801
+        },
+        "Shields": {
+            "FrontStrength": 75.0,
+            "SideStrength": 25.0,
+            "RearStrength": 25.0,
+            "RegenSpeed": 3.0
+        },
+        "ImageLocation": "Human-Battlecruiser.png",
+        "ColliderVertices": [
+            {
+                "v.x": 3.0,
+                "v.y": 3.5
+            },
+            {
+                "v.x": 147.0,
+                "v.y": 5.5
+            },
+            {
+                "v.x": 247.0,
+                "v.y": 49.5
+            },
+            {
+                "v.x": 255.0,
+                "v.y": 63.5
+            },
+            {
+                "v.x": 255.0,
+                "v.y": 97.5
+            },
+            {
+                "v.x": 247.0,
+                "v.y": 111.5
+            },
+            {
+                "v.x": 148.0,
+                "v.y": 156.5
+            },
+            {
+                "v.x": 4.0,
+                "v.y": 155.5
+            }
+        ],
+        "ThrusterLocations": [
+            {
+                "v.x": 4.0,
+                "v.y": 51.5
+            },
+            {
+                "v.x": 4.0,
+                "v.y": 107.5
+            },
+            {
+                "v.x": 3.0,
+                "v.y": 97.5
+            },
+            {
+                "v.x": 3.0,
+                "v.y": 80.5
+            },
+            {
+                "v.x": 3.0,
+                "v.y": 62.5
+            }
+        ]
+    }
+}
