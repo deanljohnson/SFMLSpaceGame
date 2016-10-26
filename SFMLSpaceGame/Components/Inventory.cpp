@@ -58,3 +58,19 @@ void Inventory::AddItem(const Item& item)
 	if (!stacked)
 		m_items.push_back(item);
 }
+
+void Inventory::RemoveItem(const Item& item)
+{
+	for (int i = 0; i < m_items.size(); i++)
+	{
+		if (m_items[i].type == item.type)
+		{
+			if (item.GetAmount() >= m_items[i].GetAmount())
+				m_items.erase(m_items.begin() + i);
+			else
+				m_items[i].SetAmount(m_items[i].GetAmount() - item.GetAmount());
+
+			return;
+		}
+	}
+}

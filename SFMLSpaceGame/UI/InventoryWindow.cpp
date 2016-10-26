@@ -7,7 +7,7 @@
 #include <Components/Inventory.h>
 
 InventoryWindow::InventoryWindow()
-	: GameWindow("inventory"), m_invenWidget(false)
+	: GameWindow("inventory")
 {
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");
@@ -30,8 +30,6 @@ InventoryWindow::InventoryWindow()
 	leftSideBar->Pack(shipWindow);
 	leftSideBar->Pack(m_hullStateLabel);
 	leftSideBar->Pack(m_creditsLabel);
-
-	m_invenWidget.SetSize({5, 5});
 
 	mainBar->Pack(leftSideBar);
 	mainBar->Pack(m_invenWidget.GetWidget());

@@ -7,8 +7,6 @@
 
 class Item
 {
-private:
-	void SetAmount(unsigned int amount);
 public:
 	template <typename T>
 	struct ItemBase 
@@ -59,8 +57,9 @@ public:
 	ItemType type;
 
 	void Stack(Item other);
-	std::string GetTypeName();
-	unsigned int GetAmount();
+	std::string GetTypeName() const;
+	unsigned int GetAmount() const;
+	void SetAmount(unsigned int amount);
 
 	static Item Create(ItemType type, unsigned int amount);
 };

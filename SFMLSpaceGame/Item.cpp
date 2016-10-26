@@ -25,7 +25,7 @@ void Item::Stack(Item other)
 	}
 }
 
-std::string Item::GetTypeName() 
+std::string Item::GetTypeName() const
 {
 	switch (type)
 	{
@@ -42,7 +42,7 @@ std::string Item::GetTypeName()
 	}
 }
 
-unsigned Item::GetAmount()
+unsigned Item::GetAmount() const
 {
 	switch (type)
 	{

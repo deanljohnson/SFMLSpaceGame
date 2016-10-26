@@ -16,6 +16,9 @@ public:
 	const std::string& GetName() const override;
 
 	void SetItem(Item* item);
+	Item* GetItem() const;
+
+	void SetSelected(bool val);
 
 	~InventoryItemWidget();
 protected:
@@ -26,6 +29,7 @@ protected:
 
 private:
 	Item* m_item;
+	bool m_selected;
 
 	static int m_widgetCount;
 	static std::shared_ptr<TextureAtlas> m_atlas;

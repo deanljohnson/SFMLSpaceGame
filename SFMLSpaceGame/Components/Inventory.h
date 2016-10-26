@@ -16,6 +16,7 @@ public:
 	void SetCredits(int c);
 
 	void AddItem(const Item& item);
+	void RemoveItem(const Item& item);
 
 	typedef std::vector<Item>::iterator iterator;
 	typedef std::vector<Item>::const_iterator const_iterator;

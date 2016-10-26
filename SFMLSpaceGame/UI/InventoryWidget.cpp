@@ -1,21 +1,16 @@
 #include <UI\InventoryWidget.h>
 #include <EntityManager.h>
 #include <Components\Inventory.h>
-#include <SFGUI/Box.hpp>
-#include <sstream>
 
-InventoryWidget::InventoryWidget(bool displayCredits) 
+InventoryWidget::InventoryWidget() 
 {
-	m_window = sfg::Window::Create(sfg::Window::BACKGROUND);
-	m_itemTable = sfg::Table::Create();
-	m_creditsLabel = sfg::Label::Create("Credits: 0");
+	m_scrollWindow = sfg::ScrolledWindow::Create();
+	m_scrollWindowBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 
-	auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
-	if (displayCredits)
-		box->Pack(m_creditsLabel);
-	box->Pack(m_itemTable);
+	m_scrollWindow->SetScrollbarPolicy(sfg::ScrolledWindow::VERTICAL_ALWAYS | sfg::ScrolledWindow::HORIZONTAL_NEVER);
+	m_scrollWindow->AddWithViewport(m_scrollWindowBox);
 
-	m_window->Add(box);
+	m_scrollWindow->SetRequisition({ 300, 300 });
 }
 
 void InventoryWidget::Update()
@@ -29,45 +24,31 @@ void InventoryWidget::Update()
 	}
 }
 
-void InventoryWidget::SetSize(const sf::Vector2i& size) 
+Item* InventoryWidget::GetSelected()
 {
-	m_size = size;
-
-	m_itemTable->RemoveAll();
-	m_itemWidgets.clear();
-
-	m_itemTable->SetRowSpacings(2.f);
-	m_itemTable->SetColumnSpacings(2.f);
-
-	for (sf::Uint32 j = 0; j < m_size.y; j++)
-	{
-		for (sf::Uint32 i = 0; i < m_size.x; i++)
-		{
-			auto item = InventoryItemWidget::Create("trade-icons", nullptr);
-			item->SetRequisition({ 50,50 });
-			m_itemWidgets.push_back(item);
-			m_itemTable->Attach(item, { i, j, 1, 1 });
-		}
-	}
+	if (m_selected == -1) return nullptr;
+	return m_itemWidgets[m_selected]->GetItem();
 }
 
 sfg::Widget::Ptr InventoryWidget::GetWidget()
 { 
-	return m_window; 
+	return m_scrollWindow;
 }
 
 void InventoryWidget::SetTarget(EntityID id)
 {
+	m_selected = -1;
+
 	m_targetHandle = EntityManager::Get(id);
 
 	auto& inven = m_targetHandle->GetComponent<Inventory>();
-	
-	if (m_creditsLabel != nullptr)
+
+	// Remove existing items
+	for (auto& item : m_itemWidgets)
 	{
-		std::stringstream ss;
-		ss << "Credits: " << inven.GetCredits();
-		m_creditsLabel->SetText(ss.str());
+		m_scrollWindowBox->Remove(item);
 	}
+	m_itemWidgets.clear();
 
 	int i = 0;
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
@@ -78,12 +59,31 @@ void InventoryWidget::SetTarget(EntityID id)
 			i--;
 			continue;
 		}
-		if (i >= m_size.x * m_size.y)
-		{
-			std::cerr << "Cannot handle more than " << m_size.x * m_size.y << " items";
-			break;
-		}
 
-		m_itemWidgets[i]->SetItem(&*it);
+		auto item = InventoryItemWidget::Create("trade-icons", &*it);
+		
+		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
+			[this, i]()
+			{
+				// Switch selected item
+				if (m_selected != -1) m_itemWidgets[m_selected]->SetSelected(false);
+				m_selected = i;
+				m_itemWidgets[m_selected]->SetSelected(true);
+
+				// Call any registered callbacks
+				for (auto& c : m_itemSelectionChangeCallbacks)
+				{
+					c(m_itemWidgets[m_selected]->GetItem());
+				}
+			});
+
+		m_itemWidgets.push_back(item);
+		item->SetRequisition({ 50,50 });
+		m_scrollWindowBox->Pack(item);
 	}
+}
+
+void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)
+{
+	m_itemSelectionChangeCallbacks.push_back(callback);
 }

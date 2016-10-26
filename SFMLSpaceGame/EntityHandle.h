@@ -1,5 +1,6 @@
 #pragma once
 #include <EntityID.h>
+#include <string>
 
 class Entity;
 class EntityManager;
