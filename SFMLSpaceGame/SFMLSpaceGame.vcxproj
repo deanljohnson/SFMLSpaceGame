@@ -229,6 +229,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemPriceSet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Components\ParallaxMovement.cpp" />
     <ClCompile Include="Components\Physics.cpp" />
@@ -302,6 +303,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Group.h" />
     <ClInclude Include="Interfaces\AttackEventModifier.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="UI\StringDisplayHelper.h" />
