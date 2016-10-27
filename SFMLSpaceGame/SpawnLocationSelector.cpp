@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <SpawnLocationSelector.h>
-#include <Box2D/Common/b2Math.h>
 
 b2Vec2 SpawnLocationSelector::Select(const b2Vec2& spawnerLocation)
 {

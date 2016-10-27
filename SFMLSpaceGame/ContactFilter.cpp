@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <ContactFilter.h>
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include "Entity.h"
 #include "Components/CollisionFilterComponent.h"
 

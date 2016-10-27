@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <UI/ConfirmationDialog.h>
 #include <UI/UI.h>
-#include <SFGUI\Table.hpp>
 
 ConfirmationDialog::ConfirmationDialog() 
 	: GameWindow("confirmation_dialog")

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/Sprite.h>
 #include <Entity.h>
 #include <WorldConstants.h>

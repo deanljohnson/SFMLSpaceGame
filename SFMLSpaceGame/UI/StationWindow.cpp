@@ -1,8 +1,7 @@
+#include "stdafx.h"
 #include <UI/StationWindow.h>
 #include <UI/StationTradeWindow.h>
 #include "UI.h"
-#include <SFGUI/Button.hpp>
-#include <SFGUI/Table.hpp>
 #include "ShipSelector.h"
 #include <PlayerData.h>
 

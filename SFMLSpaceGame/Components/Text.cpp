@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/Text.h>
 #include <UI/UI.h>
 

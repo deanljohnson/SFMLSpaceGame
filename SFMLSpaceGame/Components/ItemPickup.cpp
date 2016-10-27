@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <Components/ItemPickup.h>
 #include <Entity.h>
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
 
 void ItemPickup::Init()
 {

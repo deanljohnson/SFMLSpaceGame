@@ -1,7 +1,6 @@
+#include "stdafx.h"
 #include <UI/ThrusterLocationEditor.h>
 #include "UI.h"
-#include <SFGUI/Table.hpp>
-#include <SFGUI/Button.hpp>
 #include "WidgetHelpers.h"
 
 ThrusterLocationEditor::ThrusterLocationEditor()

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <GameTime.h>
 #include <Components/DirectionalGun.h>
 #include <EntityManager.h>

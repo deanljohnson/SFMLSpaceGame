@@ -1,16 +1,13 @@
+#include "stdafx.h"
 #include <Components/Physics.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Entity.h>
-#include <WorldConstants.h>
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <VectorMath.h>
 
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
-#include <Box2D/Dynamics/b2Fixture.h>
 #include <GameState.h>
 #include <CollisionGroups.h>
 

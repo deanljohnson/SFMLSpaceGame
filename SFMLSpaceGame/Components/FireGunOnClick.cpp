@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Entity.h>
 #include <Components/FireGunOnClick.h>
 #include <Components/DirectionalGun.h>

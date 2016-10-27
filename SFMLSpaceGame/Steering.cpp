@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <Steering.h>
 #include <VectorMath.h>
-#include <Box2D/Common/b2Math.h>
 
 b2Vec2 Steering::Seek(const b2Vec2& current, const b2Vec2& target)
 {

@@ -1,7 +1,7 @@
 // based on https://github.com/SFML/SFML/wiki/Source:-High-Performance-Sprite-Container
+#include "stdafx.h"
 #include <RenderBatch.h>
 #include <VectorMath.h>
-#include <SFML\Graphics\RenderTarget.hpp>
 
 std::unordered_map<std::string, std::unique_ptr<RenderBatch>> RenderBatch::m_stringBatches;
 std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> RenderBatch::m_resourceBatches;
@@ -259,7 +259,7 @@ sf::Texture* RenderBatch::GetTexture()
 void RenderBatch::RemoveDeletedElements()
 {
 	int last = 0;
-	for (int i = 0; i < m_texRects.size(); ++i, ++last)
+	for (size_t i = 0; i < m_texRects.size(); ++i, ++last)
 	{
 		// Set i to the index of the first element that is not to be removed
 		while (true)
@@ -301,13 +301,13 @@ void RenderBatch::RemoveDeletedElements()
 	m_rotations.resize(last);
 
 	// Adjust indices to account for any removals
-	for (int i = 0; i < m_removedIndices.size(); i++) 
+	for (size_t i = 0; i < m_removedIndices.size(); i++) 
 	{
 		// Need to save this index. Otherwase when the BatchIndex
 		// is removed from m_indices, the unique_ptr destructor
 		// will delete and destroy the index value
 		unsigned indexToRemove = m_removedIndices[i]->index;
-		for (int j = 0; j < m_indices.size(); j++)
+		for (size_t j = 0; j < m_indices.size(); j++)
 		{
 			if (indexToRemove == m_indices[j]->index)
 			{

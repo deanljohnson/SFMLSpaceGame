@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <ResourceLoader.h>
 #include <resource.h>
 #include <windows.h>

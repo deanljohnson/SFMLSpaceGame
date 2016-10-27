@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <UI/HardPointWidget.h>
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <VectorMath.h>
 
 HardPointWidget::HardPointWidget(const sf::Vector2f& position)

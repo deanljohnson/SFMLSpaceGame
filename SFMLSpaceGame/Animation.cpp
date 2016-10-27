@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Animation.h>
 
 Animation::Animation(std::shared_ptr<AnimationDefinition> definition)

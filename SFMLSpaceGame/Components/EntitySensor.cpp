@@ -1,7 +1,6 @@
+#include "stdafx.h"
 #include <Components/EntitySensor.h>
 #include <Components/Physics.h>
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
-#include <Box2D/Collision/Shapes/b2CircleShape.h>
 #include <CollisionGroups.h>
 
 void EntitySensor::Init() 

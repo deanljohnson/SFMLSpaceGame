@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <EventQueue.h>
 
 void EventQueue::Push(Event e)

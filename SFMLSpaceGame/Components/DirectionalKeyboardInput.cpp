@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <Components/DirectionalKeyboardInput.h>
-#include <SFML/Window/Keyboard.hpp>
 #include <VectorMath.h>
 
 using Key = sf::Keyboard;

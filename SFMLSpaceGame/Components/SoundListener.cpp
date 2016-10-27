@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <Components/SoundListener.h>
 #include <Entity.h>
-#include <SFML/Audio/Listener.hpp>
 #include <VectorMath.h>
 
 void SoundListener::Init()

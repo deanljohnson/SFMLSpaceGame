@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/CollisionFilterComponent.h>
 #include <Entity.h>
 #include <EntityManager.h>

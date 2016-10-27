@@ -1,10 +1,9 @@
+#include "stdafx.h"
 #include <InitialGameState.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <resource.h>
 #include <ContactFilter.h>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Window/Event.hpp>
 #include "PlayerData.h"
 #include <RenderBatch.h>
 

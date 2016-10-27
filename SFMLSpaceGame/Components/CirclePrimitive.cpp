@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <Components/CirclePrimitive.h>
 #include <Entity.h>
-#include <WorldConstants.h>
 #include <VectorMath.h>
 
 void CirclePrimitive::Init()

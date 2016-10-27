@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <AnimationDefinition.h>
 
 AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length)

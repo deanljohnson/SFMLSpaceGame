@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <GameTime.h>
-#include <SFML/Graphics.hpp>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
 #include "EntityFactory.h"

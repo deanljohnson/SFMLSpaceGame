@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components\Shields.h>
 #include <Entity.h>
 #include <VectorMath.h>

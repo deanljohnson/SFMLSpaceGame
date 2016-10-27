@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Entity.h>
 #include <VectorMath.h>
 #include <Components/DirectionalVelocity.h>

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/RectPrimitive.h>
 #include <Entity.h>
 #include <VectorMath.h>

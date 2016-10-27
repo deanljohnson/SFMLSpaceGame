@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/Inventory.h>
 #include <Event.h>
 #include <Entity.h>

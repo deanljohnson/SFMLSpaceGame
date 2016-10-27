@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/ThrusterInput.h>
 #include <Entity.h>
 

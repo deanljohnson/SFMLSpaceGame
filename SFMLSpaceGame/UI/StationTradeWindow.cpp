@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <UI\StationTradeWindow.h>
 #include <UI\UI.h>
 #include <PlayerData.h>

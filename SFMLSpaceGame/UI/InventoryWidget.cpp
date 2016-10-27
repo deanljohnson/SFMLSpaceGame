@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <UI\InventoryWidget.h>
 #include <EntityManager.h>
 #include <Components\Inventory.h>

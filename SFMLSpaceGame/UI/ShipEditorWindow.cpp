@@ -1,11 +1,9 @@
+#include "stdafx.h"
 #include <UI/ShipEditorWindow.h>
 #include "UI.h"
-#include <SFGUI/Label.hpp>
-#include <SFGUI/Entry.hpp>
 #include "ShipSelector.h"
 #include "ImageSelector.h"
 #include "ShipNameEntry.h"
-#include <WorldConstants.h>
 #include "HardPointEditor.h"
 #include "ColliderEditor.h"
 #include "ThrusterLocationEditor.h"

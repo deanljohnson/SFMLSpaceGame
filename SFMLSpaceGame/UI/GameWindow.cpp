@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <UI/GameWindow.h>
 #include "UI.h"
 

@@ -1,8 +1,7 @@
+#include "stdafx.h"
 #include <UI/ShieldStateDisplay.h>
 #include <EntityManager.h>
 #include <UI/UI.h>
-#include <SFGUI\Table.hpp>
-#include <SFGUI\Label.hpp>
 
 ShieldStateDisplay::ShieldStateDisplay() 
 	: GameWindow("shield_display")

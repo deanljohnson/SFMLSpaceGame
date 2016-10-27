@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/PlayerDeathBroadcaster.h>
 #include <GameState.h>
 

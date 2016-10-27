@@ -1,7 +1,6 @@
+#include "stdafx.h"
 #include <SpriteHelpers.h>
 #include <OriginOption.h>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/System/Vector2.hpp>
 
 void SpriteHelpers::SetOrigin(sf::Sprite* s, OriginOption option)
 {

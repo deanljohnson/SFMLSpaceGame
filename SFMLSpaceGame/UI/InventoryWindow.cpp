@@ -1,8 +1,8 @@
+#include "stdafx.h"
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
 #include "UI.h"
 #include <Components/ShipStatsSink.h>
-#include <SFGUI/Box.hpp>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
 

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "ShipController.h"
 #include <Entity.h>
 #include <ShipManeuvers.h>

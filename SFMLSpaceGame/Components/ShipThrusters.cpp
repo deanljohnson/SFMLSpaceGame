@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/ShipThrusters.h>
 #include <Entity.h>
 #include <VectorMath.h>

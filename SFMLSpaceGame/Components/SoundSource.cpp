@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/SoundSource.h>
 #include <Entity.h>
 

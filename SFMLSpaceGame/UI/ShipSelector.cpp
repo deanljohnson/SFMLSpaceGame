@@ -1,10 +1,8 @@
+#include "stdafx.h"
 #include <UI/ShipSelector.h>
 #include "UI.h"
 #include <FileSystem.h>
-#include <SFGUI/ComboBox.hpp>
-#include <SFGUI/Button.hpp>
 #include <ShipStats.h>
-#include <SFGUI/Table.hpp>
 
 ShipSelector::ShipSelector()
 	: GameWindow("ship_select")

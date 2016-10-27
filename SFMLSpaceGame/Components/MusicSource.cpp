@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/MusicSource.h>
 
 void MusicSource::Init()

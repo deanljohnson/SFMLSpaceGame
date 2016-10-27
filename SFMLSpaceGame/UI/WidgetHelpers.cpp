@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <UI/WidgetHelpers.h>
 #include <WorldConstants.h>
 

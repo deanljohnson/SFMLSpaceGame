@@ -1,9 +1,9 @@
+#include "stdafx.h"
 #include <Components/ShipSpawner.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <Entity.h>
 #include <GameState.h>
-#include <EntityManager.h>
 #include <PlayerData.h>
 
 void ShipSpawner::Init()

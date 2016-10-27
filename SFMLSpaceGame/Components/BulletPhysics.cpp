@@ -1,9 +1,7 @@
+#include "stdafx.h"
 #include <Components/BulletPhysics.h>
 #include <VectorMath.h>
-#include <Box2D/Dynamics/b2Fixture.h>
-#include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Entity.h>
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <CollisionGroups.h>
 #include <GameState.h>
 

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/ZoomHandler.h>
 #include <WorldConstants.h>
 #include <GameState.h>

@@ -1,8 +1,6 @@
+#include "stdafx.h"
 #include <UI/HardPointEditor.h>
 #include "UI.h"
-#include <WorldConstants.h>
-#include <SFGUI/Table.hpp>
-#include <SFGUI/Button.hpp>
 #include <VectorMath.h>
 #include "WidgetHelpers.h"
 

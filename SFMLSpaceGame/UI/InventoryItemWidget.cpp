@@ -1,11 +1,8 @@
+#include "stdafx.h"
 #include <UI\InventoryItemWidget.h>
-#include <ResourceLoader.h>
-#include <SFGUI\RenderQueue.hpp>
-#include <SFGUI\Renderer.hpp>
-#include <SFGUI/Context.hpp>
-#include <SFGUI/Engine.hpp>
-#include <SFML/Graphics/Text.hpp>
 #include <UI\StringDisplayHelper.h>
+#include <ResourceLoader.h>
+#include <SFGUI/RenderQueue.hpp>
 
 int InventoryItemWidget::m_widgetCount = 0;
 std::shared_ptr<TextureAtlas> InventoryItemWidget::m_atlas{ nullptr };

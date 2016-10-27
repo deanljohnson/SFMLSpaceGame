@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <EntityHelpers.h>
 #include "Components/Position.h"
 

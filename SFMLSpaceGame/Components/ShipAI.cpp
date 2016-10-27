@@ -1,8 +1,8 @@
+#include "stdafx.h"
 #include <Components/ShipAI.h>
 #include <EntityManager.h>
 #include <EntityGroups.h>
 #include <Event.h>
-#include <EntityHelpers.h>
 
 namespace
 {

@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <Components/GameWorldClickListener.h>
-#include <SFML/Window/Mouse.hpp>
 #include <GameState.h>
 
 void GameWorldClickListener::Update()

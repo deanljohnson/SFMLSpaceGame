@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <PlayerData.h>
 
 std::shared_ptr<PlayerData> PlayerData::m_activeData{ nullptr };

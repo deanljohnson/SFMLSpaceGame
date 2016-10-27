@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <EntityManager.h>
 
 EntityHandle::EntityHandle(Entity* ent, EntityID id)

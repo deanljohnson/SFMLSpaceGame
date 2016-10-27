@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include "ShipManeuvers.h"
 #include "Steering.h"
-#include <Box2d/Common/b2Math.h>
 #include "ExtendedMath.h"
 
 void ShipManeuvers::Follow(Physics* selfPhysics, 

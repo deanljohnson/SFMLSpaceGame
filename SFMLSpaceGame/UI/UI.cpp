@@ -1,5 +1,5 @@
+#include "stdafx.h"
 #include <UI/UI.h>
-#include <SFML/Graphics/Color.hpp>
 
 UI* UI::Singleton{nullptr};
 

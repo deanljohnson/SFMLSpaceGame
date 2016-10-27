@@ -1,6 +1,6 @@
+#include "stdafx.h"
 #include <GameStateManager.h>
 #include <InitialGameState.h>
-#include <SFML/Graphics/RenderTarget.hpp>
 
 void GameStateManager::Init()
 {

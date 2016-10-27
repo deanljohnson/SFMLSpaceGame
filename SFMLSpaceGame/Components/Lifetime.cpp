@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/Lifetime.h>
 #include <GameTime.h>
 #include <Entity.h>

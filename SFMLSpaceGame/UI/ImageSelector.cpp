@@ -1,9 +1,7 @@
+#include "stdafx.h"
 #include <UI/ImageSelector.h>
 #include "UI.h"
 #include <FileSystem.h>
-#include <SFGUI/ComboBox.hpp>
-#include <SFGUI/Button.hpp>
-#include <SFGUI/Table.hpp>
 
 ImageSelector::ImageSelector()
 	: GameWindow("image_select")

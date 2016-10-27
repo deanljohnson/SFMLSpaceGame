@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <resource.h>
 #include "EntityManager.h"
 #include <EntityGroups.h>
@@ -41,7 +42,6 @@
 #include "UI/GameWindow.h"
 #include "UI/InventoryWindow.h"
 #include "UI/StationWindow.h"
-#include <SFML/Graphics/ConvexShape.hpp>
 #include "WorldConstants.h"
 #include "Components/ShipStatsSink.h"
 #include "PlayerData.h"

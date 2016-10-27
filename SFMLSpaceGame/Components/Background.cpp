@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <Components/Background.h>
 #include <ResourceLoader.h>
 #include <Entity.h>

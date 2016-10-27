@@ -1,8 +1,6 @@
+#include "stdafx.h"
 #include <UI/ShipNameEntry.h>
 #include "UI.h"
-#include <SFGUI/Button.hpp>
-#include <SFGUI/Entry.hpp>
-#include <SFGUI/Table.hpp>
 
 ShipNameEntry::ShipNameEntry()
 	: GameWindow("ship_name_entry")
