@@ -1,6 +1,7 @@
 #pragma once
 #include <EntityID.h>
 #include <EntityHandle.h>
+#include <ItemPriceSet.h>
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
 
@@ -9,6 +10,8 @@ class InventoryWidget
 private:
 	sfg::ScrolledWindow::Ptr m_scrollWindow;
 	sfg::Box::Ptr m_scrollWindowBox;
+
+	std::shared_ptr<ItemPriceSet> m_prices;
 
 	EntityHandle m_targetHandle;
 

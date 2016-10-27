@@ -315,6 +315,9 @@
     <ClCompile Include="ItemPriceSet.cpp">
       <Filter>Source Files\Trade</Filter>
     </ClCompile>
+    <ClCompile Include="ItemPrice.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -645,6 +648,9 @@
       <Filter>Header Files\Trade</Filter>
     </ClInclude>
     <ClInclude Include="ItemPriceSet.h">
+      <Filter>Header Files\Trade</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPrice.h">
       <Filter>Header Files\Trade</Filter>
     </ClInclude>
   </ItemGroup>

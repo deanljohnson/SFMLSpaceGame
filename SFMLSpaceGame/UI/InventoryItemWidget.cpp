@@ -12,7 +12,7 @@ std::shared_ptr<TextureAtlas> InventoryItemWidget::m_atlas{ nullptr };
 std::shared_ptr<sfg::PrimitiveTexture> InventoryItemWidget::m_guiTexture{ nullptr };
 
 InventoryItemWidget::InventoryItemWidget(const std::string& atlas, Item* item)
-	: m_item(item), m_selected(false)
+	: m_item(item), m_selected(false), m_priceSet(false)
 {
 	m_widgetCount++;
 	if (m_widgetCount == 1)
@@ -63,12 +63,19 @@ void InventoryItemWidget::SetSelected(bool val)
 	Invalidate();
 }
 
+void InventoryItemWidget::SetItemPrice(const ItemPrice& price) 
+{
+	m_price = price;
+	m_priceSet = true;
+	Invalidate();
+}
+
 std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 {
 	std::unique_ptr<sfg::RenderQueue> queue(new sfg::RenderQueue());
 	auto* engine = &sfg::Context::Get().GetEngine();
 
-	sf::Vector2f size{ 275, 50 };
+	sf::Vector2f size{ GetAllocation().width, GetAllocation().height };
 
 	auto borderWidth = engine->GetProperty<float>("BorderWidth", shared_from_this());
 
@@ -120,10 +127,23 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 
 	queue->Add(sfg::Renderer::Get().CreateText(nameText));
 
+	if (m_priceSet) 
+	{
+		sf::Text priceText(m_price.GetPrice(), *font, static_cast<unsigned int>(nameSize));
+		sf::Vector2f pricePosition(
+			namePosition.x,
+			namePosition.y + nameSize + padding
+		);
+		priceText.setPosition(pricePosition);
+		priceText.setColor(fontColor);
+
+		queue->Add(sfg::Renderer::Get().CreateText(priceText));
+	}
+
 	return queue;
 }
 
 sf::Vector2f InventoryItemWidget::CalculateRequisition()
 {
-	return{ 275, 50 };
+	return{ 250, 50 };
 }
