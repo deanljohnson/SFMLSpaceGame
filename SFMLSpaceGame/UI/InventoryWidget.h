@@ -1,6 +1,7 @@
 #pragma once
 #include <EntityID.h>
 #include <EntityHandle.h>
+#include <ItemPriceSet.h>
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
 
@@ -10,11 +11,13 @@ private:
 	sfg::ScrolledWindow::Ptr m_scrollWindow;
 	sfg::Box::Ptr m_scrollWindowBox;
 
+	std::shared_ptr<ItemPriceSet> m_prices;
+
 	EntityHandle m_targetHandle;
 
 	std::vector<InventoryItemWidget::Ptr> m_itemWidgets;
 
-	int m_selected{ -1 };
+	int m_selected;
 
 	sf::Vector2i m_size;
 

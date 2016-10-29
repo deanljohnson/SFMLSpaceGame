@@ -61,6 +61,12 @@
     <Filter Include="Source Files\UI\InventoryElements">
       <UniqueIdentifier>{2fffccea-7bd1-4e85-b383-fb3d33bb982d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Trade">
+      <UniqueIdentifier>{b39102e6-f29f-4693-8fab-69f53b9809c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Trade">
+      <UniqueIdentifier>{e0109364-5792-4cea-ae23-b445abd4cd3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -288,9 +294,6 @@
     <ClCompile Include="Components\ItemPickup.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\StationTradeWindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -305,6 +308,15 @@
     </ClCompile>
     <ClCompile Include="UI\InventoryWidget.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPriceSet.cpp">
+      <Filter>Source Files\Trade</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPrice.cpp">
+      <Filter>Source Files\Trade</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -617,9 +629,6 @@
     <ClInclude Include="Components\ItemPickup.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\StationTradeWindow.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
@@ -635,8 +644,14 @@
     <ClInclude Include="UI\InventoryWidget.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Trade</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPriceSet.h">
+      <Filter>Header Files\Trade</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPrice.h">
+      <Filter>Header Files\Trade</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

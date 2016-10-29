@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <Item.h>
+#include <ItemPrice.h>
 #include <SFGUI\Widget.hpp>
 #include <TextureAtlas.h>
 #include <SFGUI\PrimitiveTexture.hpp>
@@ -20,6 +21,8 @@ public:
 
 	void SetSelected(bool val);
 
+	void SetItemPrice(const ItemPrice& price);
+
 	~InventoryItemWidget();
 protected:
 	InventoryItemWidget(const std::string& atlas, Item* item);
@@ -30,6 +33,8 @@ protected:
 private:
 	Item* m_item;
 	bool m_selected;
+	ItemPrice m_price;
+	bool m_priceSet;
 
 	static int m_widgetCount;
 	static std::shared_ptr<TextureAtlas> m_atlas;
