@@ -60,7 +60,7 @@ void InventoryItemWidget::SetSelected(bool val)
 	Invalidate();
 }
 
-void InventoryItemWidget::SetItemPrice(const ItemPrice& price) 
+void InventoryItemWidget::SetItemPrice(unsigned price) 
 {
 	m_price = price;
 	m_priceSet = true;
@@ -126,13 +126,13 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 
 	if (m_priceSet) 
 	{
-		sf::Text priceText(m_price.GetPrice(), *font, static_cast<unsigned int>(nameSize));
+		sf::Text priceText(std::to_string(m_price) + "cr", *font, static_cast<unsigned int>(nameSize));
 		sf::Vector2f pricePosition(
 			namePosition.x,
 			namePosition.y + nameSize + padding
 		);
 		priceText.setPosition(pricePosition);
-		priceText.setColor(fontColor);
+		priceText.setFillColor(fontColor);
 
 		queue->Add(sfg::Renderer::Get().CreateText(priceText));
 	}

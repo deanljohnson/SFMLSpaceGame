@@ -4,6 +4,8 @@
 #include <PlayerData.h>
 #include <EntityManager.h>
 #include <Components/Inventory.h>
+#include <Economy.h>
+#include <Components/EconomyAgent.h>
 
 StationTradeWindow::StationTradeWindow() 
 	: GameWindow("station_trade")
@@ -103,8 +105,13 @@ void StationTradeWindow::Update()
 void StationTradeWindow::SetTarget(EntityID targetID) 
 {
 	m_target = targetID;
-	m_stationInvenWidget.SetTarget(m_target);
-	m_playerInvenWidget.SetTarget(PlayerData::GetActive()->GetID());
+	auto& econAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
+
+	// Assign a price supplier to the inventory widgets so they can display
+	// prices and differences from baseline
+	m_stationInvenWidget.SetPriceSupplier(econAgent.GetSellPrices());
+	m_playerInvenWidget.SetPriceSupplier(econAgent.GetBuyPrices());
+	SetInventoryTargets();
 }
 
 void StationTradeWindow::OnBuyScaleChange()
@@ -136,15 +143,15 @@ void StationTradeWindow::OnBuyClick()
 	auto selectedItem = m_stationInvenWidget.GetSelected();
 	if (selectedItem == nullptr) return;
 
+	// Create an item to represent the transaction
 	auto boughtItem = Item::Create(selectedItem->type,
 									static_cast<unsigned int>(m_buyScale->GetValue()));
 
+	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
-	auto& playerInventory = EntityManager::Get(playerID)->GetComponent<Inventory>();
-	playerInventory.AddItem(boughtItem);
+	auto& playerAgent = EntityManager::Get(playerID)->GetComponent<EconomyAgent>();
 
-	auto& stationInventory = EntityManager::Get(m_target)->GetComponent<Inventory>();
-	stationInventory.RemoveItem(boughtItem);
+	Economy::TransferItems(stationAgent, playerAgent, boughtItem);
 
 	SetInventoryTargets();
 	ResetScales();
@@ -155,15 +162,15 @@ void StationTradeWindow::OnSellClick()
 	auto selectedItem = m_playerInvenWidget.GetSelected();
 	if (selectedItem == nullptr) return;
 
+	// Create an item to represent the transaction
 	auto soldItem = Item::Create(selectedItem->type, 
 								static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue()));
 
-	auto& stationInventory = EntityManager::Get(m_target)->GetComponent<Inventory>();
-	stationInventory.AddItem(soldItem);
-
+	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
-	auto& playerInventory = EntityManager::Get(playerID)->GetComponent<Inventory>();
-	playerInventory.RemoveItem(soldItem);
+	auto& playerAgent = EntityManager::Get(playerID)->GetComponent<EconomyAgent>();
+
+	Economy::TransferItems(playerAgent, stationAgent, soldItem);
 
 	SetInventoryTargets();
 	ResetScales();

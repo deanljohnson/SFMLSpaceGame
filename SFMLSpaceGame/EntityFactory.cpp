@@ -4,6 +4,7 @@
 #include <EntityGroups.h>
 #include <EntityFactory.h>
 #include <EntityHandle.h>
+#include "CollisionGroups.h"
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Components/RectPrimitive.h>
@@ -26,7 +27,6 @@
 #include "Components/ShipAI.h"
 #include "Components/Health.h"
 #include "Components/DamageOnAttacked.h"
-#include "CollisionGroups.h"
 #include "Components/ShipSpawner.h"
 #include "Components/PlayerDeathBroadcaster.h"
 #include "Components/AnimatedSprite.h"
@@ -39,17 +39,19 @@
 #include "Components/KeyListener.h"
 #include "Components/Text.h"
 #include "Components/Shields.h"
+#include "Components/ShieldHitAnimator.h"
+#include "Components/Inventory.h"
+#include "Components/ItemPickup.h"
+#include "Components/EconomyAgent.h"
+#include "Components/ParallaxTargetAssigner.h"
+#include "Components/ShipStatsSink.h"
 #include "UI/GameWindow.h"
 #include "UI/InventoryWindow.h"
 #include "UI/StationWindow.h"
 #include "WorldConstants.h"
-#include "Components/ShipStatsSink.h"
 #include "PlayerData.h"
-#include "Components/ParallaxTargetAssigner.h"
 #include "VectorMath.h"
-#include "Components/ShieldHitAnimator.h"
-#include "Components/Inventory.h"
-#include "Components/ItemPickup.h"
+#include "Economy.h"
 
 void EntityFactory::Init()
 {
@@ -247,10 +249,23 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	shields.SetActive(Shields::Direction::All);
 	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
-	auto& invenComp = ent->AddComponent<Inventory>();
-	invenComp.SetCredits(1000); // hard coded for now, will eventually have to remove
-	invenComp.AddItem(Item::Create(Item::ItemType::Ore, 1000));
-	invenComp.AddItem(Item::Create(Item::ItemType::Food, 1000));
+	ent->AddComponent<Inventory>();
+	auto& econAgent = ent->AddComponent<EconomyAgent>();
+
+	econAgent.AddItem(Item::Create(ItemType::Credits, 1000));
+	econAgent.AddItem(Item::Create(ItemType::Ore, 1000));
+	econAgent.AddItem(Item::Create(ItemType::Food, 1000));
+
+	econAgent.SetSellPrices(
+	{
+		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 20 },
+		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
+	});
+	econAgent.SetBuyPrices(
+	{
+		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) - 10 },
+		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) - 2 }
+	});
 
 	if (npc)
 	{
@@ -307,8 +322,21 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, con
 
 	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
-	auto& inven = ent->AddComponent<Inventory>();
-	inven.AddItem(Item::Create(Item::ItemType::FuelCells, 1000));
+	ent->AddComponent<Inventory>();
+	auto& econAgent = ent->AddComponent<EconomyAgent>();
+	econAgent.AddItem(Item::Create(ItemType::FuelCells, 1000));
+
+	econAgent.SetSellPrices(
+	{
+		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 20 },
+		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 },
+		{ ItemType::FuelCells, Economy::GetBaselinePrice(ItemType::FuelCells) }
+	});
+	econAgent.SetBuyPrices(
+	{
+		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 10 },
+		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
+	});
 
 	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
 	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");

@@ -21,7 +21,7 @@ public:
 
 	void SetSelected(bool val);
 
-	void SetItemPrice(const ItemPrice& price);
+	void SetItemPrice(unsigned price);
 
 	~InventoryItemWidget();
 protected:
@@ -33,7 +33,7 @@ protected:
 private:
 	Item* m_item;
 	bool m_selected;
-	ItemPrice m_price;
+	unsigned m_price;
 	bool m_priceSet;
 
 	static int m_widgetCount;

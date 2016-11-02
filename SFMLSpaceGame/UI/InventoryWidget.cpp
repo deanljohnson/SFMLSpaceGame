@@ -2,6 +2,7 @@
 #include <UI\InventoryWidget.h>
 #include <EntityManager.h>
 #include <Components\Inventory.h>
+#include <PriceSupplier.h>
 
 InventoryWidget::InventoryWidget() 
 	: m_selected(-1)
@@ -54,7 +55,7 @@ void InventoryWidget::SetTarget(EntityID id)
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{
 		// Credits are not shown in the inventory
-		if (it->type == Item::ItemType::Credits)
+		if (it->type == ItemType::Credits)
 		{
 			i--;
 			continue;
@@ -62,10 +63,9 @@ void InventoryWidget::SetTarget(EntityID id)
 
 		auto item = InventoryItemWidget::Create("trade-icons", &*it);
 
-		if (m_prices != nullptr
-			&& m_prices->HasPrice(it->type)) 
+		if (m_prices.HasPriceForType(it->type))
 		{
-			item->SetItemPrice(m_prices->GetPrice(it->type));
+			item->SetItemPrice(m_prices.GetPriceForType(it->type));
 		}
 
 		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
@@ -96,6 +96,19 @@ void InventoryWidget::SetTarget(EntityID id)
 		m_selected = m_itemWidgets.size() - 1;
 	if (m_selected >= 0)
 		m_itemWidgets[m_selected]->SetSelected(true);
+}
+
+void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
+{
+	m_prices = prices;
+
+	for (auto& iw : m_itemWidgets)
+	{
+		if (m_prices.HasPriceForType(iw->GetItem()->type))
+		{
+			iw->SetItemPrice(m_prices.GetPriceForType(iw->GetItem()->type));
+		}
+	}
 }
 
 void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)

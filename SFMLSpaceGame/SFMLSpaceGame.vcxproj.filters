@@ -61,11 +61,11 @@
     <Filter Include="Source Files\UI\InventoryElements">
       <UniqueIdentifier>{2fffccea-7bd1-4e85-b383-fb3d33bb982d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Trade">
-      <UniqueIdentifier>{b39102e6-f29f-4693-8fab-69f53b9809c3}</UniqueIdentifier>
+    <Filter Include="Header Files\Economy">
+      <UniqueIdentifier>{ccfa8c66-b403-442e-bba9-22330acf37de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Trade">
-      <UniqueIdentifier>{e0109364-5792-4cea-ae23-b445abd4cd3f}</UniqueIdentifier>
+    <Filter Include="Source Files\Economy">
+      <UniqueIdentifier>{9ce49331-18b5-4c33-a0f8-b59f1e03cb3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -310,13 +310,25 @@
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>Source Files\Trade</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemPriceSet.cpp">
-      <Filter>Source Files\Trade</Filter>
+      <Filter>Source Files\Economy</Filter>
     </ClCompile>
     <ClCompile Include="ItemPrice.cpp">
-      <Filter>Source Files\Trade</Filter>
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPriceSet.cpp">
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="Economy.cpp">
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\EconomyAgent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PriceSupplier.cpp">
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="EconomyID.cpp">
+      <Filter>Source Files\Economy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -644,14 +656,29 @@
     <ClInclude Include="UI\InventoryWidget.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files\Trade</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ItemPriceSet.h">
-      <Filter>Header Files\Trade</Filter>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Economy</Filter>
     </ClInclude>
     <ClInclude Include="ItemPrice.h">
-      <Filter>Header Files\Trade</Filter>
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPriceSet.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="Economy.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\EconomyAgent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EconomyID.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="PriceSupplier.h">
+      <Filter>Header Files\Economy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

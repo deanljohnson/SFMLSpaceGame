@@ -187,6 +187,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
     <ClCompile Include="Components\DirectionalVelocity.cpp" />
+    <ClCompile Include="Components\EconomyAgent.cpp" />
     <ClCompile Include="Components\EntitySensor.cpp" />
     <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
@@ -209,6 +210,8 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\TilingBackground.cpp" />
     <ClCompile Include="Components\ZoomHandler.cpp" />
     <ClCompile Include="ContactFilter.cpp" />
+    <ClCompile Include="Economy.cpp" />
+    <ClCompile Include="EconomyID.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="EntityHandle.cpp" />
@@ -232,6 +235,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\Physics.cpp" />
     <ClCompile Include="Components\RectPrimitive.cpp" />
     <ClCompile Include="PlayerData.cpp" />
+    <ClCompile Include="PriceSupplier.cpp" />
     <ClCompile Include="RenderBatch.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Components\RotateToFaceMouse.cpp" />
@@ -271,6 +275,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Box2DSerialization.h" />
     <ClInclude Include="Components\AnimatedSprite.h" />
     <ClInclude Include="Components\DamageOnAttacked.h" />
+    <ClInclude Include="Components\EconomyAgent.h" />
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\GunHeatUIDisplay.h" />
     <ClInclude Include="Components\Health.h" />
@@ -291,6 +296,8 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\TilingBackground.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
+    <ClInclude Include="Economy.h" />
+    <ClInclude Include="EconomyID.h" />
     <ClInclude Include="EntityHandle.h" />
     <ClInclude Include="EntityHelpers.h" />
     <ClInclude Include="EntityID.h" />
@@ -303,6 +310,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="PlayerData.h" />
+    <ClInclude Include="PriceSupplier.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\StringDisplayHelper.h" />

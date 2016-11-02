@@ -2,6 +2,7 @@
 #include <GameTime.h>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
+#include <Economy.h>
 #include "EntityFactory.h"
 #include "UI/UI.h"
 #include "UI/GameWindow.h"
@@ -15,6 +16,8 @@ sf::VideoMode GetVideoMode()
 
 int main()
 {
+	srand(time(nullptr));
+
 	const std::string TITLE = "Space Game";
 	sf::RenderWindow window(GetVideoMode(), TITLE);
 	window.setFramerateLimit(60);
@@ -25,6 +28,7 @@ int main()
 	GAME_WINDOW = &window;
 
 	EntityFactory::Init();
+	Economy::Init();
 
 	GameStateManager game_manager{};
 	game_manager.Init();

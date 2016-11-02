@@ -6,7 +6,7 @@
 Inventory::Inventory()
 {
 	Item i;
-	i.type = Item::ItemType::Credits;
+	i.type = ItemType::Credits;
 	i.credits.amount = 0;
 
 	m_items.push_back(i);
@@ -25,7 +25,7 @@ int Inventory::GetCredits()
 {
 	for (auto& i : *this)
 	{
-		if (i.type == Item::ItemType::Credits)
+		if (i.type == ItemType::Credits)
 			return i.credits.amount;
 	}
 
@@ -36,7 +36,7 @@ void Inventory::SetCredits(int c)
 {
 	for (auto& i : *this)
 	{
-		if (i.type == Item::ItemType::Credits)
+		if (i.type == ItemType::Credits)
 		{
 			 i.credits.amount = c;
 			 return;
@@ -62,7 +62,7 @@ void Inventory::AddItem(const Item& item)
 
 void Inventory::RemoveItem(const Item& item)
 {
-	for (int i = 0; i < m_items.size(); i++)
+	for (size_t i = 0; i < m_items.size(); i++)
 	{
 		if (m_items[i].type == item.type)
 		{

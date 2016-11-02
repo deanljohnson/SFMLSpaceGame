@@ -5,6 +5,11 @@
 #define NAMED_ITEM(s) static std::string GetTypeName() { static const std::string name = s; return name; }
 #endif
 
+enum class ItemType
+{
+	Credits, FuelCells, Ore, Food, Narcotics
+};
+
 class Item
 {
 public:
@@ -13,11 +18,6 @@ public:
 	{
 		unsigned int amount;
 		void Stack(T other) { amount += other.amount; }
-	};
-
-	enum class ItemType
-	{
-		Credits, FuelCells, Ore, Food, Narcotics
 	};
 
 	struct Credits : public ItemBase<Credits>
