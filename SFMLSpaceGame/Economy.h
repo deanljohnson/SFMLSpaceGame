@@ -21,4 +21,5 @@ namespace Economy
 	void SetSellPrice(const EconomyID& ident, ItemType itemType, unsigned price);
 
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, const Item& item);
+	void DoTransaction(EconomyAgent& seller, EconomyAgent& purchaser, const Item& item);
 }

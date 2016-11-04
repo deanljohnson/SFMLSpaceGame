@@ -127,15 +127,31 @@ void StationTradeWindow::OnSellScaleChange()
 void StationTradeWindow::OnBuyItemChange(Item* item)
 {
 	auto adjustment = m_buyScale->GetAdjustment();
-	adjustment->SetUpper(item == nullptr ? 0 : item->GetAmount());
+	auto amt = item == nullptr ? 0 : item->GetAmount();
+
+	if (amt != 0) 
+	{
+		auto& playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
+		auto& playerInven = playerHandle->GetComponent<Inventory>();
+		auto playerCredits = playerInven.GetCredits();
+
+		auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
+		auto sellPrice = stationAgent.GetSellPrice(item->type);
+
+		amt = std::min(amt, playerCredits / sellPrice);
+	}
+
+	adjustment->SetUpper(amt);
 	adjustment->SetValue(0);
 }
 
 void StationTradeWindow::OnSellItemChange(Item* item)
 {
 	auto adjustment = m_sellScale->GetAdjustment();
-	adjustment->SetUpper(item == nullptr ? 0 : item->GetAmount());
-	adjustment->SetValue(item == nullptr ? 0 : item->GetAmount());
+	auto amt = item == nullptr ? 0 : item->GetAmount();
+
+	adjustment->SetUpper(amt);
+	adjustment->SetValue(amt);
 }
 
 void StationTradeWindow::OnBuyClick()

@@ -25,6 +25,9 @@ public:
 	void AddItem(const Item& item);
 	void RemoveItem(const Item& item);
 
+	void GiveCredits(unsigned int credits);
+	void TakeCredits(unsigned int credits);
+
 	bool Buys(ItemType itemType);
 	bool Sells(ItemType itemType);
 

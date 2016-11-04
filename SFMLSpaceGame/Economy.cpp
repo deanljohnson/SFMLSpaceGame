@@ -84,3 +84,9 @@ void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, const It
 	source.RemoveItem(item);
 	target.AddItem(item);
 }
+
+void Economy::DoTransaction(EconomyAgent& seller, EconomyAgent& purchaser, const Item& item) 
+{
+	TransferItems(seller, purchaser, item);
+
+}

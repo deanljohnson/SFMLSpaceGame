@@ -35,6 +35,16 @@ void EconomyAgent::RemoveItem(const Item& item)
 	m_inventory->RemoveItem(item);
 }
 
+void EconomyAgent::GiveCredits(unsigned int credits) 
+{
+	m_inventory->SetCredits(m_inventory->GetCredits() + credits);
+}
+
+void EconomyAgent::TakeCredits(unsigned int credits)
+{
+	m_inventory->SetCredits(m_inventory->GetCredits() - credits);
+}
+
 bool EconomyAgent::Buys(ItemType itemType)
 {
 	return Economy::Buys(m_id, itemType);
