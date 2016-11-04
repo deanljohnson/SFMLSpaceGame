@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include <ItemPrice.h>
 
-ItemPrice::ItemPrice() 
+/*ItemPrice::ItemPrice() 
 	: m_baseline(0),
 	  m_price(0),
 	  m_type(PriceType::Sell)
@@ -43,4 +43,4 @@ void ItemPrice::SetBaseline(unsigned int baseline)
 void ItemPrice::SetType(PriceType type)
 {
 	m_type = type;
-}
+}*/

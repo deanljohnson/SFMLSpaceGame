@@ -210,6 +210,14 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 	{
 		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 3.f);
 	}
+	else if (id == "asteroid-one")
+	{
+		
+	}
+	else
+	{
+		printf("The given name '%s' does not correspond to a recognized animation\n", id.c_str());
+	}
 
 	loadedAnimations.insert(make_pair(id, animPtr));
 

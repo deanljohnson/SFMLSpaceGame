@@ -65,17 +65,17 @@ unsigned EconomyAgent::GetSellPrice(ItemType itemType)
 	return Economy::GetSellPrice(m_id, itemType);
 }
 
-void EconomyAgent::SetBuyPrice(ItemType itemType, unsigned price)
+void EconomyAgent::SetBuyPrice(ItemType itemType, Price price)
 {
 	Economy::SetBuyPrice(m_id, itemType, price);
 }
 
-void EconomyAgent::SetSellPrice(ItemType itemType, unsigned price)
+void EconomyAgent::SetSellPrice(ItemType itemType, Price price)
 {
 	Economy::SetSellPrice(m_id, itemType, price);
 }
 
-void EconomyAgent::SetBuyPrices(std::initializer_list<Price> prices)
+void EconomyAgent::SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices)
 {
 	for (auto& p : prices)
 	{
@@ -83,7 +83,7 @@ void EconomyAgent::SetBuyPrices(std::initializer_list<Price> prices)
 	}
 }
 
-void EconomyAgent::SetSellPrices(std::initializer_list<Price> prices)
+void EconomyAgent::SetSellPrices(std::initializer_list<std::pair<ItemType, Price>> prices)
 {
 	for (auto& p : prices)
 	{

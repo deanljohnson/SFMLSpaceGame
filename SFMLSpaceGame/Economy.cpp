@@ -44,7 +44,7 @@ bool Economy::Sells(const EconomyID& ident, ItemType itemType)
 	return it->second.HasPrice(itemType);
 }
 
-unsigned Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType)
+Price Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType)
 {
 	auto it = m_buyPrices.find(ident);
 	if (it == m_buyPrices.end())
@@ -53,7 +53,7 @@ unsigned Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType)
 	return it->second.GetPrice(itemType);
 }
 
-unsigned Economy::GetSellPrice(const EconomyID& ident, ItemType itemType)
+Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType)
 {
 	auto it = m_sellPrices.find(ident);
 	if (it == m_sellPrices.end())
@@ -62,18 +62,18 @@ unsigned Economy::GetSellPrice(const EconomyID& ident, ItemType itemType)
 	return it->second.GetPrice(itemType);
 }
 
-unsigned Economy::GetBaselinePrice(ItemType itemType)
+Price Economy::GetBaselinePrice(ItemType itemType)
 {
 	return m_defaultSet.GetPrice(itemType);
 }
 
-void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, unsigned price)
+void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price)
 {
 	auto it = m_buyPrices.find(ident);
 	it->second.SetPrice(itemType, price);
 }
 
-void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, unsigned price)
+void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, Price price)
 {
 	auto it = m_sellPrices.find(ident);
 	it->second.SetPrice(itemType, price);
@@ -85,8 +85,30 @@ void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, const It
 	target.AddItem(item);
 }
 
-void Economy::DoTransaction(EconomyAgent& seller, EconomyAgent& purchaser, const Item& item) 
+void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, const Item& item)
 {
-	TransferItems(seller, purchaser, item);
+	TransferItems(seller, target, item);
 
+	// get the price for a single instance of the item
+	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item.type);
+
+	// determine the price for the total number of items sold
+	sellPrice *= item.GetAmount();
+
+	target.TakeCredits(sellPrice);
+	seller.GiveCredits(sellPrice);
+}
+
+void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, const Item& item)
+{
+	TransferItems(source, buyer, item);
+
+	// get the price for a single instance of the item
+	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item.type);
+
+	// determine the price for the total number of items bought
+	sellPrice *= item.GetAmount();
+
+	buyer.TakeCredits(sellPrice);
+	source.GiveCredits(sellPrice);
 }

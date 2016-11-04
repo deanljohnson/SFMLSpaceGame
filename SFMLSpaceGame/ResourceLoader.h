@@ -1,13 +1,11 @@
 #pragma once
 #include <memory>
-#include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <ProjectileStats.h>
 #include <AnimationDefinition.h>
 #include <TextureAtlas.h>
-
 
 class Animation;
 class ShipStats;

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics/Texture.hpp>
 #include <memory>
-#include "ResourceLoader.h"
+#include <AnimationDefinition.h>
 
 class Animation
 {

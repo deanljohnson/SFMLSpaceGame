@@ -131,7 +131,7 @@ void StationTradeWindow::OnBuyItemChange(Item* item)
 
 	if (amt != 0) 
 	{
-		auto& playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
+		auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
 		auto& playerInven = playerHandle->GetComponent<Inventory>();
 		auto playerCredits = playerInven.GetCredits();
 
@@ -167,7 +167,7 @@ void StationTradeWindow::OnBuyClick()
 	auto playerID = PlayerData::GetActive()->GetID();
 	auto& playerAgent = EntityManager::Get(playerID)->GetComponent<EconomyAgent>();
 
-	Economy::TransferItems(stationAgent, playerAgent, boughtItem);
+	Economy::DoSell(stationAgent, playerAgent, boughtItem);
 
 	SetInventoryTargets();
 	ResetScales();
@@ -186,7 +186,7 @@ void StationTradeWindow::OnSellClick()
 	auto playerID = PlayerData::GetActive()->GetID();
 	auto& playerAgent = EntityManager::Get(playerID)->GetComponent<EconomyAgent>();
 
-	Economy::TransferItems(playerAgent, stationAgent, soldItem);
+	Economy::DoBuy(playerAgent, stationAgent, soldItem);
 
 	SetInventoryTargets();
 	ResetScales();

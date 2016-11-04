@@ -2,6 +2,7 @@
 #include "Component.h"
 #include <EconomyID.h>
 #include <Item.h>
+#include <ItemPrice.h>
 #include <PriceSupplier.h>
 
 class Inventory;
@@ -13,8 +14,6 @@ private:
 	Inventory* m_inventory;
 
 public:
-	typedef std::pair<ItemType, unsigned> Price;
-
 	EconomyAgent();
 	~EconomyAgent();
 
@@ -34,11 +33,11 @@ public:
 	unsigned GetBuyPrice(ItemType itemType);
 	unsigned GetSellPrice(ItemType itemType);
 
-	void SetBuyPrice(ItemType itemType, unsigned price);
-	void SetSellPrice(ItemType itemType, unsigned price);
+	void SetBuyPrice(ItemType itemType, Price price);
+	void SetSellPrice(ItemType itemType, Price price);
 
-	void SetBuyPrices(std::initializer_list<Price> prices);
-	void SetSellPrices(std::initializer_list<Price> prices);
+	void SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices);
+	void SetSellPrices(std::initializer_list<std::pair<ItemType, Price>> prices);
 
 	PriceSupplier GetBuyPrices();
 	PriceSupplier GetSellPrices();

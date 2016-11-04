@@ -1,6 +1,8 @@
 #pragma once
 
-class ItemPrice 
+typedef unsigned int Price;
+
+/*class ItemPrice 
 {
 public:
 	enum class PriceType { Buy, Sell };
@@ -19,4 +21,4 @@ public:
 	void SetPrice(unsigned int price);
 	void SetBaseline(unsigned int baseline);
 	void SetType(PriceType type);
-};
+};*/
