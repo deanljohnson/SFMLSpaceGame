@@ -23,29 +23,10 @@ protected:
 	void OnMouseMove();
 
 public:
-	explicit GameWindow(std::string id);
+	explicit GameWindow(const std::string& id);
 	virtual ~GameWindow();
 
-	static bool MouseInWindow()
-	{
-		if (m_windowsWithMouse > 0)
-			return true;
-		else
-		{
-			auto mousePosI = sf::Mouse::getPosition(*GAME_WINDOW);
-			auto mousePos = sf::Vector2f(static_cast<float>(mousePosI.x), static_cast<float>(mousePosI.y));
-			for(auto& kvp : m_windows)
-			{
-				if (!kvp.second->IsShown())
-					continue;
-
-				if (kvp.second->m_window->GetAllocation().contains(mousePos))
-					return true;
-			}
-			return false;
-		}
-		return m_windowsWithMouse > 0;
-	}
+	static bool MouseInWindow();
 
 	template<typename T>
 	static T* GetWindow(const std::string& id);

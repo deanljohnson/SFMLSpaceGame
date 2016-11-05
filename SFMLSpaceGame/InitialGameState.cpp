@@ -64,8 +64,8 @@ void InitialGameState::Init()
 	m_colliderEditor.Show(false);
 	m_thrusterLocationEditor.Show(false);
 	m_confirmationDialog.Show(false);
-	m_shieldStateDisplay.Show(true);
 	m_inventoryWindow.Show(false);
+	m_shieldStateDisplay.Show(true);
 	m_shipEditor.CenterOnScreen();
 	m_shipSelector.CenterOnScreen();
 	m_imageSelector.CenterOnScreen();
@@ -76,8 +76,8 @@ void InitialGameState::Init()
 	m_colliderEditor.CenterOnScreen();
 	m_thrusterLocationEditor.CenterOnScreen();
 	m_confirmationDialog.CenterOnScreen();
-	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
 	m_inventoryWindow.CenterOnScreen();
+	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
 }
 
 void InitialGameState::CleanUp()
@@ -85,14 +85,14 @@ void InitialGameState::CleanUp()
 	EntityManager::Clear();
 }
 
-void InitialGameState::Pause() const
+void InitialGameState::Pause()
 {
-	
+	m_paused = true;
 }
 
-void InitialGameState::Resume() const
+void InitialGameState::Resume()
 {
-	
+	m_paused = false;
 }
 
 void InitialGameState::ProcessEvent(const sf::Event& event) const
@@ -116,11 +116,14 @@ void InitialGameState::Update()
 		UnloadUnusedResources();
 	}
 
+	GameWindow::UpdateAllWindows();
+
+	HandlePause();
+	if (m_paused) return;
+
 	pendingGameEvents.Update();
 
 	m_stepper.Step(world, GameTime::deltaTime);
-
-	GameWindow::UpdateAllWindows();
 
 	EntityManager::Refresh();
 	EntityManager::Update();
@@ -136,11 +139,26 @@ void InitialGameState::Render(sf::RenderTarget& target)
 	
 	EntityManager::Render(target, rendStates);
 	RenderBatch::RenderAll(target, rendStates);
+}
 
-	auto view = GAME_WINDOW->getView();
-	GAME_WINDOW->setView(GAME_WINDOW->getDefaultView());
+void InitialGameState::HandlePause() 
+{
+	bool pausingWindowOpened = false;
 
-	rendStates = sf::RenderStates::Default;
+	pausingWindowOpened |= m_shipEditor.IsShown();
+	pausingWindowOpened |= m_shipSelector.IsShown();
+	pausingWindowOpened |= m_imageSelector.IsShown();
+	pausingWindowOpened |= m_shipNameEntry.IsShown();
+	pausingWindowOpened |= m_stationWindow.IsShown();
+	pausingWindowOpened |= m_stationTradeWindow.IsShown();
+	pausingWindowOpened |= m_hardPointEditor.IsShown();
+	pausingWindowOpened |= m_colliderEditor.IsShown();
+	pausingWindowOpened |= m_thrusterLocationEditor.IsShown();
+	pausingWindowOpened |= m_confirmationDialog.IsShown();
+	pausingWindowOpened |= m_inventoryWindow.IsShown();
 
-	GAME_WINDOW->setView(view);
+	if (pausingWindowOpened && !m_paused)
+		Pause();
+	else if (!pausingWindowOpened && m_paused)
+		Resume();
 }

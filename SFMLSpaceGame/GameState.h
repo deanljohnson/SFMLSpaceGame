@@ -25,8 +25,8 @@ public:
 	virtual void Init() = 0;
 	virtual void CleanUp() = 0;
 
-	virtual void Pause() const = 0;
-	virtual void Resume() const = 0;
+	virtual void Pause() = 0;
+	virtual void Resume() = 0;
 
 	virtual void ProcessEvent(const sf::Event& event) const = 0;
 	virtual void Update() = 0;

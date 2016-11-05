@@ -22,9 +22,9 @@ private:
 
 	int m_selected;
 
-	sf::Vector2i m_size;
-
 	std::vector<std::function<void(Item*)>> m_itemSelectionChangeCallbacks;
+
+	void Select(int index);
 public:
 	InventoryWidget();
 

@@ -35,19 +35,25 @@ private:
 	ColliderEditor m_colliderEditor;
 	ThrusterLocationEditor m_thrusterLocationEditor;
 	ConfirmationDialog m_confirmationDialog;
-	ShieldStateDisplay m_shieldStateDisplay;
 	InventoryWindow m_inventoryWindow;
+
+	ShieldStateDisplay m_shieldStateDisplay;
+
+	bool m_paused;
+
+	void HandlePause();
 
 public:
 	InitialGameState() 
-		: m_stepper()
+		: m_stepper(),
+		  m_paused(false)
 	{}
 
 	virtual void Init() override;
 	virtual void CleanUp() override;
 
-	virtual void Pause() const override;
-	virtual void Resume() const override;
+	virtual void Pause() override;
+	virtual void Resume() override;
 
 	virtual void ProcessEvent(const sf::Event& event) const override;
 
