@@ -1,7 +1,8 @@
 #pragma once
 #include "Component.h"
+#include <DefaultSerializeable.h>
 
-class PlayerDeathBroadcaster : public Component
+class PlayerDeathBroadcaster : public Component, public DefaultSerializeable<PlayerDeathBroadcaster>
 {
 public:
 	explicit PlayerDeathBroadcaster(EntityID ent);

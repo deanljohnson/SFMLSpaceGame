@@ -2,8 +2,9 @@
 #include <Components/Component.h>
 #include <Interfaces/MouseListener.h>
 #include <vector>
+#include <DefaultSerializeable.h>
 
-class GameWorldClickListener : public Component
+class GameWorldClickListener : public Component, public DefaultSerializeable<GameWorldClickListener>
 {
 private:
 	enum ClickState { None, Down, Held, Click } m_clickedState;

@@ -2,6 +2,7 @@
 #include <Components/Component.h>
 #include <SFML/Graphics/Shape.hpp>
 #include <Box2D/Dynamics/b2Body.h>
+#include <cereal/access.hpp>
 
 class Position;
 class Rotation;
@@ -14,6 +15,25 @@ private:
 	b2Body* m_body{ nullptr };
 	b2BodyType m_bodyType;
 	float m_linDamping;
+
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_bodyType, m_linDamping);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<Physics>& construct)
+	{
+		EntityID selfID;
+		b2BodyType type;
+		float damping;
+		ar(selfID, type, damping);
+		construct(selfID, type, damping);
+	}
 
 public:
 	explicit Physics(EntityID ent);

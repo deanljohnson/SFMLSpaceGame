@@ -4,11 +4,12 @@
 #include <set>
 #include <vector>
 #include <functional>
+#include <DefaultSerializeable.h>
 
 // Provides a way for entity's to listen
 // for certain single key events and call
 // any number of callbacks in response
-class KeyListener : public Component
+class KeyListener : public Component, public DefaultSerializeable<KeyListener>
 {
 private:
 	std::set<sf::Keyboard::Key> m_keys;

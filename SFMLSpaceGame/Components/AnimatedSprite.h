@@ -2,11 +2,10 @@
 #include "Component.h"
 #include "Rotation.h"
 #include "Position.h"
-#include <ResourceLoader.h>
 #include <Animation.h>
 #include <OriginOption.h>
 #include <RenderBatch.h>
-#include <cereal/cereal.hpp>
+#include <cereal/access.hpp>
 #include <EntityID.h>
 
 class AnimatedSprite : public Component
@@ -25,6 +24,25 @@ private:
 	OriginOption m_originOption;
 	std::string m_id;
 
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_id, m_originOption);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<AnimatedSprite>& construct)
+	{
+		EntityID selfID;
+		std::string id;
+		OriginOption option;
+		ar(selfID, id, option);
+		construct(selfID, id, option);
+	}
+
 public:
 	explicit AnimatedSprite(EntityID ent, const std::string& id, OriginOption origin = OriginOption::Center);
 	~AnimatedSprite();
@@ -38,20 +56,4 @@ public:
 
 	// Returns the dimensions of this sprite in meters
 	virtual sf::FloatRect GetDimensions() const;
-
-	// used for saving
-	template <class Archive>
-	void serialize(Archive & ar)
-	{
-		ar(m_id, m_originOption);
-	}
-
-	template <class Archive>
-	static void load_and_construct( Archive & ar, cereal::construct<AnimatedSprite> & construct )
-	{
-		std::string id;
-		OriginOption option;
-		ar(id, option);
-		construct(id, option);
-	}
 };

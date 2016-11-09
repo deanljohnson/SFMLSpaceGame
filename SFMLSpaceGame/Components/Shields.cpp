@@ -10,11 +10,12 @@ Shields::Shields(EntityID ent, ShieldData* data)
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_activationMask(Direction::All),
 	  m_data(data),
-	  m_currentFrontStrength(m_data->FrontStrength),
-	  m_currentSideStrength(m_data->SideStrength),
-	  m_currentRearStrength(m_data->RearStrength),
+	  m_currentFrontStrength(m_data == nullptr ? 0.f : m_data->FrontStrength),
+	  m_currentSideStrength(m_data == nullptr ? 0.f : m_data->SideStrength),
+	  m_currentRearStrength(m_data == nullptr ? 0.f : m_data->RearStrength),
 	  m_shieldHitCallback(nullptr)
 {
+	SetActive(Direction::All);
 }
 
 void Shields::Update() 
@@ -113,6 +114,12 @@ void Shields::Modify(Event& event)
 void Shields::SetShieldHitCallback(std::function<void(Direction, const b2Vec2&)> callback)
 {
 	m_shieldHitCallback = callback;
+}
+
+void Shields::SetShieldData(ShieldData* data)
+{
+	m_data = data;
+	SetActive(m_activationMask); // This resets the shield levels to the appropriate amounts
 }
 
 void Shields::AbsorbFrontDamage(Event& event) 

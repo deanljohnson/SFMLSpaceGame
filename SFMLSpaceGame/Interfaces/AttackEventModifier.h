@@ -1,6 +1,5 @@
 #pragma once
 #include <Event.h>
-#include <EntityHandle.h>
 
 class AttackedEventModifier 
 {

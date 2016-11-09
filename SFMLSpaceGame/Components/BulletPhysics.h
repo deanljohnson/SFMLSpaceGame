@@ -13,9 +13,29 @@ private:
 	EntityID m_sourceEntity;
 
 	std::shared_ptr<ProjectileStats> m_projStats;
+	std::string m_projID;
 
 	//returns whether or not a collision happened
 	bool HandleCollisions();
+
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_sourceEntity, m_projID);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<BulletPhysics>& construct)
+	{
+		EntityID selfID;
+		EntityID sourceID;
+		std::string projID;
+		ar(selfID, sourceID, projID);
+		construct(selfID, sourceID, projID);
+	}
 
 public:
 	explicit BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string& projID);

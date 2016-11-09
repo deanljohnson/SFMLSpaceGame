@@ -13,6 +13,8 @@ BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string
 	  m_sourceEntity(sourceEnt),
 	  m_projStats(LoadProjectile(projID))
 {
+	m_projID = projID;
+
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(m_position.X(), m_position.Y());
 	bodyDef.angle = m_rotation.GetRadians();
@@ -25,7 +27,7 @@ BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string
 	b2FixtureDef fixDef;
 	fixDef.density = 1.f;
 	fixDef.isSensor = true;
-	//fixDef.filter.groupIndex = BULLET_COLLISION_GROUP;
+	
 	fixDef.filter.categoryBits = IS_BULLET;
 	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
 	b2PolygonShape shape;

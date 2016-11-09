@@ -61,3 +61,8 @@ void DirectionalGun::SetSoundSource(SoundSource* source)
 {
 	m_shotSound = source;
 }
+
+void DirectionalGun::SetGunData(DirectionalGunData* data)
+{
+	m_gunData = data;
+}

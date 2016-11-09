@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <Components/Component.h>
+#include <cereal/access.hpp>
 
 #ifndef DEG_TO_RAD
 #define DEG_TO_RAD(__val__) __val__ * (float)M_PI / 180.f
@@ -16,6 +17,25 @@ class Rotation : public Component
 private:
 	float m_radians;
 	float m_degrees;
+
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_radians);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<Rotation>& construct)
+	{
+		EntityID selfID;
+		float rad;
+		ar(selfID, rad);
+		construct(selfID, rad);
+	}
+
 public:
 	explicit Rotation(EntityID ent, float radians = 0.f)
 		: Component(ent), 

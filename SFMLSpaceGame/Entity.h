@@ -4,7 +4,6 @@
 #include <array>
 #include <functional>
 #include <Components/Component.h>
-#include <Box2D/Dynamics/b2World.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <Group.h>
 #include <EntityID.h>
@@ -101,18 +100,20 @@ public:
 		//add to our set of components
 		m_components.emplace_back(move(uPtr));
 
+		auto compID = GetComponentTypeID<T>();
+
 		// The entity already has a component of this type
 		// add it to the component linked list
-		if (m_componentBitset[GetComponentTypeID<T>()])
+		if (m_componentBitset[compID])
 		{
-			Component* existing = m_componentArray[GetComponentTypeID<T>()];
+			Component* existing = m_componentArray[compID];
 			while (existing->next != nullptr) existing = existing->next;
 			existing->next = c;
 		}
 		else
 		{
-			m_componentArray[GetComponentTypeID<T>()] = c;
-			m_componentBitset[GetComponentTypeID<T>()] = true;
+			m_componentArray[compID] = c;
+			m_componentBitset[compID] = true;
 		}
 
 		//return in case caller needs this

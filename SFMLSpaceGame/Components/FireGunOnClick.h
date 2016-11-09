@@ -3,8 +3,9 @@
 #include <Interfaces/MouseListener.h>
 #include <Interfaces/Gun.h>
 #include <vector>
+#include <DefaultSerializeable.h>
 
-class FireGunOnClick : public Component, MouseListener
+class FireGunOnClick : public Component, MouseListener, public DefaultSerializeable<FireGunOnClick>
 {
 private:
 	std::vector<Gun*> m_guns;

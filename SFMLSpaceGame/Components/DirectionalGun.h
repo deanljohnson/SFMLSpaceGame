@@ -83,8 +83,27 @@ private:
 	DirectionalGunData* m_gunData;
 	float m_currentHeat{ 0.f };
 
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_lastFiringTime, m_currentHeat);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<DirectionalGun>& construct)
+	{
+		EntityID selfID;
+		ar(selfID);
+		construct(selfID);
+
+		ar(construct->m_lastFiringTime, construct->m_currentHeat);
+	}
+
 public:
-	DirectionalGun(EntityID ent, DirectionalGunData* data);
+	explicit DirectionalGun(EntityID ent, DirectionalGunData* data = nullptr);
 
 	virtual void Update() override;
 
@@ -92,4 +111,5 @@ public:
 	virtual float GetNormalizedHeat() override;
 
 	void SetSoundSource(SoundSource* source);
+	void SetGunData(DirectionalGunData* data);
 };

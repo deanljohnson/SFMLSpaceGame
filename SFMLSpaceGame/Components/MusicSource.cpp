@@ -2,7 +2,8 @@
 #include <Components/MusicSource.h>
 
 MusicSource::MusicSource(EntityID ent, const std::string& filename)
-	: Component(ent)
+	: Component(ent),
+	  m_musicFilename(filename)
 {
 	m_music.openFromFile(filename);
 	m_music.setLoop(true);

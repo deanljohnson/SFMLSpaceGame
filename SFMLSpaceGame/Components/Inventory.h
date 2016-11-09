@@ -2,8 +2,9 @@
 #include <Components/Component.h>
 #include <Item.h>
 #include <vector>
+#include <DefaultSerializeable.h>
 
-class Inventory : public Component
+class Inventory : public Component, public DefaultSerializeable<Inventory>
 {
 private:
 	std::vector<Item> m_items;

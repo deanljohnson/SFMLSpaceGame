@@ -296,6 +296,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\TilingBackground.h" />
     <ClInclude Include="Components\ZoomHandler.h" />
+    <ClInclude Include="DefaultSerializeable.h" />
     <ClInclude Include="Economy.h" />
     <ClInclude Include="EconomyID.h" />
     <ClInclude Include="EntityHandle.h" />

@@ -3,6 +3,8 @@
 #include <Entity.h>
 #include <Components/Component.h>
 #include <Interfaces/ComponentSensor.h>
+#include <cereal/access.hpp>
+#include <cereal/types/vector.hpp>
 
 class Physics;
 
@@ -18,6 +20,27 @@ private:
 
 	void HandleCollisionWithEntity(Entity* ent);
 	void SetTriggered(bool val);
+
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_radius, m_groups, m_triggered);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<EntitySensor>& construct)
+	{
+		EntityID selfID;
+		float radius;
+		std::vector<Group> groups;
+		ar(selfID, radius, groups);
+		construct(selfID, radius, groups);
+
+		ar(construct->m_triggered);
+	}
 public:
 	EntitySensor(EntityID ent, float radius, const std::initializer_list<Group>& groups);
 
