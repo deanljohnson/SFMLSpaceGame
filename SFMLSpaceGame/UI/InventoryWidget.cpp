@@ -71,16 +71,7 @@ void InventoryWidget::SetTarget(EntityID id)
 		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
 			[this, i]()
 			{
-				// Switch selected item
-				if (m_selected != -1) m_itemWidgets[m_selected]->SetSelected(false);
-				m_selected = i;
-				m_itemWidgets[m_selected]->SetSelected(true);
-
-				// Call any registered callbacks
-				for (auto& c : m_itemSelectionChangeCallbacks)
-				{
-					c(m_itemWidgets[m_selected]->GetItem());
-				}
+				Select(i);
 			});
 
 		m_itemWidgets.push_back(item);
@@ -114,4 +105,25 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)
 {
 	m_itemSelectionChangeCallbacks.push_back(callback);
+}
+
+void InventoryWidget::Select(int index) 
+{
+	// -1 is a valid index because it represents having nothing selected
+	assert(index >= -1 && index < m_itemWidgets.size());
+
+	// Switch selected item
+	if (m_selected != -1) m_itemWidgets[m_selected]->SetSelected(false);
+	m_selected = index;
+
+	// if the selection is being cleared
+	if (m_selected == -1) return;
+
+	m_itemWidgets[m_selected]->SetSelected(true);
+
+	// Call any registered callbacks
+	for (auto& c : m_itemSelectionChangeCallbacks)
+	{
+		c(m_itemWidgets[m_selected]->GetItem());
+	}
 }

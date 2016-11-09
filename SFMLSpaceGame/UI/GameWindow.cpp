@@ -6,7 +6,7 @@ int GameWindow::m_windowsWithMouse = 0;
 int GameWindow::m_elementsWithKeyboardFocus = 0;
 std::map<std::string, GameWindow*> GameWindow::m_windows{};
 
-GameWindow::GameWindow(std::string id)
+GameWindow::GameWindow(const std::string& id)
 	: m_id(id)
 {
 	m_windows.emplace(m_id, this);
@@ -15,7 +15,7 @@ GameWindow::GameWindow(std::string id)
 GameWindow::~GameWindow()
 {
 	if (m_containsMouse)
-		m_windowsWithMouse++;
+		m_windowsWithMouse--;
 }
 
 void GameWindow::UpdateAllWindows() 
@@ -25,6 +25,27 @@ void GameWindow::UpdateAllWindows()
 		if (kvp.second->IsShown())
 			kvp.second->Update();
 	}
+}
+
+bool GameWindow::MouseInWindow() 
+{
+	if (m_windowsWithMouse > 0)
+		return true;
+
+	// Get the mouse pos within the window as a Vector2f
+	auto mousePosI = sf::Mouse::getPosition(*GAME_WINDOW);
+	auto mousePos = sf::Vector2f(static_cast<float>(mousePosI.x), static_cast<float>(mousePosI.y));
+	
+	for (auto& kvp : m_windows)
+	{
+		// If the window is hidden it can't contain the mouse
+		if (!kvp.second->IsShown())
+			continue;
+
+		if (kvp.second->m_window->GetAllocation().contains(mousePos))
+			return true;
+	}
+	return false;
 }
 
 GameWindow* GameWindow::GetWindow(const std::string& id)
@@ -83,8 +104,10 @@ void GameWindow::SetupWindowSignals()
 
 void GameWindow::Show(bool val)
 {
+	// if the windows state isn't actually changing
 	if (m_window->IsLocallyVisible() == val)
 	{
+		// Showing an already open window just pulls that window to the front
 		if (val)
 			UI::Singleton->BringToFront(m_window);
 		return;
@@ -92,9 +115,11 @@ void GameWindow::Show(bool val)
 
 	m_window->Show(val);
 
+	// Make sure the newly shown window is on top
 	if (val)
 		UI::Singleton->BringToFront(m_window);
 
+	// If the window is now hidden but previously contained the mouse
 	if (m_containsMouse && !val)
 		OnMouseLeave();
 }
