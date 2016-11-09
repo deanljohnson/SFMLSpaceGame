@@ -1,8 +1,9 @@
 #pragma once
 #include "ShipThrusters.h"
 #include "AnimatedSprite.h"
+#include <DefaultSerializeable.h>
 
-class ThrusterAnimator : public Component
+class ThrusterAnimator : public Component, public DefaultSerializeable<ThrusterAnimator>
 {
 private:
 	ShipThrusters& m_thrusters;
@@ -12,7 +13,9 @@ private:
 
 	void ApplyScale();
 public:
-	ThrusterAnimator(EntityID ent, const std::vector<AnimatedSprite*>& thrusters);
+	explicit ThrusterAnimator(EntityID ent, const std::vector<AnimatedSprite*>& thrusters = {});
 
 	virtual void Update() override;
+
+	void AddSprite(AnimatedSprite* sprite);
 };

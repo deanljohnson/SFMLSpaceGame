@@ -168,7 +168,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	MakeIntoShip(ent, PlayerData::GetActive()->GetPlayerShip(), p, radians, false);
 	
 	// This makes sure the the players ship stats stay loaded
-	ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(PlayerData::GetActive()->GetPlayerShip()));
+	//ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(PlayerData::GetActive()->GetPlayerShip()));
 
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
@@ -239,7 +239,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	ent->AddComponent<Rotation>(radians);
 	auto& sp = ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
-	ent->AddComponent<ShipThrusters, ShipThrust*>(shipStats->GetShipThrust());
+	ent->AddComponent<ShipThrusters, const std::string&>(shipName);
 	auto& shotSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
 	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
 	gun.SetSoundSource(&shotSound);
@@ -267,10 +267,10 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 
 	if (npc)
 	{
-		ent->AddComponent<ShipController, std::shared_ptr<ShipStats>>(shipStats);
+		ent->AddComponent<ShipController, const std::string&>(shipName);
 		// All ships can sense the player
 		ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(shipStats->GetSensorRange(), {PLAYER_GROUP});
-		ent->AddComponent<ShipAI, std::shared_ptr<ShipStats>>(shipStats);
+		ent->AddComponent<ShipAI, const std::string&>(shipName);
 	}
 
 	auto spriteBox = sp.GetDimensions();

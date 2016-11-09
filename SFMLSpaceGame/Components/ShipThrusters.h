@@ -38,6 +38,7 @@ class ShipThrusters : public Component
 {
 private:
 	Physics& m_physics;
+	std::string m_shipID;
 	ShipThrust* m_strength;
 	b2Vec2 m_currentMoveForce;
 	b2Vec2 m_lastMoveForce;
@@ -45,8 +46,30 @@ private:
 
 	float m_power; 
 
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_shipID, m_currentMoveForce, m_currentTorque, m_power);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<ShipThrusters>& construct)
+	{
+		EntityID selfID;
+		std::string shipID;
+		ar(selfID, shipID);
+		construct(selfID, shipID);
+
+		ar(construct->m_currentMoveForce,
+			construct->m_currentTorque,
+			construct->m_power);
+	}
+
 public:
-	ShipThrusters(EntityID ent, ShipThrust* thrust);
+	ShipThrusters(EntityID ent, const std::string& shipID);
 
 	virtual void Update() override;
 

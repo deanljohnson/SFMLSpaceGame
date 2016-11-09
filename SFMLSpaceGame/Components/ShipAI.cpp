@@ -10,9 +10,10 @@ namespace
 	const float HIGH_THRUSTER_POWER = 1.f;
 }
 
-ShipAI::ShipAI(EntityID ent, std::shared_ptr<ShipStats> stats) 
+ShipAI::ShipAI(EntityID ent, const std::string& stats) 
 	: Component(ent),
-      m_shipStats(stats),
+	  m_shipStatsID(stats),
+      m_shipStats(LoadShip(stats)),
 	  m_controller(entity->GetComponent<ShipController>()),
 	  m_position(entity->GetComponent<Position>())
 {

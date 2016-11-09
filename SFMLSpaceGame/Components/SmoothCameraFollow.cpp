@@ -7,14 +7,14 @@ SmoothCameraFollow::SmoothCameraFollow(EntityID ent)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>())
 {
-	m_LastPosition = m_position.position;
+	m_lastPosition = m_position.position;
 }
 
 void SmoothCameraFollow::Update()
 {
 	auto v = GAME_WINDOW->getView();
-	v.setCenter(MapWorldToPixel(m_LastPosition));
+	v.setCenter(MapWorldToPixel(m_lastPosition));
 	GAME_WINDOW->setView(v);
 
-	m_LastPosition = m_position.position;
+	m_lastPosition = m_position.position;
 }

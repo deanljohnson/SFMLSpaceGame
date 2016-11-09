@@ -7,11 +7,12 @@
 Sprite::Sprite(EntityID ent, const std::string& location)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
-	  m_rotation(entity->GetComponent<Rotation>())
+	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_location(location)
 {
 	m_batch = RenderBatch::Get(location);
 	m_batchIndex = m_batch->Add();
-
+	
 	auto rect = m_batch->GetTextureRect(m_batchIndex);
 
 	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));

@@ -7,12 +7,13 @@
 #include <assert.h>
 #include <EntityManager.h>
 
-ShipController::ShipController(EntityID ent, std::shared_ptr<ShipStats> stats) 
+ShipController::ShipController(EntityID ent, const std::string& shipStatsID)
 	: Component(ent),
 	  m_physics(entity->GetComponent<Physics>()),
 	  m_thrusters(entity->GetComponent<ShipThrusters>()),
 	  m_dirGuns(entity->GetComponent<DirectionalGun>()),
-	  m_stats(stats)
+	  m_statsID(shipStatsID),
+	  m_stats(LoadShip(m_statsID))
 {
 }
 

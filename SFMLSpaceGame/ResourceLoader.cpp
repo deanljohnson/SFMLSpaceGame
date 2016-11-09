@@ -245,7 +245,7 @@ std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id)
 	return elem;
 }
 
-std::shared_ptr<ShipStats> LoadShip(std::string name)
+std::shared_ptr<ShipStats> LoadShip(const std::string& name)
 {
 	auto it = loadedShips.find(name);
 	if (it != loadedShips.end())

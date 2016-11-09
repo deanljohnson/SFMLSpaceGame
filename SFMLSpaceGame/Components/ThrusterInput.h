@@ -2,7 +2,7 @@
 #include <Components/DirectionalKeyboardInput.h>
 #include <Components/ShipThrusters.h>
 
-class ThrusterInput : public Component
+class ThrusterInput : public Component, public DefaultSerializeable<ThrusterInput>
 {
 private:
 	DirectionalKeyboardInput& m_input;

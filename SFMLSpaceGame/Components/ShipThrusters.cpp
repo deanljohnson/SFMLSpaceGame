@@ -4,6 +4,8 @@
 #include <VectorMath.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>
+#include <ShipStats.h>
+#include <ResourceLoader.h>
 
 b2Vec2 ShipThrust::GetMoveForce(ThrustDirection dir)
 {
@@ -34,10 +36,11 @@ float ShipThrust::GetTurningForce(ThrustDirection dir)
 	return 0.f;
 }
 
-ShipThrusters::ShipThrusters(EntityID ent, ShipThrust* thrust) 
+ShipThrusters::ShipThrusters(EntityID ent, const std::string& shipID)
 	: Component(ent), 
 	  m_physics(entity->GetComponent<Physics>()),
-	  m_strength(thrust), 
+	  m_shipID(shipID),
+	  m_strength(LoadShip(shipID)->GetShipThrust()), 
 	  m_currentTorque(0.f), 
 	  m_power(1.f)
 {

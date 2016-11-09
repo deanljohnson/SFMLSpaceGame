@@ -4,7 +4,8 @@
 
 SoundSource::SoundSource(EntityID ent, ResourceID soundID)
 	: Component(ent),
-	  m_position(entity->GetComponent<Position>())
+	  m_position(entity->GetComponent<Position>()),
+	  m_soundID(soundID)
 {
 	m_soundBuffer = LoadSoundBuffer(soundID);
 

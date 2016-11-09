@@ -35,6 +35,7 @@ private:
 
 	ManeuverBitset m_activeBehaviours;
 
+	std::string m_statsID;
 	std::shared_ptr<ShipStats> m_stats;
 
 	void FollowTarget();
@@ -46,8 +47,29 @@ private:
 	void StrafeForAttack(ThrustDirection dir);
 	void StrafeToRearForAttack();
 
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_statsID, m_targetHandle.GetID());
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<ShipController>& construct)
+	{
+		EntityID selfID;
+		std::string statsID;
+		EntityID targetID;
+		ar(selfID, statsID, targetID);
+		construct(selfID, statsID);
+
+		construct->SetTarget(targetID);
+	}
+
 public:
-	ShipController(EntityID ent, std::shared_ptr<ShipStats> stats);
+	ShipController(EntityID ent, const std::string& shipStatsID);
 
 	virtual void Update() override;
 

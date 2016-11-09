@@ -11,7 +11,25 @@ private:
 
 	RenderBatch* m_batch{ nullptr };
 	BatchIndex* m_batchIndex;
+	std::string m_location;
 
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_location);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<Sprite>& construct)
+	{
+		EntityID selfID;
+		std::string location;
+		ar(selfID, location);
+		construct(selfID, location);
+	}
 public:
 	Sprite(EntityID ent, const std::string& location);
 	~Sprite();

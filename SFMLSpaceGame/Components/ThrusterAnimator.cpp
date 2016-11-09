@@ -23,6 +23,11 @@ void ThrusterAnimator::Update()
 	ApplyScale();
 }
 
+void ThrusterAnimator::AddSprite(AnimatedSprite* sprite)
+{
+	m_thrusterSprites.push_back(sprite);
+}
+
 void ThrusterAnimator::ApplyScale()
 {
 	float yScale = std::min(1.f, m_currentScale + .3f);

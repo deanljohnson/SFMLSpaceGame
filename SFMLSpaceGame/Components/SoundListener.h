@@ -2,8 +2,9 @@
 #include "Component.h"
 #include "Position.h"
 #include "Rotation.h"
+#include <DefaultSerializeable.h>
 
-class SoundListener : public Component
+class SoundListener : public Component, public DefaultSerializeable<SoundListener>
 {
 private:
 	Position& m_position;

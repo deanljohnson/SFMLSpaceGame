@@ -19,7 +19,7 @@ std::shared_ptr<TextureMap> LoadTextureMap(const std::string& name);
 std::shared_ptr<sf::Texture> LoadTexture(const std::string& name);
 std::shared_ptr<sf::Texture> LoadTexture(ResourceID id);
 
-std::shared_ptr<ShipStats> LoadShip(std::string name);
+std::shared_ptr<ShipStats> LoadShip(const std::string& name);
 
 std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id);
 std::shared_ptr<sf::Font> LoadFont(ResourceID id);
