@@ -7,12 +7,8 @@ class CollisionFilterComponent : public Component
 {
 private:
 	EntityHandle m_noCollision;
-	EntityID m_noCollisionID;
 
 public:
-	explicit CollisionFilterComponent(EntityID noCollision)
-		: m_noCollisionID(noCollision)
-	{}
-	virtual void Init() override;
+	CollisionFilterComponent(EntityID ent, EntityID noCollision);
 	bool ShouldCollide(Entity* other);
 };

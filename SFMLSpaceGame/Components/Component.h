@@ -1,9 +1,8 @@
 #pragma once
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <bitset>
-#include <array>
+#include <EntityHandle.h>
 
-class Entity;
 class Component;
 
 using ComponentID = size_t;
@@ -40,14 +39,14 @@ class Component
 private:
 	bool m_active{ true };
 public:
-	Component() : next(nullptr), entity(nullptr) {}
+	Component();
+	explicit Component(EntityID ent);
 
 	Component* next{ nullptr }; // allows multiple components of a single type on an entity
-	Entity* entity{ nullptr };
+	EntityHandle entity;
 
 	virtual ~Component(){};
 
-	virtual void Init(){}
 	virtual void Update(){};
 	virtual void OnDestroy(){};
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states){};

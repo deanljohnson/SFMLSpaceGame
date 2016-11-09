@@ -3,10 +3,11 @@
 #include <Entity.h>
 #include <WorldConstants.h>
 
-void SmoothCameraFollow::Init()
+SmoothCameraFollow::SmoothCameraFollow(EntityID ent)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>())
 {
-	m_position = &entity->GetComponent<Position>();
-	m_LastPosition = m_position->position;
+	m_LastPosition = m_position.position;
 }
 
 void SmoothCameraFollow::Update()
@@ -15,5 +16,5 @@ void SmoothCameraFollow::Update()
 	v.setCenter(MapWorldToPixel(m_LastPosition));
 	GAME_WINDOW->setView(v);
 
-	m_LastPosition = m_position->position;
+	m_LastPosition = m_position.position;
 }

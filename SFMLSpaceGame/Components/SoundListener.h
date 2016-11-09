@@ -6,9 +6,9 @@
 class SoundListener : public Component
 {
 private:
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
 public:
-	virtual void Init() override;
+	explicit SoundListener(EntityID ent);
 	virtual void Update() override;
 };

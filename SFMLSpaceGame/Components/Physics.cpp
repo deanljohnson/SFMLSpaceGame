@@ -26,33 +26,39 @@ void WrapBodyAngle(b2Body& body)
 	}
 }
 
+Physics::Physics(EntityID ent)
+	: Physics(ent, b2_dynamicBody, 1.0f)
+{}
+
+Physics::Physics(EntityID ent, b2BodyType t, float linearDamping)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_bodyType(t),
+	  m_linDamping(linearDamping)
+{
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(m_position.X(), m_position.Y());
+	bodyDef.angle = m_rotation.GetRadians();
+	bodyDef.type = m_bodyType;
+	bodyDef.fixedRotation = false;
+	bodyDef.linearDamping = m_linDamping;
+
+	m_body = GameState::world.CreateBody(&bodyDef);
+
+	m_body->SetUserData(entity.GetRawPointer());
+}
+
 Physics::~Physics()
 {
 	if (m_body != nullptr)
 		GameState::world.DestroyBody(m_body);
 }
 
-void Physics::Init()
-{
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-
-	b2BodyDef bodyDef;
-	bodyDef.position.Set(m_position->X(), m_position->Y());
-	bodyDef.angle = m_rotation->GetRadians();
-	bodyDef.type = m_bodyType;
-	bodyDef.fixedRotation = false;
-	bodyDef.linearDamping = m_linDamping;
-	
-	m_body = GameState::world.CreateBody(&bodyDef);
-
-	m_body->SetUserData(entity);
-}
-
 void Physics::Update()
 {
-	m_position->position = m_body->GetPosition();
-	m_rotation->SetRadians(m_body->GetAngle());
+	m_position.position = m_body->GetPosition();
+	m_rotation.SetRadians(m_body->GetAngle());
 }
 
 void Physics::SetPosition(const b2Vec2& v) 
@@ -112,5 +118,5 @@ void Physics::AddShape(const sf::Shape& s, float density, int categoryBits, int 
 	fixDef.filter.maskBits = collidesWithBits;
 	fixDef.isSensor = (categoryBits & IS_SENSOR) > 0;
 
-	m_body->CreateFixture(&fixDef);
+	auto f = m_body->CreateFixture(&fixDef);
 }

@@ -3,6 +3,11 @@
 #include <GameTime.h>
 #include <Entity.h>
 
+Lifetime::Lifetime(EntityID ent, float lifetime)
+	: Component(ent),
+	  m_lifetime(lifetime)
+{}
+
 void Lifetime::Update()
 {
 	m_lifetime -= GameTime::deltaTime;

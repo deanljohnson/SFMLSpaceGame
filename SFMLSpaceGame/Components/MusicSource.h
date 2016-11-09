@@ -6,10 +6,6 @@ class MusicSource : public Component
 {
 private:
 	sf::Music m_music;
-	std::string m_filename;
 public:
-	explicit MusicSource(const std::string& filename)
-		: m_filename(filename)
-	{}
-	virtual void Init() override;
+	MusicSource(EntityID ent, const std::string& filename);
 };

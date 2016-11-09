@@ -4,14 +4,17 @@
 #include <EntityManager.h>
 #include <EntityFactory.h>
 #include <VectorMath.h>
-#include <resource.h>
 #include <WorldConstants.h>
 
-void DirectionalGun::Init() 
+DirectionalGun::DirectionalGun(EntityID ent, DirectionalGunData* data)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_sprite(entity->GetComponent<Sprite>()),
+	  m_lastFiringTime(0),
+	  m_gunData(data)
 {
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-	m_sprite = &entity->GetComponent<Sprite>();
+	
 }
 
 void DirectionalGun::Update() 
@@ -30,12 +33,14 @@ void DirectionalGun::Shoot()
 	}
 
 	// fire a bullet for each hardpoint
-	b2Rot rot(m_rotation->GetRadians());
+	b2Rot rot(m_rotation.GetRadians());
 	for (auto hp : m_gunData->hardPoints)
 	{
 		// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
-		auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite->GetOrigin();
-		EntityFactory::CreateProjectile(PROJECTILE_LASER_ONE, entity->GetID(), m_position->position + Rotate(offset, rot), m_rotation->GetRadians() + hp.angleOffset);
+		auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
+		EntityFactory::CreateProjectile("LaserOne", entity->GetID(), 
+										m_position.position + Rotate(offset, rot), 
+										m_rotation.GetRadians() + hp.angleOffset);
 	}
 
 	if (m_shotSound != nullptr)

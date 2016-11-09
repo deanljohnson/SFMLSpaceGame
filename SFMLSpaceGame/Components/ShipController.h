@@ -26,11 +26,12 @@ using ManeuverBitset = std::bitset<COUNT>;
 class ShipController : public Component
 {
 private:
-	Physics* m_physics{ nullptr };
-	ShipThrusters* m_thrusters{ nullptr };
+	Physics& m_physics;
+	ShipThrusters& m_thrusters;
+	DirectionalGun& m_dirGuns;
+
 	Physics* m_target{ nullptr };
 	EntityHandle m_targetHandle;
-	DirectionalGun* m_dirGuns{ nullptr };
 
 	ManeuverBitset m_activeBehaviours;
 
@@ -46,11 +47,8 @@ private:
 	void StrafeToRearForAttack();
 
 public:
-	explicit ShipController(std::shared_ptr<ShipStats> stats)
-		: m_stats(stats)
-	{}
+	ShipController(EntityID ent, std::shared_ptr<ShipStats> stats);
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	void SetThrusterPower(float val);

@@ -9,7 +9,7 @@
 
 struct BatchIndex 
 {
-	BatchIndex(unsigned i)
+	explicit BatchIndex(unsigned i)
 		: index(i) 
 	{}
 	unsigned index;

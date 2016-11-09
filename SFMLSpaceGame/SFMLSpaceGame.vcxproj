@@ -179,10 +179,10 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationDefinition.cpp" />
     <ClCompile Include="Components\AnimatedSprite.cpp" />
-    <ClCompile Include="Components\Background.cpp" />
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
     <ClCompile Include="Components\CollisionFilterComponent.cpp" />
+    <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\DamageOnAttacked.cpp" />
     <ClCompile Include="Components\DirectionalGun.cpp" />
     <ClCompile Include="Components\DirectionalKeyboardInput.cpp" />
@@ -249,7 +249,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="Steering.cpp" />
-    <ClCompile Include="TextureAtlas.cpp" />
+    <ClCompile Include="TextureMap.cpp" />
     <ClCompile Include="UI\ColliderEditor.cpp" />
     <ClCompile Include="UI\ConfirmationDialog.cpp" />
     <ClCompile Include="UI\GameWindow.cpp" />
@@ -309,12 +309,13 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
+    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\StringDisplayHelper.h" />
-    <ClInclude Include="TextureAtlas.h" />
+    <ClInclude Include="TextureMap.h" />
     <ClInclude Include="UI\ColliderEditor.h" />
     <ClInclude Include="UI\ConfirmationDialog.h" />
     <ClInclude Include="UI\HardPointWidget.h" />
@@ -329,7 +330,6 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
-    <ClInclude Include="Components\Background.h" />
     <ClInclude Include="Box2D.h" />
     <ClInclude Include="Components\CirclePrimitive.h" />
     <ClInclude Include="Components\CollisionFilterComponent.h" />

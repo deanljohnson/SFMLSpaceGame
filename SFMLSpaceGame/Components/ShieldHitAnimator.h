@@ -16,18 +16,16 @@ private:
 	const char HIT_B = (char)225;
 	const char HIT_A = (char)225;
 
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
 
-	Shields* m_shields{ nullptr };
 	sf::VertexArray m_vertextArray;
 	sf::Transform m_transform;
 
 	void OnShieldHit(Shields::Direction dir, const b2Vec2& dif);
 public:
-	explicit ShieldHitAnimator(float radius);
+	ShieldHitAnimator(EntityID ent, float radius);
 
-	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 };

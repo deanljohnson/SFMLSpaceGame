@@ -2,6 +2,12 @@
 #include <Components/GameWorldClickListener.h>
 #include <GameState.h>
 
+GameWorldClickListener::GameWorldClickListener(EntityID ent)
+	: Component(ent),
+	  m_clickedState(None)
+{
+}
+
 void GameWorldClickListener::Update()
 {
 	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)

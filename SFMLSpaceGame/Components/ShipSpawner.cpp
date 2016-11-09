@@ -6,10 +6,26 @@
 #include <GameState.h>
 #include <PlayerData.h>
 
-void ShipSpawner::Init()
-{
-	m_position = &entity->GetComponent<Position>();
-}
+ShipSpawner::ShipSpawner(EntityID ent, float time, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector) 
+	: Component(ent), 
+	  m_type(SpawnType::Timed), 
+	  m_time(time), 
+	  m_counter(0.f),
+	  m_shipSelector(shipSelector), 
+	  m_locSelector(locSelector),
+	  m_position(entity->GetComponent<Position>()),
+	  m_spawningPlayer(false)
+{}
+
+ShipSpawner::ShipSpawner(EntityID ent, EventType eventType, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector, bool spawnPlayer) 
+	: Component(ent), 
+	  m_type(SpawnType::Event), 
+	  m_eventType(eventType), 
+	  m_shipSelector(shipSelector),
+	  m_locSelector(locSelector), 
+	  m_position(entity->GetComponent<Position>()),
+	  m_spawningPlayer(spawnPlayer)
+{}
 
 void ShipSpawner::Update()
 {
@@ -49,12 +65,12 @@ void ShipSpawner::Spawn()
 	if (!m_spawningPlayer)
 	{
 		auto shipName = m_shipSelector.Select();
-		auto loc = m_locSelector.Select(m_position->position);
+		auto loc = m_locSelector.Select(m_position.position);
 		EntityFactory::CreateShip(shipName, loc);
 	}
 	else
 	{
-		auto loc = m_locSelector.Select(m_position->position);
+		auto loc = m_locSelector.Select(m_position.position);
 		auto playerID = EntityFactory::CreatePlayer(loc);
 		PlayerData::GetActive()->SetID(playerID);
 

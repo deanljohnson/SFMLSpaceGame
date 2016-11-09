@@ -40,3 +40,8 @@ Entity* EntityHandle::operator->()
 {
 	return m_entity;
 }
+
+Entity* EntityHandle::GetRawPointer()
+{
+	return m_entity;
+}

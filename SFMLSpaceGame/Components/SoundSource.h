@@ -8,14 +8,10 @@
 class SoundSource : public Component
 {
 private:
-	Position* m_position{ nullptr };
-	std::shared_ptr<sf::SoundBuffer> m_soundBuffer{ nullptr };
+	Position& m_position;
+	std::shared_ptr<sf::SoundBuffer> m_soundBuffer;
 	sf::Sound m_sound;
-	ResourceID m_soundID;
 public:
-	explicit SoundSource(ResourceID soundID)
-		: m_soundID(soundID)
-	{}
-	virtual void Init() override;
+	SoundSource(EntityID ent, ResourceID soundID);
 	void Play();
 };

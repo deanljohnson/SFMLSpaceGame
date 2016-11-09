@@ -1,6 +1,6 @@
 #pragma once
 #include <EntityID.h>
-#include <string>
+//#include <string>
 
 class Entity;
 class EntityManager;
@@ -15,7 +15,7 @@ public:
 
 private:
 	EntityID m_ID;
-	std::string m_name;
+	//std::string m_name;
 	Entity* m_entity;
 
 public:
@@ -26,6 +26,7 @@ public:
 	bool IsValid();
 
 	Entity* operator->();
+	Entity* GetRawPointer();
 
 	EntityID GetID() const { return m_ID; };
 };

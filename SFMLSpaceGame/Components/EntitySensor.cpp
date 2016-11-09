@@ -3,10 +3,12 @@
 #include <Components/Physics.h>
 #include <CollisionGroups.h>
 
-void EntitySensor::Init() 
+EntitySensor::EntitySensor(EntityID ent, float radius, const std::initializer_list<Group>& groups)
+	: Component(ent), 
+	  m_physics(entity->GetComponent<Physics>()), 
+	  m_groups(groups),
+	  m_radius(radius)
 {
-	m_physics = &entity->GetComponent<Physics>();
-
 	b2FixtureDef fixDef;
 	fixDef.isSensor = true;
 	fixDef.filter.categoryBits = IS_SENSOR;
@@ -15,14 +17,14 @@ void EntitySensor::Init()
 	shape.m_radius = m_radius;
 	fixDef.shape = &shape;
 
-	m_sensingFixture = m_physics->GetBody()->CreateFixture(&fixDef);
+	m_sensingFixture = m_physics.GetBody()->CreateFixture(&fixDef);
 }
 
 void EntitySensor::Update() 
 {
 	sensedEntities.clear();
 
-	auto contactList = m_physics->GetBody()->GetContactList();
+	auto contactList = m_physics.GetBody()->GetContactList();
 
 	if (contactList == nullptr
 		|| contactList->other == nullptr) {

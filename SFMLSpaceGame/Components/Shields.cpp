@@ -4,14 +4,17 @@
 #include <VectorMath.h>
 #include <GameTime.h>
 
-void Shields::Init() 
+Shields::Shields(EntityID ent, ShieldData* data)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_activationMask(Direction::All),
+	  m_data(data),
+	  m_currentFrontStrength(m_data->FrontStrength),
+	  m_currentSideStrength(m_data->SideStrength),
+	  m_currentRearStrength(m_data->RearStrength),
+	  m_shieldHitCallback(nullptr)
 {
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-
-	m_currentFrontStrength = m_data->FrontStrength;
-	m_currentSideStrength = m_data->SideStrength;
-	m_currentRearStrength = m_data->RearStrength;
 }
 
 void Shields::Update() 
@@ -74,8 +77,8 @@ void Shields::Modify(Event& event)
 
 	// calculate the localized difference between the contact 
 	// point and our current location
-	auto dif = collisionPos - m_position->position;
-	b2Rot rot{ -m_rotation->GetRadians() };
+	auto dif = collisionPos - m_position.position;
+	b2Rot rot{ -m_rotation.GetRadians() };
 	dif = Rotate(dif, rot);
 	
 	if (dif.x > 0 

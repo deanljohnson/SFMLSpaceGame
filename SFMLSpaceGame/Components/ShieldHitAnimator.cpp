@@ -4,7 +4,10 @@
 #include <VectorMath.h>
 #include <GameTime.h>
 
-ShieldHitAnimator::ShieldHitAnimator(float radius)
+ShieldHitAnimator::ShieldHitAnimator(EntityID ent, float radius)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_rotation(entity->GetComponent<Rotation>())
 {
 	m_vertextArray.setPrimitiveType(sf::PrimitiveType::TriangleFan);
 
@@ -19,26 +22,20 @@ ShieldHitAnimator::ShieldHitAnimator(float radius)
 		m_vertextArray.append(sf::Vertex(AtAngleRad(curAngle) * radius, sf::Color::Transparent));
 		curAngle += VERT_ARC_LENGTH;
 	}
-}
 
-void ShieldHitAnimator::Init()
-{
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-
-	m_shields = &entity->GetComponent<Shields>();
-	m_shields->SetShieldHitCallback(
+	auto& m_shields = entity->GetComponent<Shields>();
+	m_shields.SetShieldHitCallback(
 		[this](Shields::Direction dir, const b2Vec2& dif)
-		{
-			OnShieldHit(dir, dif);
-		});
+	{
+		OnShieldHit(dir, dif);
+	});
 }
 
 void ShieldHitAnimator::Update()
 {
 	m_transform = sf::Transform();
-	m_transform.translate(m_position->X(), m_position->Y())
-		.rotate(m_rotation->GetDegrees());
+	m_transform.translate(m_position.X(), m_position.Y())
+		.rotate(m_rotation.GetDegrees());
 
 	m_visible = false;
 	for (int i = 0; i < m_vertextArray.getVertexCount(); i++)

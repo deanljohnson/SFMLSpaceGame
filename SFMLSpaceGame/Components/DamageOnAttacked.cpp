@@ -2,9 +2,18 @@
 #include <Components/DamageOnAttacked.h>
 #include <Entity.h>
 
-void DamageOnAttacked::Init()
+DamageOnAttacked::DamageOnAttacked(EntityID ent)
+	: Component(ent),
+	  m_health(entity->GetComponent<Health>()),
+	  m_modifiers()
 {
-	m_health = &entity->GetComponent<Health>();
+}
+
+DamageOnAttacked::DamageOnAttacked(EntityID ent, std::initializer_list<AttackedEventModifier*> modifiers)
+	: Component(ent),
+	  m_health(entity->GetComponent<Health>()),
+	  m_modifiers(modifiers)
+{
 }
 
 void DamageOnAttacked::Update()
@@ -26,5 +35,5 @@ void DamageOnAttacked::HandleAttack(Event& event)
 		m->Modify(event);
 	}
 
-	m_health->RemoveHealth(event.attacked.damage);
+	m_health.RemoveHealth(event.attacked.damage);
 }

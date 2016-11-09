@@ -6,9 +6,7 @@ class Lifetime : public Component
 private:
 	float m_lifetime;
 public:
-	explicit Lifetime(float lifetime)
-		: m_lifetime(lifetime)
-	{}
+	Lifetime(EntityID ent, float lifetime);
 
 	virtual void Update() override;
 };

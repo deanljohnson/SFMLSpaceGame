@@ -5,9 +5,15 @@
 class Health : public Component
 {
 private:
-	float m_maxHealth{ 100.f };
-	float m_health{ 100.f };
+	float m_maxHealth;
+	float m_health;
 public:
+	explicit Health(EntityID ent)
+		: Component(ent),
+		  m_maxHealth(100.f),
+		  m_health(100.f)
+	{
+	}
 
 	inline float GetHealth() const { return m_health; }
 	inline void SetHealth(float hp)

@@ -37,7 +37,7 @@ struct ShipThrust
 class ShipThrusters : public Component
 {
 private:
-	Physics* m_physics{ nullptr };
+	Physics& m_physics;
 	ShipThrust* m_strength;
 	b2Vec2 m_currentMoveForce;
 	b2Vec2 m_lastMoveForce;
@@ -46,11 +46,8 @@ private:
 	float m_power; 
 
 public:
-	explicit ShipThrusters(ShipThrust* thrust)
-		: m_strength(thrust), m_currentTorque(0.f), m_power(1.f)
-	{}
+	ShipThrusters(EntityID ent, ShipThrust* thrust);
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	// Set a multiplier to simulate the thrusters getting less power,

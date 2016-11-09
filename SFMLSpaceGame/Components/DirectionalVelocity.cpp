@@ -3,14 +3,17 @@
 #include <VectorMath.h>
 #include <Components/DirectionalVelocity.h>
 
-void DirectionalVelocity::Init()
+DirectionalVelocity::DirectionalVelocity(EntityID ent, float maxVel)
+	: Component(ent),
+	  m_input(entity->GetComponent<DirectionalKeyboardInput>()),
+	  m_physics(entity->GetComponent<Physics>()),
+	  m_maxVelocity(maxVel)
+	  
 {
-	m_physics = &entity->GetComponent<Physics>();
-	m_input = &entity->GetComponent<DirectionalKeyboardInput>();
 }
 
 void DirectionalVelocity::Update() 
 {
 	// Move a vector depending on the keyboard input
-	m_physics->SetVelocity(SFMLVecToB2Vec(m_input->input * m_maxVelocity));
+	m_physics.SetVelocity(SFMLVecToB2Vec(m_input.input * m_maxVelocity));
 }

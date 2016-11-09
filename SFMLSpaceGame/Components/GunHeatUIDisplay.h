@@ -7,18 +7,18 @@ template<typename TGunComponent>
 class GunHeatUIDisplay : public Component 
 {
 private:
-	Gun* m_gunType{ nullptr };
+	Gun& m_gunType;
 	sfg::ProgressBar::Ptr m_progressBar;
 
 public:
-	virtual void Init() override
+	explicit GunHeatUIDisplay(EntityID ent)
+		: Component(ent),
+		  m_gunType(entity->GetComponent<TGunComponent>())
 	{
 		static_assert(std::is_base_of<Gun, TGunComponent>::value,
 			"TGunComponent must implement Gun interface");
 		static_assert(std::is_base_of<Component, TGunComponent>::value,
 			"TGunComponent must inherit from Component");
-
-		m_gunType = &entity->GetComponent<TGunComponent>();
 
 		m_progressBar = sfg::ProgressBar::Create();
 		m_progressBar->SetRequisition({ 75.f, 25.f });
@@ -27,7 +27,7 @@ public:
 
 	virtual void Update() override
 	{
-		m_progressBar->SetFraction(m_gunType->GetNormalizedHeat());
+		m_progressBar->SetFraction(m_gunType.GetNormalizedHeat());
 	};
 
 	virtual void OnEnable() override

@@ -5,14 +5,15 @@
 #include <cereal\cereal.hpp>
 #include <cereal\types\map.hpp>
 
-class TextureAtlas 
+// Maps strings to a frame within a texture
+class TextureMap 
 {
 private:
 	std::map<std::string, sf::IntRect> m_rects;
 	std::shared_ptr<sf::Texture> m_texture;
 public:
-	TextureAtlas();
-	explicit TextureAtlas(std::shared_ptr<sf::Texture> tex);
+	TextureMap();
+	explicit TextureMap(std::shared_ptr<sf::Texture> tex);
 
 	sf::Texture* GetTexture();
 	void SetTexture(std::shared_ptr<sf::Texture> tex);

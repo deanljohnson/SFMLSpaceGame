@@ -2,6 +2,12 @@
 #include <Components/KeyListener.h>
 #include <GameState.h>
 
+KeyListener::KeyListener(EntityID ent, std::initializer_list<sf::Keyboard::Key> keys)
+	: Component(ent),
+	  m_keys(keys), 
+	  m_callbacks()
+{}
+
 void KeyListener::Update()
 {
 	for (auto& e : GameState::pendingEvents)

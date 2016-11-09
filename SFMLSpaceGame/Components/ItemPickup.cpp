@@ -2,14 +2,15 @@
 #include <Components/ItemPickup.h>
 #include <Entity.h>
 
-void ItemPickup::Init()
+ItemPickup::ItemPickup(EntityID ent)
+	: Component(ent),
+	  m_physics(entity->GetComponent<Physics>())
 {
-	m_physics = &entity->GetComponent<Physics>();
 }
 
 void ItemPickup::Update()
 {
-	auto body = m_physics->GetBody();
+	auto body = m_physics.GetBody();
 	if (body->GetContactList() == nullptr
 		|| body->GetContactList()->other == nullptr)
 		return;

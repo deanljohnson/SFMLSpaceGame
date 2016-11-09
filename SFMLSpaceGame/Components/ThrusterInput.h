@@ -5,9 +5,9 @@
 class ThrusterInput : public Component
 {
 private:
-	DirectionalKeyboardInput* m_input{ nullptr };
-	ShipThrusters* m_thrusters{ nullptr };
+	DirectionalKeyboardInput& m_input;
+	ShipThrusters& m_thrusters;
 public:
-	virtual void Init() override;
+	explicit ThrusterInput(EntityID ent);
 	virtual void Update() override;
 };

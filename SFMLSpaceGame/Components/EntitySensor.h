@@ -10,7 +10,7 @@ class EntitySensor : public Component, public ComponentSensor
 {
 private:
 	bool m_triggered{ false };
-	Physics* m_physics{ nullptr };
+	Physics& m_physics;
 	b2Fixture* m_sensingFixture{ nullptr };
 	std::vector<Group> m_groups;
 	float m_radius;
@@ -19,13 +19,9 @@ private:
 	void HandleCollisionWithEntity(Entity* ent);
 	void SetTriggered(bool val);
 public:
-	EntitySensor(float radius, const std::initializer_list<Group>& groups)
-		: m_groups(groups), m_radius(radius)
-	{}
+	EntitySensor(EntityID ent, float radius, const std::initializer_list<Group>& groups);
 
 	std::vector<Entity*> sensedEntities;
-
-	virtual void Init() override;
 	virtual void Update() override;
 
 	virtual void AddCallback(std::function<void(bool, Sensor*)> callback) override;

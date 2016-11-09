@@ -4,10 +4,10 @@
 class SmoothCameraFollow : public Component
 {
 private:
-	Position* m_position{ nullptr };
+	Position& m_position;
 	b2Vec2 m_LastPosition;
 
 public:
-	virtual void Init() override;
+	explicit SmoothCameraFollow(EntityID ent);
 	virtual void Update() override;
 };

@@ -10,9 +10,7 @@ private:
 	std::vector<MouseListener*> m_clickListeners;
 	std::vector<MouseListener*> m_heldListeners;
 public:
-	GameWorldClickListener()
-		: m_clickedState(None)
-	{}
+	explicit GameWorldClickListener(EntityID ent);
 
 	virtual void Update() override;
 

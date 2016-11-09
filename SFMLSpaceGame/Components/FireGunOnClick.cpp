@@ -5,14 +5,15 @@
 #include <Components/GameWorldClickListener.h>
 #include <Interfaces/Gun.h>
 
-void FireGunOnClick::Init() 
+FireGunOnClick::FireGunOnClick(EntityID ent)
+	: Component(ent)
 {
-	if (entity->HasComponent<DirectionalGun>()) 
+	if (entity->HasComponent<DirectionalGun>())
 	{
-		m_guns.push_back((Gun*)(&entity->GetComponent<DirectionalGun>()));
+		m_guns.push_back(static_cast<Gun*>(&entity->GetComponent<DirectionalGun>()));
 	}
 
-	if (entity->HasComponent<GameWorldClickListener>()) 
+	if (entity->HasComponent<GameWorldClickListener>())
 	{
 		auto gwcl = &entity->GetComponent<GameWorldClickListener>();
 		gwcl->AddClickListener(this);

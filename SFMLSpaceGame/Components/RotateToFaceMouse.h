@@ -5,15 +5,12 @@
 class RotateToFaceMouse : public Component
 {
 private:
-	Physics* m_physics{ nullptr };
-	ShipThrusters* m_thrusters{ nullptr };
+	Physics& m_physics;
+	ShipThrusters& m_thrusters;
 	float m_smoothingScale;
 
 public:
-	explicit RotateToFaceMouse(float smoothingScale)
-		: m_smoothingScale(smoothingScale)
-	{}
+	RotateToFaceMouse(EntityID ent, float smoothingScale);
 
-	virtual void Init() override;
 	virtual void Update() override;
 };

@@ -7,6 +7,9 @@ class AnimationDefinition
 private:
 	std::shared_ptr<sf::Texture> m_texture;
 	std::vector<sf::IntRect> m_frames;
+	// stores an additional rect per animation
+	// generally used for colliders
+	std::vector<sf::IntRect> m_contentRects; 
 	sf::Vector2f m_frameSize;
 	float m_length;
 
@@ -22,6 +25,16 @@ public:
 	inline sf::IntRect GetFrame(const int index) const
 	{
 		return m_frames[index];
+	}
+
+	inline sf::IntRect GetContentRect(const int index) const
+	{
+		return m_contentRects[index];
+	}
+
+	inline void SetContentRect(const int index, const sf::IntRect& rect)
+	{
+		m_contentRects[index] = rect;
 	}
 
 	inline sf::IntRect operator[](const int index) const

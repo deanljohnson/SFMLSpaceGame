@@ -3,9 +3,10 @@
 #include <Entity.h>
 #include <EntityManager.h>
 
-void CollisionFilterComponent::Init()
+CollisionFilterComponent::CollisionFilterComponent(EntityID ent, EntityID noCollision)
+	: Component(ent)
 {
-	m_noCollision = EntityManager::Get(m_noCollisionID);
+	m_noCollision = EntityManager::Get(noCollision);
 }
 
 bool CollisionFilterComponent::ShouldCollide(Entity* other)

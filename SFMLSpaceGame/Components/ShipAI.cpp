@@ -10,10 +10,12 @@ namespace
 	const float HIGH_THRUSTER_POWER = 1.f;
 }
 
-void ShipAI::Init()
+ShipAI::ShipAI(EntityID ent, std::shared_ptr<ShipStats> stats) 
+	: Component(ent),
+      m_shipStats(stats),
+	  m_controller(entity->GetComponent<ShipController>()),
+	  m_position(entity->GetComponent<Position>())
 {
-	m_controller = &entity->GetComponent<ShipController>();
-	m_position = &entity->GetComponent<Position>();
 }
 
 void ShipAI::Update()
@@ -39,25 +41,24 @@ void ShipAI::ProcessAIState()
 	switch(m_currentState)
 	{
 	case AIState::None:
-		m_controller->SetThrusterPower(LOW_THRUSTER_POWER);
+		m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
 		FindStation();
 		break;
 	case AIState::AttackingShip:
 		// target is dead or otherwise "gone"
 		if (!m_targetHandle.IsValid())
 		{
-			m_controller->Clear();
+			m_controller.Clear();
 			m_currentState = AIState::None;
 		}			
 		break;
 	case AIState::MovingToStation:
 		if (m_targetHandle.IsValid())
 		{
-			float dist = (*m_position - *m_stationPosition).LengthSquared();
+			float dist = (m_position - *m_stationPosition).LengthSquared();
 			if (dist < m_shipStats->GetApproachDistance() * m_shipStats->GetApproachDistance() * 1.15f)
 			{
 				m_lastStationReached = m_targetHandle.GetID();
-				m_stationPosition = nullptr;
 				m_currentState = AIState::None;
 			}
 		}
@@ -75,10 +76,10 @@ void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
 
 	m_targetHandle = ent;
 
-	m_controller->SetTarget(event.attackerID);
-	m_controller->Set(StrafeToTargetsRearForAttack);
-	m_controller->Set(FireGunsWhenFacingTarget);
-	m_controller->SetThrusterPower(HIGH_THRUSTER_POWER);
+	m_controller.SetTarget(event.attackerID);
+	m_controller.Set(StrafeToTargetsRearForAttack);
+	m_controller.Set(FireGunsWhenFacingTarget);
+	m_controller.SetThrusterPower(HIGH_THRUSTER_POWER);
 
 	m_currentState = AIState::AttackingShip;
 }
@@ -98,10 +99,9 @@ void ShipAI::FindStation()
 
 	m_targetHandle = EntityManager::Get(station->GetID());
 	m_stationPosition = &m_targetHandle->GetComponent<Position>();
-	m_controller->SetTarget(m_targetHandle->GetID());
-	m_controller->Set(Maneuvers::Approach);
-	m_controller->SetThrusterPower(LOW_THRUSTER_POWER);
+	m_controller.SetTarget(m_targetHandle->GetID());
+	m_controller.Set(Maneuvers::Approach);
+	m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
 
 	m_currentState = AIState::MovingToStation;
 }
-

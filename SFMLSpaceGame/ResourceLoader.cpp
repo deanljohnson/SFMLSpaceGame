@@ -14,7 +14,7 @@ namespace
 {
 	Serializer serializer = Serializer();
 
-	std::map<std::string, std::shared_ptr<TextureAtlas>> loadedTextureAtlases;
+	std::map<std::string, std::shared_ptr<TextureMap>> loadedTextureMaps;
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
 
@@ -24,16 +24,11 @@ namespace
 	std::map<std::string, std::shared_ptr<AnimationDefinition>> loadedAnimations;
 	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
-	std::map<ResourceID,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
+	std::map<std::string,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
 
 	bool IsShipID(ResourceID id) 
 	{
 		return id > SHIP_ID_START && id < SHIP_ID_END;
-	}
-
-	bool IsProjectileID(ResourceID id)
-	{
-		return id > PROJECTILE_ID_START && id < PROJECTILE_ID_END;
 	}
 
 	bool IsFontID(ResourceID id)
@@ -77,7 +72,7 @@ void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>&
 
 void UnloadUnusedResources()
 {
-	UnloadUnusedSharedPtrResources(loadedTextureAtlases);
+	UnloadUnusedSharedPtrResources(loadedTextureMaps);
 	UnloadUnusedSharedPtrResources(loadedTextures);
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
 	UnloadUnusedSharedPtrResources(loadedAnimations);
@@ -109,22 +104,22 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<TextureAtlas> LoadTextureAtlas(const std::string& name)
+std::shared_ptr<TextureMap> LoadTextureMap(const std::string& name)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedTextureAtlases.find(name);
-	if (it != loadedTextureAtlases.end())
+	auto it = loadedTextureMaps.find(name);
+	if (it != loadedTextureMaps.end())
 	{
 		return it->second;
 	}
 
 	auto tex = LoadTexture(name);
 
-	TextureAtlas* ta = serializer.Load<TextureAtlas>(name);
+	TextureMap* ta = serializer.Load<TextureMap>(name);
 	ta->SetTexture(tex);
 
-	auto elem = std::shared_ptr<TextureAtlas>(ta);
-	loadedTextureAtlases.insert(make_pair(name, elem));
+	auto elem = std::shared_ptr<TextureMap>(ta);
+	loadedTextureMaps.insert(make_pair(name, elem));
 
 	return elem;
 }
@@ -171,31 +166,6 @@ std::shared_ptr<sf::Texture> LoadTexture(ResourceID id)
 	return elem;
 }
 
-std::shared_ptr<AnimationDefinition> LoadAnimationResource(ResourceID id)
-{
-	//If the resource is already loaded, return it
-	auto it = loadedBuiltInAnimations.find(id);
-	if (it != loadedBuiltInAnimations.end())
-	{
-		return it->second;
-	}
-
-	std::shared_ptr<AnimationDefinition> animPtr;
-	switch (id)
-	{
-	case ANIMATION_EXHAUST_ONE:
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 1.f);
-		break;
-	default:
-		printf("The given ResourceID %d does not correspond to a recognized animation\n", id);
-		return nullptr;
-	}
-
-	loadedBuiltInAnimations.insert(make_pair(id, animPtr));
-
-	return animPtr;
-}
-
 std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id)
 {
 	//If the resource is already loaded, return it
@@ -209,6 +179,10 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 	if (id == "explosion-one")
 	{
 		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 3.f);
+	}
+	else if (id == "exhaust-one")
+	{
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 1.f);
 	}
 	else if (id == "asteroid-one")
 	{
@@ -286,22 +260,15 @@ std::shared_ptr<ShipStats> LoadShip(std::string name)
 	return elem;
 }
 
-std::shared_ptr<ProjectileStats> LoadProjectile(ResourceID id)
+std::shared_ptr<ProjectileStats> LoadProjectile(const std::string& id)
 {
-	assert(IsProjectileID(id));
-
 	auto it = loadedProjectiles.find(id);
 	if (it != loadedProjectiles.end())
 	{
 		return it->second;
 	}
 
-	if (id == PROJECTILE_LASER_ONE)
-	{
-		auto elem = std::make_shared<ProjectileStats>(*LoadLaserOne());
-		loadedProjectiles.insert(make_pair(id, elem));
-		return elem;
-	}
-
-	return nullptr;
+	auto elem = std::make_shared<ProjectileStats>(*serializer.Load<ProjectileStats>(id));
+	loadedProjectiles.insert(make_pair(id, elem));
+	return elem;
 }

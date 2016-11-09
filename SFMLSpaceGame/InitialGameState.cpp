@@ -46,12 +46,12 @@ void InitialGameState::Init()
 	AddEnemy();
 	AddEnemy();
 
-	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 0));
-	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(40, 0));
-	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(7, 40));
-	EntityFactory::CreateStation(STATION_HUMAN_ONE, b2Vec2(40, 40));
+	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 0));
+	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 0));
+	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 40));
+	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 40));
 
-	EntityFactory::CreateSpawner(5.f, SHIP_HUMAN_FIGHTER, b2Vec2(8.f, 8.f));
+	EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
 	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 
 	m_shipEditor.Show(false);

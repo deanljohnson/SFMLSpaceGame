@@ -4,6 +4,10 @@
 
 using Key = sf::Keyboard;
 
+DirectionalKeyboardInput::DirectionalKeyboardInput(EntityID ent)
+	: Component(ent)
+{}
+
 void DirectionalKeyboardInput::Update()
 {
 	sf::Vector2f dir;

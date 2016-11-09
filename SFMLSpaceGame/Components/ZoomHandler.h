@@ -10,6 +10,6 @@ private:
 	float m_zoomFactor{ 1.f };
 	float m_lastZoom{ 1.f };
 public:
-	virtual void Init() override;
+	explicit ZoomHandler(EntityID ent) : Component(ent){}
 	virtual void Update() override;
 };

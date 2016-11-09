@@ -4,27 +4,24 @@
 #include <Entity.h>
 #include <CollisionGroups.h>
 #include <GameState.h>
+#include <ResourceLoader.h>
 
-BulletPhysics::~BulletPhysics()
+BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string& projID)
+	: Component(ent), 
+	  m_position(entity->GetComponent<Position>()), 
+	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_sourceEntity(sourceEnt),
+	  m_projStats(LoadProjectile(projID))
 {
-	if (m_body != nullptr)
-		GameState::world.DestroyBody(m_body);
-}
-
-void BulletPhysics::Init()
-{
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-	
 	b2BodyDef bodyDef;
-	bodyDef.position.Set(m_position->X(), m_position->Y());
-	bodyDef.angle = m_rotation->GetRadians();
+	bodyDef.position.Set(m_position.X(), m_position.Y());
+	bodyDef.angle = m_rotation.GetRadians();
 	bodyDef.fixedRotation = true;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.bullet = true;
-	
+
 	m_body = GameState::world.CreateBody(&bodyDef);
-	
+
 	b2FixtureDef fixDef;
 	fixDef.density = 1.f;
 	fixDef.isSensor = true;
@@ -34,10 +31,16 @@ void BulletPhysics::Init()
 	b2PolygonShape shape;
 	shape.SetAsBox(m_projStats->GetSize().x / 2.f, m_projStats->GetSize().y / 2.f);
 	fixDef.shape = &shape;
-	
+
 	m_body->CreateFixture(&fixDef);
 
-	m_body->SetUserData(entity);
+	m_body->SetUserData(entity.GetRawPointer());
+}
+
+BulletPhysics::~BulletPhysics()
+{
+	if (m_body != nullptr)
+		GameState::world.DestroyBody(m_body);
 }
 
 void BulletPhysics::Update()
@@ -46,12 +49,12 @@ void BulletPhysics::Update()
 		return;
 
 	// Store pos/rot from physics body into pos/rot components
-	m_position->position = m_body->GetPosition();
-	m_rotation->SetRadians(m_body->GetAngle());
+	m_position.position = m_body->GetPosition();
+	m_rotation.SetRadians(m_body->GetAngle());
 
 	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
 	// Move the bullet forward at full speed
-	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation->GetRadians()), sin(m_rotation->GetRadians())) * m_projStats->GetSpeed());
+	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation.GetRadians()), sin(m_rotation.GetRadians())) * m_projStats->GetSpeed());
 }
 
 bool BulletPhysics::HandleCollisions()
@@ -82,8 +85,8 @@ bool BulletPhysics::HandleCollisions()
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
 				attackedEvent.attacked.damage = m_projStats->GetDamage();
-				attackedEvent.attacked.collisionX = m_position->X();
-				attackedEvent.attacked.collisionY = m_position->Y();
+				attackedEvent.attacked.collisionX = m_position.X();
+				attackedEvent.attacked.collisionY = m_position.Y();
 				attackedEvent.type = EventType::Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}

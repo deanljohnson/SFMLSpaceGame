@@ -6,16 +6,13 @@
 class RectPrimitive : public Component
 {
 private:
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
 	sf::RectangleShape m_shape;
 
 public:
-	RectPrimitive(float w, float h) 
-		: m_shape(sf::Vector2f(w, h)) 
-	{}
+	RectPrimitive(EntityID ent, float w, float h);
 
-	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 	

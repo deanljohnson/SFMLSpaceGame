@@ -7,11 +7,12 @@ class Item;
 class ItemPickup : public Component
 {
 private:
-	Physics* m_physics{ nullptr };
+	Physics& m_physics;
 
 	std::vector<Item> m_items;
 public:
-	virtual void Init() override;
+	explicit ItemPickup(EntityID ent);
+
 	virtual void Update() override;
 
 	void AddItem(const Item& item);

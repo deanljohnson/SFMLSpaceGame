@@ -2,8 +2,9 @@
 #include <Components/Text.h>
 #include <UI/UI.h>
 
-Text::Text(const std::string& text)
-	: m_label(sfg::Label::Create(text))
+Text::Text(EntityID ent, const std::string& text)
+	: Component(ent),
+	  m_label(sfg::Label::Create(text))
 {
 	m_label->SetPosition(sf::Vector2f((UI::Singleton->GetSize().x / 2.f) - m_label->GetAllocation().width / 2.f, UI::Singleton->GetSize().y - 300.f));
 	UI::Singleton->Add(m_label);

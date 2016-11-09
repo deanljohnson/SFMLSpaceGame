@@ -4,28 +4,17 @@
 
 class ParallaxMovement : public Component
 {
-public:
-	ParallaxMovement(const ParallaxMovement& other) = delete;
-	ParallaxMovement(ParallaxMovement&& other) = delete;
-	ParallaxMovement& operator=(const ParallaxMovement& other) = delete;
-	ParallaxMovement& operator=(ParallaxMovement&& other) = delete;
 private:
-	Position* m_position{ nullptr };
-	Position* m_targetPosition{ nullptr };
-	EntityID m_targetID;
 	EntityHandle m_targetHandle;
+	Position& m_position;
+	Position& m_targetPosition;
 	float m_movementScale;
 
 	b2Vec2 m_targetLastPosition;
 
 public:
-	explicit ParallaxMovement(EntityID target, float movementScale)
-		: m_targetID(target),
-		  m_movementScale(movementScale)
-	{
-	}
+	ParallaxMovement(EntityID ent, EntityID target, float movementScale);
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	void SetTarget(const EntityHandle& targetHandle);

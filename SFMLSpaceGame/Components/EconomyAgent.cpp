@@ -4,8 +4,10 @@
 #include <Economy.h>
 #include <Entity.h>
 
-EconomyAgent::EconomyAgent()
-	: m_id(EconomyID::Create())
+EconomyAgent::EconomyAgent(EntityID ent)
+	: Component(ent),
+	  m_id(EconomyID::Create()),
+	  m_inventory(entity->GetComponent<Inventory>())
 {
 	Economy::AddAgent(*this);
 }
@@ -14,12 +16,6 @@ EconomyAgent::~EconomyAgent()
 {
 	Economy::RemoveAgent(*this);
 }
-
-void EconomyAgent::Init()
-{
-	m_inventory = &entity->GetComponent<Inventory>();
-}
-
 EconomyID EconomyAgent::GetEconomyID() const
 {
 	return m_id;
@@ -27,22 +23,22 @@ EconomyID EconomyAgent::GetEconomyID() const
 
 void EconomyAgent::AddItem(const Item& item)
 {
-	m_inventory->AddItem(item);
+	m_inventory.AddItem(item);
 }
 
 void EconomyAgent::RemoveItem(const Item& item)
 {
-	m_inventory->RemoveItem(item);
+	m_inventory.RemoveItem(item);
 }
 
 void EconomyAgent::GiveCredits(unsigned int credits) 
 {
-	m_inventory->SetCredits(m_inventory->GetCredits() + credits);
+	m_inventory.SetCredits(m_inventory.GetCredits() + credits);
 }
 
 void EconomyAgent::TakeCredits(unsigned int credits)
 {
-	m_inventory->SetCredits(m_inventory->GetCredits() - credits);
+	m_inventory.SetCredits(m_inventory.GetCredits() - credits);
 }
 
 bool EconomyAgent::Buys(ItemType itemType)

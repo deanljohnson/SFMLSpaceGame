@@ -13,11 +13,6 @@ namespace
 	}
 }
 
-void ZoomHandler::Init()
-{
-	
-}
-
 void ZoomHandler::Update()
 {
 	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)

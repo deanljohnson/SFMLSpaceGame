@@ -17,7 +17,7 @@ private:
 	ShipResourceSelector m_shipSelector;
 	SpawnLocationSelector m_locSelector;
 
-	Position* m_position{ nullptr };
+	Position& m_position;
 
 	bool m_spawningPlayer;
 	
@@ -27,16 +27,8 @@ private:
 	void DoEvent();
 
 public:
-	ShipSpawner(float time, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector)
-		: m_type(SpawnType::Timed), m_time(time), m_counter(0.f), 
-		  m_shipSelector(shipSelector), m_locSelector(locSelector),
-		  m_spawningPlayer(false)
-	{}
-	ShipSpawner(EventType eventType, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector, bool spawnPlayer = false)
-		: m_type(SpawnType::Event), m_eventType(eventType), m_shipSelector(shipSelector), 
-		  m_locSelector(locSelector), m_spawningPlayer(spawnPlayer)
-	{}
+	ShipSpawner(EntityID ent, float time, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector);
+	ShipSpawner(EntityID ent, EventType eventType, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector, bool spawnPlayer = false);
 
-	virtual void Init() override;
 	virtual void Update() override;
 };

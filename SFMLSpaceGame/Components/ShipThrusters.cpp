@@ -34,9 +34,13 @@ float ShipThrust::GetTurningForce(ThrustDirection dir)
 	return 0.f;
 }
 
-void ShipThrusters::Init()
+ShipThrusters::ShipThrusters(EntityID ent, ShipThrust* thrust) 
+	: Component(ent), 
+	  m_physics(entity->GetComponent<Physics>()),
+	  m_strength(thrust), 
+	  m_currentTorque(0.f), 
+	  m_power(1.f)
 {
-	m_physics = &entity->GetComponent<Physics>();
 }
 
 void ShipThrusters::Update()
@@ -48,7 +52,7 @@ void ShipThrusters::Update()
 									b2Vec2(-m_strength->Reverse, -m_strength->Side) * m_power, 
 									b2Vec2(m_strength->Forward, m_strength->Side) * m_power);
 
-		b2Body* b = m_physics->GetBody();
+		b2Body* b = m_physics.GetBody();
 		b->ApplyForceToCenter(Rotate(m_currentMoveForce * GameTime::deltaTime, b->GetAngle()), true);
 
 		m_lastMoveForce = m_currentMoveForce;
@@ -60,7 +64,7 @@ void ShipThrusters::Update()
 		// Don't steer more than the thruster strength in any direction
 		m_currentTorque = std::max(-m_strength->Steer * m_power, std::min(m_currentTorque, m_strength->Steer * m_power));
 		
-		b2Body* b = m_physics->GetBody();
+		b2Body* b = m_physics.GetBody();
 		b->ApplyTorque(m_currentTorque * GameTime::deltaTime, true);
 		m_currentTorque = 0.f;
 	}
@@ -122,8 +126,8 @@ void ShipThrusters::SteerTowardsHeading(b2Vec2 heading, float lookAheadFactor)
 void ShipThrusters::SteerTowardsAngle(float angle, float lookAheadFactor)
 {
 	// figure where our current angular velocity is taking us
-	float nextAngle = m_physics->GetRotationRadians()
-		+ (m_physics->GetAngularVelocity() / lookAheadFactor);
+	float nextAngle = m_physics.GetRotationRadians()
+		+ (m_physics.GetAngularVelocity() / lookAheadFactor);
 	float totalRotation = angle - nextAngle;
 
 	// constrain rotation to (-M_PI, M_PI)

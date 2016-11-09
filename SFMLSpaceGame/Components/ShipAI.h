@@ -9,11 +9,11 @@ private:
 	enum class AIState{ None, AttackingShip, MovingToStation } m_currentState { AIState::None };
 
 	EntityID m_lastStationReached{ ENTITY_ID_NULL };
-	Position* m_stationPosition{ nullptr };
+	Position* m_stationPosition;
 
 	std::shared_ptr<ShipStats> m_shipStats;
-	ShipController* m_controller{ nullptr };
-	Position* m_position{ nullptr };
+	ShipController& m_controller;
+	Position& m_position;
 	EntityHandle m_targetHandle;
 
 	void ProcessEvents();
@@ -22,9 +22,6 @@ private:
 
 	void FindStation();
 public:
-	explicit ShipAI(std::shared_ptr<ShipStats> stats)
-		: m_shipStats(stats)
-	{}
-	virtual void Init() override;
+	explicit ShipAI(EntityID ent, std::shared_ptr<ShipStats> stats);
 	virtual void Update() override;
 };

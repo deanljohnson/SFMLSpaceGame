@@ -40,8 +40,8 @@ public:
 		All = 0x7 
 	};
 private:
-	Position* m_position;
-	Rotation* m_rotation;
+	Position& m_position;
+	Rotation& m_rotation;
 	Direction m_activationMask;
 	ShieldData* m_data;
 
@@ -58,18 +58,8 @@ private:
 	std::function<void(Direction, const b2Vec2&)> m_shieldHitCallback{nullptr};
 
 public:
-	explicit Shields(ShieldData* data)
-		: m_position(nullptr),
-		  m_rotation(nullptr),
-		  m_activationMask(Direction::All),
-		  m_data(data),
-		  m_currentFrontStrength(0),
-		  m_currentSideStrength(0),
-		  m_currentRearStrength(0),
-		  m_shieldHitCallback(nullptr)
-	{}
+	Shields(EntityID ent, ShieldData* data);
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	void SetActive(Direction dir);

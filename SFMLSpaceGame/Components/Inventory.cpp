@@ -3,7 +3,8 @@
 #include <Event.h>
 #include <Entity.h>
 
-Inventory::Inventory()
+Inventory::Inventory(EntityID ent)
+	: Component(ent)
 {
 	Item i;
 	i.type = ItemType::Credits;

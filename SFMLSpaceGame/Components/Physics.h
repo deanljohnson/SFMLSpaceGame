@@ -9,23 +9,17 @@ class Rotation;
 class Physics : public Component
 {
 private:
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
 	b2Body* m_body{ nullptr };
 	b2BodyType m_bodyType;
 	float m_linDamping;
 
 public:
-	Physics() 
-		: m_bodyType(b2_dynamicBody), m_linDamping(0.f)
-	{}
-
-	explicit Physics(b2BodyType t, float linearDamping) 
-		: m_bodyType(t), m_linDamping(linearDamping)
-	{}
+	explicit Physics(EntityID ent);
+	Physics(EntityID ent, b2BodyType t, float linearDamping);
 	~Physics();
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	void SetPosition(const b2Vec2& v);

@@ -5,12 +5,9 @@
 class ParallaxTargetAssigner : public Component
 {
 private:
-	ParallaxMovement* m_parallax;
+	ParallaxMovement& m_parallax;
 public:
-	ParallaxTargetAssigner() 
-		: m_parallax(nullptr)
-	{}
+	explicit ParallaxTargetAssigner(EntityID ent);
 
-	void Init() override;
 	void Update() override;
 };

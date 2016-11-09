@@ -8,7 +8,7 @@ class Inventory : public Component
 private:
 	std::vector<Item> m_items;
 public:
-	Inventory();
+	explicit Inventory(EntityID ent);
 
 	virtual void Update() override;
 

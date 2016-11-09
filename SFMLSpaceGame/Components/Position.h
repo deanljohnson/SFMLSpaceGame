@@ -7,8 +7,8 @@ class Position : public Component
 public:
 	b2Vec2 position;
 
-	Position() : position(b2Vec2(0, 0)){}
-	explicit Position(const b2Vec2& p) : position(p){}
+	explicit Position(EntityID ent) : Component(ent), position(b2Vec2(0, 0)){}
+	Position(EntityID ent, const b2Vec2& p) : Component(ent), position(p){}
 
 	float X() const noexcept { return position.x; }
 	float Y() const noexcept { return position.y; }

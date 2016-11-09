@@ -89,10 +89,10 @@ EntityID EntityFactory::CreateBackground(ResourceID backgroundID, EntityID paral
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateProjectile(ResourceID projId, EntityID sourceEntity, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateProjectile(const std::string& projId, EntityID sourceEntity, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(PROJECTILE_GROUP);
-	MakeIntoBullet(ent, PROJECTILE_LASER_ONE, sourceEntity, p, radians);
+	MakeIntoBullet(ent, "LaserOne", sourceEntity, p, radians);
 	return ent.GetID();
 }
 
@@ -103,7 +103,7 @@ EntityID EntityFactory::CreateShip(const std::string& shipName, const b2Vec2& p,
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateStation(ResourceID stationID, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateStation(const std::string& stationID, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(STATION_GROUP);
 	MakeIntoStation(ent, stationID, p, radians);
@@ -138,11 +138,11 @@ EntityID EntityFactory::CreatPickup(const std::string& pickupType, const b2Vec2&
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateSpawner(float time, ResourceID shipID, const b2Vec2& pos)
+EntityID EntityFactory::CreateSpawner(float time, const std::string& shipID, const b2Vec2& pos)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<Position>(pos);
-	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector(std::string("Human-Fighter")), SpawnLocationSelector());
+	ent->AddComponent<ShipSpawner, float, ShipResourceSelector, SpawnLocationSelector>(time, ShipResourceSelector(shipID), SpawnLocationSelector());
 	return ent.GetID();
 }
 
@@ -220,13 +220,13 @@ void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundI
 	ent->AddComponent<ParallaxTargetAssigner>();
 }
 
-void EntityFactory::MakeIntoBullet(EntityHandle& ent, ResourceID id, EntityID sourceEntity, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(EntityHandle& ent, const std::string& id, EntityID sourceEntity, const b2Vec2& p, float radians)
 {
 	auto projStats = LoadProjectile(id);
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, EntityID, const std::shared_ptr<ProjectileStats>&>(sourceEntity, projStats);
+	ent->AddComponent<BulletPhysics, EntityID, const std::string&>(sourceEntity, id);
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
 	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
@@ -290,7 +290,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto sprites = std::vector<AnimatedSprite*>();
 	for (auto tl : shipStats->GetThrusterLocations())
 	{
-		auto& as = ent->AddComponent<AnimatedSprite, int>(ANIMATION_EXHAUST_ONE, OriginOption::MiddleRight);
+		auto& as = ent->AddComponent<AnimatedSprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
 		as.SetOffset(SFMLVecToB2Vec((tl* METERS_PER_PIXEL) - origin));
 
 		sprites.push_back(&as);
@@ -315,12 +315,12 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	};
 }
 
-void EntityFactory::MakeIntoStation(EntityHandle& ent, ResourceID stationID, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p, float radians)
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
 
-	auto& sp = ent->AddComponent<Sprite, ResourceID>(stationID);
+	auto& sp = ent->AddComponent<Sprite, const std::string&>(stationID);
 	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 	ent->AddComponent<Inventory>();
 	auto& econAgent = ent->AddComponent<EconomyAgent>();

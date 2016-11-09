@@ -6,19 +6,21 @@
 #include <WorldConstants.h>
 #include <VectorMath.h>
 
-void TilingBackground::Init()
+TilingBackground::TilingBackground(EntityID ent, ResourceID resourceID)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_resourceID(resourceID)
 {
-	m_position = &entity->GetComponent<Position>();
 	m_tex = LoadTexture(m_resourceID);
 	m_sprite = sf::Sprite(*m_tex.get());
 
 	//scale to be in terms of meters - the render function will scale back to pixels
-	m_sprite.scale(2.f * METERS_PER_PIXEL, 2.f * METERS_PER_PIXEL); 
+	m_sprite.scale(2.f * METERS_PER_PIXEL, 2.f * METERS_PER_PIXEL);
 }
 
 void TilingBackground::Update()
 {
-	m_sprite.setPosition(B2VecToSFMLVec(m_position->position));
+	m_sprite.setPosition(B2VecToSFMLVec(m_position.position));
 }
 
 void TilingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)

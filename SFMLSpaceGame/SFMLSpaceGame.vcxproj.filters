@@ -84,9 +84,6 @@
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Background.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Components\CirclePrimitive.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -300,9 +297,6 @@
     <ClCompile Include="UI\StationWindow.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TextureAtlas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\InventoryItemWidget.cpp">
       <Filter>Source Files\UI\InventoryElements</Filter>
     </ClCompile>
@@ -329,6 +323,12 @@
     </ClCompile>
     <ClCompile Include="EconomyID.cpp">
       <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Component.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,9 +361,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Background.h">
-      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\CirclePrimitive.h">
       <Filter>Header Files\Components</Filter>
@@ -644,9 +641,6 @@
     <ClInclude Include="UI\StationTradeWindow.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAtlas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\InventoryItemWidget.h">
       <Filter>Header Files\UI\InventoryElements</Filter>
     </ClInclude>
@@ -679,6 +673,12 @@
     </ClInclude>
     <ClInclude Include="PriceSupplier.h">
       <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

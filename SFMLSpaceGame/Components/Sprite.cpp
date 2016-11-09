@@ -4,16 +4,20 @@
 #include <WorldConstants.h>
 #include <VectorMath.h>
 
-Sprite::Sprite(ResourceID id)
-{
-	m_batch = RenderBatch::Get(id);
-	m_batchIndex = m_batch->Add();
-}
-
-Sprite::Sprite(const std::string& location)
+Sprite::Sprite(EntityID ent, const std::string& location)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
+	  m_rotation(entity->GetComponent<Rotation>())
 {
 	m_batch = RenderBatch::Get(location);
 	m_batchIndex = m_batch->Add();
+
+	auto rect = m_batch->GetTextureRect(m_batchIndex);
+
+	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batch->SetOrigin(m_batchIndex, sf::Vector2f(rect.width / 2.f, rect.height / 2.f));
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
+	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
 }
 
 Sprite::~Sprite()
@@ -21,23 +25,10 @@ Sprite::~Sprite()
 	m_batch->Remove(m_batchIndex);
 }
 
-void Sprite::Init()
-{
-	m_position = &entity->GetComponent<Position>();
-	m_rotation = &entity->GetComponent<Rotation>();
-
-	auto rect = m_batch->GetTextureRect(m_batchIndex);
-
-	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
-	m_batch->SetOrigin(m_batchIndex, sf::Vector2f(rect.width / 2.f, rect.height / 2.f));
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position));
-	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
-}
-
 void Sprite::Update()
 {
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position->position));
-	m_batch->SetRotation(m_batchIndex, m_rotation->GetRadians());
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
+	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
 }
 
 sf::FloatRect Sprite::GetDimensions() const

@@ -3,7 +3,7 @@
 #include <Item.h>
 #include <ItemPrice.h>
 #include <SFGUI\Widget.hpp>
-#include <TextureAtlas.h>
+#include <TextureMap.h>
 #include <SFGUI\PrimitiveTexture.hpp>
 
 class InventoryItemWidget : public sfg::Widget
@@ -37,6 +37,6 @@ private:
 	bool m_priceSet;
 
 	static int m_widgetCount;
-	static std::shared_ptr<TextureAtlas> m_atlas;
+	static std::shared_ptr<TextureMap> m_atlas;
 	static std::shared_ptr<sfg::PrimitiveTexture> m_guiTexture;
 };

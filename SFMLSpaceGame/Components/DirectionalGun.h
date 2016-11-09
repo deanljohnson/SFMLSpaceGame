@@ -75,20 +75,17 @@ struct DirectionalGunData
 class DirectionalGun : public Component, public Gun
 {
 private:
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
-	Sprite* m_sprite{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
+	Sprite& m_sprite;
 	SoundSource* m_shotSound{ nullptr };
 	float m_lastFiringTime;
 	DirectionalGunData* m_gunData;
 	float m_currentHeat{ 0.f };
 
 public:
-	explicit DirectionalGun(DirectionalGunData* data)
-		: m_lastFiringTime(0), m_gunData(data)
-	{}
+	DirectionalGun(EntityID ent, DirectionalGunData* data);
 
-	virtual void Init() override;
 	virtual void Update() override;
 
 	virtual void Shoot() override;

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <array>
 #include <functional>
 #include <Components/Component.h>
 #include <Box2D/Dynamics/b2World.h>
@@ -92,10 +93,7 @@ public:
 		//assert(!HasComponent<T>());
 
 		//Call the components constructor with the given args
-		T* c(new T(std::forward<TArgs>(args)...));
-
-		//Set the owner to this
-		c->entity = this;
+		T* c(new T(m_id, std::forward<TArgs>(args)...));
 
 		//wrap the raw pointer
 		std::unique_ptr<Component> uPtr{ c };
@@ -116,9 +114,6 @@ public:
 			m_componentArray[GetComponentTypeID<T>()] = c;
 			m_componentBitset[GetComponentTypeID<T>()] = true;
 		}
-		
-
-		c->Init();
 
 		//return in case caller needs this
 		return *c;

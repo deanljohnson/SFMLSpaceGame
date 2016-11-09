@@ -11,8 +11,10 @@ AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, c
 		for (int i = 0; i < m_texture->getSize().x / frameSize.x; i++)
 		{
 			m_frames.push_back(sf::IntRect(frameSize.x * i, frameSize.y * j, frameSize.x, frameSize.y));
+			m_contentRects.push_back(sf::IntRect(frameSize.x * i, frameSize.y * j, frameSize.x, frameSize.y));
 		}
 	}
 
 	m_frames.shrink_to_fit();
+	m_contentRects.shrink_to_fit();
 }

@@ -7,11 +7,13 @@
 #include <assert.h>
 #include <EntityManager.h>
 
-void ShipController::Init()
+ShipController::ShipController(EntityID ent, std::shared_ptr<ShipStats> stats) 
+	: Component(ent),
+	  m_physics(entity->GetComponent<Physics>()),
+	  m_thrusters(entity->GetComponent<ShipThrusters>()),
+	  m_dirGuns(entity->GetComponent<DirectionalGun>()),
+	  m_stats(stats)
 {
-	m_physics = &entity->GetComponent<Physics>();
-	m_thrusters = &entity->GetComponent<ShipThrusters>();
-	m_dirGuns = &entity->GetComponent<DirectionalGun>();
 }
 
 void ShipController::Update()
@@ -50,14 +52,14 @@ void ShipController::ApproachTarget()
 
 void ShipController::FireGuns()
 {
-	m_dirGuns->Shoot();
+	m_dirGuns.Shoot();
 }
 
 void ShipController::FireGunsWhenFacingTarget() 
 {
 	assert(m_target != nullptr);
-	b2Vec2 heading = m_physics->GetHeading();
-	b2Vec2 toTarget = m_target->GetPosition() - m_physics->GetPosition();
+	b2Vec2 heading = m_physics.GetHeading();
+	b2Vec2 toTarget = m_target->GetPosition() - m_physics.GetPosition();
 	toTarget.Normalize();
 
 	// If heading is within 15 degrees of the toTarget vector
@@ -85,7 +87,7 @@ void ShipController::StrafeToRearForAttack()
 
 	b2Vec2 targetPos = m_target->GetPosition();
 
-	if (IsRight(m_physics->GetPosition(), targetPos, (targetPos -m_target->GetHeading())))
+	if (IsRight(m_physics.GetPosition(), targetPos, (targetPos -m_target->GetHeading())))
 	{
 		StrafeForAttack(Right);
 	}
@@ -94,7 +96,7 @@ void ShipController::StrafeToRearForAttack()
 
 void ShipController::SetThrusterPower(float val)
 {
-	m_thrusters->SetPower(val);
+	m_thrusters.SetPower(val);
 }
 
 void ShipController::Set(Maneuvers maneuver, bool val)

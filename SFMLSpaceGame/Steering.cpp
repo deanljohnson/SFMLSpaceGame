@@ -14,31 +14,31 @@ b2Vec2 Steering::Flee(const b2Vec2& current, const b2Vec2& target)
 	return -Seek(current, target);
 }
 
-b2Vec2 Steering::Pursue(Physics* self, Physics* target, float lead)
+b2Vec2 Steering::Pursue(Physics& self, Physics* target, float lead)
 {
-	b2Vec2 dif = target->GetPosition() - self->GetPosition();
+	b2Vec2 dif = target->GetPosition() - self.GetPosition();
 	float t = dif.Length() / lead;
 
 	b2Vec2 future = target->GetPosition() + (target->GetVelocity() * t);
 
-	b2Vec2 ret = future - self->GetPosition();
+	b2Vec2 ret = future - self.GetPosition();
 	ret.Normalize();
 	return ret;
 }
 
-b2Vec2 Steering::Evade(Physics* self, Physics* target, float maxSpeed)
+b2Vec2 Steering::Evade(Physics& self, Physics* target, float maxSpeed)
 {
 	return -Pursue(self, target, maxSpeed);
 }
 
-b2Vec2 Steering::Follow(Physics* self, Physics* target, float followDistance)
+b2Vec2 Steering::Follow(Physics& self, Physics* target, float followDistance)
 {
 	b2Vec2 reverse = (target->GetHeading() * -1);
 	reverse.Normalize();
 	reverse *= followDistance; // now 'reverse' represents where we want to move towards
 
 	b2Vec2 seekTarget = target->GetPosition() + reverse;
-	return Seek(self->GetPosition(), seekTarget);
+	return Seek(self.GetPosition(), seekTarget);
 }
 
 b2Vec2 Steering::AlignOrientation(std::vector<Physics*> others)

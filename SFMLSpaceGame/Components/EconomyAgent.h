@@ -11,13 +11,11 @@ class EconomyAgent : public Component
 {
 private:
 	EconomyID m_id;
-	Inventory* m_inventory;
+	Inventory& m_inventory;
 
 public:
-	EconomyAgent();
+	explicit EconomyAgent(EntityID ent);
 	~EconomyAgent();
-
-	virtual void Init() override;
 
 	EconomyID GetEconomyID() const;
 	

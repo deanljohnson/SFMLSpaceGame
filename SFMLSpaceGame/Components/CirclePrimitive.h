@@ -6,14 +6,13 @@
 class CirclePrimitive : public Component
 {
 private:
-	Position* m_position{ nullptr };
-	Rotation* m_rotation{ nullptr };
+	Position& m_position;
+	Rotation& m_rotation;
 	sf::CircleShape m_shape;
 
 public:
-	explicit CirclePrimitive(float rad) : m_shape(rad){}
+	CirclePrimitive(EntityID ent, float rad);
 
-	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 };

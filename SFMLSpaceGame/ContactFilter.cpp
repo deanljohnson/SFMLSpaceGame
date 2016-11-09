@@ -20,7 +20,7 @@ bool ContactFilter::ShouldCollide(b2Fixture* a, b2Fixture* b)
 	if (aEntity->HasComponent<CollisionFilterComponent>())
 	{
 		CollisionFilterComponent& cf = aEntity->GetComponent<CollisionFilterComponent>();
-		assert(cf.entity != nullptr);
+		//assert(cf.entity != nullptr);
 		shouldCollide = cf.ShouldCollide(bEntity) ? shouldCollide : false;
 	}
 
@@ -28,7 +28,7 @@ bool ContactFilter::ShouldCollide(b2Fixture* a, b2Fixture* b)
 	if (bEntity->HasComponent<CollisionFilterComponent>())
 	{
 		CollisionFilterComponent& cf = bEntity->GetComponent<CollisionFilterComponent>();
-		assert(cf.entity != nullptr);
+		//assert(cf.entity != nullptr);
 		shouldCollide = cf.ShouldCollide(aEntity) ? shouldCollide : false;
 	}
 

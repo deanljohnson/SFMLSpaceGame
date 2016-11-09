@@ -6,13 +6,12 @@
 class DirectionalVelocity : public Component
 {
 private:
-	DirectionalKeyboardInput* m_input{ nullptr };
-	Physics* m_physics{ nullptr };
+	DirectionalKeyboardInput& m_input;
+	Physics& m_physics;
 	float m_maxVelocity;
 
 public:
-	explicit DirectionalVelocity(float maxVel) : m_maxVelocity(maxVel) {}
+	DirectionalVelocity(EntityID ent, float maxVel);
 
-	virtual void Init() override;
 	virtual void Update() override;
 };

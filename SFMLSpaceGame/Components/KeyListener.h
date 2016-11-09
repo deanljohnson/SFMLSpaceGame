@@ -14,9 +14,7 @@ private:
 	std::set<sf::Keyboard::Key> m_keys;
 	std::vector<std::function<void(sf::Keyboard::Key)>> m_callbacks;
 public:
-	explicit KeyListener(std::initializer_list<sf::Keyboard::Key> keys)
-		: m_keys(keys), m_callbacks()
-	{}
+	KeyListener(EntityID ent, std::initializer_list<sf::Keyboard::Key> keys);
 
 	virtual void Update() override;
 
