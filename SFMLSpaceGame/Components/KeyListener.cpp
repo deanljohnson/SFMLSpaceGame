@@ -26,7 +26,7 @@ void KeyListener::Update()
 	}
 }
 
-void KeyListener::operator+=(std::function<void(sf::Keyboard::Key)> callback)
+void KeyListener::operator+=(Callback callback)
 {
 	m_callbacks.push_back(callback);
 }

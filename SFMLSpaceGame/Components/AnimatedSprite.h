@@ -30,7 +30,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_id, m_originOption);
+		ar(entity.GetID(), m_id, m_originOption, m_offset);
 	}
 
 	template <class Archive>
@@ -41,6 +41,8 @@ private:
 		OriginOption option;
 		ar(selfID, id, option);
 		construct(selfID, id, option);
+
+		ar(construct->m_offset);
 	}
 
 public:

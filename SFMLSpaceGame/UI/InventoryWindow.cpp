@@ -2,6 +2,7 @@
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
 #include "UI.h"
+#include <PlayerData.h>
 #include <Components/ShipStatsSink.h>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
@@ -51,7 +52,7 @@ void InventoryWindow::SetTarget(EntityID id)
 
 void InventoryWindow::LoadShipImage()
 {
-	auto stats = m_targetHandle->GetComponent<ShipStatsSink>();
+	auto stats = LoadShip(PlayerData::GetActive()->GetPlayerShip());
 	m_shipTexture = LoadTexture(stats->GetImageLocation());
 	m_shipImage.setTexture(*m_shipTexture.get());
 	// Explicitly set the texture rect. Otherwise, changing ships can cause part of

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <EntityInitializer.h>
 #include "EntityManager.h"
 #include <EntityGroups.h>
 #include <EntityFactory.h>
@@ -131,9 +132,6 @@ EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
 	MakeIntoShip(ent, PlayerData::GetActive()->GetPlayerShip(), p, radians, false);
-	
-	// This makes sure the the players ship stats stay loaded
-	//ent->AddComponent<ShipStatsSink, std::shared_ptr<ShipStats>>(LoadShip(PlayerData::GetActive()->GetPlayerShip()));
 
 	// player specifiic components
 	ent->AddComponent<DirectionalKeyboardInput>();
@@ -151,29 +149,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	auto& keyListener = ent->AddComponent<KeyListener, 
 						std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::Num1, sf::Keyboard::Num2, sf::Keyboard::Num3, sf::Keyboard::Num4, sf::Keyboard::I });
 	
-	keyListener += [&shields](sf::Keyboard::Key k) 
-	{ 
-		switch (k)
-		{
-		case sf::Keyboard::Num1:
-			shields.SetActive(Shields::Direction::Front);
-			break;
-		case sf::Keyboard::Num2:
-			shields.SetActive(Shields::Direction::Side);
-			break;
-		case sf::Keyboard::Num3:
-			shields.SetActive(Shields::Direction::Rear);
-			break;
-		case sf::Keyboard::Num4:
-			shields.SetActive(Shields::Direction::All);
-			break;
-		case sf::Keyboard::I:
-			auto window = GameWindow::GetWindow<InventoryWindow>("inventory");
-			window->Show(true);
-			window->SetTarget(PlayerData::GetActive()->GetID());
-			break;
-		}
-	};
+	EntityInitializer::Execute(EntityInitializer::Type::PlayerKeyListenerSetup, *ent.GetRawPointer());
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)
@@ -250,32 +226,16 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
 	phys.SetPosition(p);
 
-	auto sprites = std::vector<AnimatedSprite*>();
 	for (auto tl : shipStats->GetThrusterLocations())
 	{
 		auto& as = ent->AddComponent<AnimatedSprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
 		as.SetOffset(SFMLVecToB2Vec((tl* METERS_PER_PIXEL) - origin));
-
-		sprites.push_back(&as);
 	}
 
-	ent->AddComponent<ThrusterAnimator, const std::vector<AnimatedSprite*>&>(sprites);
+	ent->AddComponent<ThrusterAnimator>();
 
-	ent->destroyCallback = [](Entity* destoryedEnt)
-	{
-		auto& pos = destoryedEnt->GetComponent<Position>();
-		auto& inventory = destoryedEnt->GetComponent<Inventory>();
-
-		CreateExplosion("explosion-one", pos.position);
-		auto pickupID = CreatPickup("crate", pos.position);
-		auto pickupHandle = EntityManager::Get(pickupID);
-		auto& pickup = pickupHandle->GetComponent<ItemPickup>();
-
-		for (auto& item : inventory)
-		{
-			pickup.AddItem(item);
-		}
-	};
+	EntityInitializer::Execute(EntityInitializer::Type::AssignThrusterAnimatorSprites, *ent.GetRawPointer());
+	EntityInitializer::Execute(EntityInitializer::Type::ShipDestroyedCallback, *ent.GetRawPointer());
 }
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p, float radians)
