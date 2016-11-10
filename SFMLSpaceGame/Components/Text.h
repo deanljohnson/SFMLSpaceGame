@@ -14,7 +14,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_label->GetText());
+		ar(entity.GetID(), m_label->GetText().toAnsiString());
 	}
 
 	template <class Archive>

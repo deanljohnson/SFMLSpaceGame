@@ -3,6 +3,7 @@
 #include <Components/Rotation.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <cereal/access.hpp>
+#include <SFMLSerialization.h>
 
 class RectPrimitive : public Component
 {
@@ -17,7 +18,8 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_shape.getSize());
+		sf::Vector2f size = m_shape.getSize();
+		ar(entity.GetID(), size);
 	}
 
 	template <class Archive>

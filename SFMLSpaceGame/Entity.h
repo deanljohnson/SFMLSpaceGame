@@ -4,10 +4,12 @@
 #include <array>
 #include <functional>
 #include <Components/Component.h>
+#include <ComponentSerializer.h>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <Group.h>
 #include <EntityID.h>
 #include "EventQueue.h"
+#include <cereal\types\bitset.hpp>
 
 class EntityManager;
 
@@ -26,7 +28,66 @@ private:
 
 	EntityID m_id;
 
+	template<class T>
+	void SetComponent(T* comp) 
+	{
+		//wrap the raw pointer
+		std::unique_ptr<Component> uPtr{ comp };
+
+		//add to our set of components
+		m_components.emplace_back(move(uPtr));
+
+		auto compID = GetComponentTypeID<T>();
+
+		// The entity already has a component of this type
+		// add it to the component linked list
+		if (m_componentBitset[compID])
+		{
+			Component* existing = m_componentArray[compID];
+			while (existing->next != nullptr) existing = existing->next;
+			existing->next = comp;
+		}
+		else
+		{
+			m_componentArray[compID] = comp;
+			m_componentBitset[compID] = true;
+		}
+	}
+
+	// ComponentSerializer needs to access component arrays
+	// but we don't want anything else to be able to
+	friend class ComponentSerializer;
+
+	// Give cereal access to internals
+	friend class cereal::access;
+
+	// used for saving
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(m_id, m_alive, m_active, m_groupBitset);
+
+		// Save components
+		ComponentSerializer::Serialize(ar, *this);
+	}
+
+	template<class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<Entity>& construct)
+	{
+		EntityID selfID;
+		ar(selfID);
+		construct(selfID);
+
+		ar(construct->m_alive,
+			construct->m_active,
+			construct->m_groupBitset);
+
+		// Load components
+		ComponentSerializer::Serialize(ar, *this);
+	}
 public:
+	static std::string GetTypeName() { return "entity"; }
+
 	Entity(const Entity& other) = delete;
 
 	Entity(Entity&& other)
@@ -94,27 +155,7 @@ public:
 		//Call the components constructor with the given args
 		T* c(new T(m_id, std::forward<TArgs>(args)...));
 
-		//wrap the raw pointer
-		std::unique_ptr<Component> uPtr{ c };
-
-		//add to our set of components
-		m_components.emplace_back(move(uPtr));
-
-		auto compID = GetComponentTypeID<T>();
-
-		// The entity already has a component of this type
-		// add it to the component linked list
-		if (m_componentBitset[compID])
-		{
-			Component* existing = m_componentArray[compID];
-			while (existing->next != nullptr) existing = existing->next;
-			existing->next = c;
-		}
-		else
-		{
-			m_componentArray[compID] = c;
-			m_componentBitset[compID] = true;
-		}
+		SetComponent<T>(c);
 
 		//return in case caller needs this
 		return *c;

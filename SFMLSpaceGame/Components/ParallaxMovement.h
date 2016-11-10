@@ -2,6 +2,7 @@
 #include <Components/Position.h>
 #include <EntityHandle.h>
 #include <cereal/access.hpp>
+#include <Box2DSerialization.h>
 
 class ParallaxMovement : public Component
 {

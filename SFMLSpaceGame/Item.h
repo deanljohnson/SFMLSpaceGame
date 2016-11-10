@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cereal\access.hpp>
 
 #ifndef NAMED_ITEM
 #define NAMED_ITEM(s) static std::string GetTypeName() { static const std::string name = s; return name; }
@@ -62,4 +63,25 @@ public:
 	void SetAmount(unsigned int amount);
 
 	static Item Create(ItemType type, unsigned int amount);
+
+private:
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(type, GetAmount());
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<Item>& construct)
+	{
+		ItemType type;
+		unsigned int amt;
+		ar(type, amt);
+
+		construct->type = type;
+		construct->SetAmount(amt);
+	}
 };

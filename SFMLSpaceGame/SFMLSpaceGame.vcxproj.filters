@@ -330,6 +330,9 @@
     <ClCompile Include="Components\Component.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -681,6 +684,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefaultSerializeable.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Components.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

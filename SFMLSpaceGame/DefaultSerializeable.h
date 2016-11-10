@@ -12,7 +12,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID());
+		ar(static_cast<T*>(this)->entity.GetID());
 	}
 
 	template <class Archive>
