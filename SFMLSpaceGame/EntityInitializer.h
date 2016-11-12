@@ -9,14 +9,22 @@ class Entity;
 // creation of a new component.
 namespace EntityInitializer 
 {
-	enum class Type
+	enum Type
 	{ 
 		PlayerKeyListenerSetup, 
+		AssignThrusterAnimatorSprites,
 		ShipDestroyedCallback,
-		AssignThrusterAnimatorSprites
+		AssignDamageModifiers,
+		AssignShipStatsData,
+		StationInteractListenerSetup,
+		StationSpriteBoundsColliderSetup,
+		PickupSpriteBoundsColliderSetup,
+
+		Count = 7
 	};
 
 	// Executes the given intialization operation
 	// for the given entity
 	void Execute(Type initType, Entity& ent);
+	void Execute(const std::vector<Type>& initTypes, Entity& ent);
 }

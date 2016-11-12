@@ -12,6 +12,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
+		// Casting gives us access to entity variable
 		ar(static_cast<T*>(this)->entity.GetID());
 	}
 

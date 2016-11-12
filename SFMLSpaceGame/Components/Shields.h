@@ -80,7 +80,7 @@ private:
 	}
 
 public:
-	Shields(EntityID ent, ShieldData* data);
+	explicit Shields(EntityID ent);
 
 	virtual void Update() override;
 

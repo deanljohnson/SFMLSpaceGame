@@ -4,7 +4,6 @@
 #include <set>
 #include <vector>
 #include <functional>
-#include <DefaultSerializeable.h>
 #include <cereal\types\set.hpp>
 
 // Provides a way for entity's to listen
@@ -36,7 +35,7 @@ private:
 		construct(selfID, keys);
 	}
 public:
-	KeyListener(EntityID ent, std::initializer_list<sf::Keyboard::Key> keys);
+	KeyListener(EntityID ent, std::set<sf::Keyboard::Key> keys);
 
 	virtual void Update() override;
 

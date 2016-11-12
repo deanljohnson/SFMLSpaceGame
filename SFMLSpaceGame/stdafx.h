@@ -7,3 +7,5 @@
 #include <Box2D.h>
 
 #include <SFGUI\Widgets.hpp>
+
+#include <cereal\cereal.hpp>

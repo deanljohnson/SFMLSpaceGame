@@ -14,7 +14,7 @@ void AddEnemy()
 
 void InitialGameState::Init()
 {
-	PlayerData::SetActive(std::make_shared<PlayerData>("Human-Fighter"));
+	PlayerData::SetActive(std::make_shared<PlayerData>("Alien-One"));
 
 	m_contactListener = ContactFilter();
 	world.SetContactFilter(&m_contactListener);

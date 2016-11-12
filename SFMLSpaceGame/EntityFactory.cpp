@@ -1,50 +1,83 @@
 #include "stdafx.h"
-#include <EntityInitializer.h>
 #include "EntityManager.h"
 #include <EntityGroups.h>
 #include <EntityFactory.h>
 #include <EntityHandle.h>
-#include "CollisionGroups.h"
 #include <Components\Components.h>
-#include "UI/GameWindow.h"
-#include "UI/InventoryWindow.h"
-#include "UI/StationWindow.h"
-#include "WorldConstants.h"
 #include "PlayerData.h"
-#include "VectorMath.h"
 #include "Economy.h"
 
 void EntityFactory::Init()
 {
-	// This is where we can setup a component update order because 
-	// components are updated in the order of their TypeID's, which
-	// are set by calling these functions
+	// Calling these sets the order in which components
+	// are updated. Also, it keeps things consistent 
+	// when it comes to entity serialization
 
 	GetComponentTypeID<Position>();
 	GetComponentTypeID<Rotation>();
 	GetComponentTypeID<Sprite>();
 	GetComponentTypeID<AnimatedSprite>();
+	GetComponentTypeID<Shields>();
 	GetComponentTypeID<ShieldHitAnimator>();
 	GetComponentTypeID<Physics>();
 	GetComponentTypeID<SmoothCameraFollow>();
 	GetComponentTypeID<ParallaxMovement>();
 	GetComponentTypeID<DirectionalKeyboardInput>();
-	GetComponentTypeID<ThrusterInput>();
 	GetComponentTypeID<ShipThrusters>();
+	GetComponentTypeID<ThrusterInput>();
+
+	GetComponentTypeID<RectPrimitive>();
+	GetComponentTypeID<RotateToFaceMouse>();
+	GetComponentTypeID<GameWorldClickListener>();
+	GetComponentTypeID<DirectionalGun>();
+	GetComponentTypeID<FireGunOnClick>();
+	GetComponentTypeID<BulletPhysics>();
+	GetComponentTypeID<Lifetime>();
+	GetComponentTypeID<CollisionFilterComponent>();
+	GetComponentTypeID<ShipController>();
+	GetComponentTypeID<EntitySensor>();
+	GetComponentTypeID<ZoomHandler>();
+	GetComponentTypeID<ShipAI>();
+	GetComponentTypeID<Health>();
+	GetComponentTypeID<DamageOnAttacked>();
+	GetComponentTypeID<PlayerDeathBroadcaster>();
+	GetComponentTypeID<ThrusterAnimator>();
+	GetComponentTypeID<SoundSource>();
+	GetComponentTypeID<SoundListener>();
+	GetComponentTypeID<MusicSource>();
+	GetComponentTypeID<GunHeatUIDisplay<DirectionalGun>>();
+	GetComponentTypeID<TilingBackground>();
+	GetComponentTypeID<KeyListener>();
+	GetComponentTypeID<Text>();
+	GetComponentTypeID<Inventory>();
+	GetComponentTypeID<ItemPickup>();
+	GetComponentTypeID<EconomyAgent>();
+	GetComponentTypeID<ParallaxTargetAssigner>();
+	GetComponentTypeID<ShipStatsComponent>();
 }
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	auto ent = EntityManager::AddEntity(PLAYER_GROUP);
+	if (true)
+	{
+		Serializer s;
+		auto ent = s.Load<Entity>("player");
+		PlayerData::GetActive()->SetID(ent->GetID());
+		return ent->GetID();
+	}
+	else
+	{
+		auto ent = EntityManager::AddEntity(PLAYER_GROUP);
 
-	PlayerData::GetActive()->SetID(ent.GetID());
+		PlayerData::GetActive()->SetID(ent.GetID());
 
-	MakeIntoPlayer(ent, p, radians);
+		MakeIntoPlayer(ent, p, radians);
 
-	Serializer s;
-	s.Save<Entity>(ent.GetRawPointer(), "player", "player");
+		Serializer s;
+		s.Save<Entity>(ent.GetRawPointer(), "player", "player");
 
-	return ent.GetID();
+		return ent.GetID();
+	}
 }
 
 EntityID EntityFactory::CreateBackground(ResourceID backgroundID, EntityID parallaxTarget)
@@ -90,15 +123,11 @@ EntityID EntityFactory::CreatPickup(const std::string& pickupType, const b2Vec2&
 	auto ent = EntityManager::AddEntity(PICKUP_GROUP);
 	ent->AddComponent<Position>(p);
 	ent->AddComponent<Rotation>();
-	auto& phys = ent->AddComponent<Physics>();
+	ent->AddComponent<Physics>();
 	ent->AddComponent<ItemPickup>();
-	auto& spr = ent->AddComponent<Sprite>(pickupType);
+	ent->AddComponent<Sprite>(pickupType);
 
-	auto dimensions = spr.GetDimensions();
-	auto shape = sf::RectangleShape({dimensions.width, dimensions.height});
-	shape.setOrigin(B2VecToSFMLVec(spr.GetOrigin()));
-
-	phys.AddShape(shape, .2f, IS_SENSOR, COLLIDES_WITH_SHIP);
+	ent->ApplyInitializer(EntityInitializer::Type::PickupSpriteBoundsColliderSetup);
 
 	return ent.GetID();
 }
@@ -126,14 +155,14 @@ EntityID EntityFactory::CreateMusicPlayer(const std::string& fileName)
 {
 	auto ent = EntityManager::AddEntity(BACKGROUND_GROUP);
 	ent->AddComponent<MusicSource, const std::string&>(fileName);
-	return ent->GetID();
+	return ent.GetID();
 }
 
 void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float radians)
 {
 	MakeIntoShip(ent, PlayerData::GetActive()->GetPlayerShip(), p, radians, false);
 
-	// player specifiic components
+	// player specific components
 	ent->AddComponent<DirectionalKeyboardInput>();
 	ent->AddComponent<ThrusterInput>();
 	ent->AddComponent<RotateToFaceMouse, float>(1.5f);
@@ -145,11 +174,18 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<SoundListener>();
 	ent->AddComponent<GunHeatUIDisplay<DirectionalGun>>();
 
-	auto& shields = ent->GetComponent<Shields>();
-	auto& keyListener = ent->AddComponent<KeyListener, 
-						std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::Num1, sf::Keyboard::Num2, sf::Keyboard::Num3, sf::Keyboard::Num4, sf::Keyboard::I });
+	ent->GetComponent<Shields>();
+	ent->AddComponent<KeyListener, 
+		std::initializer_list<sf::Keyboard::Key>>(
+		{ 
+			sf::Keyboard::Num1, 
+			sf::Keyboard::Num2, 
+			sf::Keyboard::Num3, 
+			sf::Keyboard::Num4, 
+			sf::Keyboard::I 
+		});
 	
-	EntityInitializer::Execute(EntityInitializer::Type::PlayerKeyListenerSetup, *ent.GetRawPointer());
+	ent->ApplyInitializer(EntityInitializer::Type::PlayerKeyListenerSetup);
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)
@@ -174,19 +210,17 @@ void EntityFactory::MakeIntoBullet(EntityHandle& ent, const std::string& id, Ent
 
 void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p, float radians, bool npc)
 {
-	auto shipStats = LoadShip(shipName);
-
+	auto& shipStats = ent->AddComponent<ShipStatsComponent, const std::string&>(shipName);
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	auto& sp = ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
-	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
+	ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
+	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, const std::string&>(shipName);
-	auto& shotSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
-	auto& gun = ent->AddComponent<DirectionalGun, DirectionalGunData*>(shipStats->GetDirGunData());
-	gun.SetSoundSource(&shotSound);
+	ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
+	ent->AddComponent<DirectionalGun>();
 	ent->AddComponent<Health>();
-	auto& shields = ent->AddComponent<Shields>(shipStats->GetShieldData());
-	ent->AddComponent<DamageOnAttacked, std::initializer_list<AttackedEventModifier*>>({ &shields });
+	ent->AddComponent<Shields>();
+	ent->AddComponent<DamageOnAttacked>();
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
 	ent->AddComponent<Inventory>();
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
@@ -214,38 +248,30 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 		ent->AddComponent<ShipAI, const std::string&>(shipName);
 	}
 
-	auto spriteBox = sp.GetDimensions();
-	auto origin = sf::Vector2f(spriteBox.width, spriteBox.height) / 2.f;
-	auto& verts = shipStats->GetColliderVertices();
-	auto shape = sf::ConvexShape(verts.size());
-	for (size_t i = 0; i < verts.size(); i++)
-	{
-		shape.setPoint(i, (verts[i] * METERS_PER_PIXEL) - origin);
-	}
-
-	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
-	phys.SetPosition(p);
-
 	for (auto tl : shipStats->GetThrusterLocations())
 	{
-		auto& as = ent->AddComponent<AnimatedSprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
-		as.SetOffset(SFMLVecToB2Vec((tl* METERS_PER_PIXEL) - origin));
+		ent->AddComponent<AnimatedSprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
 	}
 
 	ent->AddComponent<ThrusterAnimator>();
 
-	EntityInitializer::Execute(EntityInitializer::Type::AssignThrusterAnimatorSprites, *ent.GetRawPointer());
-	EntityInitializer::Execute(EntityInitializer::Type::ShipDestroyedCallback, *ent.GetRawPointer());
+	ent->ApplyInitializer(EntityInitializer::Type::AssignThrusterAnimatorSprites);
+	ent->ApplyInitializer(EntityInitializer::Type::ShipDestroyedCallback);
+	ent->ApplyInitializer(EntityInitializer::Type::AssignDamageModifiers);
+	ent->ApplyInitializer(EntityInitializer::Type::AssignShipStatsData);
 }
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p, float radians)
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-
-	auto& sp = ent->AddComponent<Sprite, const std::string&>(stationID);
-	auto& phys = ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
+	ent->AddComponent<Sprite, const std::string&>(stationID);
+	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 	ent->AddComponent<Inventory>();
+	ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, { PLAYER_GROUP });
+	ent->AddComponent<Text, const std::string&>("Press E to Interact");
+	ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
+
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
 	econAgent.AddItem(Item::Create(ItemType::FuelCells, 1000));
 
@@ -261,23 +287,6 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
 	});
 
-	auto& sensor = ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, {PLAYER_GROUP});
-	auto& text = ent->AddComponent<Text, const std::string&>("Press E to Interact");
-	auto& keyListener = ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
-	sensor.AttachComponent(&keyListener);
-	sensor.AttachComponent(&text);
-
-	EntityID stationEntID = ent.GetID();
-	keyListener += [stationEntID](sf::Keyboard::Key)
-	{ 
-		auto stationWindow = GameWindow::GetWindow<StationWindow>("station_window");
-		stationWindow->Show(true);
-		stationWindow->SetTarget(stationEntID);
-	};
-
-	auto spriteBox = sp.GetDimensions();
-	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
-	shape.setOrigin(shape.getSize() / 2.f);
-	phys.AddShape(shape, 1.f, IS_STATION, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
-	phys.SetPosition(p);
+	ent->ApplyInitializer(EntityInitializer::Type::StationInteractListenerSetup);
+	ent->ApplyInitializer(EntityInitializer::Type::StationSpriteBoundsColliderSetup);
 }

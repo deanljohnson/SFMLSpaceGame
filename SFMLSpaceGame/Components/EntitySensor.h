@@ -42,10 +42,12 @@ private:
 		ar(construct->m_triggered);
 	}
 public:
-	EntitySensor(EntityID ent, float radius, const std::initializer_list<Group>& groups);
-
+	EntitySensor(EntityID ent, float radius, const std::vector<Group>& groups);
+	
 	std::vector<Entity*> sensedEntities;
 	virtual void Update() override;
+
+	void SetRange(float range);
 
 	virtual void AddCallback(std::function<void(bool, Sensor*)> callback) override;
 	virtual void AttachComponent(Component* c) override;

@@ -6,15 +6,14 @@
 #include <VectorMath.h>
 #include <WorldConstants.h>
 
-DirectionalGun::DirectionalGun(EntityID ent, DirectionalGunData* data)
+DirectionalGun::DirectionalGun(EntityID ent)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sprite(entity->GetComponent<Sprite>()),
 	  m_lastFiringTime(0),
-	  m_gunData(data)
+	  m_gunData(nullptr)
 {
-	
 }
 
 void DirectionalGun::Update() 

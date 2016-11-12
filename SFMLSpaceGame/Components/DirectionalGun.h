@@ -103,7 +103,7 @@ private:
 	}
 
 public:
-	explicit DirectionalGun(EntityID ent, DirectionalGunData* data = nullptr);
+	explicit DirectionalGun(EntityID ent);
 
 	virtual void Update() override;
 

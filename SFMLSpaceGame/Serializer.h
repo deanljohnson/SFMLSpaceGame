@@ -29,7 +29,7 @@ class Serializer
 private:
 
 public:
-	template<class T>
+	template<class T, typename std::enable_if<std::is_default_constructible<T>::value>::type* = nullptr>
 	T* Load(std::string name)
 	{
 		name += "." + T::GetTypeName();
@@ -48,6 +48,31 @@ public:
 		T* t = new T();
 		ar(*t);
 		return t;
+	}
+
+	template<class T, typename std::enable_if<!std::is_default_constructible<T>::value>::type* = nullptr>
+	T* Load(std::string name)
+	{
+		name += "." + T::GetTypeName();
+
+		// Open the input file stream
+		std::ifstream is(DATA_PATH + name);
+		if (is.fail())
+		{
+			std::cout << "Unable to fine the file " << name << "\n";
+		}
+
+		// Create the cereal archive from the input stream
+		SERIALIZATION_IN_ARCHIVE ar(is);
+
+		// Load the object. Since T is not default
+		// constructible, we have to serialize a
+		// pointer to it in order to have cereal
+		// call the constructor that T does have
+		// (see T's load_and_construct method)
+		std::unique_ptr<T> ptr;
+		ar(ptr);
+		return ptr.release();
 	}
 
 	template<class T>

@@ -20,10 +20,9 @@ private:
 	static void load_and_construct(Archive& ar, cereal::construct<Lifetime>& construct)
 	{
 		EntityID selfID;
-		ar(selfID);
-		construct(selfID);
-
-		ar(construct->m_lifetime);
+		float lifetime;
+		ar(selfID, lifetime);
+		construct(selfID, lifetime);
 	}
 public:
 	Lifetime(EntityID ent, float lifetime);

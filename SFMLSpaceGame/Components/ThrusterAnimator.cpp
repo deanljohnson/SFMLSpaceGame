@@ -4,10 +4,10 @@
 #include <ExtendedMath.h>
 #include <GameTime.h>
 
-ThrusterAnimator::ThrusterAnimator(EntityID ent, const std::vector<AnimatedSprite*>& thrusters) 
+ThrusterAnimator::ThrusterAnimator(EntityID ent) 
 	: Component(ent), 
 	  m_thrusters(entity->GetComponent<ShipThrusters>()),
-	  m_thrusterSprites(thrusters),
+	  m_thrusterSprites(),
 	  m_currentScale(0)
 {
 }

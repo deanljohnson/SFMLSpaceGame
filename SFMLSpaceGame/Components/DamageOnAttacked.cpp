@@ -28,6 +28,11 @@ void DamageOnAttacked::Update()
 	}
 }
 
+void DamageOnAttacked::AddModifier(AttackedEventModifier* modifier)
+{
+	m_modifiers.push_back(modifier);
+}
+
 void DamageOnAttacked::HandleAttack(Event& event) 
 {
 	for (auto m : m_modifiers) 

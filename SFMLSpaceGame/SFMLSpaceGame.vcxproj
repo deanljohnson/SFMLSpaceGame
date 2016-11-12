@@ -293,7 +293,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\Shields.h" />
     <ClInclude Include="Components\ShipAI.h" />
     <ClInclude Include="Components\ShipSpawner.h" />
-    <ClInclude Include="Components\ShipStatsSink.h" />
+    <ClInclude Include="Components\ShipStatsComponent.h" />
     <ClInclude Include="Components\SoundListener.h" />
     <ClInclude Include="Components\SoundSource.h" />
     <ClInclude Include="Components\Text.h" />

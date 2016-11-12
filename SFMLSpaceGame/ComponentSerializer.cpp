@@ -11,13 +11,14 @@ void ComponentSerializer::Load(ComponentID id,
 		Rotation, 
 		Sprite, 
 		AnimatedSprite,
+		Shields,
 		ShieldHitAnimator,
 		Physics,
 		SmoothCameraFollow,
 		ParallaxMovement,
 		DirectionalKeyboardInput,
-		ThrusterInput,
 		ShipThrusters,
+		ThrusterInput,
 		RectPrimitive,
 		RotateToFaceMouse,
 		GameWorldClickListener,
@@ -42,30 +43,30 @@ void ComponentSerializer::Load(ComponentID id,
 		TilingBackground,
 		KeyListener,
 		Text,
-		Shields,
 		Inventory,
 		ItemPickup, 
 		EconomyAgent,
 		ParallaxTargetAssigner,
-		ShipStatsSink
+		ShipStatsComponent
 	>(id, ar, ent);
 }
 
 void ComponentSerializer::Save(ComponentID id,
 								SERIALIZATION_OUT_ARCHIVE& ar,
-								Entity& ent)
+								const Entity& ent)
 {
 	SaveComponents<Position, 
 		Rotation,
 		Sprite,
 		AnimatedSprite,
+		Shields,
 		ShieldHitAnimator,
 		Physics,
 		SmoothCameraFollow,
 		ParallaxMovement,
 		DirectionalKeyboardInput,
-		ThrusterInput,
 		ShipThrusters,
+		ThrusterInput,
 		RectPrimitive,
 		RotateToFaceMouse,
 		GameWorldClickListener,
@@ -90,12 +91,11 @@ void ComponentSerializer::Save(ComponentID id,
 		TilingBackground,
 		KeyListener,
 		Text,
-		Shields,
 		Inventory,
 		ItemPickup,
 		EconomyAgent,
 		ParallaxTargetAssigner,
-		ShipStatsSink
+		ShipStatsComponent
 	>(id, ar, ent);
 }
 
@@ -113,7 +113,7 @@ void ComponentSerializer::Serialize(SERIALIZATION_IN_ARCHIVE& ar, Entity& ent)
 	}
 }
 
-void ComponentSerializer::Serialize(SERIALIZATION_OUT_ARCHIVE& ar, Entity& ent)
+void ComponentSerializer::Serialize(SERIALIZATION_OUT_ARCHIVE& ar, const Entity& ent)
 {
 	for (int i = 0; i < maxComponents; i++) 
 	{

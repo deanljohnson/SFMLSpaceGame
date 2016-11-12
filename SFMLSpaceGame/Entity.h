@@ -9,7 +9,9 @@
 #include <Group.h>
 #include <EntityID.h>
 #include "EventQueue.h"
+#include <cereal\access.hpp>
 #include <cereal\types\bitset.hpp>
+#include <EntityInitializer.h>
 
 class EntityManager;
 
@@ -25,6 +27,7 @@ private:
 	ComponentBitset m_componentBitset;
 
 	GroupBitset m_groupBitset;
+	std::bitset<EntityInitializer::Type::Count> m_initializerBitset;
 
 	EntityID m_id;
 
@@ -61,31 +64,31 @@ private:
 	// Give cereal access to internals
 	friend class cereal::access;
 
-	// used for saving
+	void OnDeserialize();
+	void ApplyInitializers();
+	
 	template<class Archive>
-	void serialize(Archive& ar)
+	void save(Archive& ar) const
 	{
-		ar(m_id, m_alive, m_active, m_groupBitset);
-
+		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
 		// Save components
 		ComponentSerializer::Serialize(ar, *this);
 	}
 
 	template<class Archive>
-	static void load_and_construct(Archive& ar, cereal::construct<Entity>& construct)
+	void load(Archive& ar)
 	{
-		EntityID selfID;
-		ar(selfID);
-		construct(selfID);
+		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
+		OnDeserialize();
 
-		ar(construct->m_alive,
-			construct->m_active,
-			construct->m_groupBitset);
-
-		// Load components
+		// Save components
 		ComponentSerializer::Serialize(ar, *this);
+		ApplyInitializers();
 	}
+
 public:
+	// used only for serialization
+	Entity() {}
 	static std::string GetTypeName() { return "entity"; }
 
 	Entity(const Entity& other) = delete;
@@ -110,6 +113,8 @@ public:
 		return *this;
 	}
 
+	// Declared only for serialization support
+	//Entity() {}
 	explicit Entity(EntityID id) 
 		: m_id(id)
 	{
@@ -129,6 +134,8 @@ public:
 	inline void SetActive(bool val) { m_active = val; }
 
 	inline EntityID GetID() const { return m_id; }
+
+	void ApplyInitializer(EntityInitializer::Type init);
 
 	//****** Component Handling Methods ******
 	

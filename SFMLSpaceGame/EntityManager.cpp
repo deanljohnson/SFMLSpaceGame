@@ -72,6 +72,31 @@ void EntityManager::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
+EntityHandle EntityManager::AddEntity(Entity* e)
+{
+	if (m_nextID <= e->GetID())
+		m_nextID = e->GetID() + 1;
+
+	std::unique_ptr<Entity> uPtr(e);
+
+	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };
+	std::unique_ptr<EntityHandle> handle(hanPtr);
+
+	m_entities.emplace_back(move(uPtr));
+	m_entityHandles.emplace(make_pair(e->GetID(), move(handle)));
+
+	Group g = 0;
+	for (auto& group : m_groupedEntities)
+	{
+		if (e->HasGroup(g))
+			e->AddToGroup(g);
+		g++;
+	}
+
+	return EntityHandle(*hanPtr);
+}
+
+
 EntityHandle EntityManager::AddEntity()
 {
 	Entity* e{ new Entity(m_nextID++) };
@@ -81,7 +106,7 @@ EntityHandle EntityManager::AddEntity()
 	std::unique_ptr<EntityHandle> handle(hanPtr);
 
 	m_entities.emplace_back(move(uPtr));
-	m_entityHandles.emplace(std::make_pair(e->GetID(), move(handle)));
+	m_entityHandles.emplace(make_pair(e->GetID(), move(handle)));
 
 	return EntityHandle(*hanPtr);
 }

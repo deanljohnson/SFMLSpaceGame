@@ -590,9 +590,6 @@
     <ClInclude Include="UI\StationWindow.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Components\ShipStatsSink.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="UI\HardPointEditor.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
@@ -697,6 +694,9 @@
     </ClInclude>
     <ClInclude Include="EntityInitializer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ShipStatsComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

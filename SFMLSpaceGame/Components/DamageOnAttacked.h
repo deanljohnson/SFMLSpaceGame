@@ -32,4 +32,6 @@ public:
 	DamageOnAttacked(EntityID ent, std::initializer_list<AttackedEventModifier*> modifiers);
 
 	virtual void Update() override;
+
+	void AddModifier(AttackedEventModifier* modifier);
 };

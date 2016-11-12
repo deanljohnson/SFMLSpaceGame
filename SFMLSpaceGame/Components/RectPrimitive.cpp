@@ -16,6 +16,11 @@ RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	m_shape.setRotation(m_rotation.GetDegrees());
 }
 
+RectPrimitive::RectPrimitive(EntityID ent, const sf::Vector2f& size)
+	: RectPrimitive(ent, size.x, size.y)
+{
+}
+
 void RectPrimitive::Update() 
 {
 	m_shape.setPosition(B2VecToSFMLVec(m_position.position));

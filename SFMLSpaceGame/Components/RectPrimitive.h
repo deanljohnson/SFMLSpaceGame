@@ -28,11 +28,12 @@ private:
 		EntityID selfID;
 		sf::Vector2f size;
 		ar(selfID, size);
-		construct(selfID, size.x, size.y);
+		construct(selfID, size);
 	}
 
 public:
 	RectPrimitive(EntityID ent, float w, float h);
+	RectPrimitive(EntityID ent, const sf::Vector2f& size);
 
 	virtual void Update() override;
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;

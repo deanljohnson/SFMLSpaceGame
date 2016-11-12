@@ -3,7 +3,7 @@
 #include <Components/Physics.h>
 #include <CollisionGroups.h>
 
-EntitySensor::EntitySensor(EntityID ent, float radius, const std::initializer_list<Group>& groups)
+EntitySensor::EntitySensor(EntityID ent, float radius, const std::vector<Group>& groups)
 	: Component(ent), 
 	  m_physics(entity->GetComponent<Physics>()), 
 	  m_groups(groups),
@@ -47,6 +47,22 @@ void EntitySensor::Update()
 	}
 
 	SetTriggered(sensedEntities.size() > 0);
+}
+
+void EntitySensor::SetRange(float range)
+{
+	m_radius = range;
+
+	b2FixtureDef fixDef;
+	fixDef.isSensor = true;
+	fixDef.filter.categoryBits = IS_SENSOR;
+	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
+	b2CircleShape shape;
+	shape.m_radius = m_radius;
+	fixDef.shape = &shape;
+
+	m_physics.GetBody()->DestroyFixture(m_sensingFixture);
+	m_sensingFixture = m_physics.GetBody()->CreateFixture(&fixDef);
 }
 
 void EntitySensor::AddCallback(std::function<void(bool, Sensor*)> callback)

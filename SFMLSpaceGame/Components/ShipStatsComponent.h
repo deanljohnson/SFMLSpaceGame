@@ -1,7 +1,7 @@
 #pragma once
 #include <ShipStats.h>
 
-class ShipStatsSink : public Component
+class ShipStatsComponent : public Component
 {
 private:
 	std::string m_shipID;
@@ -17,7 +17,7 @@ private:
 	}
 
 	template <class Archive>
-	static void load_and_construct(Archive& ar, cereal::construct<ShipStatsSink>& construct)
+	static void load_and_construct(Archive& ar, cereal::construct<ShipStatsComponent>& construct)
 	{
 		EntityID selfID;
 		std::string shipID;
@@ -25,7 +25,7 @@ private:
 		construct(selfID, shipID);
 	}
 public:
-	ShipStatsSink(EntityID ent, const std::string& shipID)
+	ShipStatsComponent(EntityID ent, const std::string& shipID)
 		: Component(ent),
 		  m_shipID(shipID),
 		  m_shipStats(LoadShip(m_shipID))

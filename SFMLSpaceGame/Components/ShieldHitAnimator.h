@@ -8,6 +8,7 @@ class ShieldHitAnimator : public Component, public DefaultSerializeable<ShieldHi
 {
 private:
 	bool m_visible;
+	float m_radius;
 
 	const int NUM_VERTS = 20;
 	const float VERT_ARC_LENGTH = M_TAU / (NUM_VERTS - 1);
@@ -24,6 +25,24 @@ private:
 	sf::Transform m_transform;
 
 	void OnShieldHit(Shields::Direction dir, const b2Vec2& dif);
+
+	friend class cereal::access;
+
+	// used for saving
+	template <class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(entity.GetID(), m_radius);
+	}
+
+	template <class Archive>
+	static void load_and_construct(Archive& ar, cereal::construct<ShieldHitAnimator>& construct)
+	{
+		EntityID selfID;
+		float radius;
+		ar(selfID, radius);
+		construct(selfID, radius);
+	}
 public:
 	ShieldHitAnimator(EntityID ent, float radius);
 

@@ -13,8 +13,7 @@ private:
 
 	void ApplyScale();
 public:
-	explicit ThrusterAnimator(EntityID ent, 
-		const std::vector<AnimatedSprite*>& thrusters = {});
+	explicit ThrusterAnimator(EntityID ent);
 
 	virtual void Update() override;
 

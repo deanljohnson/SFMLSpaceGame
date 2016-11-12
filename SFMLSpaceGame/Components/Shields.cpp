@@ -4,12 +4,12 @@
 #include <VectorMath.h>
 #include <GameTime.h>
 
-Shields::Shields(EntityID ent, ShieldData* data)
+Shields::Shields(EntityID ent)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_activationMask(Direction::All),
-	  m_data(data),
+	  m_data(nullptr),
 	  m_currentFrontStrength(m_data == nullptr ? 0.f : m_data->FrontStrength),
 	  m_currentSideStrength(m_data == nullptr ? 0.f : m_data->SideStrength),
 	  m_currentRearStrength(m_data == nullptr ? 0.f : m_data->RearStrength),
@@ -42,6 +42,15 @@ void Shields::Update()
 
 void Shields::SetActive(Direction dirMask)
 {
+	if (m_data == nullptr)
+	{
+		m_currentFrontStrength = 0;
+		m_currentSideStrength = 0;
+		m_currentRearStrength = 0;
+		m_activationMask = Direction::All;
+		return;
+	}
+
 	m_activationMask = dirMask;
 
 	float strengthSum = m_currentFrontStrength + m_currentRearStrength + m_currentSideStrength;
@@ -119,7 +128,9 @@ void Shields::SetShieldHitCallback(std::function<void(Direction, const b2Vec2&)>
 void Shields::SetShieldData(ShieldData* data)
 {
 	m_data = data;
-	SetActive(m_activationMask); // This resets the shield levels to the appropriate amounts
+
+	// This resets the shield levels to the appropriate amounts
+	SetActive(m_activationMask); 
 }
 
 void Shields::AbsorbFrontDamage(Event& event) 

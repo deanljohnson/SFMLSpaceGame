@@ -3,7 +3,7 @@
 #include <EntityManager.h>
 #include "UI.h"
 #include <PlayerData.h>
-#include <Components/ShipStatsSink.h>
+#include <Components/ShipStatsComponent.h>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
 

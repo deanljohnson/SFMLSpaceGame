@@ -38,4 +38,4 @@
 #include <Components/ItemPickup.h>
 #include <Components/EconomyAgent.h>
 #include <Components/ParallaxTargetAssigner.h>
-#include <Components/ShipStatsSink.h>
+#include <Components/ShipStatsComponent.h>

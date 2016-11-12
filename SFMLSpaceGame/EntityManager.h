@@ -34,6 +34,7 @@ public:
 	static EntityHandle Get(EntityID id);
 
 	static EntityHandle AddEntity();
+	static EntityHandle AddEntity(Entity* ent);
 	static EntityHandle AddEntity(Group group);
 
 	static void AddToGroup(Entity* ent, Group group);

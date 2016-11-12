@@ -9,6 +9,7 @@ ShieldHitAnimator::ShieldHitAnimator(EntityID ent, float radius)
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>())
 {
+	m_radius = radius;
 	m_vertextArray.setPrimitiveType(sf::PrimitiveType::TriangleFan);
 
 	// Center at 0,0
