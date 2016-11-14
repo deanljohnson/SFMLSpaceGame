@@ -1,42 +1,22 @@
 #include "stdafx.h"
 #include <TextureMap.h>
 
-TextureMap::TextureMap()
-	: m_texture(nullptr)
+template<>
+void TextureMap<size_t>::Add(const size_t& key, const sf::IntRect& rect)
 {
+	m_rects.insert(m_rects.begin() + key, rect);
 }
 
-TextureMap::TextureMap(std::shared_ptr<sf::Texture> tex)
-	: m_texture(tex) 
-{}
-
-sf::Texture* TextureMap::GetTexture()
+template<>
+std::string TextureMap<size_t>::GetTypeName()
 {
-	return m_texture.get();
+	static const std::string name = "atlasmap-i";
+	return name;
 }
 
-void TextureMap::SetTexture(std::shared_ptr<sf::Texture> tex)
+template<>
+std::string TextureMap<std::string>::GetTypeName()
 {
-	m_texture = tex;
-}
-
-void TextureMap::Add(const std::string& name, const sf::IntRect& rect) 
-{
-	m_rects.emplace(name, rect);
-}
-
-sf::IntRect TextureMap::operator[](const std::string& name) 
-{
-	return m_rects[name];
-}
-
-sf::IntRect TextureMap::at(const std::string& name)
-{
-	return m_rects.at(name);
-}
-
-std::string TextureMap::GetTypeName()
-{ 
-	static const std::string name = "atlasmap"; 
-	return name; 
+	static const std::string name = "atlasmap-s";
+	return name;
 }

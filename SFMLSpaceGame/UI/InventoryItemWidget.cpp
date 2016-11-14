@@ -5,7 +5,7 @@
 #include <SFGUI/RenderQueue.hpp>
 
 int InventoryItemWidget::m_widgetCount = 0;
-std::shared_ptr<TextureMap> InventoryItemWidget::m_atlas{ nullptr };
+std::shared_ptr<TextureMap<std::string>> InventoryItemWidget::m_atlas{ nullptr };
 std::shared_ptr<sfg::PrimitiveTexture> InventoryItemWidget::m_guiTexture{ nullptr };
 
 InventoryItemWidget::InventoryItemWidget(const std::string& atlas, Item* item)
@@ -14,7 +14,7 @@ InventoryItemWidget::InventoryItemWidget(const std::string& atlas, Item* item)
 	m_widgetCount++;
 	if (m_widgetCount == 1)
 	{
-		m_atlas = LoadTextureMap(atlas);
+		m_atlas = LoadTextureMap<std::string>(atlas);
 		m_guiTexture = sfg::Renderer::Get().LoadTexture(*m_atlas->GetTexture());
 	}
 }

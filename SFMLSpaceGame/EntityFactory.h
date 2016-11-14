@@ -13,6 +13,7 @@ namespace EntityFactory
 	EntityID CreateStation(const std::string& stationID, const b2Vec2& p = b2Vec2(0, 0), float radians = 0);
 	EntityID CreateExplosion(const std::string& explosionID, const b2Vec2& p = b2Vec2(0, 0));
 	EntityID CreatPickup(const std::string& crateType, const b2Vec2& p = b2Vec2(0, 0));
+	EntityID CreateAsteroid(const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateSpawner(float time, const std::string& shipID, const b2Vec2& p = b2Vec2(0, 0));
 	EntityID CreatePlayerSpawner(const b2Vec2& p = b2Vec2(0, 0));
 	EntityID CreateMusicPlayer(const std::string& fileName);
@@ -20,6 +21,7 @@ namespace EntityFactory
 	void MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget);
 	void MakeIntoBullet(EntityHandle& ent, const std::string& projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
+	void MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f, bool npc = true);
 	void MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p = b2Vec2(0, 0), float radians = 0);
 }

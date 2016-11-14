@@ -6,8 +6,9 @@
 const Group BACKGROUND_GROUP{ 0 };
 const Group PROJECTILE_GROUP{ 1 };
 const Group EXPLOSION_GROUP{ 2 };
-const Group PICKUP_GROUP{ 3 };
-const Group PLAYER_GROUP{ 4 };
-const Group NON_PLAYER_SHIP_GROUP{ 5 };
-const Group STATION_GROUP{ 6 };
-const Group UI_GROUP{ 7 };
+const Group ASTEROID_GROUP{ 3 };
+const Group PICKUP_GROUP{ 4 };
+const Group PLAYER_GROUP{ 5 };
+const Group NON_PLAYER_SHIP_GROUP{ 6 };
+const Group STATION_GROUP{ 7 };
+const Group UI_GROUP{ 8 };

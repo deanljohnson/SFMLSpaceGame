@@ -5,7 +5,6 @@
 #include <SFML\System\Vector2.hpp>
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
-#include <ResourceLoader.h>
 
 struct BatchIndex 
 {
@@ -19,7 +18,6 @@ class RenderBatch
 {
 private:
 	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_stringBatches;
-	static std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> m_resourceBatches;
 
 	std::vector<std::unique_ptr<BatchIndex>> m_indices;
 	std::vector<BatchIndex*> m_removedIndices;
@@ -37,7 +35,6 @@ private:
 	void RemoveDeletedElements();
 public:
 	static RenderBatch* Get(const std::string& texName);
-	static RenderBatch* Get(ResourceID texID);
 	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
 	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);

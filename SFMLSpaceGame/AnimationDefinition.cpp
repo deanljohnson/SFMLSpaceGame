@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include <AnimationDefinition.h>
 
-AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length)
+AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length, int numFrames)
 	: m_texture(texture),
 	  m_frameSize(frameSize),
 	  m_length(length)
@@ -10,6 +10,9 @@ AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, c
 	{
 		for (int i = 0; i < m_texture->getSize().x / frameSize.x; i++)
 		{
+			if (numFrames != 0 && m_frames.size() == numFrames)
+				break;
+
 			m_frames.push_back(sf::IntRect(frameSize.x * i, frameSize.y * j, frameSize.x, frameSize.y));
 			m_contentRects.push_back(sf::IntRect(frameSize.x * i, frameSize.y * j, frameSize.x, frameSize.y));
 		}

@@ -2,9 +2,9 @@
 #include "stdafx.h"
 #include <RenderBatch.h>
 #include <VectorMath.h>
+#include <ResourceLoader.h>
 
 std::unordered_map<std::string, std::unique_ptr<RenderBatch>> RenderBatch::m_stringBatches;
-std::unordered_map<ResourceID, std::unique_ptr<RenderBatch>> RenderBatch::m_resourceBatches;
 
 RenderBatch* RenderBatch::Get(const std::string& texName)
 {
@@ -19,26 +19,9 @@ RenderBatch* RenderBatch::Get(const std::string& texName)
 	return inserted.first->second.get();
 }
 
-RenderBatch* RenderBatch::Get(ResourceID texID)
-{
-	auto it = m_resourceBatches.find(texID);
-	if (it != m_resourceBatches.end())
-		return it->second.get();
-
-	auto batch = std::make_unique<RenderBatch>(LoadTexture(texID));
-
-	auto inserted = m_resourceBatches.insert(make_pair(texID, move(batch)));
-
-	return inserted.first->second.get();
-}
-
 void RenderBatch::RenderAll(sf::RenderTarget& target, sf::RenderStates states)
 {
 	for (auto& b : m_stringBatches) 
-	{
-		b.second->Render(target, states);
-	}
-	for (auto& b : m_resourceBatches)
 	{
 		b.second->Render(target, states);
 	}

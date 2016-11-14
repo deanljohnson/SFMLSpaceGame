@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include <Item.h>
-#include <ItemPrice.h>
 #include <SFGUI\Widget.hpp>
 #include <TextureMap.h>
 #include <SFGUI\PrimitiveTexture.hpp>
@@ -37,6 +36,6 @@ private:
 	bool m_priceSet;
 
 	static int m_widgetCount;
-	static std::shared_ptr<TextureMap> m_atlas;
+	static std::shared_ptr<TextureMap<std::string>> m_atlas;
 	static std::shared_ptr<sfg::PrimitiveTexture> m_guiTexture;
 };

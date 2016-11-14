@@ -5,6 +5,7 @@
 #include <VectorMath.h>
 #include <GameTime.h>
 #include <SpriteHelpers.h>
+#include <ResourceLoader.h>
 
 AnimatedSprite::AnimatedSprite(EntityID ent, const std::string& id, OriginOption origin)
 	: Component(ent), 

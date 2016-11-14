@@ -14,7 +14,7 @@ private:
 	float m_length;
 
 public:
-	AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length);
+	AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length, int numFrames = 0);
 
 	inline std::shared_ptr<sf::Texture> GetTexture() const { return m_texture; }
 	inline sf::Vector2f GetFrameSize() const { return m_frameSize; }

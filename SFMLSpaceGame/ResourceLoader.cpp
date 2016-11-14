@@ -14,7 +14,8 @@ namespace
 {
 	Serializer serializer = Serializer();
 
-	std::map<std::string, std::shared_ptr<TextureMap>> loadedTextureMaps;
+	std::map<std::string, std::shared_ptr<TextureMap<std::string>>> loadedStringTextureMaps;
+	std::map<std::string, std::shared_ptr<TextureMap<size_t>>> loadedIntTextureMaps;
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
 	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
 
@@ -72,7 +73,8 @@ void UnloadUnusedSharedPtrResources(std::map<KeyType, std::shared_ptr<PtrType>>&
 
 void UnloadUnusedResources()
 {
-	UnloadUnusedSharedPtrResources(loadedTextureMaps);
+	UnloadUnusedSharedPtrResources(loadedStringTextureMaps);
+	UnloadUnusedSharedPtrResources(loadedIntTextureMaps);
 	UnloadUnusedSharedPtrResources(loadedTextures);
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
 	UnloadUnusedSharedPtrResources(loadedAnimations);
@@ -104,22 +106,44 @@ std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
 	return std::pair<LPVOID, DWORD>(firstByte, rsrcDataSize);
 }
 
-std::shared_ptr<TextureMap> LoadTextureMap(const std::string& name)
+template<>
+std::shared_ptr<TextureMap<std::string>> LoadTextureMap<std::string>(const std::string& name)
 {
 	//If the resource is already loaded, return it
-	auto it = loadedTextureMaps.find(name);
-	if (it != loadedTextureMaps.end())
+	auto it = loadedStringTextureMaps.find(name);
+	if (it != loadedStringTextureMaps.end())
 	{
 		return it->second;
 	}
 
 	auto tex = LoadTexture(name);
 
-	TextureMap* ta = serializer.Load<TextureMap>(name);
+	TextureMap<std::string>* ta = serializer.Load<TextureMap<std::string>>(name);
 	ta->SetTexture(tex);
 
-	auto elem = std::shared_ptr<TextureMap>(ta);
-	loadedTextureMaps.insert(make_pair(name, elem));
+	auto elem = std::shared_ptr<TextureMap<std::string>>(ta);
+	loadedStringTextureMaps.insert(make_pair(name, elem));
+
+	return elem;
+}
+
+template<>
+std::shared_ptr<TextureMap<size_t>> LoadTextureMap<size_t>(const std::string& name)
+{
+	//If the resource is already loaded, return it
+	auto it = loadedIntTextureMaps.find(name);
+	if (it != loadedIntTextureMaps.end())
+	{
+		return it->second;
+	}
+
+	auto tex = LoadTexture(name);
+
+	TextureMap<size_t>* ta = serializer.Load<TextureMap<size_t>>(name);
+	ta->SetTexture(tex);
+
+	auto elem = std::shared_ptr<TextureMap<size_t>>(ta);
+	loadedIntTextureMaps.insert(make_pair(name, elem));
 
 	return elem;
 }
@@ -186,7 +210,7 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 	}
 	else if (id == "asteroid-one")
 	{
-		
+		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(159, 159), 2.f, 16);
 	}
 	else
 	{

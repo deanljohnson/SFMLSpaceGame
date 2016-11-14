@@ -15,7 +15,9 @@ constexpr ResourceID NullResource(-1);
 
 void UnloadUnusedResources();
 
-std::shared_ptr<TextureMap> LoadTextureMap(const std::string& name);
+template<typename TMapKey>
+std::shared_ptr<TextureMap<TMapKey>> LoadTextureMap(const std::string& name);
+
 std::shared_ptr<sf::Texture> LoadTexture(const std::string& name);
 std::shared_ptr<sf::Texture> LoadTexture(ResourceID id);
 

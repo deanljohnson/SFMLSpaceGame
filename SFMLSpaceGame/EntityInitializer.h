@@ -20,7 +20,7 @@ namespace EntityInitializer
 		StationSpriteBoundsColliderSetup,
 		PickupSpriteBoundsColliderSetup,
 
-		Count = 7
+		Count
 	};
 
 	// Executes the given intialization operation

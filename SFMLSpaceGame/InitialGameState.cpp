@@ -51,6 +51,8 @@ void InitialGameState::Init()
 	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 40));
 	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 40));
 
+	EntityFactory::CreateAsteroid(b2Vec2(20, 20));
+
 	EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
 	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 

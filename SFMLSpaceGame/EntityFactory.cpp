@@ -58,7 +58,7 @@ void EntityFactory::Init()
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	if (true)
+	if (false)
 	{
 		Serializer s;
 		auto ent = s.Load<Entity>("player");
@@ -129,6 +129,13 @@ EntityID EntityFactory::CreatPickup(const std::string& pickupType, const b2Vec2&
 
 	ent->ApplyInitializer(EntityInitializer::Type::PickupSpriteBoundsColliderSetup);
 
+	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateAsteroid(const b2Vec2& p, float radians)
+{
+	auto ent = EntityManager::AddEntity(ASTEROID_GROUP);
+	MakeIntoAsteroid(ent, p, radians);
 	return ent.GetID();
 }
 
@@ -206,6 +213,14 @@ void EntityFactory::MakeIntoBullet(EntityHandle& ent, const std::string& id, Ent
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
 	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
 	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
+}
+
+void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float radians)
+{
+	ent->AddComponent<Position, const b2Vec2&>(p);
+	ent->AddComponent<Rotation, float>(radians);
+	ent->AddComponent<AnimatedSprite, const std::string&, OriginOption>("asteroid-one", OriginOption::Center);
+	ent->AddComponent<Physics>();
 }
 
 void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p, float radians, bool npc)
