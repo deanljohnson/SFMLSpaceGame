@@ -10,8 +10,9 @@ Animation::Animation(std::shared_ptr<AnimationDefinition> definition)
 	m_currentFrame = 0;
 }
 
-void Animation::Update(float deltaTime)
+bool Animation::Update(float deltaTime)
 {
+	bool changed = false;
 	m_counter += (deltaTime * m_speed);
 
 	while (m_counter > m_frameLength)
@@ -20,7 +21,11 @@ void Animation::Update(float deltaTime)
 
 		m_currentFrame++;
 		m_currentFrame %= m_definition->FrameCount();
+
+		changed = true;
 	}
+
+	return changed;
 }
 float Animation::GetLength()
 {

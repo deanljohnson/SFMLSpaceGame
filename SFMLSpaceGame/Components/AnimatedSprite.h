@@ -53,9 +53,10 @@ public:
 
 	void SetOffset(const b2Vec2& v);
 	void SetScale(float x, float y);
+	void SetTextureRect(const sf::IntRect& rect);
 
 	Animation* GetAnimation();
 
 	// Returns the dimensions of this sprite in meters
-	virtual sf::FloatRect GetDimensions() const;
+	sf::FloatRect GetDimensions() const;
 };

@@ -43,11 +43,16 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "value1": "1.png"
+                    "value1": "1.png",
+                    "value2": 0,
+                    "value3": {
+                        "v.x": 0.0,
+                        "v.y": 0.0
+                    }
                 }
             }
         },
-        "value11": 3,
+        "value11": 2,
         "value12": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
@@ -63,7 +68,7 @@
                 }
             }
         },
-        "value13": 3,
+        "value13": 2,
         "value14": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
@@ -260,7 +265,12 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 0,
+                    "value1": 0.0,
+                    "value2": [
+                        1,
+                        2
+                    ]
                 }
             }
         },
@@ -330,7 +340,7 @@
                 "data": {
                     "value0": 0,
                     "value1": {
-                        "value0": "econ_31116"
+                        "value0": "econ_10867"
                     }
                 }
             }
@@ -346,6 +356,30 @@
                 }
             }
         },
-        "value61": 4294967295
+        "value61": 40,
+        "value62": {
+            "polymorphic_id": 1073741824,
+            "ptr_wrapper": {
+                "valid": 1,
+                "data": {
+                    "value0": 0,
+                    "value1": "exhaust-one",
+                    "value2": 1
+                }
+            }
+        },
+        "value63": 40,
+        "value64": {
+            "polymorphic_id": 1073741824,
+            "ptr_wrapper": {
+                "valid": 1,
+                "data": {
+                    "value0": 0,
+                    "value1": "exhaust-one",
+                    "value2": 2
+                }
+            }
+        },
+        "value65": 4294967295
     }
 }

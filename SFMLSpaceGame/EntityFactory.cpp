@@ -263,14 +263,16 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 		ent->AddComponent<ShipAI, const std::string&>(shipName);
 	}
 
+	auto& thrustAnim = ent->AddComponent<ThrusterAnimator>();
 	for (auto tl : shipStats->GetThrusterLocations())
 	{
-		ent->AddComponent<AnimatedSprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
+		
+		auto& spr = ent->AddComponent<Sprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
+		ent->AddComponent<Animator, const std::string&, int>("exhaust-one", ent->GetComponentID<Sprite>(spr));
+		thrustAnim.AddSprite(&spr);
 	}
 
-	ent->AddComponent<ThrusterAnimator>();
-
-	ent->ApplyInitializer(EntityInitializer::Type::AssignThrusterAnimatorSprites);
+	ent->ApplyInitializer(EntityInitializer::Type::SetThrusterLocations);
 	ent->ApplyInitializer(EntityInitializer::Type::ShipDestroyedCallback);
 	ent->ApplyInitializer(EntityInitializer::Type::AssignDamageModifiers);
 	ent->ApplyInitializer(EntityInitializer::Type::AssignShipStatsData);

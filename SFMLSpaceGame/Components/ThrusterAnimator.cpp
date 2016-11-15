@@ -23,7 +23,7 @@ void ThrusterAnimator::Update()
 	ApplyScale();
 }
 
-void ThrusterAnimator::AddSprite(AnimatedSprite* sprite)
+void ThrusterAnimator::AddSprite(Sprite* sprite)
 {
 	m_thrusterSprites.push_back(sprite);
 }
@@ -36,4 +36,9 @@ void ThrusterAnimator::ApplyScale()
 	{
 		t->SetScale(m_currentScale, yScale);
 	}
+}
+
+std::vector<Sprite*>& ThrusterAnimator::GetSprites() 
+{
+	return m_thrusterSprites;
 }

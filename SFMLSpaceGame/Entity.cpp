@@ -15,6 +15,7 @@ void Entity::ApplyInitializers()
 		{
 			Execute(static_cast<EntityInitializer::Type>(i), *this);
 		}
+
 	}
 }
 

@@ -69,24 +69,21 @@ void DoShipDestroyedCallback(Entity& ent)
 	};
 }
 
-void DoAssignThrusterAnimatorSprites(Entity& ent) 
+void DoSetThrusterLocations(Entity& ent)
 {
 	auto& shipStats = ent.GetComponent<ShipStatsComponent>();
 	auto& sp = ent.GetComponent<Sprite>();
-	auto spriteBox = sp.GetDimensions();
-	auto origin = sf::Vector2f(spriteBox.width, spriteBox.height) / 2.f;
+	auto origin = B2VecToSFMLVec(sp.GetOrigin());
 
 	auto& anim = ent.GetComponent<ThrusterAnimator>();
-	auto spr = &ent.GetComponent<AnimatedSprite>();
 
-	for (auto tl : shipStats->GetThrusterLocations())
+	auto& thrusterLocations = shipStats->GetThrusterLocations();
+	auto& thrusterSprites = anim.GetSprites();
+
+	for (size_t i = 0; i < thrusterLocations.size(); i++)
 	{
-		assert(spr != nullptr);
-
-		spr->SetOffset(SFMLVecToB2Vec((tl* METERS_PER_PIXEL) - origin));
-
-		anim.AddSprite(spr);
-		spr = static_cast<AnimatedSprite*>(spr->next);
+		auto tl = thrusterLocations[i] * METERS_PER_PIXEL;
+		thrusterSprites[i]->SetOffset(SFMLVecToB2Vec(tl - origin));
 	}
 }
 
@@ -186,8 +183,8 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 	case EntityInitializer::Type::ShipDestroyedCallback:
 		DoShipDestroyedCallback(ent);
 		break;
-	case EntityInitializer::Type::AssignThrusterAnimatorSprites:
-		DoAssignThrusterAnimatorSprites(ent);
+	case EntityInitializer::Type::SetThrusterLocations:
+		DoSetThrusterLocations(ent);
 		break;
 	case EntityInitializer::Type::AssignShipStatsData:
 		DoAssignShipStatsData(ent);

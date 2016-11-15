@@ -17,7 +17,7 @@ private:
 public:
 	explicit Animation(std::shared_ptr<AnimationDefinition> definition);
 
-	void Update(float deltaTime);
+	bool Update(float deltaTime);
 
 	float GetLength();
 

@@ -12,7 +12,7 @@ namespace EntityInitializer
 	enum Type
 	{ 
 		PlayerKeyListenerSetup, 
-		AssignThrusterAnimatorSprites,
+		SetThrusterLocations,
 		ShipDestroyedCallback,
 		AssignDamageModifiers,
 		AssignShipStatsData,

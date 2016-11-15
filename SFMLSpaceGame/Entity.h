@@ -40,20 +40,23 @@ private:
 		//add to our set of components
 		m_components.emplace_back(move(uPtr));
 
-		auto compID = GetComponentTypeID<T>();
+		auto compTypeID = GetComponentTypeID<T>();
 
 		// The entity already has a component of this type
 		// add it to the component linked list
-		if (m_componentBitset[compID])
+		if (m_componentBitset[compTypeID])
 		{
-			Component* existing = m_componentArray[compID];
-			while (existing->next != nullptr) existing = existing->next;
+			Component* existing = m_componentArray[compTypeID];
+			while (existing->next != nullptr) 
+			{
+				existing = existing->next;
+			} 
 			existing->next = comp;
 		}
 		else
 		{
-			m_componentArray[compID] = comp;
-			m_componentBitset[compID] = true;
+			m_componentArray[compTypeID] = comp;
+			m_componentBitset[compTypeID] = true;
 		}
 	}
 
@@ -87,6 +90,8 @@ private:
 	}
 
 public:
+	typedef int ComponentID;
+
 	// used only for serialization
 	Entity() {}
 	static std::string GetTypeName() { return "entity"; }
@@ -140,10 +145,17 @@ public:
 	//****** Component Handling Methods ******
 	
 	template<typename T>
-	T& GetComponent() const
+	T& GetComponent(int index = 0) const
 	{
 		assert(HasComponent<T>());
 		auto ptr{ m_componentArray[GetComponentTypeID<T>()] };
+
+		while (index > 0) 
+		{
+			index--;
+			ptr = ptr->next;
+		}
+
 		return *static_cast<T*>(ptr);
 	}
 
@@ -168,6 +180,23 @@ public:
 		return *c;
 	}
 
+	// returns an identifier that can be used
+	// in GetComponent calls to get a specific
+	// component when there are multiple 
+	// components of the same type on the entity
+	template<typename T>
+	ComponentID GetComponentID(T& comp)
+	{
+		ComponentID id = 0;
+		Component* current = m_componentArray[GetComponentTypeID<T>()];
+		while (current != &comp)
+		{
+			current = current->next;
+			id++;
+		}
+
+		return id;
+	}
 	
 	//****** Group Handling Methods ******
 	bool HasGroup(Group group) const noexcept;
