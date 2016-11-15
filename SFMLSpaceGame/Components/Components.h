@@ -11,6 +11,7 @@
 #include <Components/Sprite.h>
 #include <Components/GameWorldClickListener.h>
 #include <Components/DirectionalGun.h>
+#include <Components/MissileLauncher.h>
 #include <Components/FireGunOnClick.h>
 #include <Components/BulletPhysics.h>
 #include <Components/Lifetime.h>

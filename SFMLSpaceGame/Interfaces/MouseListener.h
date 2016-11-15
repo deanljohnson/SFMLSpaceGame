@@ -5,6 +5,8 @@ struct b2Vec2;
 class MouseListener 
 {
 public:
+	sf::Mouse::Button button{sf::Mouse::Button::Left};
+
 	virtual ~MouseListener()
 	{
 	}

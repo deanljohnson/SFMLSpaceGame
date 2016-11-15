@@ -1,6 +1,7 @@
 #pragma once
 #include <Components/ShipThrusters.h>
 #include <Components/DirectionalGun.h>
+#include <Components/MissileLauncher.h>
 #include <Components/Shields.h>
 #include <cereal/types/vector.hpp> // Need for collider vertices serialization
 #include <SFMLSerialization.h> // Need for collider vertices serialization
@@ -16,6 +17,7 @@ private:
 	float m_sensorRange;
 	ShipThrust m_shipThrust;
 	DirectionalGunData m_dirGunData;
+	MissileLauncherData m_misLauncherData;
 	ShieldData m_shieldData;
 	std::string m_imageLocation;
 	std::vector<sf::Vector2f> m_colliderVertices;
@@ -31,6 +33,7 @@ public:
 		  m_sensorRange(0),
 		  m_shipThrust(),
 		  m_dirGunData(),
+		  m_misLauncherData(),
 		  m_shieldData(),
 		  m_colliderVertices(),
 		  m_thrusterLocations()
@@ -45,6 +48,7 @@ public:
 		  m_sensorRange{other.m_sensorRange},
 		  m_shipThrust{other.m_shipThrust},
 		  m_dirGunData{other.m_dirGunData},
+		  m_misLauncherData{other.m_misLauncherData},
 		  m_shieldData{other.m_shieldData},
 		  m_imageLocation{other.m_imageLocation},
 		  m_colliderVertices{other.m_colliderVertices},
@@ -54,7 +58,8 @@ public:
 	ShipStats(float hullStrength, float interceptLead, float followDistance,
 			float approachDistance, float strafeDistance,
 			float sensorRange, ShipThrust thrust,
-			DirectionalGunData dirData, ShieldData shieldData, const std::string& imageLocation,
+			DirectionalGunData dirData, MissileLauncherData misData,
+		    ShieldData shieldData, const std::string& imageLocation,
 			const std::vector<sf::Vector2f>& colliderVertices,
 			const std::vector<sf::Vector2f>& thrusterLocations)
 		: m_maxHull(hullStrength),
@@ -65,6 +70,7 @@ public:
 		  m_sensorRange(sensorRange),
 		  m_shipThrust(thrust),
 		  m_dirGunData(dirData),
+		  m_misLauncherData(misData),
 		  m_shieldData(shieldData),
 		  m_imageLocation(imageLocation),
 		  m_colliderVertices(colliderVertices),
@@ -79,6 +85,7 @@ public:
 	inline float GetSensorRange() const { return m_sensorRange; }
 	inline ShipThrust* GetShipThrust() { return &m_shipThrust; }
 	inline DirectionalGunData* GetDirGunData() { return &m_dirGunData; }
+	inline MissileLauncherData* GetMissileLauncherData() { return &m_misLauncherData; }
 	inline ShieldData* GetShieldData() { return &m_shieldData; }
 	inline std::string GetImageLocation() const { return m_imageLocation; }
 	inline std::vector<sf::Vector2f>& GetColliderVertices() { return m_colliderVertices; }
@@ -105,6 +112,7 @@ public:
 				cereal::make_nvp("SensorRange", m_sensorRange),
 				cereal::make_nvp("ShipThrust", m_shipThrust),
 				cereal::make_nvp("DirGunData", m_dirGunData),
+				cereal::make_nvp("MisLauncherData", m_misLauncherData),
 				cereal::make_nvp("Shields", m_shieldData),
 				cereal::make_nvp("ImageLocation", m_imageLocation),
 				cereal::make_nvp("ColliderVertices", m_colliderVertices),
@@ -138,6 +146,9 @@ inline void ShipStats::Copy(ShipStats* other)
 	m_dirGunData.heatGenerated = other->m_dirGunData.heatGenerated;
 	m_dirGunData.hardPoints = { other->m_dirGunData.hardPoints };
 
+	m_misLauncherData.fireRate = other->m_misLauncherData.fireRate;
+	m_misLauncherData.hardPoints = { other->m_misLauncherData.hardPoints };
+
 	m_shieldData.FrontStrength = other->m_shieldData.FrontStrength;
 	m_shieldData.SideStrength = other->m_shieldData.SideStrength;
 	m_shieldData.RearStrength = other->m_shieldData.RearStrength;
@@ -157,6 +168,7 @@ inline ShipStats* ShipStats::Clone(ShipStats* other)
 						other->m_sensorRange,
 						ShipThrust(other->m_shipThrust),
 						DirectionalGunData(other->m_dirGunData),
+						MissileLauncherData(other->m_misLauncherData),
 						ShieldData(other->m_shieldData),
 						other->m_imageLocation,
 						{other->m_colliderVertices},

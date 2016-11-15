@@ -35,6 +35,18 @@
             ],
             "SoundID": 801
         },
+		"MisLauncherData": {
+			"FireRate": 1.0,
+			"HardPoints": [
+				{
+					"Position": {
+						"v.x": 0.0,
+						"v.y": 0.0
+					},
+					"Angle": 0.0
+				}
+			]
+		},
         "Shields": {
             "FrontStrength": 3.0,
             "SideStrength": 3.0,

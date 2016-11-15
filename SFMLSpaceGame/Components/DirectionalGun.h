@@ -8,31 +8,8 @@
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 #include "Sprite.h"
-
-struct HardPoint
-{
-	HardPoint() 
-		: positionOffset(),
-		  angleOffset()
-	{}
-	HardPoint(b2Vec2 offset, float angle)
-		: positionOffset(offset),
-		  angleOffset(angle)
-	{}
-
-	//Offset from the ships center to the HardPoint location. 
-	//+x = towards the ships nose 
-	//+y = towards the ships right side
-	b2Vec2 positionOffset;
-	float angleOffset;
-
-	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(cereal::make_nvp("Position", positionOffset),
-				cereal::make_nvp("Angle", angleOffset));
-	}
-};
+#include <HardPoint.h>
+#include <Entity.h>1
 
 struct DirectionalGunData
 {
@@ -89,7 +66,9 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_lastFiringTime, m_currentHeat);
+		ar(entity.GetID(), m_lastFiringTime, m_currentHeat, 
+			(m_shotSound == nullptr) ? -1 
+									 : entity->GetComponentID(*m_shotSound));
 	}
 
 	template <class Archive>
@@ -99,7 +78,11 @@ private:
 		ar(selfID);
 		construct(selfID);
 
-		ar(construct->m_lastFiringTime, construct->m_currentHeat);
+		int soundSourceID;
+		ar(construct->m_lastFiringTime, construct->m_currentHeat, soundSourceID);
+
+		if (soundSourceID != -1)
+			construct->m_shotSound = &construct->entity->GetComponent<SoundSource>(soundSourceID);
 	}
 
 public:

@@ -168,9 +168,6 @@ public:
 	template<typename T, typename... TArgs>
 	T& AddComponent(TArgs... args) 
 	{
-		//we only allow entities to have a single component of a type
-		//assert(!HasComponent<T>());
-
 		//Call the components constructor with the given args
 		T* c(new T(m_id, std::forward<TArgs>(args)...));
 

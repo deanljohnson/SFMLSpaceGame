@@ -153,14 +153,15 @@ void GameWorldClickListener::Update()
 	}
 }
 
-void GameWorldClickListener::AddClickListener(MouseListener* listener, sf::Mouse::Button button)
+void GameWorldClickListener::AddClickListener(MouseListener* listener)
 {
-	switch (button)
+	switch (listener->button)
 	{
 	case sf::Mouse::Button::Left:
 		m_leftClickListeners.push_back(listener);
 		break;
 	case sf::Mouse::Button::Right:
+		m_rightClickListeners.push_back(listener);
 		break;
 	default:
 		throw "GameWorldClickListener does not support the given mouse button";
@@ -168,14 +169,15 @@ void GameWorldClickListener::AddClickListener(MouseListener* listener, sf::Mouse
 	
 }
 
-void GameWorldClickListener::AddHeldListener(MouseListener* listener, sf::Mouse::Button button)
+void GameWorldClickListener::AddHeldListener(MouseListener* listener)
 {
-	switch (button)
+	switch (listener->button)
 	{
 	case sf::Mouse::Button::Left:
 		m_leftHeldListeners.push_back(listener);
 		break;
 	case sf::Mouse::Button::Right:
+		m_rightHeldListeners.push_back(listener);
 		break;
 	default:
 		throw "GameWorldClickListener does not support the given mouse button";

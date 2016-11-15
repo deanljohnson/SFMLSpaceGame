@@ -26,6 +26,6 @@ public:
 
 	virtual void Update() override;
 
-	void AddClickListener(MouseListener* listener, sf::Mouse::Button button = sf::Mouse::Button::Left);
-	void AddHeldListener(MouseListener* listener, sf::Mouse::Button button = sf::Mouse::Button::Left);
+	void AddClickListener(MouseListener* listener);
+	void AddHeldListener(MouseListener* listener);
 };

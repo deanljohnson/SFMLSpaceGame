@@ -29,8 +29,13 @@ void EntityFactory::Init()
 	GetComponentTypeID<RectPrimitive>();
 	GetComponentTypeID<RotateToFaceMouse>();
 	GetComponentTypeID<GameWorldClickListener>();
+	GetComponentTypeID<SoundSource>();
+	GetComponentTypeID<SoundListener>();
+	GetComponentTypeID<MusicSource>();
 	GetComponentTypeID<DirectionalGun>();
-	GetComponentTypeID<FireGunOnClick>();
+	GetComponentTypeID<MissileLauncher>();
+	GetComponentTypeID<FireGunOnClick<DirectionalGun>>();
+	GetComponentTypeID<FireGunOnClick<MissileLauncher>>();
 	GetComponentTypeID<BulletPhysics>();
 	GetComponentTypeID<Lifetime>();
 	GetComponentTypeID<CollisionFilterComponent>();
@@ -42,9 +47,6 @@ void EntityFactory::Init()
 	GetComponentTypeID<DamageOnAttacked>();
 	GetComponentTypeID<PlayerDeathBroadcaster>();
 	GetComponentTypeID<ThrusterAnimator>();
-	GetComponentTypeID<SoundSource>();
-	GetComponentTypeID<SoundListener>();
-	GetComponentTypeID<MusicSource>();
 	GetComponentTypeID<GunHeatUIDisplay<DirectionalGun>>();
 	GetComponentTypeID<TilingBackground>();
 	GetComponentTypeID<KeyListener>();
@@ -58,7 +60,7 @@ void EntityFactory::Init()
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	if (false)
+	if (true)
 	{
 		Serializer s;
 		auto ent = s.Load<Entity>("player");
@@ -176,7 +178,8 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<RotateToFaceMouse, float>(1.5f);
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
-	ent->AddComponent<FireGunOnClick>();
+	ent->AddComponent<FireGunOnClick<DirectionalGun>, sf::Mouse::Button>(sf::Mouse::Left);
+	ent->AddComponent<FireGunOnClick<MissileLauncher>, sf::Mouse::Button>(sf::Mouse::Right);
 	ent->AddComponent<ZoomHandler>();
 	ent->AddComponent<PlayerDeathBroadcaster>();
 	ent->AddComponent<SoundListener>();
@@ -233,8 +236,9 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
 	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, const std::string&>(shipName);
-	ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
-	ent->AddComponent<DirectionalGun>();
+	auto& gunSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
+	ent->AddComponent<DirectionalGun>().SetSoundSource(&gunSound);
+	ent->AddComponent<MissileLauncher>();
 	ent->AddComponent<Health>();
 	ent->AddComponent<Shields>();
 	ent->AddComponent<DamageOnAttacked>();

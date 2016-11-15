@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <GameTime.h>
 #include <Components/DirectionalGun.h>
-#include <EntityManager.h>
 #include <EntityFactory.h>
 #include <VectorMath.h>
 #include <WorldConstants.h>
@@ -42,6 +41,7 @@ void DirectionalGun::Shoot()
 										m_rotation.GetRadians() + hp.angleOffset);
 	}
 
+	// play a sound if available
 	if (m_shotSound != nullptr)
 		m_shotSound->Play();
 
