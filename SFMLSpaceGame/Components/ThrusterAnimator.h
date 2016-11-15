@@ -1,6 +1,5 @@
 #pragma once
 #include "ShipThrusters.h"
-#include "AnimatedSprite.h"
 #include <cereal\access.hpp>
 #include <cereal\types\vector.hpp>
 

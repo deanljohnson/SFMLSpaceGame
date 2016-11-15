@@ -11,7 +11,6 @@
 #include <Components\KeyListener.h>
 #include <Components\Inventory.h>
 #include <Components\ItemPickup.h>
-#include <Components\AnimatedSprite.h>
 #include <Components\ThrusterAnimator.h>
 #include <Components\ShipStatsComponent.h>
 #include <Components\DamageOnAttacked.h>

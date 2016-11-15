@@ -192,9 +192,6 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\AnimatedSprite.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -514,9 +511,6 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\AnimatedSprite.h">
-      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="OriginOption.h">
       <Filter>Header Files</Filter>

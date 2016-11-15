@@ -3,12 +3,6 @@
 #include <WorldConstants.h>
 #include <Entity.h>
 
-b2Vec2 GetWorldMouseLocation() 
-{
-	auto sfPos = GAME_WINDOW->mapPixelToCoords(sf::Mouse::getPosition(*GAME_WINDOW));
-	return MapPixelToWorld(sfPos); // convert window coordinate value to world (meters) value
-}
-
 RotateToFaceMouse::RotateToFaceMouse(EntityID ent, float smoothingScale)
 	: Component(ent), 
 	  m_physics(entity->GetComponent<Physics>()),

@@ -23,7 +23,6 @@
 #include <Components/DamageOnAttacked.h>
 #include <Components/ShipSpawner.h>
 #include <Components/PlayerDeathBroadcaster.h>
-#include <Components/AnimatedSprite.h>
 #include <Components/ThrusterAnimator.h>
 #include <Components/SoundSource.h>
 #include <Components/SoundListener.h>

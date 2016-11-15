@@ -7,14 +7,25 @@
 class GameWorldClickListener : public Component, public DefaultSerializeable<GameWorldClickListener>
 {
 private:
-	enum ClickState { None, Down, Held, Click } m_clickedState;
-	std::vector<MouseListener*> m_clickListeners;
-	std::vector<MouseListener*> m_heldListeners;
+	enum ClickState { None, Down, Held, Click };
+
+	ClickState m_leftClickedState;
+	std::vector<MouseListener*> m_leftClickListeners;
+	std::vector<MouseListener*> m_leftHeldListeners;
+
+	ClickState m_rightClickedState;
+	std::vector<MouseListener*> m_rightClickListeners;
+	std::vector<MouseListener*> m_rightHeldListeners;
+
+	void HandleLeftPress();
+	void HandleLeftRelease();
+	void HandleRightPress();
+	void HandleRightRelease();
 public:
 	explicit GameWorldClickListener(EntityID ent);
 
 	virtual void Update() override;
 
-	void AddClickListener(MouseListener* listener);
-	void AddHeldListener(MouseListener* listener);
+	void AddClickListener(MouseListener* listener, sf::Mouse::Button button = sf::Mouse::Button::Left);
+	void AddHeldListener(MouseListener* listener, sf::Mouse::Button button = sf::Mouse::Button::Left);
 };

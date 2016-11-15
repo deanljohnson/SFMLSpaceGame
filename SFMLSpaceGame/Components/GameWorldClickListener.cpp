@@ -4,8 +4,81 @@
 
 GameWorldClickListener::GameWorldClickListener(EntityID ent)
 	: Component(ent),
-	  m_clickedState(None)
+	  m_leftClickedState(None),
+	  m_rightClickedState(None)
 {
+}
+
+void GameWorldClickListener::HandleLeftPress()
+{
+	switch (m_leftClickedState)
+	{
+	case None:
+		m_leftClickedState = Down;
+		break;
+	case Down:
+		m_leftClickedState = Held;
+		break;
+	case Held:
+		break;
+	case Click:
+		m_leftClickedState = Down;
+		break;
+	}
+}
+
+void GameWorldClickListener::HandleLeftRelease()
+{
+	switch (m_leftClickedState)
+	{
+	case None:
+		break;
+	case Down:
+		m_leftClickedState = Click;
+		break;
+	case Held:
+		m_leftClickedState = Click;
+		break;
+	case Click:
+		m_leftClickedState = None;
+		break;
+	}
+}
+
+void GameWorldClickListener::HandleRightPress()
+{
+	switch (m_rightClickedState)
+	{
+	case None:
+		m_rightClickedState = Down;
+		break;
+	case Down:
+		m_rightClickedState = Held;
+		break;
+	case Held:
+		break;
+	case Click:
+		m_rightClickedState = Down;
+		break;
+	}
+}
+
+void GameWorldClickListener::HandleRightRelease()
+{
+	switch (m_rightClickedState)
+	{
+	case None:
+		break;
+	case Down:
+		m_rightClickedState = Click;
+		break;
+	case Held:
+		m_rightClickedState = Click;
+		break;
+	case Click:
+		m_rightClickedState = None;
+		break;
+	}
 }
 
 void GameWorldClickListener::Update()
@@ -13,73 +86,98 @@ void GameWorldClickListener::Update()
 	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)
 	{
 		auto& e = GameState::pendingEvents[i];
+		bool handled = false;
 
-		if (e->type == sf::Event::MouseButtonPressed 
-			&& e->mouseButton.button == sf::Mouse::Left)
+		if (e->type == sf::Event::MouseButtonPressed)
 		{
-			switch (m_clickedState)
+			if (e->mouseButton.button == sf::Mouse::Left)
 			{
-			case None:
-				m_clickedState = Down;
-				break;
-			case Down:
-				m_clickedState = Held;
-				break;
-			case Held:
-				break;
-			case Click:
-				m_clickedState = Down;
-				break;
+				HandleLeftPress();
+				handled = true;
 			}
-
-			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
+			else if (e->mouseButton.button == sf::Mouse::Right)
+			{
+				HandleRightPress();
+				handled = true;
+			}
 		}
-		else if (e->type == sf::Event::MouseButtonReleased
-				&& e->mouseButton.button == sf::Mouse::Left)
+		else if (e->type == sf::Event::MouseButtonReleased)
 		{
-			switch (m_clickedState)
+			if (e->mouseButton.button == sf::Mouse::Left)
 			{
-			case None:
-				break;
-			case Down:
-				m_clickedState = Click;
-				break;
-			case Held:
-				m_clickedState = Click;
-				break;
-			case Click:
-				m_clickedState = None;
-				break;
+				HandleLeftRelease();
+				handled = true;
 			}
-
-			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
+			else if (e->mouseButton.button == sf::Mouse::Right)
+			{
+				HandleRightRelease();
+				handled = true;
+			}
 		}
+
+		if (handled)
+			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
 	}
 
-	b2Vec2 mousePos;
-	if (m_clickedState == Down || m_clickedState == Held) 
+	b2Vec2 mousePos = GetWorldMouseLocation();
+	if (m_leftClickedState == Down || m_leftClickedState == Held) 
 	{
-		for (auto listener : m_heldListeners) 
+		for (auto listener : m_leftHeldListeners) 
 		{
 			listener->OnHeld(mousePos);
 		}
 	}
-	else if (m_clickedState == Click) 
+	else if (m_leftClickedState == Click) 
 	{
-		for (auto listener : m_clickListeners)
+		for (auto listener : m_leftClickListeners)
 		{
 			listener->OnClick(mousePos);
 		}
-		m_clickedState = None;
+		m_leftClickedState = None;
+	}
+
+	if (m_rightClickedState == Down || m_rightClickedState == Held)
+	{
+		for (auto listener : m_rightClickListeners)
+		{
+			listener->OnHeld(mousePos);
+		}
+	}
+	else if (m_rightClickedState == Click)
+	{
+		for (auto listener : m_rightClickListeners)
+		{
+			listener->OnClick(mousePos);
+		}
+		m_rightClickedState = None;
 	}
 }
 
-void GameWorldClickListener::AddClickListener(MouseListener* listener)
+void GameWorldClickListener::AddClickListener(MouseListener* listener, sf::Mouse::Button button)
 {
-	m_clickListeners.push_back(listener);
+	switch (button)
+	{
+	case sf::Mouse::Button::Left:
+		m_leftClickListeners.push_back(listener);
+		break;
+	case sf::Mouse::Button::Right:
+		break;
+	default:
+		throw "GameWorldClickListener does not support the given mouse button";
+	}
+	
 }
 
-void GameWorldClickListener::AddHeldListener(MouseListener* listener)
+void GameWorldClickListener::AddHeldListener(MouseListener* listener, sf::Mouse::Button button)
 {
-	m_heldListeners.push_back(listener);
+	switch (button)
+	{
+	case sf::Mouse::Button::Left:
+		m_leftHeldListeners.push_back(listener);
+		break;
+	case sf::Mouse::Button::Right:
+		break;
+	default:
+		throw "GameWorldClickListener does not support the given mouse button";
+	}
 }

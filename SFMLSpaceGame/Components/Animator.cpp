@@ -23,3 +23,13 @@ void Animator::Update()
 
 	if (next != nullptr) next->Update();
 }
+
+float Animator::GetLength()
+{
+	return m_animation.GetLength();
+}
+
+float Animator::GetSpeed()
+{
+	return m_animation.GetSpeed();
+}

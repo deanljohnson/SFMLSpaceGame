@@ -29,3 +29,9 @@ inline sf::Vector2f MapWorldToPixel(const sf::Vector2f& v)
 {
 	return sf::Vector2f(v.x * PIXELS_PER_METER, v.y * PIXELS_PER_METER);
 }
+
+inline b2Vec2 GetWorldMouseLocation()
+{
+	auto sfPos = GAME_WINDOW->mapPixelToCoords(sf::Mouse::getPosition(*GAME_WINDOW));
+	return MapPixelToWorld(sfPos); // convert window coordinate value to world (meters) value
+}

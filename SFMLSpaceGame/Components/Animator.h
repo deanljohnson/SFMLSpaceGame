@@ -37,4 +37,7 @@ public:
 	explicit Animator(EntityID ent, const std::string& id, ComponentID spriteID = 0);
 
 	virtual void Update() override;
+
+	float GetLength();
+	float GetSpeed();
 };

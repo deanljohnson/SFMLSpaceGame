@@ -51,6 +51,10 @@ void Sprite::SetScale(float x, float y)
 void Sprite::SetTextureRect(const sf::IntRect& rect) 
 {
 	m_batch->SetTextureRect(m_batchIndex, rect);
+
+	// if we do not re-set the origin, changing texture rect's
+	// can cause distortion issues.
+	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, m_originOption));
 }
 
 sf::FloatRect Sprite::GetDimensions() const

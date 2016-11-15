@@ -16,7 +16,7 @@ void EntityFactory::Init()
 	GetComponentTypeID<Position>();
 	GetComponentTypeID<Rotation>();
 	GetComponentTypeID<Sprite>();
-	GetComponentTypeID<AnimatedSprite>();
+	GetComponentTypeID<Animator>();
 	GetComponentTypeID<Shields>();
 	GetComponentTypeID<ShieldHitAnimator>();
 	GetComponentTypeID<Physics>();
@@ -113,8 +113,9 @@ EntityID EntityFactory::CreateExplosion(const std::string& explosionID, const b2
 	auto ent = EntityManager::AddEntity(EXPLOSION_GROUP);
 	ent->AddComponent<Position>(p);
 	ent->AddComponent<Rotation>();
-	auto& spr = ent->AddComponent<AnimatedSprite>(explosionID);
-	ent->AddComponent<Lifetime>(spr.GetAnimation()->GetLength() * spr.GetAnimation()->GetSpeed());
+	auto& spr = ent->AddComponent<Sprite, const std::string&>(explosionID);
+	auto& animator = ent->AddComponent<Animator, const std::string&, int>(explosionID, ent->GetComponentID(spr));
+	ent->AddComponent<Lifetime>(animator.GetLength() * animator.GetSpeed());
 	return ent.GetID();
 }
 
@@ -219,7 +220,8 @@ void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float r
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<AnimatedSprite, const std::string&, OriginOption>("asteroid-one", OriginOption::Center);
+	auto& spr = ent->AddComponent<Sprite, const std::string&, OriginOption>("asteroid-one", OriginOption::Center);
+	ent->AddComponent<Animator, const std::string&, int>("asteroid-one", ent->GetComponentID<Sprite>(spr));
 	ent->AddComponent<Physics>();
 }
 

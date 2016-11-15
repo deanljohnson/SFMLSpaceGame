@@ -179,7 +179,6 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationDefinition.cpp" />
     <ClCompile Include="ComponentSerializer.cpp" />
-    <ClCompile Include="Components\AnimatedSprite.cpp" />
     <ClCompile Include="Components\Animator.cpp" />
     <ClCompile Include="Components\BulletPhysics.cpp" />
     <ClCompile Include="Components\CirclePrimitive.cpp" />
@@ -283,7 +282,6 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="AnimationDefinition.h" />
     <ClInclude Include="Box2DSerialization.h" />
     <ClInclude Include="ComponentSerializer.h" />
-    <ClInclude Include="Components\AnimatedSprite.h" />
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Components\DamageOnAttacked.h" />
