@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <ProjectileStats.h>
+#include <MissileStats.h>
 #include <AnimationDefinition.h>
 #include <TextureMap.h>
 
@@ -27,3 +28,4 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 std::shared_ptr<sf::Font> LoadFont(ResourceID id);
 std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id);
 std::shared_ptr<ProjectileStats> LoadProjectile(const std::string& id);
+std::shared_ptr<MissileStats> LoadMissile(const std::string& id);

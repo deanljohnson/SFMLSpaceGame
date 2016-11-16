@@ -1,0 +1,10 @@
+{
+	"MissileOne": {
+		"Thrust": 1.0,
+		"Damage": 15.0,
+		"Size": {
+			"v.x": 0.3,
+			"v.y": 0.03
+		}
+	}
+}

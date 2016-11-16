@@ -325,6 +325,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MissileStats.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
     <ClInclude Include="RenderBatch.h" />
