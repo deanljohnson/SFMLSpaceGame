@@ -14,6 +14,7 @@
 #include <Components/MissileLauncher.h>
 #include <Components/FireGunOnClick.h>
 #include <Components/BulletPhysics.h>
+#include <Components/MissilePhysics.h>
 #include <Components/Lifetime.h>
 #include <Components/CollisionFilterComponent.h>
 #include <Components/ShipController.h>

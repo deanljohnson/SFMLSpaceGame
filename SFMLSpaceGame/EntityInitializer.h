@@ -19,6 +19,7 @@ namespace EntityInitializer
 		StationInteractListenerSetup,
 		StationSpriteBoundsColliderSetup,
 		PickupSpriteBoundsColliderSetup,
+		MissileSpriteBoundsColliderSetup,
 
 		Count
 	};

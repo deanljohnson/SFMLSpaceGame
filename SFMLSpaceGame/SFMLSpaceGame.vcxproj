@@ -197,6 +197,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\KeyListener.cpp" />
     <ClCompile Include="Components\Lifetime.cpp" />
     <ClCompile Include="Components\MissileLauncher.cpp" />
+    <ClCompile Include="Components\MissilePhysics.cpp" />
     <ClCompile Include="Components\MusicSource.cpp" />
     <ClCompile Include="Components\ParallaxTargetAssigner.cpp" />
     <ClCompile Include="Components\PlayerDeathBroadcaster.cpp" />
@@ -294,6 +295,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\ItemPickup.h" />
     <ClInclude Include="Components\KeyListener.h" />
     <ClInclude Include="Components\MissileLauncher.h" />
+    <ClInclude Include="Components\MissilePhysics.h" />
     <ClInclude Include="Components\MusicSource.h" />
     <ClInclude Include="Components\ParallaxTargetAssigner.h" />
     <ClInclude Include="Components\PlayerDeathBroadcaster.h" />

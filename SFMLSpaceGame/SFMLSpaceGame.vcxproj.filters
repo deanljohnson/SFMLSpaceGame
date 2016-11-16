@@ -342,6 +342,9 @@
     <ClCompile Include="Components\MissileLauncher.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\MissilePhysics.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -712,6 +715,9 @@
     </ClInclude>
     <ClInclude Include="MissileStats.h">
       <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MissilePhysics.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

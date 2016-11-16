@@ -7,6 +7,7 @@
 #include <PlayerData.h>
 #include <UI\InventoryWindow.h>
 #include <UI\StationWindow.h>
+#include <Components\MissilePhysics.h>
 #include <Components\Shields.h>
 #include <Components\KeyListener.h>
 #include <Components\Inventory.h>
@@ -174,6 +175,17 @@ void DoPickupSpriteBoundsColliderSetup(Entity& ent)
 	phys.AddShape(shape, .2f, IS_SENSOR, COLLIDES_WITH_SHIP);
 }
 
+void DoMissileSpriteBoundsColliderSetup(Entity& ent)
+{
+	auto& sp = ent.GetComponent<Sprite>();
+	auto& phys = ent.GetComponent<MissilePhysics>();
+
+	auto spriteBox = sp.GetDimensions();
+	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	shape.setOrigin(B2VecToSFMLVec(sp.GetOrigin()));
+	phys.AddShape(shape, .2f, IS_BULLET, COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION);
+}
+
 void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent) 
 {
 	switch (initType) 
@@ -201,6 +213,9 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 		break;
 	case EntityInitializer::Type::PickupSpriteBoundsColliderSetup:
 		DoPickupSpriteBoundsColliderSetup(ent);
+		break;
+	case EntityInitializer::Type::MissileSpriteBoundsColliderSetup:
+		DoMissileSpriteBoundsColliderSetup(ent);
 		break;
 	}
 }

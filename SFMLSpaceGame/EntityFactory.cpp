@@ -37,6 +37,7 @@ void EntityFactory::Init()
 	GetComponentTypeID<FireGunOnClick<DirectionalGun>>();
 	GetComponentTypeID<FireGunOnClick<MissileLauncher>>();
 	GetComponentTypeID<BulletPhysics>();
+	GetComponentTypeID<MissilePhysics>();
 	GetComponentTypeID<Lifetime>();
 	GetComponentTypeID<CollisionFilterComponent>();
 	GetComponentTypeID<ShipController>();
@@ -60,7 +61,7 @@ void EntityFactory::Init()
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	if (true)
+	if (false)
 	{
 		Serializer s;
 		auto ent = s.Load<Entity>("player");
@@ -232,10 +233,12 @@ void EntityFactory::MakeIntoMissile(EntityHandle& ent, const std::string& id, En
 
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, EntityID, const std::string&>(sourceEntity, id);
+	ent->AddComponent<MissilePhysics, EntityID, const std::string&>(sourceEntity, id);
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
-	ent->AddComponent<RectPrimitive, float, float>(missStats->GetSize().x, missStats->GetSize().y);
+	ent->AddComponent<Sprite, const std::string&>(missStats->GetImageLocation());
 	ent->AddComponent<Lifetime, float>(30.f);
+
+	ent->ApplyInitializer(EntityInitializer::Type::MissileSpriteBoundsColliderSetup);
 }
 
 void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float radians)

@@ -1,17 +1,17 @@
 #include "stdafx.h"
-#include <Components/BulletPhysics.h>
+#include <Components/MissilePhysics.h>
 #include <VectorMath.h>
 #include <Entity.h>
 #include <CollisionGroups.h>
 #include <GameState.h>
 #include <ResourceLoader.h>
 
-BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string& projID)
-	: Component(ent), 
-	  m_position(entity->GetComponent<Position>()), 
+MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, const std::string& projID)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sourceEntity(sourceEnt),
-	  m_projStats(LoadProjectile(projID))
+	  m_missStats(LoadMissile(projID))
 {
 	m_projID = projID;
 
@@ -24,28 +24,16 @@ BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string
 
 	m_body = GameState::world.CreateBody(&bodyDef);
 
-	b2FixtureDef fixDef;
-	fixDef.density = 1.f;
-	fixDef.isSensor = true;
-	
-	fixDef.filter.categoryBits = IS_BULLET;
-	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
-	b2PolygonShape shape;
-	shape.SetAsBox(m_projStats->GetSize().x / 2.f, m_projStats->GetSize().y / 2.f);
-	fixDef.shape = &shape;
-
-	m_body->CreateFixture(&fixDef);
-
 	m_body->SetUserData(entity.GetRawPointer());
 }
 
-BulletPhysics::~BulletPhysics()
+MissilePhysics::~MissilePhysics()
 {
 	if (m_body != nullptr)
 		GameState::world.DestroyBody(m_body);
 }
 
-void BulletPhysics::Update()
+void MissilePhysics::Update()
 {
 	if (HandleCollisions())
 		return;
@@ -54,14 +42,12 @@ void BulletPhysics::Update()
 	m_position.position = m_body->GetPosition();
 	m_rotation.SetRadians(m_body->GetAngle());
 
-	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
-	// Move the bullet forward at full speed
-	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation.GetRadians()), sin(m_rotation.GetRadians())) * m_projStats->GetSpeed());
+	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_missStats->GetThrust(), true);
 }
 
-bool BulletPhysics::HandleCollisions()
+bool MissilePhysics::HandleCollisions()
 {
-	if (m_body->GetContactList() == nullptr 
+	if (m_body->GetContactList() == nullptr
 		|| m_body->GetContactList()->other == nullptr)
 		return false;
 
@@ -72,13 +58,13 @@ bool BulletPhysics::HandleCollisions()
 			return false;
 
 		// If one of the fixtures is a nonsensor
-		if (contact->contact->IsTouching() 
+		if (contact->contact->IsTouching()
 			&& (!contact->contact->GetFixtureA()->IsSensor()
 				|| !contact->contact->GetFixtureB()->IsSensor()))
 		{
 			auto userData = contact->other->GetUserData();
 			// if the contact is with an entity, give it an attacked event
-			if (userData != nullptr) 
+			if (userData != nullptr)
 			{
 				b2WorldManifold manifold;
 				contact->contact->GetWorldManifold(&manifold);
@@ -87,13 +73,13 @@ bool BulletPhysics::HandleCollisions()
 				Event attackedEvent;
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
-				attackedEvent.attacked.damage = m_projStats->GetDamage();
+				attackedEvent.attacked.damage = m_missStats->GetDamage();
 				attackedEvent.attacked.collisionX = m_position.X();
 				attackedEvent.attacked.collisionY = m_position.Y();
 				attackedEvent.type = EventType::Attacked;
 				otherEnt->events.Push(attackedEvent);
 			}
-			
+
 			break;
 		}
 
@@ -105,3 +91,24 @@ bool BulletPhysics::HandleCollisions()
 	return true;
 }
 
+void MissilePhysics::AddShape(const sf::Shape& s, float density, int categoryBits, int collidesWithBits)
+{
+	// Convert SFML shape points into b2Vec2's
+	b2Vec2* points = new b2Vec2[s.getPointCount()];
+	for (size_t i = 0; i < s.getPointCount(); i++)
+	{
+		points[i] = SFMLVecToB2Vec(s.getPoint(i) - s.getOrigin());
+	}
+
+	b2PolygonShape poly;
+	poly.Set(points, s.getPointCount());
+
+	b2FixtureDef fixDef;
+	fixDef.density = density;
+	fixDef.shape = &poly;
+	fixDef.filter.categoryBits = categoryBits;
+	fixDef.filter.maskBits = collidesWithBits;
+	fixDef.isSensor = (categoryBits & IS_SENSOR) > 0;
+
+	auto f = m_body->CreateFixture(&fixDef);
+}
