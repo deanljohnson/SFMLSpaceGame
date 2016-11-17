@@ -4,15 +4,15 @@
 #include <Components/Rotation.h>
 #include <Entity.h>
 #include <VectorMath.h>
+#include <GameState.h>
+#include <CollisionGroups.h>
 
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
-#include <GameState.h>
-#include <CollisionGroups.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
-void WrapBodyAngle(b2Body& body)
+inline void WrapBodyAngle(b2Body& body)
 {
 	if (body.GetAngle() >= M_TAU || body.GetAngle() < 0)
 	{
@@ -63,6 +63,7 @@ void Physics::Update()
 
 void Physics::SetPosition(const b2Vec2& v) 
 {
+	m_position.position = v;
 	m_body->SetTransform(v, m_body->GetAngle());
 }
 
@@ -86,12 +87,10 @@ b2Vec2 Physics::GetHeading()
 	return Rotate(b2Vec2(1, 0), b2Rot(GetRotationRadians()));
 }
 
-
 float Physics::GetAngularVelocity() const
 {
 	return m_body->GetAngularVelocity();
 }
-
 
 float Physics::GetRotationRadians()
 {

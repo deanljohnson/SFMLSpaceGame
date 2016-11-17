@@ -9,7 +9,7 @@ namespace EntityFactory
 	EntityID CreatePlayer(const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateBackground(ResourceID backgroundID, EntityID parallaxTarget);
 	EntityID CreateProjectile(const std::string& projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
-	EntityID CreateMissile(const std::string& missId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
+	EntityID CreateMissile(const std::string& missId, EntityID sourceEntity, EntityID target, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateShip(const std::string& shipName, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	EntityID CreateStation(const std::string& stationID, const b2Vec2& p = b2Vec2(0, 0), float radians = 0);
 	EntityID CreateExplosion(const std::string& explosionID, const b2Vec2& p = b2Vec2(0, 0));
@@ -22,7 +22,7 @@ namespace EntityFactory
 	void MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget);
 	void MakeIntoBullet(EntityHandle& ent, const std::string& projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
-	void MakeIntoMissile(EntityHandle& ent, const std::string& projId, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
+	void MakeIntoMissile(EntityHandle& ent, const std::string& projId, EntityID sourceEntity, EntityID target, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f, bool npc = true);
 	void MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p = b2Vec2(0, 0), float radians = 0);

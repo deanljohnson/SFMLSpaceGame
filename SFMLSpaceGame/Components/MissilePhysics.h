@@ -2,7 +2,8 @@
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Box2D/Dynamics/b2Body.h>
-#include <MissileStats.h>
+
+class MissileStats;
 
 class MissilePhysics : public Component
 {
@@ -38,10 +39,20 @@ private:
 	}
 
 public:
-	explicit MissilePhysics(EntityID ent, EntityID sourceEnt, const std::string& projID);
+	MissilePhysics(EntityID ent, EntityID sourceEnt, const std::string& projID);
 	~MissilePhysics();
 
 	virtual void Update() override;
+
+	void SetPosition(const b2Vec2& v);
+	b2Vec2 GetPosition() const;
+
+	b2Vec2 GetHeading();
+	float GetRotationRadians();
+
+	float GetAngularVelocity() const;
+
+	b2Body* GetBody();
 
 	void AddShape(const sf::Shape& s, float density, int categoryBits, int collidesWithBits);
 };

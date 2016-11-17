@@ -16,6 +16,9 @@ Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entit
 	Entity* closestEntity = nullptr;
 	for (auto e : source)
 	{
+		if (subject->GetID() == e->GetID())
+			continue;
+
 		// If an entity doesn't have a position, we are done with it
 		if ((filter != nullptr && !filter(e)) || !e->HasComponent<Position>())
 			continue;

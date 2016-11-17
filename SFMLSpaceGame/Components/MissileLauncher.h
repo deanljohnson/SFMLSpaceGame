@@ -35,6 +35,8 @@ private:
 	float m_lastFiringTime;
 	MissileLauncherData* m_launcherData;
 
+	EntityID GetTarget();
+
 	friend class cereal::access;
 
 	// used for saving
