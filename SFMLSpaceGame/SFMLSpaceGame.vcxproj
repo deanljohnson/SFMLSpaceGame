@@ -190,7 +190,6 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\DirectionalVelocity.cpp" />
     <ClCompile Include="Components\EconomyAgent.cpp" />
     <ClCompile Include="Components\EntitySensor.cpp" />
-    <ClCompile Include="Components\FireGunOnClick.cpp" />
     <ClCompile Include="Components\GameWorldClickListener.cpp" />
     <ClCompile Include="Components\Inventory.cpp" />
     <ClCompile Include="Components\ItemPickup.cpp" />

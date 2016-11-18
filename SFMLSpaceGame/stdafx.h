@@ -29,3 +29,6 @@
 #include <UI\ThrusterLocationEditor.h>
 #include <UI\UI.h>
 #include <UI\WidgetHelpers.h>
+
+#include <ExtendedMath.h>
+#include <VectorMath.h>

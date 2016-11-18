@@ -65,7 +65,7 @@ public:
 	{
 		for (auto g : m_guns)
 		{
-			g->Shoot();
+			g->Shoot(pos);
 		}
 	};
 };

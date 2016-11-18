@@ -2,7 +2,9 @@
 #include <EntityHelpers.h>
 #include "Components/Position.h"
 
-Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entity*>& source, std::function<bool(Entity*)> filter)
+Entity* EntityHelpers::GetClosestEntity(Entity* subject, 
+										const std::vector<Entity*>& source, 
+										std::function<bool(Entity*)> filter)
 {
 	// Reject invalid base cases
 	if (subject == nullptr
@@ -10,22 +12,31 @@ Entity* EntityHelpers::GetClosestEntity(Entity* subject, const std::vector<Entit
 		|| !subject->HasComponent<Position>())
 		return nullptr;
 
-	Position* subjPos = &subject->GetComponent<Position>();
+	Position subjPos = subject->GetComponent<Position>();
 
+	return GetClosestEntity(subjPos.position, 
+							source, 
+							[filter, subject](Entity* e) 
+							{ 
+								return subject->GetID() != e->GetID() && (filter == nullptr || filter(e));
+							});
+}
+
+Entity* EntityHelpers::GetClosestEntity(const b2Vec2& subject, 
+										const std::vector<Entity*>& source, 
+										std::function<bool(Entity*)> filter)
+{
 	float closestSquareDistance = std::numeric_limits<float>::max();
 	Entity* closestEntity = nullptr;
 	for (auto e : source)
 	{
-		if (subject->GetID() == e->GetID())
-			continue;
-
 		// If an entity doesn't have a position, we are done with it
 		if ((filter != nullptr && !filter(e)) || !e->HasComponent<Position>())
 			continue;
 
 		// Get the distance between the two positions
 		Position* pos = &e->GetComponent<Position>();
-		float thisDistanceSquared = (*subjPos - *pos).LengthSquared();
+		float thisDistanceSquared = (subject - pos->position).LengthSquared();
 
 		// Check for a new closest
 		if (thisDistanceSquared < closestSquareDistance)

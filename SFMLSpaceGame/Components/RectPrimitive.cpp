@@ -29,5 +29,6 @@ void RectPrimitive::Update()
 // TODO: Convert this to use render batching
 void RectPrimitive::Render(sf::RenderTarget& target, sf::RenderStates states)
 {
+	DRAW_CALLS++;
 	target.draw(m_shape, states);
 }

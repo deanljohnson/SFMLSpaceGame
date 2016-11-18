@@ -17,22 +17,23 @@ MissileLauncher::MissileLauncher(EntityID ent)
 {
 }
 
-EntityID MissileLauncher::GetTarget() 
+EntityID MissileLauncher::GetTarget(const b2Vec2& firingPoint) 
 {
 	auto& ships = EntityManager::GetEntitiesByGroup(entity->HasGroup(PLAYER_GROUP) 
 															? NON_PLAYER_SHIP_GROUP 
 															: PLAYER_GROUP);
 
-	Entity* ship = EntityHelpers::GetClosestEntity(entity.GetRawPointer(), ships);
+	Entity* ship = EntityHelpers::GetClosestEntity(firingPoint, 
+													ships, 
+													[this](Entity* e) { return e->GetID() != entity->GetID(); });
 
 	if (ship == nullptr)
 		return ENTITY_ID_NULL;
 
-
 	return ship->GetID();
 }
 
-void MissileLauncher::Shoot()
+void MissileLauncher::Shoot(const b2Vec2& pos)
 {
 	// If we are on cooldown
 	if ((GameTime::totalTime - m_lastFiringTime) < m_launcherData->fireRate)
@@ -40,7 +41,7 @@ void MissileLauncher::Shoot()
 		return;
 	}
 
-	EntityID target = GetTarget();
+	EntityID target = GetTarget(pos);
 
 	// fire a missile for each hardpoint
 	b2Rot rot(m_rotation.GetRadians());

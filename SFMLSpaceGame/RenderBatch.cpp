@@ -317,5 +317,6 @@ void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states)
 		return;
 
 	states.texture = m_texture.get();
+	DRAW_CALLS++;
 	target.draw(&m_vertices[0], m_vertices.size(), sf::Quads, states);
 }

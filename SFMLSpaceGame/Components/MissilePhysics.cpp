@@ -38,9 +38,10 @@ MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, const std::stri
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(m_position.X(), m_position.Y());
 	bodyDef.angle = m_rotation.GetRadians();
-	bodyDef.fixedRotation = true;
+	bodyDef.fixedRotation = false;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.bullet = true;
+	bodyDef.linearDamping = 1.f;
 
 	m_body = GameState::world.CreateBody(&bodyDef);
 
@@ -61,7 +62,7 @@ void MissilePhysics::Update()
 	// Store pos/rot from physics body into pos/rot components
 	m_position.position = m_body->GetPosition();
 	m_rotation.SetRadians(m_body->GetAngle());
-
+	
 	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_missStats->GetThrust(), true);
 }
 

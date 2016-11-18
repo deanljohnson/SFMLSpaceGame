@@ -8,6 +8,7 @@
 #include "UI/GameWindow.h"
 
 sf::RenderWindow* GAME_WINDOW;
+size_t DRAW_CALLS = 0;
 
 sf::VideoMode GetVideoMode()
 {
@@ -72,9 +73,11 @@ int main()
 		
 #ifdef _DEBUG
 		float updateTime = clock.getElapsedTime().asSeconds();
-		GAME_WINDOW->setTitle(TITLE + " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime)));
+		GAME_WINDOW->setTitle(TITLE 
+			+ " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime))
+			+ " Draw Calls: " + std::to_string(DRAW_CALLS));
 #endif
-
+		DRAW_CALLS = 0;
 		window.clear();
 		game_manager.Render(window);
 		ui.Display(window);

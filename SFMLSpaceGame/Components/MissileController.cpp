@@ -1,17 +1,19 @@
 #include "stdafx.h"
 #include <Components\MissileController.h>
 #include <EntityManager.h>
+#include <VectorMath.h>
 #include <Steering.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>
 
 MissileController::MissileController(EntityID ent, EntityID source, EntityID target, const std::string& projID)
 	: Component(ent),
-	  STEER_FORCE(200.f),
+	  STEER_FORCE(4.f),
 	  m_physics(entity->GetComponent<MissilePhysics>()),
 	  m_sourceEntity(source),
 	  m_targetEntity(target),
-	  m_projID(projID)
+	  m_projID(projID),
+	  m_missStats(LoadMissile(projID))
 {
 	if (EntityManager::IsValidID(m_targetEntity))
 	{
@@ -34,13 +36,17 @@ void MissileController::SteerRight(float amount)
 void MissileController::Update()
 {
 	const float lookAheadFactor = 6.f;
+	bool facingTarget = true;
 
 	if (EntityManager::IsValidID(m_targetEntity)) 
 	{
 		auto targetPos = m_targetHandle->GetComponent<Position>().position;
 
-		auto seekVec = targetPos - m_physics.GetPosition();
+		auto seekVec = (targetPos - m_physics.GetPosition());
+		seekVec.Normalize();
 		auto seekAngle = atan2f(seekVec.y, seekVec.x);
+
+		facingTarget = WithinAngle(m_physics.GetHeading(), seekVec, COS_15);
 
 		// figure where our current angular velocity is taking us
 		float nextAngle = m_physics.GetRotationRadians()
@@ -60,13 +66,21 @@ void MissileController::Update()
 			SteerRight(lerpFactor);
 	}
 
+	b2Body* body = m_physics.GetBody();
+
+	// apply forward thrust, if roughly facing target
+	if (facingTarget)
+		body->ApplyForceToCenter(m_physics.GetHeading() * m_missStats->GetThrust(), true);
+
+	// turn as needed
 	if (m_currentTorque != 0.f) 
 	{
 		// Don't steer more than the thruster strength in any direction
 		m_currentTorque = std::max(-STEER_FORCE, std::min(m_currentTorque, STEER_FORCE));
-		printf("%.2f\n", m_currentTorque);
+
 		b2Body* b = m_physics.GetBody();
 		b->ApplyTorque(m_currentTorque * GameTime::deltaTime, true);
+
 		m_currentTorque = 0.f;
 	}
 }

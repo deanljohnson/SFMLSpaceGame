@@ -35,7 +35,7 @@ private:
 	float m_lastFiringTime;
 	MissileLauncherData* m_launcherData;
 
-	EntityID GetTarget();
+	EntityID GetTarget(const b2Vec2& firingPoint);
 
 	friend class cereal::access;
 
@@ -58,7 +58,7 @@ private:
 public:
 	explicit MissileLauncher(EntityID ent);
 
-	virtual void Shoot() override;
+	virtual void Shoot(const b2Vec2& pos = b2Vec2()) override;
 	virtual float GetNormalizedHeat() override;
 
 	void SetSoundSource(SoundSource* source);

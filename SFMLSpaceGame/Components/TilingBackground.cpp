@@ -68,6 +68,7 @@ void TilingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)
 	{
 		for (int i = min.x; i <= max.x + 1; i++)
 		{
+			DRAW_CALLS++;
 			target.draw(m_sprite, states);
 			states.transform.translate(bounds.width, 0);
 		}
