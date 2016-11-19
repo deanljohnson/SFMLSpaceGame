@@ -94,14 +94,6 @@ void DoAssignShipStatsData(Entity& ent)
 	dirGun.SetGunData(shipStats->GetDirGunData());
 	auto& misLauncher = ent.GetComponent<MissileLauncher>();
 	misLauncher.SetLauncherData(shipStats->GetMissileLauncherData());
-	// This is kind of out of place, but until we have
-	// a way to serialize the connection between components
-	// this is the best we can do. The big problem is how
-	// do we know that this is the right sound source? If 
-	// there are multiple component on the entity, this 
-	// will likely break
-	//auto& soundSource = ent.GetComponent<SoundSource>();
-	//irGun.SetSoundSource(&soundSource);
 
 	auto& shields = ent.GetComponent<Shields>();
 	shields.SetShieldData(shipStats->GetShieldData());
