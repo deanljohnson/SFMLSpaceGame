@@ -4,26 +4,32 @@
 
 class HardPointWidget : public sf::Drawable
 {
+public:
+	enum class Type { Gun, MissileLauncher };
 private:
 	const float ARM_LENGTH = 20.f;
 	sf::CircleShape m_posControl;
 	sf::CircleShape m_angleControl;
 	sf::VertexArray m_arm;
 
+	Type m_type;
+
 public:
-	explicit HardPointWidget(const sf::Vector2f& position);
+	explicit HardPointWidget(const sf::Vector2f& position, Type type);
 
 	HardPointWidget(const HardPointWidget& other)
 		: m_posControl{other.m_posControl},
 		  m_angleControl{other.m_angleControl},
-		  m_arm{other.m_arm}
+		  m_arm{other.m_arm},
+		  m_type{other.m_type}
 	{
 	}
 
 	HardPointWidget(HardPointWidget&& other)
 		: m_posControl{std::move(other.m_posControl)},
 		  m_angleControl{std::move(other.m_angleControl)},
-		  m_arm{std::move(other.m_arm)}
+		  m_arm{std::move(other.m_arm)},
+		  m_type{std::move(other.m_type)}
 	{
 	}
 
@@ -34,6 +40,7 @@ public:
 		m_posControl = other.m_posControl;
 		m_angleControl = other.m_angleControl;
 		m_arm = other.m_arm;
+		m_type = other.m_type;
 		return *this;
 	}
 
@@ -44,6 +51,7 @@ public:
 		m_posControl = std::move(other.m_posControl);
 		m_angleControl = std::move(other.m_angleControl);
 		m_arm = std::move(other.m_arm);
+		m_type = std::move(other.m_type);
 		return *this;
 	}
 
@@ -60,4 +68,6 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	float GetAngle() const;
 	void SetAngle(float angle);
+
+	Type GetType() const;
 };

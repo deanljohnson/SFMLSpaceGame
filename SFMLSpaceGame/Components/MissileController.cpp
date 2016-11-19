@@ -53,7 +53,6 @@ void MissileController::Update()
 			+ (m_physics.GetAngularVelocity() / lookAheadFactor);
 		float totalRotation = seekAngle - nextAngle;
 
-		// constrain rotation to (-M_PI, M_PI)
 		totalRotation = ConstrainToPlusMinusPI(totalRotation);
 
 		float lerpFactor = abs(totalRotation) > 3.f
