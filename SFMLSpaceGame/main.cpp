@@ -8,6 +8,7 @@
 #include "UI/GameWindow.h"
 
 sf::RenderWindow* GAME_WINDOW;
+size_t DRAW_CALLS = 0;
 
 sf::VideoMode GetVideoMode()
 {
@@ -72,13 +73,20 @@ int main()
 		
 #ifdef _DEBUG
 		float updateTime = clock.getElapsedTime().asSeconds();
-		GAME_WINDOW->setTitle(TITLE + " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime)));
 #endif
-
+		DRAW_CALLS = 0;
 		window.clear();
 		game_manager.Render(window);
 		ui.Display(window);
 		window.display();
+
+#ifdef _DEBUG
+		float renderTime = clock.getElapsedTime().asSeconds() - updateTime;
+		GAME_WINDOW->setTitle(TITLE
+			+ " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime))
+			+ " Render FPS: " + std::to_string(static_cast<int>(1.f / renderTime))
+			+ " Draw Calls: " + std::to_string(DRAW_CALLS));
+#endif
 
 		GameTime::deltaTime = clock.getElapsedTime().asSeconds();
 		if (GameTime::deltaTime > .25f) //limit jump in case of massive lag

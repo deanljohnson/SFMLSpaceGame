@@ -77,7 +77,8 @@ bool BulletPhysics::HandleCollisions()
 				|| !contact->contact->GetFixtureB()->IsSensor()))
 		{
 			auto userData = contact->other->GetUserData();
-			if (userData != nullptr) // If contact is not with a body with defined entity data
+			// if the contact is with an entity, give it an attacked event
+			if (userData != nullptr) 
 			{
 				b2WorldManifold manifold;
 				contact->contact->GetWorldManifold(&manifold);

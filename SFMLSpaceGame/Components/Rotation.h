@@ -45,6 +45,7 @@ public:
 
 	float GetDegrees() const { return m_degrees; }
 	float GetRadians() const { return m_radians; }
+	b2Vec2 GetHeading() const { return b2Vec2(cos(m_radians), sin(m_radians)); }
 
 	void SetDegrees(float d) 
 	{

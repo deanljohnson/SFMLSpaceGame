@@ -123,9 +123,6 @@
     <ClCompile Include="Components\DirectionalGun.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\FireGunOnClick.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="EntityFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -340,6 +337,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\MissileLauncher.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\MissilePhysics.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\MissileController.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -709,6 +712,15 @@
     </ClInclude>
     <ClInclude Include="HardPoint.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileStats.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MissilePhysics.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MissileController.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

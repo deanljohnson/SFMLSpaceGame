@@ -21,7 +21,7 @@ void DirectionalGun::Update()
 	if (m_currentHeat < 0) m_currentHeat = 0.f;
 }
 
-void DirectionalGun::Shoot()
+void DirectionalGun::Shoot(const b2Vec2& pos)
 {
 	// If we are on cooldown
 	if ((GameTime::totalTime - m_lastFiringTime) < m_gunData->fireRate

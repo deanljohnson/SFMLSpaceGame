@@ -90,7 +90,7 @@ public:
 
 	virtual void Update() override;
 
-	virtual void Shoot() override;
+	virtual void Shoot(const b2Vec2& pos = b2Vec2()) override;
 	virtual float GetNormalizedHeat() override;
 
 	void SetSoundSource(SoundSource* source);

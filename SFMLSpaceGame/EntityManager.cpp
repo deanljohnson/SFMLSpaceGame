@@ -142,7 +142,7 @@ void EntityManager::AddToGroup(Entity* ent, Group group)
 	m_groupedEntities[group].emplace_back(ent);
 }
 
-std::vector<Entity*>& EntityManager::GetEntitiesByGroup(Group group)
+const std::vector<Entity*>& EntityManager::GetEntitiesByGroup(Group group)
 {
 	return m_groupedEntities[group];
 }

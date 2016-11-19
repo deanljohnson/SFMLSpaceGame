@@ -38,5 +38,5 @@ public:
 	static EntityHandle AddEntity(Group group);
 
 	static void AddToGroup(Entity* ent, Group group);
-	static std::vector<Entity*>& GetEntitiesByGroup(Group group);
+	static const std::vector<Entity*>& GetEntitiesByGroup(Group group);
 };

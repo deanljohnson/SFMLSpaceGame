@@ -2,7 +2,8 @@
 #include <UI/HardPointWidget.h>
 #include <VectorMath.h>
 
-HardPointWidget::HardPointWidget(const sf::Vector2f& position)
+HardPointWidget::HardPointWidget(const sf::Vector2f& position, Type type)
+	: m_type(type)
 {
 	m_posControl = sf::CircleShape(6.f);
 	m_posControl.setPosition(position);
@@ -78,4 +79,9 @@ void HardPointWidget::SetAngle(float angle)
 {
 	m_angleControl.setPosition(m_posControl.getPosition() + B2VecToSFMLVec(Rotate(b2Vec2(ARM_LENGTH, 0), angle)));
 	m_arm[1].position = m_angleControl.getPosition();
+}
+
+HardPointWidget::Type HardPointWidget::GetType() const
+{
+	return m_type;
 }

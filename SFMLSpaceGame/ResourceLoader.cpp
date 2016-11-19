@@ -4,8 +4,7 @@
 #include <windows.h>
 #include <map>
 #include <assert.h>
-#include "ProjectileStats.h"
-#include "ShipStats.h"
+#include <ShipStats.h>
 #include <Serializer.h>
 #include <FileSystem.h>
 
@@ -26,6 +25,7 @@ namespace
 	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
 	std::map<std::string,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
+	std::map<std::string,  std::shared_ptr<MissileStats>> loadedMissiles;
 
 	bool IsShipID(ResourceID id) 
 	{
@@ -40,11 +40,6 @@ namespace
 	bool IsSoundID(ResourceID id)
 	{
 		return id > SOUND_ID_START && id < SOUND_ID_END;
-	}
-
-	ProjectileStats* LoadLaserOne()
-	{
-		return serializer.Load<ProjectileStats>("LaserOne");
 	}
 
 	sf::Font* LoadFontOne()
@@ -82,6 +77,7 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedSounds);
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
+	UnloadUnusedSharedPtrResources(loadedMissiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
 }
 
@@ -278,7 +274,6 @@ std::shared_ptr<ShipStats> LoadShip(const std::string& name)
 	}
 
 	auto elem = std::make_shared<ShipStats>(*serializer.Load<ShipStats>(name));
-
 	loadedShips.insert(make_pair(name, elem));
 
 	return elem;
@@ -294,5 +289,18 @@ std::shared_ptr<ProjectileStats> LoadProjectile(const std::string& id)
 
 	auto elem = std::make_shared<ProjectileStats>(*serializer.Load<ProjectileStats>(id));
 	loadedProjectiles.insert(make_pair(id, elem));
+	return elem;
+}
+
+std::shared_ptr<MissileStats> LoadMissile(const std::string& id)
+{
+	auto it = loadedMissiles.find(id);
+	if (it != loadedMissiles.end())
+	{
+		return it->second;
+	}
+
+	auto elem = std::make_shared<MissileStats>(*serializer.Load<MissileStats>(id));
+	loadedMissiles.insert(make_pair(id, elem));
 	return elem;
 }

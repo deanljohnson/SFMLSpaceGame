@@ -69,6 +69,7 @@ void ShipThrusters::Update()
 		
 		b2Body* b = m_physics.GetBody();
 		b->ApplyTorque(m_currentTorque * GameTime::deltaTime, true);
+
 		m_currentTorque = 0.f;
 	}
 }

@@ -2,6 +2,9 @@
 #include <Components\MissileLauncher.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
+#include <EntityManager.h>
+#include <EntityGroups.h>
+#include <EntityHelpers.h>
 #include <VectorMath.h>
 
 MissileLauncher::MissileLauncher(EntityID ent)
@@ -14,13 +17,31 @@ MissileLauncher::MissileLauncher(EntityID ent)
 {
 }
 
-void MissileLauncher::Shoot()
+EntityID MissileLauncher::GetTarget(const b2Vec2& firingPoint) 
+{
+	auto& ships = EntityManager::GetEntitiesByGroup(entity->HasGroup(PLAYER_GROUP) 
+															? NON_PLAYER_SHIP_GROUP 
+															: PLAYER_GROUP);
+
+	Entity* ship = EntityHelpers::GetClosestEntity(firingPoint, 
+													ships, 
+													[this](Entity* e) { return e->GetID() != entity->GetID(); });
+
+	if (ship == nullptr)
+		return ENTITY_ID_NULL;
+
+	return ship->GetID();
+}
+
+void MissileLauncher::Shoot(const b2Vec2& pos)
 {
 	// If we are on cooldown
 	if ((GameTime::totalTime - m_lastFiringTime) < m_launcherData->fireRate)
 	{
 		return;
 	}
+
+	EntityID target = GetTarget(pos);
 
 	// fire a missile for each hardpoint
 	b2Rot rot(m_rotation.GetRadians());
@@ -29,7 +50,7 @@ void MissileLauncher::Shoot()
 		// TODO: for now we are simply using a bullet. Need to change to be a missile
 		// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
 		auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
-		EntityFactory::CreateProjectile("LaserOne", entity->GetID(),
+		EntityFactory::CreateMissile("MissileOne", entity->GetID(), target,
 			m_position.position + Rotate(offset, rot),
 			m_rotation.GetRadians() + hp.angleOffset);
 	}

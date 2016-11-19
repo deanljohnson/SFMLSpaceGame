@@ -8,6 +8,7 @@ const float FIXED_TIME_STEP = .017f;
 const int BOX2D_VELOCITY_ITERATIONS = 8;
 const int BOX2D_POSITION_ITERATIONS = 3;
 
+extern size_t DRAW_CALLS;
 extern sf::RenderWindow* GAME_WINDOW;
 
 inline b2Vec2 MapPixelToWorld(const b2Vec2& v)

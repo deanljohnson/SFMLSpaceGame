@@ -17,6 +17,21 @@ inline sf::Vector2f Normalize(const sf::Vector2f& a)
 		: sf::Vector2f(); //length is zero, return zero vector
 }
 
+inline float Dot(const sf::Vector2f& a, const sf::Vector2f& b)
+{
+	return (a.x * b.x) + (a.y * b.y);
+}
+
+inline bool WithinAngle(const b2Vec2& a, const b2Vec2& b, float cos_of_angle) 
+{
+	return b2Dot(a, b) > cos_of_angle;
+}
+
+inline bool WithinAngle(const sf::Vector2f& a, const sf::Vector2f& b, float cos_of_angle)
+{
+	return Dot(a, b) > cos_of_angle;
+}
+
 inline sf::Vector2f B2VecToSFMLVec(const b2Vec2& v) 
 {
 	return sf::Vector2f(v.x, v.y);

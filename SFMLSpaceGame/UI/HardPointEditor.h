@@ -3,12 +3,14 @@
 #include <SFGUI/Canvas.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <ShipStats.h>
-#include "HardPointWidget.h"
+#include <UI\HardPointWidget.h>
 #include <Serializer.h>
 
 class HardPointEditor : public GameWindow
 {
 private:
+	HardPointWidget::Type m_hardPointType;
+
 	Serializer serializer;
 
 	sfg::Canvas::Ptr m_shipCanvas;
@@ -31,6 +33,7 @@ private:
 	void LoadShipImage();
 
 	void DrawCanvas();
+	void CreateHardpoint(const sf::Vector2f& pos);
 
 	void OnCanvasLeftClick();
 	void OnCanvasMouseMove();
@@ -38,6 +41,7 @@ private:
 	void OnCanvasLeftRelease();
 	void OnCanvasMouseLeave();
 
+	void OnSelectHardPointType(HardPointWidget::Type type);
 	void OnDeleteSelectHardpoint();
 	void OnSave();
 	void OnClose();
