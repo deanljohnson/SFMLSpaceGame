@@ -3,111 +3,82 @@
 #include <Entity.h>
 #include <Components\Components.h>
 
-void ComponentSerializer::Load(ComponentID id, 
-								SERIALIZATION_IN_ARCHIVE& ar, 
+#ifndef ALL_COMPONENTS
+#define ALL_COMPONENTS Position, \
+Rotation, \
+Sprite, \
+Animator,\
+Shields,\
+ShieldHitAnimator,\
+Physics,\
+SmoothCameraFollow,\
+ParallaxMovement,\
+DirectionalKeyboardInput,\
+ShipThrusters,\
+ThrusterInput,\
+RectPrimitive,\
+RotateToFaceMouse,\
+GameWorldClickListener,\
+SoundSource,\
+SoundListener,\
+MusicSource,\
+DirectionalGun,\
+MissileLauncher,\
+FireGunOnClick<DirectionalGun>,\
+FireGunOnClick<MissileLauncher>,\
+BulletPhysics,\
+MissilePhysics,\
+MissileController,\
+Lifetime,\
+CollisionFilterComponent,\
+ShipController,\
+EntitySensor,\
+ZoomHandler,\
+ShipAI,\
+Health,\
+DamageOnAttacked,\
+PlayerDeathBroadcaster,\
+ThrusterAnimator,\
+GunHeatUIDisplay<DirectionalGun>,\
+TilingBackground,\
+KeyListener,\
+Text,\
+Inventory,\
+ItemPickup,\
+EconomyAgent,\
+ParallaxTargetAssigner,\
+ShipStatsComponent
+#endif
+
+void ComponentSerializer::Load(ComponentID id,
+							   cereal::JSONInputArchive& ar, 
 								Entity& ent) 
 {
-	LoadComponents<Position, 
-		Rotation, 
-		Sprite, 
-		Animator,
-		Shields,
-		ShieldHitAnimator,
-		Physics,
-		SmoothCameraFollow,
-		ParallaxMovement,
-		DirectionalKeyboardInput,
-		ShipThrusters,
-		ThrusterInput,
-		RectPrimitive,
-		RotateToFaceMouse,
-		GameWorldClickListener,
-		SoundSource,
-		SoundListener,
-		MusicSource,
-		DirectionalGun,
-		MissileLauncher,
-		FireGunOnClick<DirectionalGun>,
-		FireGunOnClick<MissileLauncher>,
-		BulletPhysics,
-		MissilePhysics,
-		MissileController,
-		Lifetime,
-		CollisionFilterComponent,
-		ShipController,
-		EntitySensor,
-		ZoomHandler,
-		ShipAI,
-		Health,
-		DamageOnAttacked,
-		//ShipSpawner,
-		PlayerDeathBroadcaster,
-		ThrusterAnimator,
-		GunHeatUIDisplay<DirectionalGun>,
-		TilingBackground,
-		KeyListener,
-		Text,
-		Inventory,
-		ItemPickup, 
-		EconomyAgent,
-		ParallaxTargetAssigner,
-		ShipStatsComponent
-	>(id, ar, ent);
+	LoadComponents<cereal::JSONInputArchive, ALL_COMPONENTS>(id, ar, ent);
+}
+
+void ComponentSerializer::Load(ComponentID id,
+								cereal::BinaryInputArchive& ar,
+								Entity& ent)
+{
+	LoadComponents<cereal::BinaryInputArchive, ALL_COMPONENTS>(id, ar, ent);
 }
 
 void ComponentSerializer::Save(ComponentID id,
-								SERIALIZATION_OUT_ARCHIVE& ar,
+								cereal::JSONOutputArchive& ar,
 								const Entity& ent)
 {
-	SaveComponents<Position, 
-		Rotation,
-		Sprite,
-		Animator,
-		Shields,
-		ShieldHitAnimator,
-		Physics,
-		SmoothCameraFollow,
-		ParallaxMovement,
-		DirectionalKeyboardInput,
-		ShipThrusters,
-		ThrusterInput,
-		RectPrimitive,
-		RotateToFaceMouse,
-		GameWorldClickListener,
-		SoundSource,
-		SoundListener,
-		MusicSource,
-		DirectionalGun,
-		MissileLauncher,
-		FireGunOnClick<DirectionalGun>,
-		FireGunOnClick<MissileLauncher>,
-		BulletPhysics,
-		MissilePhysics,
-		MissileController,
-		Lifetime,
-		CollisionFilterComponent,
-		ShipController,
-		EntitySensor,
-		ZoomHandler,
-		ShipAI,
-		Health,
-		DamageOnAttacked,
-		//ShipSpawner,
-		PlayerDeathBroadcaster,
-		ThrusterAnimator,
-		GunHeatUIDisplay<DirectionalGun>,
-		TilingBackground,
-		KeyListener,
-		Text,
-		Inventory,
-		ItemPickup,
-		EconomyAgent,
-		ParallaxTargetAssigner,
-		ShipStatsComponent
-	>(id, ar, ent);
+	SaveComponents<cereal::JSONOutputArchive, ALL_COMPONENTS>(id, ar, ent);
 }
 
-void ComponentSerializer::Serialize(SERIALIZATION_IN_ARCHIVE& ar, Entity& ent)
+void ComponentSerializer::Save(ComponentID id,
+								cereal::BinaryOutputArchive& ar,
+								const Entity& ent)
+{
+	SaveComponents<cereal::BinaryOutputArchive, ALL_COMPONENTS>(id, ar, ent);
+}
+
+/*void ComponentSerializer::Serialize(SERIALIZATION_IN_ARCHIVE& ar, Entity& ent)
 {
 	// Need to figure out the looping mechanism for this
 	ComponentID id;
@@ -134,4 +105,4 @@ void ComponentSerializer::Serialize(SERIALIZATION_OUT_ARCHIVE& ar, const Entity&
 	// ComponentID::max is used as a flag to indicate the end of 
 	// component section in the serialized representation
 	ar(std::numeric_limits<ComponentID>::max());
-}
+}*/

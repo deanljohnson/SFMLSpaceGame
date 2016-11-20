@@ -11,7 +11,7 @@
 //wrap in anon. namespace to effectively make these private to this file
 namespace
 {
-	Serializer serializer = Serializer();
+	Serializer<> serializer = Serializer<>();
 
 	std::map<std::string, std::shared_ptr<TextureMap<std::string>>> loadedStringTextureMaps;
 	std::map<std::string, std::shared_ptr<TextureMap<size_t>>> loadedIntTextureMaps;

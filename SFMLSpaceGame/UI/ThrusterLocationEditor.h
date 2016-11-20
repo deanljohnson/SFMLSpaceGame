@@ -9,7 +9,7 @@
 class ThrusterLocationEditor : public GameWindow
 {
 private:
-	Serializer m_serializer;
+	Serializer<> m_serializer;
 
 	sfg::Canvas::Ptr m_shipCanvas;
 

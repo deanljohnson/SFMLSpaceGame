@@ -6,8 +6,8 @@
 
 HardPointEditor::HardPointEditor()
 	: GameWindow("hard_point_editor"),
-	  m_shipTexture(nullptr),
-	  m_hardPointType(HardPointWidget::Type::Gun)
+	  m_hardPointType(HardPointWidget::Type::Gun),
+	  m_shipTexture(nullptr)
 {
 	// Create main window
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);

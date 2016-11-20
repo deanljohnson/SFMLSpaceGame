@@ -75,7 +75,7 @@ private:
 	{
 		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
 		// Save components
-		ComponentSerializer::Serialize(ar, *this);
+		ComponentSerializer::SerializeOut<Archive>(ar, *this);
 	}
 
 	template<class Archive>
@@ -84,8 +84,8 @@ private:
 		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
 		OnDeserialize();
 
-		// Save components
-		ComponentSerializer::Serialize(ar, *this);
+		// Load components
+		ComponentSerializer::SerializeIn<Archive>(ar, *this);
 		ApplyInitializers();
 	}
 

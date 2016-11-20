@@ -2,6 +2,7 @@
 #include <cereal\cereal.hpp>
 #include <cereal\archives\json.hpp>
 #include <cereal\types\memory.hpp>
+#include <Entity.h>
 #include <Serializer.h>
 #include <Components\Component.h>
 
@@ -10,8 +11,8 @@ class Entity;
 class ComponentSerializer
 {
 private:
-	template<class T>
-	static bool LoadComponents(ComponentID id, SERIALIZATION_IN_ARCHIVE& ar, Entity& ent) 
+	template<class Archive, class T>
+	static bool LoadComponents(ComponentID id, Archive& ar, Entity& ent)
 	{
 		if (id != GetComponentTypeID<T>())
 			return false;
@@ -23,15 +24,15 @@ private:
 		return true;
 	}
 
-	template<class TCompA, class TCompB, class... TCompTypes>
-	static void LoadComponents(ComponentID id, SERIALIZATION_IN_ARCHIVE& ar, Entity& ent)
+	template<class Archive, class TCompA, class TCompB, class... TCompTypes>
+	static void LoadComponents(ComponentID id, Archive& ar, Entity& ent)
 	{
-		if (!LoadComponents<TCompA>(id, ar, ent))
-			LoadComponents<TCompB, TCompTypes...>(id, ar, ent);
+		if (!LoadComponents<Archive, TCompA>(id, ar, ent))
+			LoadComponents<Archive, TCompB, TCompTypes...>(id, ar, ent);
 	}
 
-	template<class T>
-	static bool SaveComponents(ComponentID id, SERIALIZATION_OUT_ARCHIVE& ar, const Entity& ent)
+	template<class Archive, class T>
+	static bool SaveComponents(ComponentID id, Archive& ar, const Entity& ent)
 	{
 		if (id != GetComponentTypeID<T>())
 			return false;
@@ -50,16 +51,48 @@ private:
 		return true;
 	}
 
-	template<class TCompA, class TCompB, class... TCompTypes>
-	static void SaveComponents(ComponentID id, SERIALIZATION_OUT_ARCHIVE& ar, const Entity& ent)
+	template<class Archive, class TCompA, class TCompB, class... TCompTypes>
+	static void SaveComponents(ComponentID id, Archive& ar, const Entity& ent)
 	{
-		if (!SaveComponents<TCompA>(id, ar, ent))
-			SaveComponents<TCompB, TCompTypes...>(id, ar, ent);
+		if (!SaveComponents<Archive, TCompA>(id, ar, ent))
+			SaveComponents<Archive, TCompB, TCompTypes...>(id, ar, ent);
 	}
 
-	static void Load(ComponentID id, SERIALIZATION_IN_ARCHIVE& ar, Entity& ent);
-	static void Save(ComponentID id, SERIALIZATION_OUT_ARCHIVE& ar, const Entity& ent);
+	// we define these individually so that we don't have to pull the Components
+	// header into this header
+	static void Load(ComponentID id, cereal::JSONInputArchive& ar, Entity& ent);
+	static void Load(ComponentID id, cereal::BinaryInputArchive& ar, Entity& ent);
+	static void Save(ComponentID id, cereal::JSONOutputArchive& ar, const Entity& ent);
+	static void Save(ComponentID id, cereal::BinaryOutputArchive& ar, const Entity& ent);
 public:
-	static void Serialize(SERIALIZATION_IN_ARCHIVE& ar, Entity& ent);
-	static void Serialize(SERIALIZATION_OUT_ARCHIVE& ar, const Entity& ent);
+	template<class Archive>
+	static void SerializeIn(Archive& ar, Entity& ent)
+	{
+		// Need to figure out the looping mechanism for this
+		ComponentID id;
+		ar(id);
+
+		while (id != std::numeric_limits<ComponentID>::max())
+		{
+			Load(id, ar, ent);
+
+			ar(id); // get the next component ID
+		}
+	}
+
+	template<class Archive>
+	static void SerializeOut(Archive& ar, const Entity& ent)
+	{
+		for (int i = 0; i < maxComponents; i++)
+		{
+			if (ent.m_componentBitset[i])
+			{
+				Save(i, ar, ent);
+			}
+		}
+
+		// ComponentID::max is used as a flag to indicate the end of 
+		// component section in the serialized representation
+		ar(std::numeric_limits<ComponentID>::max());
+	}
 };

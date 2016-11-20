@@ -11,7 +11,7 @@ class HardPointEditor : public GameWindow
 private:
 	HardPointWidget::Type m_hardPointType;
 
-	Serializer serializer;
+	Serializer<> serializer;
 
 	sfg::Canvas::Ptr m_shipCanvas;
 

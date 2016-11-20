@@ -20,6 +20,7 @@ namespace EntityInitializer
 		StationSpriteBoundsColliderSetup,
 		PickupSpriteBoundsColliderSetup,
 		MissileSpriteBoundsColliderSetup,
+		SetActivePlayerID,
 
 		Count
 	};

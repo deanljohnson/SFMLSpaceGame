@@ -178,6 +178,12 @@ void DoMissileSpriteBoundsColliderSetup(Entity& ent)
 	phys.AddShape(shape, .2f, IS_BULLET, COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION);
 }
 
+void DoSetActivePlayerID(Entity& ent)
+{
+	auto id = ent.GetID();
+	PlayerData::GetActive()->SetID(id);
+}
+
 void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent) 
 {
 	switch (initType) 
@@ -208,6 +214,9 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 		break;
 	case EntityInitializer::Type::MissileSpriteBoundsColliderSetup:
 		DoMissileSpriteBoundsColliderSetup(ent);
+		break;
+	case EntityInitializer::Type::SetActivePlayerID:
+		DoSetActivePlayerID(ent);
 		break;
 	}
 }

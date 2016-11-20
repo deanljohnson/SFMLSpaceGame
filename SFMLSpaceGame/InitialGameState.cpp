@@ -16,23 +16,22 @@ void InitialGameState::Init()
 {
 	PlayerData::SetActive(std::make_shared<PlayerData>("Alien-One"));
 
+	PlayerData::GetActive()->SetShipChangeCallback(
+		[this](const std::string& newName) {
+		auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
+		auto playerPos = playerHandle->GetComponent<Position>();
+
+		auto playerSpawner = EntityManager::Get(m_playerSpawnerID);
+		auto spawnerPos = &playerSpawner->GetComponent<Position>();
+		spawnerPos->position = playerPos.position;
+
+		playerHandle->Destroy();
+	});
+
 	m_contactListener = ContactFilter();
 	world.SetContactFilter(&m_contactListener);
 
 	auto playerID = EntityFactory::CreatePlayer();
-	m_shieldStateDisplay.SetTarget(playerID);
-
-	PlayerData::GetActive()->SetShipChangeCallback(
-		[this](const std::string& newName){
-			auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
-			auto playerPos = playerHandle->GetComponent<Position>();
-
-			auto playerSpawner = EntityManager::Get(m_playerSpawnerID);
-			auto spawnerPos = &playerSpawner->GetComponent<Position>();
-			spawnerPos->position = playerPos.position;
-
-			playerHandle->Destroy();
-		});
 
 	EntityFactory::CreateMusicPlayer(MUSIC_ONE);
 	EntityFactory::CreateBackground(BGONE_FRONT, playerID);
@@ -55,6 +54,8 @@ void InitialGameState::Init()
 
 	EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
 	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
+
+	m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
 
 	m_shipEditor.Show(false);
 	m_shipSelector.Show(false);
@@ -80,6 +81,10 @@ void InitialGameState::Init()
 	m_confirmationDialog.CenterOnScreen();
 	m_inventoryWindow.CenterOnScreen();
 	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
+
+	auto entMan = new EntityManager();
+	auto ser = new BinarySerializer();
+	ser->Save<EntityManager>(entMan, "all", "EntMan");
 }
 
 void InitialGameState::CleanUp()

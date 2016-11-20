@@ -23,6 +23,29 @@ private:
 	static std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> m_entityHandles;
 	static std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
+	friend class cereal::access;
+
+	template<typename Archive>
+	void save(Archive& ar) const
+	{
+		ar(m_entities);
+	}
+
+	template<typename Archive>
+	void load(Archive& ar)
+	{
+		std::vector<std::unique_ptr<Entity>> entities;
+		ar(entities);
+
+		// Entities are responsible for registering themselves
+		// with the entity manager. Just realase the pointers
+		// from here so they don't get deleted
+		for(auto& e : entities)
+		{
+			e.release();
+		}
+	}
+
 public:
 	static void Clear();
 
@@ -39,4 +62,6 @@ public:
 
 	static void AddToGroup(Entity* ent, Group group);
 	static const std::vector<Entity*>& GetEntitiesByGroup(Group group);
+
+	static std::string GetTypeName();
 };

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <cereal\archives\json.hpp>
+#include <cereal\archives\binary.hpp>
 
 #ifdef RELEASE
 #ifndef DATA_PATH
@@ -18,12 +20,12 @@
 #define JSON_SERIALIZATION
 
 #ifdef JSON_SERIALIZATION
-#include <cereal\archives\json.hpp>
-#define SERIALIZATION_EXTENSION ".json"
+
 #define SERIALIZATION_IN_ARCHIVE cereal::JSONInputArchive
 #define SERIALIZATION_OUT_ARCHIVE cereal::JSONOutputArchive
 #endif
 
+template<typename IN_ARCHIVE = SERIALIZATION_IN_ARCHIVE, typename OUT_ARCHIVE = SERIALIZATION_OUT_ARCHIVE>
 class Serializer 
 {
 private:
@@ -42,7 +44,7 @@ public:
 		}
 
 		// Create the cereal archive from the input stream
-		SERIALIZATION_IN_ARCHIVE ar(is);
+		IN_ARCHIVE ar(is);
 
 		// Load the object
 		T* t = new T();
@@ -63,7 +65,7 @@ public:
 		}
 
 		// Create the cereal archive from the input stream
-		SERIALIZATION_IN_ARCHIVE ar(is);
+		IN_ARCHIVE ar(is);
 
 		// Load the object. Since T is not default
 		// constructible, we have to serialize a
@@ -81,7 +83,7 @@ public:
 		fileName += "." + T::GetTypeName();
 
 		std::ofstream os(DATA_PATH + fileName);
-		SERIALIZATION_OUT_ARCHIVE ar(os);
+		OUT_ARCHIVE ar(os);
 		ar(cereal::make_nvp(rootName, *obj));
 	}
 
@@ -92,3 +94,5 @@ public:
 		std::remove((DATA_PATH + fileName).c_str());
 	}
 };
+
+typedef Serializer<cereal::BinaryInputArchive, cereal::BinaryOutputArchive> BinarySerializer;

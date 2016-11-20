@@ -63,7 +63,7 @@ EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
 	if (false)
 	{
-		Serializer s;
+		Serializer<> s;
 		auto ent = s.Load<Entity>("player");
 		PlayerData::GetActive()->SetID(ent->GetID());
 		return ent->GetID();
@@ -76,7 +76,7 @@ EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 
 		MakeIntoPlayer(ent, p, radians);
 
-		Serializer s;
+		Serializer<> s;
 		s.Save<Entity>(ent.GetRawPointer(), "player", "player");
 
 		return ent.GetID();
@@ -205,6 +205,7 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 		});
 	
 	ent->ApplyInitializer(EntityInitializer::Type::PlayerKeyListenerSetup);
+	ent->ApplyInitializer(EntityInitializer::Type::SetActivePlayerID);
 }
 
 void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget)

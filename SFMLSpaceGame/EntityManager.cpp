@@ -146,3 +146,8 @@ const std::vector<Entity*>& EntityManager::GetEntitiesByGroup(Group group)
 {
 	return m_groupedEntities[group];
 }
+
+std::string EntityManager::GetTypeName()
+{
+	return "entities";
+}
