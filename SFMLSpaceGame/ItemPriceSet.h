@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <Item.h>
 #include <ItemPrice.h>
+#include <cereal/types/unordered_map.hpp>
 
 // Stores the prices of different item types
 class ItemPriceSet 

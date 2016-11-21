@@ -60,13 +60,16 @@ unsigned Item::GetAmount() const
 	}
 }
 
-Item Item::Create(ItemType type, unsigned int amount)
+Item::Item(ItemType _type, unsigned int _amount)
+	: type(_type)
 {
-	Item i;
-	i.type = type;
-	i.SetAmount(amount);
+	SetAmount(_amount);
+}
 
-	return i;
+Item::Item()
+	: type(ItemType::Credits)
+{
+	SetAmount(0);
 }
 
 void Item::SetAmount(unsigned int amount) 

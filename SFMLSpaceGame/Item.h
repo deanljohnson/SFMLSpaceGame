@@ -62,26 +62,23 @@ public:
 	unsigned int GetAmount() const;
 	void SetAmount(unsigned int amount);
 
-	static Item Create(ItemType type, unsigned int amount);
+	Item(ItemType type, unsigned int amount);
+	Item();
 
 private:
 	friend class cereal::access;
 
-	// used for saving
-	template <class Archive>
-	void serialize(Archive& ar)
+	template<class Archive>
+	void save(Archive& ar) const
 	{
 		ar(type, GetAmount());
 	}
 
 	template <class Archive>
-	static void load_and_construct(Archive& ar, cereal::construct<Item>& construct)
+	void load(Archive& ar)
 	{
-		ItemType type;
-		unsigned int amt;
-		ar(type, amt);
-
-		construct->type = type;
-		construct->SetAmount(amt);
+		unsigned int amount;
+		ar(type, amount);
+		SetAmount(amount);
 	}
 };

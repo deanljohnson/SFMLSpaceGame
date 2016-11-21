@@ -61,7 +61,7 @@ void EntityFactory::Init()
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	if (false)
+	if (true)
 	{
 		Serializer<> s;
 		auto ent = s.Load<Entity>("player");
@@ -270,9 +270,9 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	ent->AddComponent<Inventory>();
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
 
-	econAgent.AddItem(Item::Create(ItemType::Credits, 1000));
-	econAgent.AddItem(Item::Create(ItemType::Ore, 1000));
-	econAgent.AddItem(Item::Create(ItemType::Food, 1000));
+	econAgent.AddItem(Item(ItemType::Credits, 1000));
+	econAgent.AddItem(Item(ItemType::Ore, 1000));
+	econAgent.AddItem(Item(ItemType::Food, 1000));
 
 	econAgent.SetSellPrices(
 	{
@@ -320,7 +320,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 	ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
 
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
-	econAgent.AddItem(Item::Create(ItemType::FuelCells, 1000));
+	econAgent.AddItem(Item(ItemType::FuelCells, 1000));
 
 	econAgent.SetSellPrices(
 	{

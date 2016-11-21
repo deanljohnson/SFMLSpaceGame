@@ -11,8 +11,15 @@ enum class EventType
 struct Event
 {
 public:
+	Event()
+		: type(EventType::None)
+	{};
+
 	struct ItemPickupEvent
 	{
+		explicit ItemPickupEvent(const Item& i)
+			: item(i)
+		{}
 		Item item;
 	};
 

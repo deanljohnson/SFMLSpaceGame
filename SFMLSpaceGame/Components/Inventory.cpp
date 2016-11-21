@@ -6,9 +6,7 @@
 Inventory::Inventory(EntityID ent)
 	: Component(ent)
 {
-	Item i;
-	i.type = ItemType::Credits;
-	i.credits.amount = 0;
+	Item i{ItemType::Credits, 0};
 
 	m_items.push_back(i);
 }

@@ -37,8 +37,7 @@ void ItemPickup::Update()
 				for (auto& i : m_items)
 				{
 					Event itemEvent;
-					itemEvent.itemPickup = Event::ItemPickupEvent();
-					itemEvent.itemPickup.item = i;
+					itemEvent.itemPickup = Event::ItemPickupEvent(i);
 					itemEvent.type = EventType::ItemPickup;
 					otherEnt->events.Push(itemEvent);
 				}

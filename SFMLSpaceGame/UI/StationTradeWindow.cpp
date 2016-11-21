@@ -160,8 +160,8 @@ void StationTradeWindow::OnBuyClick()
 	if (selectedItem == nullptr) return;
 
 	// Create an item to represent the transaction
-	auto boughtItem = Item::Create(selectedItem->type,
-									static_cast<unsigned int>(m_buyScale->GetValue()));
+	auto boughtItem = Item(selectedItem->type,
+							static_cast<unsigned int>(m_buyScale->GetValue()));
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
@@ -179,8 +179,8 @@ void StationTradeWindow::OnSellClick()
 	if (selectedItem == nullptr) return;
 
 	// Create an item to represent the transaction
-	auto soldItem = Item::Create(selectedItem->type, 
-								static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue()));
+	auto soldItem = Item(selectedItem->type, 
+						static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue()));
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();

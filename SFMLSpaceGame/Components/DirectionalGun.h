@@ -4,12 +4,12 @@
 #include <Interfaces/Gun.h>
 #include <vector>
 #include <ResourceLoader.h>
-#include "SoundSource.h"
+#include <Components/SoundSource.h>
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 #include "Sprite.h"
 #include <HardPoint.h>
-#include <Entity.h>1
+#include <Entity.h>
 
 struct DirectionalGunData
 {

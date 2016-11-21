@@ -79,7 +79,7 @@ int main()
 		game_manager.Render(window);
 		ui.Display(window);
 		window.display();
-
+		
 #ifdef _DEBUG
 		float renderTime = clock.getElapsedTime().asSeconds() - updateTime;
 		GAME_WINDOW->setTitle(TITLE

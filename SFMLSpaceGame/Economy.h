@@ -9,13 +9,18 @@ namespace Economy
 	void Init();
 
 	void AddAgent(const EconomyAgent& agent);
+	void AddAgent(const EconomyAgent& agent, const ItemPriceSet& sellPriceSet, const ItemPriceSet& buyPriceSet);
 	void RemoveAgent(const EconomyAgent& agent);
 
 	bool Buys(const EconomyID& ident, ItemType itemType);
 	bool Sells(const EconomyID& ident, ItemType itemType);
+
 	Price GetBuyPrice(const EconomyID& ident, ItemType itemType);
 	Price GetSellPrice(const EconomyID& ident, ItemType itemType);
 	Price GetBaselinePrice(ItemType itemType);
+
+	ItemPriceSet& GetBuyPriceSet(const EconomyID& ident);
+	ItemPriceSet& GetSellPriceSet(const EconomyID& ident);
 
 	void SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price);
 	void SetSellPrice(const EconomyID& ident, ItemType itemType, Price price);

@@ -16,8 +16,13 @@ void Economy::Init()
 
 void Economy::AddAgent(const EconomyAgent& agent)
 {
-	m_sellPrices.emplace(agent.GetEconomyID(), m_defaultSet);
-	m_buyPrices.emplace(agent.GetEconomyID(), m_defaultSet);
+	AddAgent(agent, m_defaultSet, m_defaultSet);
+}
+
+void Economy::AddAgent(const EconomyAgent& agent, const ItemPriceSet& sellPriceSet, const ItemPriceSet& buyPriceSet)
+{
+	m_sellPrices.emplace(agent.GetEconomyID(), sellPriceSet);
+	m_buyPrices.emplace(agent.GetEconomyID(), buyPriceSet);
 }
 
 void Economy::RemoveAgent(const EconomyAgent& agent)
@@ -65,6 +70,16 @@ Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType)
 Price Economy::GetBaselinePrice(ItemType itemType)
 {
 	return m_defaultSet.GetPrice(itemType);
+}
+
+ItemPriceSet& Economy::GetBuyPriceSet(const EconomyID& ident)
+{
+	return m_buyPrices.find(ident)->second;
+}
+
+ItemPriceSet& Economy::GetSellPriceSet(const EconomyID& ident)
+{
+	return m_sellPrices.find(ident)->second;
 }
 
 void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price)

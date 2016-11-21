@@ -1,8 +1,18 @@
 #include "stdafx.h"
 #include <Components/EconomyAgent.h>
 #include <Components/Inventory.h>
-#include <Economy.h>
 #include <Entity.h>
+
+EconomyAgent::EconomyAgent(EntityID ent, 
+							const EconomyID& id, 
+							const ItemPriceSet& buyPrices, 
+							const ItemPriceSet& sellPrices)
+	: Component(ent),
+	  m_id(id),
+	  m_inventory(entity->GetComponent<Inventory>())
+{
+	Economy::AddAgent(*this, buyPrices, sellPrices);
+}
 
 EconomyAgent::EconomyAgent(EntityID ent)
 	: Component(ent),

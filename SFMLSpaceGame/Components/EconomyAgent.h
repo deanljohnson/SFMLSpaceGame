@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include <EconomyID.h>
+#include <Economy.h>
 #include <Item.h>
 #include <ItemPrice.h>
 #include <PriceSupplier.h>
@@ -20,19 +21,25 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_id);
+		ar(entity.GetID(), m_id, Economy::GetBuyPriceSet(m_id), Economy::GetSellPriceSet(m_id));
 	}
 
 	template <class Archive>
 	static void load_and_construct(Archive& ar, cereal::construct<EconomyAgent>& construct)
 	{
 		EntityID selfID;
-		ar(selfID);
-		construct(selfID);
+		EconomyID econID = EconomyID::GetDefault();
+		ItemPriceSet buyPrices;
+		ItemPriceSet sellPrices;
 
-		ar(construct->m_id);
+		ar(selfID, econID, buyPrices, sellPrices);
+		construct(selfID, econID, buyPrices, sellPrices);
 	}
 
+	EconomyAgent(EntityID ent, 
+				const EconomyID& id,
+				const ItemPriceSet& buyPrices, 
+				const ItemPriceSet& sellPrices);
 public:
 	explicit EconomyAgent(EntityID ent);
 	~EconomyAgent();

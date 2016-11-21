@@ -218,6 +218,8 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 	case EntityInitializer::Type::SetActivePlayerID:
 		DoSetActivePlayerID(ent);
 		break;
+	case Count: break;
+	default: throw "unrecognized initializer";
 	}
 }
 

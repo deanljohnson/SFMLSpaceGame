@@ -376,7 +376,21 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 0,
+                    "value1": [
+                        {
+                            "value0": 0,
+                            "value1": 1000
+                        },
+                        {
+                            "value0": 2,
+                            "value1": 1000
+                        },
+                        {
+                            "value0": 3,
+                            "value1": 1000
+                        }
+                    ]
                 }
             }
         },
@@ -388,7 +402,47 @@
                 "data": {
                     "value0": 0,
                     "value1": {
-                        "value0": "econ_10390"
+                        "value0": "econ_23247"
+                    },
+                    "value2": {
+                        "value0": [
+                            {
+                                "key": 3,
+                                "value": 8
+                            },
+                            {
+                                "key": 1,
+                                "value": 12
+                            },
+                            {
+                                "key": 4,
+                                "value": 50
+                            },
+                            {
+                                "key": 2,
+                                "value": 90
+                            }
+                        ]
+                    },
+                    "value3": {
+                        "value0": [
+                            {
+                                "key": 3,
+                                "value": 12
+                            },
+                            {
+                                "key": 1,
+                                "value": 12
+                            },
+                            {
+                                "key": 4,
+                                "value": 50
+                            },
+                            {
+                                "key": 2,
+                                "value": 120
+                            }
+                        ]
                     }
                 }
             }
