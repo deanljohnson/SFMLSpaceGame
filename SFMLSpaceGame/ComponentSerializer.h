@@ -1,6 +1,7 @@
 #pragma once
 #include <cereal\cereal.hpp>
 #include <cereal\archives\json.hpp>
+#include <cereal\archives\binary.hpp>
 #include <cereal\types\memory.hpp>
 #include <Entity.h>
 #include <Serializer.h>
@@ -68,7 +69,6 @@ public:
 	template<class Archive>
 	static void SerializeIn(Archive& ar, Entity& ent)
 	{
-		// Need to figure out the looping mechanism for this
 		ComponentID id;
 		ar(id);
 

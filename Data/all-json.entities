@@ -1,0 +1,4426 @@
+{
+    "EntMan": {
+        "value0": [
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 0,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 32
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 543
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "1.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.3700000047683716,
+                                        "v.y": -0.10000002384185791
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.3799999952316284,
+                                        "v.y": 0.10999998450279236
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 7,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value27": 9,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value29": 10,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "Alien-One",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value31": 11,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value33": 13,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 1.5
+                                }
+                            }
+                        },
+                        "value35": 14,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value37": 15,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value39": 16,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value41": 18,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value43": 19,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value45": 20,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0
+                                }
+                            }
+                        },
+                        "value47": 21,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 1
+                                }
+                            }
+                        },
+                        "value49": 28,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 1.0,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value51": 30,
+                        "value52": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value53": 31,
+                        "value54": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value55": 32,
+                        "value56": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value57": 33,
+                        "value58": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value59": 34,
+                        "value60": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0
+                                }
+                            }
+                        },
+                        "value61": 36,
+                        "value62": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": [
+                                        8,
+                                        27,
+                                        28,
+                                        29,
+                                        30
+                                    ]
+                                }
+                            }
+                        },
+                        "value63": 38,
+                        "value64": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value65": 40,
+                        "value66": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": {
+                                        "value0": "econ_23247"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value67": 42,
+                        "value68": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": "Alien-One"
+                                }
+                            }
+                        },
+                        "value69": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 1,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 1
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 0
+                        },
+                        "value5": 17,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 1,
+                                    "value1": "Music\\theyre_here_looping.ogg"
+                                }
+                            }
+                        },
+                        "value7": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 2,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 1
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 0
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 2,
+                                    "value1": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 8,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 2,
+                                    "value1": 0,
+                                    "value2": 0.10000000149011612,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value9": 35,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 2,
+                                    "value1": 104
+                                }
+                            }
+                        },
+                        "value11": 41,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 2
+                                }
+                            }
+                        },
+                        "value13": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 3,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": {
+                                        "value0": "econ_26118"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 4,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": {
+                                        "value0": "econ_8964"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 5,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": {
+                                        "value0": "econ_6990"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 6,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": {
+                                        "value0": "econ_15503"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 7,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": {
+                                        "value0": "econ_12956"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 8,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": {
+                                        "value0": "econ_6775"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 9,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": {
+                                        "value0": "econ_16015"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 10,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 64
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 30
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": {
+                                        "v.x": 5.0,
+                                        "v.y": 5.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "Human-Fighter.png",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 2,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": -0.14000000059604646
+                                    }
+                                }
+                            }
+                        },
+                        "value13": 2,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "exhaust-one",
+                                    "value2": 1,
+                                    "value3": {
+                                        "v.x": -0.6200000047683716,
+                                        "v.y": 0.12000000476837158
+                                    }
+                                }
+                            }
+                        },
+                        "value15": 3,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "exhaust-one",
+                                    "value2": 1
+                                }
+                            }
+                        },
+                        "value17": 3,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "exhaust-one",
+                                    "value2": 2
+                                }
+                            }
+                        },
+                        "value19": 4,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 7,
+                                    "value2": 0.0,
+                                    "value3": 0.0,
+                                    "value4": 0.0
+                                }
+                            }
+                        },
+                        "value21": 5,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.75
+                                }
+                            }
+                        },
+                        "value23": 6,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value25": 10,
+                        "value26": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "Human-Fighter",
+                                    "value2": {
+                                        "v.x": -431602080.0,
+                                        "v.y": -431602080.0
+                                    },
+                                    "value3": 0.0,
+                                    "value4": 1.0
+                                }
+                            }
+                        },
+                        "value27": 15,
+                        "value28": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 801
+                                }
+                            }
+                        },
+                        "value29": 18,
+                        "value30": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.0,
+                                    "value2": 0.0,
+                                    "value3": 0
+                                }
+                            }
+                        },
+                        "value31": 19,
+                        "value32": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value33": 26,
+                        "value34": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value35": 27,
+                        "value36": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 10.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value37": 29,
+                        "value38": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "Human-Fighter",
+                                    "value2": 0,
+                                    "value3": 0,
+                                    "value4": 0
+                                }
+                            }
+                        },
+                        "value39": 30,
+                        "value40": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 100.0,
+                                    "value2": 100.0
+                                }
+                            }
+                        },
+                        "value41": 31,
+                        "value42": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10
+                                }
+                            }
+                        },
+                        "value43": 33,
+                        "value44": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.0,
+                                    "value2": [
+                                        1,
+                                        2
+                                    ]
+                                }
+                            }
+                        },
+                        "value45": 38,
+                        "value46": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 2,
+                                            "value1": 1000
+                                        },
+                                        {
+                                            "value0": 3,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value47": 40,
+                        "value48": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": {
+                                        "value0": "econ_21054"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 8
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value49": 42,
+                        "value50": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": "Human-Fighter"
+                                }
+                            }
+                        },
+                        "value51": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 11,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 128
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 96
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": {
+                                        "v.x": 7.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": "Human-Spacestation",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 6,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": 2,
+                                    "value2": 10.0
+                                }
+                            }
+                        },
+                        "value13": 27,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": 5.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value15": 36,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": [
+                                        4
+                                    ]
+                                }
+                            }
+                        },
+                        "value17": 37,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": "Press E to Interact"
+                                }
+                            }
+                        },
+                        "value19": 38,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 0
+                                        },
+                                        {
+                                            "value0": 1,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value21": 40,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": {
+                                        "value0": "econ_7803"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 110
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value23": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 12,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 128
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 96
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": {
+                                        "v.x": 40.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": "Human-Spacestation",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 6,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": 2,
+                                    "value2": 10.0
+                                }
+                            }
+                        },
+                        "value13": 27,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": 5.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value15": 36,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": [
+                                        4
+                                    ]
+                                }
+                            }
+                        },
+                        "value17": 37,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": "Press E to Interact"
+                                }
+                            }
+                        },
+                        "value19": 38,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 0
+                                        },
+                                        {
+                                            "value0": 1,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value21": 40,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": {
+                                        "value0": "econ_20059"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 110
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value23": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 13,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 128
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 96
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": {
+                                        "v.x": 7.0,
+                                        "v.y": 40.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": "Human-Spacestation",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 6,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": 2,
+                                    "value2": 10.0
+                                }
+                            }
+                        },
+                        "value13": 27,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": 5.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value15": 36,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": [
+                                        4
+                                    ]
+                                }
+                            }
+                        },
+                        "value17": 37,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": "Press E to Interact"
+                                }
+                            }
+                        },
+                        "value19": 38,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 0
+                                        },
+                                        {
+                                            "value0": 1,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value21": 40,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": {
+                                        "value0": "econ_16802"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 110
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value23": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 14,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 128
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 96
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": {
+                                        "v.x": 40.0,
+                                        "v.y": 40.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": "Human-Spacestation",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 6,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": 2,
+                                    "value2": 10.0
+                                }
+                            }
+                        },
+                        "value13": 27,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": 5.0,
+                                    "value2": [
+                                        5
+                                    ],
+                                    "value3": false
+                                }
+                            }
+                        },
+                        "value15": 36,
+                        "value16": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": [
+                                        4
+                                    ]
+                                }
+                            }
+                        },
+                        "value17": 37,
+                        "value18": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": "Press E to Interact"
+                                }
+                            }
+                        },
+                        "value19": 38,
+                        "value20": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": [
+                                        {
+                                            "value0": 0,
+                                            "value1": 0
+                                        },
+                                        {
+                                            "value0": 1,
+                                            "value1": 1000
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "value21": 40,
+                        "value22": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": {
+                                        "value0": "econ_23815"
+                                    },
+                                    "value2": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 110
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "value23": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 15,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 8
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 0
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 15,
+                                    "value1": {
+                                        "v.x": 20.0,
+                                        "v.y": 20.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 1,
+                        "value8": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 15,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "value9": 2,
+                        "value10": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 15,
+                                    "value1": "asteroid-one",
+                                    "value2": 0,
+                                    "value3": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value11": 3,
+                        "value12": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 15,
+                                    "value1": "asteroid-one",
+                                    "value2": 0
+                                }
+                            }
+                        },
+                        "value13": 6,
+                        "value14": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 15,
+                                    "value1": 2,
+                                    "value2": 1.0
+                                }
+                            }
+                        },
+                        "value15": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 16,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 1
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 0
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 16,
+                                    "value1": {
+                                        "v.x": 8.0,
+                                        "v.y": 8.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 4294967295
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "value0": 17,
+                        "value1": true,
+                        "value2": true,
+                        "value3": {
+                            "type": 0,
+                            "data": 1
+                        },
+                        "value4": {
+                            "type": 0,
+                            "data": 0
+                        },
+                        "value5": 0,
+                        "value6": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 17,
+                                    "value1": {
+                                        "v.x": 0.0,
+                                        "v.y": 0.0
+                                    }
+                                }
+                            }
+                        },
+                        "value7": 4294967295
+                    }
+                }
+            }
+        ]
+    }
+}

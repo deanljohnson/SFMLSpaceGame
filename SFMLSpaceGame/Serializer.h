@@ -20,9 +20,13 @@
 #define JSON_SERIALIZATION
 
 #ifdef JSON_SERIALIZATION
-
 #define SERIALIZATION_IN_ARCHIVE cereal::JSONInputArchive
 #define SERIALIZATION_OUT_ARCHIVE cereal::JSONOutputArchive
+#endif
+
+#ifdef BINARY_SERIALIZATION
+#define SERIALIZATION_IN_ARCHIVE cereal::BinaryInputArchive
+#define SERIALIZATION_OUT_ARCHIVE cereal::BinaryOutputArchive
 #endif
 
 template<typename IN_ARCHIVE = SERIALIZATION_IN_ARCHIVE, typename OUT_ARCHIVE = SERIALIZATION_OUT_ARCHIVE>
@@ -37,7 +41,10 @@ public:
 		name += "." + T::GetTypeName();
 		
 		// Open the input file stream
-		std::ifstream is(DATA_PATH + name);
+		auto mode = std::is_same<IN_ARCHIVE, cereal::BinaryInputArchive>::value
+					? std::ios::in | std::ios::binary
+					: std::ios::in;
+		std::ifstream is(DATA_PATH + name, mode);
 		if (is.fail())
 		{
 			std::cout << "Unable to fine the file " << name << "\n";
@@ -58,7 +65,10 @@ public:
 		name += "." + T::GetTypeName();
 
 		// Open the input file stream
-		std::ifstream is(DATA_PATH + name);
+		auto mode = std::is_same<IN_ARCHIVE, cereal::BinaryInputArchive>::value
+			? std::ios::in | std::ios::binary
+			: std::ios::in;
+		std::ifstream is(DATA_PATH + name, mode);
 		if (is.fail())
 		{
 			std::cout << "Unable to fine the file " << name << "\n";
@@ -82,7 +92,11 @@ public:
 	{
 		fileName += "." + T::GetTypeName();
 
-		std::ofstream os(DATA_PATH + fileName);
+		auto mode = std::is_same<OUT_ARCHIVE, cereal::BinaryOutputArchive>::value
+			? std::ios::out | std::ios::binary
+			: std::ios::out;
+		std::ofstream os(DATA_PATH + fileName, mode);
+
 		OUT_ARCHIVE ar(os);
 		ar(cereal::make_nvp(rootName, *obj));
 	}
