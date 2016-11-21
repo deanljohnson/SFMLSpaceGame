@@ -36,6 +36,9 @@ private:
 
 	void SetInventoryTargets();
 	void ResetScales();
+
+	unsigned GetPlayerCredits();
+	void UpdatePlayerHeader();
 public:
 	StationTradeWindow();
 

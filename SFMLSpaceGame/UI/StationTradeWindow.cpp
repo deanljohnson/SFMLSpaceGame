@@ -131,9 +131,7 @@ void StationTradeWindow::OnBuyItemChange(Item* item)
 
 	if (amt != 0) 
 	{
-		auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
-		auto& playerInven = playerHandle->GetComponent<Inventory>();
-		auto playerCredits = playerInven.GetCredits();
+		auto playerCredits = GetPlayerCredits();
 
 		auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 		auto sellPrice = stationAgent.GetSellPrice(item->type);
@@ -196,6 +194,7 @@ void StationTradeWindow::SetInventoryTargets()
 {
 	m_stationInvenWidget.SetTarget(m_target);
 	m_playerInvenWidget.SetTarget(PlayerData::GetActive()->GetID());
+	UpdatePlayerHeader();
 }
 
 void StationTradeWindow::ResetScales() 
@@ -210,4 +209,17 @@ void StationTradeWindow::ResetScales()
 
 	m_buyLabelNeedsUpdate = true;
 	m_sellLabelNeedsUpdate = true;
+}
+
+unsigned StationTradeWindow::GetPlayerCredits()
+{
+	auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
+	auto& playerInven = playerHandle->GetComponent<Inventory>();
+	return playerInven.GetCredits();
+}
+
+void StationTradeWindow::UpdatePlayerHeader()
+{
+	auto playerCredits = GetPlayerCredits();
+	m_playerHeaderLabel->SetText("Your Ship (" + std::to_string(playerCredits) + " credits)");
 }
