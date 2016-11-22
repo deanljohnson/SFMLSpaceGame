@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Economy">
       <UniqueIdentifier>{9ce49331-18b5-4c33-a0f8-b59f1e03cb3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rigs">
+      <UniqueIdentifier>{285282c8-4734-483b-8475-2ddc450c0ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rigs">
+      <UniqueIdentifier>{0cfd7cc2-1620-441a-a633-3f9e5f492602}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -721,6 +727,12 @@
     </ClInclude>
     <ClInclude Include="Components\MissileController.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rig.h">
+      <Filter>Header Files\Rigs</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserRig.h">
+      <Filter>Header Files\Rigs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

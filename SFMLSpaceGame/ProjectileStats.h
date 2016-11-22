@@ -1,9 +1,11 @@
 #pragma once
 #include <Box2d\Common\b2Math.h>
 #include <cereal\cereal.hpp>
+#include <Serializer.h>
 
 class ProjectileStats
 {
+	SERIALIZED_WITH_NAME("projectile")
 private:
 	float m_speed;
 	float m_lifeTime;
@@ -36,6 +38,4 @@ public:
 				cereal::make_nvp("Damage", m_damage), 
 				cereal::make_nvp("Size", m_size));
 	}
-
-	static std::string GetTypeName() { return "projectile"; }
 };

@@ -5,9 +5,11 @@
 #include <Components/Shields.h>
 #include <cereal/types/vector.hpp> // Need for collider vertices serialization
 #include <SFMLSerialization.h> // Need for collider vertices serialization
+#include <Serializer.h>
 
 class ShipStats
 {
+	SERIALIZED_WITH_NAME("ship")
 private:
 	float m_maxHull;
 	float m_interceptLeadMultiplier;
@@ -120,8 +122,6 @@ public:
 	}
 
 	void Copy(ShipStats* other);
-
-	static std::string GetTypeName() { return "ship"; }
 	static ShipStats* Clone(ShipStats* other);
 };
 

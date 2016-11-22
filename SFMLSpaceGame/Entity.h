@@ -12,11 +12,13 @@
 #include <cereal\access.hpp>
 #include <cereal\types\bitset.hpp>
 #include <EntityInitializer.h>
+#include <Serializer.h>
 
 class EntityManager;
 
 class Entity
 {
+	SERIALIZED_WITH_NAME("entity")
 private:
 	bool m_alive{ true };
 	bool m_active{ true };
@@ -94,7 +96,6 @@ public:
 
 	// used only for serialization
 	Entity() {}
-	static std::string GetTypeName() { return "entity"; }
 
 	Entity(const Entity& other) = delete;
 

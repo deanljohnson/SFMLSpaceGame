@@ -1,8 +1,10 @@
 #pragma once
 #include <cereal\cereal.hpp>
+#include <Serializer.h>
 
 class MissileStats 
 {
+	SERIALIZED_WITH_NAME("missile")
 private:
 	float m_thrust;
 	float m_damage;
@@ -31,6 +33,4 @@ public:
 				cereal::make_nvp("Damage", m_damage),
 				cereal::make_nvp("ImageLocation", m_imageLocation));
 	}
-
-	static std::string GetTypeName() { return "missile"; }
 };

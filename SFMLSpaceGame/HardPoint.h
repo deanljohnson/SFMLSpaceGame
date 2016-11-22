@@ -1,15 +1,17 @@
 #pragma once
 #include <Box2D.h>
 
+// Defines the position and angle of
+// a ships weapon
 struct HardPoint
 {
 	HardPoint()
 		: positionOffset(),
-		angleOffset()
+		  angleOffset()
 	{}
 	HardPoint(b2Vec2 offset, float angle)
 		: positionOffset(offset),
-		angleOffset(angle)
+		  angleOffset(angle)
 	{}
 
 	//Offset from the ships center to the HardPoint location. 

@@ -332,6 +332,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
     <ClInclude Include="RenderBatch.h" />
+    <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\StringDisplayHelper.h" />
     <ClInclude Include="TextureMap.h" />
@@ -404,6 +405,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\WidgetHelpers.h" />
     <ClInclude Include="VectorMath.h" />
+    <ClInclude Include="LaserRig.h" />
     <ClInclude Include="WorldConstants.h" />
   </ItemGroup>
   <ItemGroup>

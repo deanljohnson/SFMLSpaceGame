@@ -29,6 +29,10 @@
 #define SERIALIZATION_OUT_ARCHIVE cereal::BinaryOutputArchive
 #endif
 
+#ifndef SERIALIZED_WITH_NAME
+#define SERIALIZED_WITH_NAME(s) public: static std::string GetTypeName() { static const std::string name = s; return name; }
+#endif
+
 template<typename IN_ARCHIVE = SERIALIZATION_IN_ARCHIVE, typename OUT_ARCHIVE = SERIALIZATION_OUT_ARCHIVE>
 class Serializer 
 {
