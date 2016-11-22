@@ -36,6 +36,15 @@
                     "Width": 50,
                     "Height": 50
                 }
+            },
+			{
+                "key": "LaserRig",
+                "value": {
+                    "Left": 200,
+                    "Top": 0,
+                    "Width": 50,
+                    "Height": 50
+                }
             }
         ]
     }

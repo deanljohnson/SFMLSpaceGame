@@ -369,6 +369,9 @@
     <ClCompile Include="UI\MissileRigEditorWidget.cpp">
       <Filter>Source Files\UI\RigEditorElements</Filter>
     </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">

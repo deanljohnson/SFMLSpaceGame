@@ -9,7 +9,7 @@ PlayerDeathBroadcaster::PlayerDeathBroadcaster(EntityID ent)
 
 void PlayerDeathBroadcaster::OnDestroy()
 {
-	Event playerDead = Event();
+	Event playerDead{};
 	playerDead.playerDied = Event::PlayerDiedEvent();
 	playerDead.type = EventType::PlayerDied;
 

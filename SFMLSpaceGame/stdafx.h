@@ -41,3 +41,6 @@
 #include <ExtendedMath.h>
 #include <VectorMath.h>
 #include <WorldConstants.h>
+#include <EventQueue.h>
+#include <EntityHandle.h>
+#include <PlayerData.h>

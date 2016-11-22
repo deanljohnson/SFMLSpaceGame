@@ -221,6 +221,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="EntityHelpers.cpp" />
     <ClCompile Include="EntityInitializer.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameState.cpp" />

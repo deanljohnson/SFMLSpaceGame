@@ -11,15 +11,21 @@ enum class EventType
 struct Event
 {
 public:
-	Event()
-		: type(EventType::None)
-	{};
+	Event();
+	Event(const Event& other);
+	~Event();
 
 	struct ItemPickupEvent
 	{
 		explicit ItemPickupEvent(const Item& i)
 			: item(i)
 		{}
+		ItemPickupEvent& operator=(const ItemPickupEvent& other)
+		{
+			item = Item(other.item);
+
+			return *this;
+		}
 		Item item;
 	};
 
@@ -51,4 +57,6 @@ public:
 
 	EventType type;
 	bool handled = false;
+
+	Event& operator=(const Event& other);
 };

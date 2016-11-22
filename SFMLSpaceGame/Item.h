@@ -8,7 +8,7 @@
 
 enum class ItemType
 {
-	Credits, FuelCells, Ore, Food, Narcotics
+	Credits, FuelCells, Ore, Food, Narcotics, LaserRig
 };
 
 class Item
@@ -46,6 +46,15 @@ public:
 		NAMED_ITEM("Narcotics")
 	};
 
+	struct LaserRigItem : public ItemBase<LaserRigItem>
+	{
+		NAMED_ITEM("LaserRig")
+		std::string rigName;
+
+		LaserRigItem() : rigName("") {}
+		explicit LaserRigItem(const std::string& s) : rigName(s) {}
+	};
+
 	union
 	{
 		Credits credits;
@@ -53,17 +62,23 @@ public:
 		Ore ore;
 		Food food;
 		Narcotics narcotics;
+		LaserRigItem laserRig;
 	};
 
 	ItemType type;
+
+	Item(ItemType type, unsigned int amount);
+	Item(const Item& other);
+	Item();
+
+	~Item();
+
+	Item& operator=(const Item& other);
 
 	void Stack(Item other);
 	std::string GetTypeName() const;
 	unsigned int GetAmount() const;
 	void SetAmount(unsigned int amount);
-
-	Item(ItemType type, unsigned int amount);
-	Item();
 
 private:
 	friend class cereal::access;
@@ -72,6 +87,11 @@ private:
 	void save(Archive& ar) const
 	{
 		ar(type, GetAmount());
+
+		if (type == ItemType::LaserRig)
+		{
+			ar(cereal::make_nvp("rigName", laserRig.rigName));
+		}
 	}
 
 	template <class Archive>
@@ -80,5 +100,10 @@ private:
 		unsigned int amount;
 		ar(type, amount);
 		SetAmount(amount);
+
+		if (type == ItemType::LaserRig)
+		{
+			ar(cereal::make_nvp("rigName", laserRig.rigName));
+		}
 	}
 };
