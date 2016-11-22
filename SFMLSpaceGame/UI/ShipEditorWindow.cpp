@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <UI/ShipEditorWindow.h>
 #include "UI.h"
+#include <UI/UIDefaults.h>
 #include "ShipSelector.h"
 #include "ImageSelector.h"
 #include "ShipNameEntry.h"
@@ -92,15 +93,15 @@ void ShipEditorWindow::SetupButtonSignals()
 
 	m_deleteShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
-	{
-		if (m_targetStats.get() == nullptr)
-			return;
-		auto editWindow = static_cast<ConfirmationDialog*>(GetWindow("confirmation_dialog"));
-		editWindow->SetCallback([this](bool val) { if (val) OnDeleteShip(); });
-		editWindow->SetText("Are you sure you want to delete this ship? This cannot be undone.");
-		editWindow->CenterOnScreen(); // changing the text can make the window uncentered
-		editWindow->Show(true);
-	});
+		{
+			if (m_targetStats.get() == nullptr)
+				return;
+			auto editWindow = static_cast<ConfirmationDialog*>(GetWindow("confirmation_dialog"));
+			editWindow->SetCallback([this](bool val) { if (val) OnDeleteShip(); });
+			editWindow->SetText("Are you sure you want to delete this ship? This cannot be undone.");
+			editWindow->CenterOnScreen(); // changing the text can make the window uncentered
+			editWindow->Show(true);
+		});
 
 	m_defineColliderButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
@@ -147,11 +148,11 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_strafeDistEntry = sfg::Entry::Create();
 	m_sensorRangeEntry = sfg::Entry::Create();
 
-	m_interLeadEntry->SetRequisition(ENTRY_SIZE);
-	m_followDistEntry->SetRequisition(ENTRY_SIZE);
-	m_approachDistEntry->SetRequisition(ENTRY_SIZE);
-	m_strafeDistEntry->SetRequisition(ENTRY_SIZE);
-	m_sensorRangeEntry->SetRequisition(ENTRY_SIZE);
+	m_interLeadEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_followDistEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_approachDistEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_strafeDistEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_sensorRangeEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
 
 	m_propertyTable->Attach(aiHeaderLabel,		{ 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(interLeadMultLabel, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
@@ -175,10 +176,10 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_reverseThrustEntry = sfg::Entry::Create();
 	m_steerThrustEntry = sfg::Entry::Create();
 
-	m_forwardThrustEntry->SetRequisition(ENTRY_SIZE);
-	m_sideThrustEntry->SetRequisition(ENTRY_SIZE);
-	m_reverseThrustEntry->SetRequisition(ENTRY_SIZE);
-	m_steerThrustEntry->SetRequisition(ENTRY_SIZE);
+	m_forwardThrustEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_sideThrustEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_reverseThrustEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_steerThrustEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
 
 	m_propertyTable->Attach(thrustHeaderLabel,	  { 0, 6,  2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(forwardThrustLabel,   { 0, 7,  1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
@@ -189,31 +190,6 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_propertyTable->Attach(m_sideThrustEntry,	  { 1, 8,  1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(m_reverseThrustEntry, { 1, 9,  1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 	m_propertyTable->Attach(m_steerThrustEntry,	  { 1, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-
-	auto weaponsHeaderLabel = sfg::Label::Create("Weapon Stats");
-	auto fireRateLabel = sfg::Label::Create("Fire Rate");
-	auto heatLimitLabel = sfg::Label::Create("Heat Limit");
-	auto cooldownRateLabel = sfg::Label::Create("Cooling Rate");
-	auto heatGenLabel = sfg::Label::Create("Heat Generated");
-	m_fireRateEntry = sfg::Entry::Create();
-	m_heatLimitEntry = sfg::Entry::Create();
-	m_cooldownRateEntry = sfg::Entry::Create();
-	m_heatGenEntry = sfg::Entry::Create();
-
-	m_fireRateEntry->SetRequisition(ENTRY_SIZE);
-	m_heatLimitEntry->SetRequisition(ENTRY_SIZE);
-	m_cooldownRateEntry->SetRequisition(ENTRY_SIZE);
-	m_heatGenEntry->SetRequisition(ENTRY_SIZE);
-
-	m_propertyTable->Attach(weaponsHeaderLabel, { 2, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(fireRateLabel,		{ 2, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(heatLimitLabel,		{ 2, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(cooldownRateLabel,	{ 2, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(heatGenLabel,		{ 2, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_fireRateEntry,	{ 3, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_heatLimitEntry,	{ 3, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_cooldownRateEntry,{ 3, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_heatGenEntry,		{ 3, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	auto defenseHeaderLabel = sfg::Label::Create("Defense Stats");
 	auto hullStrengthLabel = sfg::Label::Create("Hull Strength");
@@ -227,23 +203,23 @@ void ShipEditorWindow::SetupPropertyTable()
 	m_rearShieldEntry = sfg::Entry::Create();
 	m_shieldRegenEntry = sfg::Entry::Create();
 
-	m_hullStrengthEntry->SetRequisition(ENTRY_SIZE);
-	m_frontShieldEntry->SetRequisition(ENTRY_SIZE);
-	m_sideShieldEntry->SetRequisition(ENTRY_SIZE);
-	m_rearShieldEntry->SetRequisition(ENTRY_SIZE);
-	m_shieldRegenEntry->SetRequisition(ENTRY_SIZE);
+	m_hullStrengthEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_frontShieldEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_sideShieldEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_rearShieldEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
+	m_shieldRegenEntry->SetRequisition(UIDefaults::ENTRY_SIZE);
 
-	m_propertyTable->Attach(defenseHeaderLabel,	{ 2, 5, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(hullStrengthLabel,	{ 2, 6, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(forwardShieldLabel,	{ 2, 7, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(sideShieldLabel,	{ 2, 8, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(rearShieldLabel,	{ 2, 9, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(shieldRegenLabel,	{ 2, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_hullStrengthEntry,{ 3, 6, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_frontShieldEntry,	{ 3, 7, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_sideShieldEntry,	{ 3, 8, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_rearShieldEntry,	{ 3, 9, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	m_propertyTable->Attach(m_shieldRegenEntry,	{ 3, 10, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(defenseHeaderLabel,	{ 2, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(hullStrengthLabel,	{ 2, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(forwardShieldLabel,	{ 2, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(sideShieldLabel,	{ 2, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(rearShieldLabel,	{ 2, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(shieldRegenLabel,	{ 2, 5, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_hullStrengthEntry,{ 3, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_frontShieldEntry,	{ 3, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_sideShieldEntry,	{ 3, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_rearShieldEntry,	{ 3, 4, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_propertyTable->Attach(m_shieldRegenEntry,	{ 3, 5, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	SetupEntryValidationSignals();
 	SetupEntryFocusSignals();
@@ -273,14 +249,6 @@ void ShipEditorWindow::SetupEntryValidationSignals()
 		[this] { OnEntryFloatTextValidation(m_reverseThrustEntry); });
 	m_steerThrustEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
 		[this] { OnEntryFloatTextValidation(m_steerThrustEntry); });
-	m_fireRateEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
-		[this] { OnEntryFloatTextValidation(m_fireRateEntry); });
-	m_heatLimitEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
-		[this] { OnEntryFloatTextValidation(m_heatLimitEntry); });
-	m_cooldownRateEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
-		[this] { OnEntryFloatTextValidation(m_cooldownRateEntry); });
-	m_heatGenEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
-		[this] { OnEntryFloatTextValidation(m_heatGenEntry); });
 	m_hullStrengthEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
 		[this] { OnEntryFloatTextValidation(m_hullStrengthEntry); });
 	m_frontShieldEntry->GetSignal(sfg::Entry::OnTextChanged).Connect(
@@ -304,10 +272,6 @@ void ShipEditorWindow::SetupEntryFocusSignals()
 	m_sideThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
 	m_reverseThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
 	m_steerThrustEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
-	m_fireRateEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
-	m_heatLimitEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
-	m_cooldownRateEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
-	m_heatGenEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
 	m_hullStrengthEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
 	m_frontShieldEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
 	m_sideShieldEntry->GetSignal(sfg::Entry::OnGainFocus).Connect(GrabKeyboardFocus);
@@ -323,10 +287,6 @@ void ShipEditorWindow::SetupEntryFocusSignals()
 	m_sideThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 	m_reverseThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 	m_steerThrustEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
-	m_fireRateEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
-	m_heatLimitEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
-	m_cooldownRateEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
-	m_heatGenEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 	m_hullStrengthEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 	m_frontShieldEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
 	m_sideShieldEntry->GetSignal(sfg::Entry::OnLostFocus).Connect(ReleaseKeyboardFocus);
@@ -345,10 +305,6 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_sideThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Side));
 	m_reverseThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Reverse));
 	m_steerThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Steer));
-	m_fireRateEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->fireRate));
-	m_heatLimitEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatLimit));
-	m_cooldownRateEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->cooldownRate));
-	m_heatGenEntry->SetText(std::to_string(m_targetStats->GetDirGunData()->heatGenerated));
 	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->GetMaxHullStrength()));
 	m_frontShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->FrontStrength));
 	m_sideShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->SideStrength));
@@ -382,10 +338,6 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 		&& m_sideThrustEntry->GetId() == valid
 		&& m_reverseThrustEntry->GetId() == valid
 		&& m_steerThrustEntry->GetId() == valid
-		&& m_fireRateEntry->GetId() == valid
-		&& m_heatLimitEntry->GetId() == valid
-		&& m_cooldownRateEntry->GetId() == valid
-		&& m_heatGenEntry->GetId() == valid
 		&& m_hullStrengthEntry->GetId() == valid
 		&& m_frontShieldEntry->GetId() == valid
 		&& m_sideShieldEntry->GetId() == valid
@@ -420,10 +372,6 @@ void ShipEditorWindow::ClearShipEditing()
 	m_sideThrustEntry->SetText("");
 	m_reverseThrustEntry->SetText("");
 	m_steerThrustEntry->SetText("");
-	m_fireRateEntry->SetText("");
-	m_heatLimitEntry->SetText("");
-	m_cooldownRateEntry->SetText("");
-	m_heatGenEntry->SetText("");
 	m_hullStrengthEntry->SetText("");
 	m_frontShieldEntry->SetText("");
 	m_sideShieldEntry->SetText("");
@@ -482,30 +430,9 @@ void ShipEditorWindow::OnNewShipNameSelected(const std::string& name)
 
 void ShipEditorWindow::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
 {
-	std::string text = entry->GetText();
-	
-	// if text is empty, it's automatically invalid
-	if (text.empty())
-	{
-		entry->SetId("invalid");
-		return;
-	}
-
-	try
-	{
-		char* error = nullptr;
-		auto val = strtof(text.c_str(), &error);
-		if (error[0] != '\0')
-		{
-			entry->SetId("invalid");
-			return;
-		}
-		entry->SetId("valid");
-	}
-	catch (std::invalid_argument)
-	{
-		entry->SetId("invalid");
-	}
+	entry->SetId(WidgetHelpers::ValideFloatEntry(entry)
+		? "valid"
+		: "invalid");
 }
 
 void ShipEditorWindow::OnSaveShip()
@@ -526,12 +453,6 @@ void ShipEditorWindow::OnSaveShip()
 	shipThrust->Side = stof(m_sideThrustEntry->GetText().toAnsiString());
 	shipThrust->Reverse = stof(m_reverseThrustEntry->GetText().toAnsiString());
 	shipThrust->Steer = stof(m_steerThrustEntry->GetText().toAnsiString());
-
-	auto gunData = m_editingStats->GetDirGunData();
-	gunData->fireRate = stof(m_fireRateEntry->GetText().toAnsiString());
-	gunData->heatLimit = stof(m_heatLimitEntry->GetText().toAnsiString());
-	gunData->cooldownRate = stof(m_cooldownRateEntry->GetText().toAnsiString());
-	gunData->heatGenerated = stof(m_heatGenEntry->GetText().toAnsiString());
 
 	auto shieldData = m_editingStats->GetShieldData();
 	shieldData->FrontStrength = stof(m_frontShieldEntry->GetText().toAnsiString());

@@ -10,8 +10,6 @@ DirectionalGun::DirectionalGun(EntityID ent)
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sprite(entity->GetComponent<Sprite>()),
-	  m_lastFiringTime(0.f),
-	  m_currentHeat(0.f),
 	  m_gunData(nullptr)
 {
 }
@@ -54,6 +52,9 @@ void DirectionalGun::Shoot(const b2Vec2& pos)
 {
 	for (size_t i = 0; i < m_weaponStates.size(); i++) 
 	{
+		if (m_gunData->rigs[i] == nullptr)
+			continue;
+
 		float firingTime = m_weaponStates[i].lastFiringTime;
 		float fireRate = m_gunData->rigs[i]->fireRate;
 		
@@ -87,4 +88,8 @@ void DirectionalGun::SetSoundSource(SoundSource* source)
 void DirectionalGun::SetGunData(DirectionalGunData* data)
 {
 	m_gunData = data;
+
+	// will default construct the weapon stats
+	// which is perfectly fine
+	m_weaponStates.resize(data->rigs.size());
 }

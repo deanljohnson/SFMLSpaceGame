@@ -1,20 +1,13 @@
 #pragma once
 #include <UI/GameWindow.h>
-#include <SFGUI/Window.hpp>
-#include <SFGUI/Button.hpp>
-#include <SFGUI/Canvas.hpp>
-#include <SFGUI/Box.hpp>
-#include <SFGUI/Table.hpp>
+#include <SFGUI/Widgets.hpp>
 #include <ShipStats.h>
-#include <SFGUI/Entry.hpp>
 #include <Serializer.h>
 #include <SFML/Graphics/Sprite.hpp>
 
 class ShipEditorWindow : public GameWindow
 {
 private:
-	const sf::Vector2f ENTRY_SIZE = sf::Vector2f(50, 0);
-
 	Serializer<> serializer;
 
 	sfg::Button::Ptr m_newShipButton;
@@ -45,11 +38,6 @@ private:
 	sfg::Entry::Ptr m_sideThrustEntry;
 	sfg::Entry::Ptr m_reverseThrustEntry;
 	sfg::Entry::Ptr m_steerThrustEntry;
-
-	sfg::Entry::Ptr m_fireRateEntry;
-	sfg::Entry::Ptr m_heatLimitEntry;
-	sfg::Entry::Ptr m_cooldownRateEntry;
-	sfg::Entry::Ptr m_heatGenEntry;
 
 	sfg::Entry::Ptr m_hullStrengthEntry;
 	sfg::Entry::Ptr m_frontShieldEntry;

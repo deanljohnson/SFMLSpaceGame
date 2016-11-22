@@ -12,6 +12,7 @@
 
 #include <UI\ColliderEditor.h>
 #include <UI\ConfirmationDialog.h>
+#include <UI\DataFileSelector.h>
 #include <UI\GameWindow.h>
 #include <UI\HardPointEditor.h>
 #include <UI\HardPointWidget.h>
@@ -19,16 +20,20 @@
 #include <UI\InventoryItemWidget.h>
 #include <UI\InventoryWidget.h>
 #include <UI\InventoryWindow.h>
+//#include <UI\RigEditor.h>
+//#include <UI\RigEditorWidget.h>
+//#include <UI\LaserRigEditorWidget.h>
+#include <UI\RigSelector.h>
 #include <UI\ShieldStateDisplay.h>
 #include <UI\ShipEditorWindow.h>
 #include <UI\ShipNameEntry.h>
 #include <UI\ShipSelector.h>
 #include <UI\StationTradeWindow.h>
 #include <UI\StationWindow.h>
-#include <UI\StringDisplayHelper.h>
 #include <UI\ThrusterLocationEditor.h>
 #include <UI\UI.h>
 #include <UI\WidgetHelpers.h>
 
 #include <ExtendedMath.h>
 #include <VectorMath.h>
+#include <WorldConstants.h>

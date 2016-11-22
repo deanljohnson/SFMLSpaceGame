@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <StringHelper.h>
 #include <cereal\archives\json.hpp>
 #include <cereal\archives\binary.hpp>
 
@@ -37,12 +38,13 @@ template<typename IN_ARCHIVE = SERIALIZATION_IN_ARCHIVE, typename OUT_ARCHIVE = 
 class Serializer 
 {
 private:
-
 public:
-	template<class T, typename std::enable_if<std::is_default_constructible<T>::value>::type* = nullptr>
-	T* Load(std::string name)
+	template<class T>
+	typename std::enable_if<std::is_default_constructible<T>::value, T>::type* Load(std::string name)
 	{
-		name += "." + T::GetTypeName();
+		auto extension = "." + T::GetTypeName();
+		if (!StringHelper::StrEndsWith(name, extension))
+			name += extension;
 		
 		// Open the input file stream
 		auto mode = std::is_same<IN_ARCHIVE, cereal::BinaryInputArchive>::value
@@ -63,10 +65,12 @@ public:
 		return t;
 	}
 
-	template<class T, typename std::enable_if<!std::is_default_constructible<T>::value>::type* = nullptr>
-	T* Load(std::string name)
+	template<class T>
+	typename std::enable_if<!std::is_default_constructible<T>::value, T>::type* Load(std::string name)
 	{
-		name += "." + T::GetTypeName();
+		auto extension = "." + T::GetTypeName();
+		if (!StringHelper::StrEndsWith(name, extension))
+			name += extension;
 
 		// Open the input file stream
 		auto mode = std::is_same<IN_ARCHIVE, cereal::BinaryInputArchive>::value
@@ -94,8 +98,11 @@ public:
 	template<class T>
 	void Save(T* obj, std::string fileName, std::string rootName)
 	{
-		fileName += "." + T::GetTypeName();
+		auto extension = "." + T::GetTypeName();
+		if (!StringHelper::StrEndsWith(fileName, extension))
+			fileName += extension;
 
+		// open the output file stream
 		auto mode = std::is_same<OUT_ARCHIVE, cereal::BinaryOutputArchive>::value
 			? std::ios::out | std::ios::binary
 			: std::ios::out;
@@ -108,7 +115,10 @@ public:
 	template<class T>
 	void DeleteRecord(T* obj, std::string fileName) 
 	{
-		fileName += "." + T::GetTypeName();
+		auto extension = "." + T::GetTypeName();
+		if (!StringHelper::StrEndsWith(fileName, extension))
+			fileName += extension;
+
 		std::remove((DATA_PATH + fileName).c_str());
 	}
 };

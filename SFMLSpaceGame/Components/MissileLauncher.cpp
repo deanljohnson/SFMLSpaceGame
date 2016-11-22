@@ -47,7 +47,6 @@ void MissileLauncher::Shoot(const b2Vec2& pos)
 	b2Rot rot(m_rotation.GetRadians());
 	for (auto hp : m_launcherData->hardPoints)
 	{
-		// TODO: for now we are simply using a bullet. Need to change to be a missile
 		// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
 		auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
 		EntityFactory::CreateMissile("MissileOne", entity->GetID(), target,

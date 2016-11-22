@@ -1,8 +1,6 @@
 #pragma once
-#include <string>
 #include <map>
 #include <SFGUI/Window.hpp>
-#include <WorldConstants.h>
 
 class GameWindow
 {

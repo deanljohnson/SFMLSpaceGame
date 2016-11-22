@@ -269,14 +269,16 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\InventoryItemWidget.cpp" />
     <ClCompile Include="UI\InventoryWindow.cpp" />
     <ClCompile Include="UI\InventoryWidget.cpp" />
+    <ClCompile Include="UI\LaserRigEditorWidget.cpp" />
+    <ClCompile Include="UI\RigEditor.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
     <ClCompile Include="UI\ShipNameEntry.cpp" />
-    <ClCompile Include="UI\ShipSelector.cpp" />
     <ClCompile Include="UI\StationTradeWindow.cpp" />
     <ClCompile Include="UI\StationWindow.cpp" />
     <ClCompile Include="UI\ThrusterLocationEditor.cpp" />
     <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\UIDefaults.cpp" />
     <ClCompile Include="UI\WidgetHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -334,7 +336,12 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="UI\StringDisplayHelper.h" />
+    <ClInclude Include="UI\DataFileSelector.h" />
+    <ClInclude Include="UI\LaserRigEditorWidget.h" />
+    <ClInclude Include="UI\RigEditor.h" />
+    <ClInclude Include="UI\RigEditorWidget.h" />
+    <ClInclude Include="UI\RigSelector.h" />
+    <ClInclude Include="StringHelper.h" />
     <ClInclude Include="TextureMap.h" />
     <ClInclude Include="UI\ColliderEditor.h" />
     <ClInclude Include="UI\ConfirmationDialog.h" />
@@ -403,6 +410,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\StationWindow.h" />
     <ClInclude Include="UI\ThrusterLocationEditor.h" />
     <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="UI\UIDefaults.h" />
     <ClInclude Include="UI\WidgetHelpers.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="LaserRig.h" />

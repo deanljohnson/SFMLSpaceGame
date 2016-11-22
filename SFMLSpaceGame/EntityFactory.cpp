@@ -4,8 +4,9 @@
 #include <EntityFactory.h>
 #include <EntityHandle.h>
 #include <Components\Components.h>
-#include "PlayerData.h"
-#include "Economy.h"
+#include <PlayerData.h>
+#include <Economy.h>
+#include <MissileStats.h>
 
 void EntityFactory::Init()
 {

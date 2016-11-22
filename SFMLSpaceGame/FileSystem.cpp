@@ -15,10 +15,34 @@ namespace FileSystem
 		{
 			if (is_regular_file(entry.status()))
 			{
-				auto extension = entry.path().extension();
+				auto& extension = entry.path().extension();
 
 				if (extension == ext)
 					results.push_back(entry.path().filename().generic_string());
+			}
+		}
+	}
+
+	void GetFileNamesWithExtensions(const std::string& dirPath, 
+									std::initializer_list<std::string> extensions,
+									std::vector<std::string>& results)
+	{
+		path dir = { dirPath };
+
+		for (const auto& entry : directory_iterator(dir))
+		{
+			if (is_regular_file(entry.status()))
+			{
+				auto& extension = entry.path().extension();
+
+				for (auto& ext : extensions)
+				{
+					if (extension == ext)
+					{
+						results.push_back(entry.path().filename().generic_string());
+						break;
+					}
+				}
 			}
 		}
 	}

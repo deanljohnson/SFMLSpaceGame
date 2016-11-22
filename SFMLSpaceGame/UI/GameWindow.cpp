@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <UI/GameWindow.h>
 #include "UI.h"
+#include <WorldConstants.h>
 
 int GameWindow::m_windowsWithMouse = 0;
 int GameWindow::m_elementsWithKeyboardFocus = 0;

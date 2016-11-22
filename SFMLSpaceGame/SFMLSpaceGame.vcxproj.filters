@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Rigs">
       <UniqueIdentifier>{0cfd7cc2-1620-441a-a633-3f9e5f492602}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI\RigEditorElements">
+      <UniqueIdentifier>{7a1c20a7-319a-4ca5-ac89-c37b9b7e6043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\RigEditorElements">
+      <UniqueIdentifier>{3577c060-c424-4203-813c-62832f5f6178}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -234,9 +240,6 @@
     <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
-    <ClCompile Include="UI\ShipSelector.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="UI\ImageSelector.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -350,6 +353,15 @@
     </ClCompile>
     <ClCompile Include="Components\MissileController.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\RigEditor.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\LaserRigEditorWidget.cpp">
+      <Filter>Source Files\UI\RigEditorElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIDefaults.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -659,9 +671,6 @@
     <ClInclude Include="UI\InventoryItemWidget.h">
       <Filter>Header Files\UI\InventoryElements</Filter>
     </ClInclude>
-    <ClInclude Include="UI\StringDisplayHelper.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="UI\InventoryWidget.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
@@ -733,6 +742,27 @@
     </ClInclude>
     <ClInclude Include="LaserRig.h">
       <Filter>Header Files\Rigs</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\DataFileSelector.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigEditor.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigSelector.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\LaserRigEditorWidget.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigEditorWidget.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIDefaults.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

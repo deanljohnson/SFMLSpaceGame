@@ -2,9 +2,9 @@
 #include <Components\MissileController.h>
 #include <EntityManager.h>
 #include <VectorMath.h>
-#include <Steering.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>
+#include <MissileStats.h>
 
 MissileController::MissileController(EntityID ent, EntityID source, EntityID target, const std::string& projID)
 	: Component(ent),
@@ -12,8 +12,8 @@ MissileController::MissileController(EntityID ent, EntityID source, EntityID tar
 	  m_physics(entity->GetComponent<MissilePhysics>()),
 	  m_sourceEntity(source),
 	  m_targetEntity(target),
-	  m_projID(projID),
-	  m_missStats(LoadMissile(projID))
+	  m_missStats(LoadMissile(projID)),
+	  m_projID(projID)
 {
 	if (EntityManager::IsValidID(m_targetEntity))
 	{

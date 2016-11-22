@@ -5,6 +5,8 @@
 #include <map>
 #include <assert.h>
 #include <ShipStats.h>
+#include <ProjectileStats.h>
+#include <MissileStats.h>
 #include <Serializer.h>
 #include <FileSystem.h>
 
@@ -16,16 +18,20 @@ namespace
 	std::map<std::string, std::shared_ptr<TextureMap<std::string>>> loadedStringTextureMaps;
 	std::map<std::string, std::shared_ptr<TextureMap<size_t>>> loadedIntTextureMaps;
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
-	std::map<ResourceID,  std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
 
 	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
 
-	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
 	std::map<std::string, std::shared_ptr<AnimationDefinition>> loadedAnimations;
-	std::map<ResourceID,  std::shared_ptr<sf::Font>> loadedFonts;
-	std::map<ResourceID,  std::shared_ptr<sf::SoundBuffer>> loadedSounds;
-	std::map<std::string,  std::shared_ptr<ProjectileStats>> loadedProjectiles;
-	std::map<std::string,  std::shared_ptr<MissileStats>> loadedMissiles;
+	std::map<std::string, std::shared_ptr<ProjectileStats>> loadedProjectiles;
+	std::map<std::string, std::shared_ptr<MissileStats>> loadedMissiles;
+
+	std::map<std::string, std::shared_ptr<LaserRig>> loadedLaserRigs;
+
+	// TODO: investigate removing these entirely
+	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
+	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
+	std::map<ResourceID, std::shared_ptr<sf::SoundBuffer>> loadedSounds;
+	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
 
 	bool IsShipID(ResourceID id) 
 	{
@@ -79,6 +85,7 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedProjectiles);
 	UnloadUnusedSharedPtrResources(loadedMissiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
+	UnloadUnusedSharedPtrResources(loadedLaserRigs);
 }
 
 std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
@@ -140,6 +147,23 @@ std::shared_ptr<TextureMap<size_t>> LoadTextureMap<size_t>(const std::string& na
 
 	auto elem = std::shared_ptr<TextureMap<size_t>>(ta);
 	loadedIntTextureMaps.insert(make_pair(name, elem));
+
+	return elem;
+}
+
+template<>
+std::shared_ptr<LaserRig> LoadRig<LaserRig>(const std::string& name)
+{
+	auto it = loadedLaserRigs.find(name);
+	if (it != loadedLaserRigs.end())
+	{
+		return it->second;
+	}
+
+	LaserRig* laser = serializer.Load<LaserRig>(name);
+
+	auto elem = std::shared_ptr<LaserRig>(laser);
+	loadedLaserRigs.insert(make_pair(name, elem));
 
 	return elem;
 }

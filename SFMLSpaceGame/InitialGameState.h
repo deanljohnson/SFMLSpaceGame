@@ -2,19 +2,21 @@
 #include <GameState.h>
 #include <EntityManager.h>
 #include <PhysicsStepper.h>
-#include "ContactFilter.h"
-#include "UI/ShipEditorWindow.h"
-#include "UI/ShipSelector.h"
-#include "UI/ImageSelector.h"
-#include "UI/ShipNameEntry.h"
-#include "UI/StationWindow.h"
-#include "UI/StationTradeWindow.h"
-#include "UI/HardPointEditor.h"
-#include "UI/ColliderEditor.h"
-#include "UI/ThrusterLocationEditor.h"
-#include "UI/ConfirmationDialog.h"
-#include "UI/ShieldStateDisplay.h"
-#include "UI/InventoryWindow.h"
+#include <ContactFilter.h>
+#include <UI/ShipEditorWindow.h>
+#include <UI/RigEditor.h>
+#include <UI/RigSelector.h>
+#include <UI/ShipSelector.h>
+#include <UI/ImageSelector.h>
+#include <UI/ShipNameEntry.h>
+#include <UI/StationWindow.h>
+#include <UI/StationTradeWindow.h>
+#include <UI/HardPointEditor.h>
+#include <UI/ColliderEditor.h>
+#include <UI/ThrusterLocationEditor.h>
+#include <UI/ConfirmationDialog.h>
+#include <UI/ShieldStateDisplay.h>
+#include <UI/InventoryWindow.h>
 
 class InitialGameState : public GameState
 {
@@ -26,6 +28,8 @@ private:
 	ContactFilter m_contactListener;
 
 	ShipEditorWindow m_shipEditor;
+	RigEditor m_rigEditor;
+	RigSelector m_rigSelector;
 	ShipSelector m_shipSelector;
 	ImageSelector m_imageSelector;
 	ShipNameEntry m_shipNameEntry;

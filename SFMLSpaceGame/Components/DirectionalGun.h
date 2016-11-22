@@ -15,26 +15,11 @@
 struct DirectionalGunData
 {
 	DirectionalGunData() 
-		: fireRate(0),
-		  heatLimit(0),
-		  cooldownRate(0),
-		  heatGenerated(0),
-		  hardPoints(),
+		: hardPoints(),
+		  rigs(),
 		  soundID(0)
 	{}
-	DirectionalGunData(float cd, float heatLim, float coolingRate, float heatGen, ResourceID shotSoundID, const std::initializer_list<HardPoint>& hardPointLocations)
-		: fireRate(cd),
-		  heatLimit(heatLim),
-		  cooldownRate(coolingRate),
-		  heatGenerated(heatGen),
-		  hardPoints(hardPointLocations),
-		  soundID(shotSoundID)
-	{}
 
-	float fireRate; // Time in between two shots
-	float heatLimit; // Time before the gun is overheated
-	float cooldownRate; // How fast heat is dissipated from the gun per second
-	float heatGenerated; // How much heat is generated per shot
 	std::vector<HardPoint> hardPoints;
 	std::vector<std::shared_ptr<LaserRig>> rigs;
 	ResourceID soundID;
@@ -42,52 +27,39 @@ struct DirectionalGunData
 	template<class Archive>
 	void save(Archive& ar) const 
 	{
-		ar(cereal::make_nvp("FireRate", fireRate),
-			cereal::make_nvp("HealLimit", heatLimit),
-			cereal::make_nvp("CooldownRate", cooldownRate),
-			cereal::make_nvp("HeatGenerated", heatGenerated),
-			cereal::make_nvp("HardPoints", hardPoints),
+		ar(cereal::make_nvp("HardPoints", hardPoints),
 			cereal::make_nvp("SoundID", soundID));
 
-		// save the number of rigs being serialized
-		// so we know how many to load later
-		ar(cereal::make_nvp("NumRigs", rigs.size());
-		for (auto& rig : rigs) 
+		std::vector<std::string> rigNames;
+		for (auto& rig : rigs)
 		{
-			ar(rig->name);
+			if (rig == nullptr)
+				rigNames.push_back("empty");
+			else
+				rigNames.push_back(rig->name);
 		}
+
+		ar(cereal::make_nvp("GunRigs", rigNames));
 	}
 
 	template<class Archive>
 	void load(Archive& ar) 
 	{
-		ar(cereal::make_nvp("FireRate", fireRate),
-			cereal::make_nvp("HealLimit", heatLimit),
-			cereal::make_nvp("CooldownRate", cooldownRate),
-			cereal::make_nvp("HeatGenerated", heatGenerated),
-			cereal::make_nvp("HardPoints", hardPoints),
+		ar(cereal::make_nvp("HardPoints", hardPoints),
 			cereal::make_nvp("SoundID", soundID));
 
-		// save the number of rigs being serialized
-		// so we know how many to load later
-		int numRigs;
-		ar(cereal::make_nvp("NumRigs", numRigs);
-		for (auto& rig : rigs)
-		{
-			ar(rig->name);
-		}
-	}
+		std::vector<std::string> rigNames;
+		ar(cereal::make_nvp("GunRigs", rigNames));
 
-	template<class Archive>
-	void serialize(Archive& ar)
-	{
-		ar(cereal::make_nvp("FireRate", fireRate),
-				cereal::make_nvp("HealLimit", heatLimit),
-				cereal::make_nvp("CooldownRate", cooldownRate),
-				cereal::make_nvp("HeatGenerated", heatGenerated),
-				cereal::make_nvp("HardPoints", hardPoints),
-				cereal::make_nvp("Rigs", rigs),
-				cereal::make_nvp("SoundID", soundID));
+		rigs.resize(rigNames.size());
+
+		for (int i = 0; i < rigNames.size(); i++)
+		{
+			if (rigNames[i] == "empty")
+				rigs[i] = nullptr;
+			else
+				rigs[i] = LoadRig<LaserRig>(rigNames[i]);
+		}
 	}
 };
 
@@ -96,17 +68,15 @@ class DirectionalGun : public Component, public Gun
 private:
 	struct WeaponState 
 	{
-		float currentHeat;
-		float lastFiringTime;
+		float currentHeat{0.f};
+		float lastFiringTime{0.f};
 	};
 
 	Position& m_position;
 	Rotation& m_rotation;
 	Sprite& m_sprite;
 	SoundSource* m_shotSound{ nullptr };
-	float m_lastFiringTime;
 	DirectionalGunData* m_gunData;
-	float m_currentHeat{ 0.f };
 	std::vector<WeaponState> m_weaponStates;
 
 	friend class cereal::access;
@@ -115,7 +85,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), 	(m_shotSound == nullptr) 
+		ar(entity.GetID(), (m_shotSound == nullptr) 
 								? -1 
 								: entity->GetComponentID(*m_shotSound));
 	}

@@ -1,0 +1,11 @@
+{
+    "Cannon-One": {
+        "value0": {
+            "name": "Cannon-One"
+        },
+        "fireRate": 0.10999999940395355,
+        "heatLimit": 10.0,
+        "cooldownRate": 3.0,
+        "heatGenerated": 1.0
+    }
+}

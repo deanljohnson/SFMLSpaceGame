@@ -140,11 +140,8 @@ inline void ShipStats::Copy(ShipStats* other)
 	m_shipThrust.Reverse = other->m_shipThrust.Reverse;
 	m_shipThrust.Steer = other->m_shipThrust.Steer;
 
-	m_dirGunData.fireRate = other->m_dirGunData.fireRate;
-	m_dirGunData.heatLimit = other->m_dirGunData.heatLimit;
-	m_dirGunData.cooldownRate = other->m_dirGunData.cooldownRate;
-	m_dirGunData.heatGenerated = other->m_dirGunData.heatGenerated;
 	m_dirGunData.hardPoints = { other->m_dirGunData.hardPoints };
+	m_dirGunData.rigs = { other->m_dirGunData.rigs };
 
 	m_misLauncherData.fireRate = other->m_misLauncherData.fireRate;
 	m_misLauncherData.hardPoints = { other->m_misLauncherData.hardPoints };

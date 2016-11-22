@@ -1,6 +1,5 @@
 #pragma once
 #include "GameWindow.h"
-#include <Entity.h>
 
 class StationWindow : public GameWindow
 {

@@ -24,5 +24,11 @@
 
 namespace FileSystem
 {
-	void GetFileNamesWithExtension(const std::string& dirPath, const std::string& ext, std::vector<std::string>& results);
+	void GetFileNamesWithExtension(const std::string& dirPath, 
+									const std::string& ext, 
+									std::vector<std::string>& results);
+
+	void GetFileNamesWithExtensions(const std::string& dirPath, 
+									std::initializer_list<std::string> extensions,
+									std::vector<std::string>& results);
 }

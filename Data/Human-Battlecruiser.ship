@@ -13,10 +13,6 @@
             "Steer": 40.0
         },
         "DirGunData": {
-            "FireRate": 0.20000000298023225,
-            "HealLimit": 100.0,
-            "CooldownRate": 1.0,
-            "HeatGenerated": 2.0,
             "HardPoints": [
                 {
                     "Position": {
@@ -68,7 +64,16 @@
                     "Angle": 0.0
                 }
             ],
-            "SoundID": 801
+            "SoundID": 801,
+			"GunRigs": [
+				"Cannon-One",
+				"Cannon-One",
+				"Cannon-One",
+				"Cannon-One",
+				"Cannon-One",
+				"Cannon-One",
+				"Cannon-One"
+			]
         },
 		"MisLauncherData": {
 			"FireRate": 1.0,

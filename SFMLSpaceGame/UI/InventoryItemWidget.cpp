@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <UI\InventoryItemWidget.h>
-#include <UI\StringDisplayHelper.h>
+#include <StringHelper.h>
 #include <ResourceLoader.h>
 #include <SFGUI/RenderQueue.hpp>
 
@@ -101,7 +101,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	const auto& font = engine->GetResourceManager().GetFont(fontName);
 
 	auto countSize = engine->GetFontLineHeight(*font, static_cast<int>(fontSize / 1.5f));
-	auto countString = StringDisplayHelper::GetRenderedString(m_item->GetAmount());
+	auto countString = StringHelper::GetRenderedString(m_item->GetAmount());
 
 	sf::Text countText(countString, *font, static_cast<unsigned int>(countSize));
 	sf::Vector2f countPosition(

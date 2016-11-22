@@ -21,15 +21,19 @@ StationWindow::StationWindow()
 	m_window->Add(table);
 
 	auto shipEditButton = sfg::Button::Create("Open Ship Editor");
+	auto rigEditButton = sfg::Button::Create("Open Rig Editor");
 	auto changeShipButton = sfg::Button::Create("Change Ship");
 	auto tradeButton = sfg::Button::Create("Trade");
 
 	table->Attach(shipEditButton, { 0, 0, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(changeShipButton, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(tradeButton, { 0, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(rigEditButton, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(changeShipButton, { 0, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(tradeButton, { 0, 3, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	shipEditButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] { GetWindow("ship_editor")->Show(true); Show(false); });
+	rigEditButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this] { GetWindow("rig_editor")->Show(true); Show(false); });
 	changeShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] 
 		{ 

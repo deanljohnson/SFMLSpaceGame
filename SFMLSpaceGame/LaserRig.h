@@ -1,6 +1,7 @@
 #pragma once
 #include <Rig.h>
 #include <Serializer.h>
+#include <cereal/types/base_class.hpp>
 
 class LaserRig : public Rig 
 {

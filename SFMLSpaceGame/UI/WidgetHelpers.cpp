@@ -10,4 +10,30 @@ namespace WidgetHelpers
 		auto canvasPos = widget->GetAbsolutePosition();
 		return sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
 	}
+
+	bool ValideFloatEntry(sfg::Entry::Ptr entry)
+	{
+		std::string text = entry->GetText();
+
+		// if text is empty, it's automatically invalid
+		if (text.empty())
+		{
+			return false;
+		}
+
+		try
+		{
+			char* error = nullptr;
+			auto val = strtof(text.c_str(), &error);
+			if (error[0] != '\0')
+			{
+				return false;
+			}
+			return true;
+		}
+		catch (std::invalid_argument)
+		{
+			return false;
+		}
+	}
 }

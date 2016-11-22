@@ -7,6 +7,20 @@
 #include "PlayerData.h"
 #include <RenderBatch.h>
 
+//#include <LaserRig.h>
+void TestRun()
+{
+	/*LaserRig* r = new LaserRig();
+	r->name = "Cannon-One";
+	r->fireRate = .1f;
+	r->heatLimit = 10.0;
+	r->cooldownRate = 3.0;
+	r->heatGenerated = 1.0;
+
+	Serializer<> ser;
+	ser.Save<LaserRig>(r, "Cannon-One", "Cannon-One");*/
+}
+
 void AddEnemy()
 {
 	EntityFactory::CreateShip("Human-Fighter", b2Vec2(5, 5));
@@ -14,6 +28,11 @@ void AddEnemy()
 
 void InitialGameState::Init()
 {
+	// Sometimes I need to run some test code at the
+	// beginning of the game for implementing new features and
+	// such, TestRun is the function to handle that
+	TestRun();
+
 	PlayerData::SetActive(std::make_shared<PlayerData>("Alien-One"));
 
 	PlayerData::GetActive()->SetShipChangeCallback(
@@ -65,6 +84,8 @@ void InitialGameState::Init()
 	m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
 
 	m_shipEditor.Show(false);
+	m_rigEditor.Show(false);
+	m_rigSelector.Show(false);
 	m_shipSelector.Show(false);
 	m_imageSelector.Show(false);
 	m_shipNameEntry.Show(false);
@@ -77,6 +98,8 @@ void InitialGameState::Init()
 	m_inventoryWindow.Show(false);
 	m_shieldStateDisplay.Show(true);
 	m_shipEditor.CenterOnScreen();
+	m_rigEditor.CenterOnScreen();
+	m_rigSelector.CenterOnScreen();
 	m_shipSelector.CenterOnScreen();
 	m_imageSelector.CenterOnScreen();
 	m_shipNameEntry.CenterOnScreen();
