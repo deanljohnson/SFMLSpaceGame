@@ -1,15 +1,10 @@
 #pragma once
-#include "GameWindow.h"
-#include <SFGUI/Window.hpp>
+#include <UI/StringEntryPopup.h>
 
-class ShipNameEntry : public GameWindow
+class ShipNameEntry : public StringEntryPopup
 {
-private:
-	std::function<void(const std::string&)> m_callback;
-
-	void CallCallback(const std::string& name);
 public:
-	ShipNameEntry();
-
-	void SetCallback(std::function<void(const std::string&)> callback);
+	ShipNameEntry()
+		: StringEntryPopup("ship_name_entry", "Select New Ship Name")
+	{}
 };

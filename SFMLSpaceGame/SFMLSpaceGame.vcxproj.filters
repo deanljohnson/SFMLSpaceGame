@@ -243,9 +243,6 @@
     <ClCompile Include="UI\ImageSelector.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\ShipNameEntry.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="UI\HardPointEditor.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -354,14 +351,20 @@
     <ClCompile Include="Components\MissileController.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="UI\RigEditor.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="UI\LaserRigEditorWidget.cpp">
       <Filter>Source Files\UI\RigEditorElements</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIDefaults.cpp">
       <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\StringEntryPopup.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\RigEditor.cpp">
+      <Filter>Source Files\UI\RigEditorElements</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\RigTypeSelector.cpp">
+      <Filter>Source Files\UI\RigEditorElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -746,12 +749,6 @@
     <ClInclude Include="UI\DataFileSelector.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\RigEditor.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\RigSelector.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="StringHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -763,6 +760,21 @@
     </ClInclude>
     <ClInclude Include="UI\UIDefaults.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\StringEntryPopup.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigSelector.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigEditor.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigTypeSelector.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\RigNameEntry.h">
+      <Filter>Source Files\UI\RigEditorElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

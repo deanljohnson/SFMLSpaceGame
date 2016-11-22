@@ -86,6 +86,8 @@ void InitialGameState::Init()
 	m_shipEditor.Show(false);
 	m_rigEditor.Show(false);
 	m_rigSelector.Show(false);
+	m_rigTypeSelector.Show(false);
+	m_rigNameEntry.Show(false);
 	m_shipSelector.Show(false);
 	m_imageSelector.Show(false);
 	m_shipNameEntry.Show(false);
@@ -100,6 +102,8 @@ void InitialGameState::Init()
 	m_shipEditor.CenterOnScreen();
 	m_rigEditor.CenterOnScreen();
 	m_rigSelector.CenterOnScreen();
+	m_rigTypeSelector.CenterOnScreen();
+	m_rigNameEntry.CenterOnScreen();
 	m_shipSelector.CenterOnScreen();
 	m_imageSelector.CenterOnScreen();
 	m_shipNameEntry.CenterOnScreen();

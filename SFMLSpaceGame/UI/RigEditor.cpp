@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include <UI/RigEditor.h>
 #include <UI/LaserRigEditorWidget.h>
+#include <UI/RigTypeSelector.h>
+#include <UI/RigNameEntry.h>
 
 RigEditor::RigEditor()
 	: GameWindow("rig_editor")
@@ -36,10 +38,18 @@ RigEditor::RigEditor()
 
 void RigEditor::SetupButtonSignals()
 {
+	m_createRigButton->GetSignal(sfg::Button::OnLeftClick).Connect(
+		[this]
+		{
+			auto selectWindow = GetWindow<RigTypeSelector>("rig_type_selector");
+			selectWindow->SetCallback([this](const std::string& name) { OnRigTypeSelected(name); });
+			selectWindow->Show(true);
+		});
+
 	m_editRigButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
 		{
-			auto selectWindow = static_cast<RigSelector*>(GetWindow("rig_select"));
+			auto selectWindow = GetWindow<RigSelector>("rig_select");
 			selectWindow->SetCallback([this](const std::string& name) { OnRigSelected(name); });
 			selectWindow->Show(true);
 		});
@@ -55,12 +65,30 @@ void RigEditor::SetupButtonSignals()
 		{
 			if (m_rigWidget.get() == nullptr)
 				return;
-			auto editWindow = static_cast<ConfirmationDialog*>(GetWindow("confirmation_dialog"));
+			auto editWindow = GetWindow<ConfirmationDialog>("confirmation_dialog");
 			editWindow->SetCallback([this](bool val) { if (val) OnDeleteRig(); });
 			editWindow->SetText("Are you sure you want to delete this rig? This cannot be undone.");
 			editWindow->CenterOnScreen(); // changing the text can make the window uncentered
 			editWindow->Show(true);
 		});
+}
+
+void RigEditor::OnRigTypeSelected(const std::string& type)
+{
+	if (type.empty())
+		return;
+
+	auto rigNameEntry = GetWindow<RigNameEntry>("rig_name_entry");
+	rigNameEntry->Show(true);
+
+	if (type == "Laser")
+	{
+		rigNameEntry->SetCallback([this](const std::string& name) { CreateNewRig<LaserRig>(name); });
+	}
+	else
+	{
+		throw "unrecognized rig type '" + type + "'";
+	}
 }
 
 void RigEditor::OnRigSelected(const std::string& name)

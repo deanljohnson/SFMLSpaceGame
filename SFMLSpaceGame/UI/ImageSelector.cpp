@@ -23,7 +23,7 @@ ImageSelector::ImageSelector()
 	FileSystem::GetFileNamesWithExtension(IMAGE_PATH, ".png", shipFiles);
 	for (auto e : shipFiles)
 	{
-		// Strip the extension from the file name
+		// TODO: Strip the extension from the file name
 		selectionBox->AppendItem(e);
 	}
 

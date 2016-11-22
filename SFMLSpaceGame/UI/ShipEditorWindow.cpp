@@ -414,7 +414,7 @@ void ShipEditorWindow::OnNewShipImageSelected(const std::string& imageName)
 
 	m_newShipImageName = imageName;
 
-	auto selectWindow = static_cast<ShipNameEntry*>(GetWindow("ship_name_entry"));
+	auto selectWindow = GetWindow<ShipNameEntry>("ship_name_entry");
 	selectWindow->SetCallback([this](const std::string& name) { OnNewShipNameSelected(name); });
 	selectWindow->Show(true);
 }

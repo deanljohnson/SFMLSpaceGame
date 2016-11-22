@@ -6,6 +6,8 @@
 #include <UI/ShipEditorWindow.h>
 #include <UI/RigEditor.h>
 #include <UI/RigSelector.h>
+#include <UI/RigTypeSelector.h>
+#include <UI/RigNameEntry.h>
 #include <UI/ShipSelector.h>
 #include <UI/ImageSelector.h>
 #include <UI/ShipNameEntry.h>
@@ -30,6 +32,8 @@ private:
 	ShipEditorWindow m_shipEditor;
 	RigEditor m_rigEditor;
 	RigSelector m_rigSelector;
+	RigTypeSelector m_rigTypeSelector;
+	RigNameEntry m_rigNameEntry;
 	ShipSelector m_shipSelector;
 	ImageSelector m_imageSelector;
 	ShipNameEntry m_shipNameEntry;

@@ -22,7 +22,10 @@
 #include <UI\InventoryWindow.h>
 //#include <UI\RigEditor.h>
 //#include <UI\RigEditorWidget.h>
+//#include <UI\RigTypeSelector.h>
+//#include <UI\RigNameEntry.h>
 //#include <UI\LaserRigEditorWidget.h>
+//#include <UI\StringEntryPopup.h>
 #include <UI\RigSelector.h>
 #include <UI\ShieldStateDisplay.h>
 #include <UI\ShipEditorWindow.h>
