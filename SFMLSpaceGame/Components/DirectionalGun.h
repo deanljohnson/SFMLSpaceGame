@@ -14,15 +14,9 @@
 
 struct DirectionalGunData
 {
-	DirectionalGunData() 
-		: hardPoints(),
-		  rigs(),
-		  soundID(0)
-	{}
-
 	std::vector<HardPoint> hardPoints;
 	std::vector<std::shared_ptr<LaserRig>> rigs;
-	ResourceID soundID;
+	ResourceID soundID{0};
 
 	template<class Archive>
 	void save(Archive& ar) const 

@@ -36,7 +36,6 @@
 			]
         },
 		"MisLauncherData": {
-			"FireRate": 1.0,
 			"HardPoints": [
 				{
 					"Position": {
@@ -45,6 +44,9 @@
 					},
 					"Angle": 0.0
 				}
+			],
+			"MissileRigs": [
+				"Mosquito"
 			]
 		},
         "Shields": {

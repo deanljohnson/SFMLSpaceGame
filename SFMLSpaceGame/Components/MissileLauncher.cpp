@@ -12,7 +12,6 @@ MissileLauncher::MissileLauncher(EntityID ent)
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sprite(entity->GetComponent<Sprite>()),
-	  m_lastFiringTime(0),
 	  m_launcherData(nullptr)
 {
 }
@@ -33,33 +32,54 @@ EntityID MissileLauncher::GetTarget(const b2Vec2& firingPoint)
 	return ship->GetID();
 }
 
-void MissileLauncher::Shoot(const b2Vec2& pos)
+void MissileLauncher::FireWeapon(int i, EntityID target)
 {
-	// If we are on cooldown
-	if ((GameTime::totalTime - m_lastFiringTime) < m_launcherData->fireRate)
-	{
-		return;
-	}
-
-	EntityID target = GetTarget(pos);
-
 	// fire a missile for each hardpoint
 	b2Rot rot(m_rotation.GetRadians());
-	for (auto hp : m_launcherData->hardPoints)
-	{
-		// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
-		auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
-		EntityFactory::CreateMissile("MissileOne", entity->GetID(), target,
-			m_position.position + Rotate(offset, rot),
-			m_rotation.GetRadians() + hp.angleOffset);
-	}
+	auto hp = m_launcherData->hardPoints[i];
+
+	// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
+	auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
+
+	EntityFactory::CreateMissile("MissileOne", entity->GetID(), target,
+		m_position.position + Rotate(offset, rot),
+		m_rotation.GetRadians() + hp.angleOffset);
 
 	// play a sound if available
 	if (m_shotSound != nullptr)
 		m_shotSound->Play();
 
-	// Store this so we can have a cooldown
-	m_lastFiringTime = GameTime::totalTime;
+	m_lastFiringTimes[i] = GameTime::totalTime;
+}
+
+void MissileLauncher::Shoot(const b2Vec2& pos)
+{
+	EntityID target = 0;
+	bool targetSet = false;
+
+	for (size_t i = 0; i < m_lastFiringTimes.size(); i++)
+	{
+		if (m_launcherData->rigs[i] == nullptr)
+			continue;
+
+		float fireRate = m_launcherData->rigs[i]->fireRate;
+
+		// If we are on cooldown
+		if ((GameTime::totalTime - m_lastFiringTimes[i]) < fireRate)
+			continue;
+
+		// We only want to set the target once,
+		// but want to delay it as long as possible
+		// in case we aren't going to fire in this 
+		// call because of cooldowns
+		if (!targetSet)
+		{
+			target = GetTarget(pos);
+			targetSet = true;
+		}
+
+		FireWeapon(i, target);
+	}
 }
 
 float MissileLauncher::GetNormalizedHeat()
@@ -75,4 +95,6 @@ void MissileLauncher::SetSoundSource(SoundSource* source)
 void MissileLauncher::SetLauncherData(MissileLauncherData* data)
 {
 	m_launcherData = data;
+
+	m_lastFiringTimes.resize(data->rigs.size(), 0.f);
 }

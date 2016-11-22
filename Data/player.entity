@@ -1,6 +1,6 @@
 {
     "player": {
-        "value0": 0,
+        "value0": 3099,
         "value1": true,
         "value2": true,
         "value3": {
@@ -17,10 +17,10 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": {
-                        "v.x": 0.0,
-                        "v.y": 0.0
+                        "v.x": 3.991964340209961,
+                        "v.y": -0.3081572949886322
                     }
                 }
             }
@@ -31,7 +31,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 0.0
                 }
             }
@@ -42,8 +42,8 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
-                    "value1": "1.png",
+                    "value0": 3099,
+                    "value1": "Human-Fighter.png",
                     "value2": 0,
                     "value3": {
                         "v.x": 0.0,
@@ -58,12 +58,12 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": "exhaust-one",
                     "value2": 1,
                     "value3": {
-                        "v.x": -0.3700000047683716,
-                        "v.y": -0.10000002384185791
+                        "v.x": -0.6200000047683716,
+                        "v.y": -0.14000000059604646
                     }
                 }
             }
@@ -74,12 +74,12 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": "exhaust-one",
                     "value2": 1,
                     "value3": {
-                        "v.x": -0.3799999952316284,
-                        "v.y": 0.10999998450279236
+                        "v.x": -0.6200000047683716,
+                        "v.y": 0.12000000476837158
                     }
                 }
             }
@@ -90,7 +90,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": "exhaust-one",
                     "value2": 1
                 }
@@ -102,7 +102,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": "exhaust-one",
                     "value2": 2
                 }
@@ -114,7 +114,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 7,
                     "value2": 0.0,
                     "value3": 0.0,
@@ -128,7 +128,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 0.75
                 }
             }
@@ -139,7 +139,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 2,
                     "value2": 1.0
                 }
@@ -151,10 +151,10 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": {
-                        "v.x": 0.0,
-                        "v.y": 0.0
+                        "v.x": 3.991964340209961,
+                        "v.y": -0.3081572949886322
                     }
                 }
             }
@@ -165,7 +165,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -175,8 +175,8 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
-                    "value1": "Alien-One",
+                    "value0": 3099,
+                    "value1": "Human-Fighter.ship",
                     "value2": {
                         "v.x": -431602080.0,
                         "v.y": -431602080.0
@@ -192,7 +192,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -202,7 +202,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 1.5
                 }
             }
@@ -213,7 +213,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -223,7 +223,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 801
                 }
             }
@@ -234,7 +234,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -244,10 +244,8 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
-                    "value1": 0.0,
-                    "value2": 0.0,
-                    "value3": 0
+                    "value0": 3099,
+                    "value1": 0
                 }
             }
         },
@@ -257,8 +255,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
-                    "value1": 0.0
+                    "value0": 3099
                 }
             }
         },
@@ -268,7 +265,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 0
                 }
             }
@@ -279,7 +276,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 1
                 }
             }
@@ -290,7 +287,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 1.0,
                     "value2": 1.0
                 }
@@ -302,7 +299,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 100.0,
                     "value2": 100.0
                 }
@@ -314,7 +311,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -324,7 +321,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -334,7 +331,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": 0.0,
                     "value2": [
                         1,
@@ -349,7 +346,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0
+                    "value0": 3099
                 }
             }
         },
@@ -359,7 +356,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": [
                         8,
                         27,
@@ -376,7 +373,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": [
                         {
                             "value0": 0,
@@ -400,9 +397,9 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
+                    "value0": 3099,
                     "value1": {
-                        "value0": "econ_15222"
+                        "value0": "econ_27726"
                     },
                     "value2": {
                         "value0": [
@@ -453,8 +450,8 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 0,
-                    "value1": "Alien-One"
+                    "value0": 3099,
+                    "value1": "Human-Fighter.ship"
                 }
             }
         },

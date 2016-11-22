@@ -366,6 +366,9 @@
     <ClCompile Include="UI\RigTypeSelector.cpp">
       <Filter>Source Files\UI\RigEditorElements</Filter>
     </ClCompile>
+    <ClCompile Include="UI\MissileRigEditorWidget.cpp">
+      <Filter>Source Files\UI\RigEditorElements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -775,6 +778,12 @@
     </ClInclude>
     <ClInclude Include="UI\RigNameEntry.h">
       <Filter>Source Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileRig.h">
+      <Filter>Header Files\Rigs</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\MissileRigEditorWidget.h">
+      <Filter>Header Files\UI\RigEditorElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ RigTypeSelector::RigTypeSelector()
 	table->Attach(selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	selectionBox->AppendItem("Laser");
+	selectionBox->AppendItem("Missile");
 
 	auto selectButton = sfg::Button::Create("Select");
 	auto cancelButton = sfg::Button::Create("Cancel");

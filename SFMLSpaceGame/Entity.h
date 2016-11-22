@@ -183,7 +183,7 @@ public:
 	// component when there are multiple 
 	// components of the same type on the entity
 	template<typename T>
-	ComponentID GetComponentID(T& comp)
+	ComponentID GetComponentID(T& comp) const
 	{
 		ComponentID id = 0;
 		Component* current = m_componentArray[GetComponentTypeID<T>()];

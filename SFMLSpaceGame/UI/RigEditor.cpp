@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <UI/RigEditor.h>
 #include <UI/LaserRigEditorWidget.h>
+#include <UI/MissileRigEditorWidget.h>
 #include <UI/RigTypeSelector.h>
 #include <UI/RigNameEntry.h>
 
@@ -85,6 +86,10 @@ void RigEditor::OnRigTypeSelected(const std::string& type)
 	{
 		rigNameEntry->SetCallback([this](const std::string& name) { CreateNewRig<LaserRig>(name); });
 	}
+	else if (type == "Missile")
+	{
+		rigNameEntry->SetCallback([this](const std::string& name) { CreateNewRig<MissileRig>(name); });
+	}
 	else
 	{
 		throw "unrecognized rig type '" + type + "'";
@@ -101,15 +106,20 @@ void RigEditor::OnRigSelected(const std::string& name)
 	if (m_rigWidget != nullptr)
 		m_mainBox->Remove(m_rigWidget);
 
+	auto noExt = name;
+	noExt.erase(noExt.find_last_of("."), std::string::npos);
+
 	if (StringHelper::StrEndsWith(name, LaserRig::GetTypeName()))
 	{
-		auto noExt = name;
-		noExt.erase(noExt.find_last_of("."), std::string::npos);
-
 		m_rigEditWidget = std::make_shared<LaserRigEditorWidget>(noExt);
-		m_rigWidget = m_rigEditWidget->GetWidget();
-		m_mainBox->PackStart(m_rigWidget);
 	}
+	else if (StringHelper::StrEndsWith(name, MissileRig::GetTypeName()))
+	{
+		m_rigEditWidget = std::make_shared<MissileRigEditorWidget>(noExt);
+	}
+
+	m_rigWidget = m_rigEditWidget->GetWidget();
+	m_mainBox->PackStart(m_rigWidget);
 }
 
 void RigEditor::OnSaveRig()

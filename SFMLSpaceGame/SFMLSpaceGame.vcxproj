@@ -270,6 +270,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\InventoryWindow.cpp" />
     <ClCompile Include="UI\InventoryWidget.cpp" />
     <ClCompile Include="UI\LaserRigEditorWidget.cpp" />
+    <ClCompile Include="UI\MissileRigEditorWidget.cpp" />
     <ClCompile Include="UI\RigEditor.cpp" />
     <ClCompile Include="UI\RigTypeSelector.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
@@ -331,6 +332,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MissileRig.h" />
     <ClInclude Include="MissileStats.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
@@ -339,6 +341,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\DataFileSelector.h" />
     <ClInclude Include="UI\LaserRigEditorWidget.h" />
+    <ClInclude Include="UI\MissileRigEditorWidget.h" />
     <ClInclude Include="UI\RigEditor.h" />
     <ClInclude Include="UI\RigEditorWidget.h" />
     <ClInclude Include="UI\RigNameEntry.h" />

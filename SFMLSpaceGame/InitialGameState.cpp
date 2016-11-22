@@ -50,7 +50,7 @@ void InitialGameState::Init()
 	m_contactListener = ContactFilter();
 	world.SetContactFilter(&m_contactListener);
 
-	/*
+	
 	auto playerID = EntityFactory::CreatePlayer();
 
 	EntityFactory::CreateMusicPlayer(MUSIC_ONE);
@@ -74,12 +74,12 @@ void InitialGameState::Init()
 
 	EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
 	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
-	*/
+	
 	
 	auto entMan = new EntityManager();
 	auto ser = new BinarySerializer();
-	//ser->Save<EntityManager>(entMan, "all", "EntMan");
-	ser->Load<EntityManager>("all");
+	ser->Save<EntityManager>(entMan, "all", "EntMan");
+	//ser->Load<EntityManager>("all");
 
 	m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
 
@@ -184,8 +184,14 @@ void InitialGameState::HandlePause()
 
 	pausingWindowOpened |= m_shipEditor.IsShown();
 	pausingWindowOpened |= m_shipSelector.IsShown();
-	pausingWindowOpened |= m_imageSelector.IsShown();
 	pausingWindowOpened |= m_shipNameEntry.IsShown();
+
+	pausingWindowOpened |= m_rigEditor.IsShown();
+	pausingWindowOpened |= m_rigSelector.IsShown();
+	pausingWindowOpened |= m_rigTypeSelector.IsShown();
+	pausingWindowOpened |= m_rigNameEntry.IsShown();
+
+	pausingWindowOpened |= m_imageSelector.IsShown();
 	pausingWindowOpened |= m_stationWindow.IsShown();
 	pausingWindowOpened |= m_stationTradeWindow.IsShown();
 	pausingWindowOpened |= m_hardPointEditor.IsShown();

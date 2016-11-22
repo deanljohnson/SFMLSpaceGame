@@ -1,5 +1,5 @@
 {
-    "Human-Battlecruiser": {
+    "Human-Battlecruiser.ship": {
         "HullStrength": 300.0,
         "InterLeadMult": 0.0,
         "FollowDist": 0.0,
@@ -65,28 +65,54 @@
                 }
             ],
             "SoundID": 801,
-			"GunRigs": [
-				"Cannon-One",
-				"Cannon-One",
-				"Cannon-One",
-				"Cannon-One",
-				"Cannon-One",
-				"Cannon-One",
-				"Cannon-One"
-			]
+            "GunRigs": [
+                "Cannon-One",
+                "Cannon-One",
+                "Cannon-One",
+                "Cannon-One",
+                "Cannon-One",
+                "Cannon-One",
+                "Cannon-One"
+            ]
         },
-		"MisLauncherData": {
-			"FireRate": 1.0,
-			"HardPoints": [
-				{
-					"Position": {
-						"v.x": 0.0,
-						"v.y": 0.0
-					},
-					"Angle": 0.0
-				}
-			]
-		},
+        "MisLauncherData": {
+            "HardPoints": [
+                {
+                    "Position": {
+                        "v.x": 154.0,
+                        "v.y": 52.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 154.0,
+                        "v.y": 111.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 69.0,
+                        "v.y": 147.5
+                    },
+                    "Angle": 0.0
+                },
+                {
+                    "Position": {
+                        "v.x": 70.0,
+                        "v.y": 11.5
+                    },
+                    "Angle": 0.0
+                }
+            ],
+            "MissileRigs": [
+                "Mosquito",
+				"Mosquito",
+				"Mosquito",
+				"Mosquito"
+            ]
+        },
         "Shields": {
             "FrontStrength": 75.0,
             "SideStrength": 25.0,

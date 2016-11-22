@@ -26,6 +26,7 @@ namespace
 	std::map<std::string, std::shared_ptr<MissileStats>> loadedMissiles;
 
 	std::map<std::string, std::shared_ptr<LaserRig>> loadedLaserRigs;
+	std::map<std::string, std::shared_ptr<MissileRig>> loadedMissileRigs;
 
 	// TODO: investigate removing these entirely
 	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
@@ -86,6 +87,7 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedMissiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
 	UnloadUnusedSharedPtrResources(loadedLaserRigs);
+	UnloadUnusedSharedPtrResources(loadedMissileRigs);
 }
 
 std::pair<LPVOID, DWORD> LoadRCData(ResourceID id)
@@ -164,6 +166,23 @@ std::shared_ptr<LaserRig> LoadRig<LaserRig>(const std::string& name)
 
 	auto elem = std::shared_ptr<LaserRig>(laser);
 	loadedLaserRigs.insert(make_pair(name, elem));
+
+	return elem;
+}
+
+template<>
+std::shared_ptr<MissileRig> LoadRig<MissileRig>(const std::string& name)
+{
+	auto it = loadedMissileRigs.find(name);
+	if (it != loadedMissileRigs.end())
+	{
+		return it->second;
+	}
+
+	MissileRig* missileRig = serializer.Load<MissileRig>(name);
+
+	auto elem = std::shared_ptr<MissileRig>(missileRig);
+	loadedMissileRigs.insert(make_pair(name, elem));
 
 	return elem;
 }

@@ -143,8 +143,8 @@ inline void ShipStats::Copy(ShipStats* other)
 	m_dirGunData.hardPoints = { other->m_dirGunData.hardPoints };
 	m_dirGunData.rigs = { other->m_dirGunData.rigs };
 
-	m_misLauncherData.fireRate = other->m_misLauncherData.fireRate;
 	m_misLauncherData.hardPoints = { other->m_misLauncherData.hardPoints };
+	m_misLauncherData.rigs = { other->m_misLauncherData.rigs };
 
 	m_shieldData.FrontStrength = other->m_shieldData.FrontStrength;
 	m_shieldData.SideStrength = other->m_shieldData.SideStrength;

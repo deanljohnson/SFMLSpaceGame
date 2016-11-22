@@ -25,6 +25,7 @@
 //#include <UI\RigTypeSelector.h>
 //#include <UI\RigNameEntry.h>
 //#include <UI\LaserRigEditorWidget.h>
+//#include <UI\MissileRigEditorWidget.h>
 //#include <UI\StringEntryPopup.h>
 #include <UI\RigSelector.h>
 #include <UI\ShieldStateDisplay.h>

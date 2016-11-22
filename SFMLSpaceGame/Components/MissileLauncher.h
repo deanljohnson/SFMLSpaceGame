@@ -1,61 +1,66 @@
-
 #pragma once
 #include <Components\Component.h>
 #include <HardPoint.h>
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
+#include <MissileRig.h>
+#include <DefaultSerializeable.h>
 
 struct MissileLauncherData
 {
-	MissileLauncherData()
-		: fireRate(0.f)
-	{}
-
-	explicit MissileLauncherData(float fr, const std::initializer_list<HardPoint>& hardPointLocations)
-		: fireRate(fr)
-	{}
-
-	float fireRate;
 	std::vector<HardPoint> hardPoints;
+	std::vector<std::shared_ptr<MissileRig>> rigs;
 
 	template<class Archive>
-	void serialize(Archive& archive)
+	void save(Archive& ar) const
 	{
-		archive(cereal::make_nvp("FireRate", fireRate),
-				cereal::make_nvp("HardPoints", hardPoints));
+		ar(cereal::make_nvp("HardPoints", hardPoints));
+
+		std::vector<std::string> rigNames;
+		for (auto& rig : rigs)
+		{
+			if (rig == nullptr)
+				rigNames.push_back("empty");
+			else
+				rigNames.push_back(rig->name);
+		}
+
+		ar(cereal::make_nvp("MissileRigs", rigNames));
+	}
+
+	template<class Archive>
+	void load(Archive& ar)
+	{
+		ar(cereal::make_nvp("HardPoints", hardPoints));
+
+		std::vector<std::string> rigNames;
+		ar(cereal::make_nvp("MissileRigs", rigNames));
+
+		rigs.resize(rigNames.size());
+
+		for (int i = 0; i < rigNames.size(); i++)
+		{
+			if (rigNames[i] == "empty")
+				rigs[i] = nullptr;
+			else
+				rigs[i] = LoadRig<MissileRig>(rigNames[i]);
+		}
 	}
 };
 
-class MissileLauncher : public Component, public Gun
+class MissileLauncher : public Component, public Gun, public DefaultSerializeable<MissileLauncher>
 {
 private:
 	Position& m_position;
 	Rotation& m_rotation;
 	Sprite& m_sprite;
 	SoundSource* m_shotSound{ nullptr };
-	float m_lastFiringTime;
 	MissileLauncherData* m_launcherData;
+	std::vector<float> m_lastFiringTimes;
 
 	EntityID GetTarget(const b2Vec2& firingPoint);
 
-	friend class cereal::access;
-
-	// used for saving
-	template <class Archive>
-	void serialize(Archive& ar)
-	{
-		ar(entity.GetID(), m_lastFiringTime);
-	}
-
-	template <class Archive>
-	static void load_and_construct(Archive& ar, cereal::construct<MissileLauncher>& construct)
-	{
-		EntityID selfID;
-		ar(selfID);
-		construct(selfID);
-
-		ar(construct->m_lastFiringTime);
-	}
+	void FireWeapon(int i, EntityID target);
 public:
 	explicit MissileLauncher(EntityID ent);
 

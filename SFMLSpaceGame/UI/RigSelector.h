@@ -2,10 +2,10 @@
 #include <UI/DataFileSelector.h>
 #include <LaserRig.h>
 
-class RigSelector : public DataFileSelector<LaserRig>
+class RigSelector : public DataFileSelector<LaserRig, MissileRig>
 {
 public:
 	RigSelector()
-		: DataFileSelector<LaserRig>("rig_select", "Select Rig")
+		: DataFileSelector<LaserRig, MissileRig>("rig_select", "Select Rig")
 	{ }
 };
