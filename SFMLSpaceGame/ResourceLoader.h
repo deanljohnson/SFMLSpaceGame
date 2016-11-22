@@ -8,8 +8,6 @@
 
 class Animation;
 class ShipStats;
-class ProjectileStats;
-class MissileStats;
 
 typedef int ResourceID;
 constexpr ResourceID NullResource(-1);
@@ -30,5 +28,3 @@ std::shared_ptr<ShipStats> LoadShip(const std::string& name);
 std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id);
 std::shared_ptr<sf::Font> LoadFont(ResourceID id);
 std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id);
-std::shared_ptr<ProjectileStats> LoadProjectile(const std::string& id);
-std::shared_ptr<MissileStats> LoadMissile(const std::string& id);

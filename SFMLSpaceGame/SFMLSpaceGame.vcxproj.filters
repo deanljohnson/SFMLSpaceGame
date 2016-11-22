@@ -572,9 +572,6 @@
     <ClInclude Include="ShipStats.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectileStats.h">
-      <Filter>Header Files\DataManagement</Filter>
-    </ClInclude>
     <ClInclude Include="Box2DSerialization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -784,6 +781,9 @@
     </ClInclude>
     <ClInclude Include="UI\MissileRigEditorWidget.h">
       <Filter>Header Files\UI\RigEditorElements</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileStats.h">
+      <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

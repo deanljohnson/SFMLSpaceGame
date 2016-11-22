@@ -13,8 +13,8 @@ private:
 	b2Body* m_body{ nullptr };
 	EntityID m_sourceEntity;
 
-	std::shared_ptr<MissileStats> m_missStats;
-	std::string m_projID;
+	float m_thrust;
+	float m_damage;
 
 	//returns whether or not a collision happened
 	bool HandleCollisions();
@@ -25,7 +25,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_sourceEntity, m_projID);
+		ar(entity.GetID(), m_sourceEntity, m_thrust, m_damage);
 	}
 
 	template <class Archive>
@@ -33,13 +33,15 @@ private:
 	{
 		EntityID selfID;
 		EntityID sourceID;
-		std::string projID;
-		ar(selfID, sourceID, projID);
-		construct(selfID, sourceID, projID);
+		float thrust;
+		float damage;
+		ar(selfID, sourceID, thrust, damage);
+		construct(selfID, sourceID, thrust, damage);
 	}
 
+	MissilePhysics(EntityID ent, EntityID sourceEnt, float thrust, float damage);
 public:
-	MissilePhysics(EntityID ent, EntityID sourceEnt, const std::string& projID);
+	MissilePhysics(EntityID ent, EntityID sourceEnt, std::shared_ptr<MissileStats> missile);
 	~MissilePhysics();
 
 	virtual void Update() override;

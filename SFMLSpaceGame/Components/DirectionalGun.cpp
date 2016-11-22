@@ -33,7 +33,7 @@ void DirectionalGun::FireWeapon(int i)
 	// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
 	auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
 
-	EntityFactory::CreateProjectile("LaserOne", entity->GetID(),
+	EntityFactory::CreateProjectile(m_gunData->rigs[i]->projectile, entity->GetID(),
 		m_position.position + Rotate(offset, rot),
 		m_rotation.GetRadians() + hp.angleOffset);
 

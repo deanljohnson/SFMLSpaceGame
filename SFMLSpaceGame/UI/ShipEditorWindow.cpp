@@ -430,7 +430,7 @@ void ShipEditorWindow::OnNewShipNameSelected(const std::string& name)
 
 void ShipEditorWindow::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
 {
-	entry->SetId(WidgetHelpers::ValideFloatEntry(entry)
+	entry->SetId(WidgetHelpers::ValidateFloatEntry(entry)
 		? "valid"
 		: "invalid");
 }

@@ -41,7 +41,7 @@ void MissileLauncher::FireWeapon(int i, EntityID target)
 	// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
 	auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
 
-	EntityFactory::CreateMissile("MissileOne", entity->GetID(), target,
+	EntityFactory::CreateMissile(m_launcherData->rigs[i]->missile, entity->GetID(), target,
 		m_position.position + Rotate(offset, rot),
 		m_rotation.GetRadians() + hp.angleOffset);
 

@@ -4,7 +4,6 @@
 #include <Entity.h>
 #include <CollisionGroups.h>
 #include <GameState.h>
-#include <ResourceLoader.h>
 #include <MissileStats.h>
 
 #ifndef M_TAU
@@ -26,15 +25,14 @@ inline void WrapBodyAngle(b2Body& body)
 	}
 }
 
-MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, const std::string& projID)
+MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, float thrust, float damage)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sourceEntity(sourceEnt),
-	  m_missStats(LoadMissile(projID))
+	  m_thrust(thrust),
+	  m_damage(damage)
 {
-	m_projID = projID;
-
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(m_position.X(), m_position.Y());
 	bodyDef.angle = m_rotation.GetRadians();
@@ -46,6 +44,11 @@ MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, const std::stri
 	m_body = GameState::world.CreateBody(&bodyDef);
 
 	m_body->SetUserData(entity.GetRawPointer());
+}
+
+MissilePhysics::MissilePhysics(EntityID ent, EntityID sourceEnt, std::shared_ptr<MissileStats> missile)
+	: MissilePhysics(ent, sourceEnt, missile->thrust, missile->damage)
+{
 }
 
 MissilePhysics::~MissilePhysics()
@@ -63,7 +66,7 @@ void MissilePhysics::Update()
 	m_position.position = m_body->GetPosition();
 	m_rotation.SetRadians(m_body->GetAngle());
 	
-	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_missStats->GetThrust(), true);
+	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_thrust, true);
 }
 
 bool MissilePhysics::HandleCollisions()
@@ -94,7 +97,7 @@ bool MissilePhysics::HandleCollisions()
 				Event attackedEvent;
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
-				attackedEvent.attacked.damage = m_missStats->GetDamage();
+				attackedEvent.attacked.damage = m_damage;
 				attackedEvent.attacked.collisionX = m_position.X();
 				attackedEvent.attacked.collisionY = m_position.Y();
 				attackedEvent.type = EventType::Attacked;

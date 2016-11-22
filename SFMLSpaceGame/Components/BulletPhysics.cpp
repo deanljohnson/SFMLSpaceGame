@@ -4,17 +4,16 @@
 #include <Entity.h>
 #include <CollisionGroups.h>
 #include <GameState.h>
-#include <ResourceLoader.h>
 
-BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string& projID)
-	: Component(ent), 
-	  m_position(entity->GetComponent<Position>()), 
+BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, float speed, float damage, const b2Vec2& size)
+	: Component(ent),
+	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_sourceEntity(sourceEnt),
-	  m_projStats(LoadProjectile(projID))
+	  m_speed(speed),
+	  m_damage(damage),
+	  m_size(size)
 {
-	m_projID = projID;
-
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(m_position.X(), m_position.Y());
 	bodyDef.angle = m_rotation.GetRadians();
@@ -27,16 +26,21 @@ BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string
 	b2FixtureDef fixDef;
 	fixDef.density = 1.f;
 	fixDef.isSensor = true;
-	
+
 	fixDef.filter.categoryBits = IS_BULLET;
 	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
 	b2PolygonShape shape;
-	shape.SetAsBox(m_projStats->GetSize().x / 2.f, m_projStats->GetSize().y / 2.f);
+	shape.SetAsBox(size.x / 2.f, size.y / 2.f);
 	fixDef.shape = &shape;
 
 	m_body->CreateFixture(&fixDef);
 
 	m_body->SetUserData(entity.GetRawPointer());
+}
+
+BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, std::shared_ptr<ProjectileStats> proj)
+	: BulletPhysics(ent, sourceEnt, proj->speed, proj->damage, proj->size)
+{
 }
 
 BulletPhysics::~BulletPhysics()
@@ -56,7 +60,8 @@ void BulletPhysics::Update()
 
 	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
 	// Move the bullet forward at full speed
-	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation.GetRadians()), sin(m_rotation.GetRadians())) * m_projStats->GetSpeed());
+	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation.GetRadians()), 
+									sin(m_rotation.GetRadians())) * m_speed);
 }
 
 bool BulletPhysics::HandleCollisions()
@@ -87,7 +92,7 @@ bool BulletPhysics::HandleCollisions()
 				Event attackedEvent;
 				attackedEvent.attacked = Event::AttackedEvent();
 				attackedEvent.attacked.attackerID = m_sourceEntity;
-				attackedEvent.attacked.damage = m_projStats->GetDamage();
+				attackedEvent.attacked.damage = m_damage;
 				attackedEvent.attacked.collisionX = m_position.X();
 				attackedEvent.attacked.collisionY = m_position.Y();
 				attackedEvent.type = EventType::Attacked;

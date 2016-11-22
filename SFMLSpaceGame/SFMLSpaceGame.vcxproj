@@ -336,6 +336,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="MissileStats.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
+    <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
@@ -359,7 +360,6 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ShipResourceSelector.h" />
     <ClInclude Include="SpawnLocationSelector.h" />
     <ClInclude Include="SpriteHelpers.h" />
-    <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Components\BulletPhysics.h" />
     <ClInclude Include="Box2D.h" />

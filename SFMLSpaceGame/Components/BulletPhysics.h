@@ -12,8 +12,9 @@ private:
 	b2Body* m_body{ nullptr };
 	EntityID m_sourceEntity;
 
-	std::shared_ptr<ProjectileStats> m_projStats;
-	std::string m_projID;
+	float m_speed;
+	float m_damage;
+	b2Vec2 m_size;
 
 	//returns whether or not a collision happened
 	bool HandleCollisions();
@@ -24,7 +25,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_sourceEntity, m_projID);
+		ar(entity.GetID(), m_sourceEntity, m_speed, m_damage, m_size);
 	}
 
 	template <class Archive>
@@ -32,13 +33,16 @@ private:
 	{
 		EntityID selfID;
 		EntityID sourceID;
-		std::string projID;
-		ar(selfID, sourceID, projID);
-		construct(selfID, sourceID, projID);
+		float speed;
+		float damage;
+		b2Vec2 size;
+		ar(selfID, sourceID, speed, damage, size);
+		construct(selfID, sourceID, speed, damage, size);
 	}
 
+	BulletPhysics(EntityID ent, EntityID sourceEnt, float speed, float damage, const b2Vec2& size);
 public:
-	explicit BulletPhysics(EntityID ent, EntityID sourceEnt, const std::string& projID);
+	BulletPhysics(EntityID ent, EntityID sourceEnt, std::shared_ptr<ProjectileStats> proj);
 	~BulletPhysics();
 
 	virtual void Update() override;

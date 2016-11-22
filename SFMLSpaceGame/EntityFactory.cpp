@@ -91,17 +91,17 @@ EntityID EntityFactory::CreateBackground(ResourceID backgroundID, EntityID paral
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateProjectile(const std::string& projId, EntityID sourceEntity, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateProjectile(std::shared_ptr<ProjectileStats> proj, EntityID sourceEntity, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(PROJECTILE_GROUP);
-	MakeIntoBullet(ent, projId, sourceEntity, p, radians);
+	MakeIntoBullet(ent, proj, sourceEntity, p, radians);
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateMissile(const std::string& missId, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateMissile(std::shared_ptr<MissileStats> missile, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(PROJECTILE_GROUP);
-	MakeIntoMissile(ent, missId, sourceEntity, target, p, radians);
+	MakeIntoMissile(ent, missile, sourceEntity, target, p, radians);
 	return ent.GetID();
 }
 
@@ -217,28 +217,24 @@ void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundI
 	ent->AddComponent<ParallaxTargetAssigner>();
 }
 
-void EntityFactory::MakeIntoBullet(EntityHandle& ent, const std::string& id, EntityID sourceEntity, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoBullet(EntityHandle& ent, std::shared_ptr<ProjectileStats> projStats, EntityID sourceEntity, const b2Vec2& p, float radians)
 {
-	auto projStats = LoadProjectile(id);
-
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, EntityID, const std::string&>(sourceEntity, id);
+	ent->AddComponent<BulletPhysics, EntityID, std::shared_ptr<ProjectileStats>>(sourceEntity, projStats);
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
-	ent->AddComponent<RectPrimitive, float, float>(projStats->GetSize().x, projStats->GetSize().y);
-	ent->AddComponent<Lifetime, float>(projStats->GetLifeTime());
+	ent->AddComponent<RectPrimitive, float, float>(projStats->size.x, projStats->size.y);
+	ent->AddComponent<Lifetime, float>(projStats->lifeTime);
 }
 
-void EntityFactory::MakeIntoMissile(EntityHandle& ent, const std::string& id, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoMissile(EntityHandle& ent, std::shared_ptr<MissileStats> missile, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)
 {
-	auto missStats = LoadMissile(id);
-
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<MissilePhysics, EntityID, const std::string&>(sourceEntity, id);
-	ent->AddComponent<MissileController, EntityID, EntityID, const std::string&>(sourceEntity, target, id);
+	ent->AddComponent<MissilePhysics, EntityID, std::shared_ptr<MissileStats>>(sourceEntity, missile);
+	ent->AddComponent<MissileController, EntityID, EntityID, float>(sourceEntity, target, missile->thrust);
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
-	ent->AddComponent<Sprite, const std::string&>(missStats->GetImageLocation());
+	ent->AddComponent<Sprite, const std::string&>(missile->imageLocation);
 	ent->AddComponent<Lifetime, float>(30.f);
 
 	ent->ApplyInitializer(EntityInitializer::Type::MissileSpriteBoundsColliderSetup);

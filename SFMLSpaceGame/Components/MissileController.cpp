@@ -6,14 +6,13 @@
 #include <GameTime.h>
 #include <MissileStats.h>
 
-MissileController::MissileController(EntityID ent, EntityID source, EntityID target, const std::string& projID)
+MissileController::MissileController(EntityID ent, EntityID source, EntityID target, float thrust)
 	: Component(ent),
 	  STEER_FORCE(4.f),
 	  m_physics(entity->GetComponent<MissilePhysics>()),
 	  m_sourceEntity(source),
 	  m_targetEntity(target),
-	  m_missStats(LoadMissile(projID)),
-	  m_projID(projID)
+	  m_thrust(thrust)
 {
 	if (EntityManager::IsValidID(m_targetEntity))
 	{
@@ -69,7 +68,7 @@ void MissileController::Update()
 
 	// apply forward thrust, if roughly facing target
 	if (facingTarget)
-		body->ApplyForceToCenter(m_physics.GetHeading() * m_missStats->GetThrust(), true);
+		body->ApplyForceToCenter(m_physics.GetHeading() * m_thrust, true);
 
 	// turn as needed
 	if (m_currentTorque != 0.f) 

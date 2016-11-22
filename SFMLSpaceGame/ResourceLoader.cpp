@@ -5,8 +5,6 @@
 #include <map>
 #include <assert.h>
 #include <ShipStats.h>
-#include <ProjectileStats.h>
-#include <MissileStats.h>
 #include <Serializer.h>
 #include <FileSystem.h>
 
@@ -22,8 +20,6 @@ namespace
 	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
 
 	std::map<std::string, std::shared_ptr<AnimationDefinition>> loadedAnimations;
-	std::map<std::string, std::shared_ptr<ProjectileStats>> loadedProjectiles;
-	std::map<std::string, std::shared_ptr<MissileStats>> loadedMissiles;
 
 	std::map<std::string, std::shared_ptr<LaserRig>> loadedLaserRigs;
 	std::map<std::string, std::shared_ptr<MissileRig>> loadedMissileRigs;
@@ -83,8 +79,6 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedBuiltInAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedSounds);
-	UnloadUnusedSharedPtrResources(loadedProjectiles);
-	UnloadUnusedSharedPtrResources(loadedMissiles);
 	UnloadUnusedSharedPtrResources(loadedShips);
 	UnloadUnusedSharedPtrResources(loadedLaserRigs);
 	UnloadUnusedSharedPtrResources(loadedMissileRigs);
@@ -319,31 +313,5 @@ std::shared_ptr<ShipStats> LoadShip(const std::string& name)
 	auto elem = std::make_shared<ShipStats>(*serializer.Load<ShipStats>(name));
 	loadedShips.insert(make_pair(name, elem));
 
-	return elem;
-}
-
-std::shared_ptr<ProjectileStats> LoadProjectile(const std::string& id)
-{
-	auto it = loadedProjectiles.find(id);
-	if (it != loadedProjectiles.end())
-	{
-		return it->second;
-	}
-
-	auto elem = std::make_shared<ProjectileStats>(*serializer.Load<ProjectileStats>(id));
-	loadedProjectiles.insert(make_pair(id, elem));
-	return elem;
-}
-
-std::shared_ptr<MissileStats> LoadMissile(const std::string& id)
-{
-	auto it = loadedMissiles.find(id);
-	if (it != loadedMissiles.end())
-	{
-		return it->second;
-	}
-
-	auto elem = std::make_shared<MissileStats>(*serializer.Load<MissileStats>(id));
-	loadedMissiles.insert(make_pair(id, elem));
 	return elem;
 }

@@ -11,10 +11,8 @@ private:
 	EntityID m_sourceEntity;
 	EntityID m_targetEntity;
 
-	std::shared_ptr<MissileStats> m_missStats;
-	std::string m_projID;
-
 	float m_currentTorque;
+	float m_thrust;
 
 	EntityHandle m_targetHandle;
 
@@ -27,7 +25,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_sourceEntity, m_targetEntity, m_projID, m_currentTorque);
+		ar(entity.GetID(), m_sourceEntity, m_targetEntity, m_currentTorque, m_thrust);
 	}
 
 	template <class Archive>
@@ -36,14 +34,14 @@ private:
 		EntityID selfID;
 		EntityID sourceID;
 		EntityID targetID;
-		std::string projID;
-		ar(selfID, sourceID, targetID, projID);
-		construct(selfID, sourceID, targetID, projID);
+		float thrust;
+		ar(selfID, sourceID, targetID, thrust);
+		construct(selfID, sourceID, targetID, thrust);
 
 		ar(construct->m_currentTorque);
 	}
 public:
-	MissileController(EntityID ent, EntityID sourceEnt, EntityID target, const std::string& projID);
+	MissileController(EntityID ent, EntityID sourceEnt, EntityID target, float thrust);
 
 	virtual void Update() override;
 };

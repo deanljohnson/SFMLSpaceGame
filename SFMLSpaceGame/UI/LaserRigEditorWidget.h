@@ -11,6 +11,12 @@ private:
 	sfg::Entry::Ptr m_cooldownRateEntry;
 	sfg::Entry::Ptr m_heatGeneratedEntry;
 
+	sfg::Entry::Ptr m_projSpeedEntry;
+	sfg::Entry::Ptr m_projLifetimeEntry;
+	sfg::Entry::Ptr m_projDamageEntry;
+	sfg::Entry::Ptr m_projSizeXEntry;
+	sfg::Entry::Ptr m_projSizeYEntry;
+
 	std::shared_ptr<LaserRig> m_laserRig;
 
 	void SetupEntryValidationSignals();

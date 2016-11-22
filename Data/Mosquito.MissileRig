@@ -3,6 +3,9 @@
         "value0": {
             "name": "Mosquito"
         },
-        "fireRate": 1.0
+        "fireRate": 1.0,
+        "missileThrust": 0.10000000149011612,
+        "missileDamage": 15.0,
+        "missileImage": "Human-Missile-1"
     }
 }

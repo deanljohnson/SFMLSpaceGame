@@ -6,6 +6,13 @@
         "fireRate": 0.10999999940395355,
         "heatLimit": 10.0,
         "cooldownRate": 3.0,
-        "heatGenerated": 1.0
+        "heatGenerated": 1.0,
+		"projSpeed": 15.0,
+        "projLifetime": 5.0,
+        "projDamage": 5.0,
+        "projSize": {
+            "v.x": 0.30000001192092898,
+            "v.y": 0.029999999329447748
+        }
     }
 }

@@ -7,6 +7,8 @@ private:
 	sfg::Window::Ptr m_window;
 
 	sfg::Entry::Ptr m_fireRateEntry;
+	sfg::Entry::Ptr m_thrustEntry;
+	sfg::Entry::Ptr m_damageEntry;
 
 	std::shared_ptr<MissileRig> m_missileRig;
 

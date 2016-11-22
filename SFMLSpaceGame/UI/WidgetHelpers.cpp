@@ -11,7 +11,7 @@ namespace WidgetHelpers
 		return sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
 	}
 
-	bool ValideFloatEntry(sfg::Entry::Ptr entry)
+	bool ValidateFloatEntry(sfg::Entry::Ptr entry)
 	{
 		std::string text = entry->GetText();
 
