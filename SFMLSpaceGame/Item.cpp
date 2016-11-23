@@ -14,7 +14,7 @@ Item::Item(const Item& other)
 	switch (other.type)
 	{
 	case ItemType::LaserRig:
-		laserRig = LaserRigItem(other.laserRig.rigName);
+		laserRig.rigName = other.laserRig.rigName;
 		break;
 	}
 }
@@ -27,12 +27,6 @@ Item::Item()
 
 Item::~Item()
 {
-	switch (type)
-	{
-	case ItemType::LaserRig:
-		laserRig.~LaserRigItem();
-		break;
-	}
 }
 
 Item& Item::operator=(const Item& other)
