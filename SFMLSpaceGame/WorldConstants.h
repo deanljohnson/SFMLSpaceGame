@@ -40,5 +40,5 @@ inline b2Vec2 GetWorldMouseLocation()
 inline sf::Vector2f GetScreenMouseLocation() 
 {
 	auto pos = sf::Mouse::getPosition(*GAME_WINDOW);
-	return { pos.x, pos.y };
+	return { (float)pos.x, (float)pos.y };
 }

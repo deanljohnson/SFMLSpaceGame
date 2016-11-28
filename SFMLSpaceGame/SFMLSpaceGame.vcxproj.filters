@@ -375,6 +375,9 @@
     <ClCompile Include="UI\ItemDragHandler.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\ContextMenu.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -795,6 +798,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\ItemDragHandler.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ContextMenu.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

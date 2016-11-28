@@ -42,6 +42,10 @@ public:
 	virtual bool IsShown();
 
 	virtual void CenterOnScreen();
+
+	// Positions window at the given position
+	// by default, places the top left corner
+	// of the window at the given position
 	virtual void SetPosition(const sf::Vector2f& pos);
 };
 

@@ -106,6 +106,7 @@ void InitialGameState::Init()
 	m_thrusterLocationEditor.Show(false);
 	m_confirmationDialog.Show(false);
 	m_inventoryWindow.Show(false);
+	m_contextMenu.Show(false);
 	m_shieldStateDisplay.Show(true);
 	m_shipEditor.CenterOnScreen();
 	m_rigEditor.CenterOnScreen();
@@ -122,6 +123,7 @@ void InitialGameState::Init()
 	m_thrusterLocationEditor.CenterOnScreen();
 	m_confirmationDialog.CenterOnScreen();
 	m_inventoryWindow.CenterOnScreen();
+	m_contextMenu.CenterOnScreen();
 	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
 }
 

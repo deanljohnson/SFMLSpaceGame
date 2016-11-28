@@ -19,6 +19,7 @@
 #include <UI/ConfirmationDialog.h>
 #include <UI/ShieldStateDisplay.h>
 #include <UI/InventoryWindow.h>
+#include <UI/ContextMenu.h>
 
 class InitialGameState : public GameState
 {
@@ -44,6 +45,7 @@ private:
 	ThrusterLocationEditor m_thrusterLocationEditor;
 	ConfirmationDialog m_confirmationDialog;
 	InventoryWindow m_inventoryWindow;
+	ContextMenu m_contextMenu;
 
 	ShieldStateDisplay m_shieldStateDisplay;
 
