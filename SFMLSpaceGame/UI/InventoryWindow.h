@@ -7,6 +7,8 @@
 #include <SFGUI/Canvas.hpp>
 #include <SFGUI/Label.hpp>
 
+class ItemDragHandler;
+
 class InventoryWindow : public GameWindow
 {
 private:
@@ -16,6 +18,7 @@ private:
 	sfg::Label::Ptr m_hullStateLabel;
 	sfg::Label::Ptr m_creditsLabel;
 
+	std::shared_ptr<ItemDragHandler> m_dragHandler;
 	InventoryWidget m_invenWidget;
 
 	std::shared_ptr<sf::Texture> m_shipTexture;

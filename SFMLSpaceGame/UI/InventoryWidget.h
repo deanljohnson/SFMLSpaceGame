@@ -6,6 +6,7 @@
 #include <PriceSupplier.h>
 
 class PriceSupplier;
+class ItemDragHandler;
 
 class InventoryWidget
 {
@@ -20,13 +21,14 @@ private:
 	std::vector<InventoryItemWidget::Ptr> m_itemWidgets;
 
 	int m_selected;
+	std::shared_ptr<ItemDragHandler> m_dragHandler;
 
 	std::vector<std::function<void(Item*)>> m_itemSelectionChangeCallbacks;
 
 	void Select(int index);
 	void OnRightClick(int index);
 public:
-	InventoryWidget();
+	InventoryWidget(std::shared_ptr<ItemDragHandler> dragHandler = nullptr);
 
 	void Update();
 

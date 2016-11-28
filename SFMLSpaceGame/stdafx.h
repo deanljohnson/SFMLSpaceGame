@@ -17,9 +17,9 @@
 #include <UI\HardPointEditor.h>
 #include <UI\HardPointWidget.h>
 #include <UI\ImageSelector.h>
-#include <UI\InventoryItemWidget.h>
-#include <UI\InventoryWidget.h>
-#include <UI\InventoryWindow.h>
+//#include <UI\InventoryItemWidget.h>
+//#include <UI\InventoryWidget.h>
+//#include <UI\InventoryWindow.h>
 #include <UI\RigEditor.h>
 #include <UI\RigEditorWidget.h>
 #include <UI\RigTypeSelector.h>

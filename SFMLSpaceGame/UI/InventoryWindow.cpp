@@ -1,14 +1,17 @@
 #include "stdafx.h"
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
-#include "UI.h"
+#include <UI/UI.h>
+#include <UI/ItemDragHandler.h>
 #include <PlayerData.h>
 #include <Components/ShipStatsComponent.h>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
 
 InventoryWindow::InventoryWindow()
-	: GameWindow("inventory")
+	: GameWindow("inventory"),
+	  m_dragHandler(std::make_shared<ItemDragHandler>()),
+	  m_invenWidget(m_dragHandler)
 {
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");

@@ -88,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;$(SolutionDir)cereal;$(SolutionDir)SFGUI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,6 +110,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;$(SolutionDir)cereal;$(SolutionDir)SFGUI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +134,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>RELEASE;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;$(SolutionDir)cereal;$(SolutionDir)SFGUI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +161,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>RELEASE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)Box2D;$(SolutionDir)SFML-2.4.0\include;$(SolutionDir)cereal;$(SolutionDir)SFGUI\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -270,6 +274,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\InventoryItemWidget.cpp" />
     <ClCompile Include="UI\InventoryWindow.cpp" />
     <ClCompile Include="UI\InventoryWidget.cpp" />
+    <ClCompile Include="UI\ItemDragHandler.cpp" />
     <ClCompile Include="UI\LaserRigEditorWidget.cpp" />
     <ClCompile Include="UI\MissileRigEditorWidget.cpp" />
     <ClCompile Include="UI\RigEditor.cpp" />
@@ -343,6 +348,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\DataFileSelector.h" />
+    <ClInclude Include="UI\ItemDragHandler.h" />
     <ClInclude Include="UI\LaserRigEditorWidget.h" />
     <ClInclude Include="UI\MissileRigEditorWidget.h" />
     <ClInclude Include="UI\RigEditor.h" />

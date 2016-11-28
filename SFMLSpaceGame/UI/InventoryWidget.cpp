@@ -1,11 +1,13 @@
 #include "stdafx.h"
-#include <UI\InventoryWidget.h>
+#include <UI/InventoryWidget.h>
+#include <UI/ItemDragHandler.h>
 #include <EntityManager.h>
-#include <Components\Inventory.h>
+#include <Components/Inventory.h>
 #include <PriceSupplier.h>
 
-InventoryWidget::InventoryWidget() 
-	: m_selected(-1)
+InventoryWidget::InventoryWidget(std::shared_ptr<ItemDragHandler> dragHandler)
+	: m_selected(-1),
+	  m_dragHandler(dragHandler)
 {
 	m_scrollWindow = sfg::ScrolledWindow::Create();
 	m_scrollWindowBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
@@ -80,6 +82,31 @@ void InventoryWidget::SetTarget(EntityID id)
 			{
 				OnRightClick(i);
 			});
+		
+		if (m_dragHandler != nullptr)
+		{
+			// Passing a shared ptr into a lambda can 
+			// cause a memory leak. By passing a weak
+			// ptr, we prevent that. Just need to make
+			// sure and check the ptr for validity
+			std::weak_ptr<InventoryItemWidget> weakItemRef{ item };
+			item->GetSignal(InventoryItemWidget::OnMouseLeftPress).Connect(
+				[this, weakItemRef]()
+				{
+					if (weakItemRef.expired())
+						throw "Item ptr for drag press operation was expired";
+					else
+						m_dragHandler->OnPress(weakItemRef.lock());
+				});
+			item->GetSignal(InventoryItemWidget::OnMouseLeftRelease).Connect(
+				[this, weakItemRef]()
+			{
+				if (weakItemRef.expired())
+					throw "Item ptr for drag release operation was expired";
+				else
+					m_dragHandler->OnRelease(weakItemRef.lock());
+			});
+		}
 
 		m_itemWidgets.push_back(item);
 		item->SetRequisition({ 0,50 });

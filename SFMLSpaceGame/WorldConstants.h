@@ -36,3 +36,9 @@ inline b2Vec2 GetWorldMouseLocation()
 	auto sfPos = GAME_WINDOW->mapPixelToCoords(sf::Mouse::getPosition(*GAME_WINDOW));
 	return MapPixelToWorld(sfPos); // convert window coordinate value to world (meters) value
 }
+
+inline sf::Vector2f GetScreenMouseLocation() 
+{
+	auto pos = sf::Mouse::getPosition(*GAME_WINDOW);
+	return { pos.x, pos.y };
+}
