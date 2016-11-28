@@ -2,6 +2,9 @@
 #include <UI/MissileRigEditorWidget.h>
 #include <UI/UIDefaults.h>
 #include <UI/GameWindow.h>
+#include <MissileRig.h>
+#include <ResourceLoader.h>
+#include <Serializer.h>
 
 MissileRigEditorWidget::MissileRigEditorWidget(const std::string& name)
 	: m_window(sfg::Window::Create(sfg::Window::NO_STYLE)),

@@ -6,6 +6,8 @@
 #include <ContactFilter.h>
 #include "PlayerData.h"
 #include <RenderBatch.h>
+#include <Components/Position.h>
+#include <Serializer.h>
 
 //#include <LaserRig.h>
 void TestRun()
@@ -50,36 +52,42 @@ void InitialGameState::Init()
 	m_contactListener = ContactFilter();
 	world.SetContactFilter(&m_contactListener);
 
-	/*
-	auto playerID = EntityFactory::CreatePlayer();
+	if (false)
+	{
+		auto ser = new Serializer<>();
+		ser->Load<EntityManager>("all");
+	}
+	else
+	{
+		auto playerID = EntityFactory::CreatePlayer();
 
-	EntityFactory::CreateMusicPlayer(MUSIC_ONE);
-	EntityFactory::CreateBackground(BGONE_FRONT, playerID);
+		EntityFactory::CreateMusicPlayer(MUSIC_ONE);
+		EntityFactory::CreateBackground(BGONE_FRONT, playerID);
 
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
-	AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
+		AddEnemy();
 
-	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 0));
-	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 0));
-	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 40));
-	EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 40));
+		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 0));
+		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 0));
+		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 40));
+		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 40));
 
-	EntityFactory::CreateAsteroid(b2Vec2(20, 20));
+		EntityFactory::CreateAsteroid(b2Vec2(20, 20));
 
-	EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
-	m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
-	
-	*/
-	auto entMan = new EntityManager();
-	auto ser = new Serializer<>();
-	//ser->Save<EntityManager>(entMan, "all", "EntMan");
-	ser->Load<EntityManager>("all");
+		EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
+		m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
+		
+
+		auto entMan = new EntityManager();
+		auto ser = new Serializer<>();
+		ser->Save<EntityManager>(entMan, "all", "EntMan");
+	}
 
 	m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
 

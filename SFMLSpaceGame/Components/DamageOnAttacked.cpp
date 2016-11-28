@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/DamageOnAttacked.h>
+#include <Components/Health.h>
+#include <Interfaces/AttackEventModifier.h>
 #include <Entity.h>
 
 DamageOnAttacked::DamageOnAttacked(EntityID ent)

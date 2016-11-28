@@ -2,6 +2,7 @@
 #include <Components/Physics.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
+#include <SFML/Graphics/Shape.hpp>
 #include <Entity.h>
 #include <VectorMath.h>
 #include <GameState.h>

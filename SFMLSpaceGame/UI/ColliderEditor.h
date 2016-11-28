@@ -1,16 +1,14 @@
 #pragma once
 #include "GameWindow.h"
-#include <Serializer.h>
 #include <SFGUI/Canvas.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <ShipStats.h>
 #include <SFML/Graphics/ConvexShape.hpp>
+
+class ShipStats;
 
 class ColliderEditor : public GameWindow
 {
 private:
-	Serializer<> m_serializer;
-
 	sfg::Canvas::Ptr m_shipCanvas;
 
 	std::shared_ptr<ShipStats> m_targetStats;

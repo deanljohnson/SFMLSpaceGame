@@ -9,6 +9,8 @@
 #include "ColliderEditor.h"
 #include "ThrusterLocationEditor.h"
 #include "ConfirmationDialog.h"
+#include <Serializer.h>
+#include <ShipStats.h>
 
 ShipEditorWindow::ShipEditorWindow()
 	: GameWindow("ship_editor")
@@ -352,7 +354,9 @@ void ShipEditorWindow::CreateNewShip()
 
 	ShipStats newShip = ShipStats();
 	newShip.SetImageLocation(m_newShipImageName);
-	serializer.Save(&newShip, m_shipName, m_shipName);
+
+	Serializer<> ser;
+	ser.Save(&newShip, m_shipName, m_shipName);
 
 	OnShipSelected(m_shipName);
 }
@@ -462,12 +466,15 @@ void ShipEditorWindow::OnSaveShip()
 
 	m_targetStats->Copy(m_editingStats.get());
 	
-	serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
+	Serializer<> ser;
+	ser.Save(m_targetStats.get(), m_shipName, m_shipName);
 }
 
 void ShipEditorWindow::OnDeleteShip() 
 {
 	assert(m_editingStats != nullptr);
-	serializer.DeleteRecord(m_editingStats.get(), m_shipName);
+
+	Serializer<> ser;
+	ser.DeleteRecord(m_editingStats.get(), m_shipName);
 	ClearShipEditing();
 }

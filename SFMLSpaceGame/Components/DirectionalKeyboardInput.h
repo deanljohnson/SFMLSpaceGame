@@ -1,5 +1,4 @@
 #pragma once
-#include <Components/Component.h>
 #include <DefaultSerializeable.h>
 
 class DirectionalKeyboardInput : public Component, public DefaultSerializeable<DirectionalKeyboardInput>

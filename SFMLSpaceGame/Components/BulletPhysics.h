@@ -1,8 +1,9 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
 #include <Box2D/Dynamics/b2Body.h>
-#include <ProjectileStats.h>
+
+class Position;
+class Rotation;
+class ProjectileStats;
 
 class BulletPhysics : public Component
 {

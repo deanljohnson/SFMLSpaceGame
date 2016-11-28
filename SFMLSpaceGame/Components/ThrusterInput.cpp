@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/ThrusterInput.h>
+#include <Components/DirectionalKeyboardInput.h>
+#include <Components/ShipThrusters.h>
 #include <Entity.h>
 
 ThrusterInput::ThrusterInput(EntityID ent)

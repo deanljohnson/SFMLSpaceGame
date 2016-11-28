@@ -1,6 +1,8 @@
 #pragma once
 #include <UI/RigEditorWidget.h>
 
+class MissileRig;
+
 class MissileRigEditorWidget : public RigEditorWidget
 {
 private:

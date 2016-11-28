@@ -1,8 +1,11 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
 #include <OriginOption.h>
-#include <RenderBatch.h>
+#include <Components/Component.h>
+
+class Position;
+class Rotation;
+class RenderBatch;
+struct BatchIndex;
 
 class Sprite : public Component
 {

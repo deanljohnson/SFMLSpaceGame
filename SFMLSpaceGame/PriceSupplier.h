@@ -1,6 +1,7 @@
 #pragma once
-#include <Item.h>
 #include <EconomyID.h>
+
+enum class ItemType;
 
 class PriceSupplier
 {
@@ -11,6 +12,6 @@ public:
 	PriceSupplier();
 	PriceSupplier(const EconomyID& econID, bool buying);
 
-	bool HasPriceForType(ItemType type);
-	unsigned GetPriceForType(ItemType type);
+	bool HasPriceForType(ItemType type, const std::string& detail);
+	unsigned GetPriceForType(ItemType type, const std::string& detail);
 };

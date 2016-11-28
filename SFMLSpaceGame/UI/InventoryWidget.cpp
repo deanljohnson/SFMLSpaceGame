@@ -55,23 +55,30 @@ void InventoryWidget::SetTarget(EntityID id)
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{
 		// Credits are not shown in the inventory
-		if (it->type == ItemType::Credits)
+		if (it->get()->type == ItemType::Credits)
 		{
+			// we do not our index incremented as we 
+			// continue the loop in this case
 			i--;
 			continue;
 		}
 
-		auto item = InventoryItemWidget::Create("trade-icons", &*it);
+		auto item = InventoryItemWidget::Create("trade-icons", it->get());
 
-		if (m_prices.HasPriceForType(it->type))
+		if (m_prices.HasPriceForType(it->get()->type, it->get()->GetDetail()))
 		{
-			item->SetItemPrice(m_prices.GetPriceForType(it->type));
+			item->SetItemPrice(m_prices.GetPriceForType(it->get()->type, it->get()->GetDetail()));
 		}
 
 		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
 			[this, i]()
 			{
 				Select(i);
+			});
+		item->GetSignal(InventoryItemWidget::OnRightClick).Connect(
+			[this, i]()
+			{
+				OnRightClick(i);
 			});
 
 		m_itemWidgets.push_back(item);
@@ -95,9 +102,11 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 
 	for (auto& iw : m_itemWidgets)
 	{
-		if (m_prices.HasPriceForType(iw->GetItem()->type))
+		if (m_prices.HasPriceForType(iw->GetItem()->type, 
+									iw->GetItem()->GetDetail()))
 		{
-			iw->SetItemPrice(m_prices.GetPriceForType(iw->GetItem()->type));
+			iw->SetItemPrice(m_prices.GetPriceForType(iw->GetItem()->type, 
+														iw->GetItem()->GetDetail()));
 		}
 	}
 }
@@ -126,4 +135,9 @@ void InventoryWidget::Select(int index)
 	{
 		c(m_itemWidgets[m_selected]->GetItem());
 	}
+}
+
+void InventoryWidget::OnRightClick(int index)
+{
+	printf("hello\n");
 }

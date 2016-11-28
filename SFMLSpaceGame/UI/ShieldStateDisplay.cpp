@@ -2,6 +2,7 @@
 #include <UI/ShieldStateDisplay.h>
 #include <EntityManager.h>
 #include <UI/UI.h>
+#include <Components\Shields.h>
 
 ShieldStateDisplay::ShieldStateDisplay() 
 	: GameWindow("shield_display")

@@ -1,5 +1,4 @@
 #pragma once
-#include <Components\Component.h>
 #include <DefaultSerializeable.h>
 #include <Components\Sprite.h>
 #include <cereal\access.hpp>

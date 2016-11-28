@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/SmoothCameraFollow.h>
+#include <Components/Position.h>
 #include <Entity.h>
 #include <WorldConstants.h>
 

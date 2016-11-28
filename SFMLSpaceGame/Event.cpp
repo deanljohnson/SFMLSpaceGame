@@ -59,3 +59,7 @@ Event& Event::operator=(const Event& other)
 
 	return *this;
 }
+
+Event::ItemPickupEvent::ItemPickupEvent(std::shared_ptr<Item> i)
+	: item(i)
+{}

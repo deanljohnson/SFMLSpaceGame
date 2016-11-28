@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
-#include "Position.h"
-#include "Rotation.h"
 #include <DefaultSerializeable.h>
+
+class Position;
+class Rotation;
 
 class SoundListener : public Component, public DefaultSerializeable<SoundListener>
 {

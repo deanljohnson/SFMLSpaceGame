@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/MissilePhysics.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
 #include <VectorMath.h>
 #include <Entity.h>
 #include <CollisionGroups.h>

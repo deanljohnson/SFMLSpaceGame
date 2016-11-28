@@ -3,6 +3,8 @@
 #include "UI.h"
 #include <VectorMath.h>
 #include "WidgetHelpers.h"
+#include <ShipStats.h>
+#include <Serializer.h>
 
 HardPointEditor::HardPointEditor()
 	: GameWindow("hard_point_editor"),
@@ -257,8 +259,9 @@ void HardPointEditor::OnSave()
 		}
 	}
 
+	Serializer<> ser;
 	// Save the data to disk
-	serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
+	ser.Save(m_targetStats.get(), m_shipName, m_shipName);
 
 	// Clear our editor widgets
 	m_hardPointWidgets.clear();

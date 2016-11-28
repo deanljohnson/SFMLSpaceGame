@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <PriceSupplier.h>
 #include <Economy.h>
+#include <Item.h>
 
 PriceSupplier::PriceSupplier()
 	: m_econID(EconomyID::GetDefault()), m_buying(false)
@@ -12,7 +13,7 @@ PriceSupplier::PriceSupplier(const EconomyID& econID, bool buying)
 {
 }
 
-bool PriceSupplier::HasPriceForType(ItemType type)
+bool PriceSupplier::HasPriceForType(ItemType type, const std::string& detail = Item::NO_DETAIL)
 {
 	if (m_econID.IsDefault())
 		return false;
@@ -20,9 +21,9 @@ bool PriceSupplier::HasPriceForType(ItemType type)
 	return true;
 }
 
-unsigned PriceSupplier::GetPriceForType(ItemType type)
+unsigned PriceSupplier::GetPriceForType(ItemType type, const std::string& detail = Item::NO_DETAIL)
 {
 	if (m_buying)
-		return Economy::GetBuyPrice(m_econID, type);
-	return Economy::GetSellPrice(m_econID, type);
+		return Economy::GetBuyPrice(m_econID, type, detail);
+	return Economy::GetSellPrice(m_econID, type, detail);
 }

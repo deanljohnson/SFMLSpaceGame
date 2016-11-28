@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include <SFGUI/Label.hpp>
 #include <cereal/access.hpp>
 

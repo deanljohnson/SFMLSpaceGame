@@ -1,13 +1,19 @@
 #pragma once
 #include <memory>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Audio/SoundBuffer.hpp>
-#include <AnimationDefinition.h>
-#include <TextureMap.h>
+
+namespace sf
+{
+	class Texture;
+	class Font;
+	class SoundBuffer;
+}
 
 class Animation;
+class AnimationDefinition;
 class ShipStats;
+
+template<typename TMapKey>
+class TextureMap;
 
 typedef int ResourceID;
 constexpr ResourceID NullResource(-1);

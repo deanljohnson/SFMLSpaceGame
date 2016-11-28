@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include <ResourceLoader.h>
 #include <SFML/Graphics/Sprite.hpp>
 

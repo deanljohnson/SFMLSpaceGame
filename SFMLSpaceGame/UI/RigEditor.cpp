@@ -4,6 +4,7 @@
 #include <UI/MissileRigEditorWidget.h>
 #include <UI/RigTypeSelector.h>
 #include <UI/RigNameEntry.h>
+#include <StringHelper.h>
 
 RigEditor::RigEditor()
 	: GameWindow("rig_editor")

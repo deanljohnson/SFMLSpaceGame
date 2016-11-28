@@ -13,6 +13,7 @@
 #include <Components/DirectionalGun.h>
 #include <Components/MissileLauncher.h>
 #include <Components/FireGunOnClick.h>
+#include <Components/Physics.h>
 #include <Components/BulletPhysics.h>
 #include <Components/MissilePhysics.h>
 #include <Components/MissileController.h>

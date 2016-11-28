@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include <UI\InventoryItemWidget.h>
+#include <Item.h>
 #include <StringHelper.h>
 #include <ResourceLoader.h>
 #include <SFGUI/RenderQueue.hpp>
+#include <TextureMap.h>
 
 int InventoryItemWidget::m_widgetCount = 0;
 std::shared_ptr<TextureMap<std::string>> InventoryItemWidget::m_atlas{ nullptr };
@@ -84,7 +86,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 		m_selected ? sf::Color(0x65, 0x67, 0x62) : sf::Color(0x55, 0x57, 0x52),
 		sf::Color(0xc6, 0xcb, 0xc4)));
 
-	sf::FloatRect spritePosRect{ 0, 0, 50.f, 50.f };
+	sf::FloatRect spritePosRect;
 
 	sf::IntRect texRect{ m_atlas->at(m_item->GetTypeName()) };
 	spritePosRect = sf::FloatRect{ 0, 0, static_cast<float>(texRect.width), static_cast<float>(texRect.height) };
@@ -101,7 +103,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	const auto& font = engine->GetResourceManager().GetFont(fontName);
 
 	auto countSize = engine->GetFontLineHeight(*font, static_cast<int>(fontSize / 1.5f));
-	auto countString = StringHelper::GetRenderedString(m_item->GetAmount());
+	auto countString = StringHelper::GetRenderedString(m_item->amount);
 
 	sf::Text countText(countString, *font, static_cast<unsigned int>(countSize));
 	sf::Vector2f countPosition(
@@ -114,7 +116,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	queue->Add(sfg::Renderer::Get().CreateText(countText));
 
 	auto nameSize = engine->GetFontLineHeight(*font, fontSize);
-	sf::Text nameText(m_item->GetTypeName(), *font, static_cast<unsigned int>(nameSize));
+	sf::Text nameText(m_item->GetDisplayString(), *font, static_cast<unsigned int>(nameSize));
 	sf::Vector2f namePosition(
 		(padding * 2) + spritePosRect.width,
 		borderWidth + padding

@@ -1,6 +1,8 @@
 #pragma once
-#include <Components/Physics.h>
+#include <Components/Component.h>
 #include <cereal\cereal.hpp>
+
+class Physics;
 
 enum ThrustDirection
 {

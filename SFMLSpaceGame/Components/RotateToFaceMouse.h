@@ -1,6 +1,6 @@
 #pragma once
-#include <Components/Physics.h>
-#include "ShipThrusters.h"
+class Physics;
+class ShipThrusters;
 
 class RotateToFaceMouse : public Component
 {

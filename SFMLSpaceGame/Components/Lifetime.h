@@ -1,5 +1,4 @@
 #pragma once
-#include <Components/Component.h>
 #include <cereal/access.hpp>
 
 class Lifetime : public Component

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/GameWorldClickListener.h>
+#include <Interfaces/MouseListener.h>
 #include <GameState.h>
 
 GameWorldClickListener::GameWorldClickListener(EntityID ent)

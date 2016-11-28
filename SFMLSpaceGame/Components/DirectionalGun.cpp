@@ -4,6 +4,10 @@
 #include <EntityFactory.h>
 #include <VectorMath.h>
 #include <WorldConstants.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
+#include <Components/Sprite.h>
+#include <LaserRig.h>
 
 DirectionalGun::DirectionalGun(EntityID ent)
 	: Component(ent),

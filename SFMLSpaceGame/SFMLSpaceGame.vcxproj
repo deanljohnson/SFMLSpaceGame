@@ -330,6 +330,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="HardPoint.h" />
     <ClInclude Include="Interfaces\AttackEventModifier.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />

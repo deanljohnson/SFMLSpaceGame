@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/ShipAI.h>
+#include <Components/Position.h>
+#include <Components/ShipController.h>
 #include <EntityManager.h>
 #include <EntityGroups.h>
 #include <Event.h>

@@ -31,12 +31,12 @@ EconomyID EconomyAgent::GetEconomyID() const
 	return m_id;
 }
 
-void EconomyAgent::AddItem(const Item& item)
+void EconomyAgent::AddItem(std::shared_ptr<Item> item)
 {
 	m_inventory.AddItem(item);
 }
 
-void EconomyAgent::RemoveItem(const Item& item)
+void EconomyAgent::RemoveItem(std::shared_ptr<Item> item)
 {
 	m_inventory.RemoveItem(item);
 }
@@ -61,14 +61,14 @@ bool EconomyAgent::Sells(ItemType itemType)
 	return Economy::Sells(m_id, itemType);
 }
 
-unsigned EconomyAgent::GetBuyPrice(ItemType itemType)
+unsigned EconomyAgent::GetBuyPrice(ItemType itemType, const std::string& detail)
 {
-	return Economy::GetBuyPrice(m_id, itemType);
+	return Economy::GetBuyPrice(m_id, itemType, detail);
 }
 
-unsigned EconomyAgent::GetSellPrice(ItemType itemType)
+unsigned EconomyAgent::GetSellPrice(ItemType itemType, const std::string& detail)
 {
-	return Economy::GetSellPrice(m_id, itemType);
+	return Economy::GetSellPrice(m_id, itemType, detail);
 }
 
 void EconomyAgent::SetBuyPrice(ItemType itemType, Price price)
@@ -76,9 +76,19 @@ void EconomyAgent::SetBuyPrice(ItemType itemType, Price price)
 	Economy::SetBuyPrice(m_id, itemType, price);
 }
 
+void EconomyAgent::SetBuyPrice(ItemType itemType, const std::string& detail, Price price)
+{
+	Economy::SetBuyPrice(m_id, itemType, detail, price);
+}
+
 void EconomyAgent::SetSellPrice(ItemType itemType, Price price)
 {
 	Economy::SetSellPrice(m_id, itemType, price);
+}
+
+void EconomyAgent::SetSellPrice(ItemType itemType, const std::string& detail, Price price)
+{
+	Economy::SetSellPrice(m_id, itemType, detail, price);
 }
 
 void EconomyAgent::SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices)

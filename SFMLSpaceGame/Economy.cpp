@@ -31,45 +31,45 @@ void Economy::RemoveAgent(const EconomyAgent& agent)
 	m_buyPrices.erase(agent.GetEconomyID());
 }
 
-bool Economy::Buys(const EconomyID& ident, ItemType itemType)
+bool Economy::Buys(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
 	auto it = m_buyPrices.find(ident);
 	if (it == m_buyPrices.end())
 		return false;
 
-	return it->second.HasPrice(itemType);
+	return it->second.HasPrice(itemType, detail);
 }
 
-bool Economy::Sells(const EconomyID& ident, ItemType itemType)
+bool Economy::Sells(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
 	auto it = m_sellPrices.find(ident);
 	if (it == m_sellPrices.end())
 		return false;
 
-	return it->second.HasPrice(itemType);
+	return it->second.HasPrice(itemType, detail);
 }
 
-Price Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType)
+Price Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
 	auto it = m_buyPrices.find(ident);
 	if (it == m_buyPrices.end())
 		return 0;
 
-	return it->second.GetPrice(itemType);
+	return it->second.GetPrice(itemType, detail);
 }
 
-Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType)
+Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
 	auto it = m_sellPrices.find(ident);
 	if (it == m_sellPrices.end())
 		return 0;
 
-	return it->second.GetPrice(itemType);
+	return it->second.GetPrice(itemType, detail);
 }
 
-Price Economy::GetBaselinePrice(ItemType itemType)
+Price Economy::GetBaselinePrice(ItemType itemType, const std::string& detail)
 {
-	return m_defaultSet.GetPrice(itemType);
+	return m_defaultSet.GetPrice(itemType, detail);
 }
 
 ItemPriceSet& Economy::GetBuyPriceSet(const EconomyID& ident)
@@ -88,41 +88,53 @@ void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price
 	it->second.SetPrice(itemType, price);
 }
 
+void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price)
+{
+	auto it = m_buyPrices.find(ident);
+	it->second.SetPrice(itemType, detail, price);
+}
+
 void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, Price price)
 {
 	auto it = m_sellPrices.find(ident);
 	it->second.SetPrice(itemType, price);
 }
 
-void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, const Item& item)
+void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price)
+{
+	auto it = m_sellPrices.find(ident);
+	it->second.SetPrice(itemType, detail, price);
+}
+
+void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
 {
 	source.RemoveItem(item);
 	target.AddItem(item);
 }
 
-void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, const Item& item)
+void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, std::shared_ptr<Item> item)
 {
 	TransferItems(seller, target, item);
 
 	// get the price for a single instance of the item
-	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item.type);
+	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item->type, item->GetDetail());
 
 	// determine the price for the total number of items sold
-	sellPrice *= item.GetAmount();
+	sellPrice *= item->amount;
 
 	target.TakeCredits(sellPrice);
 	seller.GiveCredits(sellPrice);
 }
 
-void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, const Item& item)
+void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<Item> item)
 {
 	TransferItems(source, buyer, item);
 
 	// get the price for a single instance of the item
-	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item.type);
+	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item->type, item->GetDetail());
 
 	// determine the price for the total number of items bought
-	sellPrice *= item.GetAmount();
+	sellPrice *= item->amount;
 
 	buyer.TakeCredits(sellPrice);
 	source.GiveCredits(sellPrice);

@@ -11,7 +11,7 @@
                 }
             },
 			{
-                "key": "Fuel Cells",
+                "key": "FuelCells",
                 "value": {
                     "Left": 50,
                     "Top": 0,

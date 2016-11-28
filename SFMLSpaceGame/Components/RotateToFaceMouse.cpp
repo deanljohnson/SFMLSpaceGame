@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/RotateToFaceMouse.h>
+#include <Components/Physics.h>
+#include <Components/ShipThrusters.h>
 #include <WorldConstants.h>
 #include <Entity.h>
 

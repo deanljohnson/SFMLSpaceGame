@@ -12,13 +12,11 @@
 #include <cereal\access.hpp>
 #include <cereal\types\bitset.hpp>
 #include <EntityInitializer.h>
-#include <Serializer.h>
 
 class EntityManager;
 
 class Entity
 {
-	SERIALIZED_WITH_NAME("entity")
 private:
 	bool m_alive{ true };
 	bool m_active{ true };
@@ -90,7 +88,6 @@ private:
 		ComponentSerializer::SerializeIn<Archive>(ar, *this);
 		ApplyInitializers();
 	}
-
 public:
 	typedef int ComponentID;
 
@@ -202,4 +199,6 @@ public:
 	void DeleteFromGroup(Group group) noexcept;
 
 	void AddToGroup(Group group) noexcept;
+
+	static std::string GetTypeName() { static const std::string name = "entity"; return name; }
 };

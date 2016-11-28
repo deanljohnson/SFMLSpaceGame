@@ -1,8 +1,11 @@
 #pragma once
-#include <Components/Component.h>
-#include <SFML/Graphics/Shape.hpp>
 #include <Box2D/Dynamics/b2Body.h>
 #include <cereal/access.hpp>
+
+namespace sf
+{
+	class Shape;
+}
 
 class Position;
 class Rotation;

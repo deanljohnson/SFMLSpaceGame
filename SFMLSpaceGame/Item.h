@@ -3,7 +3,7 @@
 #include <cereal\access.hpp>
 
 #ifndef NAMED_ITEM
-#define NAMED_ITEM(s) static std::string GetTypeName() { static const std::string name = s; return name; }
+#define NAMED_ITEM(s) public: static std::string GetTypeName() { static const std::string name = s; return name; }
 #endif
 
 enum class ItemType
@@ -13,97 +13,142 @@ enum class ItemType
 
 class Item
 {
+protected:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(CEREAL_NVP(type), 
+			CEREAL_NVP(amount));
+	}
+
 public:
-	template <typename T>
-	struct ItemBase 
-	{
-		unsigned int amount;
-		void Stack(T other) { amount += other.amount; }
-	};
-
-	struct Credits : public ItemBase<Credits>
-	{
-		NAMED_ITEM("Credits")
-	};
-
-	struct FuelCells : public ItemBase<FuelCells>
-	{
-		NAMED_ITEM("Fuel Cells")
-	};
-
-	struct Ore : public ItemBase<Ore>
-	{
-		NAMED_ITEM("Ore")
-	};
-
-	struct Food : public ItemBase<Food>
-	{
-		NAMED_ITEM("Food")
-	};
-
-	struct Narcotics : public ItemBase<Narcotics>
-	{
-		NAMED_ITEM("Narcotics")
-	};
-
-	struct LaserRigItem : public ItemBase<LaserRigItem>
-	{
-		NAMED_ITEM("LaserRig")
-		std::string rigName;
-
-		LaserRigItem() : rigName("") {}
-		explicit LaserRigItem(const std::string& s) : rigName(s) {}
-	};
-
-	union
-	{
-		Credits credits;
-		FuelCells fuelCells;
-		Ore ore;
-		Food food;
-		Narcotics narcotics;
-		LaserRigItem laserRig;
-	};
+	const static std::string NO_DETAIL;
 
 	ItemType type;
+	unsigned int amount;
 
-	Item(ItemType type, unsigned int amount);
-	Item(const Item& other);
 	Item();
+	explicit Item(ItemType _type, unsigned int _amt = 0);
+	virtual ~Item(){};
 
-	~Item();
+	void Stack(const Item& other);
 
-	Item& operator=(const Item& other);
+	bool IsDetailed() const;
 
-	void Stack(Item other);
 	std::string GetTypeName() const;
-	unsigned int GetAmount() const;
-	void SetAmount(unsigned int amount);
+	virtual std::string GetDisplayString() const;
+	virtual const std::string& GetDetail() const;
+};
 
+class CreditsItem : public Item
+{
 private:
 	friend class cereal::access;
 
 	template<class Archive>
-	void save(Archive& ar) const
+	void serialize(Archive& ar)
 	{
-		ar(type, GetAmount());
-
-		if (type == ItemType::LaserRig)
-		{
-			ar(cereal::make_nvp("rigName", laserRig.rigName));
-		}
+		ar(cereal::base_class<Item>(this));
 	}
 
-	template <class Archive>
-	void load(Archive& ar)
-	{
-		unsigned int amount;
-		ar(type, amount);
-		SetAmount(amount);
+public:
+	NAMED_ITEM("Credits");
 
-		if (type == ItemType::LaserRig)
-		{
-			ar(cereal::make_nvp("rigName", laserRig.rigName));
-		}
+	explicit CreditsItem(unsigned int amt = 0) : Item(ItemType::Credits, amt) { }
+};
+
+class FuelCellsItem : public Item
+{
+private:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this));
 	}
+
+public:
+	NAMED_ITEM("FuelCells");
+
+	explicit FuelCellsItem(unsigned int amt = 0) : Item(ItemType::FuelCells, amt) { }
+};
+
+class OreItem : public Item
+{
+private:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this));
+	}
+
+public:
+	NAMED_ITEM("Ore");
+
+	explicit OreItem(unsigned int amt = 0) : Item(ItemType::Ore, amt) { }
+};
+
+class FoodItem : public Item
+{
+private:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this));
+	}
+
+public:
+	NAMED_ITEM("Food");
+
+	explicit FoodItem(unsigned int amt = 0) : Item(ItemType::Food, amt) { }
+};
+
+class NarcoticsItem : public Item
+{
+private:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this));
+	}
+
+public:
+	NAMED_ITEM("Narcotics");
+
+	explicit NarcoticsItem(unsigned int amt = 0) : Item(ItemType::Narcotics, amt) { }
+};
+
+class LaserRigItem : public Item
+{
+protected:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this), 
+			cereal::make_nvp("rigName", rigName));
+	}
+
+public:
+	NAMED_ITEM("LaserRig");
+
+	std::string rigName;
+
+	explicit LaserRigItem(unsigned int amt = 0, const std::string& _rigName = "") 
+		: Item(ItemType::LaserRig, amt),
+		  rigName(_rigName)
+	{ }
+
+	virtual std::string GetDisplayString() const override;
+	virtual const std::string& GetDetail() const override;
 };

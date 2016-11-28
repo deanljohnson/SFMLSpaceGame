@@ -1,7 +1,4 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
-#include <Components/Sprite.h>
 #include <Components/SoundSource.h>
 #include <Interfaces/Gun.h>
 #include <vector>
@@ -10,7 +7,11 @@
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 #include <HardPoint.h>
 #include <Entity.h>
-#include <LaserRig.h>
+
+class Position;
+class Rotation;
+class Sprite;
+class LaserRig;
 
 struct DirectionalGunData
 {

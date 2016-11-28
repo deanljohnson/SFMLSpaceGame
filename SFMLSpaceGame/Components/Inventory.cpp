@@ -6,9 +6,7 @@
 Inventory::Inventory(EntityID ent)
 	: Component(ent)
 {
-	Item i{ItemType::Credits, 0};
-
-	m_items.push_back(i);
+	m_items.push_back(std::make_shared<CreditsItem>(0));
 }
 
 void Inventory::Update()
@@ -24,8 +22,8 @@ int Inventory::GetCredits()
 {
 	for (auto& i : *this)
 	{
-		if (i.type == ItemType::Credits)
-			return i.credits.amount;
+		if (i->type == ItemType::Credits)
+			return i->amount;
 	}
 
 	return 0;
@@ -35,22 +33,22 @@ void Inventory::SetCredits(int c)
 {
 	for (auto& i : *this)
 	{
-		if (i.type == ItemType::Credits)
+		if (i->type == ItemType::Credits)
 		{
-			 i.credits.amount = c;
+			 i->amount = c;
 			 return;
 		}
 	}
 }
 
-void Inventory::AddItem(const Item& item)
+void Inventory::AddItem(std::shared_ptr<Item> item)
 {
 	bool stacked = false;
 	for (auto& i : *this)
 	{
-		if (i.type == item.type)
+		if (i->type == item->type)
 		{
-			i.Stack(item);
+			i->Stack(*item.get());
 			stacked = true;
 		}
 	}
@@ -59,16 +57,16 @@ void Inventory::AddItem(const Item& item)
 		m_items.push_back(item);
 }
 
-void Inventory::RemoveItem(const Item& item)
+void Inventory::RemoveItem(std::shared_ptr<Item> item)
 {
 	for (size_t i = 0; i < m_items.size(); i++)
 	{
-		if (m_items[i].type == item.type)
+		if (m_items[i]->type == item->type)
 		{
-			if (item.GetAmount() >= m_items[i].GetAmount())
+			if (item->amount >= m_items[i]->amount)
 				m_items.erase(m_items.begin() + i);
 			else
-				m_items[i].SetAmount(m_items[i].GetAmount() - item.GetAmount());
+				m_items[i]->amount = m_items[i]->amount - item->amount;
 
 			return;
 		}

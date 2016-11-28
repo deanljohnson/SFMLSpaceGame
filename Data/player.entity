@@ -376,16 +376,43 @@
                     "value0": 0,
                     "value1": [
                         {
-                            "value0": 0,
-                            "value1": 1000
+                            "polymorphic_id": 2147483649,
+                            "polymorphic_name": "CreditsItem",
+                            "ptr_wrapper": {
+                                "id": 2147483649,
+                                "data": {
+                                    "value0": {
+                                        "type": 0,
+                                        "amount": 1000
+                                    }
+                                }
+                            }
                         },
                         {
-                            "value0": 2,
-                            "value1": 1000
+                            "polymorphic_id": 2147483650,
+                            "polymorphic_name": "OreItem",
+                            "ptr_wrapper": {
+                                "id": 2147483650,
+                                "data": {
+                                    "value0": {
+                                        "type": 2,
+                                        "amount": 1000
+                                    }
+                                }
+                            }
                         },
                         {
-                            "value0": 3,
-                            "value1": 1000
+                            "polymorphic_id": 2147483651,
+                            "polymorphic_name": "FoodItem",
+                            "ptr_wrapper": {
+                                "id": 2147483651,
+                                "data": {
+                                    "value0": {
+                                        "type": 3,
+                                        "amount": 1000
+                                    }
+                                }
+                            }
                         }
                     ]
                 }
@@ -398,48 +425,46 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "value1": {
-                        "value0": "econ_24769"
-                    },
-                    "value2": {
-                        "value0": [
-                            {
-                                "key": 3,
-                                "value": 8
+                    "econ_id": "econ_20772",
+                    "buy": {
+                        "value0": {
+                            "ItemType": 3,
+                            "Prices": {
+                                "": 8
                             },
-                            {
-                                "key": 1,
-                                "value": 12
+                            "ItemType": 1,
+                            "Prices": {
+                                "": 12
                             },
-                            {
-                                "key": 4,
-                                "value": 50
+                            "ItemType": 4,
+                            "Prices": {
+                                "": 50
                             },
-                            {
-                                "key": 2,
-                                "value": 90
+                            "ItemType": 2,
+                            "Prices": {
+                                "": 90
                             }
-                        ]
+                        }
                     },
-                    "value3": {
-                        "value0": [
-                            {
-                                "key": 3,
-                                "value": 12
+                    "sell": {
+                        "value0": {
+                            "ItemType": 3,
+                            "Prices": {
+                                "": 12
                             },
-                            {
-                                "key": 1,
-                                "value": 12
+                            "ItemType": 1,
+                            "Prices": {
+                                "": 12
                             },
-                            {
-                                "key": 4,
-                                "value": 50
+                            "ItemType": 4,
+                            "Prices": {
+                                "": 50
                             },
-                            {
-                                "key": 2,
-                                "value": 120
+                            "ItemType": 2,
+                            "Prices": {
+                                "": 120
                             }
-                        ]
+                        }
                     }
                 }
             }

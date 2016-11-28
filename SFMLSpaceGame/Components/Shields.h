@@ -1,8 +1,10 @@
 #pragma once
 #include <cereal/cereal.hpp>
-#include <Components\Position.h>
-#include <Components\Rotation.h>
-#include <Interfaces\AttackEventModifier.h>
+#include <Components/Component.h>
+#include <Interfaces/AttackEventModifier.h>
+
+class Position;
+class Rotation;
 
 struct ShieldData 
 {

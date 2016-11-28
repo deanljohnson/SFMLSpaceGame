@@ -34,9 +34,15 @@ public:
 	std::string GetStringID() const;
 
 	template<class Archive>
-	void serialize(Archive& archive)
+	std::string save_minimal(const Archive& ar) const
 	{
-		archive(m_id);
+		return m_id;
+	}
+
+	template<class Archive>
+	void load_minimal(const Archive& ar, const std::string& val)
+	{
+		m_id = val;
 	}
 };
 

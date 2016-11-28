@@ -1,6 +1,6 @@
 #pragma once
-#include <Components/DirectionalKeyboardInput.h>
-#include <Components/ShipThrusters.h>
+class DirectionalKeyboardInput;
+class ShipThrusters;
 
 class ThrusterInput : public Component, public DefaultSerializeable<ThrusterInput>
 {

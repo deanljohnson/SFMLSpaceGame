@@ -250,9 +250,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -262,8 +260,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 0,
-                                    "value1": 0.0
+                                    "value0": 0
                                 }
                             }
                         },
@@ -384,16 +381,57 @@
                                     "value0": 0,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483649,
+                                            "polymorphic_name": "CreditsItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483649,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483650,
+                                            "polymorphic_name": "OreItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483650,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483651,
+                                            "polymorphic_name": "FoodItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483651,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
+                                        },
+										{
+                                            "polymorphic_id": 2147483648,
+                                            "polymorphic_name": "LaserRigItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483648,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 5,
+                                                        "amount": 1
+                                                    },
+													"rigName": "Cannon-One"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -407,29 +445,9 @@
                                 "data": {
                                     "value0": 0,
                                     "value1": {
-                                        "value0": "econ_23247"
+                                        "value0": "econ_5230"
                                     },
                                     "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
-                                            },
-                                            {
-                                                "key": 1,
-                                                "value": 12
-                                            },
-                                            {
-                                                "key": 4,
-                                                "value": 50
-                                            },
-                                            {
-                                                "key": 2,
-                                                "value": 120
-                                            }
-                                        ]
-                                    },
-                                    "value3": {
                                         "value0": [
                                             {
                                                 "key": 3,
@@ -446,6 +464,26 @@
                                             {
                                                 "key": 2,
                                                 "value": 90
+                                            }
+                                        ]
+                                    },
+                                    "value3": {
+                                        "value0": [
+                                            {
+                                                "key": 3,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 1,
+                                                "value": 12
+                                            },
+                                            {
+                                                "key": 4,
+                                                "value": 50
+                                            },
+                                            {
+                                                "key": 2,
+                                                "value": 120
                                             }
                                         ]
                                     }
@@ -751,9 +789,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -763,8 +799,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 3,
-                                    "value1": 0.0
+                                    "value0": 3
                                 }
                             }
                         },
@@ -855,16 +890,40 @@
                                     "value0": 3,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483652,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483653,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483654,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -878,7 +937,7 @@
                                 "data": {
                                     "value0": 3,
                                     "value1": {
-                                        "value0": "econ_26118"
+                                        "value0": "econ_22949"
                                     },
                                     "value2": {
                                         "value0": [
@@ -1122,9 +1181,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -1134,8 +1191,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 4,
-                                    "value1": 0.0
+                                    "value0": 4
                                 }
                             }
                         },
@@ -1226,16 +1282,40 @@
                                     "value0": 4,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483655,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483656,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483657,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1249,7 +1329,7 @@
                                 "data": {
                                     "value0": 4,
                                     "value1": {
-                                        "value0": "econ_8964"
+                                        "value0": "econ_2632"
                                     },
                                     "value2": {
                                         "value0": [
@@ -1493,9 +1573,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -1505,8 +1583,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 5,
-                                    "value1": 0.0
+                                    "value0": 5
                                 }
                             }
                         },
@@ -1597,16 +1674,40 @@
                                     "value0": 5,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483658,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483659,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483660,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1620,7 +1721,7 @@
                                 "data": {
                                     "value0": 5,
                                     "value1": {
-                                        "value0": "econ_6990"
+                                        "value0": "econ_28088"
                                     },
                                     "value2": {
                                         "value0": [
@@ -1864,9 +1965,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -1876,8 +1975,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 6,
-                                    "value1": 0.0
+                                    "value0": 6
                                 }
                             }
                         },
@@ -1968,16 +2066,40 @@
                                     "value0": 6,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483661,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483662,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483663,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1991,7 +2113,7 @@
                                 "data": {
                                     "value0": 6,
                                     "value1": {
-                                        "value0": "econ_15503"
+                                        "value0": "econ_16590"
                                     },
                                     "value2": {
                                         "value0": [
@@ -2235,9 +2357,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -2247,8 +2367,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 7,
-                                    "value1": 0.0
+                                    "value0": 7
                                 }
                             }
                         },
@@ -2339,16 +2458,40 @@
                                     "value0": 7,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483664,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483665,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483666,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -2362,7 +2505,7 @@
                                 "data": {
                                     "value0": 7,
                                     "value1": {
-                                        "value0": "econ_12956"
+                                        "value0": "econ_30473"
                                     },
                                     "value2": {
                                         "value0": [
@@ -2606,9 +2749,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -2618,8 +2759,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 8,
-                                    "value1": 0.0
+                                    "value0": 8
                                 }
                             }
                         },
@@ -2710,16 +2850,40 @@
                                     "value0": 8,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483667,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483668,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483669,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -2733,7 +2897,7 @@
                                 "data": {
                                     "value0": 8,
                                     "value1": {
-                                        "value0": "econ_6775"
+                                        "value0": "econ_3793"
                                     },
                                     "value2": {
                                         "value0": [
@@ -2977,9 +3141,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -2989,8 +3151,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 9,
-                                    "value1": 0.0
+                                    "value0": 9
                                 }
                             }
                         },
@@ -3081,16 +3242,40 @@
                                     "value0": 9,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483670,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483671,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483672,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3104,7 +3289,7 @@
                                 "data": {
                                     "value0": 9,
                                     "value1": {
-                                        "value0": "econ_16015"
+                                        "value0": "econ_32064"
                                     },
                                     "value2": {
                                         "value0": [
@@ -3348,9 +3533,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": 0.0,
-                                    "value2": 0.0,
-                                    "value3": 0
+                                    "value1": 0
                                 }
                             }
                         },
@@ -3360,8 +3543,7 @@
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
-                                    "value0": 10,
-                                    "value1": 0.0
+                                    "value0": 10
                                 }
                             }
                         },
@@ -3452,16 +3634,40 @@
                                     "value0": 10,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483673,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483674,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483675,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3475,7 +3681,7 @@
                                 "data": {
                                     "value0": 10,
                                     "value1": {
-                                        "value0": "econ_21054"
+                                        "value0": "econ_8455"
                                     },
                                     "value2": {
                                         "value0": [
@@ -3651,12 +3857,29 @@
                                     "value0": 11,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483676,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483652,
+                                            "polymorphic_name": "FuelCellsItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483677,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3670,7 +3893,7 @@
                                 "data": {
                                     "value0": 11,
                                     "value1": {
-                                        "value0": "econ_7803"
+                                        "value0": "econ_30503"
                                     },
                                     "value2": {
                                         "value0": [
@@ -3835,12 +4058,28 @@
                                     "value0": 12,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483678,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483679,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3854,7 +4093,7 @@
                                 "data": {
                                     "value0": 12,
                                     "value1": {
-                                        "value0": "econ_20059"
+                                        "value0": "econ_17500"
                                     },
                                     "value2": {
                                         "value0": [
@@ -4019,12 +4258,28 @@
                                     "value0": 13,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483680,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483681,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -4038,7 +4293,7 @@
                                 "data": {
                                     "value0": 13,
                                     "value1": {
-                                        "value0": "econ_16802"
+                                        "value0": "econ_29234"
                                     },
                                     "value2": {
                                         "value0": [
@@ -4203,12 +4458,28 @@
                                     "value0": 14,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483682,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483683,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -4222,7 +4493,7 @@
                                 "data": {
                                     "value0": 14,
                                     "value1": {
-                                        "value0": "econ_23815"
+                                        "value0": "econ_23485"
                                     },
                                     "value2": {
                                         "value0": [

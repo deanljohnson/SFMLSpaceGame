@@ -4,14 +4,17 @@
 #include <Entity.h>
 #include <WorldConstants.h>
 #include <VectorMath.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
+#include <RenderBatch.h>
 
 Sprite::Sprite(EntityID ent, const std::string& id, OriginOption origin)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
+	  m_offset(b2Vec2(0,0)),
 	  m_id(id),
-	  m_originOption(origin),
-	  m_offset(b2Vec2(0,0))
+	  m_originOption(origin)
 {
 	m_batch = RenderBatch::Get(id);
 	m_batchIndex = m_batch->Add();

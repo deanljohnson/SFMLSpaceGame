@@ -1,8 +1,8 @@
 #pragma once
-#include "Component.h"
-#include "ShipController.h"
 #include <Event.h>
 #include <EntityManager.h>
+
+class ShipController;
 
 class ShipAI : public Component
 {

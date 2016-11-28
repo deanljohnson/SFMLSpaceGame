@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <set>
 #include <vector>

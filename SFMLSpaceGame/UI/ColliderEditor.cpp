@@ -2,6 +2,8 @@
 #include <UI/ColliderEditor.h>
 #include "UI.h"
 #include "WidgetHelpers.h"
+#include <Serializer.h>
+#include <ShipStats.h>
 
 ColliderEditor::ColliderEditor()
 	: GameWindow("collider_editor"),
@@ -123,7 +125,8 @@ void ColliderEditor::OnSave()
 		colliderVerts->push_back(v.position - m_shipImage.getPosition());
 	}
 
-	m_serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
+	Serializer<> ser;
+	ser.Save(m_targetStats.get(), m_shipName, m_shipName);
 	m_verts.clear();
 	m_fillShape.setPointCount(0);
 	Show(false);

@@ -381,21 +381,43 @@
                                     "value0": 0,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483649,
+                                            "polymorphic_name": "CreditsItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483649,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483650,
+                                            "polymorphic_name": "OreItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483650,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
-                                        },
-										{
-                                            "value0": 5,
-                                            "value1": 1,
-											"rigName": "Cannon-One"
+                                            "polymorphic_id": 2147483651,
+                                            "polymorphic_name": "FoodItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483651,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -408,48 +430,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": {
-                                        "value0": "econ_24769"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_20772",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -854,16 +874,40 @@
                                     "value0": 3,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483652,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483653,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483654,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -876,48 +920,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": {
-                                        "value0": "econ_23758"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_19229",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -1222,16 +1264,40 @@
                                     "value0": 4,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483655,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483656,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483657,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1244,48 +1310,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": {
-                                        "value0": "econ_8511"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_26024",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -1590,16 +1654,40 @@
                                     "value0": 5,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483658,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483659,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483660,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1612,48 +1700,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": {
-                                        "value0": "econ_32019"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_6290",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -1958,16 +2044,40 @@
                                     "value0": 6,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483661,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483662,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483663,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -1980,48 +2090,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": {
-                                        "value0": "econ_13646"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_25693",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -2326,16 +2434,40 @@
                                     "value0": 7,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483664,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483665,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483666,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -2348,48 +2480,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": {
-                                        "value0": "econ_5095"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_20181",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -2694,16 +2824,40 @@
                                     "value0": 8,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483667,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483668,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483669,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -2716,48 +2870,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": {
-                                        "value0": "econ_25331"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_29588",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -3062,16 +3214,40 @@
                                     "value0": 9,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483670,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483671,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483672,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3084,48 +3260,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": {
-                                        "value0": "econ_29499"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_12236",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -3430,16 +3604,40 @@
                                     "value0": 10,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 1000
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483673,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 2,
-                                            "value1": 1000
+                                            "polymorphic_id": 2,
+                                            "ptr_wrapper": {
+                                                "id": 2147483674,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 2,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 3,
-                                            "value1": 1000
+                                            "polymorphic_id": 3,
+                                            "ptr_wrapper": {
+                                                "id": 2147483675,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 3,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3452,48 +3650,46 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": {
-                                        "value0": "econ_20559"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 8
+                                    "econ_id": "econ_14070",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 8
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 90
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 90
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -3629,12 +3825,43 @@
                                     "value0": 11,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483676,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 2147483652,
+                                            "polymorphic_name": "FuelCellsItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483677,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 2147483653,
+                                            "polymorphic_name": "LaserRigItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483678,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 5,
+                                                        "amount": 1
+                                                    },
+                                                    "rigName": "Cannon-One"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3647,48 +3874,50 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "value1": {
-                                        "value0": "econ_15547"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "econ_id": "econ_31862",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 110
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 110
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
+                                            },
+                                            "ItemType": 5,
+                                            "Prices": {
+                                                "Cannon-One": 900
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -3813,12 +4042,41 @@
                                     "value0": 12,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483679,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483680,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 5,
+                                            "ptr_wrapper": {
+                                                "id": 2147483681,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 5,
+                                                        "amount": 1
+                                                    },
+                                                    "rigName": "Cannon-One"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -3831,48 +4089,50 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "value1": {
-                                        "value0": "econ_9257"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "econ_id": "econ_12206",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 110
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 110
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
+                                            },
+                                            "ItemType": 5,
+                                            "Prices": {
+                                                "Cannon-One": 900
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -3997,12 +4257,41 @@
                                     "value0": 13,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483682,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483683,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 5,
+                                            "ptr_wrapper": {
+                                                "id": 2147483684,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 5,
+                                                        "amount": 1
+                                                    },
+                                                    "rigName": "Cannon-One"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -4015,48 +4304,50 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "value1": {
-                                        "value0": "econ_189"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "econ_id": "econ_3277",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 110
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 110
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
+                                            },
+                                            "ItemType": 5,
+                                            "Prices": {
+                                                "Cannon-One": 900
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }
@@ -4181,12 +4472,41 @@
                                     "value0": 14,
                                     "value1": [
                                         {
-                                            "value0": 0,
-                                            "value1": 0
+                                            "polymorphic_id": 1,
+                                            "ptr_wrapper": {
+                                                "id": 2147483685,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 0,
+                                                        "amount": 0
+                                                    }
+                                                }
+                                            }
                                         },
                                         {
-                                            "value0": 1,
-                                            "value1": 1000
+                                            "polymorphic_id": 4,
+                                            "ptr_wrapper": {
+                                                "id": 2147483686,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 1,
+                                                        "amount": 1000
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 5,
+                                            "ptr_wrapper": {
+                                                "id": 2147483687,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 5,
+                                                        "amount": 1
+                                                    },
+                                                    "rigName": "Cannon-One"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -4199,48 +4519,50 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "value1": {
-                                        "value0": "econ_10141"
-                                    },
-                                    "value2": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "econ_id": "econ_19270",
+                                    "buy": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 110
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 110
                                             }
-                                        ]
+                                        }
                                     },
-                                    "value3": {
-                                        "value0": [
-                                            {
-                                                "key": 3,
-                                                "value": 12
+                                    "sell": {
+                                        "value0": {
+                                            "ItemType": 3,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 1,
-                                                "value": 12
+                                            "ItemType": 1,
+                                            "Prices": {
+                                                "": 12
                                             },
-                                            {
-                                                "key": 4,
-                                                "value": 50
+                                            "ItemType": 4,
+                                            "Prices": {
+                                                "": 50
                                             },
-                                            {
-                                                "key": 2,
-                                                "value": 120
+                                            "ItemType": 2,
+                                            "Prices": {
+                                                "": 120
+                                            },
+                                            "ItemType": 5,
+                                            "Prices": {
+                                                "Cannon-One": 900
                                             }
-                                        ]
+                                        }
                                     }
                                 }
                             }

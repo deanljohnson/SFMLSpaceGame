@@ -7,7 +7,10 @@
 #include <PlayerData.h>
 #include <UI\InventoryWindow.h>
 #include <UI\StationWindow.h>
+#include <Components\Position.h>
+#include <Components\Physics.h>
 #include <Components\MissilePhysics.h>
+#include <Components\Sprite.h>
 #include <Components\Shields.h>
 #include <Components\KeyListener.h>
 #include <Components\Inventory.h>
@@ -62,7 +65,7 @@ void DoShipDestroyedCallback(Entity& ent)
 		auto pickupHandle = EntityManager::Get(pickupID);
 		auto& pickup = pickupHandle->GetComponent<ItemPickup>();
 
-		for (auto& item : inventory)
+		for (auto item : inventory)
 		{
 			pickup.AddItem(item);
 		}

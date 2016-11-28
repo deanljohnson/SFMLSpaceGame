@@ -41,11 +41,12 @@ private:
 public:
 	Component();
 	explicit Component(EntityID ent);
+	virtual ~Component() {};
 
 	Component* next{ nullptr }; // allows multiple components of a single type on an entity
 	EntityHandle entity;
-
-	virtual ~Component(){};
+	
+	EntityID GetEntityID();
 
 	virtual void Update(){};
 	virtual void OnDestroy(){};

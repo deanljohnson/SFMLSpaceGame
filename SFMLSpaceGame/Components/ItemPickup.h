@@ -1,17 +1,17 @@
 #pragma once
-#include "Component.h"
-#include "Physics.h"
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/memory.hpp>
 
 class Item;
+class Physics;
 
 class ItemPickup : public Component
 {
 private:
 	Physics& m_physics;
 
-	std::vector<Item> m_items;
+	std::vector<std::shared_ptr<Item>> m_items;
 
 	friend class cereal::access;
 
@@ -36,5 +36,5 @@ public:
 
 	virtual void Update() override;
 
-	void AddItem(const Item& item);
+	void AddItem(std::shared_ptr<Item> item);
 };

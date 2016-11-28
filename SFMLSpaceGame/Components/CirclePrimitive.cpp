@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/CirclePrimitive.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
 #include <Entity.h>
 #include <VectorMath.h>
 

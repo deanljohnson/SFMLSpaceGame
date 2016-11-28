@@ -2,6 +2,7 @@
 #include <UI/GameWindow.h>
 #include <UI/RigEditorWidget.h>
 #include <SFGUI/Widgets.hpp>
+#include <Serializer.h>
 
 class RigEditor : public GameWindow
 {

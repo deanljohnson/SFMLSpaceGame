@@ -1,8 +1,8 @@
 #pragma once
-#include <Components/Component.h>
-#include <Interfaces/MouseListener.h>
 #include <vector>
 #include <DefaultSerializeable.h>
+
+class MouseListener;
 
 class GameWorldClickListener : public Component, public DefaultSerializeable<GameWorldClickListener>
 {

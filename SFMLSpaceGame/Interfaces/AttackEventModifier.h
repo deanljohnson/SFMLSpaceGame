@@ -1,8 +1,13 @@
 #pragma once
-#include <Event.h>
+
+class Event;
 
 class AttackedEventModifier 
 {
 public:
+	virtual ~AttackedEventModifier()
+	{
+	}
+
 	virtual void Modify(Event& event) = 0;
 };

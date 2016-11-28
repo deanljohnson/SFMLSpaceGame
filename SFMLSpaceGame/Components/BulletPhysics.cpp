@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include <Components/BulletPhysics.h>
+#include <Components/Position.h>
+#include <Components/Rotation.h>
+#include <ProjectileStats.h>
 #include <VectorMath.h>
 #include <Entity.h>
 #include <CollisionGroups.h>

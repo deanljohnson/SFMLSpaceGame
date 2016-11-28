@@ -6,6 +6,9 @@
 #include <ExtendedMath.h>
 #include <assert.h>
 #include <EntityManager.h>
+#include <ShipStats.h>
+#include <Components/DirectionalGun.h>
+#include <Components/ShipThrusters.h>
 
 ShipController::ShipController(EntityID ent, const std::string& shipStatsID)
 	: Component(ent),

@@ -2,6 +2,8 @@
 #include <UI/ThrusterLocationEditor.h>
 #include "UI.h"
 #include "WidgetHelpers.h"
+#include <ShipStats.h>
+#include <Serializer.h>
 
 ThrusterLocationEditor::ThrusterLocationEditor()
 	: GameWindow("thruster_editor"),
@@ -121,7 +123,8 @@ void ThrusterLocationEditor::OnSave()
 		thrusterLocs->push_back(v - shipPos);
 	}
 
-	m_serializer.Save(m_targetStats.get(), m_shipName, m_shipName);
+	Serializer<> ser;
+	ser.Save(m_targetStats.get(), m_shipName, m_shipName);
 	m_locations.clear();
 	Show(false);
 }

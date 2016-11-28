@@ -7,6 +7,11 @@
 #include <ShipStats.h>
 #include <Serializer.h>
 #include <FileSystem.h>
+#include <TextureMap.h>
+#include <AnimationDefinition.h>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
 
 //wrap in anon. namespace to effectively make these private to this file
 namespace

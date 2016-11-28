@@ -1,9 +1,10 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <cereal/access.hpp>
 #include <SFMLSerialization.h>
+
+class Position;
+class Rotation;
 
 class RectPrimitive : public Component
 {

@@ -1,9 +1,9 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
 #include <Box2D/Dynamics/b2Body.h>
 
 class MissileStats;
+class Physics;
+class Rotation;
 
 class MissilePhysics : public Component
 {

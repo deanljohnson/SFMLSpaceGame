@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/ItemPickup.h>
+#include <Components/Physics.h>
 #include <Entity.h>
 
 ItemPickup::ItemPickup(EntityID ent)
@@ -34,7 +35,7 @@ void ItemPickup::Update()
 
 				auto otherEnt = static_cast<Entity*>(userData);
 
-				for (auto& i : m_items)
+				for (auto i : m_items)
 				{
 					Event itemEvent;
 					itemEvent.itemPickup = Event::ItemPickupEvent(i);
@@ -53,7 +54,7 @@ void ItemPickup::Update()
 	}
 }
 
-void ItemPickup::AddItem(const Item& item)
+void ItemPickup::AddItem(std::shared_ptr<Item> item)
 {
 	m_items.push_back(item);
 }

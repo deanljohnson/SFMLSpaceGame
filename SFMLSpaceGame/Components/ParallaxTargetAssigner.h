@@ -1,7 +1,7 @@
 #pragma once
-#include "Component.h"
-#include "ParallaxMovement.h"
 #include <DefaultSerializeable.h>
+
+class ParallaxMovement;
 
 class ParallaxTargetAssigner : public Component, public DefaultSerializeable<ParallaxTargetAssigner>
 {

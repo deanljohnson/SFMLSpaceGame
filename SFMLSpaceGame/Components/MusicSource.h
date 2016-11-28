@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include <SFML/Audio/Music.hpp>
 #include <cereal/access.hpp>
 

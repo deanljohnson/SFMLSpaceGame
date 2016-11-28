@@ -2,6 +2,9 @@
 #include <UI/LaserRigEditorWidget.h>
 #include <UI/UIDefaults.h>
 #include <UI/GameWindow.h>
+#include <LaserRig.h>
+#include <ResourceLoader.h>
+#include <Serializer.h>
 
 LaserRigEditorWidget::LaserRigEditorWidget(const std::string& name)
 	: m_window(sfg::Window::Create(sfg::Window::NO_STYLE)),

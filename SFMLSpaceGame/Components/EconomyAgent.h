@@ -1,5 +1,4 @@
 #pragma once
-#include "Component.h"
 #include <EconomyID.h>
 #include <Economy.h>
 #include <Item.h>
@@ -21,7 +20,10 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_id, Economy::GetBuyPriceSet(m_id), Economy::GetSellPriceSet(m_id));
+		ar(entity.GetID(), 
+			cereal::make_nvp("econ_id", m_id), 
+			cereal::make_nvp("buy", Economy::GetBuyPriceSet(m_id)), 
+			cereal::make_nvp("sell", Economy::GetSellPriceSet(m_id)));
 	}
 
 	template <class Archive>
@@ -32,7 +34,10 @@ private:
 		ItemPriceSet buyPrices;
 		ItemPriceSet sellPrices;
 
-		ar(selfID, econID, buyPrices, sellPrices);
+		ar(selfID, 
+			cereal::make_nvp("econ_id", econID),
+			cereal::make_nvp("buy", buyPrices),
+			cereal::make_nvp("sell", sellPrices));
 		construct(selfID, econID, buyPrices, sellPrices);
 	}
 
@@ -46,8 +51,8 @@ public:
 
 	EconomyID GetEconomyID() const;
 	
-	void AddItem(const Item& item);
-	void RemoveItem(const Item& item);
+	void AddItem(std::shared_ptr<Item> item);
+	void RemoveItem(std::shared_ptr<Item> item);
 
 	void GiveCredits(unsigned int credits);
 	void TakeCredits(unsigned int credits);
@@ -55,11 +60,13 @@ public:
 	bool Buys(ItemType itemType);
 	bool Sells(ItemType itemType);
 
-	unsigned GetBuyPrice(ItemType itemType);
-	unsigned GetSellPrice(ItemType itemType);
+	unsigned GetBuyPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
+	unsigned GetSellPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 
 	void SetBuyPrice(ItemType itemType, Price price);
+	void SetBuyPrice(ItemType itemType, const std::string& detail, Price price);
 	void SetSellPrice(ItemType itemType, Price price);
+	void SetSellPrice(ItemType itemType, const std::string& detail, Price price);
 
 	void SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices);
 	void SetSellPrices(std::initializer_list<std::pair<ItemType, Price>> prices);

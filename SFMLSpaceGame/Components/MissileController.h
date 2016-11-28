@@ -1,6 +1,5 @@
 #pragma once
-#include <Components\Component.h>
-#include <Components\MissilePhysics.h>
+class MissilePhysics;
 
 class MissileController : public Component 
 {

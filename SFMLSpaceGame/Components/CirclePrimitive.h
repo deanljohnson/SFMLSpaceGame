@@ -1,8 +1,9 @@
 #pragma once
-#include <Components/Position.h>
-#include <Components/Rotation.h>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <cereal/access.hpp>
+
+class Position;
+class Rotation;
 
 class CirclePrimitive : public Component
 {

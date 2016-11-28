@@ -1,7 +1,8 @@
 #pragma once
-#include "ShipThrusters.h"
 #include <cereal\access.hpp>
 #include <cereal\types\vector.hpp>
+
+class ShipThrusters;
 
 class ThrusterAnimator : public Component
 {

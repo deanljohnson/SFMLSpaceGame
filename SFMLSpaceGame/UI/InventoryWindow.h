@@ -1,11 +1,11 @@
 #pragma once
-#include "GameWindow.h"
+#include <UI/GameWindow.h>
+#include <UI/InventoryWidget.h>
 #include <EntityID.h>
 #include <EntityHandle.h>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFGUI/Canvas.hpp>
 #include <SFGUI/Label.hpp>
-#include <UI\InventoryWidget.h>
 
 class InventoryWindow : public GameWindow
 {

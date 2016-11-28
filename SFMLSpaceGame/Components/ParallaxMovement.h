@@ -1,8 +1,9 @@
 #pragma once
-#include <Components/Position.h>
 #include <EntityHandle.h>
 #include <cereal/access.hpp>
 #include <Box2DSerialization.h>
+
+class Position;
 
 class ParallaxMovement : public Component
 {

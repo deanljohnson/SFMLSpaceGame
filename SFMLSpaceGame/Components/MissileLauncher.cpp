@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include <Components\MissileLauncher.h>
+#include <Components\Position.h>
+#include <Components\Rotation.h>
+#include <Components\Sprite.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <EntityManager.h>

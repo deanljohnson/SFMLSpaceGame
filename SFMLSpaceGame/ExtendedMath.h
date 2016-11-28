@@ -11,6 +11,14 @@
 #define M_PI_f (float)M_PI
 #endif
 
+#ifndef DEG_TO_RAD
+#define DEG_TO_RAD(__val__) __val__ * (float)M_PI / 180.f
+#endif
+
+#ifndef RAD_TO_DEG
+#define RAD_TO_DEG(__val__) __val__ *  180.f / (float)M_PI
+#endif
+
 const float COS_5 = cosf(5.f * (M_PI_f / 180.f));
 const float COS_15 = cosf(15.f * (M_PI_f / 180.f));
 const float COS_30 = cosf(30.f * (M_PI_f / 180.f));

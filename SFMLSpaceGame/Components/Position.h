@@ -1,5 +1,4 @@
 #pragma once
-#include <Components/Component.h>
 #include <Box2D/Common/b2Math.h>
 #include <cereal/cereal.hpp>
 #include <Box2DSerialization.h>

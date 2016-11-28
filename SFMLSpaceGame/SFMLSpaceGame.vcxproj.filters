@@ -788,6 +788,9 @@
     <ClInclude Include="ProjectileStats.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
+    <ClInclude Include="ItemFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include <Components\MissileController.h>
+#include <Components\Position.h>
+#include <Components\MissilePhysics.h>
 #include <EntityManager.h>
 #include <VectorMath.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>
-#include <MissileStats.h>
 
 MissileController::MissileController(EntityID ent, EntityID source, EntityID target, float thrust)
 	: Component(ent),

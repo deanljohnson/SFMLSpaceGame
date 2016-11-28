@@ -1,7 +1,8 @@
 #pragma once
 
 #include <EntityID.h>
-#include <Item.h>
+
+class Item;
 
 enum class EventType
 {
@@ -17,16 +18,8 @@ public:
 
 	struct ItemPickupEvent
 	{
-		explicit ItemPickupEvent(const Item& i)
-			: item(i)
-		{}
-		ItemPickupEvent& operator=(const ItemPickupEvent& other)
-		{
-			item = Item(other.item);
-
-			return *this;
-		}
-		Item item;
+		explicit ItemPickupEvent(std::shared_ptr<Item> i);
+		std::shared_ptr<Item> item;
 	};
 
 	struct AttackedEvent

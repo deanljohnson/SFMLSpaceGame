@@ -1,5 +1,4 @@
 #pragma once
-#include <Components\Component.h>
 #include <HardPoint.h>
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points

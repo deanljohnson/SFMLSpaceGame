@@ -2,7 +2,8 @@
 #include <ShipResourceSelector.h>
 #include <SpawnLocationSelector.h>
 #include <Event.h>
-#include "Position.h"
+
+class Position;
 
 class ShipSpawner : public Component
 {

@@ -9,3 +9,8 @@ Component::Component()
 Component::Component(EntityID ent)
 	: next(nullptr), entity(EntityManager::Get(ent))
 {}
+
+EntityID Component::GetEntityID()
+{
+	return entity.GetID();
+}

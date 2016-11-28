@@ -1,6 +1,8 @@
 #pragma once
 #include <UI/RigEditorWidget.h>
 
+class LaserRig;
+
 class LaserRigEditorWidget : public RigEditorWidget
 {
 private:

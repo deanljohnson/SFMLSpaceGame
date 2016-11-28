@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/ParallaxMovement.h>
+#include <Components/Position.h>
 #include <EntityManager.h>
 
 ParallaxMovement::ParallaxMovement(EntityID ent, EntityID target, float movementScale)

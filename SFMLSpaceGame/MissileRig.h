@@ -1,13 +1,10 @@
 #pragma once
 #include <Rig.h>
-#include <Serializer.h>
 #include <cereal/types/base_class.hpp>
 #include <MissileStats.h>
 
 class MissileRig : public Rig
 {
-	SERIALIZED_WITH_NAME("MissileRig");
-
 private:
 	friend class cereal::access;
 
@@ -23,4 +20,6 @@ private:
 public:
 	float fireRate{ 0.f };
 	std::shared_ptr<MissileStats> missile{ new MissileStats() };
+
+	static std::string GetTypeName() { static const std::string name = "MissileRig"; return name; };
 };

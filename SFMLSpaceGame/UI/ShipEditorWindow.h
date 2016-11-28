@@ -1,15 +1,13 @@
 #pragma once
 #include <UI/GameWindow.h>
 #include <SFGUI/Widgets.hpp>
-#include <ShipStats.h>
-#include <Serializer.h>
 #include <SFML/Graphics/Sprite.hpp>
+
+class ShipStats;
 
 class ShipEditorWindow : public GameWindow
 {
 private:
-	Serializer<> serializer;
-
 	sfg::Button::Ptr m_newShipButton;
 	sfg::Button::Ptr m_editShipButton;
 	sfg::Button::Ptr m_saveShipButton;

@@ -1,13 +1,10 @@
 #pragma once
 #include <Rig.h>
-#include <Serializer.h>
 #include <cereal/types/base_class.hpp>
 #include <ProjectileStats.h>
 
 class LaserRig : public Rig 
 {
-	SERIALIZED_WITH_NAME("LaserRig");
-
 private:
 	friend class cereal::access;
 
@@ -30,4 +27,6 @@ public:
 	float cooldownRate{0.f};
 	float heatGenerated{0.f};
 	std::shared_ptr<ProjectileStats> projectile{new ProjectileStats()};
+
+	static std::string GetTypeName() { static const std::string name = "LaserRig"; return name; };
 };

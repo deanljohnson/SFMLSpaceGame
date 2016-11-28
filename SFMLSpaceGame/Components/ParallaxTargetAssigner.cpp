@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ParallaxTargetAssigner.h"
+#include "ParallaxMovement.h"
 #include <Entity.h>
 #include <GameState.h>
 #include <EntityManager.h>

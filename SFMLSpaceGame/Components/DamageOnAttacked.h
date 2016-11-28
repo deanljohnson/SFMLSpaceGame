@@ -1,7 +1,8 @@
 #pragma once
-#include <Components/Health.h>
 #include <DefaultSerializeable.h>
-#include <Interfaces/AttackEventModifier.h>
+
+class Health;
+class AttackedEventModifier;
 
 class DamageOnAttacked : public Component, public DefaultSerializeable<DamageOnAttacked>
 {

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/ShipThrusters.h>
+#include <Components/Physics.h>
 #include <Entity.h>
 #include <VectorMath.h>
 #include <ExtendedMath.h>

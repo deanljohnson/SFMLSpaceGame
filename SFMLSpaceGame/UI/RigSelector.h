@@ -1,6 +1,7 @@
 #pragma once
 #include <UI/DataFileSelector.h>
 #include <LaserRig.h>
+#include <MissileRig.h>
 
 class RigSelector : public DataFileSelector<LaserRig, MissileRig>
 {

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include <Components/ThrusterAnimator.h>
+#include <Components/Sprite.h>
+#include <Components/ShipThrusters.h>
 #include <Entity.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>

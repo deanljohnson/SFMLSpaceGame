@@ -1,9 +1,11 @@
 #pragma once
 #include <memory>
-#include <Item.h>
 #include <SFGUI\Widget.hpp>
-#include <TextureMap.h>
 #include <SFGUI\PrimitiveTexture.hpp>
+
+template<typename TMapKey>
+class TextureMap;
+class Item;
 
 class InventoryItemWidget : public sfg::Widget
 {

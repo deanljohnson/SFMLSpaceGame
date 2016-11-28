@@ -2,16 +2,14 @@
 #include "GameWindow.h"
 #include <SFGUI/Canvas.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <ShipStats.h>
-#include <UI\HardPointWidget.h>
-#include <Serializer.h>
+#include <UI/HardPointWidget.h>
+
+class ShipStats;
 
 class HardPointEditor : public GameWindow
 {
 private:
 	HardPointWidget::Type m_hardPointType;
-
-	Serializer<> serializer;
 
 	sfg::Canvas::Ptr m_shipCanvas;
 

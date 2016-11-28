@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Components/ShipSpawner.h>
+#include <Components/Position.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <Entity.h>

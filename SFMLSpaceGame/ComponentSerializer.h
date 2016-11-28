@@ -3,8 +3,6 @@
 #include <cereal\archives\json.hpp>
 #include <cereal\archives\binary.hpp>
 #include <cereal\types\memory.hpp>
-#include <Entity.h>
-#include <Serializer.h>
 #include <Components\Component.h>
 
 class Entity;

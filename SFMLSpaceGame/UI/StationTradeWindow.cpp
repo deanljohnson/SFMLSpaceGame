@@ -5,6 +5,7 @@
 #include <EntityManager.h>
 #include <Components/Inventory.h>
 #include <Economy.h>
+#include <ItemFactory.h>
 #include <Components/EconomyAgent.h>
 
 StationTradeWindow::StationTradeWindow() 
@@ -127,14 +128,14 @@ void StationTradeWindow::OnSellScaleChange()
 void StationTradeWindow::OnBuyItemChange(Item* item)
 {
 	auto adjustment = m_buyScale->GetAdjustment();
-	auto amt = item == nullptr ? 0 : item->GetAmount();
+	auto amt = item == nullptr ? 0 : item->amount;
 
 	if (amt != 0) 
 	{
 		auto playerCredits = GetPlayerCredits();
 
 		auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
-		auto sellPrice = stationAgent.GetSellPrice(item->type);
+		auto sellPrice = stationAgent.GetSellPrice(item->type, item->GetDetail());
 
 		amt = std::min(amt, playerCredits / sellPrice);
 	}
@@ -146,7 +147,7 @@ void StationTradeWindow::OnBuyItemChange(Item* item)
 void StationTradeWindow::OnSellItemChange(Item* item)
 {
 	auto adjustment = m_sellScale->GetAdjustment();
-	auto amt = item == nullptr ? 0 : item->GetAmount();
+	auto amt = item == nullptr ? 0 : item->amount;
 
 	adjustment->SetUpper(amt);
 	adjustment->SetValue(amt);
@@ -157,9 +158,8 @@ void StationTradeWindow::OnBuyClick()
 	auto selectedItem = m_stationInvenWidget.GetSelected();
 	if (selectedItem == nullptr) return;
 
-	// Create an item to represent the transaction
-	auto boughtItem = Item(selectedItem->type,
-							static_cast<unsigned int>(m_buyScale->GetValue()));
+	auto boughtItem = ItemFactory::Create(selectedItem);
+	boughtItem->amount = static_cast<unsigned int>(m_buyScale->GetValue());
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
@@ -176,9 +176,8 @@ void StationTradeWindow::OnSellClick()
 	auto selectedItem = m_playerInvenWidget.GetSelected();
 	if (selectedItem == nullptr) return;
 
-	// Create an item to represent the transaction
-	auto soldItem = Item(selectedItem->type, 
-						static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue()));
+	auto soldItem = ItemFactory::Create(selectedItem);
+	soldItem->amount = static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue());
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();

@@ -1,9 +1,10 @@
 #pragma once
 #include "Component.h"
-#include "ShipThrusters.h"
-#include "DirectionalGun.h"
-#include <ShipStats.h>
 #include <EntityHandle.h>
+
+class ShipStats;
+class DirectionalGun;
+class ShipThrusters;
 
 enum Maneuvers
 {

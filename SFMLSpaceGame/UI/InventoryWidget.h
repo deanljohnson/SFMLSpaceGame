@@ -1,7 +1,6 @@
 #pragma once
 #include <EntityID.h>
 #include <EntityHandle.h>
-#include <ItemPriceSet.h>
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
 #include <PriceSupplier.h>
@@ -25,6 +24,7 @@ private:
 	std::vector<std::function<void(Item*)>> m_itemSelectionChangeCallbacks;
 
 	void Select(int index);
+	void OnRightClick(int index);
 public:
 	InventoryWidget();
 

@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include <Components/SoundSource.h>
+#include <Components/Position.h>
 #include <Entity.h>
 
-SoundSource::SoundSource(EntityID ent, ResourceID soundID)
+SoundSource::SoundSource(EntityID ent, int soundID)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_soundID(soundID)

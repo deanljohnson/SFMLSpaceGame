@@ -1,8 +1,9 @@
 #pragma once
 #include <UI/GameWindow.h>
 #include <EntityHandle.h>
-#include <Components\Shields.h>
 #include <SFGUI\ProgressBar.hpp>
+
+class Shields;
 
 class ShieldStateDisplay : public GameWindow 
 {
