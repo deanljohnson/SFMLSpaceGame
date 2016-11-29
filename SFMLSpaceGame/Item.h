@@ -36,6 +36,7 @@ public:
 	void Stack(const Item& other);
 
 	bool IsDetailed() const;
+	bool IsEquippable() const;
 
 	std::string GetTypeName() const;
 	virtual std::string GetDisplayString() const;

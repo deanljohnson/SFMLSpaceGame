@@ -27,6 +27,11 @@ bool Item::IsDetailed() const
 	return type == ItemType::LaserRig;
 }
 
+bool Item::IsEquippable() const 
+{
+	return type == ItemType::LaserRig;
+}
+
 std::string Item::GetTypeName() const
 {
 	switch (type)

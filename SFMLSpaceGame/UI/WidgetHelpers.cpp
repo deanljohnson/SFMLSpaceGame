@@ -11,6 +11,14 @@ namespace WidgetHelpers
 		return sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
 	}
 
+	bool MouseInWidget(std::shared_ptr<sfg::Widget> widget) 
+	{
+		auto relPos = GetRelativeMousePos(widget);
+
+		return relPos.x > 0 && relPos.x < widget->GetAllocation().width
+			&& relPos.y > 0 && relPos.y < widget->GetAllocation().height;
+	}
+
 	bool ValidateFloatEntry(sfg::Entry::Ptr entry)
 	{
 		std::string text = entry->GetText();

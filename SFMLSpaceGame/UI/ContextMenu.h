@@ -5,22 +5,27 @@ class ContextMenu : public GameWindow
 {
 public:
 	typedef std::function<void()> Callback;
+	typedef std::pair<std::string, Callback> Option;
 private:
-	std::vector<Callback> m_callbacks;
+	bool m_groupOpen;
+
+	// storage for groups, simply to make
+	// sure their shared_ptr's remain in scope
+	std::vector<sfg::Window::Ptr> m_groups;
+
 	sfg::Box::Ptr m_optionBox;
 
-	void AddOption(const std::string& option);
-	void CallCallback(int i);
+	sfg::Button::Ptr AddOption(const std::string& option, Callback callback, sfg::Box::Ptr box);
 public:
 	ContextMenu();
 
-	// Sets the displayed options for the ContextMenu
-	// Clears any existing callbacks and options
-	void SetOptions(std::initializer_list<std::string> options);
-
-	// Assigns a callback to a certain option in the menu
-	void SetCallback(int index, Callback callback);
-
 	// Adds the given option with the given callback
 	void AddOption(const std::string& option, Callback callback);
+	void AddOption(const Option& option);
+
+	// Add the given options under an expanding option
+	void AddGroup(const std::string& groupName, std::initializer_list<Option> options);
+
+	// Removes all options from the menu
+	void ClearOptions();
 };

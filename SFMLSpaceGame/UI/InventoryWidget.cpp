@@ -144,6 +144,8 @@ void InventoryWidget::OnRightClick(int index)
 	contextMenu->SetPosition(GetScreenMouseLocation());
 	contextMenu->Show(true);
 
-	contextMenu->AddOption("Say Hello", [] {printf("hello!\n"); });
-	contextMenu->AddOption("Jettison", [] {printf("Jettison\n"); });
+	contextMenu->ClearOptions();
+	contextMenu->AddOption({ "Jettison", [] {printf("Jettison\n"); } });
+	contextMenu->AddGroup("Equip",
+	{ {"Slot-One", [] { printf("equipping slot 1\n"); }} });	
 }
