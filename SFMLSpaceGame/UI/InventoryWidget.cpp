@@ -3,7 +3,6 @@
 #include <UI/ContextMenu.h>
 #include <EntityManager.h>
 #include <Components/Inventory.h>
-#include <PriceSupplier.h>
 #include <UI/ContextProvider.h>
 
 InventoryWidget::InventoryWidget()
@@ -113,6 +112,11 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 	}
 }
 
+void InventoryWidget::SetContextProvider(std::shared_ptr<ContextProvider> contextProvider) 
+{
+	m_contextProvider = contextProvider;
+}
+
 void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)
 {
 	m_itemSelectionChangeCallbacks.push_back(callback);
@@ -150,11 +154,5 @@ void InventoryWidget::OnRightClick(int index)
 
 	contextMenu->ClearOptions();
 
-	if (m_itemWidgets[index]->GetItem()->IsEquippable()) 
-	{
-		contextMenu->AddGroup("Equip",
-		{ { "Slot-One", [] { printf("equipping slot 1\n"); } } });
-	}
-	
-	contextMenu->AddOption({ "Jettison", [] {printf("Jettison\n"); } });
+	m_contextProvider->SetContextOptions(*contextMenu, *m_itemWidgets[index]->GetItem());
 }

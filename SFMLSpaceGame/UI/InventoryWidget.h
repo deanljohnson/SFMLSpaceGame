@@ -3,8 +3,8 @@
 #include <EntityHandle.h>
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
+#include <PriceSupplier.h>
 
-class PriceSupplier;
 class ContextProvider;
 
 class InventoryWidget

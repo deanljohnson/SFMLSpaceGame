@@ -2,6 +2,7 @@
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
 #include <UI/UI.h>
+#include <UI/ContextProvider.h>
 #include <PlayerData.h>
 #include <Components/ShipStatsComponent.h>
 #include <Components/Health.h>
@@ -11,6 +12,8 @@ InventoryWindow::InventoryWindow()
 	: GameWindow("inventory"),
 	  m_invenWidget()
 {
+	m_invenWidget.SetContextProvider(std::make_shared<ContextProvider>());
+
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");
 	m_window->SetId("inventory");
