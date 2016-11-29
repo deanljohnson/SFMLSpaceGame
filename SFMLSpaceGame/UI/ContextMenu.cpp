@@ -3,7 +3,7 @@
 
 ContextMenu::ContextMenu() 
 	: GameWindow("context_menu"),
-	  m_groupOpen(true)
+	  m_groupOpen(false)
 {
 	m_window = sfg::Window::Create(sfg::Window::BACKGROUND);
 	m_window->SetTitle("Options");

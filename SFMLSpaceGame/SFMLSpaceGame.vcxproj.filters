@@ -803,6 +803,9 @@
     <ClInclude Include="UI\ContextMenu.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI\ContextProvider.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

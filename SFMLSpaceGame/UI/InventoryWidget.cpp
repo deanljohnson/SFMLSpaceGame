@@ -4,6 +4,7 @@
 #include <EntityManager.h>
 #include <Components/Inventory.h>
 #include <PriceSupplier.h>
+#include <UI/ContextProvider.h>
 
 InventoryWidget::InventoryWidget()
 	: m_selected(-1)
@@ -140,12 +141,20 @@ void InventoryWidget::Select(int index)
 
 void InventoryWidget::OnRightClick(int index)
 {
+	if (m_contextProvider == nullptr)
+		return;
+
 	auto contextMenu = GameWindow::GetWindow<ContextMenu>("context_menu");
 	contextMenu->SetPosition(GetScreenMouseLocation());
 	contextMenu->Show(true);
 
 	contextMenu->ClearOptions();
+
+	if (m_itemWidgets[index]->GetItem()->IsEquippable()) 
+	{
+		contextMenu->AddGroup("Equip",
+		{ { "Slot-One", [] { printf("equipping slot 1\n"); } } });
+	}
+	
 	contextMenu->AddOption({ "Jettison", [] {printf("Jettison\n"); } });
-	contextMenu->AddGroup("Equip",
-	{ {"Slot-One", [] { printf("equipping slot 1\n"); }} });	
 }

@@ -349,6 +349,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\ContextMenu.h" />
+    <ClInclude Include="UI\ContextProvider.h" />
     <ClInclude Include="UI\DataFileSelector.h" />
     <ClInclude Include="UI\ItemDragHandler.h" />
     <ClInclude Include="UI\LaserRigEditorWidget.h" />
