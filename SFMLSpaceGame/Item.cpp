@@ -22,6 +22,13 @@ void Item::Stack(const Item& other)
 	amount += other.amount;
 }
 
+bool Item::AreStackable(const Item& other)
+{
+	return type == other.type
+		&& (!IsDetailed()
+			|| GetDetail() == other.GetDetail());
+}
+
 bool Item::IsDetailed() const
 {
 	return type == ItemType::LaserRig;

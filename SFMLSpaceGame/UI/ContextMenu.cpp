@@ -126,6 +126,13 @@ void ContextMenu::ClearOptions()
 	m_groups.clear();
 }
 
+void ContextMenu::Close()
+{
+	for (auto& gw : m_groups)
+		gw->Show(false);
+	Show(false);
+}
+
 ContextMenu::Option::Option(const std::string opt, Callback click, Callback hovStart, Callback hovEnd)
 	: option(opt),
 	  onClick(click),

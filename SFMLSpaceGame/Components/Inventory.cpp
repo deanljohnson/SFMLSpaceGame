@@ -44,9 +44,10 @@ void Inventory::SetCredits(int c)
 void Inventory::AddItem(std::shared_ptr<Item> item)
 {
 	bool stacked = false;
+
 	for (auto& i : *this)
 	{
-		if (i->type == item->type)
+		if (i->AreStackable(*item))
 		{
 			i->Stack(*item.get());
 			stacked = true;
@@ -59,9 +60,10 @@ void Inventory::AddItem(std::shared_ptr<Item> item)
 
 void Inventory::RemoveItem(std::shared_ptr<Item> item)
 {
+	bool detailed = item->IsDetailed();
 	for (size_t i = 0; i < m_items.size(); i++)
 	{
-		if (m_items[i]->type == item->type)
+		if (m_items[i]->AreStackable(*item))
 		{
 			if (item->amount >= m_items[i]->amount)
 				m_items.erase(m_items.begin() + i);

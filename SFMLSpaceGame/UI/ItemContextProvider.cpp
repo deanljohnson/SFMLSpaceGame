@@ -23,9 +23,10 @@ void ItemContextProvider::SetContextOptions(ContextMenu& contextMenu, std::share
 				options.push_back(
 				{ "Slot " + std::to_string(i),
 					// Click callback
-					[item, i, this] 
+					[item, i, &contextMenu, this]
 					{ 
 						if (m_equipHandler != nullptr) m_equipHandler(item, i);
+						contextMenu.Close();
 					},
 					// Start Button hover callback
 					[item, i, this]

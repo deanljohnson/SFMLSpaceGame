@@ -41,6 +41,11 @@ Entity* EntityHandle::operator->()
 	return m_entity;
 }
 
+const Entity* EntityHandle::operator->() const
+{
+	return m_entity;
+}
+
 Entity* EntityHandle::GetRawPointer()
 {
 	return m_entity;

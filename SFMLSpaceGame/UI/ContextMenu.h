@@ -40,4 +40,6 @@ public:
 
 	// Removes all options from the menu
 	void ClearOptions();
+
+	void Close();
 };

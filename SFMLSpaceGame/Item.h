@@ -35,6 +35,7 @@ public:
 
 	void Stack(const Item& other);
 
+	bool AreStackable(const Item& other);
 	bool IsDetailed() const;
 	bool IsEquippable() const;
 

@@ -26,6 +26,7 @@ public:
 	bool IsValid();
 
 	Entity* operator->();
+	const Entity* operator->() const;
 	Entity* GetRawPointer();
 
 	EntityID GetID() const { return m_ID; };

@@ -30,6 +30,7 @@ private:
 
 	void DrawShipCanvas();
 
+	void AddItem(std::shared_ptr<Item> item);
 	void RemoveItem(std::shared_ptr<Item> item);
 
 	// Highlights a specific hardpoint on the ship image

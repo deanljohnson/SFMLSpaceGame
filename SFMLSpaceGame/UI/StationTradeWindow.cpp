@@ -137,7 +137,13 @@ void StationTradeWindow::OnBuyItemChange(std::shared_ptr<Item> item)
 		auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 		auto sellPrice = stationAgent.GetSellPrice(item->type, item->GetDetail());
 
-		amt = std::min(amt, playerCredits / sellPrice);
+		// If the sell price is 0, the station
+		// is essentially giving the item away
+		// and so the player can take as many as
+		// they want
+		amt = sellPrice == 0 
+			? item->amount
+			: std::min(amt, playerCredits / sellPrice);
 	}
 
 	adjustment->SetUpper(amt);
