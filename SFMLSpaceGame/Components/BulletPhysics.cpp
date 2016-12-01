@@ -92,14 +92,11 @@ bool BulletPhysics::HandleCollisions()
 				contact->contact->GetWorldManifold(&manifold);
 
 				auto otherEnt = static_cast<Entity*>(userData);
-				Event attackedEvent;
-				attackedEvent.attacked = Event::AttackedEvent();
-				attackedEvent.attacked.attackerID = m_sourceEntity;
-				attackedEvent.attacked.damage = m_damage;
-				attackedEvent.attacked.collisionX = m_position.X();
-				attackedEvent.attacked.collisionY = m_position.Y();
-				attackedEvent.type = EventType::Attacked;
-				otherEnt->events.Push(attackedEvent);
+				std::unique_ptr<AttackedEvent> attackedEvent
+				{
+					new AttackedEvent(m_sourceEntity, m_damage, m_position.X(), m_position.Y())
+				};
+				otherEnt->events.Push(move(attackedEvent));
 			}
 			
 			break;

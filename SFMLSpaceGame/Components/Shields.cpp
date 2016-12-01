@@ -83,9 +83,9 @@ void Shields::SetActive(Direction dirMask)
 	}
 }
 
-void Shields::Modify(Event& event) 
+void Shields::Modify(AttackedEvent* event) 
 {
-	b2Vec2 collisionPos{event.attacked.collisionX, event.attacked.collisionY};
+	b2Vec2 collisionPos{event->collisionX, event->collisionY};
 
 	// calculate the localized difference between the contact 
 	// point and our current location
@@ -135,56 +135,56 @@ void Shields::SetShieldData(ShieldData* data)
 	SetActive(m_activationMask); 
 }
 
-void Shields::AbsorbFrontDamage(Event& event) 
+void Shields::AbsorbFrontDamage(AttackedEvent* event)
 {
-	float newShieldStrength = m_currentFrontStrength - event.attacked.damage;
+	float newShieldStrength = m_currentFrontStrength - event->damage;
 
 	if (newShieldStrength > 0) 
 	{
 		// full absorption
 		m_currentFrontStrength = newShieldStrength;
-		event.attacked.damage = 0;
+		event->damage = 0;
 	}
 	else
 	{ 
 		float damageTaken = abs(newShieldStrength);
-		event.attacked.damage = damageTaken;
+		event->damage = damageTaken;
 		OnShieldDeplete();
 	}
 }
 
-void Shields::AbsorbSideDamage(Event& event)
+void Shields::AbsorbSideDamage(AttackedEvent* event)
 {
-	float newShieldStrength = m_currentSideStrength - event.attacked.damage;
+	float newShieldStrength = m_currentSideStrength - event->damage;
 
 	if (newShieldStrength > 0)
 	{
 		// full absorption
 		m_currentSideStrength = newShieldStrength;
-		event.attacked.damage = 0;
+		event->damage = 0;
 	}
 	else
 	{
 		float damageTaken = abs(newShieldStrength);
-		event.attacked.damage = damageTaken;
+		event->damage = damageTaken;
 		OnShieldDeplete();
 	}
 }
 
-void Shields::AbsorbRearDamage(Event& event)
+void Shields::AbsorbRearDamage(AttackedEvent* event)
 {
-	float newShieldStrength = m_currentRearStrength - event.attacked.damage;
+	float newShieldStrength = m_currentRearStrength - event->damage;
 
 	if (newShieldStrength > 0)
 	{
 		// full absorption
 		m_currentRearStrength = newShieldStrength;
-		event.attacked.damage = 0;
+		event->damage = 0;
 	}
 	else
 	{
 		float damageTaken = abs(newShieldStrength);
-		event.attacked.damage = damageTaken;
+		event->damage = damageTaken;
 		OnShieldDeplete();
 	}
 }

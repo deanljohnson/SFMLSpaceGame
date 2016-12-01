@@ -37,10 +37,11 @@ void ItemPickup::Update()
 
 				for (auto i : m_items)
 				{
-					Event itemEvent;
-					itemEvent.itemPickup = Event::ItemPickupEvent(i);
-					itemEvent.type = EventType::ItemPickup;
-					otherEnt->events.Push(itemEvent);
+					std::unique_ptr<ItemPickupEvent> itemEvent
+					{
+						new ItemPickupEvent(i)
+					};
+					otherEnt->events.Push(move(itemEvent));
 				}
 
 				entity->Destroy();

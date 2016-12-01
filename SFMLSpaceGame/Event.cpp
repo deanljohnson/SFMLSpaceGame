@@ -1,65 +1,33 @@
 #include "stdafx.h"
 #include <Event.h>
 
-Event::Event()
-	: type(EventType::None)
-{}
-
-Event::Event(const Event& other)
-	: type(other.type),
-	  handled(other.handled)
+Event::Event(EventType _type)
+	: type(_type), handled(false)
 {
-	switch(type)
-	{
-	case EventType::ItemPickup:
-		itemPickup = other.itemPickup;
-		break;
-	case EventType::PlayerSpawned:
-		playerSpawned = other.playerSpawned;
-		break;
-	case EventType::PlayerDied:
-		playerDied = other.playerDied;
-		break;
-	case EventType::Attacked:
-		attacked = other.attacked;
-		break;
-	}
 }
 
-Event::~Event()
+AttackedEvent::AttackedEvent(EntityID _attackedID, float _damage, float _collisionX, float _collisionY)
+	: Event(EventType::Attacked),
+	  attackerID(_attackedID),
+	  damage(_damage),
+	  collisionX(_collisionX),
+	  collisionY(_collisionY)
 {
-	switch (type)
-	{
-	case EventType::ItemPickup:
-		itemPickup.~ItemPickupEvent();
-		break;
-	}
 }
 
-Event& Event::operator=(const Event& other)
+PlayerDiedEvent::PlayerDiedEvent()
+	: Event(EventType::PlayerDied)
 {
-	type = other.type;
-	handled = other.handled;
-
-	switch(type)
-	{
-	case EventType::ItemPickup:
-		itemPickup = other.itemPickup;
-		break;
-	case EventType::PlayerSpawned:
-		playerSpawned = other.playerSpawned;
-		break;
-	case EventType::PlayerDied:
-		playerDied = other.playerDied;
-		break;
-	case EventType::Attacked:
-		attacked = other.attacked;
-		break;
-	}
-
-	return *this;
 }
 
-Event::ItemPickupEvent::ItemPickupEvent(std::shared_ptr<Item> i)
-	: item(i)
-{}
+PlayerSpawnedEvent::PlayerSpawnedEvent(EntityID id)
+	: Event(EventType::PlayerSpawned),
+	  ID(id)
+{
+}
+
+ItemPickupEvent::ItemPickupEvent(std::shared_ptr<Item> _item)
+	: Event(EventType::ItemPickup),
+	  item(_item)
+{
+}

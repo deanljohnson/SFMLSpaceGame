@@ -22,10 +22,10 @@ void DamageOnAttacked::Update()
 {
 	if (entity->events.Count() > 0)
 	{
-		Event event;
-		if (entity->events.Get(EventType::Attacked, event))
+		AttackedEvent* attackdEvent{ nullptr };
+		if (attackdEvent = entity->events.Get<EventType::Attacked>())
 		{
-			HandleAttack(event);
+			HandleAttack(attackdEvent);
 		}
 	}
 }
@@ -35,12 +35,12 @@ void DamageOnAttacked::AddModifier(AttackedEventModifier* modifier)
 	m_modifiers.push_back(modifier);
 }
 
-void DamageOnAttacked::HandleAttack(Event& event) 
+void DamageOnAttacked::HandleAttack(AttackedEvent* event) 
 {
 	for (auto m : m_modifiers) 
 	{
 		m->Modify(event);
 	}
 
-	m_health.RemoveHealth(event.attacked.damage);
+	m_health.RemoveHealth(event->damage);
 }

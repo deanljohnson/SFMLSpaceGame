@@ -53,9 +53,9 @@ private:
 
 	void OnShieldDeplete();
 
-	void AbsorbFrontDamage(Event& event);
-	void AbsorbSideDamage(Event& event);
-	void AbsorbRearDamage(Event& event);
+	void AbsorbFrontDamage(AttackedEvent* event);
+	void AbsorbSideDamage(AttackedEvent* event);
+	void AbsorbRearDamage(AttackedEvent* event);
 
 	std::function<void(Direction, const b2Vec2&)> m_shieldHitCallback{nullptr};
 
@@ -87,7 +87,7 @@ public:
 	virtual void Update() override;
 
 	void SetActive(Direction dir);
-	void Modify(Event& event) override;
+	void Modify(AttackedEvent* event) override;
 
 	void SetShieldHitCallback(std::function<void(Direction, const b2Vec2&)> callback);
 	void SetShieldData(ShieldData* data);

@@ -15,9 +15,9 @@ void ParallaxTargetAssigner::Update()
 	if (m_parallax.HasValidTarget())
 		return;
 
-	Event event;
-	if (GameState::pendingGameEvents.Get(EventType::PlayerSpawned, event))
+	PlayerSpawnedEvent* event{nullptr};
+	if (event = GameState::pendingGameEvents.Get<EventType::PlayerSpawned>())
 	{
-		m_parallax.SetTarget(EntityManager::Get(event.playerSpawned.ID));
+		m_parallax.SetTarget(EntityManager::Get(event->ID));
 	}
 }

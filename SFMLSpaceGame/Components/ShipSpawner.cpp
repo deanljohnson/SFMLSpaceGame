@@ -54,7 +54,7 @@ void ShipSpawner::DoTimed()
 
 void ShipSpawner::DoEvent()
 {
-	Event event;
+	Event* event{nullptr};
 	if (GameState::pendingGameEvents.Get(m_eventType, event))
 	{
 		Spawn();
@@ -75,11 +75,8 @@ void ShipSpawner::Spawn()
 		auto playerID = EntityFactory::CreatePlayer(loc);
 		PlayerData::GetActive()->SetID(playerID);
 
-		Event playerSpawned = Event();
-		playerSpawned.playerSpawned = Event::PlayerSpawnedEvent();
-		playerSpawned.playerSpawned.ID = playerID;
-		playerSpawned.type = EventType::PlayerSpawned;
+		std::unique_ptr<PlayerSpawnedEvent> playerSpawned{new PlayerSpawnedEvent(playerID)};
 
-		GameState::pendingGameEvents.Push(playerSpawned);
+		GameState::pendingGameEvents.Push(move(playerSpawned));
 	}
 }

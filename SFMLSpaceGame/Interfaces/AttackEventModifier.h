@@ -1,6 +1,6 @@
 #pragma once
 
-class Event;
+class AttackedEvent;
 
 class AttackedEventModifier 
 {
@@ -9,5 +9,5 @@ public:
 	{
 	}
 
-	virtual void Modify(Event& event) = 0;
+	virtual void Modify(AttackedEvent* event) = 0;
 };

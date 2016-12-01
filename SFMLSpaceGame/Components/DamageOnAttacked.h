@@ -3,6 +3,7 @@
 
 class Health;
 class AttackedEventModifier;
+class AttackedEvent;
 
 class DamageOnAttacked : public Component, public DefaultSerializeable<DamageOnAttacked>
 {
@@ -10,7 +11,7 @@ private:
 	Health& m_health;
 	std::vector<AttackedEventModifier*> m_modifiers;
 
-	void HandleAttack(Event& event);
+	void HandleAttack(AttackedEvent* event);
 public:
 	explicit DamageOnAttacked(EntityID ent);
 	DamageOnAttacked(EntityID ent, std::initializer_list<AttackedEventModifier*> modifiers);

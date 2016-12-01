@@ -9,9 +9,9 @@ PlayerDeathBroadcaster::PlayerDeathBroadcaster(EntityID ent)
 
 void PlayerDeathBroadcaster::OnDestroy()
 {
-	Event playerDead{};
-	playerDead.playerDied = Event::PlayerDiedEvent();
-	playerDead.type = EventType::PlayerDied;
-
-	GameState::pendingGameEvents.Push(playerDead);
+	std::unique_ptr<PlayerDiedEvent> playerDied
+	{
+		new PlayerDiedEvent()
+	};
+	GameState::pendingGameEvents.Push(move(playerDied));
 }

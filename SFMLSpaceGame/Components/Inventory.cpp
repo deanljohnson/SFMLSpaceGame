@@ -11,10 +11,10 @@ Inventory::Inventory(EntityID ent)
 
 void Inventory::Update()
 {
-	Event event;
-	while (entity->events.Get(EventType::ItemPickup, event, true))
+	ItemPickupEvent* itemEvent{nullptr};
+	while (itemEvent = entity->events.Get<EventType::ItemPickup>(true))
 	{
-		AddItem(event.itemPickup.item);
+		AddItem(itemEvent->item);
 	}
 }
 

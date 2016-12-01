@@ -1,25 +1,30 @@
 #include "stdafx.h"
 #include <EventQueue.h>
 
-void EventQueue::Push(Event e)
+EventQueue::EventQueue()
+	: m_events(), 
+	  m_pendingIndex(0)
+{}
+
+void EventQueue::Push(std::unique_ptr<Event> e)
 {
-	m_events.push_back(e);
+	m_events.push_back(move(e));
 }
 
-bool EventQueue::Get(EventType type, Event& target, bool markHandled)
+bool EventQueue::Get(EventType type, Event* target, bool markHandled)
 {
 	// Iterate through events from the last update.
 	// Anything after the pending index has been added 
 	// to the event queue since the last call to 
 	// EventQueue.Update
-	for (int i = 0; i < m_pendingIndex; i++) 
+	for (int i = 0; i < m_pendingIndex; i++)
 	{
-		if (m_events[i].type == type && !m_events[i].handled)
+		if (m_events[i]->type == type && !m_events[i]->handled)
 		{
 			if (markHandled)
-				m_events[i].handled = true;
+				m_events[i]->handled = true;
 
-			target = m_events[i];
+			target = m_events[i].get();
 			return true;
 		}
 	}

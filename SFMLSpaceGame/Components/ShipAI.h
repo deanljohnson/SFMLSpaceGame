@@ -20,7 +20,7 @@ private:
 
 	void ProcessEvents();
 	void ProcessAIState();
-	void HandleAttackedEvent(Event::AttackedEvent event);
+	void HandleAttackedEvent(AttackedEvent* event);
 
 	void FindStation();
 

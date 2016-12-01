@@ -31,10 +31,10 @@ void ShipAI::ProcessEvents()
 {
 	if (entity->events.Count() > 0)
 	{
-		Event event;
-		if (entity->events.Get(EventType::Attacked, event))
+		AttackedEvent* event{nullptr};
+		if (event = entity->events.Get<EventType::Attacked>())
 		{
-			HandleAttackedEvent(event.attacked);
+			HandleAttackedEvent(event);
 		}
 	}
 }
@@ -70,16 +70,16 @@ void ShipAI::ProcessAIState()
 	}
 }
 
-void ShipAI::HandleAttackedEvent(Event::AttackedEvent event)
+void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 {
-	if (!EntityManager::IsValidID(event.attackerID))
+	if (!EntityManager::IsValidID(event->attackerID))
 		return;
 
-	auto ent = EntityManager::Get(event.attackerID);
+	auto ent = EntityManager::Get(event->attackerID);
 
 	m_targetHandle = ent;
 
-	m_controller.SetTarget(event.attackerID);
+	m_controller.SetTarget(event->attackerID);
 	m_controller.Set(StrafeToTargetsRearForAttack);
 	m_controller.Set(FireGunsWhenFacingTarget);
 	m_controller.SetThrusterPower(HIGH_THRUSTER_POWER);
