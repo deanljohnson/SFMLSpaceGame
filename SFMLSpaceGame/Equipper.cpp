@@ -8,7 +8,7 @@ namespace Equipper
 {
 	namespace
 	{
-		void DoLaserRigEquip(LaserRigItem* laserRig, EntityID id, size_t slot)
+		void DoLaserRigEquip(std::shared_ptr<LaserRigItem> laserRig, EntityID id, size_t slot)
 		{
 			auto handle = EntityManager::Get(id);
 			auto& shipStats = handle->GetComponent<ShipStatsComponent>();
@@ -23,12 +23,12 @@ namespace Equipper
 		}
 	}
 
-	void Equip(Item* item, EntityID id, size_t slot)
+	void Equip(std::shared_ptr<Item> item, EntityID id, size_t slot)
 	{
 		switch(item->type)
 		{
 		case ItemType::LaserRig: 
-			DoLaserRigEquip(static_cast<LaserRigItem*>(item), id, slot); 
+			DoLaserRigEquip(std::dynamic_pointer_cast<LaserRigItem>(item), id, slot);
 			break;
 		default: break;
 		}

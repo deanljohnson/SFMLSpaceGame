@@ -28,7 +28,7 @@ void InventoryWidget::Update()
 	}
 }
 
-Item* InventoryWidget::GetSelected()
+std::shared_ptr<Item> InventoryWidget::GetSelected()
 {
 	if (m_selected == -1) return nullptr;
 	return m_itemWidgets[m_selected]->GetItem();
@@ -64,7 +64,7 @@ void InventoryWidget::SetTarget(EntityID id)
 			continue;
 		}
 
-		auto item = InventoryItemWidget::Create("trade-icons", it->get());
+		auto item = InventoryItemWidget::Create("trade-icons", *it);
 
 		if (m_prices.HasPriceForType(it->get()->type, it->get()->GetDetail()))
 		{
@@ -117,7 +117,7 @@ void InventoryWidget::SetContextProvider(std::shared_ptr<ItemContextProvider> co
 	m_contextProvider = contextProvider;
 }
 
-void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(Item*)> callback)
+void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(std::shared_ptr<Item>)> callback)
 {
 	m_itemSelectionChangeCallbacks.push_back(callback);
 }

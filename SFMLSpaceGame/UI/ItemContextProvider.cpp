@@ -7,7 +7,7 @@ void ItemContextProvider::SetEquipSlotCounts(ItemType type, size_t count)
 	m_equipSlotCounts[type] = count;
 }
 
-void ItemContextProvider::SetContextOptions(ContextMenu& contextMenu, Item* item)
+void ItemContextProvider::SetContextOptions(ContextMenu& contextMenu, std::shared_ptr<Item> item)
 {
 	if (item->IsEquippable())
 	{

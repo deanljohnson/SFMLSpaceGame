@@ -10,7 +10,7 @@ int InventoryItemWidget::m_widgetCount = 0;
 std::shared_ptr<TextureMap<std::string>> InventoryItemWidget::m_atlas{ nullptr };
 std::shared_ptr<sfg::PrimitiveTexture> InventoryItemWidget::m_guiTexture{ nullptr };
 
-InventoryItemWidget::InventoryItemWidget(const std::string& atlas, Item* item)
+InventoryItemWidget::InventoryItemWidget(const std::string& atlas, std::shared_ptr<Item> item)
 	: m_item(item), m_selected(false), m_priceSet(false)
 {
 	m_widgetCount++;
@@ -34,7 +34,7 @@ InventoryItemWidget::~InventoryItemWidget()
 	}
 }
 
-InventoryItemWidget::Ptr InventoryItemWidget::Create(const std::string& atlas, Item* item)
+InventoryItemWidget::Ptr InventoryItemWidget::Create(const std::string& atlas, std::shared_ptr<Item> item)
 {
 	return std::shared_ptr<InventoryItemWidget>(new InventoryItemWidget(atlas, item));
 }
@@ -45,13 +45,13 @@ const std::string& InventoryItemWidget::GetName() const
 	return name;
 }
 
-void InventoryItemWidget::SetItem(Item* item)
+void InventoryItemWidget::SetItem(std::shared_ptr<Item>item)
 {
 	m_item = item;
 	Invalidate();
 }
 
-Item* InventoryItemWidget::GetItem() const
+std::shared_ptr<Item> InventoryItemWidget::GetItem() const
 {
 	return m_item;
 }

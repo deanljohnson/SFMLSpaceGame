@@ -15,9 +15,14 @@ InventoryWindow::InventoryWindow()
 	  m_contextProvider(std::make_shared<ItemContextProvider>())
 {
 	m_invenWidget.SetContextProvider(m_contextProvider);
-	m_contextProvider->SetEquipHandler([this](Item* i, size_t slot) { Equipper::Equip(i, m_targetHandle.GetID(), slot); });
+	m_contextProvider->SetEquipHandler(
+		[this](std::shared_ptr<Item> i, size_t slot)
+		{
+			RemoveItem(i);
+			Equipper::Equip(i, m_targetHandle.GetID(), slot);
+		});
 	m_contextProvider->SetHoverHandler(
-		[this](Item* i, size_t slot, bool highlight)
+		[this](std::shared_ptr<Item> i, size_t slot, bool highlight)
 		{
 			HardPointWidget::Type t;
 			switch (i->type)
@@ -123,7 +128,7 @@ void InventoryWindow::LoadHardPoints()
 		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
 		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::Gun));
 		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
-		m_hardPointWidgets.back().SetAlpha(100);
+		m_hardPointWidgets.back().SetAlpha(100); // start dim
 	}
 
 	auto& missileHardPoints = targetStats->GetMissileLauncherData()->hardPoints;
@@ -132,7 +137,7 @@ void InventoryWindow::LoadHardPoints()
 		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
 		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::MissileLauncher));
 		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
-		m_hardPointWidgets.back().SetAlpha(100);
+		m_hardPointWidgets.back().SetAlpha(100); // start dim
 	}
 }
 
@@ -151,6 +156,15 @@ void InventoryWindow::DrawShipCanvas()
 	m_shipCanvas->Unbind();
 }
 
+void InventoryWindow::RemoveItem(std::shared_ptr<Item> item)
+{
+	auto& inven = m_targetHandle->GetComponent<Inventory>();
+	inven.RemoveItem(item);
+
+	// This rebuilds the inventory in the UI
+	SetTarget(m_targetHandle.GetID());
+}
+
 void InventoryWindow::HighlightHardPoint(HardPointWidget::Type type, size_t slot, bool highlight)
 {
 	// all types of hard points are kept in the same list, 
@@ -164,10 +178,9 @@ void InventoryWindow::HighlightHardPoint(HardPointWidget::Type type, size_t slot
 			// change alpha to give a highlighting effect
 			int8 alpha = highlight ? 255 : 100;
 			m_hardPointWidgets[i].SetAlpha(alpha);
-			DrawShipCanvas();
+			DrawShipCanvas(); // redraw to see the change
 			break;
 		}
-
 		if (m_hardPointWidgets[i].GetType() == type)
 		{
 			slot--;
