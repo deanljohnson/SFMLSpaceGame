@@ -12,7 +12,7 @@
 
 #include <UI/ColliderEditor.h>
 #include <UI/ConfirmationDialog.h>
-//#include <UI/ContextProvider.h>
+//#include <UI/ItemContextProvider.h>
 //#include <UI/ContextMenu.h>
 #include <UI/DataFileSelector.h>
 #include <UI/GameWindow.h>

@@ -3,7 +3,7 @@
 #include <UI/ContextMenu.h>
 #include <EntityManager.h>
 #include <Components/Inventory.h>
-#include <UI/ContextProvider.h>
+#include <UI/ItemContextProvider.h>
 
 InventoryWidget::InventoryWidget()
 	: m_selected(-1)
@@ -112,7 +112,7 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 	}
 }
 
-void InventoryWidget::SetContextProvider(std::shared_ptr<ContextProvider> contextProvider) 
+void InventoryWidget::SetContextProvider(std::shared_ptr<ItemContextProvider> contextProvider) 
 {
 	m_contextProvider = contextProvider;
 }
@@ -149,7 +149,7 @@ void InventoryWidget::OnRightClick(int index)
 		return;
 
 	auto contextMenu = GameWindow::GetWindow<ContextMenu>("context_menu");
-	contextMenu->SetPosition(GetScreenMouseLocation());
+	contextMenu->SetPosition(GetScreenMouseLocation() - sf::Vector2f{5,5});
 	contextMenu->Show(true);
 
 	contextMenu->ClearOptions();

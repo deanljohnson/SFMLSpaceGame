@@ -5,7 +5,7 @@
 #include <SFGUI\Widgets.hpp>
 #include <PriceSupplier.h>
 
-class ContextProvider;
+class ItemContextProvider;
 
 class InventoryWidget
 {
@@ -14,7 +14,7 @@ private:
 	sfg::Box::Ptr m_scrollWindowBox;
 
 	PriceSupplier m_prices;
-	std::shared_ptr<ContextProvider> m_contextProvider;
+	std::shared_ptr<ItemContextProvider> m_contextProvider;
 
 	EntityHandle m_targetHandle;
 
@@ -37,7 +37,7 @@ public:
 	void SetTarget(EntityID id);
 
 	void SetPriceSupplier(const PriceSupplier& prices);
-	void SetContextProvider(std::shared_ptr<ContextProvider> contextProvider);
+	void SetContextProvider(std::shared_ptr<ItemContextProvider> contextProvider);
 
 	void AddItemSelectionChangeCallback(std::function<void(Item*)> callback);
 };

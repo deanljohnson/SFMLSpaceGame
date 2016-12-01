@@ -46,12 +46,17 @@ void ContextMenu::AddOption(const Option& option)
 void ContextMenu::AddGroup(const std::string& groupName, 
 							std::initializer_list<Option> options) 
 {
+	AddGroup(groupName, options);
+}
+
+void ContextMenu::AddGroup(const std::string& groupName, const std::vector<Option>& options)
+{
 	// Create the grouping
 	auto groupWindow = sfg::Window::Create(sfg::Window::BACKGROUND);
 	auto groupBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 
 	// Add options to the group
-	for (auto o : options) 
+	for (auto o : options)
 	{
 		AddOption(o.first, o.second, groupBox);
 	}
@@ -64,12 +69,12 @@ void ContextMenu::AddGroup(const std::string& groupName,
 	std::weak_ptr<sfg::Window> groupWindowWP{ groupWindow };
 
 	auto groupButton = AddOption(groupName + "->", [this, groupWindowWP]()
-	{ 
+	{
 		if (groupWindowWP.expired())
 			throw "Ptr to group window expired in context menu";
 		auto gw = groupWindowWP.lock();
 		// Place group popup at mouse
-		gw->SetPosition(GetScreenMouseLocation());
+		gw->SetPosition(GetScreenMouseLocation() - sf::Vector2f{ 5,5 });
 		gw->Show(true);
 		m_groupOpen = true;
 		// Make sure the popup is not covered

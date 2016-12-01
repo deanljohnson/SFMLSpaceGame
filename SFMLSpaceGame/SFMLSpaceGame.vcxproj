@@ -268,7 +268,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\ColliderEditor.cpp" />
     <ClCompile Include="UI\ConfirmationDialog.cpp" />
     <ClCompile Include="UI\ContextMenu.cpp" />
-    <ClCompile Include="UI\ContextProvider.cpp" />
+    <ClCompile Include="UI\ItemContextProvider.cpp" />
     <ClCompile Include="UI\GameWindow.cpp" />
     <ClCompile Include="UI\HardPointEditor.cpp" />
     <ClCompile Include="UI\HardPointWidget.cpp" />
@@ -350,7 +350,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Rig.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\ContextMenu.h" />
-    <ClInclude Include="UI\ContextProvider.h" />
+    <ClInclude Include="UI\ItemContextProvider.h" />
     <ClInclude Include="UI\DataFileSelector.h" />
     <ClInclude Include="UI\ItemDragHandler.h" />
     <ClInclude Include="UI\LaserRigEditorWidget.h" />

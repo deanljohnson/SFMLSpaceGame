@@ -25,6 +25,7 @@ public:
 
 	// Add the given options under an expanding option
 	void AddGroup(const std::string& groupName, std::initializer_list<Option> options);
+	void AddGroup(const std::string& groupName, const std::vector<Option>& options);
 
 	// Removes all options from the menu
 	void ClearOptions();

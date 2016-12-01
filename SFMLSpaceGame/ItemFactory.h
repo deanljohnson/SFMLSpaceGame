@@ -19,7 +19,7 @@ namespace ItemFactory
 					Case<T == ItemType::Ore, OreItem,
 					void>>>>>>;
 	};
-
+	
 	// simplifies syntax
 	template<ItemType T>
 	using ItemTypeType = typename ItemTypeType_<T>::type;

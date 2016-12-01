@@ -17,6 +17,7 @@ private:
 	sfg::Label::Ptr m_creditsLabel;
 
 	InventoryWidget m_invenWidget;
+	std::shared_ptr<ItemContextProvider> m_contextProvider;
 
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;

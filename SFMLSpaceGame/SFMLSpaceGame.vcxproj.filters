@@ -378,7 +378,7 @@
     <ClCompile Include="UI\ContextMenu.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\ContextProvider.cpp">
+    <ClCompile Include="UI\ItemContextProvider.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -806,7 +806,7 @@
     <ClInclude Include="UI\ContextMenu.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\ContextProvider.h">
+    <ClInclude Include="UI\ItemContextProvider.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>

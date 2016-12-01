@@ -2,17 +2,18 @@
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
 #include <UI/UI.h>
-#include <UI/ContextProvider.h>
+#include <UI/ItemContextProvider.h>
 #include <PlayerData.h>
-#include <Components/ShipStatsComponent.h>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
 
 InventoryWindow::InventoryWindow()
 	: GameWindow("inventory"),
-	  m_invenWidget()
+	  m_invenWidget(),
+	  m_contextProvider(std::make_shared<ItemContextProvider>())
 {
-	m_invenWidget.SetContextProvider(std::make_shared<ContextProvider>());
+	m_invenWidget.SetContextProvider(m_contextProvider);
+	m_contextProvider->SetEquipSlotCounts(ItemType::LaserRig, 5);
 
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");
