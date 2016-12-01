@@ -43,6 +43,8 @@ public:
 	void SetPositionControlLocation(float x, float y);
 	void SetAngleControlLocation(float x, float y);
 
+	void SetAlpha(int8 alpha);
+
 	sf::Vector2f GetHardPointLocation() const;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

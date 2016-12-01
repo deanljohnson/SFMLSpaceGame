@@ -26,6 +26,7 @@ private:
 
 	void Select(int index);
 	void OnRightClick(int index);
+
 public:
 	InventoryWidget();
 

@@ -23,7 +23,7 @@ HardPointWidget::HardPointWidget(const sf::Vector2f& position, Type type)
 		mlShape->setPoint(0, { 0.f, 0.f });
 		mlShape->setPoint(1, { 12.f, 6.f });
 		mlShape->setPoint(2, { 0.f, 12.f });
-		m_posControl = std::move(mlShape);
+		m_posControl = move(mlShape);
 		break;
 	default:
 		throw "unrecognized hard point type";
@@ -78,6 +78,22 @@ void HardPointWidget::SetAngleControlLocation(float x, float y)
 {
 	auto dif = sf::Vector2f(x, y) - m_posControl->getPosition();
 	SetAngle(atan2f(dif.y, dif.x));
+}
+
+void HardPointWidget::SetAlpha(int8 alpha)
+{
+	auto posColor = m_posControl->getFillColor();
+	auto angColor = m_angleControl->getFillColor();
+	auto armColor = m_arm[0].color;
+
+	posColor.a = alpha;
+	angColor.a = alpha;
+	armColor.a = alpha;
+
+	m_posControl->setFillColor(posColor);
+	m_angleControl->setFillColor(angColor);
+	m_arm[0].color = armColor;
+	m_arm[1].color = armColor;
 }
 
 sf::Vector2f HardPointWidget::GetHardPointLocation() const

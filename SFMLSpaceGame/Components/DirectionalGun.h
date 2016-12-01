@@ -19,6 +19,10 @@ struct DirectionalGunData
 	std::vector<std::shared_ptr<LaserRig>> rigs;
 	ResourceID soundID{0};
 
+	// Loads the laser rig identified by the given name
+	// to the given index in the LaserRig array
+	void LoadNewLaserRig(const std::string& rigName, size_t index);
+
 	template<class Archive>
 	void save(Archive& ar) const 
 	{

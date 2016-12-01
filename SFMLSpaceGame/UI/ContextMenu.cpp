@@ -21,26 +21,54 @@ ContextMenu::ContextMenu()
 	m_window->Add(m_optionBox);
 }
 
-sfg::Button::Ptr ContextMenu::AddOption(const std::string& option, Callback callback, sfg::Box::Ptr box)
+sfg::Button::Ptr ContextMenu::AddOption(const Option& option, sfg::Box::Ptr box)
 {
-	auto b = sfg::Button::Create(option);
+	auto b = sfg::Button::Create(option.option);
+
+	auto click = option.onClick;
+	auto hovStart = option.onHoverStart;
+	auto hovEnd = option.onHoverEnd;
 
 	b->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[callback] { if (callback != nullptr) callback(); });
+		[click] { if (click != nullptr) click(); });
+	b->GetSignal(sfg::Button::OnMouseEnter).Connect(
+		[hovStart] { if (hovStart != nullptr) hovStart(); });
+	b->GetSignal(sfg::Button::OnMouseLeave).Connect(
+		[hovEnd] { if (hovEnd != nullptr) hovEnd(); });
 
 	box->Pack(b);
 
 	return b;
 }
 
-void ContextMenu::AddOption(const std::string& option, Callback callback) 
+void ContextMenu::OpenGroupWindow(std::weak_ptr<sfg::Window> groupWindow)
 {
-	AddOption(option, callback, m_optionBox);
+	if (groupWindow.expired())
+		throw "Ptr to group window expired in context menu";
+	auto gw = groupWindow.lock();
+	// Place group popup at mouse
+	gw->SetPosition(GetScreenMouseLocation() - sf::Vector2f{ 5,5 });
+	gw->Show(true);
+	m_groupOpen = true;
+	// Make sure the popup is not covered
+	UI::Singleton->BringToFront(gw);
+}
+
+void ContextMenu::CloseGroupWindow(std::weak_ptr<sfg::Window> groupWindow)
+{
+	if (groupWindow.expired())
+		throw "Ptr to group window expired in context menu";
+	auto gw = groupWindow.lock();
+	m_groupOpen = false;
+	gw->Show(false);
+	// If the mouse is now out of the context menu, hide the context menu
+	if (!WidgetHelpers::MouseInWidget(m_window))
+		Show(false);
 }
 
 void ContextMenu::AddOption(const Option& option) 
 {
-	AddOption(option.first, option.second, m_optionBox);
+	AddOption(option, m_optionBox);
 }
 
 void ContextMenu::AddGroup(const std::string& groupName, 
@@ -56,9 +84,9 @@ void ContextMenu::AddGroup(const std::string& groupName, const std::vector<Optio
 	auto groupBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 
 	// Add options to the group
-	for (auto o : options)
+	for (auto& o : options)
 	{
-		AddOption(o.first, o.second, groupBox);
+		AddOption(o, groupBox);
 	}
 
 	m_groups.push_back(groupWindow);
@@ -68,30 +96,20 @@ void ContextMenu::AddGroup(const std::string& groupName, const std::vector<Optio
 
 	std::weak_ptr<sfg::Window> groupWindowWP{ groupWindow };
 
-	auto groupButton = AddOption(groupName + "->", [this, groupWindowWP]()
-	{
-		if (groupWindowWP.expired())
-			throw "Ptr to group window expired in context menu";
-		auto gw = groupWindowWP.lock();
-		// Place group popup at mouse
-		gw->SetPosition(GetScreenMouseLocation() - sf::Vector2f{ 5,5 });
-		gw->Show(true);
-		m_groupOpen = true;
-		// Make sure the popup is not covered
-		UI::Singleton->BringToFront(gw);
-	}, m_optionBox);
+	auto groupButton = AddOption(
+		{ 
+			groupName + "->", 
+			[this, groupWindowWP]()
+			{
+				OpenGroupWindow(groupWindowWP);
+			} 
+		}, 
+		m_optionBox);
 
 	groupWindow->GetSignal(sfg::Window::OnMouseLeave).Connect([this, groupWindowWP]
-	{
-		if (groupWindowWP.expired())
-			throw "Ptr to group window expired in context menu";
-		auto gw = groupWindowWP.lock();
-		m_groupOpen = false;
-		gw->Show(false);
-		// If the mouse is now out of the context menu, hide the context menu
-		if (!WidgetHelpers::MouseInWidget(m_window))
-			Show(false);
-	});
+		{
+			CloseGroupWindow(groupWindowWP);
+		});
 
 	// Group windows needs to be separate from the 
 	UI::Singleton->Add(groupWindow);
@@ -106,4 +124,12 @@ void ContextMenu::ClearOptions()
 		UI::Singleton->Remove(g);
 	}
 	m_groups.clear();
+}
+
+ContextMenu::Option::Option(const std::string opt, Callback click, Callback hovStart, Callback hovEnd)
+	: option(opt),
+	  onClick(click),
+	  onHoverStart(hovStart),
+	  onHoverEnd(hovEnd)
+{
 }

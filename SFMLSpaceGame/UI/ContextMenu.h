@@ -5,7 +5,16 @@ class ContextMenu : public GameWindow
 {
 public:
 	typedef std::function<void()> Callback;
-	typedef std::pair<std::string, Callback> Option;
+
+	struct Option
+	{
+		Option(const std::string opt, Callback click, Callback hovStart = nullptr, Callback hovEnd = nullptr);
+		std::string option;
+		Callback onClick;
+		Callback onHoverStart;
+		Callback onHoverEnd;
+	};
+
 private:
 	bool m_groupOpen;
 
@@ -15,12 +24,14 @@ private:
 
 	sfg::Box::Ptr m_optionBox;
 
-	sfg::Button::Ptr AddOption(const std::string& option, Callback callback, sfg::Box::Ptr box);
+	sfg::Button::Ptr AddOption(const Option& option, sfg::Box::Ptr box);
+
+	void OpenGroupWindow(std::weak_ptr<sfg::Window> gw);
+	void CloseGroupWindow(std::weak_ptr<sfg::Window> gw);
 public:
 	ContextMenu();
 
-	// Adds the given option with the given callback
-	void AddOption(const std::string& option, Callback callback);
+	// Adds the given option
 	void AddOption(const Option& option);
 
 	// Add the given options under an expanding option

@@ -319,7 +319,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
 	econAgent.AddItem(ItemFactory::Create<ItemType::FuelCells>(1000));
-	econAgent.AddItem(ItemFactory::Create<ItemType::LaserRig>(1, "Cannon-One"));
+	econAgent.AddItem(ItemFactory::Create<ItemType::LaserRig>(4, "Cannon-Two"));
 
 	econAgent.SetSellPrices(
 	{
@@ -332,7 +332,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 10 },
 		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
 	});
-	econAgent.SetSellPrice(ItemType::LaserRig, "Cannon-One", 900);
+	econAgent.SetSellPrice(ItemType::LaserRig, "Cannon-Two", 900);
 
 	ent->ApplyInitializer(EntityInitializer::Type::StationInteractListenerSetup);
 	ent->ApplyInitializer(EntityInitializer::Type::StationSpriteBoundsColliderSetup);

@@ -6,6 +6,8 @@
 #include <PlayerData.h>
 #include <Components/Health.h>
 #include <Components/Inventory.h>
+#include <Equipper.h>
+#include <Components/ShipStatsComponent.h>
 
 InventoryWindow::InventoryWindow()
 	: GameWindow("inventory"),
@@ -13,7 +15,22 @@ InventoryWindow::InventoryWindow()
 	  m_contextProvider(std::make_shared<ItemContextProvider>())
 {
 	m_invenWidget.SetContextProvider(m_contextProvider);
-	m_contextProvider->SetEquipSlotCounts(ItemType::LaserRig, 5);
+	m_contextProvider->SetEquipHandler([this](Item* i, size_t slot) { Equipper::Equip(i, m_targetHandle.GetID(), slot); });
+	m_contextProvider->SetHoverHandler(
+		[this](Item* i, size_t slot, bool highlight)
+		{
+			HardPointWidget::Type t;
+			switch (i->type)
+			{
+			case ItemType::LaserRig:
+				t = HardPointWidget::Type::Gun;
+				break;
+			default:
+				throw "unrecognized item type for hover handler";
+			}
+
+			HighlightHardPoint(t, slot, highlight);
+		});
 
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
 	m_window->SetTitle("Inventory");
@@ -50,9 +67,12 @@ void InventoryWindow::SetTarget(EntityID id)
 	LoadShipImage();
 	LoadHullState();
 	LoadCredits();
+	LoadHardPoints();
 	DrawShipCanvas();
 
 	m_invenWidget.SetTarget(id);
+	m_contextProvider->SetEquipSlotCounts(ItemType::LaserRig, 
+										Equipper::GetNumSlots(ItemType::LaserRig, id));
 }
 
 void InventoryWindow::LoadShipImage()
@@ -92,11 +112,65 @@ void InventoryWindow::LoadCredits()
 	m_creditsLabel->SetText(ss.str());
 }
 
+void InventoryWindow::LoadHardPoints()
+{
+	auto& targetStats = m_targetHandle->GetComponent<ShipStatsComponent>();
+
+	m_hardPointWidgets.clear();
+	auto& gunHardPoints = targetStats->GetDirGunData()->hardPoints;
+	for (auto& hp : gunHardPoints)
+	{
+		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
+		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::Gun));
+		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
+		m_hardPointWidgets.back().SetAlpha(100);
+	}
+
+	auto& missileHardPoints = targetStats->GetMissileLauncherData()->hardPoints;
+	for (auto& hp : missileHardPoints)
+	{
+		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
+		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::MissileLauncher));
+		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
+		m_hardPointWidgets.back().SetAlpha(100);
+	}
+}
+
 void InventoryWindow::DrawShipCanvas()
 {
 	m_shipCanvas->Bind();
 	m_shipCanvas->Clear(sf::Color::Transparent);
 	m_shipCanvas->Draw(m_shipImage);
+
+	for (auto& h : m_hardPointWidgets)
+	{
+		m_shipCanvas->Draw(h);
+	}
+
 	m_shipCanvas->Display();
 	m_shipCanvas->Unbind();
+}
+
+void InventoryWindow::HighlightHardPoint(HardPointWidget::Type type, size_t slot, bool highlight)
+{
+	// all types of hard points are kept in the same list, 
+	// so we need to iterate through them and count according
+	// to the passed in type until we find the right one
+	for (size_t i = 0; i < m_hardPointWidgets.size(); i++)
+	{
+		// found the right one
+		if (slot == 0)
+		{
+			// change alpha to give a highlighting effect
+			int8 alpha = highlight ? 255 : 100;
+			m_hardPointWidgets[i].SetAlpha(alpha);
+			DrawShipCanvas();
+			break;
+		}
+
+		if (m_hardPointWidgets[i].GetType() == type)
+		{
+			slot--;
+		}
+	}
 }

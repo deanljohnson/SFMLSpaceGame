@@ -1,0 +1,18 @@
+{
+    "Cannon-Two": {
+        "value0": {
+            "name": "Cannon-Two"
+        },
+        "fireRate": 0.05000000074505806,
+        "heatLimit": 10.0,
+        "cooldownRate": 3.0,
+        "heatGenerated": 0.5,
+        "projSpeed": 15.0,
+        "projLifetime": 5.0,
+        "projDamage": 5.0,
+        "projSize": {
+            "v.x": 0.30000001192092898,
+            "v.y": 0.029999999329447748
+        }
+    }
+}

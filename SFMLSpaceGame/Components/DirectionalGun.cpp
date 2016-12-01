@@ -97,3 +97,10 @@ void DirectionalGun::SetGunData(DirectionalGunData* data)
 	// which is perfectly fine
 	m_weaponStates.resize(data->rigs.size());
 }
+
+void DirectionalGunData::LoadNewLaserRig(const std::string& rigName, size_t index)
+{
+	assert(index < rigs.size());
+
+	rigs[index] = LoadRig<LaserRig>(rigName);
+}

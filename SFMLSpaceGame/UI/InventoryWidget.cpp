@@ -154,5 +154,5 @@ void InventoryWidget::OnRightClick(int index)
 
 	contextMenu->ClearOptions();
 
-	m_contextProvider->SetContextOptions(*contextMenu, *m_itemWidgets[index]->GetItem());
+	m_contextProvider->SetContextOptions(*contextMenu, m_itemWidgets[index]->GetItem());
 }

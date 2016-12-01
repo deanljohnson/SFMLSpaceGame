@@ -430,7 +430,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_29372",
+                                    "econ_id": "econ_30883",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -920,7 +920,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_2661",
+                                    "econ_id": "econ_8458",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1310,7 +1310,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_8255",
+                                    "econ_id": "econ_29966",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1700,7 +1700,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_20902",
+                                    "econ_id": "econ_4994",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2090,7 +2090,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_2113",
+                                    "econ_id": "econ_8729",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2480,7 +2480,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_22766",
+                                    "econ_id": "econ_19506",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2870,7 +2870,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_19099",
+                                    "econ_id": "econ_20801",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3260,7 +3260,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_18152",
+                                    "econ_id": "econ_26932",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3650,7 +3650,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_10423",
+                                    "econ_id": "econ_22634",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3857,9 +3857,9 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
-                                                        "amount": 1
+                                                        "amount": 4
                                                     },
-                                                    "rigName": "Cannon-One"
+                                                    "rigName": "Cannon-Two"
                                                 }
                                             }
                                         }
@@ -3874,7 +3874,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_24340",
+                                    "econ_id": "econ_8265",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3915,7 +3915,7 @@
                                             },
                                             "ItemType": 5,
                                             "Prices": {
-                                                "Cannon-One": 900
+                                                "Cannon-Two": 900
                                             }
                                         }
                                     }
@@ -4072,9 +4072,9 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
-                                                        "amount": 1
+                                                        "amount": 4
                                                     },
-                                                    "rigName": "Cannon-One"
+                                                    "rigName": "Cannon-Two"
                                                 }
                                             }
                                         }
@@ -4089,7 +4089,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_18637",
+                                    "econ_id": "econ_6162",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4130,7 +4130,7 @@
                                             },
                                             "ItemType": 5,
                                             "Prices": {
-                                                "Cannon-One": 900
+                                                "Cannon-Two": 900
                                             }
                                         }
                                     }
@@ -4287,9 +4287,9 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
-                                                        "amount": 1
+                                                        "amount": 4
                                                     },
-                                                    "rigName": "Cannon-One"
+                                                    "rigName": "Cannon-Two"
                                                 }
                                             }
                                         }
@@ -4304,7 +4304,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_17567",
+                                    "econ_id": "econ_21173",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4345,7 +4345,7 @@
                                             },
                                             "ItemType": 5,
                                             "Prices": {
-                                                "Cannon-One": 900
+                                                "Cannon-Two": 900
                                             }
                                         }
                                     }
@@ -4502,9 +4502,9 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
-                                                        "amount": 1
+                                                        "amount": 4
                                                     },
-                                                    "rigName": "Cannon-One"
+                                                    "rigName": "Cannon-Two"
                                                 }
                                             }
                                         }
@@ -4519,7 +4519,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_18403",
+                                    "econ_id": "econ_19525",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4560,7 +4560,7 @@
                                             },
                                             "ItemType": 5,
                                             "Prices": {
-                                                "Cannon-One": 900
+                                                "Cannon-Two": 900
                                             }
                                         }
                                     }

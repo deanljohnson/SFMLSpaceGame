@@ -21,12 +21,16 @@ private:
 
 	std::shared_ptr<sf::Texture> m_shipTexture;
 	sf::Sprite m_shipImage;
+	std::vector<HardPointWidget> m_hardPointWidgets;
 
 	void LoadShipImage();
 	void LoadHullState();
 	void LoadCredits();
+	void LoadHardPoints();
 
 	void DrawShipCanvas();
+
+	void HighlightHardPoint(HardPointWidget::Type type, size_t slot, bool highlight);
 public:
 	InventoryWindow();
 

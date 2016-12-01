@@ -225,6 +225,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="EntityHelpers.cpp" />
     <ClCompile Include="EntityInitializer.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Equipper.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -330,6 +331,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="EntityHelpers.h" />
     <ClInclude Include="EntityID.h" />
     <ClInclude Include="EntityInitializer.h" />
+    <ClInclude Include="Equipper.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FileSystem.h" />
