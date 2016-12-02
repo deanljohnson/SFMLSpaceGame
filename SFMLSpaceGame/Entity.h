@@ -21,7 +21,7 @@ private:
 	bool m_alive{ true };
 	bool m_active{ true };
 
-	std::vector<std::unique_ptr<Component>> m_components;
+	std::multimap<ComponentID, std::unique_ptr<Component>> m_components;
 
 	ComponentArray m_componentArray;
 	ComponentBitset m_componentBitset;
@@ -37,10 +37,10 @@ private:
 		//wrap the raw pointer
 		std::unique_ptr<Component> uPtr{ comp };
 
-		//add to our set of components
-		m_components.emplace_back(move(uPtr));
-
 		auto compTypeID = GetComponentTypeID<T>();
+
+		//add to our set of components
+		m_components.emplace(compTypeID, move(uPtr));
 
 		// The entity already has a component of this type
 		// add it to the component linked list
@@ -53,6 +53,7 @@ private:
 			} 
 			existing->next = comp;
 		}
+		// New component entirely
 		else
 		{
 			m_componentArray[compTypeID] = comp;

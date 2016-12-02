@@ -22,19 +22,19 @@ void Entity::Update()
 {
 	events.Update();
 
-	for (auto i = 0; i < maxComponents; i++)
+	for (auto& c : m_components)
 	{
-		if (m_componentBitset[i] && m_componentArray[i]->IsActive())
-			m_componentArray[i]->Update();
+		if (c.second->IsActive())
+			c.second->Update();
 	}
 }
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	for (auto i = 0; i < maxComponents; i++)
+	for (auto& c : m_components)
 	{
-		if (m_componentBitset[i] && m_componentArray[i]->IsActive())
-			m_componentArray[i]->Render(target, states);
+		if (c.second->IsActive())
+			c.second->Render(target, states);
 	}
 }
 
@@ -45,7 +45,7 @@ void Entity::OnDestroy()
 
 	for (auto& c : m_components)
 	{
-		c->OnDestroy();
+		c.second->OnDestroy();
 	}
 }
 
