@@ -1,10 +1,13 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <PlayerData.h>
 
 std::shared_ptr<PlayerData> PlayerData::m_activeData{ nullptr };
 
 PlayerData::PlayerData(const std::string& shipName)
-	: m_shipName(shipName),
+	: m_ID(ENTITY_ID_NULL),
+	  m_shipName(shipName),
 	  m_shipChangeCallback(nullptr)
 {
 }

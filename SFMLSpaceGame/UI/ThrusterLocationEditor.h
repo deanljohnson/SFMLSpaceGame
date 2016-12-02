@@ -26,7 +26,7 @@ private:
 	void DrawCanvas();
 
 	void OnCanvasLeftClick();
-	void AddThruster(sf::Vector2f pos);
+	void AddThruster(const sf::Vector2f& pos);
 
 	void OnReset();
 	void OnSave();

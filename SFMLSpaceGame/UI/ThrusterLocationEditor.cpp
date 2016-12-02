@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ThrusterLocationEditor.h>
 #include "UI.h"
@@ -102,7 +104,7 @@ void ThrusterLocationEditor::OnCanvasLeftClick()
 	DrawCanvas();
 }
 
-void ThrusterLocationEditor::AddThruster(sf::Vector2f pos)
+void ThrusterLocationEditor::AddThruster(const sf::Vector2f& pos)
 {
 	m_locations.push_back(pos);
 }

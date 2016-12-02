@@ -12,7 +12,7 @@ inline float Length(const sf::Vector2f& a)
 inline sf::Vector2f Normalize(const sf::Vector2f& a)
 {
 	auto l = Length(a);
-	return (l != 0) 
+	return (fabs(l) > 0.000001f) 
 		? a / l 
 		: sf::Vector2f(); //length is zero, return zero vector
 }

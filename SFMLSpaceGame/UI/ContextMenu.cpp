@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ContextMenu.h>
 
@@ -133,7 +135,7 @@ void ContextMenu::Close()
 	Show(false);
 }
 
-ContextMenu::Option::Option(const std::string opt, Callback click, Callback hovStart, Callback hovEnd)
+ContextMenu::Option::Option(const std::string& opt, Callback click, Callback hovStart, Callback hovEnd)
 	: option(opt),
 	  onClick(click),
 	  onHoverStart(hovStart),

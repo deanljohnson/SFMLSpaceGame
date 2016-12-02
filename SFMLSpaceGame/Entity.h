@@ -93,7 +93,7 @@ public:
 	typedef int ComponentID;
 
 	// used only for serialization
-	Entity() {}
+	Entity() : m_id(ENTITY_ID_NULL) {}
 
 	Entity(const Entity& other) = delete;
 

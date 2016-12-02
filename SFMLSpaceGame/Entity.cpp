@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Entity.h>
 #include <EntityManager.h>
@@ -11,8 +13,11 @@ void Entity::ApplyInitializers()
 {
 	for (auto i = 0; i < EntityInitializer::Type::Count; i++)
 	{
+		// Does the entity need this initializer applied?
 		if (m_initializerBitset[i])
 		{
+			// Turn the loop counter into an initializer type
+			// and execute it
 			Execute(static_cast<EntityInitializer::Type>(i), *this);
 		}
 	}

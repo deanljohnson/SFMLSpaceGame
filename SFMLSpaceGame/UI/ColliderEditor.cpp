@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ColliderEditor.h>
 #include "UI.h"
@@ -101,7 +103,7 @@ void ColliderEditor::OnCanvasLeftClick()
 	DrawCanvas();
 }
 
-void ColliderEditor::AddVertex(sf::Vector2f pos)
+void ColliderEditor::AddVertex(const sf::Vector2f& pos)
 {
 	m_verts.append(sf::Vertex(pos, sf::Color::White));
 	m_fillShape.setPointCount(m_fillShape.getPointCount() + 1);

@@ -1,6 +1,5 @@
 #pragma once
 #include <GameState.h>
-#include <EntityManager.h>
 #include <PhysicsStepper.h>
 #include <ContactFilter.h>
 #include <UI/ShipEditorWindow.h>
@@ -54,10 +53,7 @@ private:
 	void HandlePause();
 
 public:
-	InitialGameState() 
-		: m_stepper(),
-		  m_paused(false)
-	{}
+	InitialGameState();
 
 	virtual void Init() override;
 	virtual void CleanUp() override;

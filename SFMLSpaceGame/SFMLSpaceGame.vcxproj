@@ -244,6 +244,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\ParallaxMovement.cpp" />
     <ClCompile Include="Components\Physics.cpp" />
     <ClCompile Include="Components\RectPrimitive.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PriceSupplier.cpp" />
     <ClCompile Include="RenderBatch.cpp" />
@@ -343,6 +344,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPrice.h" />
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MissileRig.h" />
     <ClInclude Include="MissileStats.h" />
     <ClInclude Include="PlayerData.h" />

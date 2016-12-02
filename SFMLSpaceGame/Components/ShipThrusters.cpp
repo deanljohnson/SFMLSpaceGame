@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/ShipThrusters.h>
 #include <Components/Physics.h>
@@ -20,6 +22,9 @@ b2Vec2 ShipThrust::GetMoveForce(ThrustDirection dir)
 		return b2Vec2(0, Side);
 	case ThrustDirection::Reverse:
 		return b2Vec2(-Reverse, 0);
+	case SteerLeft: break;
+	case SteerRight: break;
+	default: break;
 	}
 	return b2Vec2();
 }

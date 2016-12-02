@@ -8,7 +8,7 @@ public:
 
 	struct Option
 	{
-		Option(const std::string opt, Callback click, Callback hovStart = nullptr, Callback hovEnd = nullptr);
+		Option(const std::string& opt, Callback click, Callback hovStart = nullptr, Callback hovEnd = nullptr);
 		std::string option;
 		Callback onClick;
 		Callback onHoverStart;

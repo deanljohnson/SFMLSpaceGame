@@ -123,6 +123,13 @@ public:
 	static ShipStats* Clone(ShipStats* other);
 
 	static std::string GetTypeName() { static const std::string name = "ship"; return name; }
+
+	ShipStats& operator=(ShipStats other)
+	{
+		using std::swap;
+		swap(*this, other);
+		return *this;
+	}
 };
 
 inline void ShipStats::Copy(ShipStats* other)

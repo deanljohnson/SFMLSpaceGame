@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ShipEditorWindow.h>
 #include "UI.h"
@@ -303,15 +305,19 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_approachDistEntry->SetText(std::to_string(m_targetStats->GetApproachDistance()));
 	m_strafeDistEntry->SetText(std::to_string(m_targetStats->GetStrafeDistance()));
 	m_sensorRangeEntry->SetText(std::to_string(m_targetStats->GetSensorRange()));
-	m_forwardThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Forward));
-	m_sideThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Side));
-	m_reverseThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Reverse));
-	m_steerThrustEntry->SetText(std::to_string(m_targetStats->GetShipThrust()->Steer));
+
+	auto thrust = m_targetStats->GetShipThrust();
+	m_forwardThrustEntry->SetText(std::to_string(thrust->Forward));
+	m_sideThrustEntry->SetText(std::to_string(thrust->Side));
+	m_reverseThrustEntry->SetText(std::to_string(thrust->Reverse));
+	m_steerThrustEntry->SetText(std::to_string(thrust->Steer));
+
+	auto shields = m_targetStats->GetShieldData();
 	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->GetMaxHullStrength()));
-	m_frontShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->FrontStrength));
-	m_sideShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->SideStrength));
-	m_rearShieldEntry->SetText(std::to_string(m_targetStats->GetShieldData()->RearStrength));
-	m_shieldRegenEntry->SetText(std::to_string(m_targetStats->GetShieldData()->RegenSpeed));
+	m_frontShieldEntry->SetText(std::to_string(shields->FrontStrength));
+	m_sideShieldEntry->SetText(std::to_string(shields->SideStrength));
+	m_rearShieldEntry->SetText(std::to_string(shields->RearStrength));
+	m_shieldRegenEntry->SetText(std::to_string(shields->RegenSpeed));
 }
 
 void ShipEditorWindow::LoadShipImage()
@@ -349,7 +355,7 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 
 void ShipEditorWindow::CreateNewShip()
 {
-	if (m_newShipImageName == "" || m_shipName == "")
+	if (m_newShipImageName.empty() || m_shipName.empty())
 		return;
 
 	ShipStats newShip = ShipStats();
@@ -396,7 +402,7 @@ void ShipEditorWindow::DrawShipCanvas()
 
 void ShipEditorWindow::OnShipSelected(const std::string& name)
 {
-	if (name == "")
+	if (name.empty())
 		return;
 
 	m_shipName = name;
@@ -413,7 +419,7 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 
 void ShipEditorWindow::OnNewShipImageSelected(const std::string& imageName)
 {
-	if (imageName == "")
+	if (imageName.empty())
 		return;
 
 	m_newShipImageName = imageName;
@@ -425,7 +431,7 @@ void ShipEditorWindow::OnNewShipImageSelected(const std::string& imageName)
 
 void ShipEditorWindow::OnNewShipNameSelected(const std::string& name)
 {
-	if (name == "")
+	if (name.empty())
 		return;
 
 	m_shipName = name;

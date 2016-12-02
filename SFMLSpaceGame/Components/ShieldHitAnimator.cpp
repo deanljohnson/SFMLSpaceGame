@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/ShieldHitAnimator.h>
 #include <Components/Position.h>
@@ -43,10 +45,11 @@ void ShieldHitAnimator::Update()
 	m_visible = false;
 	for (int i = 0; i < m_vertextArray.getVertexCount(); i++)
 	{
-		if (m_vertextArray[i].color.a > 0)
+		auto& vertColor = m_vertextArray[i].color;
+		if (vertColor.a > 0)
 		{
 			m_visible = true;
-			m_vertextArray[i].color.a = static_cast<char>(std::max(0.f, Lerp(m_vertextArray[i].color.a, 0.f, GameTime::deltaTime * 5)));
+			vertColor.a = static_cast<char>(std::max(0.f, Lerp(vertColor.a, 0.f, GameTime::deltaTime * 5)));
 		}
 	}
 }

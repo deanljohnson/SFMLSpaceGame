@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/InventoryWidget.h>
 #include <UI/ContextMenu.h>
@@ -44,8 +46,9 @@ void InventoryWidget::SetTarget(EntityID id)
 	int i = 0;
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{
+		auto itemPtr = it->get();
 		// Credits are not shown in the inventory
-		if (it->get()->type == ItemType::Credits)
+		if (itemPtr->type == ItemType::Credits)
 		{
 			// we do not our index incremented as we 
 			// continue the loop in this case
@@ -55,9 +58,9 @@ void InventoryWidget::SetTarget(EntityID id)
 
 		auto item = InventoryItemWidget::Create("trade-icons", *it);
 
-		if (m_prices.HasPriceForType(it->get()->type, it->get()->GetDetail()))
+		if (m_prices.HasPriceForType(itemPtr->type, itemPtr->GetDetail()))
 		{
-			item->SetItemPrice(m_prices.GetPriceForType(it->get()->type, it->get()->GetDetail()));
+			item->SetItemPrice(m_prices.GetPriceForType(itemPtr->type, itemPtr->GetDetail()));
 		}
 
 		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
@@ -92,11 +95,12 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 
 	for (auto& iw : m_itemWidgets)
 	{
-		if (m_prices.HasPriceForType(iw->GetItem()->type, 
-									iw->GetItem()->GetDetail()))
+		auto item = iw->GetItem();
+		if (m_prices.HasPriceForType(item->type,
+									item->GetDetail()))
 		{
-			iw->SetItemPrice(m_prices.GetPriceForType(iw->GetItem()->type, 
-														iw->GetItem()->GetDetail()));
+			iw->SetItemPrice(m_prices.GetPriceForType(item->type,
+													item->GetDetail()));
 		}
 	}
 }

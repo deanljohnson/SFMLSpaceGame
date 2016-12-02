@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 // based on https://github.com/SFML/SFML/wiki/Source:-High-Performance-Sprite-Container
 #include "stdafx.h"
 #include <RenderBatch.h>
@@ -276,7 +278,7 @@ sf::Texture* RenderBatch::GetTexture()
 
 void RenderBatch::RemoveDeletedElements()
 {
-	int last = 0;
+	size_t last = 0;
 	for (size_t i = 0; i < m_texRects.size(); ++i, ++last)
 	{
 		// Set i to the index of the first element that is not to be removed

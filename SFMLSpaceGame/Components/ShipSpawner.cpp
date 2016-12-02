@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/ShipSpawner.h>
 #include <Components/Position.h>
@@ -10,8 +12,9 @@
 ShipSpawner::ShipSpawner(EntityID ent, float time, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector) 
 	: Component(ent), 
 	  m_type(SpawnType::Timed), 
-	  m_time(time), 
-	  m_counter(0.f),
+	  m_time(time),
+	  m_counter(0.f), 
+	  m_eventType(EventType::None),
 	  m_shipSelector(shipSelector), 
 	  m_locSelector(locSelector),
 	  m_position(entity->GetComponent<Position>()),
@@ -20,7 +23,9 @@ ShipSpawner::ShipSpawner(EntityID ent, float time, const ShipResourceSelector& s
 
 ShipSpawner::ShipSpawner(EntityID ent, EventType eventType, const ShipResourceSelector& shipSelector, const SpawnLocationSelector& locSelector, bool spawnPlayer) 
 	: Component(ent), 
-	  m_type(SpawnType::Event), 
+	  m_type(SpawnType::Event),
+	  m_time(0.f),
+	  m_counter(0.f),
 	  m_eventType(eventType), 
 	  m_shipSelector(shipSelector),
 	  m_locSelector(locSelector), 

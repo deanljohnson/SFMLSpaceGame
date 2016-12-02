@@ -24,9 +24,9 @@ namespace Steering
 
 	// Returns a unit vector that represents the alignment 
 	// vector based on the given Physics component's angles
-	b2Vec2 AlignOrientation(std::vector<Physics*> others);
+	b2Vec2 AlignOrientation(const std::vector<Physics*>& others);
 
 	// Returns a unit vector that represents the alignment 
 	// vector based on the given Physics component's velocities
-	b2Vec2 AlignHeading(std::vector<Physics*> others);
+	b2Vec2 AlignHeading(const std::vector<Physics*>& others);
 }

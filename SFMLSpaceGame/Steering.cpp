@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Steering.h>
 #include <VectorMath.h>
@@ -41,7 +43,7 @@ b2Vec2 Steering::Follow(Physics& self, Physics* target, float followDistance)
 	return Seek(self.GetPosition(), seekTarget);
 }
 
-b2Vec2 Steering::AlignOrientation(std::vector<Physics*> others)
+b2Vec2 Steering::AlignOrientation(const std::vector<Physics*>& others)
 {
 	float totalRotation = 0.f;
 	for (auto p : others)
@@ -52,7 +54,7 @@ b2Vec2 Steering::AlignOrientation(std::vector<Physics*> others)
 	return Rotate(b2Vec2(1, 0), avgRotation);
 }
 
-b2Vec2 Steering::AlignHeading(std::vector<Physics*> others)
+b2Vec2 Steering::AlignHeading(const std::vector<Physics*>& others)
 {
 	b2Vec2 totalVelocity = b2Vec2_zero;
 	for (auto p : others)

@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components\MissileController.h>
 #include <Components\Position.h>
@@ -72,7 +74,7 @@ void MissileController::Update()
 		body->ApplyForceToCenter(m_physics.GetHeading() * m_thrust, true);
 
 	// turn as needed
-	if (m_currentTorque != 0.f) 
+	if (fabs(m_currentTorque) > 0.000001f)
 	{
 		// Don't steer more than the thruster strength in any direction
 		m_currentTorque = std::max(-STEER_FORCE, std::min(m_currentTorque, STEER_FORCE));

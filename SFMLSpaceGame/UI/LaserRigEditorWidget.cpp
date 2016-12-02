@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/LaserRigEditorWidget.h>
 #include <UI/UIDefaults.h>
@@ -70,15 +72,16 @@ LaserRigEditorWidget::LaserRigEditorWidget(const std::string& name)
 	SetupEntryValidationSignals();
 	SetupEntryFocusSignals();
 
+	auto projectile = m_laserRig->projectile;
 	m_fireRateEntry->SetText(std::to_string(m_laserRig->fireRate));
 	m_heatLimitEntry->SetText(std::to_string(m_laserRig->heatLimit));
 	m_cooldownRateEntry->SetText(std::to_string(m_laserRig->cooldownRate));
 	m_heatGeneratedEntry->SetText(std::to_string(m_laserRig->heatGenerated));
-	m_projSpeedEntry->SetText(std::to_string(m_laserRig->projectile->speed));
-	m_projLifetimeEntry->SetText(std::to_string(m_laserRig->projectile->lifeTime));
-	m_projDamageEntry->SetText(std::to_string(m_laserRig->projectile->damage));
-	m_projSizeXEntry->SetText(std::to_string(m_laserRig->projectile->size.x));
-	m_projSizeYEntry->SetText(std::to_string(m_laserRig->projectile->size.y));
+	m_projSpeedEntry->SetText(std::to_string(projectile->speed));
+	m_projLifetimeEntry->SetText(std::to_string(projectile->lifeTime));
+	m_projDamageEntry->SetText(std::to_string(projectile->damage));
+	m_projSizeXEntry->SetText(std::to_string(projectile->size.x));
+	m_projSizeYEntry->SetText(std::to_string(projectile->size.y));
 
 	m_window->Add(table);
 }
@@ -176,11 +179,12 @@ void LaserRigEditorWidget::Save()
 	m_laserRig->cooldownRate = stof(m_cooldownRateEntry->GetText().toAnsiString());
 	m_laserRig->heatGenerated = stof(m_heatGeneratedEntry->GetText().toAnsiString());
 
-	m_laserRig->projectile->speed = stof(m_projSpeedEntry->GetText().toAnsiString());
-	m_laserRig->projectile->lifeTime = stof(m_projLifetimeEntry->GetText().toAnsiString());
-	m_laserRig->projectile->damage = stof(m_projDamageEntry->GetText().toAnsiString());
-	m_laserRig->projectile->size.x = stof(m_projSizeXEntry->GetText().toAnsiString());
-	m_laserRig->projectile->size.y = stof(m_projSizeYEntry->GetText().toAnsiString());
+	auto projectile = m_laserRig->projectile;
+	projectile->speed = stof(m_projSpeedEntry->GetText().toAnsiString());
+	projectile->lifeTime = stof(m_projLifetimeEntry->GetText().toAnsiString());
+	projectile->damage = stof(m_projDamageEntry->GetText().toAnsiString());
+	projectile->size.x = stof(m_projSizeXEntry->GetText().toAnsiString());
+	projectile->size.y = stof(m_projSizeYEntry->GetText().toAnsiString());
 
 	Serializer<> ser;
 	ser.Save(m_laserRig.get(), m_laserRig->name, m_laserRig->name);

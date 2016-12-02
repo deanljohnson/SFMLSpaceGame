@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/TilingBackground.h>
 #include <ResourceLoader.h>
@@ -30,8 +32,9 @@ void TilingBackground::Render(sf::RenderTarget& target, sf::RenderStates states)
 
 	// Coordinates of the corners of the window
 	auto topLeftCoord = target.mapPixelToCoords(sf::Vector2i(0, 0));
-	auto botRightCoord = target.mapPixelToCoords(sf::Vector2i(target.getSize().x, target.getSize().y));
-	auto centerCoord = target.mapPixelToCoords(sf::Vector2i(target.getSize().x / 2, target.getSize().y / 2));
+	auto targetSize = target.getSize();
+	auto botRightCoord = target.mapPixelToCoords(sf::Vector2i(targetSize.x, targetSize.y));
+	auto centerCoord = target.mapPixelToCoords(sf::Vector2i(targetSize.x / 2, targetSize.y / 2));
 
 	sf::Vector2i min = sf::Vector2i(0, 0);
 	sf::Vector2i max = sf::Vector2i(0, 0);

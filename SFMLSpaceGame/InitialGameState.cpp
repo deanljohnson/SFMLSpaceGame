@@ -1,7 +1,10 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <InitialGameState.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
+#include <EntityManager.h>
 #include <resource.h>
 #include <ContactFilter.h>
 #include "PlayerData.h"
@@ -27,6 +30,13 @@ void AddEnemy()
 {
 	EntityFactory::CreateShip("Human-Fighter", b2Vec2(5, 5));
 }
+
+InitialGameState::InitialGameState() 
+	: m_playerID(ENTITY_ID_NULL),
+	  m_playerSpawnerID(ENTITY_ID_NULL),
+	  m_stepper(),
+	  m_paused(false)
+{}
 
 void InitialGameState::Init()
 {

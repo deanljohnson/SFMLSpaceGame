@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/ShipAI.h>
 #include <Components/Position.h>
@@ -14,6 +16,7 @@ namespace
 
 ShipAI::ShipAI(EntityID ent, const std::string& stats) 
 	: Component(ent),
+	  m_stationPosition(nullptr),
 	  m_shipStatsID(stats),
       m_shipStats(LoadShip(stats)),
 	  m_controller(entity->GetComponent<ShipController>()),

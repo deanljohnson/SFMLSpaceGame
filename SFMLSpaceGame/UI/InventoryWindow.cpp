@@ -1,3 +1,5 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/InventoryWindow.h>
 #include <EntityManager.h>
@@ -135,8 +137,9 @@ void InventoryWindow::LoadHardPoints()
 	{
 		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
 		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::Gun));
-		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
-		m_hardPointWidgets.back().SetAlpha(100); // start dim
+		auto& last = m_hardPointWidgets.back();
+		last.SetAngle(hp.angleOffset);
+		last.SetAlpha(100); // start dim
 	}
 
 	auto& missileHardPoints = targetStats->GetMissileLauncherData()->hardPoints;
@@ -144,8 +147,9 @@ void InventoryWindow::LoadHardPoints()
 	{
 		auto pos = B2VecToSFMLVec(hp.positionOffset) + m_shipImage.getPosition();
 		m_hardPointWidgets.push_back(HardPointWidget(pos, HardPointWidget::Type::MissileLauncher));
-		m_hardPointWidgets.back().SetAngle(hp.angleOffset);
-		m_hardPointWidgets.back().SetAlpha(100); // start dim
+		auto& last = m_hardPointWidgets.back();
+		last.SetAngle(hp.angleOffset);
+		last.SetAlpha(100); // start dim
 	}
 }
 

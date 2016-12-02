@@ -26,7 +26,7 @@ private:
 	void DrawCanvas();
 
 	void OnCanvasLeftClick();
-	void AddVertex(sf::Vector2f pos);
+	void AddVertex(const sf::Vector2f& pos);
 
 	void OnReset();
 	void OnSave();

@@ -38,7 +38,7 @@ public:
 	inline void SetHealth(float hp)
 	{
 		m_health = std::max(0.f, hp);
-		if (m_health == 0.f)
+		if (m_health <= 0.f)
 			entity->Destroy();
 	}
 	inline void RemoveHealth(float amt) { SetHealth(m_health - amt); }
