@@ -10,7 +10,7 @@ RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
-	  m_shape({w,h})
+	  m_size(w, h)
 {
 	m_batch = RenderBatch::Get(sf::Quads);
 	m_batchIndex = m_batch->Add();

@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <cereal/access.hpp>
 #include <SFMLSerialization.h>
 
@@ -13,7 +12,7 @@ class RectPrimitive : public Component
 private:
 	Position& m_position;
 	Rotation& m_rotation;
-	sf::RectangleShape m_shape;
+	sf::Vector2f m_size;
 
 	RenderBatch* m_batch{ nullptr };
 	BatchIndex* m_batchIndex;
@@ -24,8 +23,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		sf::Vector2f size = m_shape.getSize();
-		ar(entity.GetID(), size);
+		ar(entity.GetID(), m_size);
 	}
 
 	template <class Archive>
@@ -43,7 +41,4 @@ public:
 	~RectPrimitive();
 
 	virtual void Update() override;
-	//virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
-	
-	const sf::RectangleShape& GetShape() const { return m_shape; }
 };
