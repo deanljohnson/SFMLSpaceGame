@@ -18,6 +18,7 @@ ShieldStateDisplay::ShieldStateDisplay()
 	auto table = sfg::Table::Create();
 	m_window->Add(table);
 
+	auto headerLabel = sfg::Label::Create("Shields");
 	auto frontLabel = sfg::Label::Create("Front");
 	auto sideLabel = sfg::Label::Create("Side");
 	auto rearLabel = sfg::Label::Create("Rear");
@@ -29,12 +30,13 @@ ShieldStateDisplay::ShieldStateDisplay()
 	m_sideState->SetRequisition(sf::Vector2f(50, 0));
 	m_rearState->SetRequisition(sf::Vector2f(50, 0));
 
-	table->Attach(frontLabel, {0, 0, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(sideLabel, {0, 1, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(rearLabel, {0, 2, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(m_frontState, {1, 0, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(m_sideState, {1, 1, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(m_rearState, {1, 2, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(headerLabel, {0, 0, 2, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(frontLabel, {0, 1, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(sideLabel, {0, 2, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(rearLabel, {0, 3, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(m_frontState, {1, 1, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(m_sideState, {1, 2, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(m_rearState, {1, 3, 1, 1}, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 }
 
 void ShieldStateDisplay::Update() 

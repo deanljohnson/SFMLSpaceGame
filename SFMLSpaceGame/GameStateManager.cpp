@@ -3,10 +3,11 @@
 #include "stdafx.h"
 #include <GameStateManager.h>
 #include <InitialGameState.h>
+#include <MainMenuState.h>
 
 void GameStateManager::Init()
 {
-	m_states.emplace_back(new InitialGameState());
+	m_states.emplace_back(new MainMenuState());
 	m_states.back()->Init();
 }
 

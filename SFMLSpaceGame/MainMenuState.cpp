@@ -5,6 +5,8 @@
 
 MainMenuState::MainMenuState()
 {
+	m_mainMenu.Show(true);
+	m_mainMenu.CenterOnScreen();
 }
 
 void MainMenuState::Init()

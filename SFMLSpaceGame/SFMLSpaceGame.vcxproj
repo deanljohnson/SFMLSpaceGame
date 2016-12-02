@@ -280,6 +280,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\InventoryWidget.cpp" />
     <ClCompile Include="UI\ItemDragHandler.cpp" />
     <ClCompile Include="UI\LaserRigEditorWidget.cpp" />
+    <ClCompile Include="UI\MainMenu.cpp" />
     <ClCompile Include="UI\MissileRigEditorWidget.cpp" />
     <ClCompile Include="UI\RigEditor.cpp" />
     <ClCompile Include="UI\RigTypeSelector.cpp" />
@@ -358,6 +359,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="UI\DataFileSelector.h" />
     <ClInclude Include="UI\ItemDragHandler.h" />
     <ClInclude Include="UI\LaserRigEditorWidget.h" />
+    <ClInclude Include="UI\MainMenu.h" />
     <ClInclude Include="UI\MissileRigEditorWidget.h" />
     <ClInclude Include="UI\RigEditor.h" />
     <ClInclude Include="UI\RigEditorWidget.h" />

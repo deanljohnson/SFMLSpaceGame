@@ -1,9 +1,11 @@
 #pragma once
 #include <GameState.h>
+#include <UI/MainMenu.h>
 
 class MainMenuState : public GameState
 {
 private:
+	MainMenu m_mainMenu;
 public:
 	MainMenuState();
 
