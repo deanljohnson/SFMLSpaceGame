@@ -19,7 +19,7 @@ Sprite::Sprite(EntityID ent, const std::string& id, OriginOption origin)
 	m_batch = RenderBatch::Get(id);
 	m_batchIndex = m_batch->Add();
 
-	auto rect = m_batch->GetTextureRect(m_batchIndex);
+	auto rect = m_batch->GetRect(m_batchIndex);
 
 	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
 	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
@@ -53,7 +53,7 @@ void Sprite::SetScale(float x, float y)
 
 void Sprite::SetTextureRect(const sf::IntRect& rect) 
 {
-	m_batch->SetTextureRect(m_batchIndex, rect);
+	m_batch->SetRect(m_batchIndex, rect);
 
 	// if we do not re-set the origin, changing texture rect's
 	// can cause distortion issues.
@@ -62,7 +62,7 @@ void Sprite::SetTextureRect(const sf::IntRect& rect)
 
 sf::FloatRect Sprite::GetDimensions() const
 {
-	auto rect = m_batch->GetTextureRect(m_batchIndex);
+	auto rect = m_batch->GetRect(m_batchIndex);
 	auto scale = m_batch->GetScale(m_batchIndex);
 
 	return sf::FloatRect(rect.left, rect.top, rect.width * scale.x, rect.height * scale.y);

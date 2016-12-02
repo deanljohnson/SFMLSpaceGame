@@ -4,6 +4,7 @@
 #include <Components/Rotation.h>
 #include <Entity.h>
 #include <VectorMath.h>
+#include <RenderBatch.h>
 
 RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	: Component(ent),
@@ -11,11 +12,16 @@ RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_shape({w,h})
 {
-	m_shape.setFillColor(sf::Color::Green);
-	m_shape.setOrigin(m_shape.getSize() / 2.f);
+	m_batch = RenderBatch::Get(sf::Quads);
+	m_batchIndex = m_batch->Add();
 
-	m_shape.setPosition(B2VecToSFMLVec(m_position.position));
-	m_shape.setRotation(m_rotation.GetDegrees());
+	m_batch->SetRect(m_batchIndex, { 0, 0, (int)(w * PIXELS_PER_METER), (int)(h * PIXELS_PER_METER) });
+	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batch->SetColor(m_batchIndex, sf::Color::Green);
+	m_batch->SetOrigin(m_batchIndex, { w / 2.f, h / 2.f });
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
+	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+
 }
 
 RectPrimitive::RectPrimitive(EntityID ent, const sf::Vector2f& size)
@@ -23,14 +29,13 @@ RectPrimitive::RectPrimitive(EntityID ent, const sf::Vector2f& size)
 {
 }
 
+RectPrimitive::~RectPrimitive()
+{
+	m_batch->Remove(m_batchIndex);
+}
+
 void RectPrimitive::Update() 
 {
-	m_shape.setPosition(B2VecToSFMLVec(m_position.position));
-	m_shape.setRotation(m_rotation.GetDegrees());
-}
-// TODO: Convert this to use render batching
-void RectPrimitive::Render(sf::RenderTarget& target, sf::RenderStates states)
-{
-	DRAW_CALLS++;
-	target.draw(m_shape, states);
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
+	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
 }

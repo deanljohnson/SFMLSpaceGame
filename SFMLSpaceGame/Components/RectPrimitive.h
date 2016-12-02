@@ -5,6 +5,8 @@
 
 class Position;
 class Rotation;
+class RenderBatch;
+struct BatchIndex;
 
 class RectPrimitive : public Component
 {
@@ -12,6 +14,9 @@ private:
 	Position& m_position;
 	Rotation& m_rotation;
 	sf::RectangleShape m_shape;
+
+	RenderBatch* m_batch{ nullptr };
+	BatchIndex* m_batchIndex;
 
 	friend class cereal::access;
 
@@ -35,9 +40,10 @@ private:
 public:
 	RectPrimitive(EntityID ent, float w, float h);
 	RectPrimitive(EntityID ent, const sf::Vector2f& size);
+	~RectPrimitive();
 
 	virtual void Update() override;
-	virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
+	//virtual void Render(sf::RenderTarget& target, sf::RenderStates states) override;
 	
 	const sf::RectangleShape& GetShape() const { return m_shape; }
 };

@@ -5,6 +5,7 @@
 #include <ResourceLoader.h>
 
 std::unordered_map<std::string, std::unique_ptr<RenderBatch>> RenderBatch::m_stringBatches;
+std::unordered_map<sf::PrimitiveType, std::unique_ptr<RenderBatch>> RenderBatch::m_primitiveBatches;
 
 RenderBatch* RenderBatch::Get(const std::string& texName)
 {
@@ -19,29 +20,63 @@ RenderBatch* RenderBatch::Get(const std::string& texName)
 	return inserted.first->second.get();
 }
 
+RenderBatch* RenderBatch::Get(sf::PrimitiveType primType)
+{
+	auto it = m_primitiveBatches.find(primType);
+	if (it != m_primitiveBatches.end())
+		return it->second.get();
+
+	auto batch = std::make_unique<RenderBatch>(primType);
+
+	auto inserted = m_primitiveBatches.insert(make_pair(primType, move(batch)));
+
+	return inserted.first->second.get();
+}
+
 void RenderBatch::RenderAll(sf::RenderTarget& target, sf::RenderStates states)
 {
 	for (auto& b : m_stringBatches) 
 	{
 		b.second->Render(target, states);
 	}
+
+	for (auto& b : m_primitiveBatches)
+	{
+		b.second->Render(target, states);
+	}
 }
 
-RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex) 
-	: m_vertices(),
+RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
+	: m_texture(tex),
+	  m_vertices(),
 	  m_texRects(),
 	  m_positions(),
 	  m_scales(),
 	  m_origins(),
-	  m_rotations()
+	  m_rotations(),
+	  m_primType(sf::Quads)
 {
-	m_texture = tex;
+}
+
+RenderBatch::RenderBatch(sf::PrimitiveType primType)
+	: m_texture(nullptr),
+	  m_vertices(),
+	  m_texRects(),
+	  m_positions(),
+	  m_scales(),
+	  m_origins(),
+	  m_rotations(),
+	  m_primType(primType)
+{
 }
 
 BatchIndex* RenderBatch::Add()
 {
 	auto index = m_vertices.size() / 4;
-	auto texSize = m_texture->getSize();
+
+	auto texSize = m_texture != nullptr 
+				? m_texture->getSize()
+				: sf::Vector2u(1, 1);
 
 	m_texRects.push_back(sf::IntRect(0, 0, static_cast<int>(texSize.x), static_cast<int>(texSize.y)));
 	m_positions.push_back(sf::Vector2f(0, 0));
@@ -157,17 +192,17 @@ float RenderBatch::GetRotation(BatchIndex* index)
 
 void RenderBatch::SetScale(BatchIndex* index, const sf::Vector2f& scale)
 {
- 	sf::Vector2f originalScale = m_scales[index->index];
+ 	const auto originalScale = m_scales[index->index];
 	m_scales[index->index] = scale;
 	
-	sf::Vector2f originalSize(m_texRects[index->index].width * originalScale.x, m_texRects[index->index].height * originalScale.y);
-	sf::Vector2f targetSize(m_texRects[index->index].width * scale.x, m_texRects[index->index].height * scale.y);
-	sf::Vector2f sizeDif = targetSize - originalSize;
+	const sf::Vector2f originalSize(m_texRects[index->index].width * originalScale.x, m_texRects[index->index].height * originalScale.y);
+	const sf::Vector2f targetSize(m_texRects[index->index].width * scale.x, m_texRects[index->index].height * scale.y);
+	const sf::Vector2f sizeDif = targetSize - originalSize;
 
-	float leftOriginFactor = m_origins[index->index].x / m_texRects[index->index].width;
-	float rightOriginFactor = 1.f - leftOriginFactor;
-	float topOriginFactor = m_origins[index->index].y / m_texRects[index->index].height;
-	float bottomOriginFactor = 1.f - topOriginFactor;
+	const auto leftOriginFactor = m_origins[index->index].x / m_texRects[index->index].width;
+	const auto rightOriginFactor = 1.f - leftOriginFactor;
+	const auto topOriginFactor = m_origins[index->index].y / m_texRects[index->index].height;
+	const auto bottomOriginFactor = 1.f - topOriginFactor;
 
 	int i = index->index * 4;
 	m_vertices[i].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index->index]);
@@ -183,9 +218,9 @@ sf::Vector2f RenderBatch::GetScale(BatchIndex* index)
 	return m_scales[index->index];
 }
 
-void RenderBatch::SetTextureRect(BatchIndex* index, const sf::IntRect& rect)
+void RenderBatch::SetRect(BatchIndex* index, const sf::IntRect& rect)
 {
-	sf::IntRect originalRect = m_texRects[index->index];
+	const auto originalRect = m_texRects[index->index];
 	m_texRects[index->index] = rect;
 	UpdateTexCoords(index);
 
@@ -199,7 +234,7 @@ void RenderBatch::SetTextureRect(BatchIndex* index, const sf::IntRect& rect)
 	}
 }
 
-sf::IntRect RenderBatch::GetTextureRect(BatchIndex* index)
+sf::IntRect RenderBatch::GetRect(BatchIndex* index)
 {
 	return m_texRects[index->index];
 }
@@ -316,7 +351,9 @@ void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states)
 	if (m_vertices.size() == 0)
 		return;
 
-	states.texture = m_texture.get();
+	if (m_texture != nullptr)
+		states.texture = m_texture.get();
+
 	DRAW_CALLS++;
-	target.draw(&m_vertices[0], m_vertices.size(), sf::Quads, states);
+	target.draw(&m_vertices[0], m_vertices.size(), m_primType, states);
 }

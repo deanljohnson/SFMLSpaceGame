@@ -1,6 +1,4 @@
 #pragma once
-#include <EntityID.h>
-#include <EntityHandle.h>
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
 #include <PriceSupplier.h>
@@ -16,8 +14,6 @@ private:
 	PriceSupplier m_prices;
 	std::shared_ptr<ItemContextProvider> m_contextProvider;
 
-	EntityHandle m_targetHandle;
-
 	std::vector<InventoryItemWidget::Ptr> m_itemWidgets;
 
 	int m_selected;
@@ -29,8 +25,6 @@ private:
 
 public:
 	InventoryWidget();
-
-	void Update();
 
 	std::shared_ptr<Item> GetSelected();
 

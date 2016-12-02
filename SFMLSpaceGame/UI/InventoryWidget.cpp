@@ -17,17 +17,6 @@ InventoryWidget::InventoryWidget()
 	m_scrollWindow->SetRequisition({ 300, 300 });
 }
 
-void InventoryWidget::Update()
-{
-	if (!m_targetHandle.IsValid())
-		return;
-
-	for (auto& item : m_itemWidgets)
-	{
-		item->Invalidate();
-	}
-}
-
 std::shared_ptr<Item> InventoryWidget::GetSelected()
 {
 	if (m_selected == -1) return nullptr;
@@ -41,9 +30,9 @@ sfg::Widget::Ptr InventoryWidget::GetWidget()
 
 void InventoryWidget::SetTarget(EntityID id)
 {
-	m_targetHandle = EntityManager::Get(id);
+	auto targetHandle = EntityManager::Get(id);
 
-	auto& inven = m_targetHandle->GetComponent<Inventory>();
+	auto& inven = targetHandle->GetComponent<Inventory>();
 
 	// Remove existing items
 	for (auto& item : m_itemWidgets)

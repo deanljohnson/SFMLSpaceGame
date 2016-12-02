@@ -18,6 +18,7 @@ class RenderBatch
 {
 private:
 	static std::unordered_map<std::string, std::unique_ptr<RenderBatch>> m_stringBatches;
+	static std::unordered_map<sf::PrimitiveType, std::unique_ptr<RenderBatch>> m_primitiveBatches;
 
 	std::vector<std::unique_ptr<BatchIndex>> m_indices;
 	std::vector<BatchIndex*> m_removedIndices;
@@ -31,13 +32,18 @@ private:
 	std::vector<sf::Vector2f> m_origins;
 	std::vector<b2Rot> m_rotations;
 
+	sf::PrimitiveType m_primType;
+
 	void UpdateTexCoords(BatchIndex* index);
 	void RemoveDeletedElements();
-public:
-	static RenderBatch* Get(const std::string& texName);
-	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
+public:
 	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);
+	explicit RenderBatch(sf::PrimitiveType primType);
+
+	static RenderBatch* Get(const std::string& texName);
+	static RenderBatch* Get(sf::PrimitiveType primType);
+	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
 	BatchIndex* Add();
 	void Remove(BatchIndex* index);
@@ -58,8 +64,8 @@ public:
 	void SetScale(BatchIndex* index, const sf::Vector2f& scale);
 	sf::Vector2f GetScale(BatchIndex* index);
 
-	void SetTextureRect(BatchIndex* index, const sf::IntRect& rect);
-	sf::IntRect GetTextureRect(BatchIndex* index);
+	void SetRect(BatchIndex* index, const sf::IntRect& rect);
+	sf::IntRect GetRect(BatchIndex* index);
 
 	void SetColor(BatchIndex* index, const sf::Color& color);
 	sf::Color GetColor(BatchIndex* index);
