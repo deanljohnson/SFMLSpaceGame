@@ -11,6 +11,7 @@
 #include <RenderBatch.h>
 #include <Components/Position.h>
 #include <Serializer.h>
+#include "Entity.h"
 
 //#include <LaserRig.h>
 void TestRun()

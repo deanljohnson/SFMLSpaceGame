@@ -1,5 +1,5 @@
 #pragma once
-#include <ShipStats.h>
+class ShipStats;
 
 class ShipStatsComponent : public Component
 {
@@ -25,11 +25,7 @@ private:
 		construct(selfID, shipID);
 	}
 public:
-	ShipStatsComponent(EntityID ent, const std::string& shipID)
-		: Component(ent),
-		  m_shipID(shipID),
-		  m_shipStats(LoadShip(m_shipID))
-	{}
+	ShipStatsComponent(EntityID ent, const std::string& shipID);
 
-	ShipStats* operator->() { return m_shipStats.get(); };
+	ShipStats* operator->();;
 };

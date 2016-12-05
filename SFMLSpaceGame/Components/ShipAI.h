@@ -1,8 +1,8 @@
 #pragma once
-#include <Event.h>
 #include <EntityManager.h>
 
 class ShipController;
+class AttackedEvent;
 
 class ShipAI : public Component
 {

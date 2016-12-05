@@ -5,6 +5,7 @@
 #include <EntityManager.h>
 #include <UI/UI.h>
 #include <Components\Shields.h>
+#include <Entity.h>
 
 ShieldStateDisplay::ShieldStateDisplay() 
 	: GameWindow("shield_display")

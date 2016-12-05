@@ -1,6 +1,6 @@
 #pragma once
 #include <Components/Component.h>
-#include <cereal\cereal.hpp>
+#include <cereal/cereal.hpp>
 
 class Physics;
 

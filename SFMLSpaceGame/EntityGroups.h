@@ -1,5 +1,4 @@
 #pragma once
-#include <Entity.h>
 
 //NOTE: Entity's update/render methods are called according to group number order
 

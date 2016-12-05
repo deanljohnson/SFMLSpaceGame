@@ -12,6 +12,6 @@ MainMenu::MainMenu()
 	UI::Singleton->Add(m_window);
 	SetupWindowSignals();
 
-	auto startButton = sfg::Button::Create("Start Game");
+	auto startButton = sfg::Button::Create("Start Game asdasdasd");
 	m_window->Add(startButton);
 }

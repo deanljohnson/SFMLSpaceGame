@@ -7,6 +7,7 @@
 #include <EntityManager.h>
 #include <EntityGroups.h>
 #include <Event.h>
+#include <Entity.h>
 
 namespace
 {

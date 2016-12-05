@@ -1,7 +1,6 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include <Components/Component.h>
 #include <cereal/access.hpp>
 
 class Rotation : public Component

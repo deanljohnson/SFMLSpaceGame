@@ -3,9 +3,7 @@
 #include <unordered_map>
 #include <memory>
 #include <array>
-#include <EntityID.h>
 #include <EntityHandle.h>
-#include <Entity.h>
 #include <Group.h>
 
 namespace sf{
@@ -14,6 +12,7 @@ namespace sf{
 }
 
 class b2World;
+class Entity;
 
 class EntityManager
 {

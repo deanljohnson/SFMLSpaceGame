@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <EntityHelpers.h>
+#include <Entity.h>
 #include "Components/Position.h"
 
 Entity* EntityHelpers::GetClosestEntity(Entity* subject, 

@@ -1,6 +1,5 @@
 #pragma once
 #include <EntityID.h>
-//#include <string>
 
 class Entity;
 class EntityManager;
@@ -15,7 +14,6 @@ public:
 
 private:
 	EntityID m_ID;
-	//std::string m_name;
 	Entity* m_entity;
 
 public:

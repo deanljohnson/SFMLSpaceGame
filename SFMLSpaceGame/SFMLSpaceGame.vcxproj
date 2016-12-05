@@ -270,6 +270,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\ColliderEditor.cpp" />
     <ClCompile Include="UI\ConfirmationDialog.cpp" />
     <ClCompile Include="UI\ContextMenu.cpp" />
+    <ClCompile Include="UI\Health.cpp" />
     <ClCompile Include="UI\ItemContextProvider.cpp" />
     <ClCompile Include="UI\GameWindow.cpp" />
     <ClCompile Include="UI\HardPointEditor.cpp" />
@@ -286,6 +287,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\RigTypeSelector.cpp" />
     <ClCompile Include="UI\ShieldStateDisplay.cpp" />
     <ClCompile Include="UI\ShipEditorWindow.cpp" />
+    <ClCompile Include="UI\ShipStatsComponent.cpp" />
     <ClCompile Include="UI\StationTradeWindow.cpp" />
     <ClCompile Include="UI\StationWindow.cpp" />
     <ClCompile Include="UI\StringEntryPopup.cpp" />

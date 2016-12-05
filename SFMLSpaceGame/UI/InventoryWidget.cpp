@@ -6,6 +6,7 @@
 #include <EntityManager.h>
 #include <Components/Inventory.h>
 #include <UI/ItemContextProvider.h>
+#include <Entity.h>
 
 InventoryWidget::InventoryWidget()
 	: m_selected(-1)

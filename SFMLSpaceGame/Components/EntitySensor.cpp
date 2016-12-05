@@ -4,6 +4,7 @@
 #include <Components/EntitySensor.h>
 #include <Components/Physics.h>
 #include <CollisionGroups.h>
+#include <Entity.h>
 
 EntitySensor::EntitySensor(EntityID ent, float radius, const std::vector<Group>& groups)
 	: Component(ent), 

@@ -4,6 +4,7 @@
 #include <Components/ParallaxMovement.h>
 #include <Components/Position.h>
 #include <EntityManager.h>
+#include <Entity.h>
 
 ParallaxMovement::ParallaxMovement(EntityID ent, EntityID target, float movementScale)
 	: Component(ent),

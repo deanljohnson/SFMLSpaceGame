@@ -1,17 +1,16 @@
 #pragma once
-#include <Components/SoundSource.h>
 #include <Interfaces/Gun.h>
 #include <vector>
 #include <ResourceLoader.h>
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 #include <HardPoint.h>
-#include <Entity.h>
 
 class Position;
 class Rotation;
 class Sprite;
 class LaserRig;
+class SoundSource;
 
 struct DirectionalGunData
 {
@@ -84,9 +83,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), (m_shotSound == nullptr) 
-								? -1 
-								: entity->GetComponentID(*m_shotSound));
+		ar(entity.GetID(), GetSoundSourceID());
 	}
 
 	template <class Archive>
@@ -99,11 +96,15 @@ private:
 		int soundSourceID;
 		ar(soundSourceID);
 
-		if (soundSourceID != -1)
-			construct->m_shotSound = &construct->entity->GetComponent<SoundSource>(soundSourceID);
+		construct->InitSoundSource(soundSourceID);
 	}
 
 	void FireWeapon(int i);
+
+	// Defined only to move implementation into cpp file
+	int GetSoundSourceID();
+	// Defined only to move implementation into cpp file
+	void InitSoundSource(int compID);
 public:
 	explicit DirectionalGun(EntityID ent);
 

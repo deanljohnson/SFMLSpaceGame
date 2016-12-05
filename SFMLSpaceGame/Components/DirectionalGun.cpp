@@ -1,15 +1,17 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
-#include <GameTime.h>
 #include <Components/DirectionalGun.h>
-#include <EntityFactory.h>
-#include <VectorMath.h>
-#include <WorldConstants.h>
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <Components/Sprite.h>
+#include <Components/SoundSource.h>
+#include <EntityFactory.h>
+#include <VectorMath.h>
+#include <WorldConstants.h>
+#include <GameTime.h>
 #include <LaserRig.h>
+#include <Entity.h>
 
 DirectionalGun::DirectionalGun(EntityID ent)
 	: Component(ent),
@@ -52,6 +54,19 @@ void DirectionalGun::FireWeapon(int i)
 
 	// Store this so we can have a cooldown
 	m_weaponStates[i].lastFiringTime = GameTime::totalTime;
+}
+
+int DirectionalGun::GetSoundSourceID()
+{
+	return (m_shotSound == nullptr)
+		? -1
+		: entity->GetComponentID(*m_shotSound);
+}
+
+void DirectionalGun::InitSoundSource(int compID)
+{
+	if (compID != -1)
+		m_shotSound = &entity->GetComponent<SoundSource>(compID);
 }
 
 void DirectionalGun::Shoot(const b2Vec2& pos)

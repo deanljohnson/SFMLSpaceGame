@@ -1,5 +1,4 @@
 #pragma once
-#include <Components/Component.h>
 #include <memory>
 #include <SFML/Audio/Sound.hpp>
 

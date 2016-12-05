@@ -5,12 +5,14 @@
 #include <Components\Position.h>
 #include <Components\Rotation.h>
 #include <Components\Sprite.h>
+#include <Components\SoundSource.h>
 #include <GameTime.h>
 #include <EntityFactory.h>
 #include <EntityManager.h>
 #include <EntityGroups.h>
 #include <EntityHelpers.h>
 #include <VectorMath.h>
+#include <Entity.h>
 
 MissileLauncher::MissileLauncher(EntityID ent)
 	: Component(ent),

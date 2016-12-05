@@ -6,6 +6,7 @@
 #include <ItemFactory.h>
 #include <EntityManager.h>
 #include <Components/ShipStatsComponent.h>
+#include "Entity.h"
 
 namespace Equipper
 {

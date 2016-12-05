@@ -11,6 +11,7 @@
 #include <Equipper.h>
 #include <Components/ShipStatsComponent.h>
 #include <ItemFactory.h>
+#include <Entity.h>
 
 InventoryWindow::InventoryWindow()
 	: GameWindow("inventory"),

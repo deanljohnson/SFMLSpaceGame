@@ -8,6 +8,7 @@
 #include <VectorMath.h>
 #include <ExtendedMath.h>
 #include <GameTime.h>
+#include <Entity.h>
 
 MissileController::MissileController(EntityID ent, EntityID source, EntityID target, float thrust)
 	: Component(ent),

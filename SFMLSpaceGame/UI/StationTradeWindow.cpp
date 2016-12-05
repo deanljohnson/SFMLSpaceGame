@@ -9,6 +9,7 @@
 #include <Economy.h>
 #include <ItemFactory.h>
 #include <Components/EconomyAgent.h>
+#include <Entity.h>
 
 StationTradeWindow::StationTradeWindow() 
 	: GameWindow("station_trade")

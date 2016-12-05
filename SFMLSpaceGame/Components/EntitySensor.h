@@ -1,10 +1,12 @@
 #pragma once
-#include <Entity.h>
+#include <EntityID.h>
 #include <Interfaces/ComponentSensor.h>
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
+#include <Group.h>
 
 class Physics;
+class Entity;
 
 class EntitySensor : public Component, public ComponentSensor
 {
@@ -25,7 +27,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_radius, m_groups, m_triggered);
+		ar(GetEntityID(), m_radius, m_groups, m_triggered);
 	}
 
 	template <class Archive>
