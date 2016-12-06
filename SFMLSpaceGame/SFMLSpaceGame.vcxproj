@@ -257,6 +257,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="ShipManeuvers.cpp" />
     <ClCompile Include="ShipResourceSelector.cpp" />
+    <ClCompile Include="ShipStats.cpp" />
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="stdafx.cpp">

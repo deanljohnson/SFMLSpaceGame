@@ -67,7 +67,7 @@ void ColliderEditor::SetupCanvasSignals()
 
 void ColliderEditor::LoadShipImage()
 {
-	m_shipTexture = LoadTexture(m_targetStats->GetImageLocation());
+	m_shipTexture = LoadTexture(m_targetStats->imageLocation);
 	m_shipImage.setTexture(*m_shipTexture.get());
 	// Explicitly set the texture rect. Otherwise, changing ships can cause part of
 	// the image to be occluded

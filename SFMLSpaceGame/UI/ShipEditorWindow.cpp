@@ -300,11 +300,11 @@ void ShipEditorWindow::SetupEntryFocusSignals()
 
 void ShipEditorWindow::LoadShipStatsToEntries()
 {
-	m_interLeadEntry->SetText(std::to_string(m_targetStats->GetInterceptLeadMultiplier()));
-	m_followDistEntry->SetText(std::to_string(m_targetStats->GetFollowDistance()));
-	m_approachDistEntry->SetText(std::to_string(m_targetStats->GetApproachDistance()));
-	m_strafeDistEntry->SetText(std::to_string(m_targetStats->GetStrafeDistance()));
-	m_sensorRangeEntry->SetText(std::to_string(m_targetStats->GetSensorRange()));
+	m_interLeadEntry->SetText(std::to_string(m_targetStats->interceptLeadMultiplier));
+	m_followDistEntry->SetText(std::to_string(m_targetStats->followDistance));
+	m_approachDistEntry->SetText(std::to_string(m_targetStats->approachDistance));
+	m_strafeDistEntry->SetText(std::to_string(m_targetStats->strafeDistance));
+	m_sensorRangeEntry->SetText(std::to_string(m_targetStats->sensorRange));
 
 	auto thrust = m_targetStats->GetShipThrust();
 	m_forwardThrustEntry->SetText(std::to_string(thrust->Forward));
@@ -313,7 +313,7 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_steerThrustEntry->SetText(std::to_string(thrust->Steer));
 
 	auto shields = m_targetStats->GetShieldData();
-	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->GetMaxHullStrength()));
+	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->maxHull));
 	m_frontShieldEntry->SetText(std::to_string(shields->FrontStrength));
 	m_sideShieldEntry->SetText(std::to_string(shields->SideStrength));
 	m_rearShieldEntry->SetText(std::to_string(shields->RearStrength));
@@ -322,7 +322,7 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 
 void ShipEditorWindow::LoadShipImage()
 {
-	m_shipTexture = LoadTexture(m_editingStats->GetImageLocation());
+	m_shipTexture = LoadTexture(m_editingStats->imageLocation);
 	m_shipImage.setTexture(*m_shipTexture.get());
 	// Explicitly set the texture rect. Otherwise, changing ships can cause part of
 	// the image to be occluded
@@ -359,7 +359,7 @@ void ShipEditorWindow::CreateNewShip()
 		return;
 
 	ShipStats newShip = ShipStats();
-	newShip.SetImageLocation(m_newShipImageName);
+	newShip.imageLocation = m_newShipImageName;
 
 	Serializer<> ser;
 	ser.Save(&newShip, m_shipName, m_shipName);
@@ -451,12 +451,12 @@ void ShipEditorWindow::OnSaveShip()
 	if (!CheckAllEntryValidity())
 		return;
 
-	m_editingStats->SetInterceptLeadMultiplier(stof(m_interLeadEntry->GetText().toAnsiString()));
-	m_editingStats->SetFollowDistance(stof(m_followDistEntry->GetText().toAnsiString()));
-	m_editingStats->SetApproachDistance(stof(m_approachDistEntry->GetText().toAnsiString()));
-	m_editingStats->SetStrafeDistance(stof(m_strafeDistEntry->GetText().toAnsiString()));
-	m_editingStats->SetSensorRange(stof(m_sensorRangeEntry->GetText().toAnsiString()));
-	m_editingStats->SetMaxHullStrength(stof(m_hullStrengthEntry->GetText().toAnsiString()));
+	m_editingStats->interceptLeadMultiplier = stof(m_interLeadEntry->GetText().toAnsiString());
+	m_editingStats->followDistance = stof(m_followDistEntry->GetText().toAnsiString());
+	m_editingStats->approachDistance = stof(m_approachDistEntry->GetText().toAnsiString());
+	m_editingStats->strafeDistance = stof(m_strafeDistEntry->GetText().toAnsiString());
+	m_editingStats->sensorRange = stof(m_sensorRangeEntry->GetText().toAnsiString());
+	m_editingStats->maxHull = stof(m_hullStrengthEntry->GetText().toAnsiString());
 
 	auto shipThrust = m_editingStats->GetShipThrust();
 	shipThrust->Forward = stof(m_forwardThrustEntry->GetText().toAnsiString());

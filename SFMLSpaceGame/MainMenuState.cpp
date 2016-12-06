@@ -44,7 +44,9 @@ void MainMenuState::Render(sf::RenderTarget& target)
 	// For some reason, if this state does not render
 	// anything directly to the screen, UI elements 
 	// will not be displayed correctly, so we render
-	// a single pixel. Must be a bug in SFGUI
+	// a single pixel. Must be a bug in SFGUI.
+	// Note that this can be removed once we add a 
+	// non-gui element like a background
 	static sf::Vertex v{{1,1}};
 	target.draw(&v, 1, sf::PrimitiveType::Points);
 }

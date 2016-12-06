@@ -108,7 +108,7 @@ void DoAssignShipStatsData(Entity& ent)
 	if (ent.HasComponent<EntitySensor>())
 	{
 		auto& entSensor = ent.GetComponent<EntitySensor>();
-		entSensor.SetRange(shipStats->GetSensorRange());
+		entSensor.SetRange(shipStats->sensorRange);
 	}
 
 	auto& sp = ent.GetComponent<Sprite>();

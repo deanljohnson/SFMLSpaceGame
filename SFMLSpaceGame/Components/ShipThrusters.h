@@ -54,7 +54,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_shipID, m_currentMoveForce, m_currentTorque, m_power);
+		ar(GetEntityID(), m_shipID, m_currentMoveForce, m_currentTorque, m_power);
 	}
 
 	template <class Archive>

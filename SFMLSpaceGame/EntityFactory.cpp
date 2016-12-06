@@ -258,7 +258,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& shipStats = ent->AddComponent<ShipStatsComponent, const std::string&>(shipName);
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	ent->AddComponent<Sprite, const std::string&>(shipStats->GetImageLocation());
+	ent->AddComponent<Sprite, const std::string&>(shipStats->imageLocation);
 	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, const std::string&>(shipName);
 	auto& gunSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
@@ -290,7 +290,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	{
 		ent->AddComponent<ShipController, const std::string&>(shipName);
 		// All ships can sense the player
-		ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(shipStats->GetSensorRange(), {PLAYER_GROUP});
+		ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(shipStats->sensorRange, {PLAYER_GROUP});
 		ent->AddComponent<ShipAI, const std::string&>(shipName);
 	}
 

@@ -63,7 +63,7 @@ void ShipAI::ProcessAIState()
 		if (m_targetHandle.IsValid())
 		{
 			float dist = (m_position - *m_stationPosition).LengthSquared();
-			if (dist < m_shipStats->GetApproachDistance() * m_shipStats->GetApproachDistance() * 1.15f)
+			if (dist < m_shipStats->approachDistance * m_shipStats->approachDistance * 1.15f)
 			{
 				m_lastStationReached = m_targetHandle.GetID();
 				m_currentState = AIState::None;
