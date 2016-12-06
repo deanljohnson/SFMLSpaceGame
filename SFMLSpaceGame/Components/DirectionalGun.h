@@ -83,7 +83,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), GetSoundSourceID());
+		ar(GetEntityID(), GetSoundSourceID());
 	}
 
 	template <class Archive>

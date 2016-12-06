@@ -1,6 +1,9 @@
 #pragma once
 #include <UI/ContextMenu.h>
 
+class Item;
+enum class ItemType;
+
 class ItemContextProvider 
 {
 public:

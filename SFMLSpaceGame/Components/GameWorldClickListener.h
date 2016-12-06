@@ -17,10 +17,16 @@ private:
 	std::vector<MouseListener*> m_rightClickListeners;
 	std::vector<MouseListener*> m_rightHeldListeners;
 
+	ClickState m_middleClickedState;
+	std::vector<MouseListener*> m_middleClickListeners;
+	std::vector<MouseListener*> m_middleHeldListeners;
+
 	void HandleLeftPress();
 	void HandleLeftRelease();
 	void HandleRightPress();
 	void HandleRightRelease();
+	void HandleMiddlePress();
+	void HandleMiddleRelease();
 public:
 	explicit GameWorldClickListener(EntityID ent);
 

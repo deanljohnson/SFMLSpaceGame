@@ -26,8 +26,10 @@ SoundListener,\
 MusicSource,\
 DirectionalGun,\
 MissileLauncher,\
+MiningLaser,\
 FireGunOnClick<DirectionalGun>,\
 FireGunOnClick<MissileLauncher>,\
+FireGunOnClick<MiningLaser>,\
 BulletPhysics,\
 MissilePhysics,\
 MissileController,\

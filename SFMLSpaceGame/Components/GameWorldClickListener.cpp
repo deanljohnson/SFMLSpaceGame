@@ -84,6 +84,42 @@ void GameWorldClickListener::HandleRightRelease()
 	}
 }
 
+void GameWorldClickListener::HandleMiddlePress()
+{
+	switch (m_rightClickedState)
+	{
+	case None:
+		m_middleClickedState = Down;
+		break;
+	case Down:
+		m_middleClickedState = Held;
+		break;
+	case Held:
+		break;
+	case Click:
+		m_middleClickedState = Down;
+		break;
+	}
+}
+
+void GameWorldClickListener::HandleMiddleRelease()
+{
+	switch (m_middleClickedState)
+	{
+	case None:
+		break;
+	case Down:
+		m_middleClickedState = Click;
+		break;
+	case Held:
+		m_middleClickedState = Click;
+		break;
+	case Click:
+		m_middleClickedState = None;
+		break;
+	}
+}
+
 void GameWorldClickListener::Update()
 {
 	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)
@@ -103,6 +139,11 @@ void GameWorldClickListener::Update()
 				HandleRightPress();
 				handled = true;
 			}
+			else if (e->mouseButton.button == sf::Mouse::Middle)
+			{
+				HandleMiddlePress();
+				handled = true;
+			}
 		}
 		else if (e->type == sf::Event::MouseButtonReleased)
 		{
@@ -114,6 +155,11 @@ void GameWorldClickListener::Update()
 			else if (e->mouseButton.button == sf::Mouse::Right)
 			{
 				HandleRightRelease();
+				handled = true;
+			}
+			else if (e->mouseButton.button == sf::Mouse::Middle)
+			{
+				HandleMiddleRelease();
 				handled = true;
 			}
 		}
@@ -141,7 +187,7 @@ void GameWorldClickListener::Update()
 
 	if (m_rightClickedState == Down || m_rightClickedState == Held)
 	{
-		for (auto listener : m_rightClickListeners)
+		for (auto listener : m_rightHeldListeners)
 		{
 			listener->OnHeld(mousePos);
 		}
@@ -153,6 +199,22 @@ void GameWorldClickListener::Update()
 			listener->OnClick(mousePos);
 		}
 		m_rightClickedState = None;
+	}
+
+	if (m_middleClickedState == Down || m_middleClickedState == Held)
+	{
+		for (auto listener : m_middleHeldListeners)
+		{
+			listener->OnHeld(mousePos);
+		}
+	}
+	else if (m_middleClickedState == Click)
+	{
+		for (auto listener : m_middleClickListeners)
+		{
+			listener->OnClick(mousePos);
+		}
+		m_middleClickedState = None;
 	}
 }
 
@@ -166,10 +228,12 @@ void GameWorldClickListener::AddClickListener(MouseListener* listener)
 	case sf::Mouse::Button::Right:
 		m_rightClickListeners.push_back(listener);
 		break;
+	case sf::Mouse::Button::Middle:
+		m_middleClickListeners.push_back(listener);
+		break;
 	default:
 		throw "GameWorldClickListener does not support the given mouse button";
 	}
-	
 }
 
 void GameWorldClickListener::AddHeldListener(MouseListener* listener)
@@ -181,6 +245,9 @@ void GameWorldClickListener::AddHeldListener(MouseListener* listener)
 		break;
 	case sf::Mouse::Button::Right:
 		m_rightHeldListeners.push_back(listener);
+		break;
+	case sf::Mouse::Button::Middle:
+		m_middleHeldListeners.push_back(listener);
 		break;
 	default:
 		throw "GameWorldClickListener does not support the given mouse button";

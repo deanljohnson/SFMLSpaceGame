@@ -402,6 +402,9 @@
     <ClCompile Include="SpriteKey.cpp">
       <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Components\MiningLaser.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -841,6 +844,12 @@
     </ClInclude>
     <ClInclude Include="SpriteKey.h">
       <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MiningLaser.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MiningRig.h">
+      <Filter>Header Files\Rigs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

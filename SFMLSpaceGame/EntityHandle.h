@@ -17,8 +17,7 @@ private:
 	Entity* m_entity;
 
 public:
-	EntityHandle() 
-	  : m_ID(0), m_entity(nullptr) {}
+	EntityHandle();
 	EntityHandle(Entity* ent, EntityID id);
 
 	bool IsValid();
@@ -27,5 +26,5 @@ public:
 	const Entity* operator->() const;
 	Entity* GetRawPointer();
 
-	EntityID GetID() const { return m_ID; };
+	EntityID GetID() const;;
 };

@@ -40,8 +40,10 @@ void EntityFactory::Init()
 	GetComponentTypeID<MusicSource>();
 	GetComponentTypeID<DirectionalGun>();
 	GetComponentTypeID<MissileLauncher>();
+	GetComponentTypeID<MiningLaser>();
 	GetComponentTypeID<FireGunOnClick<DirectionalGun>>();
 	GetComponentTypeID<FireGunOnClick<MissileLauncher>>();
+	GetComponentTypeID<FireGunOnClick<MiningLaser>>();
 	GetComponentTypeID<BulletPhysics>();
 	GetComponentTypeID<MissilePhysics>();
 	GetComponentTypeID<Lifetime>();
@@ -192,8 +194,10 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<RotateToFaceMouse, float>(1.5f);
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
+	ent->AddComponent<MiningLaser>();
 	ent->AddComponent<FireGunOnClick<DirectionalGun>, sf::Mouse::Button>(sf::Mouse::Left);
 	ent->AddComponent<FireGunOnClick<MissileLauncher>, sf::Mouse::Button>(sf::Mouse::Right);
+	ent->AddComponent<FireGunOnClick<MiningLaser>, sf::Mouse::Button>(sf::Mouse::Middle);
 	ent->AddComponent<ZoomHandler>();
 	ent->AddComponent<PlayerDeathBroadcaster>();
 	ent->AddComponent<SoundListener>();

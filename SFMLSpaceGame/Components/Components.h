@@ -12,6 +12,7 @@
 #include <Components/GameWorldClickListener.h>
 #include <Components/DirectionalGun.h>
 #include <Components/MissileLauncher.h>
+#include <Components/MiningLaser.h>
 #include <Components/FireGunOnClick.h>
 #include <Components/Physics.h>
 #include <Components/BulletPhysics.h>

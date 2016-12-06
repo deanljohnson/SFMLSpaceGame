@@ -37,7 +37,7 @@ struct MissileLauncherData
 
 		rigs.resize(rigNames.size());
 
-		for (int i = 0; i < rigNames.size(); i++)
+		for (auto i = 0; i < rigNames.size(); i++)
 		{
 			if (rigNames[i] == "empty")
 				rigs[i] = nullptr;

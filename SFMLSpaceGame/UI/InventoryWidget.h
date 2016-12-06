@@ -2,6 +2,7 @@
 #include <UI\InventoryItemWidget.h>
 #include <SFGUI\Widgets.hpp>
 #include <PriceSupplier.h>
+#include <EntityID.h>
 
 class ItemContextProvider;
 

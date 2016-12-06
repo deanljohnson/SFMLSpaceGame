@@ -3,6 +3,12 @@
 #include "stdafx.h"
 #include <EntityManager.h>
 
+EntityHandle::EntityHandle()
+	: m_ID(0), m_entity(nullptr)
+{
+	
+}
+
 EntityHandle::EntityHandle(Entity* ent, EntityID id)
 	: m_ID(id), m_entity(ent)
 {}
@@ -51,4 +57,9 @@ const Entity* EntityHandle::operator->() const
 Entity* EntityHandle::GetRawPointer()
 {
 	return m_entity;
+}
+
+EntityID EntityHandle::GetID() const
+{
+	return m_ID;
 }

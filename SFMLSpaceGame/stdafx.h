@@ -12,17 +12,17 @@
 
 #include <UI/ColliderEditor.h>
 #include <UI/ConfirmationDialog.h>
-//#include <UI/ItemContextProvider.h>
-//#include <UI/ContextMenu.h>
+#include <UI/ItemContextProvider.h>
+#include <UI/ContextMenu.h>
 #include <UI/DataFileSelector.h>
 #include <UI/GameWindow.h>
-//#include <UI/MainMenu.h>
+#include <UI/MainMenu.h>
 #include <UI/HardPointEditor.h>
 #include <UI/HardPointWidget.h>
 #include <UI/ImageSelector.h>
-//#include <UI/InventoryItemWidget.h>
-//#include <UI/InventoryWidget.h>
-//#include <UI/InventoryWindow.h>
+#include <UI/InventoryItemWidget.h>
+#include <UI/InventoryWidget.h>
+#include <UI/InventoryWindow.h>
 #include <UI/RigEditor.h>
 #include <UI/RigEditorWidget.h>
 #include <UI/RigTypeSelector.h>
