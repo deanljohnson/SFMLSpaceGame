@@ -17,6 +17,10 @@ GameWindow::GameWindow(const std::string& id)
 
 GameWindow::~GameWindow()
 {
+	// Remove the SFGUI window
+	UI::Singleton->Remove(m_window);
+
+	// Delete this from the static windows collection
 	m_windows.erase(m_windows.find(m_id));
 
 	if (m_containsMouse)

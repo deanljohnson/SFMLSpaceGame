@@ -10,6 +10,7 @@
 #include "UI/GameWindow.h"
 
 sf::RenderWindow* GAME_WINDOW;
+GameStateManager* GAME_STATE_MANAGER;
 size_t DRAW_CALLS = 0;
 
 sf::VideoMode GetVideoMode()
@@ -24,17 +25,17 @@ int main()
 	const std::string TITLE = "Space Game";
 	sf::RenderWindow window(GetVideoMode(), TITLE);
 	window.setFramerateLimit(60);
-	
+	GAME_WINDOW = &window;
+
 	UI ui;
 	ui.SetSize(window.getSize());
-
-	GAME_WINDOW = &window;
 
 	EntityFactory::Init();
 	Economy::Init();
 
 	GameStateManager game_manager{};
 	game_manager.Init();
+	GAME_STATE_MANAGER = &game_manager;
 
 	sf::Clock clock{};
 

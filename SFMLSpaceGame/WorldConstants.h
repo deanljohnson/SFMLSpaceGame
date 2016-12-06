@@ -2,6 +2,8 @@
 #include <Box2D/Common/b2Math.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+class GameStateManager;
+
 const float PIXELS_PER_METER = 100.f;
 const float METERS_PER_PIXEL = 1.f / 100.f;
 const float FIXED_TIME_STEP = .017f;
@@ -10,6 +12,7 @@ const int BOX2D_POSITION_ITERATIONS = 3;
 
 extern size_t DRAW_CALLS;
 extern sf::RenderWindow* GAME_WINDOW;
+extern GameStateManager* GAME_STATE_MANAGER;
 
 inline b2Vec2 MapPixelToWorld(const b2Vec2& v)
 {

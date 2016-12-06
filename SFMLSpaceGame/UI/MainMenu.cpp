@@ -12,6 +12,23 @@ MainMenu::MainMenu()
 	UI::Singleton->Add(m_window);
 	SetupWindowSignals();
 
-	auto startButton = sfg::Button::Create("Start Game asdasdasd");
+	auto startButton = sfg::Button::Create("Start Game");
 	m_window->Add(startButton);
+
+	startButton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnStartGame(); });
+}
+
+void MainMenu::Update()
+{
+}
+
+void MainMenu::SetStartGameCallback(std::function<void()> startGameCallback)
+{
+	m_startGameCallback = startGameCallback;
+}
+
+void MainMenu::OnStartGame()
+{
+	if (m_startGameCallback != nullptr)
+		m_startGameCallback();
 }

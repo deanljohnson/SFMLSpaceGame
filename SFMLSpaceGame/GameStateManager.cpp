@@ -7,16 +7,14 @@
 
 void GameStateManager::Init()
 {
-	m_states.emplace_back(new MainMenuState());
-	m_states.back()->Init();
+	PushState(std::make_unique<MainMenuState>());
 }
 
 void GameStateManager::CleanUp()
 {
 	while (!m_states.empty())
 	{
-		m_states.back()->CleanUp();
-		m_states.pop_back();
+		PopState();
 	}
 }
 
@@ -25,8 +23,13 @@ void GameStateManager::ProcessEvent(const sf::Event& event) const
 	m_states.back()->ProcessEvent(event);
 }
 
-void GameStateManager::Update() const
+void GameStateManager::Update()
 {
+	if (m_nextState != nullptr)
+	{
+		ChangeState(move(m_nextState));
+		m_nextState.release();
+	}
 	m_states.back()->Update();
 }
 
@@ -35,13 +38,25 @@ void GameStateManager::Render(sf::RenderTarget& target) const
 	m_states.back()->Render(target);
 }
 
-void GameStateManager::ChangeState(GameState* s)
+void GameStateManager::SetNextState(std::unique_ptr<GameState> s)
 {
-	m_states.pop_back();
-	m_states.emplace_back(s);
+	m_nextState = move(s);
 }
 
-void GameStateManager::PushState(GameState* s)
+void GameStateManager::ChangeState(std::unique_ptr<GameState> s)
 {
-	m_states.emplace_back(s);
+	PopState();
+	PushState(move(s));
+}
+
+void GameStateManager::PushState(std::unique_ptr<GameState> s)
+{
+	m_states.emplace_back(move(s));
+	m_states.back()->Init();
+}
+
+void GameStateManager::PopState()
+{
+	m_states.back()->CleanUp();
+	m_states.pop_back();
 }
