@@ -11,6 +11,7 @@
 #include <Economy.h>
 #include <MissileStats.h>
 #include <ItemFactory.h>
+#include <SpriteKey.h>
 
 void EntityFactory::Init()
 {
@@ -248,9 +249,10 @@ void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float r
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	auto& spr = ent->AddComponent<Sprite, const std::string&, OriginOption>("asteroid-one", OriginOption::Center);
-	ent->AddComponent<Animator, const std::string&, int>("asteroid-one", ent->GetComponentID<Sprite>(spr));
+	ent->AddComponent<Sprite, const SpriteKey&, OriginOption>({ "asteroid-one", 5 }, OriginOption::Center);
 	ent->AddComponent<Physics>();
+
+	ent->ApplyInitializer(EntityInitializer::Type::AsteroidSpriteBoundsColliderSetup);
 }
 
 void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p, float radians, bool npc)

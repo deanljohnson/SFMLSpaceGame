@@ -123,7 +123,7 @@ void DoAssignShipStatsData(Entity& ent)
 		shape.setPoint(i, (verts[i] * METERS_PER_PIXEL) - origin);
 	}
 
-	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
+	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SOLIDS | COLLIDES_WITH_SENSOR);
 }
 
 void DoAssignDamageModifiers(Entity& ent)
@@ -158,7 +158,7 @@ void DoStationSpriteBoundsColliderSetup(Entity& ent)
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(B2VecToSFMLVec(sp.GetOrigin()));
-	phys.AddShape(shape, 1.f, IS_STATION, COLLIDES_WITH_SHIP | COLLIDES_WITH_BULLET | COLLIDES_WITH_STATION | COLLIDES_WITH_SENSOR);
+	phys.AddShape(shape, 1.f, IS_STATION, COLLIDES_WITH_SOLIDS | COLLIDES_WITH_SENSOR);
 }
 
 void DoPickupSpriteBoundsColliderSetup(Entity& ent)
@@ -180,7 +180,18 @@ void DoMissileSpriteBoundsColliderSetup(Entity& ent)
 	auto spriteBox = sp.GetDimensions();
 	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
 	shape.setOrigin(B2VecToSFMLVec(sp.GetOrigin()));
-	phys.AddShape(shape, .2f, IS_BULLET, COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION);
+	phys.AddShape(shape, .2f, IS_BULLET, COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION | COLLIDES_WITH_ASTEROID);
+}
+
+void DoAsteroidSpriteBoundsColliderSetup(Entity& ent)
+{
+	auto& sp = ent.GetComponent<Sprite>();
+	auto& phys = ent.GetComponent<Physics>();
+
+	auto spriteBox = sp.GetDimensions();
+	auto shape = sf::RectangleShape(sf::Vector2f(spriteBox.width, spriteBox.height));
+	shape.setOrigin(B2VecToSFMLVec(sp.GetOrigin()));
+	phys.AddShape(shape, .2f, IS_ASTEROID, COLLIDES_WITH_SOLIDS);
 }
 
 void DoSetActivePlayerID(Entity& ent)
@@ -219,6 +230,9 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 		break;
 	case EntityInitializer::Type::MissileSpriteBoundsColliderSetup:
 		DoMissileSpriteBoundsColliderSetup(ent);
+		break;
+	case EntityInitializer::Type::AsteroidSpriteBoundsColliderSetup:
+		DoAsteroidSpriteBoundsColliderSetup(ent);
 		break;
 	case EntityInitializer::Type::SetActivePlayerID:
 		DoSetActivePlayerID(ent);

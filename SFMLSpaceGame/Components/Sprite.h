@@ -1,5 +1,6 @@
 #pragma once
 #include <OriginOption.h>
+#include <SpriteKey.h>
 #include <Components/Component.h>
 
 class Position;
@@ -18,7 +19,7 @@ private:
 
 	b2Vec2 m_offset;
 
-	std::string m_id;
+	SpriteKey m_key;
 
 	OriginOption m_originOption;
 
@@ -28,21 +29,24 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_id, m_originOption, m_offset);
+		ar(GetEntityID(), m_key, m_originOption, m_offset);
 	}
 
 	template <class Archive>
 	static void load_and_construct(Archive& ar, cereal::construct<Sprite>& construct)
 	{
 		EntityID selfID;
-		std::string id;
+		SpriteKey key;
 		OriginOption option;
-		ar(selfID, id, option);
-		construct(selfID, id, option);
+		ar(selfID, key, option);
+		construct(selfID, key, option);
 
 		ar(construct->m_offset);
 	}
+
+	void InitializeBatchRender();
 public:
+	Sprite(EntityID ent, const SpriteKey& key, OriginOption origin = OriginOption::Center);
 	Sprite(EntityID ent, const std::string& id, OriginOption origin = OriginOption::Center);
 	~Sprite();
 

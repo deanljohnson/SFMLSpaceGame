@@ -9,7 +9,7 @@
         },
         "value4": {
             "type": 0,
-            "data": 543
+            "data": 1055
         },
         "value5": 0,
         "value6": {
@@ -43,7 +43,11 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "value1": "1.png",
+                    "value1": {
+                        "value0": 1,
+                        "value1": "1.png",
+                        "value2": 0
+                    },
                     "value2": 0,
                     "value3": {
                         "v.x": 0.0,
@@ -59,7 +63,11 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "value1": "exhaust-one",
+                    "value1": {
+                        "value0": 1,
+                        "value1": "exhaust-one",
+                        "value2": 0
+                    },
                     "value2": 1,
                     "value3": {
                         "v.x": -0.3700000047683716,
@@ -75,7 +83,11 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "value1": "exhaust-one",
+                    "value1": {
+                        "value0": 1,
+                        "value1": "exhaust-one",
+                        "value2": 0
+                    },
                     "value2": 1,
                     "value3": {
                         "v.x": -0.3799999952316284,
@@ -425,7 +437,7 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "econ_id": "econ_26385",
+                    "econ_id": "econ_8863",
                     "buy": {
                         "value0": {
                             "ItemType": 3,

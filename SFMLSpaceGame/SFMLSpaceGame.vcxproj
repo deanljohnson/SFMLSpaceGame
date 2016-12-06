@@ -260,6 +260,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="ShipStats.cpp" />
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
+    <ClCompile Include="SpriteKey.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -356,6 +357,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="Rig.h" />
+    <ClInclude Include="SpriteKey.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\ContextMenu.h" />
     <ClInclude Include="UI\ItemContextProvider.h" />

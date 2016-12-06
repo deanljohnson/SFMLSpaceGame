@@ -9,25 +9,48 @@
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <RenderBatch.h>
+#include <AnimationDefinition.h>
+
+void Sprite::InitializeBatchRender()
+{
+	m_batch = RenderBatch::Get(m_key.texID);
+	m_batchIndex = m_batch->Add();
+
+	if (m_key.type == SpriteKey::Type::TexIndex)
+	{
+		auto anim = LoadAnimation(m_key.texID);
+		m_batch->SetRect(m_batchIndex, anim->GetFrame(m_key.index));
+	}
+
+	auto rect = m_batch->GetRect(m_batchIndex);
+
+	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, m_originOption));
+
+	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
+	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+}
+
+Sprite::Sprite(EntityID ent, const SpriteKey& key, OriginOption origin)
+	: Component(ent),
+	m_position(entity->GetComponent<Position>()),
+	m_rotation(entity->GetComponent<Rotation>()),
+	m_offset(b2Vec2(0, 0)),
+	m_key(key),
+	m_originOption(origin)
+{
+	InitializeBatchRender();
+}
 
 Sprite::Sprite(EntityID ent, const std::string& id, OriginOption origin)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_offset(b2Vec2(0,0)),
-	  m_id(id),
+	  m_key(id),
 	  m_originOption(origin)
 {
-	m_batch = RenderBatch::Get(id);
-	m_batchIndex = m_batch->Add();
-
-	auto rect = m_batch->GetRect(m_batchIndex);
-
-	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
-	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, origin));
-
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
-	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+	InitializeBatchRender();
 }
 
 Sprite::~Sprite()

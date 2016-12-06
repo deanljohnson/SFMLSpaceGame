@@ -14,7 +14,7 @@
                         },
                         "value4": {
                             "type": 0,
-                            "data": 543
+                            "data": 1055
                         },
                         "value5": 0,
                         "value6": {
@@ -48,7 +48,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": "1.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "1.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -64,7 +68,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.3700000047683716,
@@ -80,7 +88,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.3799999952316284,
@@ -430,7 +442,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_26385",
+                                    "econ_id": "econ_8863",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -636,7 +648,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -652,7 +668,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -668,7 +688,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -920,7 +944,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_21374",
+                                    "econ_id": "econ_5107",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1026,7 +1050,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -1042,7 +1070,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -1058,7 +1090,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -1310,7 +1346,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_2241",
+                                    "econ_id": "econ_15497",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1416,7 +1452,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -1432,7 +1472,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -1448,7 +1492,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -1700,7 +1748,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_27272",
+                                    "econ_id": "econ_17412",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1806,7 +1854,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -1822,7 +1874,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -1838,7 +1894,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -2090,7 +2150,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_11505",
+                                    "econ_id": "econ_1293",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2196,7 +2256,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -2212,7 +2276,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -2228,7 +2296,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -2480,7 +2552,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_10536",
+                                    "econ_id": "econ_27126",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2586,7 +2658,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -2602,7 +2678,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -2618,7 +2698,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -2870,7 +2954,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_14874",
+                                    "econ_id": "econ_30683",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2976,7 +3060,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -2992,7 +3080,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -3008,7 +3100,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -3260,7 +3356,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_18099",
+                                    "econ_id": "econ_14908",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3366,7 +3462,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": "Human-Fighter.png",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Fighter.png",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -3382,7 +3482,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -3398,7 +3502,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": "exhaust-one",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "exhaust-one",
+                                        "value2": 0
+                                    },
                                     "value2": 1,
                                     "value3": {
                                         "v.x": -0.6200000047683716,
@@ -3650,7 +3758,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_12816",
+                                    "econ_id": "econ_2327",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3756,7 +3864,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "value1": "Human-Spacestation",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Spacestation",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -3874,7 +3986,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_3629",
+                                    "econ_id": "econ_3069",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3973,7 +4085,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "value1": "Human-Spacestation",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Spacestation",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -4089,7 +4205,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_27173",
+                                    "econ_id": "econ_24727",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4188,7 +4304,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "value1": "Human-Spacestation",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Spacestation",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -4304,7 +4424,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_25732",
+                                    "econ_id": "econ_2009",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4403,7 +4523,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "value1": "Human-Spacestation",
+                                    "value1": {
+                                        "value0": 1,
+                                        "value1": "Human-Spacestation",
+                                        "value2": 0
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -4519,7 +4643,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_27910",
+                                    "econ_id": "econ_11281",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4584,7 +4708,7 @@
                         },
                         "value4": {
                             "type": 0,
-                            "data": 0
+                            "data": 512
                         },
                         "value5": 0,
                         "value6": {
@@ -4618,7 +4742,11 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 15,
-                                    "value1": "asteroid-one",
+                                    "value1": {
+                                        "value0": 2,
+                                        "value1": "asteroid-one",
+                                        "value2": 5
+                                    },
                                     "value2": 0,
                                     "value3": {
                                         "v.x": 0.0,
@@ -4627,20 +4755,8 @@
                                 }
                             }
                         },
-                        "value11": 3,
+                        "value11": 6,
                         "value12": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 15,
-                                    "value1": "asteroid-one",
-                                    "value2": 0
-                                }
-                            }
-                        },
-                        "value13": 6,
-                        "value14": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -4651,7 +4767,7 @@
                                 }
                             }
                         },
-                        "value15": 4294967295
+                        "value13": 4294967295
                     }
                 }
             },
