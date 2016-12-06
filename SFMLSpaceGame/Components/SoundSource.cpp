@@ -8,9 +8,14 @@
 SoundSource::SoundSource(EntityID ent, int soundID)
 	: Component(ent),
 	  m_position(entity->GetComponent<Position>()),
+	  m_soundBuffer(LoadSoundBuffer(soundID)),
 	  m_soundID(soundID)
 {
-	m_soundBuffer = LoadSoundBuffer(soundID);
+	if (m_soundBuffer == nullptr)
+	{
+		printf("The given sound ID was invalid: %d\n", m_soundID);
+		return;
+	}
 
 	m_sound.setBuffer(*m_soundBuffer.get());
 	m_sound.setMinDistance(.2f);
@@ -19,6 +24,8 @@ SoundSource::SoundSource(EntityID ent, int soundID)
 
 void SoundSource::Play()
 {
+	if (m_soundBuffer == nullptr)
+		return;
 	// Sound is spatialized in 3D by SFML
 	// The y axis corresponds to the third dimension in
 	// SFML's coordinates

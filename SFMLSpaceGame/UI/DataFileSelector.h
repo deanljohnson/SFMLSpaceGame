@@ -48,7 +48,14 @@ DataFileSelector<TDataType...>::DataFileSelector(const std::string& key, const s
 	table->Attach(cancelButton, { 1, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
 	selectButton->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[this] { CallCallback(m_fileStrings[m_selectionBox->GetSelectedItem()]); Show(false); });
+		[this] 
+		{ 
+			auto selected = m_selectionBox->GetSelectedItem();
+			CallCallback(selected != sfg::ComboBox::NONE 
+							? m_fileStrings[selected] 
+							: "");
+			Show(false);
+		});
 	cancelButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this] { CallCallback(""); Show(false); });
 }

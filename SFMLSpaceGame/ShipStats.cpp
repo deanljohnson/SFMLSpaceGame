@@ -70,7 +70,6 @@ ShieldData* ShipStats::GetShieldData()
 	return &m_shieldData;
 }
 
-
 void ShipStats::SetColliderVertices(const std::vector<sf::Vector2f>& colliderVertices)
 {
 	m_colliderVertices = { colliderVertices };

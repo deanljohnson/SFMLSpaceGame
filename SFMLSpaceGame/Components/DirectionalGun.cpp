@@ -95,6 +95,9 @@ void DirectionalGun::Shoot(const b2Vec2& pos)
 
 float DirectionalGun::GetNormalizedHeat() 
 {
+	if (m_weaponStates.empty())
+		return 0.f;
+
 	// TODO: For now simply return the 0'th heat.
 	// preferrably, this needs to be used in a way
 	// that gives a better idea of the heat of the whole weapon system

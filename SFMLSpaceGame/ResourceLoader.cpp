@@ -284,7 +284,8 @@ std::shared_ptr<sf::Font> LoadFont(ResourceID id)
 
 std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id)
 {
-	assert(IsSoundID(id));
+	if (!IsSoundID(id))
+		return nullptr;
 
 	auto it = loadedSounds.find(id);
 	if (it != loadedSounds.end())
