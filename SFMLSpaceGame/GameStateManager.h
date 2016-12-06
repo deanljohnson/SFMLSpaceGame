@@ -1,7 +1,8 @@
 #pragma once
-#include <GameState.h>
 #include <memory>
 #include <vector>
+
+class GameState;
 
 namespace sf{
 	class RenderTarget;

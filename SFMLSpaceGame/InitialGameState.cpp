@@ -13,6 +13,24 @@
 #include <Serializer.h>
 #include "Entity.h"
 
+#include <UI/ShipEditorWindow.h>
+#include <UI/RigEditor.h>
+#include <UI/RigSelector.h>
+#include <UI/RigTypeSelector.h>
+#include <UI/RigNameEntry.h>
+#include <UI/ShipSelector.h>
+#include <UI/ImageSelector.h>
+#include <UI/ShipNameEntry.h>
+#include <UI/StationWindow.h>
+#include <UI/StationTradeWindow.h>
+#include <UI/HardPointEditor.h>
+#include <UI/ColliderEditor.h>
+#include <UI/ThrusterLocationEditor.h>
+#include <UI/ConfirmationDialog.h>
+#include <UI/ShieldStateDisplay.h>
+#include <UI/InventoryWindow.h>
+#include <UI/ContextMenu.h>
+
 //#include <LaserRig.h>
 void TestRun()
 {
@@ -27,6 +45,29 @@ void TestRun()
 	ser.Save<LaserRig>(r, "Cannon-One", "Cannon-One");*/
 }
 
+class InitialGameState::InitialGameStateImpl
+{
+public:
+	ShipEditorWindow m_shipEditor;
+	RigEditor m_rigEditor;
+	RigSelector m_rigSelector;
+	RigTypeSelector m_rigTypeSelector;
+	RigNameEntry m_rigNameEntry;
+	ShipSelector m_shipSelector;
+	ImageSelector m_imageSelector;
+	ShipNameEntry m_shipNameEntry;
+	StationWindow m_stationWindow;
+	StationTradeWindow m_stationTradeWindow;
+	HardPointEditor m_hardPointEditor;
+	ColliderEditor m_colliderEditor;
+	ThrusterLocationEditor m_thrusterLocationEditor;
+	ConfirmationDialog m_confirmationDialog;
+	InventoryWindow m_inventoryWindow;
+	ContextMenu m_contextMenu;
+
+	ShieldStateDisplay m_shieldStateDisplay;
+};
+
 void AddEnemy()
 {
 	EntityFactory::CreateShip("Human-Fighter", b2Vec2(5, 5));
@@ -36,6 +77,7 @@ InitialGameState::InitialGameState()
 	: m_playerID(ENTITY_ID_NULL),
 	  m_playerSpawnerID(ENTITY_ID_NULL),
 	  m_stepper(),
+	  m_impl(new InitialGameStateImpl()),
 	  m_paused(false)
 {}
 
@@ -100,42 +142,42 @@ void InitialGameState::Init()
 		ser->Save<EntityManager>(entMan, "all", "EntMan");
 	}
 
-	m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
+	m_impl->m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());
 
-	m_shipEditor.Show(false);
-	m_rigEditor.Show(false);
-	m_rigSelector.Show(false);
-	m_rigTypeSelector.Show(false);
-	m_rigNameEntry.Show(false);
-	m_shipSelector.Show(false);
-	m_imageSelector.Show(false);
-	m_shipNameEntry.Show(false);
-	m_stationWindow.Show(false);
-	m_stationTradeWindow.Show(false);
-	m_hardPointEditor.Show(false);
-	m_colliderEditor.Show(false);
-	m_thrusterLocationEditor.Show(false);
-	m_confirmationDialog.Show(false);
-	m_inventoryWindow.Show(false);
-	m_contextMenu.Show(false);
-	m_shieldStateDisplay.Show(true);
-	m_shipEditor.CenterOnScreen();
-	m_rigEditor.CenterOnScreen();
-	m_rigSelector.CenterOnScreen();
-	m_rigTypeSelector.CenterOnScreen();
-	m_rigNameEntry.CenterOnScreen();
-	m_shipSelector.CenterOnScreen();
-	m_imageSelector.CenterOnScreen();
-	m_shipNameEntry.CenterOnScreen();
-	m_stationWindow.CenterOnScreen();
-	m_stationTradeWindow.CenterOnScreen();
-	m_hardPointEditor.CenterOnScreen();
-	m_colliderEditor.CenterOnScreen();
-	m_thrusterLocationEditor.CenterOnScreen();
-	m_confirmationDialog.CenterOnScreen();
-	m_inventoryWindow.CenterOnScreen();
-	m_contextMenu.CenterOnScreen();
-	m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
+	m_impl->m_shipEditor.Show(false);
+	m_impl->m_rigEditor.Show(false);
+	m_impl->m_rigSelector.Show(false);
+	m_impl->m_rigTypeSelector.Show(false);
+	m_impl->m_rigNameEntry.Show(false);
+	m_impl->m_shipSelector.Show(false);
+	m_impl->m_imageSelector.Show(false);
+	m_impl->m_shipNameEntry.Show(false);
+	m_impl->m_stationWindow.Show(false);
+	m_impl->m_stationTradeWindow.Show(false);
+	m_impl->m_hardPointEditor.Show(false);
+	m_impl->m_colliderEditor.Show(false);
+	m_impl->m_thrusterLocationEditor.Show(false);
+	m_impl->m_confirmationDialog.Show(false);
+	m_impl->m_inventoryWindow.Show(false);
+	m_impl->m_contextMenu.Show(false);
+	m_impl->m_shieldStateDisplay.Show(true);
+	m_impl->m_shipEditor.CenterOnScreen();
+	m_impl->m_rigEditor.CenterOnScreen();
+	m_impl->m_rigSelector.CenterOnScreen();
+	m_impl->m_rigTypeSelector.CenterOnScreen();
+	m_impl->m_rigNameEntry.CenterOnScreen();
+	m_impl->m_shipSelector.CenterOnScreen();
+	m_impl->m_imageSelector.CenterOnScreen();
+	m_impl->m_shipNameEntry.CenterOnScreen();
+	m_impl->m_stationWindow.CenterOnScreen();
+	m_impl->m_stationTradeWindow.CenterOnScreen();
+	m_impl->m_hardPointEditor.CenterOnScreen();
+	m_impl->m_colliderEditor.CenterOnScreen();
+	m_impl->m_thrusterLocationEditor.CenterOnScreen();
+	m_impl->m_confirmationDialog.CenterOnScreen();
+	m_impl->m_inventoryWindow.CenterOnScreen();
+	m_impl->m_contextMenu.CenterOnScreen();
+	m_impl->m_shieldStateDisplay.SetPosition(sf::Vector2f(0, 100));
 }
 
 void InitialGameState::CleanUp()
@@ -203,23 +245,23 @@ void InitialGameState::HandlePause()
 {
 	bool pausingWindowOpened = false;
 
-	pausingWindowOpened |= m_shipEditor.IsShown();
-	pausingWindowOpened |= m_shipSelector.IsShown();
-	pausingWindowOpened |= m_shipNameEntry.IsShown();
+	pausingWindowOpened |= m_impl->m_shipEditor.IsShown();
+	pausingWindowOpened |= m_impl->m_shipSelector.IsShown();
+	pausingWindowOpened |= m_impl->m_shipNameEntry.IsShown();
 
-	pausingWindowOpened |= m_rigEditor.IsShown();
-	pausingWindowOpened |= m_rigSelector.IsShown();
-	pausingWindowOpened |= m_rigTypeSelector.IsShown();
-	pausingWindowOpened |= m_rigNameEntry.IsShown();
+	pausingWindowOpened |= m_impl->m_rigEditor.IsShown();
+	pausingWindowOpened |= m_impl->m_rigSelector.IsShown();
+	pausingWindowOpened |= m_impl->m_rigTypeSelector.IsShown();
+	pausingWindowOpened |= m_impl->m_rigNameEntry.IsShown();
 
-	pausingWindowOpened |= m_imageSelector.IsShown();
-	pausingWindowOpened |= m_stationWindow.IsShown();
-	pausingWindowOpened |= m_stationTradeWindow.IsShown();
-	pausingWindowOpened |= m_hardPointEditor.IsShown();
-	pausingWindowOpened |= m_colliderEditor.IsShown();
-	pausingWindowOpened |= m_thrusterLocationEditor.IsShown();
-	pausingWindowOpened |= m_confirmationDialog.IsShown();
-	pausingWindowOpened |= m_inventoryWindow.IsShown();
+	pausingWindowOpened |= m_impl->m_imageSelector.IsShown();
+	pausingWindowOpened |= m_impl->m_stationWindow.IsShown();
+	pausingWindowOpened |= m_impl->m_stationTradeWindow.IsShown();
+	pausingWindowOpened |= m_impl->m_hardPointEditor.IsShown();
+	pausingWindowOpened |= m_impl->m_colliderEditor.IsShown();
+	pausingWindowOpened |= m_impl->m_thrusterLocationEditor.IsShown();
+	pausingWindowOpened |= m_impl->m_confirmationDialog.IsShown();
+	pausingWindowOpened |= m_impl->m_inventoryWindow.IsShown();
 
 	if (pausingWindowOpened && !m_paused)
 		Pause();

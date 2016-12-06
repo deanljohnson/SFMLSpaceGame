@@ -4,6 +4,7 @@
 #include <GameTime.h>
 #include <GameStateManager.h>
 #include <WorldConstants.h>
+#include <GameState.h>
 #include <Economy.h>
 #include "EntityFactory.h"
 #include "UI/UI.h"

@@ -20,7 +20,8 @@ void GameStateManager::CleanUp()
 
 void GameStateManager::ProcessEvent(const sf::Event& event) const
 {
-	m_states.back()->ProcessEvent(event);
+	if (!m_states.empty())
+		m_states.back()->ProcessEvent(event);
 }
 
 void GameStateManager::Update()
