@@ -52,7 +52,6 @@ int main()
 			{
 				game_manager.CleanUp();
 				window.close();
-				return 0;
 			}
 			else if (event.type == sf::Event::MouseButtonPressed
 				|| event.type == sf::Event::MouseButtonReleased
@@ -69,6 +68,11 @@ int main()
 			}
 
 			game_manager.ProcessEvent(event);
+
+			// The window may be closed by event handlers
+			// or by clicking tyhe exit button
+			if (!window.isOpen())
+				return 0;
 		}
 
 		ui.Update(GameTime::deltaTime);

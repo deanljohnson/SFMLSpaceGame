@@ -12,14 +12,17 @@ MainMenu::MainMenu()
 	UI::Singleton->Add(m_window);
 	SetupWindowSignals();
 
+	auto layout = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 	auto startButton = sfg::Button::Create("Start Game");
-	m_window->Add(startButton);
+	layout->Pack(startButton);
+
+	auto exitButton = sfg::Button::Create("Exit Game");
+	layout->Pack(exitButton);
+
+	m_window->Add(layout);
 
 	startButton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnStartGame(); });
-}
-
-void MainMenu::Update()
-{
+	exitButton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnExit(); });
 }
 
 void MainMenu::SetStartGameCallback(std::function<void()> startGameCallback)
@@ -27,8 +30,19 @@ void MainMenu::SetStartGameCallback(std::function<void()> startGameCallback)
 	m_startGameCallback = startGameCallback;
 }
 
+void MainMenu::SetExitCallback(std::function<void()> exitCallback)
+{
+	m_exitCallback = exitCallback;
+}
+
 void MainMenu::OnStartGame()
 {
 	if (m_startGameCallback != nullptr)
 		m_startGameCallback();
+}
+
+void MainMenu::OnExit()
+{
+	if (m_exitCallback != nullptr)
+		m_exitCallback();
 }

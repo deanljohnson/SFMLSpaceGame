@@ -15,6 +15,7 @@ void MainMenuState::Init()
 	m_mainMenu.CenterOnScreen();
 
 	m_mainMenu.SetStartGameCallback([] { GAME_STATE_MANAGER->SetNextState(std::make_unique<InitialGameState>()); });
+	m_mainMenu.SetExitCallback([] { GAME_WINDOW->close(); });
 }
 
 void MainMenuState::CleanUp()
