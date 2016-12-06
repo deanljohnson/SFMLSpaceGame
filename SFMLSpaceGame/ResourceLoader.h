@@ -31,6 +31,6 @@ std::shared_ptr<sf::Texture> LoadTexture(ResourceID id);
 
 std::shared_ptr<ShipStats> LoadShip(const std::string& name);
 
-std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id);
+std::shared_ptr<AnimationDefinition> LoadAnimation(const std::string& id);
 std::shared_ptr<sf::Font> LoadFont(ResourceID id);
 std::shared_ptr<sf::SoundBuffer> LoadSoundBuffer(ResourceID id);

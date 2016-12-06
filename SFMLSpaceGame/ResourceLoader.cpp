@@ -230,7 +230,7 @@ std::shared_ptr<sf::Texture> LoadTexture(ResourceID id)
 	return elem;
 }
 
-std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id)
+std::shared_ptr<AnimationDefinition> LoadAnimation(const std::string& id)
 {
 	//If the resource is already loaded, return it
 	auto it = loadedAnimations.find(id);
@@ -239,27 +239,12 @@ std::shared_ptr<AnimationDefinition> LoadAnimationResource(const std::string& id
 		return it->second;
 	}
 
-	std::shared_ptr<AnimationDefinition> animPtr;
-	if (id == "explosion-one")
-	{
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(256, 256), 3.f);
-	}
-	else if (id == "exhaust-one")
-	{
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(46, 14), 1.f);
-	}
-	else if (id == "asteroid-one")
-	{
-		animPtr = std::make_shared<AnimationDefinition>(LoadTexture(id), sf::Vector2f(159, 159), 2.f, 16);
-	}
-	else
-	{
-		printf("The given name '%s' does not correspond to a recognized animation\n", id.c_str());
-	}
+	AnimationDefinition* animDef = serializer.Load<AnimationDefinition>(id);
 
-	loadedAnimations.insert(make_pair(id, animPtr));
+	auto elem = std::shared_ptr<AnimationDefinition>(animDef);
+	loadedAnimations.insert(make_pair(id, elem));
 
-	return animPtr;
+	return elem;
 }
 
 std::shared_ptr<sf::Font> LoadFont(ResourceID id)

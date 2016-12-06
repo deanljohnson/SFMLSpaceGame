@@ -23,7 +23,7 @@ public:
 		: m_texture(tex)
 	{};
 
-	sf::Texture* GetTexture() { return m_texture.get(); }
+	std::shared_ptr<sf::Texture> GetTexture() { return m_texture; }
 	void SetTexture(std::shared_ptr<sf::Texture> tex) { m_texture = tex; }
 
 	void Add(const TKey& key, const sf::IntRect& rect);

@@ -13,7 +13,7 @@ private:
 	float m_counter;
 	float m_frameLength;
 	float m_speed;
-	int m_currentFrame;
+	size_t m_currentFrame;
 public:
 	explicit Animation(std::shared_ptr<AnimationDefinition> definition);
 
@@ -25,5 +25,6 @@ public:
 	float GetSpeed();
 
 	sf::IntRect GetCurrentFrame() const;
+	sf::IntRect operator[](size_t index) const;
 	sf::Texture* GetTexture() const;
 };

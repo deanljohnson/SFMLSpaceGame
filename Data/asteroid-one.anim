@@ -1,0 +1,14 @@
+{
+    "asteroid-one": {
+        "TexLoc": "asteroid-one",
+        "IsConsistent": true,
+        "ConsistentFrame": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 159,
+            "Height": 159
+        },
+        "Count": 16,
+        "Length": 2.0
+    }
+}

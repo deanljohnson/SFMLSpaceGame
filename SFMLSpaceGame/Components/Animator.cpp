@@ -10,7 +10,7 @@
 Animator::Animator(EntityID ent, const std::string& id, ComponentID spriteID)
 	: Component(ent),
 	  m_sprite(entity->GetComponent<Sprite>(spriteID)),
-	  m_animation(LoadAnimationResource(id)),
+	  m_animation(LoadAnimation(id)),
 	  m_id(id)
 {
 	m_sprite.SetTextureRect(m_animation.GetCurrentFrame());

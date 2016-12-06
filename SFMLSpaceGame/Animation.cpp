@@ -49,6 +49,11 @@ sf::IntRect Animation::GetCurrentFrame() const
 	return m_definition->GetFrame(m_currentFrame);
 }
 
+sf::IntRect Animation::operator[](size_t index) const
+{
+	return m_definition->GetFrame(index);
+}
+
 sf::Texture* Animation::GetTexture() const
 {
 	return m_definition->GetTexture().get();

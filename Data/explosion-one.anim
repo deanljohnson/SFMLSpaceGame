@@ -1,0 +1,14 @@
+{
+    "explosion-one": {
+        "TexLoc": "explosion-one",
+        "IsConsistent": true,
+        "ConsistentFrame": {
+            "Left": 0,
+            "Top": 0,
+            "Width": 256,
+            "Height": 256
+        },
+        "Count": 28,
+        "Length": 3.0
+    }
+}

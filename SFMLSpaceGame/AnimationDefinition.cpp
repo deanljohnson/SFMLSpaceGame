@@ -3,10 +3,21 @@
 #include "stdafx.h"
 #include <AnimationDefinition.h>
 
-AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, const sf::Vector2f& frameSize, float length, int numFrames)
-	: m_texture(texture),
-	  m_frameSize(frameSize),
-	  m_length(length)
+AnimationDefinition::AnimationDefinition()
+	: m_texId(),
+	m_texture(),
+	m_frames(),
+	m_contentRects(),
+	m_length(0.f)
+{
+}
+
+AnimationDefinition::AnimationDefinition(const std::string& id, const sf::Vector2f& frameSize, float length, int numFrames)
+	: m_texId(id),
+	m_texture(LoadTexture(id)),
+	m_frames(),
+	m_contentRects(),
+	m_length(length)
 {
 	for (int j = 0; j < m_texture->getSize().y / frameSize.y; j++)
 	{
@@ -22,4 +33,40 @@ AnimationDefinition::AnimationDefinition(std::shared_ptr<sf::Texture> texture, c
 
 	m_frames.shrink_to_fit();
 	m_contentRects.shrink_to_fit();
+}
+
+std::shared_ptr<sf::Texture> AnimationDefinition::GetTexture() const
+{
+	return m_texture;
+}
+
+float AnimationDefinition::GetLength() const
+{
+	return m_length;
+}
+
+int AnimationDefinition::FrameCount() const
+{
+	return m_frames.size();
+}
+
+sf::IntRect AnimationDefinition::GetFrame(size_t index) const
+{
+	return m_frames[index];
+}
+
+sf::IntRect AnimationDefinition::GetContentRect(size_t index) const
+{
+	return m_contentRects[index];
+}
+
+void AnimationDefinition::SetContentRect(size_t index, const sf::IntRect& rect)
+{
+	m_contentRects[index] = rect;
+}
+
+std::string AnimationDefinition::GetTypeName()
+{
+	static std::string name = "anim";
+	return name;
 }
