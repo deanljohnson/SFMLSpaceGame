@@ -6,6 +6,11 @@
 #include <Components/Rotation.h>
 #include <Components/SoundSource.h>
 #include <Entity.h>
+#include <MiningLaserTargeter.h>
+
+namespace {
+	MiningLaserTargeter targeter{};
+}
 
 MiningLaser::MiningLaser(EntityID ent)
 	: Component(ent),
@@ -30,6 +35,7 @@ void MiningLaser::InitSoundSource(int compID)
 
 void MiningLaser::Shoot(const b2Vec2& pos)
 {
+	auto targetPos = targeter.FindTarget(pos, GetEntityID());
 }
 
 float MiningLaser::GetNormalizedHeat()

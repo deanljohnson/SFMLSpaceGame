@@ -79,6 +79,12 @@
     <Filter Include="Source Files\UI\RigEditorElements">
       <UniqueIdentifier>{3577c060-c424-4203-813c-62832f5f6178}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TargetFinders">
+      <UniqueIdentifier>{ee2a87cd-1737-4ba6-bbc7-6c66ea4bf50e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TargetFinders">
+      <UniqueIdentifier>{eed0e3a4-d1f5-4604-9e32-324349b0bd26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -404,6 +410,12 @@
     </ClCompile>
     <ClCompile Include="Components\MiningLaser.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MiningLaserTargeter.cpp">
+      <Filter>Source Files\TargetFinders</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchIndex.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -850,6 +862,15 @@
     </ClInclude>
     <ClInclude Include="MiningRig.h">
       <Filter>Header Files\Rigs</Filter>
+    </ClInclude>
+    <ClInclude Include="Targeter.h">
+      <Filter>Header Files\TargetFinders</Filter>
+    </ClInclude>
+    <ClInclude Include="MiningLaserTargeter.h">
+      <Filter>Header Files\TargetFinders</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchIndex.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

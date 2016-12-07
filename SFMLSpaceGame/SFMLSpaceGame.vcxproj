@@ -182,6 +182,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationDefinition.cpp" />
+    <ClCompile Include="BatchIndex.cpp" />
     <ClCompile Include="ComponentSerializer.cpp" />
     <ClCompile Include="Components\Animator.cpp" />
     <ClCompile Include="Components\BulletPhysics.cpp" />
@@ -246,6 +247,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\Physics.cpp" />
     <ClCompile Include="Components\RectPrimitive.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="MiningLaserTargeter.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PriceSupplier.cpp" />
     <ClCompile Include="RenderBatch.cpp" />
@@ -302,6 +304,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationDefinition.h" />
+    <ClInclude Include="BatchIndex.h" />
     <ClInclude Include="Box2DSerialization.h" />
     <ClInclude Include="ComponentSerializer.h" />
     <ClInclude Include="Components\Animator.h" />
@@ -352,6 +355,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MiningLaserTargeter.h" />
     <ClInclude Include="MiningRig.h" />
     <ClInclude Include="MissileRig.h" />
     <ClInclude Include="MissileStats.h" />
@@ -362,6 +366,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Rig.h" />
     <ClInclude Include="SpriteKey.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Targeter.h" />
     <ClInclude Include="UI\ContextMenu.h" />
     <ClInclude Include="UI\ItemContextProvider.h" />
     <ClInclude Include="UI\DataFileSelector.h" />

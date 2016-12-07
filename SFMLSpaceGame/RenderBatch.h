@@ -6,13 +6,7 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <SFML\Graphics\VertexArray.hpp>
 
-struct BatchIndex 
-{
-	explicit BatchIndex(unsigned i)
-		: index(i) 
-	{}
-	unsigned index;
-};
+struct BatchIndex;
 
 class RenderBatch 
 {

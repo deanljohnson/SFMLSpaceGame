@@ -3,6 +3,7 @@
 // based on https://github.com/SFML/SFML/wiki/Source:-High-Performance-Sprite-Container
 #include "stdafx.h"
 #include <RenderBatch.h>
+#include <BatchIndex.h>
 #include <VectorMath.h>
 #include <ResourceLoader.h>
 
@@ -74,7 +75,8 @@ RenderBatch::RenderBatch(sf::PrimitiveType primType)
 
 BatchIndex* RenderBatch::Add()
 {
-	auto index = m_vertices.size() / 4;
+	auto index = m_indices.size();
+	auto vertIndex = m_vertices.size();
 
 	auto texSize = m_texture != nullptr 
 				? m_texture->getSize()
@@ -101,7 +103,7 @@ BatchIndex* RenderBatch::Add()
 	m_vertices.push_back(vert3);
 	m_vertices.push_back(vert4);
 
-	BatchIndex* i = new BatchIndex(index);
+	BatchIndex* i = new BatchIndex(index, vertIndex, *this);
 	m_indices.push_back(std::unique_ptr<BatchIndex>(i));
 
 	return i;
@@ -114,8 +116,8 @@ void RenderBatch::Remove(BatchIndex* index)
 
 void RenderBatch::Move(BatchIndex* index, float x, float y)
 {
-	unsigned int limit = (index->index * 4) + 4;
-	for (unsigned int i = index->index * 4; i < limit; i++) 
+	unsigned int limit = (index->vertIndex) + index->vertCount;
+	for (unsigned int i = index->vertIndex; i < limit; i++)
 	{
 		m_vertices[i].position.x += x;
 		m_vertices[i].position.y += y;
@@ -177,14 +179,14 @@ void RenderBatch::SetRotation(BatchIndex* index, float ang)
 	float cosT = cosf(ang_t);
 	float sinT = sinf(ang_t);
 
-	for (unsigned i = index->index * 4; i < (index->index * 4) + 4; i++)
+	for (unsigned i = index->vertIndex; i < index->vertIndex + index->vertCount; i++)
 	{
 		sf::Vector2f dif = m_vertices[i].position - originScaled;
 		m_vertices[i].position = sf::Vector2f((cosT * dif.x) - (sinT * dif.y) + originScaled.x,
 											(sinT * dif.x) + (cosT * dif.y) + originScaled.y);
 	}
 
-	m_positions[index->index] = m_vertices[index->index * 4].position;
+	m_positions[index->index] = m_vertices[index->vertIndex].position;
 }
 
 float RenderBatch::GetRotation(BatchIndex* index)
@@ -196,7 +198,7 @@ void RenderBatch::SetScale(BatchIndex* index, const sf::Vector2f& scale)
 {
  	const auto originalScale = m_scales[index->index];
 	m_scales[index->index] = scale;
-	
+
 	const sf::Vector2f originalSize(m_texRects[index->index].width * originalScale.x, m_texRects[index->index].height * originalScale.y);
 	const sf::Vector2f targetSize(m_texRects[index->index].width * scale.x, m_texRects[index->index].height * scale.y);
 	const sf::Vector2f sizeDif = targetSize - originalSize;
@@ -206,13 +208,13 @@ void RenderBatch::SetScale(BatchIndex* index, const sf::Vector2f& scale)
 	const auto topOriginFactor = m_origins[index->index].y / m_texRects[index->index].height;
 	const auto bottomOriginFactor = 1.f - topOriginFactor;
 
-	int i = index->index * 4;
+	int i = index->vertIndex;
 	m_vertices[i].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index->index]);
 	m_vertices[i + 1].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index->index]);
 	m_vertices[i + 2].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index->index]);
 	m_vertices[i + 3].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index->index]);
 	
-	m_positions[index->index] = m_vertices[i].position;
+	m_positions[index->index] = m_vertices[index->vertIndex].position;
 }
 
 sf::Vector2f RenderBatch::GetScale(BatchIndex* index)
@@ -229,7 +231,7 @@ void RenderBatch::SetRect(BatchIndex* index, const sf::IntRect& rect)
 	sf::Vector2f difFactor(rect.width / static_cast<float>(originalRect.width), rect.height / static_cast<float>(originalRect.height));
 	sf::Vector2f originPoint = m_positions[index->index] + sf::Vector2f(m_origins[index->index].x * m_scales[index->index].x, m_origins[index->index].y * m_scales[index->index].y);
 
-	for (unsigned i = index->index * 4; i < (index->index * 4) + 4; i++)
+	for (unsigned i = index->vertIndex; i < index->vertIndex + index->vertCount; i++)
 	{
 		sf::Vector2f dif = m_vertices[i].position - originPoint;
 		m_vertices[i].position = originPoint + sf::Vector2f(dif.x * difFactor.x, dif.y * difFactor.y);
@@ -243,17 +245,16 @@ sf::IntRect RenderBatch::GetRect(BatchIndex* index)
 
 void RenderBatch::SetColor(BatchIndex* index, const sf::Color& color)
 {
-	unsigned i = index->index * 4;
-
-	m_vertices[i++].color = color;
-	m_vertices[i++].color = color;
-	m_vertices[i++].color = color;
-	m_vertices[i].color = color;
+	for (size_t i = index->vertIndex; i < index->vertIndex + index->vertCount; i++)
+	{
+		m_vertices[i].color = color;
+	}
+	
 }
 
 sf::Color RenderBatch::GetColor(BatchIndex* index)
 {
-	return m_vertices[index->index * 4].color;
+	return m_vertices[index->vertIndex].color;
 }
 
 void RenderBatch::UpdateTexCoords(BatchIndex* index)
@@ -263,7 +264,7 @@ void RenderBatch::UpdateTexCoords(BatchIndex* index)
 	float top = static_cast<float>(m_texRects[index->index].top);
 	float bottom = top + m_texRects[index->index].height;
 
-	unsigned i = index->index * 4;
+	unsigned i = index->vertIndex;
 
 	m_vertices[i++].texCoords = sf::Vector2f(left, top);
 	m_vertices[i++].texCoords = sf::Vector2f(right, top);
@@ -310,6 +311,11 @@ void RenderBatch::RemoveDeletedElements()
 		m_scales[last] = m_scales[i];
 		m_origins[last] = m_origins[i];
 		m_rotations[last] = m_rotations[i];
+
+		// Swap the pointer contents so users have the correct pointer
+		m_indices[last].swap(m_indices[i]);
+		m_indices[last]->index = last; // indices have changed
+		m_indices[last]->vertIndex = last * 4; // indices have changed
 	}
 
 	// Truncate vectors so that removed data is deleted
@@ -319,27 +325,7 @@ void RenderBatch::RemoveDeletedElements()
 	m_scales.resize(last);
 	m_origins.resize(last);
 	m_rotations.resize(last);
-
-	// Adjust indices to account for any removals
-	for (size_t i = 0; i < m_removedIndices.size(); i++) 
-	{
-		// Need to save this index. Otherwase when the BatchIndex
-		// is removed from m_indices, the unique_ptr destructor
-		// will delete and destroy the index value
-		unsigned indexToRemove = m_removedIndices[i]->index;
-		for (size_t j = 0; j < m_indices.size(); j++)
-		{
-			if (indexToRemove == m_indices[j]->index)
-			{
-				m_indices.erase(m_indices.begin() + j);
-				j--;
-			}
-			else if (indexToRemove < m_indices[j]->index)
-			{
-				m_indices[j]->index--;
-			}
-		}
-	}
+	m_indices.resize(last);
 }
 
 void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states) 

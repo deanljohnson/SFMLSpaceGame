@@ -10,6 +10,10 @@
 #include "UI/UI.h"
 #include "UI/GameWindow.h"
 
+#ifdef _DEBUG
+#define DEBUG_PRINT(format, ...) printf(format, __VA_ARGS__)
+#endif
+
 sf::RenderWindow* GAME_WINDOW;
 GameStateManager* GAME_STATE_MANAGER;
 size_t DRAW_CALLS = 0;
