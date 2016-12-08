@@ -14,7 +14,6 @@ private:
 	Rotation& m_rotation;
 	sf::Vector2f m_size;
 
-	RenderBatch* m_batch{ nullptr };
 	BatchIndex* m_batchIndex;
 
 	friend class cereal::access;

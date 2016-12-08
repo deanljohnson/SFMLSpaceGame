@@ -94,3 +94,13 @@ sf::Texture* BatchIndex::GetTexture()
 {
 	return m_batch.GetTexture();
 }
+
+void BatchIndex::Remove()
+{
+	m_batch.Remove(this);
+}
+
+sf::Vertex& BatchIndex::operator[](size_t index) 
+{
+	return m_batch.GetVertex(this, index);
+}

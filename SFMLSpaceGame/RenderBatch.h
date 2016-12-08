@@ -19,17 +19,17 @@ private:
 
 	std::shared_ptr<sf::Texture> m_texture;
 
+	std::vector<sf::Transformable> m_transforms;
 	std::vector<sf::Vertex> m_vertices;
+	std::vector<sf::Vertex> m_transformedVertices;
 	std::vector<sf::IntRect> m_texRects;
-	std::vector<sf::Vector2f> m_positions; // TODO: investigate removing this - m_vertices[index * 4].position gives the same information
-	std::vector<sf::Vector2f> m_scales;
-	std::vector<sf::Vector2f> m_origins;
-	std::vector<b2Rot> m_rotations;
 
 	sf::PrimitiveType m_primType;
 
 	void UpdateTexCoords(BatchIndex* index);
 	void RemoveDeletedElements();
+	// Replaces the element at index a with what's at index b
+	void Replace(size_t a, size_t b, size_t count);
 
 public:
 	explicit RenderBatch(std::shared_ptr<sf::Texture> tex);
@@ -65,6 +65,8 @@ public:
 	sf::Color GetColor(BatchIndex* index);
 
 	sf::Texture* GetTexture();
+
+	sf::Vertex& GetVertex(BatchIndex* index, size_t vert);
 
 	void Render(sf::RenderTarget& target, sf::RenderStates states);
 };

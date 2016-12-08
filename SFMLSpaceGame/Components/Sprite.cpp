@@ -9,26 +9,26 @@
 #include <Components/Position.h>
 #include <Components/Rotation.h>
 #include <RenderBatch.h>
+#include <BatchIndex.h>
 #include <AnimationDefinition.h>
 
 void Sprite::InitializeBatchRender()
 {
-	m_batch = RenderBatch::Get(m_key.texID);
-	m_batchIndex = m_batch->Add();
+	m_batchIndex = RenderBatch::Get(m_key.texID)->Add();
 
 	if (m_key.type == SpriteKey::Type::TexIndex)
 	{
 		auto anim = LoadAnimation(m_key.texID);
-		m_batch->SetRect(m_batchIndex, anim->GetFrame(m_key.index));
+		SetTextureRect(anim->GetFrame(m_key.index));
 	}
 
-	auto rect = m_batch->GetRect(m_batchIndex);
+	auto rect = m_batchIndex->GetRect();
 
-	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
-	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, m_originOption));
+	m_batchIndex->SetScale(sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batchIndex->SetOrigin(SpriteHelpers::GetOrigin(rect, m_originOption));
 
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
-	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
+	m_batchIndex->SetRotation(m_rotation.GetRadians());
 }
 
 Sprite::Sprite(EntityID ent, const SpriteKey& key, OriginOption origin)
@@ -55,13 +55,13 @@ Sprite::Sprite(EntityID ent, const std::string& id, OriginOption origin)
 
 Sprite::~Sprite()
 {
-	m_batch->Remove(m_batchIndex);
+	m_batchIndex->Remove();
 }
 
 void Sprite::Update()
 {
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
-	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
+	m_batchIndex->SetRotation(m_rotation.GetRadians());
 
 	if (next != nullptr) next->Update();
 }
@@ -73,27 +73,32 @@ void Sprite::SetOffset(const b2Vec2& v)
 
 void Sprite::SetScale(float x, float y)
 {
-	m_batch->SetScale(m_batchIndex, { (x * METERS_PER_PIXEL), (y * METERS_PER_PIXEL) });
+	m_batchIndex->SetScale({ (x * METERS_PER_PIXEL), (y * METERS_PER_PIXEL) });
 }
 
 void Sprite::SetTextureRect(const sf::IntRect& rect) 
 {
-	m_batch->SetRect(m_batchIndex, rect);
+	m_batchIndex->SetRect(rect);
+
+	(*m_batchIndex)[0].position = { 0.f, 0.f };
+	(*m_batchIndex)[1].position = { (float)rect.width, 0.f };
+	(*m_batchIndex)[2].position = { (float)rect.width, (float)rect.height };
+	(*m_batchIndex)[3].position = { 0.f, (float)rect.height };
 
 	// if we do not re-set the origin, changing texture rect's
 	// can cause distortion issues.
-	m_batch->SetOrigin(m_batchIndex, SpriteHelpers::GetOrigin(rect, m_originOption));
+	m_batchIndex->SetOrigin(SpriteHelpers::GetOrigin(rect, m_originOption));
 }
 
 sf::FloatRect Sprite::GetDimensions() const
 {
-	auto rect = m_batch->GetRect(m_batchIndex);
-	auto scale = m_batch->GetScale(m_batchIndex);
+	auto rect = m_batchIndex->GetRect();
+	auto scale = m_batchIndex->GetScale();
 
 	return sf::FloatRect(rect.left, rect.top, rect.width * scale.x, rect.height * scale.y);
 }
 
 b2Vec2 Sprite::GetOrigin() const
 {
-	return SFMLVecToB2Vec(m_batch->GetScaledOrigin(m_batchIndex));
+	return SFMLVecToB2Vec(m_batchIndex->GetScaledOrigin());
 }

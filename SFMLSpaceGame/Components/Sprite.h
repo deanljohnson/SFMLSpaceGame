@@ -14,7 +14,6 @@ private:
 	Position& m_position;
 	Rotation& m_rotation;
 
-	RenderBatch* m_batch{ nullptr };
 	BatchIndex* m_batchIndex;
 
 	b2Vec2 m_offset;

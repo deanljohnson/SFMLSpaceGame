@@ -7,6 +7,7 @@
 #include <Entity.h>
 #include <VectorMath.h>
 #include <RenderBatch.h>
+#include <BatchIndex.h>
 
 RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	: Component(ent),
@@ -14,16 +15,19 @@ RectPrimitive::RectPrimitive(EntityID ent, float w, float h)
 	  m_rotation(entity->GetComponent<Rotation>()),
 	  m_size(w, h)
 {
-	m_batch = RenderBatch::Get(sf::Quads);
-	m_batchIndex = m_batch->Add();
+	m_batchIndex = RenderBatch::Get(sf::Quads)->Add();
 
-	m_batch->SetRect(m_batchIndex, { 0, 0, (int)(w * PIXELS_PER_METER), (int)(h * PIXELS_PER_METER) });
-	m_batch->SetScale(m_batchIndex, sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
-	m_batch->SetColor(m_batchIndex, sf::Color::Green);
-	m_batch->SetOrigin(m_batchIndex, { w / 2.f, h / 2.f });
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
-	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+	sf::RectangleShape rect = sf::RectangleShape({ w, h });
+	(*m_batchIndex)[0].position = rect.getPoint(0);
+	(*m_batchIndex)[1].position = rect.getPoint(1);
+	(*m_batchIndex)[2].position = rect.getPoint(2);
+	(*m_batchIndex)[3].position = rect.getPoint(3);
 
+	m_batchIndex->SetScale(sf::Vector2f(1, 1));
+	m_batchIndex->SetColor(sf::Color::Green);
+	m_batchIndex->SetOrigin({ w / 2.f, h / 2.f });
+	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position));
+	m_batchIndex->SetRotation(m_rotation.GetRadians());
 }
 
 RectPrimitive::RectPrimitive(EntityID ent, const sf::Vector2f& size)
@@ -33,11 +37,11 @@ RectPrimitive::RectPrimitive(EntityID ent, const sf::Vector2f& size)
 
 RectPrimitive::~RectPrimitive()
 {
-	m_batch->Remove(m_batchIndex);
+	m_batchIndex->Remove();
 }
 
 void RectPrimitive::Update() 
 {
-	m_batch->SetPosition(m_batchIndex, B2VecToSFMLVec(m_position.position));
-	m_batch->SetRotation(m_batchIndex, m_rotation.GetRadians());
+	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position));
+	m_batchIndex->SetRotation(m_rotation.GetRadians());
 }

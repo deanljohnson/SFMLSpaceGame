@@ -52,11 +52,9 @@ void RenderBatch::RenderAll(sf::RenderTarget& target, sf::RenderStates states)
 RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
 	: m_texture(tex),
 	  m_vertices(),
+	  m_transformedVertices(),
 	  m_texRects(),
-	  m_positions(),
-	  m_scales(),
-	  m_origins(),
-	  m_rotations(),
+	  m_transforms(),
 	  m_primType(sf::Quads)
 {
 }
@@ -64,11 +62,9 @@ RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
 RenderBatch::RenderBatch(sf::PrimitiveType primType)
 	: m_texture(nullptr),
 	  m_vertices(),
+	  m_transformedVertices(),
 	  m_texRects(),
-	  m_positions(),
-	  m_scales(),
-	  m_origins(),
-	  m_rotations(),
+	  m_transforms(),
 	  m_primType(primType)
 {
 }
@@ -83,10 +79,13 @@ BatchIndex* RenderBatch::Add()
 				: sf::Vector2u(1, 1);
 
 	m_texRects.push_back(sf::IntRect(0, 0, static_cast<int>(texSize.x), static_cast<int>(texSize.y)));
-	m_positions.push_back(sf::Vector2f(0, 0));
-	m_scales.push_back(sf::Vector2f(1, 1));
-	m_origins.push_back(sf::Vector2f(0, 0));
-	m_rotations.push_back(b2Rot(0));
+
+	sf::Transformable trans{};
+	trans.setPosition(0, 0);
+	trans.setScale(1, 1);
+	trans.setOrigin(0, 0);
+	trans.setRotation(0);
+	m_transforms.push_back(trans);
 
 	auto vert1 = sf::Vertex(sf::Vector2f(0, 0), sf::Color::White);
 	auto vert2 = sf::Vertex(sf::Vector2f(texSize.x, 0), sf::Color::White);
@@ -103,6 +102,11 @@ BatchIndex* RenderBatch::Add()
 	m_vertices.push_back(vert3);
 	m_vertices.push_back(vert4);
 
+	m_transformedVertices.push_back(vert1);
+	m_transformedVertices.push_back(vert2);
+	m_transformedVertices.push_back(vert3);
+	m_transformedVertices.push_back(vert4);
+
 	BatchIndex* i = new BatchIndex(index, vertIndex, *this);
 	m_indices.push_back(std::unique_ptr<BatchIndex>(i));
 
@@ -116,126 +120,63 @@ void RenderBatch::Remove(BatchIndex* index)
 
 void RenderBatch::Move(BatchIndex* index, float x, float y)
 {
-	unsigned int limit = (index->vertIndex) + index->vertCount;
-	for (unsigned int i = index->vertIndex; i < limit; i++)
-	{
-		m_vertices[i].position.x += x;
-		m_vertices[i].position.y += y;
-	}
-
-	m_positions[index->index].x += x;
-	m_positions[index->index].y += y;
+	m_transforms[index->index].move(x, y);
 }
 
 void RenderBatch::Move(BatchIndex* index, const sf::Vector2f& amt)
 {
-	Move(index, amt.x, amt.y);
+	m_transforms[index->index].move(amt.x, amt.y);
 }
 
 void RenderBatch::SetPosition(BatchIndex* index, const sf::Vector2f& pos)
 {
-	Move(index, pos - (m_positions[index->index] + Rotate(MultComponents(m_origins[index->index], m_scales[index->index]),
-													m_rotations[index->index])));
+	m_transforms[index->index].setPosition(pos);
 }
 
 sf::Vector2f RenderBatch::GetPosition(BatchIndex* index)
 {
-	sf::Vector2f origin = Rotate(MultComponents(m_origins[index->index], m_scales[index->index]),
-									m_rotations[index->index]);
-
-	return m_positions[index->index] + origin;
+	return m_transforms[index->index].getPosition();
 }
 
 void RenderBatch::SetOrigin(BatchIndex* index, const sf::Vector2f& origin)
 {
-	sf::Vector2f originDif = origin - m_origins[index->index];
-	originDif = Rotate(MultComponents(originDif, m_scales[index->index]), m_rotations[index->index]);
-	Move(index, -originDif);
-	m_origins[index->index] = origin;
+	m_transforms[index->index].setOrigin(origin);
 }
 
 sf::Vector2f RenderBatch::GetOrigin(BatchIndex* index)
 {
-	return m_origins[index->index];
+	return m_transforms[index->index].getOrigin();
 }
 
 sf::Vector2f RenderBatch::GetScaledOrigin(BatchIndex* index)
 {
-	return MultComponents(m_origins[index->index], m_scales[index->index]);
+	return MultComponents(m_transforms[index->index].getOrigin(), m_transforms[index->index].getScale());
 }
 
 void RenderBatch::SetRotation(BatchIndex* index, float ang)
 {
-	auto originalRot = m_rotations[index->index];
-	m_rotations[index->index] = b2Rot(ang);
-
-	// Determine the amount to rotate by
-	float ang_t = ang - originalRot.GetAngle();
-
-	sf::Vector2f originScaled = GetScaledOrigin(index);
-	originScaled = Rotate(originScaled, originalRot) + m_positions[index->index];
-
-	// at this point, originScaled is the origin of our quad
-	float cosT = cosf(ang_t);
-	float sinT = sinf(ang_t);
-
-	for (unsigned i = index->vertIndex; i < index->vertIndex + index->vertCount; i++)
-	{
-		sf::Vector2f dif = m_vertices[i].position - originScaled;
-		m_vertices[i].position = sf::Vector2f((cosT * dif.x) - (sinT * dif.y) + originScaled.x,
-											(sinT * dif.x) + (cosT * dif.y) + originScaled.y);
-	}
-
-	m_positions[index->index] = m_vertices[index->vertIndex].position;
+	m_transforms[index->index].setRotation(RAD_TO_DEG(ang));
 }
 
 float RenderBatch::GetRotation(BatchIndex* index)
 {
-	return m_rotations[index->index].GetAngle();
+	return DEG_TO_RAD(m_transforms[index->index].getRotation());
 }
 
 void RenderBatch::SetScale(BatchIndex* index, const sf::Vector2f& scale)
 {
- 	const auto originalScale = m_scales[index->index];
-	m_scales[index->index] = scale;
-
-	const sf::Vector2f originalSize(m_texRects[index->index].width * originalScale.x, m_texRects[index->index].height * originalScale.y);
-	const sf::Vector2f targetSize(m_texRects[index->index].width * scale.x, m_texRects[index->index].height * scale.y);
-	const sf::Vector2f sizeDif = targetSize - originalSize;
-
-	const auto leftOriginFactor = m_origins[index->index].x / m_texRects[index->index].width;
-	const auto rightOriginFactor = 1.f - leftOriginFactor;
-	const auto topOriginFactor = m_origins[index->index].y / m_texRects[index->index].height;
-	const auto bottomOriginFactor = 1.f - topOriginFactor;
-
-	int i = index->vertIndex;
-	m_vertices[i].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index->index]);
-	m_vertices[i + 1].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, -topOriginFactor * sizeDif.y), m_rotations[index->index]);
-	m_vertices[i + 2].position += Rotate(sf::Vector2f(rightOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index->index]);
-	m_vertices[i + 3].position += Rotate(sf::Vector2f(-leftOriginFactor * sizeDif.x, bottomOriginFactor * sizeDif.y), m_rotations[index->index]);
-	
-	m_positions[index->index] = m_vertices[index->vertIndex].position;
+	m_transforms[index->index].setScale(scale);
 }
 
 sf::Vector2f RenderBatch::GetScale(BatchIndex* index)
 {
-	return m_scales[index->index];
+	return m_transforms[index->index].getScale();
 }
 
 void RenderBatch::SetRect(BatchIndex* index, const sf::IntRect& rect)
 {
-	const auto originalRect = m_texRects[index->index];
 	m_texRects[index->index] = rect;
 	UpdateTexCoords(index);
-
-	sf::Vector2f difFactor(rect.width / static_cast<float>(originalRect.width), rect.height / static_cast<float>(originalRect.height));
-	sf::Vector2f originPoint = m_positions[index->index] + sf::Vector2f(m_origins[index->index].x * m_scales[index->index].x, m_origins[index->index].y * m_scales[index->index].y);
-
-	for (unsigned i = index->vertIndex; i < index->vertIndex + index->vertCount; i++)
-	{
-		sf::Vector2f dif = m_vertices[i].position - originPoint;
-		m_vertices[i].position = originPoint + sf::Vector2f(dif.x * difFactor.x, dif.y * difFactor.y);
-	}
 }
 
 sf::IntRect RenderBatch::GetRect(BatchIndex* index)
@@ -249,7 +190,6 @@ void RenderBatch::SetColor(BatchIndex* index, const sf::Color& color)
 	{
 		m_vertices[i].color = color;
 	}
-	
 }
 
 sf::Color RenderBatch::GetColor(BatchIndex* index)
@@ -277,10 +217,16 @@ sf::Texture* RenderBatch::GetTexture()
 	return m_texture.get();
 }
 
+sf::Vertex& RenderBatch::GetVertex(BatchIndex* index, size_t vert) 
+{
+	assert(vert < index->vertCount);
+	return m_vertices[index->vertIndex + vert];
+}
+
 void RenderBatch::RemoveDeletedElements()
 {
 	size_t last = 0;
-	for (size_t i = 0; i < m_texRects.size(); ++i, ++last)
+	for (size_t i = 0; i < m_indices.size(); ++i, ++last)
 	{
 		// Set i to the index of the first element that is not to be removed
 		while (true)
@@ -298,34 +244,60 @@ void RenderBatch::RemoveDeletedElements()
 			else break;
 		}
 
-		if (i >= m_texRects.size()) break;
+		if (i >= m_indices.size()) break;
 
-		// Replace the element being removed with the next element not being removed
-		m_vertices[last * 4] = m_vertices[i * 4];
-		m_vertices[(last * 4) + 1] = m_vertices[(i * 4) + 1];
-		m_vertices[(last * 4) + 2] = m_vertices[(i * 4) + 2];
-		m_vertices[(last * 4) + 3] = m_vertices[(i * 4) + 3];
+		auto toRemove = last;
 
-		m_texRects[last] = m_texRects[i];
-		m_positions[last] = m_positions[i];
-		m_scales[last] = m_scales[i];
-		m_origins[last] = m_origins[i];
-		m_rotations[last] = m_rotations[i];
+		// If we can simply swap the replaced with the saved
+		if (m_indices[toRemove]->vertCount == m_indices[i]->vertCount)
+		{
+			Replace(toRemove, i, m_indices[i]->vertCount);
+		}
+		// If the vert-set to be removed is smaller than what we are placing there
+		// TODO: Search for a vert-set that can fit before choosing to insert any verts
+		else if (m_indices[toRemove]->vertCount < m_indices[i]->vertCount)
+		{
+			// how many verts do we need to insert
+			auto extraVerts = m_indices[i]->vertCount - m_indices[toRemove]->vertCount;
 
-		// Swap the pointer contents so users have the correct pointer
-		m_indices[last].swap(m_indices[i]);
-		m_indices[last]->index = last; // indices have changed
-		m_indices[last]->vertIndex = last * 4; // indices have changed
+			// insert verts to make room 
+			for (size_t i = 0; i < extraVerts; i++) 
+			{
+				m_vertices.insert(m_vertices.begin() + m_indices[toRemove]->vertIndex, sf::Vertex());
+			}
+
+			// TODO: adjust all vert indices based on what was inserted and where
+
+			Replace(toRemove, i, m_indices[i]->vertCount);
+		}
 	}
 
 	// Truncate vectors so that removed data is deleted
 	m_vertices.resize(last * 4);
+	m_transformedVertices.resize(last * 4);
 	m_texRects.resize(last);
-	m_positions.resize(last);
-	m_scales.resize(last);
-	m_origins.resize(last);
-	m_rotations.resize(last);
 	m_indices.resize(last);
+	m_transforms.resize(last);
+}
+
+void RenderBatch::Replace(size_t a, size_t b, size_t count) 
+{
+	auto baseVertIndex = a * 4;
+
+	// Replace the element being removed with the next element not being removed
+	for (size_t i = 0; i < count; i++) 
+	{
+		m_vertices[baseVertIndex + i] = m_vertices[(b * 4) + i];
+	}
+
+	m_texRects[a] = m_texRects[b];
+	m_transforms[a] = m_transforms[b];
+
+	// Swap the pointer contents so users have the correct pointer
+	m_indices[a].swap(m_indices[b]);
+	m_indices[a]->index = a; // indices have changed
+	m_indices[a]->vertIndex = baseVertIndex; // indices have changed
+	m_indices[a]->vertCount = count;
 }
 
 void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states) 
@@ -342,6 +314,19 @@ void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states)
 	if (m_texture != nullptr)
 		states.texture = m_texture.get();
 
+	// Transform all vertices to be rendered
+	for (size_t i = 0; i < m_transforms.size(); i++) 
+	{
+		const auto& trans = m_transforms[i].getTransform();
+
+		for (size_t j = m_indices[i]->vertIndex; j < m_indices[i]->vertIndex + m_indices[i]->vertCount; j++)
+		{
+			m_transformedVertices[j].color = m_vertices[j].color;
+			m_transformedVertices[j].position = trans.transformPoint(m_vertices[j].position);
+			m_transformedVertices[j].texCoords = m_vertices[j].texCoords;
+		}
+	}
+
 	DRAW_CALLS++;
-	target.draw(&m_vertices[0], m_vertices.size(), m_primType, states);
+	target.draw(&m_transformedVertices[0], m_vertices.size(), m_primType, states);
 }

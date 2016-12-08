@@ -40,4 +40,8 @@ public:
 	sf::Color GetColor();
 
 	sf::Texture* GetTexture();
+
+	void Remove();
+
+	sf::Vertex& operator[](size_t index);
 };
