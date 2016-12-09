@@ -51,7 +51,8 @@ Inventory,\
 ItemPickup,\
 EconomyAgent,\
 ParallaxTargetAssigner,\
-ShipStatsComponent
+ShipStatsComponent,\
+OreVein
 #endif
 
 void ComponentSerializer::Load(ComponentID id,

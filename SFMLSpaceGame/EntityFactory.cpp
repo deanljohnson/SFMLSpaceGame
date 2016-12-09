@@ -65,6 +65,7 @@ void EntityFactory::Init()
 	GetComponentTypeID<EconomyAgent>();
 	GetComponentTypeID<ParallaxTargetAssigner>();
 	GetComponentTypeID<ShipStatsComponent>();
+	GetComponentTypeID<OreVein>();
 }
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
@@ -194,7 +195,6 @@ void EntityFactory::MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p, float rad
 	ent->AddComponent<RotateToFaceMouse, float>(1.5f);
 	ent->AddComponent<SmoothCameraFollow>();
 	ent->AddComponent<GameWorldClickListener>();
-	ent->AddComponent<MiningLaser>();
 	ent->AddComponent<FireGunOnClick<DirectionalGun>, sf::Mouse::Button>(sf::Mouse::Left);
 	ent->AddComponent<FireGunOnClick<MissileLauncher>, sf::Mouse::Button>(sf::Mouse::Right);
 	ent->AddComponent<FireGunOnClick<MiningLaser>, sf::Mouse::Button>(sf::Mouse::Middle);
@@ -255,6 +255,8 @@ void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float r
 	ent->AddComponent<Rotation, float>(radians);
 	ent->AddComponent<Sprite, const SpriteKey&, OriginOption>({ "asteroid-one", 5 }, OriginOption::Center);
 	ent->AddComponent<Physics>();
+	auto& ore = ent->AddComponent<OreVein>();
+	ore.SetAmount(1000);
 
 	ent->ApplyInitializer(EntityInitializer::Type::AsteroidSpriteBoundsColliderSetup);
 }
@@ -270,6 +272,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& gunSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
 	ent->AddComponent<DirectionalGun>().SetSoundSource(&gunSound);
 	ent->AddComponent<MissileLauncher>();
+	ent->AddComponent<MiningLaser>();
 	ent->AddComponent<Health>();
 	ent->AddComponent<Shields>();
 	ent->AddComponent<DamageOnAttacked>();

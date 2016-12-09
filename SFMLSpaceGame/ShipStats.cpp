@@ -22,12 +22,13 @@ ShipStats::ShipStats(float hullStrength, float interceptLead,
 					float followDistance, float approachDistance,
 					float strafeDistance, float sensorRange,
 					ShipThrust thrust, DirectionalGunData dirData,
-					MissileLauncherData misData, ShieldData shieldData,
+					MissileLauncherData misData, MiningLaserData minLaser, ShieldData shieldData,
 					const std::string& imageLocation, const std::vector<sf::Vector2f>& colliderVertices,
 					const std::vector<sf::Vector2f>& thrusterLocations)
 	: m_shipThrust(thrust),
 	m_dirGunData(dirData),
 	m_misLauncherData(misData),
+	m_miningLaserData(minLaser),
 	m_shieldData(shieldData),
 	m_colliderVertices(colliderVertices),
 	m_thrusterLocations(thrusterLocations),
@@ -65,6 +66,11 @@ MissileLauncherData* ShipStats::GetMissileLauncherData()
 	return &m_misLauncherData;
 }
 
+MiningLaserData* ShipStats::GetMiningLaserData()
+{
+	return &m_miningLaserData;
+}
+
 ShieldData* ShipStats::GetShieldData()
 {
 	return &m_shieldData;
@@ -96,6 +102,9 @@ void ShipStats::Copy(ShipStats* other)
 	m_misLauncherData.hardPoints = { other->m_misLauncherData.hardPoints };
 	m_misLauncherData.rigs = { other->m_misLauncherData.rigs };
 
+	m_miningLaserData.hardPoint = { other->m_miningLaserData.hardPoint };
+	m_miningLaserData.rig = { other->m_miningLaserData.rig };
+
 	m_shieldData.FrontStrength = other->m_shieldData.FrontStrength;
 	m_shieldData.SideStrength = other->m_shieldData.SideStrength;
 	m_shieldData.RearStrength = other->m_shieldData.RearStrength;
@@ -116,6 +125,7 @@ ShipStats* ShipStats::Clone(ShipStats* other)
 		ShipThrust(other->m_shipThrust),
 		DirectionalGunData(other->m_dirGunData),
 		MissileLauncherData(other->m_misLauncherData),
+		MiningLaserData(other->m_miningLaserData),
 		ShieldData(other->m_shieldData),
 		other->imageLocation,
 		{ other->m_colliderVertices },

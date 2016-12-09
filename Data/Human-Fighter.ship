@@ -49,6 +49,16 @@
 				"Mosquito"
 			]
 		},
+		"MinLaserData": {
+			"HardPoint": {
+				"Position": {
+					"v.x": 0.0,
+					"v.y": 0.0
+				},
+				"Angle": 0.0
+			},
+			"Rig": "Mining-Laser-One"
+		},
         "Shields": {
             "FrontStrength": 3.0,
             "SideStrength": 3.0,

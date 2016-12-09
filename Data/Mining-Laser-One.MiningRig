@@ -1,0 +1,10 @@
+{
+	"Mining-Laser-One": {
+		"value0": {
+			"name": "Mining-Laser-One"
+		},
+		"miningSpeed": 0.5,
+		"miningAmount": 10,
+		"imageLocation": "mining-laser"
+	}
+}

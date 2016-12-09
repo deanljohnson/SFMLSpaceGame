@@ -417,6 +417,9 @@
     <ClCompile Include="BatchIndex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\OreVein.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -871,6 +874,9 @@
     </ClInclude>
     <ClInclude Include="BatchIndex.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\OreVein.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

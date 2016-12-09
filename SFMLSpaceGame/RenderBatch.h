@@ -29,6 +29,10 @@ private:
 	void UpdateTexCoords(BatchIndex* index);
 	void RemoveDeletedElements();
 	// Replaces the element at index a with what's at index b
+	// and determines how many verts to move
+	void Replace(size_t a, size_t b);
+	// Replaces the element at index a with what's at index b
+	// moving the specified number of verts
 	void Replace(size_t a, size_t b, size_t count);
 
 public:
@@ -39,7 +43,7 @@ public:
 	static RenderBatch* Get(sf::PrimitiveType primType);
 	static void RenderAll(sf::RenderTarget& target, sf::RenderStates states);
 
-	BatchIndex* Add();
+	BatchIndex* Add(size_t vertCount = 4);
 	void Remove(BatchIndex* index);
 
 	void Move(BatchIndex* index, float x, float y);

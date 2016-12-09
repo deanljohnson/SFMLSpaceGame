@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include <EntityHelpers.h>
 #include <Entity.h>
-#include "Components/Position.h"
+#include <Components/Position.h>
 
 Entity* EntityHelpers::GetClosestEntity(Entity* subject, 
 										const std::vector<Entity*>& source, 
@@ -15,7 +15,7 @@ Entity* EntityHelpers::GetClosestEntity(Entity* subject,
 		|| !subject->HasComponent<Position>())
 		return nullptr;
 
-	Position subjPos = subject->GetComponent<Position>();
+	auto subjPos = subject->GetComponent<Position>();
 
 	return GetClosestEntity(subjPos.position, 
 							source, 
@@ -38,8 +38,8 @@ Entity* EntityHelpers::GetClosestEntity(const b2Vec2& subject,
 			continue;
 
 		// Get the distance between the two positions
-		Position* pos = &e->GetComponent<Position>();
-		float thisDistanceSquared = (subject - pos->position).LengthSquared();
+		auto& pos = e->GetComponent<Position>();
+		float thisDistanceSquared = (subject - pos.position).LengthSquared();
 
 		// Check for a new closest
 		if (thisDistanceSquared < closestSquareDistance)

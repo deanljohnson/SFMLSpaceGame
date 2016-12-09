@@ -30,6 +30,7 @@ namespace
 
 	std::map<std::string, std::shared_ptr<LaserRig>> loadedLaserRigs;
 	std::map<std::string, std::shared_ptr<MissileRig>> loadedMissileRigs;
+	std::map<std::string, std::shared_ptr<MiningRig>> loadedMiningRigs;
 
 	// TODO: investigate removing these entirely
 	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
@@ -184,6 +185,23 @@ std::shared_ptr<MissileRig> LoadRig<MissileRig>(const std::string& name)
 
 	auto elem = std::shared_ptr<MissileRig>(missileRig);
 	loadedMissileRigs.insert(make_pair(name, elem));
+
+	return elem;
+}
+
+template<>
+std::shared_ptr<MiningRig> LoadRig<MiningRig>(const std::string& name)
+{
+	auto it = loadedMiningRigs.find(name);
+	if (it != loadedMiningRigs.end())
+	{
+		return it->second;
+	}
+
+	MiningRig* miningRig = serializer.Load<MiningRig>(name);
+
+	auto elem = std::shared_ptr<MiningRig>(miningRig);
+	loadedMiningRigs.insert(make_pair(name, elem));
 
 	return elem;
 }

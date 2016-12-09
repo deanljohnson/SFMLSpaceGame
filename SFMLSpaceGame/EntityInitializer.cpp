@@ -101,6 +101,13 @@ void DoAssignShipStatsData(Entity& ent)
 	auto& misLauncher = ent.GetComponent<MissileLauncher>();
 	misLauncher.SetLauncherData(shipStats->GetMissileLauncherData());
 
+	// Not all ships will be equipped with a mining laser
+	if (ent.HasComponent<MiningLaser>())
+	{
+		auto& minLaser = ent.GetComponent<MiningLaser>();
+		minLaser.SetLaserData(shipStats->GetMiningLaserData());
+	}
+
 	auto& shields = ent.GetComponent<Shields>();
 	shields.SetShieldData(shipStats->GetShieldData());
 

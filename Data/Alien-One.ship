@@ -19,14 +19,14 @@
                         "v.x": 61.5,
                         "v.y": 19.5
                     },
-                    "Angle": -0.05258314311504364
+                    "Angle": 0.0
                 },
                 {
                     "Position": {
                         "v.x": 67.5,
                         "v.y": 32.5
                     },
-                    "Angle": -0.05258314311504364
+                    "Angle": 0.0
                 },
                 {
                     "Position": {
@@ -58,7 +58,7 @@
                         "v.x": 22.5,
                         "v.y": 5.5
                     },
-                    "Angle": -0.0481555312871933
+                    "Angle": 0.0
                 },
                 {
                     "Position": {
@@ -73,6 +73,16 @@
 				"Mosquito"
 			]
         },
+		"MinLaserData": {
+			"HardPoint": {
+				"Position": {
+					"v.x": 0.0,
+					"v.y": 0.0
+				},
+				"Angle": 0.0
+			},
+			"Rig": "Mining-Laser-One"
+		},
         "Shields": {
             "FrontStrength": 100.0,
             "SideStrength": 100.0,

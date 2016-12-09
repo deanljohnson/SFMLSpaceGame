@@ -51,32 +51,32 @@ void RenderBatch::RenderAll(sf::RenderTarget& target, sf::RenderStates states)
 
 RenderBatch::RenderBatch(std::shared_ptr<sf::Texture> tex)
 	: m_texture(tex),
+	  m_transforms(),
 	  m_vertices(),
 	  m_transformedVertices(),
 	  m_texRects(),
-	  m_transforms(),
 	  m_primType(sf::Quads)
 {
 }
 
 RenderBatch::RenderBatch(sf::PrimitiveType primType)
 	: m_texture(nullptr),
+	  m_transforms(),
 	  m_vertices(),
 	  m_transformedVertices(),
 	  m_texRects(),
-	  m_transforms(),
 	  m_primType(primType)
 {
 }
 
-BatchIndex* RenderBatch::Add()
+BatchIndex* RenderBatch::Add(size_t vertCount)
 {
 	auto index = m_indices.size();
 	auto vertIndex = m_vertices.size();
 
 	auto texSize = m_texture != nullptr 
 				? m_texture->getSize()
-				: sf::Vector2u(1, 1);
+				: sf::Vector2u(0, 0);
 
 	m_texRects.push_back(sf::IntRect(0, 0, static_cast<int>(texSize.x), static_cast<int>(texSize.y)));
 
@@ -87,25 +87,38 @@ BatchIndex* RenderBatch::Add()
 	trans.setRotation(0);
 	m_transforms.push_back(trans);
 
-	auto vert1 = sf::Vertex(sf::Vector2f(0, 0), sf::Color::White);
-	auto vert2 = sf::Vertex(sf::Vector2f(texSize.x, 0), sf::Color::White);
-	auto vert3 = sf::Vertex(sf::Vector2f(texSize.x, texSize.y), sf::Color::White);
-	auto vert4 = sf::Vertex(sf::Vector2f(0, texSize.y), sf::Color::White);
+	if (vertCount == 4)
+	{
+		auto vert1 = sf::Vertex(sf::Vector2f(0, 0), sf::Color::White);
+		auto vert2 = sf::Vertex(sf::Vector2f(texSize.x, 0), sf::Color::White);
+		auto vert3 = sf::Vertex(sf::Vector2f(texSize.x, texSize.y), sf::Color::White);
+		auto vert4 = sf::Vertex(sf::Vector2f(0, texSize.y), sf::Color::White);
 
-	vert1.texCoords = sf::Vector2f(0,0);
-	vert2.texCoords = sf::Vector2f(texSize.x,0);
-	vert3.texCoords = sf::Vector2f(texSize.x, texSize.y);
-	vert4.texCoords = sf::Vector2f(0, texSize.y);
+		vert1.texCoords = sf::Vector2f(0, 0);
+		vert2.texCoords = sf::Vector2f(texSize.x, 0);
+		vert3.texCoords = sf::Vector2f(texSize.x, texSize.y);
+		vert4.texCoords = sf::Vector2f(0, texSize.y);
 
-	m_vertices.push_back(vert1);
-	m_vertices.push_back(vert2);
-	m_vertices.push_back(vert3);
-	m_vertices.push_back(vert4);
+		m_vertices.push_back(vert1);
+		m_vertices.push_back(vert2);
+		m_vertices.push_back(vert3);
+		m_vertices.push_back(vert4);
 
-	m_transformedVertices.push_back(vert1);
-	m_transformedVertices.push_back(vert2);
-	m_transformedVertices.push_back(vert3);
-	m_transformedVertices.push_back(vert4);
+		m_transformedVertices.push_back(vert1);
+		m_transformedVertices.push_back(vert2);
+		m_transformedVertices.push_back(vert3);
+		m_transformedVertices.push_back(vert4);
+	}
+	else
+	{
+		auto vert = sf::Vertex({}, sf::Color::White);
+		for (size_t i = 0; i < vertCount; i++)
+		{
+			m_vertices.push_back(vert);
+			m_transformedVertices.push_back(vert);
+		}
+	}
+	
 
 	BatchIndex* i = new BatchIndex(index, vertIndex, *this);
 	m_indices.push_back(std::unique_ptr<BatchIndex>(i));
@@ -225,69 +238,120 @@ sf::Vertex& RenderBatch::GetVertex(BatchIndex* index, size_t vert)
 
 void RenderBatch::RemoveDeletedElements()
 {
-	size_t last = 0;
-	for (size_t i = 0; i < m_indices.size(); ++i, ++last)
+	size_t numRemoved = m_removedIndices.size();
+	size_t numVertsRemoved = 0;
+	for (auto& i : m_removedIndices)
 	{
-		// Set i to the index of the first element that is not to be removed
-		while (true)
+		numVertsRemoved += i->vertCount;
+	}
+
+	// The index into the indices vector
+	// specifying which element to swap
+	// an old remove vertex-set to
+	int swapPoint = m_indices.size() - 1;
+	// For each index to be removed...
+	for (size_t i = 0; i < m_removedIndices.size(); i++)
+	{
+		// Find the next index at the end of the vector
+		// that is not being removed
+		for (; swapPoint >= 0; swapPoint--)
 		{
-			bool found = false;
-			for (auto& removed : m_removedIndices) 
+			bool needsToBeRemoved = false;
+			for (auto& ri : m_removedIndices)
 			{
-				if (removed->index == i)
+				// If the possible swap point is to be removed
+				if (ri->index == m_indices[swapPoint]->index)
 				{
-					found = true;
+					needsToBeRemoved = true;
 					break;
 				}
 			}
-			if (found) ++i;
-			else break;
-		}
 
-		if (i >= m_indices.size()) break;
-
-		auto toRemove = last;
-
-		// If we can simply swap the replaced with the saved
-		if (m_indices[toRemove]->vertCount == m_indices[i]->vertCount)
-		{
-			Replace(toRemove, i, m_indices[i]->vertCount);
-		}
-		// If the vert-set to be removed is smaller than what we are placing there
-		// TODO: Search for a vert-set that can fit before choosing to insert any verts
-		else if (m_indices[toRemove]->vertCount < m_indices[i]->vertCount)
-		{
-			// how many verts do we need to insert
-			auto extraVerts = m_indices[i]->vertCount - m_indices[toRemove]->vertCount;
-
-			// insert verts to make room 
-			for (size_t i = 0; i < extraVerts; i++) 
+			// If it doesn't need to be removed, we have found the index to swap to
+			if (!needsToBeRemoved)
 			{
-				m_vertices.insert(m_vertices.begin() + m_indices[toRemove]->vertIndex, sf::Vertex());
+				break;
 			}
-
-			// TODO: adjust all vert indices based on what was inserted and where
-
-			Replace(toRemove, i, m_indices[i]->vertCount);
 		}
+
+		// If the index to remove is already at the end of the vector
+		if (swapPoint < 0 
+			|| m_indices[swapPoint]->index <= m_removedIndices[i]->index)
+		{
+			continue;
+		}
+			
+		Replace(m_removedIndices[i]->index, m_indices[swapPoint]->index);
+		swapPoint--;
 	}
 
 	// Truncate vectors so that removed data is deleted
-	m_vertices.resize(last * 4);
-	m_transformedVertices.resize(last * 4);
-	m_texRects.resize(last);
-	m_indices.resize(last);
-	m_transforms.resize(last);
+	m_vertices.resize(m_vertices.size() - numVertsRemoved);
+	m_transformedVertices.resize(m_transformedVertices.size() - numVertsRemoved);
+
+	auto newCount = m_indices.size() - numRemoved;
+	m_texRects.resize(newCount);
+	m_indices.resize(newCount);
+	m_transforms.resize(newCount);
+}
+
+void RenderBatch::Replace(size_t a, size_t b)
+{
+	// If we can simply swap the replaced with the saved
+	if (m_indices[a]->vertCount == m_indices[b]->vertCount)
+	{
+		Replace(a, b, m_indices[b]->vertCount);
+	}
+	// If the vert-set to be removed is smaller than what we are placing there
+	// TODO: Search for a vert-set that can fit before choosing to insert any verts
+	else if (m_indices[a]->vertCount < m_indices[b]->vertCount)
+	{
+		// how many verts do we need to insert
+		auto extraVerts = m_indices[b]->vertCount - m_indices[a]->vertCount;
+
+		// insert verts to make room 
+		m_vertices.insert(m_vertices.begin() + m_indices[a]->vertIndex, extraVerts, sf::Vertex());
+
+		// Adjust vertices based on what was inserted
+		for (size_t j = a + 1; j < m_indices.size(); j++)
+		{
+			m_indices[j]->vertIndex += extraVerts;
+		}
+
+		Replace(a, b, m_indices[b]->vertCount);
+	}
+	// vert-set to be removed is larger than what is being placed there
+	else
+	{
+		// how many verts do we need to remove
+		auto extraVerts = m_indices[a]->vertCount - m_indices[b]->vertCount;
+
+		// Iterators for the section to be removed
+		auto startIt = m_vertices.begin() + m_indices[a]->vertIndex + (m_indices[a]->vertCount - extraVerts);
+		auto endIt = m_vertices.begin() + m_indices[a]->vertIndex + m_indices[a]->vertCount;
+
+		// Remove the verts
+		m_vertices.erase(startIt, endIt);
+
+		// Adjust vertices based on what was removed
+		for (size_t j = a + 1; j < m_indices.size(); j++)
+		{
+			m_indices[j]->vertIndex -= extraVerts;
+		}
+
+		Replace(a, b, m_indices[b]->vertCount);
+	}
 }
 
 void RenderBatch::Replace(size_t a, size_t b, size_t count) 
 {
-	auto baseVertIndex = a * 4;
+	auto vertIndexA = m_indices[a]->vertIndex;
+	auto vertIndexB = m_indices[b]->vertIndex;
 
-	// Replace the element being removed with the next element not being removed
+	// Copy B's verts into A's
 	for (size_t i = 0; i < count; i++) 
 	{
-		m_vertices[baseVertIndex + i] = m_vertices[(b * 4) + i];
+		m_vertices[vertIndexA + i] = m_vertices[vertIndexB + i];
 	}
 
 	m_texRects[a] = m_texRects[b];
@@ -296,8 +360,12 @@ void RenderBatch::Replace(size_t a, size_t b, size_t count)
 	// Swap the pointer contents so users have the correct pointer
 	m_indices[a].swap(m_indices[b]);
 	m_indices[a]->index = a; // indices have changed
-	m_indices[a]->vertIndex = baseVertIndex; // indices have changed
+	m_indices[a]->vertIndex = vertIndexA; // indices have changed
 	m_indices[a]->vertCount = count;
+	
+	m_indices[b]->index = b;
+	m_indices[b]->vertIndex = vertIndexB;
+	m_indices[b]->vertCount = count;
 }
 
 void RenderBatch::Render(sf::RenderTarget& target, sf::RenderStates states) 
