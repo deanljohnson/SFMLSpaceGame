@@ -6,13 +6,15 @@
 SpriteKey::SpriteKey()
 	: type(Type::Invalid),
 	index(0),
-	texID("")
+	texKey(),
+	texID()
 {
 }
 
 SpriteKey::SpriteKey(const std::string& tex)
 	: type(Type::Texture),
 	index(0),
+	texKey(),
 	texID(tex)
 {
 }
@@ -20,6 +22,15 @@ SpriteKey::SpriteKey(const std::string& tex)
 SpriteKey::SpriteKey(const std::string& tex, unsigned short index)
 	: type(Type::TexIndex),
 	index(index),
+	texKey(),
+	texID(tex)
+{
+}
+
+SpriteKey::SpriteKey(const std::string& tex, const std::string& key)
+	: type(Type::TexKey),
+	index(),
+	texKey(key),
 	texID(tex)
 {
 }

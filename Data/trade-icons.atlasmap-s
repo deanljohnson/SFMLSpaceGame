@@ -1,51 +1,30 @@
 {
     "trade-icons": {
-        "Rects": [
-            {
-                "key": "Food",
-                "value": {
-                    "Left": 0,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            },
-			{
-                "key": "FuelCells",
-                "value": {
-                    "Left": 50,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            },
-			{
-                "key": "Ore",
-                "value": {
-                    "Left": 100,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            },
-            {
-                "key": "Narcotics",
-                "value": {
-                    "Left": 150,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            },
-			{
-                "key": "LaserRig",
-                "value": {
-                    "Left": 200,
-                    "Top": 0,
-                    "Width": 50,
-                    "Height": 50
-                }
-            }
-        ]
+		"Rects": {
+			"Food": {
+				"Left": 0,
+				"Top": 0,
+				"Width": 50,
+				"Height": 50
+			},
+			"FuelCells": {
+				"Left": 50,
+				"Top": 0,
+				"Width": 50,
+				"Height": 50
+			},
+			"Ore": {
+				"Left": 100,
+				"Top": 0,
+				"Width": 50,
+				"Height": 50
+			},
+			"Narcotics": {
+				"Left": 150,
+				"Top": 0,
+				"Width": 50,
+				"Height": 50
+			}
+		}
     }
 }

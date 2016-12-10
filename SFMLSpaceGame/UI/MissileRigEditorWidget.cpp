@@ -7,7 +7,6 @@
 #include <MissileRig.h>
 #include <ResourceLoader.h>
 #include <Serializer.h>
-#include <UI/GameWindow.h>
 
 MissileRigEditorWidget::MissileRigEditorWidget(const std::string& name)
 	: m_window(sfg::Window::Create(sfg::Window::NO_STYLE)),
@@ -51,7 +50,7 @@ MissileRigEditorWidget::MissileRigEditorWidget(const std::string& name)
 	m_thrustEntry->SetText(std::to_string(m_missileRig->missile->thrust));
 	m_damageEntry->SetText(std::to_string(m_missileRig->missile->damage));
 
-	SetImage(m_missileRig->missile->imageLocation);
+	SetImage(m_missileRig->missile->imageLocation.texID);
 
 	m_window->Add(table);
 }
@@ -134,7 +133,7 @@ void MissileRigEditorWidget::Save()
 	m_missileRig->fireRate = stof(m_fireRateEntry->GetText().toAnsiString());
 	m_missileRig->missile->thrust = stof(m_thrustEntry->GetText().toAnsiString());
 	m_missileRig->missile->damage = stof(m_damageEntry->GetText().toAnsiString());
-	m_missileRig->missile->imageLocation = m_imageLoc;
+	m_missileRig->missile->imageLocation = SpriteKey(m_imageLoc);
 
 	Serializer<> ser;
 	ser.Save(m_missileRig.get(), m_missileRig->name, m_missileRig->name);

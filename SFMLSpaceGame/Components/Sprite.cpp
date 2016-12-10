@@ -11,6 +11,7 @@
 #include <RenderBatch.h>
 #include <BatchIndex.h>
 #include <AnimationDefinition.h>
+#include <TextureMap.h>
 
 void Sprite::InitializeBatchRender()
 {
@@ -20,6 +21,11 @@ void Sprite::InitializeBatchRender()
 	{
 		auto anim = LoadAnimation(m_key.texID);
 		SetTextureRect(anim->GetFrame(m_key.index));
+	}
+	else if (m_key.type == SpriteKey::Type::TexKey)
+	{
+		auto atlas = LoadTextureMap<std::string>(m_key.texID);
+		SetTextureRect((*atlas.get())[m_key.texKey]);
 	}
 
 	auto rect = m_batchIndex->GetRect();

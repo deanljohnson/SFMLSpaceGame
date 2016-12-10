@@ -1,0 +1,24 @@
+{
+	"missiles": {
+		"Rects": {
+			"blue": {
+				"Left": 0,
+				"Top": 0,
+				"Width": 64,
+				"Height": 10
+			},
+			"red": {
+				"Left": 0,
+				"Top": 10,
+				"Width": 64,
+				"Height": 10
+			},
+			"green": {
+				"Left": 0,
+				"Top": 20,
+				"Width": 64,
+				"Height": 10
+			}
+		}
+	}
+}

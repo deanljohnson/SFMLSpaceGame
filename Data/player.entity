@@ -44,9 +44,8 @@
                 "data": {
                     "value0": 0,
                     "value1": {
-                        "value0": 1,
-                        "value1": "1.png",
-                        "value2": 0
+                        "type": 1,
+                        "texID": "1.png"
                     },
                     "value2": 0,
                     "value3": {
@@ -64,9 +63,8 @@
                 "data": {
                     "value0": 0,
                     "value1": {
-                        "value0": 1,
-                        "value1": "exhaust-one",
-                        "value2": 0
+                        "type": 1,
+                        "texID": "exhaust-one"
                     },
                     "value2": 1,
                     "value3": {
@@ -84,9 +82,8 @@
                 "data": {
                     "value0": 0,
                     "value1": {
-                        "value0": 1,
-                        "value1": "exhaust-one",
-                        "value2": 0
+                        "type": 1,
+                        "texID": "exhaust-one"
                     },
                     "value2": 1,
                     "value3": {
@@ -459,7 +456,7 @@
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "econ_id": "econ_30004",
+                    "econ_id": "econ_12261",
                     "buy": {
                         "value0": {
                             "ItemType": 3,

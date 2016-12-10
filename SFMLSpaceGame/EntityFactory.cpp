@@ -243,7 +243,7 @@ void EntityFactory::MakeIntoMissile(EntityHandle& ent, std::shared_ptr<MissileSt
 	ent->AddComponent<MissilePhysics, EntityID, std::shared_ptr<MissileStats>>(sourceEntity, missile);
 	ent->AddComponent<MissileController, EntityID, EntityID, float>(sourceEntity, target, missile->thrust);
 	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
-	ent->AddComponent<Sprite, const std::string&>(missile->imageLocation);
+	ent->AddComponent<Sprite, const SpriteKey&>(missile->imageLocation);
 	ent->AddComponent<Lifetime, float>(30.f);
 
 	ent->ApplyInitializer(EntityInitializer::Type::MissileSpriteBoundsColliderSetup);

@@ -68,3 +68,35 @@ template<>
 std::string TextureMap<std::string>::GetTypeName();
 template<>
 std::string TextureMap<size_t>::GetTypeName();
+
+namespace cereal
+{
+	template <class Archive, class C, class A,
+		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae> inline
+		void save(Archive & ar, std::map<std::string, sf::IntRect, C, A> const & map)
+	{
+		for (const auto & i : map)
+			ar(cereal::make_nvp(i.first, i.second));
+	}
+
+	//! Loading for std::map<std::string, sf::IntRect> for text based archives
+	template <class Archive, class C, class A,
+		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae> inline
+		void load(Archive & ar, std::map<std::string, sf::IntRect, C, A> & map)
+	{
+		map.clear();
+
+		auto hint = map.begin();
+		while (true)
+		{
+			const auto namePtr = ar.getNodeName();
+
+			if (!namePtr)
+				break;
+
+			std::string key = namePtr;
+			sf::IntRect value; ar(value);
+			hint = map.emplace_hint(hint, std::move(key), std::move(value));
+		}
+	}
+}

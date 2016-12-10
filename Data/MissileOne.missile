@@ -1,7 +1,0 @@
-{
-	"MissileOne": {
-		"Thrust": 0.1,
-		"Damage": 15.0,
-		"ImageLocation": "Human-Missile-1"
-	}
-}
