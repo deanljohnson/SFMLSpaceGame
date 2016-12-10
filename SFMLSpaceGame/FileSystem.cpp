@@ -48,4 +48,11 @@ namespace FileSystem
 			}
 		}
 	}
+
+	bool DoesFileExist(const std::string& name)
+	{
+		path p = { name };
+		
+		return is_regular_file(p);
+	}
 }

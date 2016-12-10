@@ -7,6 +7,8 @@
 #include <MissileRig.h>
 #include <ResourceLoader.h>
 #include <Serializer.h>
+#include <SpriteKey.h>
+#include <TextureMap.h>
 
 MissileRigEditorWidget::MissileRigEditorWidget(const std::string& name)
 	: m_window(sfg::Window::Create(sfg::Window::NO_STYLE)),
@@ -85,19 +87,38 @@ void MissileRigEditorWidget::SetupButtonSignals()
 void MissileRigEditorWidget::OpenImageSelector()
 {
 	auto selectWindow = GameWindow::GetWindow<ImageSelector>("image_select");
-	selectWindow->SetCallback([this](const std::string& name) { SetImage(name); });
+	selectWindow->SetCallback([this](const SpriteKey& key) { SetImage(key); });
 	selectWindow->Show(true);
 }
 
-void MissileRigEditorWidget::SetImage(const std::string& imageLoc)
+void MissileRigEditorWidget::SetImage(const SpriteKey& imageLoc)
 {
-	if (imageLoc == "")
+	if (imageLoc.texID == "")
 		return;
 
 	m_imageLoc = imageLoc;
+	
+	if (imageLoc.type == SpriteKey::Type::Texture)
+	{
+		auto missileTex = LoadTexture(m_imageLoc.texID);
+		m_missileImage = missileTex->copyToImage();
+	}
+	if (imageLoc.type == SpriteKey::Type::TexKey)
+	{
+		auto missileMap = LoadTextureMap<std::string>(m_imageLoc.texID);
 
-	auto missileTex = LoadTexture(m_imageLoc);
-	m_missileImage = missileTex->copyToImage();
+		if (!imageLoc.texKey.empty())
+		{
+			auto rect = missileMap->at(imageLoc.texKey);
+			m_missileImage.create(rect.width, rect.height);
+			m_missileImage.copy(missileMap->GetTexture()->copyToImage(), 0, 0, rect);
+		}
+		else
+		{
+			m_missileImage = missileMap->GetTexture()->copyToImage();
+		}
+	}
+	
 	m_missileImageWidget->SetImage(m_missileImage);
 }
 

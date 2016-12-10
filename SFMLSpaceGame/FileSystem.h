@@ -31,4 +31,6 @@ namespace FileSystem
 	void GetFileNamesWithExtensions(const std::string& dirPath, 
 									std::initializer_list<std::string> extensions,
 									std::vector<std::string>& results);
+
+	bool DoesFileExist(const std::string& name);
 }

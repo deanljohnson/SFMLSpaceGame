@@ -61,13 +61,13 @@ private:
 
 	void DrawShipCanvas();
 	void OnShipSelected(const std::string& name);
-	void OnNewShipImageSelected(const std::string& name);
+	void OnNewShipImageSelected(const SpriteKey& name);
 	void OnNewShipNameSelected(const std::string& name);
 	void OnEntryFloatTextValidation(sfg::Entry::Ptr entry);
 	void OnSaveShip();
 	void OnDeleteShip();
 
-	std::string m_newShipImageName;
+	SpriteKey m_newShipImage;
 	std::string m_shipName;
 	std::shared_ptr<ShipStats> m_editingStats;
 	std::shared_ptr<ShipStats> m_targetStats;

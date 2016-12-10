@@ -17,7 +17,7 @@ namespace WidgetHelpers
 	{
 		auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
 		auto canvasPos = widget->GetAbsolutePosition();
-		return sf::Vector2f(mousePos.x, mousePos.y) - canvasPos;
+		return sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - canvasPos;
 	}
 
 	bool MouseInWidget(std::shared_ptr<sfg::Widget> widget) 

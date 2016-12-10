@@ -2,11 +2,14 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ImageSelector.h>
-#include "UI.h"
+#include <UI/UI.h>
 #include <FileSystem.h>
+#include <TextureMap.h>
 
 ImageSelector::ImageSelector()
-	: GameWindow("image_select")
+	: GameWindow("image_select"),
+	m_checkForAtlas(true),
+	m_selectedHasAtlas(false)
 {
 	// Create main window
 	m_window = sfg::Window::Create(sfg::Window::TOPLEVEL | sfg::Window::CLOSE);
@@ -18,35 +21,91 @@ ImageSelector::ImageSelector()
 	auto table = sfg::Table::Create();
 	m_window->Add(table);
 
-	auto selectionBox = sfg::ComboBox::Create();
-	table->Attach(selectionBox, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_imageSelector = sfg::ComboBox::Create();
+	table->Attach(m_imageSelector, { 0, 0, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_atlasKeySelector = sfg::ComboBox::Create();
+	table->Attach(m_atlasKeySelector, { 0, 1, 2, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	m_atlasKeySelector->Show(false);
 
 	std::vector<std::string> shipFiles;
 	FileSystem::GetFileNamesWithExtension(IMAGE_PATH, ".png", shipFiles);
-	for (auto e : shipFiles)
+	for (auto& e : shipFiles)
 	{
-		// TODO: Strip the extension from the file name
-		selectionBox->AppendItem(e);
+		// strip the .png extension
+		e = e.substr(0, e.size() - 4);
+
+		// Add it to the selection box
+		m_imageSelector->AppendItem(e);
 	}
 
 	auto selectButton = sfg::Button::Create("Select");
 	auto cancelButton = sfg::Button::Create("Cancel");
-	table->Attach(selectButton, { 0, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
-	table->Attach(cancelButton, { 1, 1, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(selectButton, { 0, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
+	table->Attach(cancelButton, { 1, 2, 1, 1 }, sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL);
 
+	m_imageSelector->GetSignal(sfg::ComboBox::OnSelect).Connect(
+		[this] { OnSelectionChange(); });
 	selectButton->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[this, selectionBox] { CallCallback(selectionBox->GetSelectedText()); Show(false); });
+		[this] { OnSelectClicked(); });
 	cancelButton->GetSignal(sfg::Button::OnLeftClick).Connect(
-		[this] { CallCallback(""); Show(false); });
+		[this] { OnCancel(); });
 }
 
-void ImageSelector::SetCallback(std::function<void(const std::string&)> callback)
+void ImageSelector::SetCheckForAtlas(bool val)
+{
+	m_checkForAtlas = val;
+}
+
+void ImageSelector::SetCallback(std::function<void(const SpriteKey&)> callback)
 {
 	m_callback = callback;
 }
 
-void ImageSelector::CallCallback(const std::string& name)
+void ImageSelector::OnSelectionChange()
+{
+	const auto& name = m_imageSelector->GetSelectedText();
+
+	if (!m_checkForAtlas)
+		m_atlasKeySelector->Show(false);
+	else
+	{
+		m_atlasKeySelector->Clear();
+		// Is the selected file an atlas
+		if (FileSystem::DoesFileExist(DATA_PATH + name + "." + TextureMap<std::string>::GetTypeName()))
+		{
+			auto atlas = LoadTextureMap<std::string>(name);
+			for (auto& kvp : atlas->GetMap())
+			{
+				m_atlasKeySelector->AppendItem(kvp.first);
+			}
+
+			m_selectedHasAtlas = true;
+			m_atlasKeySelector->Show(true);
+		}
+		else m_selectedHasAtlas = false;
+	}
+}
+
+void ImageSelector::OnSelectClicked()
+{
+	m_atlasKeySelector->Show(false);
+
+	if (m_checkForAtlas && m_selectedHasAtlas)
+		CallCallback({ m_imageSelector->GetSelectedText(), m_atlasKeySelector->GetSelectedText() });
+	else
+		CallCallback({ m_imageSelector->GetSelectedText() });
+
+	Show(false);
+}
+
+void ImageSelector::OnCancel()
+{
+	CallCallback({}); 
+	Show(false);
+}
+
+void ImageSelector::CallCallback(const SpriteKey& key)
 {
 	if (m_callback != nullptr)
-		m_callback(name);
+		m_callback(key);
 }

@@ -1,15 +1,28 @@
 #pragma once
-#include "GameWindow.h"
-#include <SFGUI/Window.hpp>
+#include <UI/GameWindow.h>
+
+class SpriteKey;
 
 class ImageSelector : public GameWindow
 {
 private:
-	std::function<void(const std::string&)> m_callback;
+	bool m_checkForAtlas;
+	bool m_selectedHasAtlas;
+	std::function<void(const SpriteKey&)> m_callback;
 
-	void CallCallback(const std::string& name);
+	sfg::ComboBox::Ptr m_imageSelector;
+	sfg::ComboBox::Ptr m_atlasKeySelector;
+
+	void OnSelectionChange();
+	void OnSelectClicked();
+	void OnCancel();
+	void CallCallback(const SpriteKey& name);
 public:
 	ImageSelector();
 
-	void SetCallback(std::function<void(const std::string&)> callback);
+	// Specifies whether or not the ImageSelector should
+	// check for an atlas definition and ask the user to 
+	// select a specific key in the atlas. Defaults to true.
+	void SetCheckForAtlas(bool val);
+	void SetCallback(std::function<void(const SpriteKey&)> callback);
 };

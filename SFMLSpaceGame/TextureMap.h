@@ -27,15 +27,11 @@ public:
 	void SetTexture(std::shared_ptr<sf::Texture> tex) { m_texture = tex; }
 
 	void Add(const TKey& key, const sf::IntRect& rect);
+	const MapContainer& GetMap();
 
-	sf::IntRect operator[](const TKey& key)
-	{
-		return m_rects[key];
-	}
-	sf::IntRect at(const TKey& key)
-	{
-		return m_rects.at(key);
-	}
+	sf::IntRect operator[](const TKey& key);
+
+	sf::IntRect at(const TKey& key);
 
 	template<class Archive>
 	void serialize(Archive& archive) 
@@ -50,6 +46,24 @@ template<typename TKey>
 void TextureMap<TKey>::Add(const TKey& key, const sf::IntRect& rect)
 {
 	m_rects.emplace(key, rect);
+}
+
+template <typename TKey>
+const typename TextureMap<TKey>::MapContainer& TextureMap<TKey>::GetMap()
+{
+	return m_rects;
+}
+
+template <typename TKey>
+sf::IntRect TextureMap<TKey>::operator[](const TKey& key)
+{
+	return m_rects[key];
+}
+
+template <typename TKey>
+sf::IntRect TextureMap<TKey>::at(const TKey& key)
+{
+	return m_rects.at(key);
 }
 
 // size_t specialization uses a std::vector as the 
@@ -69,8 +83,10 @@ std::string TextureMap<std::string>::GetTypeName();
 template<>
 std::string TextureMap<size_t>::GetTypeName();
 
+// Specializing map serialiation for text based archives
 namespace cereal
 {
+	//! Saving for std::map<std::string, sf::IntRect> for text based archives
 	template <class Archive, class C, class A,
 		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae> inline
 		void save(Archive & ar, std::map<std::string, sf::IntRect, C, A> const & map)
@@ -96,7 +112,7 @@ namespace cereal
 
 			std::string key = namePtr;
 			sf::IntRect value; ar(value);
-			hint = map.emplace_hint(hint, std::move(key), std::move(value));
+			hint = map.emplace_hint(hint, move(key), std::move(value));
 		}
 	}
 }

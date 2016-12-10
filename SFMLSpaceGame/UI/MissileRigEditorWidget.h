@@ -1,5 +1,6 @@
 #pragma once
 #include <UI/RigEditorWidget.h>
+#include <SpriteKey.h>
 
 class MissileRig;
 
@@ -15,7 +16,7 @@ private:
 	sfg::Button::Ptr m_selectImageButton;
 	sfg::Image::Ptr m_missileImageWidget;
 	sf::Image m_missileImage;
-	std::string m_imageLoc;
+	SpriteKey m_imageLoc;
 
 	std::shared_ptr<MissileRig> m_missileRig;
 
@@ -24,7 +25,7 @@ private:
 	void SetupButtonSignals();
 
 	void OpenImageSelector();
-	void SetImage(const std::string& imageLoc);
+	void SetImage(const SpriteKey& imageLoc);
 
 	void ClearEditing();
 

@@ -77,7 +77,7 @@ void ShipEditorWindow::SetupButtonSignals()
 		[this]
 		{
 			auto selectWindow = GetWindow<ImageSelector>("image_select");
-			selectWindow->SetCallback([this](const std::string& name) { OnNewShipImageSelected(name); });
+			selectWindow->SetCallback([this](const SpriteKey& key) { OnNewShipImageSelected(key); });
 			selectWindow->Show(true);
 		});
 
@@ -355,11 +355,11 @@ bool ShipEditorWindow::CheckAllEntryValidity()
 
 void ShipEditorWindow::CreateNewShip()
 {
-	if (m_newShipImageName.empty() || m_shipName.empty())
+	if (m_newShipImage.texID.empty() || m_shipName.empty())
 		return;
 
 	ShipStats newShip = ShipStats();
-	newShip.imageLocation = m_newShipImageName;
+	newShip.imageLocation = m_newShipImage.texID;
 
 	Serializer<> ser;
 	ser.Save(&newShip, m_shipName, m_shipName);
@@ -417,12 +417,12 @@ void ShipEditorWindow::OnShipSelected(const std::string& name)
 	DrawShipCanvas();
 }
 
-void ShipEditorWindow::OnNewShipImageSelected(const std::string& imageName)
+void ShipEditorWindow::OnNewShipImageSelected(const SpriteKey& key)
 {
-	if (imageName.empty())
+	if (key.texID.empty())
 		return;
 
-	m_newShipImageName = imageName;
+	m_newShipImage = key;
 
 	auto selectWindow = GetWindow<ShipNameEntry>("ship_name_entry");
 	selectWindow->SetCallback([this](const std::string& name) { OnNewShipNameSelected(name); });

@@ -3,7 +3,7 @@
 struct SpriteKey
 {
 	SpriteKey();
-	explicit SpriteKey(const std::string& tex);
+	SpriteKey(const std::string& tex);
 	SpriteKey(const std::string& tex, unsigned short index);
 	SpriteKey(const std::string& tex, const std::string& key);
 
