@@ -12,10 +12,19 @@ private:
 	sfg::Entry::Ptr m_thrustEntry;
 	sfg::Entry::Ptr m_damageEntry;
 
+	sfg::Button::Ptr m_selectImageButton;
+	sfg::Image::Ptr m_missileImageWidget;
+	sf::Image m_missileImage;
+	std::string m_imageLoc;
+
 	std::shared_ptr<MissileRig> m_missileRig;
 
 	void SetupEntryValidationSignals();
 	void SetupEntryFocusSignals();
+	void SetupButtonSignals();
+
+	void OpenImageSelector();
+	void SetImage(const std::string& imageLoc);
 
 	void ClearEditing();
 

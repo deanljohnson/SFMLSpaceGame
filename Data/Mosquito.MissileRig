@@ -6,6 +6,6 @@
         "fireRate": 1.0,
         "missileThrust": 0.10000000149011612,
         "missileDamage": 15.0,
-        "missileImage": "Human-Missile-1"
+        "missileImage": "Human-Missile-1.png"
     }
 }

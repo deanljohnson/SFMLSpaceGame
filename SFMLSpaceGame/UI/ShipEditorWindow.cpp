@@ -76,7 +76,7 @@ void ShipEditorWindow::SetupButtonSignals()
 	m_newShipButton->GetSignal(sfg::Button::OnLeftClick).Connect(
 		[this]
 		{
-			auto selectWindow = static_cast<ImageSelector*>(GetWindow("image_select"));
+			auto selectWindow = GetWindow<ImageSelector>("image_select");
 			selectWindow->SetCallback([this](const std::string& name) { OnNewShipImageSelected(name); });
 			selectWindow->Show(true);
 		});
