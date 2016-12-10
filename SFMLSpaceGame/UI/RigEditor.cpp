@@ -26,18 +26,18 @@ RigEditor::RigEditor()
 	SetupButtonSignals();
 
 	// Create layout widgets
-	auto topLevelBox = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
-	auto leftSideBar = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+	m_topLevelBox = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
+	m_leftSideBar = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 	m_mainBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
 
-	leftSideBar->Pack(m_createRigButton);
-	leftSideBar->Pack(m_editRigButton);
-	leftSideBar->Pack(m_saveRigButton);
-	leftSideBar->Pack(m_deleteRigButton);
+	m_leftSideBar->Pack(m_createRigButton);
+	m_leftSideBar->Pack(m_editRigButton);
+	m_leftSideBar->Pack(m_saveRigButton);
+	m_leftSideBar->Pack(m_deleteRigButton);
 
-	topLevelBox->Pack(leftSideBar);
-	topLevelBox->Pack(m_mainBox);
-	m_window->Add(topLevelBox);
+	m_topLevelBox->Pack(m_leftSideBar);
+	m_topLevelBox->Pack(m_mainBox);
+	m_window->Add(m_topLevelBox);
 }
 
 void RigEditor::SetupButtonSignals()
@@ -122,7 +122,13 @@ void RigEditor::OnRigSelected(const std::string& name)
 	}
 
 	m_rigWidget = m_rigEditWidget->GetWidget();
-	m_mainBox->PackStart(m_rigWidget);
+	m_mainBox->Pack(m_rigWidget);
+
+	// This forces a re-layout of the window,
+	// adjusting the size depending on the new
+	// rig widget
+	m_window->RemoveAll();
+	m_window->Add(m_topLevelBox);
 }
 
 void RigEditor::OnSaveRig()

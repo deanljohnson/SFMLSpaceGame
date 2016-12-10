@@ -12,6 +12,8 @@ private:
 	sfg::Button::Ptr m_saveRigButton;
 	sfg::Button::Ptr m_deleteRigButton;
 
+	sfg::Box::Ptr m_topLevelBox;
+	sfg::Box::Ptr m_leftSideBar; // Contains the edit/save/new/delete buttons
 	sfg::Box::Ptr m_mainBox;
 
 	std::shared_ptr<RigEditorWidget> m_rigEditWidget;
