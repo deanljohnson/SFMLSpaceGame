@@ -10,6 +10,7 @@ private:
 
 	float m_zoomFactor{ 1.f };
 	float m_lastZoom{ 1.f };
+	float m_totalZoom{ 1.f };
 
 	friend class cereal::access;
 
@@ -31,6 +32,7 @@ private:
 			construct->m_lastZoom);
 	}
 public:
-	explicit ZoomHandler(EntityID ent) : Component(ent){}
+	explicit ZoomHandler(EntityID ent);
+	~ZoomHandler();
 	virtual void Update() override;
 };

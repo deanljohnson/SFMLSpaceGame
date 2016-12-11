@@ -15,6 +15,18 @@ namespace
 	}
 }
 
+ZoomHandler::ZoomHandler(EntityID ent)
+	: Component(ent)
+{
+	
+}
+
+ZoomHandler::~ZoomHandler()
+{
+	// Reset the zoom
+	ApplyZoom(1.f / m_totalZoom);
+}
+
 void ZoomHandler::Update()
 {
 	for (auto i = 0u; i < GameState::pendingEvents.size(); i++)
@@ -33,6 +45,7 @@ void ZoomHandler::Update()
 			float zoomAmount = (m_zoomFactor / m_lastZoom);
 			ApplyZoom(zoomAmount);
 
+			m_totalZoom *= zoomAmount;
 			m_lastZoom = m_zoomFactor;
 
 			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
