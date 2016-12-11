@@ -1,11 +1,11 @@
 {
-    "Alien-One": {
-        "HullStrength": 100.0,
-        "InterLeadMult": 0.0,
-        "FollowDist": 0.0,
-        "ApproachDist": 0.0,
-        "StrafeDist": 0.0,
-        "SensorRange": 0.0,
+    "Alien-One.ship": {
+        "HullStrength": 30.0,
+        "InterLeadMult": 5.0,
+        "FollowDist": 4.0,
+        "ApproachDist": 4.5,
+        "StrafeDist": 3.5,
+        "SensorRange": 10.0,
         "ShipThrust": {
             "Forward": 61.0,
             "Side": 40.0,
@@ -68,28 +68,32 @@
                     "Angle": 0.0
                 }
             ],
-			"MissileRigs": [
-				"Mosquito",
-				"Mosquito"
-			]
+            "MissileRigs": [
+                "Mosquito",
+                "Mosquito"
+            ]
         },
-		"MinLaserData": {
-			"HardPoint": {
-				"Position": {
-					"v.x": 0.0,
-					"v.y": 0.0
-				},
-				"Angle": 0.0
-			},
-			"Rig": "Mining-Laser-One"
-		},
+        "MinLaserData": {
+            "HardPoint": {
+                "Position": {
+                    "v.x": 0.0,
+                    "v.y": 0.0
+                },
+                "Angle": 0.0
+            },
+            "Rig": "Mining-Laser-One"
+        },
         "Shields": {
-            "FrontStrength": 100.0,
-            "SideStrength": 100.0,
-            "RearStrength": 100.0,
-            "RegenSpeed": 10.0
+            "FrontStrength": 10.0,
+            "SideStrength": 10.0,
+            "RearStrength": 10.0,
+            "RegenSpeed": 3.0
         },
-        "ImageLocation": "1.png",
+        "ImageLocation": {
+            "type": 3,
+            "texID": "ships",
+            "texKey": "1"
+        },
         "ColliderVertices": [
             {
                 "v.x": 17.5,

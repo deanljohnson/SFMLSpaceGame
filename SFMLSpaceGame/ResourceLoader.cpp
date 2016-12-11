@@ -32,16 +32,10 @@ namespace
 	std::map<std::string, std::shared_ptr<MissileRig>> loadedMissileRigs;
 	std::map<std::string, std::shared_ptr<MiningRig>> loadedMiningRigs;
 
-	// TODO: investigate removing these entirely
-	std::map<ResourceID,  std::shared_ptr<AnimationDefinition>> loadedBuiltInAnimations;
+	// TODO: investigate removing these entirely to get away from ResourceID's
 	std::map<ResourceID, std::shared_ptr<sf::Font>> loadedFonts;
 	std::map<ResourceID, std::shared_ptr<sf::SoundBuffer>> loadedSounds;
 	std::map<ResourceID, std::shared_ptr<sf::Texture>> loadedBuiltInTextures;
-
-	bool IsShipID(ResourceID id) 
-	{
-		return id > SHIP_ID_START && id < SHIP_ID_END;
-	}
 
 	bool IsFontID(ResourceID id)
 	{
@@ -84,7 +78,6 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedTextures);
 	UnloadUnusedSharedPtrResources(loadedBuiltInTextures);
 	UnloadUnusedSharedPtrResources(loadedAnimations);
-	UnloadUnusedSharedPtrResources(loadedBuiltInAnimations);
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedSounds);
 	UnloadUnusedSharedPtrResources(loadedShips);

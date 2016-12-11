@@ -23,7 +23,7 @@ ShipStats::ShipStats(float hullStrength, float interceptLead,
 					float strafeDistance, float sensorRange,
 					ShipThrust thrust, DirectionalGunData dirData,
 					MissileLauncherData misData, MiningLaserData minLaser, ShieldData shieldData,
-					const std::string& imageLocation, const std::vector<sf::Vector2f>& colliderVertices,
+					const SpriteKey& imageLocation, const std::vector<sf::Vector2f>& colliderVertices,
 					const std::vector<sf::Vector2f>& thrusterLocations)
 	: m_shipThrust(thrust),
 	m_dirGunData(dirData),

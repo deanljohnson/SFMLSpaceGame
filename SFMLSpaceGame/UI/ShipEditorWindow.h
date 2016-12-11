@@ -43,7 +43,7 @@ private:
 	sfg::Entry::Ptr m_rearShieldEntry;
 	sfg::Entry::Ptr m_shieldRegenEntry;
 
-	std::shared_ptr<sf::Texture> m_shipTexture;
+	std::shared_ptr<TextureMap<std::string>> m_shipTexture;
 	sf::Sprite m_shipImage;
 
 	void SetupButtonSignals();

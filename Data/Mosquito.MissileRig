@@ -9,7 +9,7 @@
         "missileImage": {
 			"type": 3,
 			"texID": "missiles",
-			"texKey": "red"
+			"texKey": "Human-Missile-Blue"
 		}
     }
 }

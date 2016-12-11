@@ -90,7 +90,9 @@ void ImageSelector::OnSelectClicked()
 {
 	m_atlasKeySelector->Show(false);
 
-	if (m_checkForAtlas && m_selectedHasAtlas)
+	if (m_checkForAtlas 
+		&& m_selectedHasAtlas 
+		&& !m_atlasKeySelector->GetSelectedText().isEmpty())
 		CallCallback({ m_imageSelector->GetSelectedText(), m_atlasKeySelector->GetSelectedText() });
 	else
 		CallCallback({ m_imageSelector->GetSelectedText() });

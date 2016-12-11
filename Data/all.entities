@@ -49,8 +49,9 @@
                                 "data": {
                                     "value0": 0,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "1.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "1"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -461,7 +462,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_30378",
+                                    "econ_id": "econ_17332",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -668,8 +669,9 @@
                                 "data": {
                                     "value0": 3,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -971,7 +973,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_10974",
+                                    "econ_id": "econ_5216",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1078,8 +1080,9 @@
                                 "data": {
                                     "value0": 4,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -1381,7 +1384,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_4231",
+                                    "econ_id": "econ_15075",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1488,8 +1491,9 @@
                                 "data": {
                                     "value0": 5,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -1791,7 +1795,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_2094",
+                                    "econ_id": "econ_18993",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1898,8 +1902,9 @@
                                 "data": {
                                     "value0": 6,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -2201,7 +2206,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_22790",
+                                    "econ_id": "econ_28275",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2308,8 +2313,9 @@
                                 "data": {
                                     "value0": 7,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -2611,7 +2617,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_27140",
+                                    "econ_id": "econ_15131",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2718,8 +2724,9 @@
                                 "data": {
                                     "value0": 8,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -3021,7 +3028,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_27561",
+                                    "econ_id": "econ_22792",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3128,8 +3135,9 @@
                                 "data": {
                                     "value0": 9,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -3431,7 +3439,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_19279",
+                                    "econ_id": "econ_8962",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3538,8 +3546,9 @@
                                 "data": {
                                     "value0": 10,
                                     "value1": {
-                                        "type": 1,
-                                        "texID": "Human-Fighter.png"
+                                        "type": 3,
+                                        "texID": "ships",
+                                        "texKey": "Human-Fighter"
                                     },
                                     "value2": 0,
                                     "value3": {
@@ -3841,7 +3850,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_14154",
+                                    "econ_id": "econ_2945",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4056,6 +4065,20 @@
                                                     "rigName": "Cannon-Two"
                                                 }
                                             }
+                                        },
+                                        {
+                                            "polymorphic_id": 2147483654,
+                                            "polymorphic_name": "MissileRigItem",
+                                            "ptr_wrapper": {
+                                                "id": 2147483679,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 6,
+                                                        "amount": 2
+                                                    },
+                                                    "rigName": "Hammer"
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -4068,7 +4091,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_26755",
+                                    "econ_id": "econ_10667",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4110,6 +4133,10 @@
                                             "ItemType": 5,
                                             "Prices": {
                                                 "Cannon-Two": 900
+                                            },
+                                            "ItemType": 6,
+                                            "Prices": {
+                                                "Hammer": 5000
                                             }
                                         }
                                     }
@@ -4241,7 +4268,7 @@
                                         {
                                             "polymorphic_id": 1,
                                             "ptr_wrapper": {
-                                                "id": 2147483679,
+                                                "id": 2147483680,
                                                 "data": {
                                                     "value0": {
                                                         "type": 0,
@@ -4253,7 +4280,7 @@
                                         {
                                             "polymorphic_id": 4,
                                             "ptr_wrapper": {
-                                                "id": 2147483680,
+                                                "id": 2147483681,
                                                 "data": {
                                                     "value0": {
                                                         "type": 1,
@@ -4265,13 +4292,26 @@
                                         {
                                             "polymorphic_id": 5,
                                             "ptr_wrapper": {
-                                                "id": 2147483681,
+                                                "id": 2147483682,
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 6,
+                                            "ptr_wrapper": {
+                                                "id": 2147483683,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 6,
+                                                        "amount": 2
+                                                    },
+                                                    "rigName": "Hammer"
                                                 }
                                             }
                                         }
@@ -4286,7 +4326,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_29578",
+                                    "econ_id": "econ_1899",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4328,6 +4368,10 @@
                                             "ItemType": 5,
                                             "Prices": {
                                                 "Cannon-Two": 900
+                                            },
+                                            "ItemType": 6,
+                                            "Prices": {
+                                                "Hammer": 5000
                                             }
                                         }
                                     }
@@ -4459,7 +4503,7 @@
                                         {
                                             "polymorphic_id": 1,
                                             "ptr_wrapper": {
-                                                "id": 2147483682,
+                                                "id": 2147483684,
                                                 "data": {
                                                     "value0": {
                                                         "type": 0,
@@ -4471,7 +4515,7 @@
                                         {
                                             "polymorphic_id": 4,
                                             "ptr_wrapper": {
-                                                "id": 2147483683,
+                                                "id": 2147483685,
                                                 "data": {
                                                     "value0": {
                                                         "type": 1,
@@ -4483,13 +4527,26 @@
                                         {
                                             "polymorphic_id": 5,
                                             "ptr_wrapper": {
-                                                "id": 2147483684,
+                                                "id": 2147483686,
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 6,
+                                            "ptr_wrapper": {
+                                                "id": 2147483687,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 6,
+                                                        "amount": 2
+                                                    },
+                                                    "rigName": "Hammer"
                                                 }
                                             }
                                         }
@@ -4504,7 +4561,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_15311",
+                                    "econ_id": "econ_18401",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4546,6 +4603,10 @@
                                             "ItemType": 5,
                                             "Prices": {
                                                 "Cannon-Two": 900
+                                            },
+                                            "ItemType": 6,
+                                            "Prices": {
+                                                "Hammer": 5000
                                             }
                                         }
                                     }
@@ -4677,7 +4738,7 @@
                                         {
                                             "polymorphic_id": 1,
                                             "ptr_wrapper": {
-                                                "id": 2147483685,
+                                                "id": 2147483688,
                                                 "data": {
                                                     "value0": {
                                                         "type": 0,
@@ -4689,7 +4750,7 @@
                                         {
                                             "polymorphic_id": 4,
                                             "ptr_wrapper": {
-                                                "id": 2147483686,
+                                                "id": 2147483689,
                                                 "data": {
                                                     "value0": {
                                                         "type": 1,
@@ -4701,13 +4762,26 @@
                                         {
                                             "polymorphic_id": 5,
                                             "ptr_wrapper": {
-                                                "id": 2147483687,
+                                                "id": 2147483690,
                                                 "data": {
                                                     "value0": {
                                                         "type": 5,
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "polymorphic_id": 6,
+                                            "ptr_wrapper": {
+                                                "id": 2147483691,
+                                                "data": {
+                                                    "value0": {
+                                                        "type": 6,
+                                                        "amount": 2
+                                                    },
+                                                    "rigName": "Hammer"
                                                 }
                                             }
                                         }
@@ -4722,7 +4796,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_5798",
+                                    "econ_id": "econ_12813",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4764,6 +4838,10 @@
                                             "ItemType": 5,
                                             "Prices": {
                                                 "Cannon-Two": 900
+                                            },
+                                            "ItemType": 6,
+                                            "Prices": {
+                                                "Hammer": 5000
                                             }
                                         }
                                     }

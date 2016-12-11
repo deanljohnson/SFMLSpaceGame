@@ -6,6 +6,7 @@
 #include <Components/Shields.h>
 #include <cereal/types/vector.hpp> // Need for collider vertices serialization
 #include <SFMLSerialization.h> // Need for collider vertices serialization
+#include <SpriteKey.h>
 
 class ShipStats
 {
@@ -23,7 +24,7 @@ private:
 		float sensorRange, ShipThrust thrust,
 		DirectionalGunData dirData, MissileLauncherData misData,
 		MiningLaserData minLaser,
-		ShieldData shieldData, const std::string& imageLocation,
+		ShieldData shieldData, const SpriteKey& imageLocation,
 		const std::vector<sf::Vector2f>& colliderVertices,
 		const std::vector<sf::Vector2f>& thrusterLocations);
 
@@ -34,7 +35,7 @@ public:
 	float approachDistance;
 	float strafeDistance;
 	float sensorRange;
-	std::string imageLocation;
+	SpriteKey imageLocation;
 
 	ShipStats();
 

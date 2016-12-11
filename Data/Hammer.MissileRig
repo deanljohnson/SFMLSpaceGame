@@ -1,0 +1,15 @@
+{
+    "Hammer": {
+        "value0": {
+            "name": "Hammer"
+        },
+        "fireRate": 0.699999988079071,
+        "missileThrust": 0.07999999821186066,
+        "missileDamage": 25.0,
+        "missileImage": {
+            "type": 3,
+            "texID": "missiles",
+            "texKey": "Human-Missile-Red"
+        }
+    }
+}

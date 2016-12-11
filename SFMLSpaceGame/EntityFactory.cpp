@@ -266,7 +266,7 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& shipStats = ent->AddComponent<ShipStatsComponent, const std::string&>(shipName);
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	ent->AddComponent<Sprite, const std::string&>(shipStats->imageLocation);
+	ent->AddComponent<Sprite, const SpriteKey&>(shipStats->imageLocation);
 	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 1.f);
 	ent->AddComponent<ShipThrusters, const std::string&>(shipName);
 	auto& gunSound = ent->AddComponent<SoundSource, ResourceID>(shipStats->GetDirGunData()->soundID);
@@ -332,6 +332,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 	auto& econAgent = ent->AddComponent<EconomyAgent>();
 	econAgent.AddItem(ItemFactory::Create<ItemType::FuelCells>(1000));
 	econAgent.AddItem(ItemFactory::Create<ItemType::LaserRig>(4, "Cannon-Two"));
+	econAgent.AddItem(ItemFactory::Create<ItemType::MissileRig>(2, "Hammer"));
 
 	econAgent.SetSellPrices(
 	{
@@ -345,6 +346,7 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
 	});
 	econAgent.SetSellPrice(ItemType::LaserRig, "Cannon-Two", 900);
+	econAgent.SetSellPrice(ItemType::MissileRig, "Hammer", 5000);
 
 	ent->ApplyInitializer(EntityInitializer::Type::StationInteractListenerSetup);
 	ent->ApplyInitializer(EntityInitializer::Type::StationSpriteBoundsColliderSetup);

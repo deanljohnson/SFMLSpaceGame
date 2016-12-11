@@ -37,7 +37,11 @@
             "RearStrength": 0.0,
             "RegenSpeed": 0.0
         },
-        "ImageLocation": "10.png",
+        "ImageLocation": {
+			"type": 3,
+			"texID": "ships",
+			"texKey": "10"
+		},
         "ColliderVertices": [
             {
                 "v.x": 6.0,

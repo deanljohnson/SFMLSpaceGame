@@ -4,6 +4,8 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/ConvexShape.hpp>
 
+template<typename TKey>
+class TextureMap;
 class ShipStats;
 
 class ColliderEditor : public GameWindow
@@ -12,7 +14,7 @@ private:
 	sfg::Canvas::Ptr m_shipCanvas;
 
 	std::shared_ptr<ShipStats> m_targetStats;
-	std::shared_ptr<sf::Texture> m_shipTexture;
+	std::shared_ptr<TextureMap<std::string>> m_shipTexture;
 	std::string m_shipName;
 	sf::Sprite m_shipImage;
 

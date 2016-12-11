@@ -65,7 +65,11 @@
             "RearStrength": 3.0,
             "RegenSpeed": 1.0
         },
-        "ImageLocation": "Human-Fighter.png",
+        "ImageLocation": {
+			"type": 3,
+			"texID": "ships",
+			"texKey": "Human-Fighter"
+		},
         "ColliderVertices": [
             {
                 "v.x": 3.0,

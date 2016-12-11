@@ -3,6 +3,14 @@
 #include "stdafx.h"
 #include <ShipResourceSelector.h>
 
+ShipResourceSelector::ShipResourceSelector(const std::string& name)
+	: m_type(Single), m_singleID(name)
+{}
+
+ShipResourceSelector::ShipResourceSelector(std::function<std::string()> func)
+	: m_type(Func), m_sourceFunc(func)
+{}
+
 std::string ShipResourceSelector::Select()
 {
 	switch(m_type)

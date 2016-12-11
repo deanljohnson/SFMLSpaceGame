@@ -52,7 +52,7 @@ MissileRigEditorWidget::MissileRigEditorWidget(const std::string& name)
 	m_thrustEntry->SetText(std::to_string(m_missileRig->missile->thrust));
 	m_damageEntry->SetText(std::to_string(m_missileRig->missile->damage));
 
-	SetImage(m_missileRig->missile->imageLocation.texID);
+	SetImage(m_missileRig->missile->imageLocation);
 
 	m_window->Add(table);
 }
@@ -93,10 +93,10 @@ void MissileRigEditorWidget::OpenImageSelector()
 
 void MissileRigEditorWidget::SetImage(const SpriteKey& imageLoc)
 {
+	m_imageLoc = imageLoc;
+
 	if (imageLoc.texID == "")
 		return;
-
-	m_imageLoc = imageLoc;
 	
 	if (imageLoc.type == SpriteKey::Type::Texture)
 	{
@@ -107,10 +107,11 @@ void MissileRigEditorWidget::SetImage(const SpriteKey& imageLoc)
 	{
 		auto missileMap = LoadTextureMap<std::string>(m_imageLoc.texID);
 
+		// If the texKey is empty, we simply use the whole image
 		if (!imageLoc.texKey.empty())
 		{
 			auto rect = missileMap->at(imageLoc.texKey);
-			m_missileImage.create(rect.width, rect.height);
+			m_missileImage.create(rect.width, rect.height); // resize the image
 			m_missileImage.copy(missileMap->GetTexture()->copyToImage(), 0, 0, rect);
 		}
 		else
@@ -129,6 +130,7 @@ void MissileRigEditorWidget::ClearEditing()
 	m_fireRateEntry->SetText("");
 	m_thrustEntry->SetText("");
 	m_damageEntry->SetText("");
+	SetImage({});
 }
 
 bool MissileRigEditorWidget::CheckAllEntryValidity()
@@ -136,7 +138,8 @@ bool MissileRigEditorWidget::CheckAllEntryValidity()
 	const std::string valid = "valid";
 	return m_fireRateEntry->GetId() == valid
 		&& m_thrustEntry->GetId() == valid
-		&& m_damageEntry->GetId() == valid;
+		&& m_damageEntry->GetId() == valid
+		&& m_imageLoc.type != SpriteKey::Type::Invalid;
 }
 
 void MissileRigEditorWidget::OnEntryFloatTextValidation(sfg::Entry::Ptr entry)
@@ -151,11 +154,13 @@ void MissileRigEditorWidget::Save()
 	if (!CheckAllEntryValidity())
 		return;
 
+	// Copy the data over
 	m_missileRig->fireRate = stof(m_fireRateEntry->GetText().toAnsiString());
 	m_missileRig->missile->thrust = stof(m_thrustEntry->GetText().toAnsiString());
 	m_missileRig->missile->damage = stof(m_damageEntry->GetText().toAnsiString());
-	m_missileRig->missile->imageLocation = SpriteKey(m_imageLoc);
+	m_missileRig->missile->imageLocation = m_imageLoc;
 
+	// Save the rig to disk
 	Serializer<> ser;
 	ser.Save(m_missileRig.get(), m_missileRig->name, m_missileRig->name);
 }

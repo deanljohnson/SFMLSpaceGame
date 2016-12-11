@@ -105,3 +105,10 @@ void MissileLauncher::SetLauncherData(MissileLauncherData* data)
 
 	m_lastFiringTimes.resize(data->rigs.size(), 0.f);
 }
+
+void MissileLauncherData::LoadNewMissileRig(const std::string& rigName, size_t index)
+{
+	assert(index < rigs.size());
+
+	rigs[index] = LoadRig<MissileRig>(rigName);
+}

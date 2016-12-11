@@ -1,24 +1,24 @@
 {
-	"missiles": {
+    "missiles": {
 		"Rects": {
-			"blue": {
-				"Left": 0,
-				"Top": 0,
+			"Human-Missile-Blue": {
+				"Left": 1,
+				"Top": 1,
 				"Width": 64,
 				"Height": 10
 			},
-			"red": {
-				"Left": 0,
-				"Top": 10,
+			"Human-Missile-Green": {
+				"Left": 67,
+				"Top": 1,
 				"Width": 64,
 				"Height": 10
 			},
-			"green": {
-				"Left": 0,
-				"Top": 20,
+			"Human-Missile-Red": {
+				"Left": 133,
+				"Top": 1,
 				"Width": 64,
 				"Height": 10
 			}
 		}
-	}
+    }
 }

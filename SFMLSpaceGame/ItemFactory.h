@@ -17,7 +17,8 @@ namespace ItemFactory
 					Case<T == ItemType::FuelCells, FuelCellsItem,
 					Case<T == ItemType::Narcotics, NarcoticsItem, 
 					Case<T == ItemType::Ore, OreItem,
-					void>>>>>>;
+					Case<T == ItemType::MissileRig, MissileRigItem,
+					void>>>>>>>;
 	};
 	
 	// simplifies syntax
@@ -49,6 +50,8 @@ namespace ItemFactory
 			return std::make_shared<NarcoticsItem>(amount);
 		case ItemType::LaserRig:
 			return std::make_shared<LaserRigItem>(amount);
+		case ItemType::MissileRig:
+			return std::make_shared<MissileRigItem>(amount);
 		}
 
 		throw "unrecognized item type " + std::to_string(static_cast<std::underlying_type<ItemType>::type>(type));
@@ -71,6 +74,8 @@ namespace ItemFactory
 			return std::make_shared<NarcoticsItem>(item->amount);
 		case ItemType::LaserRig:
 			return std::make_shared<LaserRigItem>(item->amount, static_cast<LaserRigItem*>(item)->rigName);
+		case ItemType::MissileRig:
+			return std::make_shared<MissileRigItem>(item->amount, static_cast<MissileRigItem*>(item)->rigName);
 		}
 
 		throw "unrecognized item type " + std::to_string(static_cast<std::underlying_type<ItemType>::type>(item->type));

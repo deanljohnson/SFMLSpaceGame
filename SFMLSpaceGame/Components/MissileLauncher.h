@@ -10,6 +10,10 @@ struct MissileLauncherData
 	std::vector<HardPoint> hardPoints;
 	std::vector<std::shared_ptr<MissileRig>> rigs;
 
+	// Loads the missile rig identified by the given name
+	// to the given index in the MissileRig vector
+	void LoadNewMissileRig(const std::string& rigName, size_t index);
+
 	template<class Archive>
 	void save(Archive& ar) const
 	{

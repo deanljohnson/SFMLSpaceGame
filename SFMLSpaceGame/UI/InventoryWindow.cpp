@@ -12,6 +12,7 @@
 #include <Components/ShipStatsComponent.h>
 #include <ItemFactory.h>
 #include <Entity.h>
+#include <TextureMap.h>
 
 InventoryWindow::InventoryWindow()
 	: GameWindow("inventory"),
@@ -40,6 +41,9 @@ InventoryWindow::InventoryWindow()
 			{
 			case ItemType::LaserRig:
 				t = HardPointWidget::Type::Gun;
+				break;
+			case ItemType::MissileRig:
+				t = HardPointWidget::Type::MissileLauncher;
 				break;
 			default:
 				throw "unrecognized item type for hover handler";
@@ -89,16 +93,18 @@ void InventoryWindow::SetTarget(EntityID id)
 	m_invenWidget.SetTarget(id);
 	m_contextProvider->SetEquipSlotCounts(ItemType::LaserRig, 
 										Equipper::GetNumSlots(ItemType::LaserRig, id));
+	m_contextProvider->SetEquipSlotCounts(ItemType::MissileRig,
+										Equipper::GetNumSlots(ItemType::MissileRig, id));
 }
 
 void InventoryWindow::LoadShipImage()
 {
 	auto stats = LoadShip(PlayerData::GetActive()->GetPlayerShip());
-	m_shipTexture = LoadTexture(stats->imageLocation);
-	m_shipImage.setTexture(*m_shipTexture.get());
+	m_shipTexture = LoadTextureMap<std::string>(stats->imageLocation.texID);
+	m_shipImage.setTexture(*m_shipTexture->GetTexture());
 	// Explicitly set the texture rect. Otherwise, changing ships can cause part of
 	// the image to be occluded
-	m_shipImage.setTextureRect({ 0, 0, static_cast<int>(m_shipTexture->getSize().x), static_cast<int>(m_shipTexture->getSize().y) });
+	m_shipImage.setTextureRect(m_shipTexture->at(stats->imageLocation.texKey));
 
 	auto canvasSize = m_shipCanvas->GetRequisition();
 	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);
@@ -192,10 +198,15 @@ void InventoryWindow::HighlightHardPoint(HardPointWidget::Type type, size_t slot
 	// all types of hard points are kept in the same list, 
 	// so we need to iterate through them and count according
 	// to the passed in type until we find the right one
+	int foundSlots = -1;
 	for (size_t i = 0; i < m_hardPointWidgets.size(); i++)
 	{
+		if (m_hardPointWidgets[i].GetType() == type)
+		{
+			foundSlots++;
+		}
 		// found the right one
-		if (slot == 0)
+		if (slot == foundSlots)
 		{
 			// change alpha to give a highlighting effect
 			int8 alpha = highlight ? 255 : 100;
@@ -203,9 +214,6 @@ void InventoryWindow::HighlightHardPoint(HardPointWidget::Type type, size_t slot
 			DrawShipCanvas(); // redraw to see the change
 			break;
 		}
-		if (m_hardPointWidgets[i].GetType() == type)
-		{
-			slot--;
-		}
+		
 	}
 }

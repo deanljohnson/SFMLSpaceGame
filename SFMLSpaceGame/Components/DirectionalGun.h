@@ -19,7 +19,7 @@ struct DirectionalGunData
 	ResourceID soundID{0};
 
 	// Loads the laser rig identified by the given name
-	// to the given index in the LaserRig array
+	// to the given index in the LaserRig vector
 	void LoadNewLaserRig(const std::string& rigName, size_t index);
 
 	template<class Archive>

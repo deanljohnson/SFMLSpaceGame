@@ -8,7 +8,7 @@
 
 enum class ItemType
 {
-	Credits, FuelCells, Ore, Food, Narcotics, LaserRig
+	Credits, FuelCells, Ore, Food, Narcotics, LaserRig, MissileRig
 };
 
 class Item
@@ -149,6 +149,32 @@ public:
 	explicit LaserRigItem(unsigned int amt = 0, const std::string& _rigName = "") 
 		: Item(ItemType::LaserRig, amt),
 		  rigName(_rigName)
+	{ }
+
+	virtual std::string GetDisplayString() const override;
+	virtual const std::string& GetDetail() const override;
+};
+
+class MissileRigItem : public Item
+{
+protected:
+	friend class cereal::access;
+
+	template<class Archive>
+	void serialize(Archive& ar)
+	{
+		ar(cereal::base_class<Item>(this),
+			cereal::make_nvp("rigName", rigName));
+	}
+
+public:
+	NAMED_ITEM("MissileRig");
+
+	std::string rigName;
+
+	explicit MissileRigItem(unsigned int amt = 0, const std::string& _rigName = "")
+		: Item(ItemType::MissileRig, amt),
+		rigName(_rigName)
 	{ }
 
 	virtual std::string GetDisplayString() const override;

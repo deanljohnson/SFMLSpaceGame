@@ -129,7 +129,11 @@
             "RearStrength": 25.0,
             "RegenSpeed": 3.0
         },
-        "ImageLocation": "Human-Battlecruiser.png",
+        "ImageLocation": {
+			"type": 3,
+			"texID": "ships",
+			"texKey": "Human-Battlecruiser"
+		},
         "ColliderVertices": [
             {
                 "v.x": 3.0,

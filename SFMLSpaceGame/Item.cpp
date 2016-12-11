@@ -33,12 +33,14 @@ bool Item::AreStackable(const Item& other)
 
 bool Item::IsDetailed() const
 {
-	return type == ItemType::LaserRig;
+	return type == ItemType::LaserRig
+		|| type == ItemType::MissileRig;
 }
 
 bool Item::IsEquippable() const 
 {
-	return type == ItemType::LaserRig;
+	return type == ItemType::LaserRig
+		|| type == ItemType::MissileRig;
 }
 
 std::string Item::GetTypeName() const
@@ -57,6 +59,10 @@ std::string Item::GetTypeName() const
 		return NarcoticsItem::GetTypeName();
 	case ItemType::LaserRig:
 		return LaserRigItem::GetTypeName();
+	case ItemType::MissileRig:
+		return MissileRigItem::GetTypeName();
+	default:
+		throw "unrecognized item type in GetTypeName call";
 	}
 }
 
@@ -80,6 +86,16 @@ const std::string& LaserRigItem::GetDetail() const
 	return rigName;
 }
 
+std::string MissileRigItem::GetDisplayString() const
+{
+	return rigName;
+}
+
+const std::string& MissileRigItem::GetDetail() const
+{
+	return rigName;
+}
+
 // enable polymorphic item serialization
 // include any archives we may use
 #include <cereal/archives/binary.hpp>
@@ -94,3 +110,4 @@ CEREAL_REGISTER_TYPE(OreItem);
 CEREAL_REGISTER_TYPE(FoodItem);
 CEREAL_REGISTER_TYPE(NarcoticsItem);
 CEREAL_REGISTER_TYPE(LaserRigItem);
+CEREAL_REGISTER_TYPE(MissileRigItem);

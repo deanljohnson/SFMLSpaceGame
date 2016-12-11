@@ -19,7 +19,7 @@ private:
 	InventoryWidget m_invenWidget;
 	std::shared_ptr<ItemContextProvider> m_contextProvider;
 
-	std::shared_ptr<sf::Texture> m_shipTexture;
+	std::shared_ptr<TextureMap<std::string>> m_shipTexture;
 	sf::Sprite m_shipImage;
 	std::vector<HardPointWidget> m_hardPointWidgets;
 

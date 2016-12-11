@@ -6,6 +6,7 @@
 #include "WidgetHelpers.h"
 #include <Serializer.h>
 #include <ShipStats.h>
+#include <TextureMap.h>
 
 ColliderEditor::ColliderEditor()
 	: GameWindow("collider_editor"),
@@ -67,11 +68,11 @@ void ColliderEditor::SetupCanvasSignals()
 
 void ColliderEditor::LoadShipImage()
 {
-	m_shipTexture = LoadTexture(m_targetStats->imageLocation);
-	m_shipImage.setTexture(*m_shipTexture.get());
+	m_shipTexture = LoadTextureMap<std::string>(m_targetStats->imageLocation.texID);
+	m_shipImage.setTexture(*m_shipTexture->GetTexture().get());
 	// Explicitly set the texture rect. Otherwise, changing ships can cause part of
 	// the image to be occluded
-	m_shipImage.setTextureRect({ 0, 0, static_cast<int>(m_shipTexture->getSize().x), static_cast<int>(m_shipTexture->getSize().y) });
+	m_shipImage.setTextureRect(m_shipTexture->at(m_targetStats->imageLocation.texKey));
 
 	auto canvasSize = m_shipCanvas->GetRequisition();
 	auto shipSize = sf::Vector2f(m_shipImage.getLocalBounds().width, m_shipImage.getLocalBounds().height);

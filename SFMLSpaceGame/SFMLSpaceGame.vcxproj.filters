@@ -85,15 +85,15 @@
     <Filter Include="Source Files\TargetFinders">
       <UniqueIdentifier>{eed0e3a4-d1f5-4604-9e32-324349b0bd26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EntitySystem">
+      <UniqueIdentifier>{9df9fe24-a9a3-44b2-b95a-67b50213b77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EntitySystem">
+      <UniqueIdentifier>{a3bc5481-25b4-4ddd-95e5-b0d6ddca2359}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InitialGameState.cpp">
@@ -141,9 +141,6 @@
     <ClCompile Include="Components\DirectionalGun.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="EntityFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\BulletPhysics.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -177,17 +174,11 @@
     <ClCompile Include="Components\ZoomHandler.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="EntityHandle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\ShipAI.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityHelpers.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\DamageOnAttacked.cpp">
       <Filter>Source Files\Components</Filter>
@@ -339,9 +330,6 @@
     <ClCompile Include="ComponentSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EntityInitializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\Animator.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -420,14 +408,26 @@
     <ClCompile Include="Components\OreVein.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityFactory.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityHandle.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityHelpers.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityInitializer.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\EntitySystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Header Files\GameStates</Filter>
     </ClInclude>
@@ -512,9 +512,6 @@
     <ClInclude Include="Interfaces\Gun.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="EntityFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Components\BulletPhysics.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -539,9 +536,6 @@
     <ClInclude Include="Components\ShipController.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="EntityGroups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionGroups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -550,12 +544,6 @@
     </ClInclude>
     <ClInclude Include="Components\ZoomHandler.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityHandle.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Group.h">
       <Filter>Header Files</Filter>
@@ -568,9 +556,6 @@
     </ClInclude>
     <ClInclude Include="Components\ShipAI.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityHelpers.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Health.h">
       <Filter>Header Files\Components</Filter>
@@ -767,9 +752,6 @@
     <ClInclude Include="Components\Components.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="EntityInitializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Components\ShipStatsComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -877,6 +859,30 @@
     </ClInclude>
     <ClInclude Include="Components\OreVein.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityFactory.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityGroups.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityHandle.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityHelpers.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityID.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityInitializer.h">
+      <Filter>Header Files\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
