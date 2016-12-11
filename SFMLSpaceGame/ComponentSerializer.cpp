@@ -52,6 +52,7 @@ ItemPickup,\
 EconomyAgent,\
 ParallaxTargetAssigner,\
 ShipStatsComponent,\
+StationStatsComponent,\
 OreVein
 #endif
 

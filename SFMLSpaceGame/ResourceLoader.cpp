@@ -7,6 +7,7 @@
 #include <map>
 #include <assert.h>
 #include <ShipStats.h>
+#include <StationStats.h>
 #include <Serializer.h>
 #include <FileSystem.h>
 #include <TextureMap.h>
@@ -25,6 +26,7 @@ namespace
 	std::map<std::string, std::shared_ptr<sf::Texture>> loadedTextures;
 
 	std::map<std::string, std::shared_ptr<ShipStats>> loadedShips;
+	std::map<std::string, std::shared_ptr<StationStats>> loadedStations;
 
 	std::map<std::string, std::shared_ptr<AnimationDefinition>> loadedAnimations;
 
@@ -81,6 +83,7 @@ void UnloadUnusedResources()
 	UnloadUnusedSharedPtrResources(loadedFonts);
 	UnloadUnusedSharedPtrResources(loadedSounds);
 	UnloadUnusedSharedPtrResources(loadedShips);
+	UnloadUnusedSharedPtrResources(loadedStations);
 	UnloadUnusedSharedPtrResources(loadedLaserRigs);
 	UnloadUnusedSharedPtrResources(loadedMissileRigs);
 }
@@ -316,6 +319,20 @@ std::shared_ptr<ShipStats> LoadShip(const std::string& name)
 
 	auto elem = std::make_shared<ShipStats>(*serializer.Load<ShipStats>(name));
 	loadedShips.insert(make_pair(name, elem));
+
+	return elem;
+}
+
+std::shared_ptr<StationStats> LoadStation(const std::string& name)
+{
+	auto it = loadedStations.find(name);
+	if (it != loadedStations.end())
+	{
+		return it->second;
+	}
+
+	auto elem = std::make_shared<StationStats>(*serializer.Load<StationStats>(name));
+	loadedStations.insert(make_pair(name, elem));
 
 	return elem;
 }

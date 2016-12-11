@@ -29,7 +29,7 @@ private:
 		const std::vector<sf::Vector2f>& thrusterLocations);
 
 public:
-	float maxHull;
+	float hullStrength;
 	float interceptLeadMultiplier;
 	float followDistance;
 	float approachDistance;
@@ -54,20 +54,20 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(cereal::make_nvp("HullStrength", maxHull),
-				cereal::make_nvp("InterLeadMult", interceptLeadMultiplier),
-				cereal::make_nvp("FollowDist", followDistance),
-				cereal::make_nvp("ApproachDist", approachDistance),
-				cereal::make_nvp("StrafeDist", strafeDistance),
-				cereal::make_nvp("SensorRange", sensorRange),
-				cereal::make_nvp("ShipThrust", m_shipThrust),
-				cereal::make_nvp("DirGunData", m_dirGunData),
-				cereal::make_nvp("MisLauncherData", m_misLauncherData),
-				cereal::make_nvp("MinLaserData", m_miningLaserData),
-				cereal::make_nvp("Shields", m_shieldData),
-				cereal::make_nvp("ImageLocation", imageLocation),
-				cereal::make_nvp("ColliderVertices", m_colliderVertices),
-				cereal::make_nvp("ThrusterLocations", m_thrusterLocations));
+		archive(cereal::make_nvp("hullStrength", hullStrength),
+				cereal::make_nvp("interLeadMult", interceptLeadMultiplier),
+				cereal::make_nvp("followDist", followDistance),
+				cereal::make_nvp("approachDist", approachDistance),
+				cereal::make_nvp("strafeDist", strafeDistance),
+				cereal::make_nvp("sensorRange", sensorRange),
+				cereal::make_nvp("shipThrust", m_shipThrust),
+				cereal::make_nvp("dirGunData", m_dirGunData),
+				cereal::make_nvp("misLauncherData", m_misLauncherData),
+				cereal::make_nvp("minLaserData", m_miningLaserData),
+				cereal::make_nvp("shields", m_shieldData),
+				cereal::make_nvp("imageLocation", imageLocation),
+				cereal::make_nvp("colliderVertices", m_colliderVertices),
+				cereal::make_nvp("thrusterLocations", m_thrusterLocations));
 	}
 
 	void Copy(ShipStats* other);

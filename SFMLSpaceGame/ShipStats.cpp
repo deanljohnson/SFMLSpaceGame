@@ -10,7 +10,7 @@ ShipStats::ShipStats()
 	m_shieldData(),
 	m_colliderVertices(),
 	m_thrusterLocations(),
-	maxHull(0),
+	hullStrength(0),
 	interceptLeadMultiplier(0),
 	followDistance(0),
 	approachDistance(0),
@@ -32,7 +32,7 @@ ShipStats::ShipStats(float hullStrength, float interceptLead,
 	m_shieldData(shieldData),
 	m_colliderVertices(colliderVertices),
 	m_thrusterLocations(thrusterLocations),
-	maxHull(hullStrength),
+	hullStrength(hullStrength),
 	interceptLeadMultiplier(interceptLead),
 	followDistance(followDistance),
 	approachDistance(approachDistance),
@@ -83,7 +83,7 @@ void ShipStats::SetColliderVertices(const std::vector<sf::Vector2f>& colliderVer
 
 void ShipStats::Copy(ShipStats* other)
 {
-	maxHull = other->maxHull;
+	hullStrength = other->hullStrength;
 
 	interceptLeadMultiplier = other->interceptLeadMultiplier;
 	followDistance = other->followDistance;
@@ -116,7 +116,7 @@ void ShipStats::Copy(ShipStats* other)
 
 ShipStats* ShipStats::Clone(ShipStats* other)
 {
-	return new ShipStats(other->maxHull,
+	return new ShipStats(other->hullStrength,
 		other->interceptLeadMultiplier,
 		other->followDistance,
 		other->approachDistance,

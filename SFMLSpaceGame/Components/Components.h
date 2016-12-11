@@ -43,5 +43,6 @@
 #include <Components/EconomyAgent.h>
 #include <Components/ParallaxTargetAssigner.h>
 #include <Components/ShipStatsComponent.h>
+#include <Components/StationStatsComponent.h>
 #include <Components/Animator.h>
 #include <Components/OreVein.h>

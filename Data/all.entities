@@ -462,7 +462,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_23043",
+                                    "econ_id": "econ_20872",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -973,7 +973,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_28115",
+                                    "econ_id": "econ_29918",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1384,7 +1384,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_31607",
+                                    "econ_id": "econ_24824",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -1795,7 +1795,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_31617",
+                                    "econ_id": "econ_20682",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2206,7 +2206,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_13298",
+                                    "econ_id": "econ_421",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -2617,7 +2617,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_1702",
+                                    "econ_id": "econ_22542",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3028,7 +3028,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_26981",
+                                    "econ_id": "econ_7189",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3439,7 +3439,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_967",
+                                    "econ_id": "econ_13233",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -3850,7 +3850,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_13109",
+                                    "econ_id": "econ_21881",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4091,7 +4091,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_5601",
+                                    "econ_id": "econ_15163",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4143,7 +4143,18 @@
                                 }
                             }
                         },
-                        "value23": 4294967295
+                        "value23": 45,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": "Human-Station"
+                                }
+                            }
+                        },
+                        "value25": 4294967295
                     }
                 }
             },
@@ -4326,7 +4337,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_5355",
+                                    "econ_id": "econ_22996",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4378,7 +4389,18 @@
                                 }
                             }
                         },
-                        "value23": 4294967295
+                        "value23": 45,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 12,
+                                    "value1": "Human-Station"
+                                }
+                            }
+                        },
+                        "value25": 4294967295
                     }
                 }
             },
@@ -4561,7 +4583,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_29902",
+                                    "econ_id": "econ_15064",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4613,7 +4635,18 @@
                                 }
                             }
                         },
-                        "value23": 4294967295
+                        "value23": 45,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 13,
+                                    "value1": "Human-Station"
+                                }
+                            }
+                        },
+                        "value25": 4294967295
                     }
                 }
             },
@@ -4796,7 +4829,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_1930",
+                                    "econ_id": "econ_7185",
                                     "buy": {
                                         "value0": {
                                             "ItemType": 3,
@@ -4848,7 +4881,18 @@
                                 }
                             }
                         },
-                        "value23": 4294967295
+                        "value23": 45,
+                        "value24": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 14,
+                                    "value1": "Human-Station"
+                                }
+                            }
+                        },
+                        "value25": 4294967295
                     }
                 }
             },
@@ -4924,7 +4968,7 @@
                                 }
                             }
                         },
-                        "value13": 45,
+                        "value13": 46,
                         "value14": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {

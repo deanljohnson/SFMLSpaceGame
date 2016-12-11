@@ -10,6 +10,7 @@
 #include <PlayerData.h>
 #include <Economy.h>
 #include <MissileStats.h>
+#include <StationStats.h>
 #include <ItemFactory.h>
 #include <SpriteKey.h>
 
@@ -65,6 +66,7 @@ void EntityFactory::Init()
 	GetComponentTypeID<EconomyAgent>();
 	GetComponentTypeID<ParallaxTargetAssigner>();
 	GetComponentTypeID<ShipStatsComponent>();
+	GetComponentTypeID<StationStatsComponent>();
 	GetComponentTypeID<OreVein>();
 }
 
@@ -320,9 +322,10 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 
 void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& stationID, const b2Vec2& p, float radians)
 {
+	auto& stationStats = ent->AddComponent<StationStatsComponent, const std::string&>(stationID);
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation>(radians);
-	ent->AddComponent<Sprite, const std::string&>(stationID);
+	ent->AddComponent<Sprite, const SpriteKey&>(stationStats->imageLocation);
 	ent->AddComponent<Physics, b2BodyType, float>(b2_dynamicBody, 10.f);
 	ent->AddComponent<Inventory>();
 	ent->AddComponent<EntitySensor, float, std::initializer_list<Group>>(5.f, { PLAYER_GROUP });

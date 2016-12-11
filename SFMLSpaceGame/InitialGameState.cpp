@@ -126,10 +126,10 @@ void InitialGameState::Init()
 		AddEnemy();
 		AddEnemy();
 
-		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 0));
-		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 0));
-		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(7, 40));
-		EntityFactory::CreateStation("Human-Spacestation", b2Vec2(40, 40));
+		EntityFactory::CreateStation("Human-Station", b2Vec2(7, 0));
+		EntityFactory::CreateStation("Human-Station", b2Vec2(40, 0));
+		EntityFactory::CreateStation("Human-Station", b2Vec2(7, 40));
+		EntityFactory::CreateStation("Human-Station", b2Vec2(40, 40));
 
 		EntityFactory::CreateAsteroid(b2Vec2(20, 20));
 

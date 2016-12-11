@@ -217,6 +217,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="Components\ShipSpawner.cpp" />
     <ClCompile Include="Components\SoundListener.cpp" />
     <ClCompile Include="Components\SoundSource.cpp" />
+    <ClCompile Include="Components\StationStatsComponent.cpp" />
     <ClCompile Include="Components\Text.cpp" />
     <ClCompile Include="Components\ThrusterAnimator.cpp" />
     <ClCompile Include="Components\TilingBackground.cpp" />
@@ -267,6 +268,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="SpawnLocationSelector.cpp" />
     <ClCompile Include="SpriteHelpers.cpp" />
     <ClCompile Include="SpriteKey.cpp" />
+    <ClCompile Include="StationStats.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -335,6 +337,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\ShipStatsComponent.h" />
     <ClInclude Include="Components\SoundListener.h" />
     <ClInclude Include="Components\SoundSource.h" />
+    <ClInclude Include="Components\StationStatsComponent.h" />
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\ThrusterAnimator.h" />
     <ClInclude Include="Components\TilingBackground.h" />
@@ -369,6 +372,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="Rig.h" />
     <ClInclude Include="SpriteKey.h" />
+    <ClInclude Include="StationStats.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Targeter.h" />
     <ClInclude Include="UI\ContextMenu.h" />

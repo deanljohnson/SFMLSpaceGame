@@ -1,0 +1,8 @@
+{
+	"Human-Station": {
+		"imageLocation": {
+			"type": 1,
+			"texID": "Human-Spacestation"
+		}
+	}
+}

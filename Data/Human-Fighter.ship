@@ -1,18 +1,18 @@
 {
     "Human-Fighter": {
-        "HullStrength": 10.0,
-        "InterLeadMult": 5.0,
-        "FollowDist": 4.0,
-        "ApproachDist": 4.5,
-        "StrafeDist": 3.5,
-        "SensorRange": 10.0,
-        "ShipThrust": {
+        "hullStrength": 10.0,
+        "interLeadMult": 5.0,
+        "followDist": 4.0,
+        "approachDist": 4.5,
+        "strafeDist": 3.5,
+        "sensorRange": 10.0,
+        "shipThrust": {
             "Forward": 61.0,
             "Side": 50.0,
             "Reverse": 30.0,
             "Steer": 50.0
         },
-        "DirGunData": {
+        "dirGunData": {
             "HardPoints": [
                 {
                     "Position": {
@@ -35,7 +35,7 @@
 				"Cannon-One"
 			]
         },
-		"MisLauncherData": {
+		"misLauncherData": {
 			"HardPoints": [
 				{
 					"Position": {
@@ -49,7 +49,7 @@
 				"Mosquito"
 			]
 		},
-		"MinLaserData": {
+		"minLaserData": {
 			"HardPoint": {
 				"Position": {
 					"v.x": 0.0,
@@ -59,18 +59,18 @@
 			},
 			"Rig": "Mining-Laser-One"
 		},
-        "Shields": {
+        "shields": {
             "FrontStrength": 3.0,
             "SideStrength": 3.0,
             "RearStrength": 3.0,
             "RegenSpeed": 1.0
         },
-        "ImageLocation": {
+        "imageLocation": {
 			"type": 3,
 			"texID": "ships",
 			"texKey": "Human-Fighter"
 		},
-        "ColliderVertices": [
+        "colliderVertices": [
             {
                 "v.x": 3.0,
                 "v.y": 15.0
@@ -100,7 +100,7 @@
                 "v.y": 54.0
             }
         ],
-        "ThrusterLocations": [
+        "thrusterLocations": [
             {
                 "v.x": 2.0,
                 "v.y": 21.0

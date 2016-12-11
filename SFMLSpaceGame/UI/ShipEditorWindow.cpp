@@ -314,7 +314,7 @@ void ShipEditorWindow::LoadShipStatsToEntries()
 	m_steerThrustEntry->SetText(std::to_string(thrust->Steer));
 
 	auto shields = m_targetStats->GetShieldData();
-	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->maxHull));
+	m_hullStrengthEntry->SetText(std::to_string(m_targetStats->hullStrength));
 	m_frontShieldEntry->SetText(std::to_string(shields->FrontStrength));
 	m_sideShieldEntry->SetText(std::to_string(shields->SideStrength));
 	m_rearShieldEntry->SetText(std::to_string(shields->RearStrength));
@@ -457,7 +457,7 @@ void ShipEditorWindow::OnSaveShip()
 	m_editingStats->approachDistance = stof(m_approachDistEntry->GetText().toAnsiString());
 	m_editingStats->strafeDistance = stof(m_strafeDistEntry->GetText().toAnsiString());
 	m_editingStats->sensorRange = stof(m_sensorRangeEntry->GetText().toAnsiString());
-	m_editingStats->maxHull = stof(m_hullStrengthEntry->GetText().toAnsiString());
+	m_editingStats->hullStrength = stof(m_hullStrengthEntry->GetText().toAnsiString());
 
 	auto shipThrust = m_editingStats->GetShipThrust();
 	shipThrust->Forward = stof(m_forwardThrustEntry->GetText().toAnsiString());
