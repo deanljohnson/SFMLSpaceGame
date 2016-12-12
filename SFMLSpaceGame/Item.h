@@ -11,15 +11,28 @@ enum class ItemType
 	Credits, FuelCells, Ore, Food, Narcotics, LaserRig, MissileRig
 };
 
+extern std::unordered_map<ItemType, std::string> ItemTypeToString;
+extern std::unordered_map<std::string, ItemType> StringToItemType;
+
 class Item
 {
-protected:
+private:
 	friend class cereal::access;
 
 	template<class Archive>
-	void serialize(Archive& ar)
+	void load(Archive& ar) 
 	{
-		ar(CEREAL_NVP(type), 
+		std::string itemString;
+		ar(cereal::make_nvp("type", itemString),
+			CEREAL_NVP(amount));
+
+		type = StringToItemType[itemString];
+	}
+
+	template<class Archive>
+	void save(Archive& ar) const
+	{
+		ar(cereal::make_nvp("type", ItemTypeToString[type]),
 			CEREAL_NVP(amount));
 	}
 
@@ -31,7 +44,6 @@ public:
 
 	Item();
 	explicit Item(ItemType _type, unsigned int _amt = 0);
-	virtual ~Item(){};
 
 	void Stack(const Item& other);
 
@@ -180,3 +192,24 @@ public:
 	virtual std::string GetDisplayString() const override;
 	virtual const std::string& GetDetail() const override;
 };
+
+// Disambiguates serialization functions
+namespace cereal
+{
+	template <class Archive>
+	struct specialize<Archive, Item, cereal::specialization::member_load_save> {};
+	template <class Archive>
+	struct specialize<Archive, CreditsItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, FoodItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, OreItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, FuelCellsItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, NarcoticsItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, LaserRigItem, cereal::specialization::member_serialize> {};
+	template <class Archive>
+	struct specialize<Archive, MissileRigItem, cereal::specialization::member_serialize> {};
+}

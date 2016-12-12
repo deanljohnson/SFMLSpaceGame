@@ -6,6 +6,26 @@
 
 const std::string Item::NO_DETAIL = "";
 
+std::unordered_map<ItemType, std::string> ItemTypeToString{
+	std::make_pair(ItemType::Credits, "Credits"),
+	std::make_pair(ItemType::FuelCells, "FuelCells"),
+	std::make_pair(ItemType::Ore, "Ore"),
+	std::make_pair(ItemType::Food, "Food"),
+	std::make_pair(ItemType::Narcotics, "Narcotics"),
+	std::make_pair(ItemType::LaserRig, "LaserRig"),
+	std::make_pair(ItemType::MissileRig, "MissileRig")
+};
+
+extern std::unordered_map<std::string, ItemType> StringToItemType{
+	std::make_pair("Credits", ItemType::Credits),
+	std::make_pair("FuelCells", ItemType::FuelCells),
+	std::make_pair("Ore", ItemType::Ore),
+	std::make_pair("Food", ItemType::Food),
+	std::make_pair("Narcotics", ItemType::Narcotics),
+	std::make_pair("LaserRig", ItemType::LaserRig),
+	std::make_pair("MissileRig", ItemType::MissileRig)
+};
+
 Item::Item()
 	: type(ItemType::Credits),
 	  amount(0)

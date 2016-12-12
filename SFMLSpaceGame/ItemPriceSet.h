@@ -36,8 +36,7 @@ namespace cereal
 	{
 		for (const auto& i : map)
 		{
-			ar(make_nvp("ItemType", i.first));
-			ar(make_nvp("Prices", i.second));
+			ar(make_nvp(ItemTypeToString[i.first], i.second));
 		}
 	}
 
@@ -65,7 +64,7 @@ namespace cereal
 			if (!namePtr)
 				break;
 
-			ItemType key; ar(key);
+			ItemType key{ StringToItemType[namePtr] };
 			std::unordered_map<std::string, Price> value; ar(value);
 			hint = map.emplace_hint(hint, std::move(key), move(value));
 		}
