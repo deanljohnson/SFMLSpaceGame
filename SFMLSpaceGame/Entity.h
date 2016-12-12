@@ -8,10 +8,12 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <Group.h>
 #include <EntityID.h>
-#include "EventQueue.h"
+#include <EventQueue.h>
 #include <cereal\access.hpp>
-#include <cereal\types\bitset.hpp>
+#include <cereal\types\bitset.hpp> // needed to serialize component bitset
 #include <EntityInitializer.h>
+#include <Components/Interfaces/Updateable.h>
+#include <Components/Interfaces/Renderable.h>
 
 class EntityManager;
 
@@ -22,6 +24,8 @@ private:
 	bool m_active{ true };
 
 	std::multimap<ComponentID, std::unique_ptr<Component>> m_components;
+	std::vector<ComponentID> m_updateableComponents;
+	std::vector<ComponentID> m_renderableComponents;
 
 	ComponentArray m_componentArray;
 	ComponentBitset m_componentBitset;
@@ -31,16 +35,63 @@ private:
 
 	EntityID m_id;
 
+	template<class T,
+		typename std::enable_if<!std::is_base_of<Updateable, T>::value
+		&& !std::is_base_of<Renderable, T>::value>::type* = nullptr>
+		void EmplaceComponent(ComponentID id, T* comp)
+	{
+		//add to our set of components
+		m_components.emplace(id, comp);
+	}
+
+	template<class T,
+		typename std::enable_if<std::is_base_of<Updateable, T>::value 
+		&& std::is_base_of<Renderable, T>::value>::type* = nullptr>
+	void EmplaceComponent(ComponentID id, T* comp)
+	{
+		//add to our set of components
+		m_components.emplace(id, comp);
+
+		m_updateableComponents.insert(
+			upper_bound(m_updateableComponents.begin(), m_updateableComponents.end(), id), 
+			id);
+		m_renderableComponents.insert(
+			upper_bound(m_renderableComponents.begin(), m_renderableComponents.end(), id),
+			id);
+	}
+
+	template<class T,
+		typename std::enable_if<std::is_base_of<Updateable, T>::value
+		&& !std::is_base_of<Renderable, T>::value>::type* = nullptr>
+		void EmplaceComponent(ComponentID id, T* comp)
+	{
+		//add to our set of components
+		m_components.emplace(id, comp);
+
+		m_updateableComponents.insert(
+			upper_bound(m_updateableComponents.begin(), m_updateableComponents.end(), id),
+			id);
+	}
+
+	template<class T,
+		typename std::enable_if<!std::is_base_of<Updateable, T>::value
+		&& std::is_base_of<Renderable, T>::value>::type* = nullptr>
+		void EmplaceComponent(ComponentID id, T* comp)
+	{
+		//add to our set of components
+		m_components.emplace(id, comp);
+
+		m_renderableComponents.insert(
+			upper_bound(m_renderableComponents.begin(), m_renderableComponents.end(), id),
+			id);
+	}
+
 	template<class T>
 	void SetComponent(T* comp) 
 	{
-		//wrap the raw pointer
-		std::unique_ptr<Component> uPtr{ comp };
-
 		auto compTypeID = GetComponentTypeID<T>();
 
-		//add to our set of components
-		m_components.emplace(compTypeID, move(uPtr));
+		EmplaceComponent<T>(compTypeID, comp);
 
 		// The entity already has a component of this type
 		// add it to the component linked list

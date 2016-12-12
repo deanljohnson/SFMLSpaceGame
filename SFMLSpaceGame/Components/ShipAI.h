@@ -4,7 +4,7 @@
 class ShipController;
 class AttackedEvent;
 
-class ShipAI : public Component
+class ShipAI : public Component, public Updateable
 {
 private:
 	enum class AIState{ None, AttackingShip, MovingToStation } m_currentState { AIState::None };

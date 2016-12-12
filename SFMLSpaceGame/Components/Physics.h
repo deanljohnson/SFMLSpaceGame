@@ -10,7 +10,7 @@ namespace sf
 class Position;
 class Rotation;
 
-class Physics : public Component
+class Physics : public Component, public Updateable
 {
 private:
 	Position& m_position;

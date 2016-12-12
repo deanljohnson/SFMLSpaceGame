@@ -2,7 +2,7 @@
 class DirectionalKeyboardInput;
 class ShipThrusters;
 
-class ThrusterInput : public Component, public DefaultSerializeable<ThrusterInput>
+class ThrusterInput : public Component, public DefaultSerializeable<ThrusterInput>, public Updateable
 {
 private:
 	DirectionalKeyboardInput& m_input;

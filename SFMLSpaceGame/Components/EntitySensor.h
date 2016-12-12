@@ -8,7 +8,7 @@
 class Physics;
 class Entity;
 
-class EntitySensor : public Component, public ComponentSensor
+class EntitySensor : public Component, public ComponentSensor, public Updateable
 {
 private:
 	bool m_triggered{ false };

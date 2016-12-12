@@ -4,7 +4,7 @@
 class Position;
 class Rotation;
 
-class SoundListener : public Component, public DefaultSerializeable<SoundListener>
+class SoundListener : public Component, public DefaultSerializeable<SoundListener>, public Updateable
 {
 private:
 	Position& m_position;

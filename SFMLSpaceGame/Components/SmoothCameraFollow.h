@@ -1,7 +1,7 @@
 #pragma once
 class Position;
 
-class SmoothCameraFollow : public Component
+class SmoothCameraFollow : public Component, public Updateable
 {
 private:
 	Position& m_position;

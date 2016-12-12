@@ -5,6 +5,7 @@
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp> // Needed to serialize vector of hard points
 #include <HardPoint.h>
+#include <Components/Interfaces/Updateable.h>
 
 class Position;
 class Rotation;
@@ -61,7 +62,7 @@ struct DirectionalGunData
 	}
 };
 
-class DirectionalGun : public Component, public Gun
+class DirectionalGun : public Component, public Gun, public Updateable
 {
 private:
 	struct WeaponState 

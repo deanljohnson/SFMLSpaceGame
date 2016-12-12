@@ -1,7 +1,7 @@
 #pragma once
 #include <DefaultSerializeable.h>
 
-class DirectionalKeyboardInput : public Component, public DefaultSerializeable<DirectionalKeyboardInput>
+class DirectionalKeyboardInput : public Component, public DefaultSerializeable<DirectionalKeyboardInput>, public Updateable
 {
 public:
 	explicit DirectionalKeyboardInput(EntityID ent);

@@ -5,7 +5,7 @@
 #include <cereal/types/vector.hpp>
 #include <cereal/types/memory.hpp>
 
-class Inventory : public Component
+class Inventory : public Component, public Updateable
 {
 private:
 	std::vector<std::shared_ptr<Item>> m_items;

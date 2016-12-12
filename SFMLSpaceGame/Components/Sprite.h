@@ -8,7 +8,7 @@ class Rotation;
 class RenderBatch;
 struct BatchIndex;
 
-class Sprite : public Component
+class Sprite : public Component, public Updateable
 {
 private:
 	Position& m_position;

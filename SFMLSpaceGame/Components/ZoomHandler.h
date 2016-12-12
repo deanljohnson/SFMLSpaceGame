@@ -2,7 +2,7 @@
 #include "Component.h"
 #include <cereal/access.hpp>
 
-class ZoomHandler : public Component
+class ZoomHandler : public Component, public Updateable
 {
 private:
 	// Multiplier to affect the zoom speed

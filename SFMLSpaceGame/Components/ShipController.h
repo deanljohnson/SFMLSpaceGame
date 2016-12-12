@@ -24,7 +24,7 @@ using ManeuverBitset = std::bitset<COUNT>;
 
 // Encapsulates various high-level ship maneuvers in a single interface.
 // Multiple behaviours may be combined to create more complicated behaviours
-class ShipController : public Component
+class ShipController : public Component, public Updateable
 {
 private:
 	Physics& m_physics;

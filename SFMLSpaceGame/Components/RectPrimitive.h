@@ -7,7 +7,7 @@ class Rotation;
 class RenderBatch;
 struct BatchIndex;
 
-class RectPrimitive : public Component
+class RectPrimitive : public Component, public Updateable
 {
 private:
 	Position& m_position;

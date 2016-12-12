@@ -5,7 +5,7 @@ class Health;
 class AttackedEventModifier;
 class AttackedEvent;
 
-class DamageOnAttacked : public Component, public DefaultSerializeable<DamageOnAttacked>
+class DamageOnAttacked : public Component, public DefaultSerializeable<DamageOnAttacked>, public Updateable
 {
 private:
 	Health& m_health;

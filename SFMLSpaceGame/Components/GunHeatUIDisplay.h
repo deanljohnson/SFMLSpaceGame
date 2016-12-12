@@ -4,7 +4,7 @@
 #include <UI/UI.h>
 
 template<typename TGunComponent>
-class GunHeatUIDisplay : public Component, public DefaultSerializeable<GunHeatUIDisplay<TGunComponent>>
+class GunHeatUIDisplay : public Component, public DefaultSerializeable<GunHeatUIDisplay<TGunComponent>>, public Updateable
 {
 private:
 	Gun& m_gunType;

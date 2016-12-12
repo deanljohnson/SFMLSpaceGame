@@ -91,6 +91,9 @@
     <Filter Include="Source Files\EntitySystem">
       <UniqueIdentifier>{a3bc5481-25b4-4ddd-95e5-b0d6ddca2359}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\Interfaces">
+      <UniqueIdentifier>{af27633a-808b-4fc9-b526-df556562ee3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -895,6 +898,12 @@
     </ClInclude>
     <ClInclude Include="Components\StationStatsComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Interfaces\Updateable.h">
+      <Filter>Header Files\Components\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Interfaces\Renderable.h">
+      <Filter>Header Files\Components\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

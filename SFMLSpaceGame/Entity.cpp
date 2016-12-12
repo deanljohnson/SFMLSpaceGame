@@ -25,21 +25,35 @@ void Entity::ApplyInitializers()
 
 void Entity::Update()
 {
-	events.Update();
-
-	for (auto& c : m_components)
+	static int maxUpdateCallsSaved = 0;
+	if (m_components.size() - m_updateableComponents.size() > maxUpdateCallsSaved)
 	{
-		if (c.second->IsActive())
-			c.second->Update();
+		maxUpdateCallsSaved = m_components.size() - m_updateableComponents.size();
+		printf("most update calls saved: %d\n", maxUpdateCallsSaved);
+	}
+		
+	events.Update();
+	
+	for (const auto& id : m_updateableComponents)
+	{
+		if (m_componentArray[id]->IsActive())
+			m_componentArray[id]->Update();
 	}
 }
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	for (auto& c : m_components)
+	static int maxRenderCallsSaved = 0;
+	if (m_components.size() - m_renderableComponents.size() > maxRenderCallsSaved)
 	{
-		if (c.second->IsActive())
-			c.second->Render(target, states);
+		maxRenderCallsSaved = m_components.size() - m_renderableComponents.size();
+		printf("most render calls saved: %d\n", maxRenderCallsSaved);
+	}
+
+	for (const auto& id : m_renderableComponents)
+	{
+		if (m_componentArray[id]->IsActive())
+			m_componentArray[id]->Render(target, states);
 	}
 }
 

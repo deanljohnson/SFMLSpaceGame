@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics/CircleShape.hpp>
 #include <cereal/access.hpp>
+#include <Components/Interfaces/Renderable.h>
 
 class Position;
 class Rotation;
 
-class CirclePrimitive : public Component
+class CirclePrimitive : public Component, public Updateable, public Renderable
 {
 private:
 	Position& m_position;

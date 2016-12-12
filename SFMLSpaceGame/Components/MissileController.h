@@ -1,7 +1,7 @@
 #pragma once
 class MissilePhysics;
 
-class MissileController : public Component 
+class MissileController : public Component, public Updateable
 {
 private:
 	const float STEER_FORCE;

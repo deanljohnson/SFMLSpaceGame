@@ -3,7 +3,7 @@
 
 class ParallaxMovement;
 
-class ParallaxTargetAssigner : public Component, public DefaultSerializeable<ParallaxTargetAssigner>
+class ParallaxTargetAssigner : public Component, public DefaultSerializeable<ParallaxTargetAssigner>, public Updateable
 {
 private:
 	ParallaxMovement& m_parallax;

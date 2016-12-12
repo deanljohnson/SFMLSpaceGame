@@ -5,7 +5,7 @@ class Position;
 class Rotation;
 class ProjectileStats;
 
-class BulletPhysics : public Component
+class BulletPhysics : public Component, public Updateable
 {
 private:
 	Position& m_position;

@@ -5,7 +5,7 @@
 
 class Position;
 
-class ParallaxMovement : public Component
+class ParallaxMovement : public Component, public Updateable
 {
 private:
 	EntityHandle m_targetHandle;

@@ -1,7 +1,7 @@
 #pragma once
 #include <cereal/access.hpp>
 
-class Lifetime : public Component
+class Lifetime : public Component, public Updateable
 {
 private:
 	float m_lifetime;

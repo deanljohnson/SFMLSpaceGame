@@ -37,7 +37,7 @@ struct MiningLaserData
 	}
 };
 
-class MiningLaser : public Component, public Gun
+class MiningLaser : public Component, public Gun, public Updateable
 {
 private:
 	Position& m_position;

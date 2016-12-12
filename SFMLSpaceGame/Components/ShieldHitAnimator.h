@@ -3,8 +3,9 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <ExtendedMath.h>
 #include <DefaultSerializeable.h>
+#include <Components/Interfaces/Renderable.h>
 
-class ShieldHitAnimator : public Component, public DefaultSerializeable<ShieldHitAnimator>
+class ShieldHitAnimator : public Component, public DefaultSerializeable<ShieldHitAnimator>, public Updateable, public Renderable
 {
 private:
 	bool m_visible;

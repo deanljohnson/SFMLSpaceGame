@@ -4,9 +4,10 @@
 #include <cereal\access.hpp>
 #include <Animation.h>
 #include <EntityID.h>
+#include <Components/Interfaces/Updateable.h>
 
 
-class Animator : public Component, public DefaultSerializeable<Animator>
+class Animator : public Component, public DefaultSerializeable<Animator>, public Updateable
 {
 private:
 	Sprite& m_sprite;

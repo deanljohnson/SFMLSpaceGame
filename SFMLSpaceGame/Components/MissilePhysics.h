@@ -5,7 +5,7 @@ class MissileStats;
 class Physics;
 class Rotation;
 
-class MissilePhysics : public Component
+class MissilePhysics : public Component, public Updateable
 {
 private:
 	Position& m_position;

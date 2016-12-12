@@ -1,10 +1,11 @@
 #pragma once
 #include <ResourceLoader.h>
 #include <SFML/Graphics/Sprite.hpp>
+#include <Components/Interfaces/Renderable.h>
 
 class Position;
 
-class TilingBackground : public Component
+class TilingBackground : public Component, public Updateable, public Renderable
 {
 private:
 	Position& m_position;

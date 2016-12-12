@@ -8,7 +8,7 @@
 // Provides a way for entity's to listen
 // for certain single key events and call
 // any number of callbacks in response
-class KeyListener : public Component
+class KeyListener : public Component, public Updateable
 {
 public:
 	typedef std::function<void(sf::Keyboard::Key)> Callback;

@@ -30,7 +30,7 @@ struct ShieldData
 	}
 };
 
-class Shields : public Component, public AttackedEventModifier
+class Shields : public Component, public AttackedEventModifier, public Updateable
 {
 public:
 	enum class Direction : int

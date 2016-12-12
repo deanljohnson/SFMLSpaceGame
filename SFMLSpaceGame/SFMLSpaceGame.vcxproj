@@ -319,6 +319,8 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Components\EntitySensor.h" />
     <ClInclude Include="Components\GunHeatUIDisplay.h" />
     <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="Components\Interfaces\Renderable.h" />
+    <ClInclude Include="Components\Interfaces\Updateable.h" />
     <ClInclude Include="Components\Inventory.h" />
     <ClInclude Include="Components\ItemPickup.h" />
     <ClInclude Include="Components\KeyListener.h" />

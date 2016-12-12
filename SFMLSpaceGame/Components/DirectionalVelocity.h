@@ -3,7 +3,7 @@
 #include <Components/Physics.h>
 #include <Components/DirectionalKeyboardInput.h>
 
-class DirectionalVelocity : public Component
+class DirectionalVelocity : public Component, public Updateable
 {
 private:
 	DirectionalKeyboardInput& m_input;

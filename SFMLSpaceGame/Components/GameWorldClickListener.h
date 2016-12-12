@@ -4,7 +4,7 @@
 
 class MouseListener;
 
-class GameWorldClickListener : public Component, public DefaultSerializeable<GameWorldClickListener>
+class GameWorldClickListener : public Component, public DefaultSerializeable<GameWorldClickListener>, public Updateable
 {
 private:
 	enum ClickState { None, Down, Held, Click };

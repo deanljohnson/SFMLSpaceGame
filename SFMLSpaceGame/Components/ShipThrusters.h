@@ -1,6 +1,7 @@
 #pragma once
 #include <Components/Component.h>
 #include <cereal/cereal.hpp>
+#include <Components/Interfaces/Updateable.h>
 
 class Physics;
 
@@ -36,7 +37,7 @@ struct ShipThrust
 	}
 };
 
-class ShipThrusters : public Component
+class ShipThrusters : public Component, public Updateable
 {
 private:
 	Physics& m_physics;

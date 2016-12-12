@@ -4,7 +4,7 @@
 
 class ShipThrusters;
 
-class ThrusterAnimator : public Component
+class ThrusterAnimator : public Component, public Updateable
 {
 private:
 	ShipThrusters& m_thrusters;

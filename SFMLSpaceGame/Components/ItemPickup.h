@@ -6,7 +6,7 @@
 class Item;
 class Physics;
 
-class ItemPickup : public Component
+class ItemPickup : public Component, public Updateable
 {
 private:
 	Physics& m_physics;

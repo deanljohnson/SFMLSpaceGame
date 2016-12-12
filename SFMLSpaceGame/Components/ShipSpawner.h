@@ -5,7 +5,7 @@
 
 class Position;
 
-class ShipSpawner : public Component
+class ShipSpawner : public Component, public Updateable
 {
 private:
 	enum class SpawnType { Timed, Event } m_type;

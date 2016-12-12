@@ -2,7 +2,7 @@
 class Physics;
 class ShipThrusters;
 
-class RotateToFaceMouse : public Component
+class RotateToFaceMouse : public Component, public Updateable
 {
 private:
 	Physics& m_physics;
