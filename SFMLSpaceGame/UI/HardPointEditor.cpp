@@ -184,7 +184,7 @@ void HardPointEditor::OnCanvasLeftPress()
 {
 	auto inCanvasPos = WidgetHelpers::GetRelativeMousePos(m_shipCanvas);
 
-	for (int i = 0; i < m_hardPointWidgets.size(); i++)
+	for (size_t i = 0; i < m_hardPointWidgets.size(); i++)
 	{
 		m_mouseDownOnPositionWidget = m_hardPointWidgets[i].PositionControlContains(inCanvasPos.x, inCanvasPos.y);
 		m_mouseDownOnAngleWidget = m_hardPointWidgets[i].AngleControlContains(inCanvasPos.x, inCanvasPos.y);
@@ -228,7 +228,7 @@ void HardPointEditor::OnSelectHardPointType(HardPointWidget::Type type)
 
 void HardPointEditor::OnDeleteSelectHardpoint()
 {
-	if (m_lastClickedWidget != -1 && m_lastClickedWidget < m_hardPointWidgets.size())
+	if (m_lastClickedWidget != -1 && m_lastClickedWidget < (int)m_hardPointWidgets.size())
 	{
 		m_hardPointWidgets.erase(m_hardPointWidgets.begin() + m_lastClickedWidget);
 		m_lastClickedWidget = -1;

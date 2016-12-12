@@ -43,7 +43,7 @@ void ShieldHitAnimator::Update()
 		.rotate(m_rotation.GetDegrees());
 
 	m_visible = false;
-	for (int i = 0; i < m_vertextArray.getVertexCount(); i++)
+	for (size_t i = 0; i < m_vertextArray.getVertexCount(); i++)
 	{
 		auto& vertColor = m_vertextArray[i].color;
 		if (vertColor.a > 0)

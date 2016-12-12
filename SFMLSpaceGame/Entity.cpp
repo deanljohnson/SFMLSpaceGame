@@ -25,13 +25,6 @@ void Entity::ApplyInitializers()
 
 void Entity::Update()
 {
-	static int maxUpdateCallsSaved = 0;
-	if (m_components.size() - m_updateableComponents.size() > maxUpdateCallsSaved)
-	{
-		maxUpdateCallsSaved = m_components.size() - m_updateableComponents.size();
-		printf("most update calls saved: %d\n", maxUpdateCallsSaved);
-	}
-		
 	events.Update();
 	
 	for (const auto& id : m_updateableComponents)
@@ -43,13 +36,6 @@ void Entity::Update()
 
 void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 {
-	static int maxRenderCallsSaved = 0;
-	if (m_components.size() - m_renderableComponents.size() > maxRenderCallsSaved)
-	{
-		maxRenderCallsSaved = m_components.size() - m_renderableComponents.size();
-		printf("most render calls saved: %d\n", maxRenderCallsSaved);
-	}
-
 	for (const auto& id : m_renderableComponents)
 	{
 		if (m_componentArray[id]->IsActive())
@@ -61,7 +47,7 @@ void Entity::OnDestroy()
 {
 	if (destroyCallback)
 		destroyCallback(this);
-
+	
 	for (auto& c : m_components)
 	{
 		c.second->OnDestroy();

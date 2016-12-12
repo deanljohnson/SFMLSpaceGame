@@ -4,7 +4,11 @@
 #include <StationStats.h>
 
 StationStats::StationStats()
-	: imageLocation()
+	: imageLocation(),
+	hasShipEditor(false),
+	hasRigEditor(false),
+	hasChangeShip(false),
+	hasTrade(false)
 {
 }
 

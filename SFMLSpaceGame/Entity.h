@@ -41,7 +41,7 @@ private:
 		void EmplaceComponent(ComponentID id, T* comp)
 	{
 		//add to our set of components
-		m_components.emplace(id, comp);
+		m_components.emplace(id, std::unique_ptr<T>(comp));
 	}
 
 	template<class T,
@@ -50,7 +50,7 @@ private:
 	void EmplaceComponent(ComponentID id, T* comp)
 	{
 		//add to our set of components
-		m_components.emplace(id, comp);
+		m_components.emplace(id, std::unique_ptr<T>(comp));
 
 		m_updateableComponents.insert(
 			upper_bound(m_updateableComponents.begin(), m_updateableComponents.end(), id), 
@@ -66,7 +66,7 @@ private:
 		void EmplaceComponent(ComponentID id, T* comp)
 	{
 		//add to our set of components
-		m_components.emplace(id, comp);
+		m_components.emplace(id, std::unique_ptr<T>(comp));
 
 		m_updateableComponents.insert(
 			upper_bound(m_updateableComponents.begin(), m_updateableComponents.end(), id),
@@ -79,7 +79,7 @@ private:
 		void EmplaceComponent(ComponentID id, T* comp)
 	{
 		//add to our set of components
-		m_components.emplace(id, comp);
+		m_components.emplace(id, std::unique_ptr<T>(comp));
 
 		m_renderableComponents.insert(
 			upper_bound(m_renderableComponents.begin(), m_renderableComponents.end(), id),

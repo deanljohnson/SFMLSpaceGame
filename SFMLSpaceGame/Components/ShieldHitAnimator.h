@@ -11,7 +11,7 @@ private:
 	bool m_visible;
 	float m_radius;
 
-	const int NUM_VERTS = 20;
+	const size_t NUM_VERTS = 20;
 	const float VERT_ARC_LENGTH = M_TAU / (NUM_VERTS - 1);
 
 	const char HIT_R = 0;

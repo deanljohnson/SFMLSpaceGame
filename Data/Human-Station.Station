@@ -3,6 +3,10 @@
 		"imageLocation": {
 			"type": 1,
 			"texID": "Human-Spacestation"
-		}
+		},
+		"hasShipEditor": true,
+		"hasRigEditor": false,
+		"hasChangeShip": true,
+		"hasTrade": true
 	}
 }
