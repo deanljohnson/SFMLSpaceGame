@@ -108,35 +108,35 @@ void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, const std:
 	it->second.SetPrice(itemType, detail, price);
 }
 
-void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
+void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, const Item& item)
 {
 	source.RemoveItem(item);
 	target.AddItem(item);
 }
 
-void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, std::shared_ptr<Item> item)
+void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, const Item& item)
 {
 	TransferItems(seller, target, item);
 
 	// get the price for a single instance of the item
-	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item->type, item->GetDetail());
+	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item.type, item.GetDetail());
 
 	// determine the price for the total number of items sold
-	sellPrice *= item->amount;
+	sellPrice *= item.amount;
 
 	target.TakeCredits(sellPrice);
 	seller.GiveCredits(sellPrice);
 }
 
-void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<Item> item)
+void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, const Item& item)
 {
 	TransferItems(source, buyer, item);
 
 	// get the price for a single instance of the item
-	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item->type, item->GetDetail());
+	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item.type, item.GetDetail());
 
 	// determine the price for the total number of items bought
-	sellPrice *= item->amount;
+	sellPrice *= item.amount;
 
 	buyer.TakeCredits(sellPrice);
 	source.GiveCredits(sellPrice);

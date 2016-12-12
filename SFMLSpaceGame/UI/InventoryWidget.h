@@ -19,7 +19,7 @@ private:
 
 	int m_selected;
 
-	std::vector<std::function<void(std::shared_ptr<Item>)>> m_itemSelectionChangeCallbacks;
+	std::vector<std::function<void(const Item&)>> m_itemSelectionChangeCallbacks;
 
 	void Select(int index);
 	void OnRightClick(int index);
@@ -27,7 +27,7 @@ private:
 public:
 	InventoryWidget();
 
-	std::shared_ptr<Item> GetSelected();
+	Item GetSelected();
 
 	sfg::Widget::Ptr GetWidget();
 	void SetTarget(EntityID id);
@@ -35,5 +35,5 @@ public:
 	void SetPriceSupplier(const PriceSupplier& prices);
 	void SetContextProvider(std::shared_ptr<ItemContextProvider> contextProvider);
 
-	void AddItemSelectionChangeCallback(std::function<void(std::shared_ptr<Item>)> callback);
+	void AddItemSelectionChangeCallback(std::function<void(const Item&)> callback);
 };

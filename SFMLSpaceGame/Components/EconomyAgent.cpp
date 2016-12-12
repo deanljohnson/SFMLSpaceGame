@@ -33,12 +33,12 @@ EconomyID EconomyAgent::GetEconomyID() const
 	return m_id;
 }
 
-void EconomyAgent::AddItem(std::shared_ptr<Item> item)
+void EconomyAgent::AddItem(const Item& item)
 {
 	m_inventory.AddItem(item);
 }
 
-void EconomyAgent::RemoveItem(std::shared_ptr<Item> item)
+void EconomyAgent::RemoveItem(const Item& item)
 {
 	m_inventory.RemoveItem(item);
 }

@@ -11,7 +11,7 @@ class ItemPickup : public Component, public Updateable
 private:
 	Physics& m_physics;
 
-	std::vector<std::shared_ptr<Item>> m_items;
+	std::vector<Item> m_items;
 
 	friend class cereal::access;
 
@@ -36,5 +36,5 @@ public:
 
 	virtual void Update() override;
 
-	void AddItem(std::shared_ptr<Item> item);
+	void AddItem(const Item& item);
 };

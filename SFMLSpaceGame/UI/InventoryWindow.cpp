@@ -21,23 +21,23 @@ InventoryWindow::InventoryWindow()
 {
 	m_invenWidget.SetContextProvider(m_contextProvider);
 	m_contextProvider->SetEquipHandler(
-		[this](std::shared_ptr<Item> i, size_t slot)
+		[this](const Item& i, size_t slot)
 		{
-			auto oldEquip = Equipper::Unequip(i->type, m_targetHandle.GetID(), slot);
+			auto oldEquip = Equipper::Unequip(i.type, m_targetHandle.GetID(), slot);
 			AddItem(oldEquip);
 
 			// Create an item with a count of one to be removed
-			auto removalItem = ItemFactory::Create(i.get());
-			removalItem->amount = 1;
+			auto removalItem = ItemFactory::Create(&i);
+			removalItem.amount = 1;
 			RemoveItem(removalItem);
 
 			Equipper::Equip(i, m_targetHandle.GetID(), slot);
 		});
 	m_contextProvider->SetHoverHandler(
-		[this](std::shared_ptr<Item> i, size_t slot, bool highlight)
+		[this](const Item& i, size_t slot, bool highlight)
 		{
 			HardPointWidget::Type t;
-			switch (i->type)
+			switch (i.type)
 			{
 			case ItemType::LaserRig:
 				t = HardPointWidget::Type::Gun;
@@ -175,7 +175,7 @@ void InventoryWindow::DrawShipCanvas()
 	m_shipCanvas->Unbind();
 }
 
-void InventoryWindow::AddItem(std::shared_ptr<Item> item)
+void InventoryWindow::AddItem(const Item& item)
 {
 	auto& inven = m_targetHandle->GetComponent<Inventory>();
 	inven.AddItem(item);
@@ -184,7 +184,7 @@ void InventoryWindow::AddItem(std::shared_ptr<Item> item)
 	SetTarget(m_targetHandle.GetID());
 }
 
-void InventoryWindow::RemoveItem(std::shared_ptr<Item> item)
+void InventoryWindow::RemoveItem(const Item& item)
 {
 	auto& inven = m_targetHandle->GetComponent<Inventory>();
 	inven.RemoveItem(item);

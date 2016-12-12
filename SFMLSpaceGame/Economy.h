@@ -28,13 +28,13 @@ namespace Economy
 	void SetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price);
 
 	// Moves the given Item (type and amount) from the source to the target
-	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);
+	void TransferItems(EconomyAgent& source, EconomyAgent& target, const Item& item);
 
 	// Transfer the given Item (type and amount) from the seller to the target
 	// and adjust credits of each agent based on the sellers sell amount
-	void DoSell(EconomyAgent& seller, EconomyAgent& target, std::shared_ptr<Item> item);
+	void DoSell(EconomyAgent& seller, EconomyAgent& target, const Item& item);
 
 	// Transfer the given Item (type and amount) from the source to the buyer
 	// and adjust credits of each agent based on the buyers buy amount
-	void DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<Item> item);
+	void DoBuy(EconomyAgent& source, EconomyAgent& buyer, const Item& item);
 }

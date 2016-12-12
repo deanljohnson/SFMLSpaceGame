@@ -57,7 +57,7 @@ void ItemPickup::Update()
 	}
 }
 
-void ItemPickup::AddItem(std::shared_ptr<Item> item)
+void ItemPickup::AddItem(const Item& item)
 {
 	m_items.push_back(item);
 }

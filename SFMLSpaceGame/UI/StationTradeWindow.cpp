@@ -75,8 +75,8 @@ StationTradeWindow::StationTradeWindow()
 
 	m_window->Add(mainBox);
 
-	m_stationInvenWidget.AddItemSelectionChangeCallback([this](std::shared_ptr<Item> i) { OnBuyItemChange(i); });
-	m_playerInvenWidget.AddItemSelectionChangeCallback([this](std::shared_ptr<Item> i) { OnSellItemChange(i); });
+	m_stationInvenWidget.AddItemSelectionChangeCallback([this](const Item& i) { OnBuyItemChange(i); });
+	m_playerInvenWidget.AddItemSelectionChangeCallback([this](const Item& i) { OnSellItemChange(i); });
 	m_buyButton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnBuyClick(); });
 	m_sellButton->GetSignal(sfg::Button::OnLeftClick).Connect([this] { OnSellClick(); });
 	buyAdjust->GetSignal(sfg::Adjustment::OnChange).Connect([this] { OnBuyScaleChange(); });
@@ -128,24 +128,24 @@ void StationTradeWindow::OnSellScaleChange()
 	m_sellLabelNeedsUpdate = true;
 }
 
-void StationTradeWindow::OnBuyItemChange(std::shared_ptr<Item> item)
+void StationTradeWindow::OnBuyItemChange(const Item& item)
 {
 	auto adjustment = m_buyScale->GetAdjustment();
-	auto amt = item == nullptr ? 0 : item->amount;
+	auto amt = item.amount;
 
 	if (amt != 0) 
 	{
 		auto playerCredits = GetPlayerCredits();
 
 		auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
-		auto sellPrice = stationAgent.GetSellPrice(item->type, item->GetDetail());
+		auto sellPrice = stationAgent.GetSellPrice(item.type, item.GetDetail());
 
 		// If the sell price is 0, the station
 		// is essentially giving the item away
 		// and so the player can take as many as
 		// they want
 		amt = sellPrice == 0 
-			? item->amount
+			? item.amount
 			: std::min(amt, playerCredits / sellPrice);
 	}
 
@@ -153,10 +153,10 @@ void StationTradeWindow::OnBuyItemChange(std::shared_ptr<Item> item)
 	adjustment->SetValue(0);
 }
 
-void StationTradeWindow::OnSellItemChange(std::shared_ptr<Item> item)
+void StationTradeWindow::OnSellItemChange(const Item& item)
 {
 	auto adjustment = m_sellScale->GetAdjustment();
-	auto amt = item == nullptr ? 0 : item->amount;
+	auto amt = item.amount;
 
 	adjustment->SetUpper(amt);
 	adjustment->SetValue(amt);
@@ -165,10 +165,10 @@ void StationTradeWindow::OnSellItemChange(std::shared_ptr<Item> item)
 void StationTradeWindow::OnBuyClick()
 {
 	auto selectedItem = m_stationInvenWidget.GetSelected();
-	if (selectedItem == nullptr) return;
+	if (selectedItem.amount == 0) return;
 
-	auto boughtItem = ItemFactory::Create(selectedItem.get());
-	boughtItem->amount = static_cast<unsigned int>(m_buyScale->GetValue());
+	auto boughtItem = ItemFactory::Create(&selectedItem);
+	boughtItem.amount = static_cast<unsigned int>(m_buyScale->GetValue());
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
@@ -183,10 +183,10 @@ void StationTradeWindow::OnBuyClick()
 void StationTradeWindow::OnSellClick()
 {
 	auto selectedItem = m_playerInvenWidget.GetSelected();
-	if (selectedItem == nullptr) return;
+	if (selectedItem.amount == 0) return;
 
-	auto soldItem = ItemFactory::Create(selectedItem.get());
-	soldItem->amount = static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue());
+	auto soldItem = ItemFactory::Create(&selectedItem);
+	soldItem.amount = static_cast<unsigned int>(m_sellScale->GetAdjustment()->GetUpper() - m_sellScale->GetValue());
 
 	auto& stationAgent = EntityManager::Get(m_target)->GetComponent<EconomyAgent>();
 	auto playerID = PlayerData::GetActive()->GetID();
