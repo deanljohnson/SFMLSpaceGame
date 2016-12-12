@@ -12,7 +12,7 @@ int InventoryItemWidget::m_widgetCount = 0;
 std::shared_ptr<TextureMap<std::string>> InventoryItemWidget::m_atlas{ nullptr };
 std::shared_ptr<sfg::PrimitiveTexture> InventoryItemWidget::m_guiTexture{ nullptr };
 
-InventoryItemWidget::InventoryItemWidget(const std::string& atlas, const Item& item)
+InventoryItemWidget::InventoryItemWidget(const std::string& atlas, std::shared_ptr<Item> item)
 	: m_item(item), m_selected(false), m_priceSet(false)
 {
 	m_widgetCount++;
@@ -36,7 +36,7 @@ InventoryItemWidget::~InventoryItemWidget()
 	}
 }
 
-InventoryItemWidget::Ptr InventoryItemWidget::Create(const std::string& atlas, const Item& item)
+InventoryItemWidget::Ptr InventoryItemWidget::Create(const std::string& atlas, std::shared_ptr<Item> item)
 {
 	return std::shared_ptr<InventoryItemWidget>(new InventoryItemWidget(atlas, item));
 }
@@ -47,13 +47,13 @@ const std::string& InventoryItemWidget::GetName() const
 	return name;
 }
 
-void InventoryItemWidget::SetItem(const Item& item)
+void InventoryItemWidget::SetItem(std::shared_ptr<Item>item)
 {
 	m_item = item;
 	Invalidate();
 }
 
-const Item& InventoryItemWidget::GetItem() const
+std::shared_ptr<Item> InventoryItemWidget::GetItem() const
 {
 	return m_item;
 }
@@ -90,7 +90,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 
 	sf::FloatRect spritePosRect;
 
-	sf::IntRect texRect{ m_atlas->at(m_item.GetTypeName()) };
+	sf::IntRect texRect{ m_atlas->at(m_item->GetTypeName()) };
 	spritePosRect = sf::FloatRect{ 0, 0, static_cast<float>(texRect.width), static_cast<float>(texRect.height) };
 	sf::FloatRect texFloatRect{ static_cast<float>(texRect.left),
 		static_cast<float>(texRect.top),
@@ -105,7 +105,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	const auto& font = engine->GetResourceManager().GetFont(fontName);
 
 	auto countSize = engine->GetFontLineHeight(*font, static_cast<int>(fontSize / 1.5f));
-	auto countString = StringHelper::GetRenderedString(m_item.amount);
+	auto countString = StringHelper::GetRenderedString(m_item->amount);
 
 	sf::Text countText(countString, *font, static_cast<unsigned int>(countSize));
 	sf::Vector2f countPosition(
@@ -118,7 +118,7 @@ std::unique_ptr<sfg::RenderQueue> InventoryItemWidget::InvalidateImpl() const
 	queue->Add(sfg::Renderer::Get().CreateText(countText));
 
 	auto nameSize = engine->GetFontLineHeight(*font, fontSize);
-	sf::Text nameText(m_item.GetDisplayString(), *font, static_cast<unsigned int>(nameSize));
+	sf::Text nameText(m_item->GetDisplayString(), *font, static_cast<unsigned int>(nameSize));
 	sf::Vector2f namePosition(
 		(padding * 2) + spritePosRect.width,
 		borderWidth + padding

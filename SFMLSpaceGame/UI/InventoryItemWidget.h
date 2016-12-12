@@ -2,10 +2,10 @@
 #include <memory>
 #include <SFGUI\Widget.hpp>
 #include <SFGUI\PrimitiveTexture.hpp>
-#include <Item.h>
 
 template<typename TMapKey>
 class TextureMap;
+class Item;
 
 class InventoryItemWidget : public sfg::Widget
 {
@@ -13,12 +13,12 @@ public:
 	typedef std::shared_ptr<InventoryItemWidget> Ptr;
 	typedef std::shared_ptr<const InventoryItemWidget> PtrConst;
 
-	static Ptr Create(const std::string& atlas, const Item& item);
+	static Ptr Create(const std::string& atlas, std::shared_ptr<Item> item);
 
 	const std::string& GetName() const override;
 
-	void SetItem(const Item& item);
-	const Item& GetItem() const;
+	void SetItem(std::shared_ptr<Item> item);
+	std::shared_ptr<Item> GetItem() const;
 
 	void SetSelected(bool val);
 
@@ -26,13 +26,13 @@ public:
 
 	~InventoryItemWidget();
 protected:
-	InventoryItemWidget(const std::string& atlas, const Item& item);
+	InventoryItemWidget(const std::string& atlas, std::shared_ptr<Item> item);
 
 	std::unique_ptr<sfg::RenderQueue> InvalidateImpl() const override;
 	sf::Vector2f CalculateRequisition() override;
 
 private:
-	Item m_item;
+	std::shared_ptr<Item> m_item;
 	bool m_selected;
 	unsigned m_price;
 	bool m_priceSet;

@@ -28,7 +28,7 @@ PlayerSpawnedEvent::PlayerSpawnedEvent(EntityID id)
 {
 }
 
-ItemPickupEvent::ItemPickupEvent(const Item& _item)
+ItemPickupEvent::ItemPickupEvent(std::shared_ptr<Item> _item)
 	: Event(EventType::ItemPickup),
 	  item(_item)
 {

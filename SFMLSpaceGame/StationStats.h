@@ -17,11 +17,11 @@ private:
 			CEREAL_NVP(hasTrade));
 	}
 public:
-	SpriteKey imageLocation; // The location of this stations sprite
-	bool hasShipEditor; // Does this station allow ship editing?
-	bool hasRigEditor; // Does this station allow rig editing?
-	bool hasChangeShip; // Does this station allow players to change ships?
-	bool hasTrade; // Does this station have a trader?
+	SpriteKey imageLocation;
+	bool hasShipEditor;
+	bool hasRigEditor;
+	bool hasChangeShip;
+	bool hasTrade;
 
 	StationStats();
 

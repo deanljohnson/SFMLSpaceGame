@@ -65,7 +65,7 @@ private:
 	static void Save(ComponentID id, cereal::BinaryOutputArchive& ar, const Entity& ent);
 public:
 	template<class Archive>
-	static void SerializeIn(Archive& ar, Entity& ent) 
+	static void SerializeIn(Archive& ar, Entity& ent)
 	{
 		ComponentID id;
 		ar(id);
@@ -79,7 +79,7 @@ public:
 	}
 
 	template<class Archive>
-	static void SerializeOut(Archive& ar, const Entity& ent) 
+	static void SerializeOut(Archive& ar, const Entity& ent)
 	{
 		for (int i = 0; i < maxComponents; i++)
 		{

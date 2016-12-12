@@ -20,9 +20,9 @@ InventoryWidget::InventoryWidget()
 	m_scrollWindow->SetRequisition({ 300, 300 });
 }
 
-Item InventoryWidget::GetSelected()
+std::shared_ptr<Item> InventoryWidget::GetSelected()
 {
-	if (m_selected == -1) return Item();
+	if (m_selected == -1) return nullptr;
 	return m_itemWidgets[m_selected]->GetItem();
 }
 
@@ -47,8 +47,9 @@ void InventoryWidget::SetTarget(EntityID id)
 	int i = 0;
 	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{
+		auto itemPtr = it->get();
 		// Credits are not shown in the inventory
-		if (it->type == ItemType::Credits)
+		if (itemPtr->type == ItemType::Credits)
 		{
 			// we do not our index incremented as we 
 			// continue the loop in this case
@@ -58,9 +59,9 @@ void InventoryWidget::SetTarget(EntityID id)
 
 		auto item = InventoryItemWidget::Create("trade-icons", *it);
 
-		if (m_prices.HasPriceForType(it->type, it->GetDetail()))
+		if (m_prices.HasPriceForType(itemPtr->type, itemPtr->GetDetail()))
 		{
-			item->SetItemPrice(m_prices.GetPriceForType(it->type, it->GetDetail()));
+			item->SetItemPrice(m_prices.GetPriceForType(itemPtr->type, itemPtr->GetDetail()));
 		}
 
 		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
@@ -96,11 +97,11 @@ void InventoryWidget::SetPriceSupplier(const PriceSupplier& prices)
 	for (auto& iw : m_itemWidgets)
 	{
 		auto item = iw->GetItem();
-		if (m_prices.HasPriceForType(item.type,
-									item.GetDetail()))
+		if (m_prices.HasPriceForType(item->type,
+									item->GetDetail()))
 		{
-			iw->SetItemPrice(m_prices.GetPriceForType(item.type,
-													item.GetDetail()));
+			iw->SetItemPrice(m_prices.GetPriceForType(item->type,
+													item->GetDetail()));
 		}
 	}
 }
@@ -110,7 +111,7 @@ void InventoryWidget::SetContextProvider(std::shared_ptr<ItemContextProvider> co
 	m_contextProvider = contextProvider;
 }
 
-void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(const Item&)> callback)
+void InventoryWidget::AddItemSelectionChangeCallback(std::function<void(std::shared_ptr<Item>)> callback)
 {
 	m_itemSelectionChangeCallbacks.push_back(callback);
 }

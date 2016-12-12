@@ -28,54 +28,54 @@ namespace ItemFactory
 	// Creates a strongly typed item based on the given ItemType enumerated value
 	// and forwards the given args to that types constructor
 	template<ItemType T, typename... Args>
-	ItemTypeType<T> Create(unsigned int amount, Args... args)
+	std::shared_ptr<ItemTypeType<T>> Create(unsigned int amount, Args... args)
 	{
-		return ItemTypeType<T>(amount, std::forward<Args>(args)...);
+		return std::make_shared<ItemTypeType<T>>(amount, std::forward<Args>(args)...);
 	}
 
 	// non-templated item creation. Use only if type is not known at compile time
-	inline Item Create(ItemType type, unsigned int amount)
+	inline std::shared_ptr<Item> Create(ItemType type, unsigned int amount)
 	{
 		switch (type)
 		{
 		case ItemType::Credits:
-			return CreditsItem(amount);
+			return std::make_shared<CreditsItem>(amount);
 		case ItemType::FuelCells:
-			return FuelCellsItem(amount);
+			return std::make_shared<FuelCellsItem>(amount);
 		case ItemType::Ore:
-			return OreItem(amount);
+			return std::make_shared<OreItem>(amount);
 		case ItemType::Food:
-			return FoodItem(amount);
+			return std::make_shared<FoodItem>(amount);
 		case ItemType::Narcotics:
-			return NarcoticsItem(amount);
+			return std::make_shared<NarcoticsItem>(amount);
 		case ItemType::LaserRig:
-			return LaserRigItem(amount);
+			return std::make_shared<LaserRigItem>(amount);
 		case ItemType::MissileRig:
-			return MissileRigItem(amount);
+			return std::make_shared<MissileRigItem>(amount);
 		}
 
 		throw "unrecognized item type " + std::to_string(static_cast<std::underlying_type<ItemType>::type>(type));
 	}
 
 	// Creates a new item cloned from the given item
-	inline Item Create(const Item* item)
+	inline std::shared_ptr<Item> Create(Item* item)
 	{
 		switch (item->type)
 		{
 		case ItemType::Credits:
-			return CreditsItem(item->amount);
+			return std::make_shared<CreditsItem>(item->amount);
 		case ItemType::FuelCells:
-			return FuelCellsItem(item->amount);
+			return std::make_shared<FuelCellsItem>(item->amount);
 		case ItemType::Ore:
-			return OreItem(item->amount);
+			return std::make_shared<OreItem>(item->amount);
 		case ItemType::Food:
-			return FoodItem(item->amount);
+			return std::make_shared<FoodItem>(item->amount);
 		case ItemType::Narcotics:
-			return NarcoticsItem(item->amount);
+			return std::make_shared<NarcoticsItem>(item->amount);
 		case ItemType::LaserRig:
-			return LaserRigItem(item->amount, static_cast<const LaserRigItem*>(item)->rigName);
+			return std::make_shared<LaserRigItem>(item->amount, static_cast<LaserRigItem*>(item)->rigName);
 		case ItemType::MissileRig:
-			return MissileRigItem(item->amount, static_cast<const MissileRigItem*>(item)->rigName);
+			return std::make_shared<MissileRigItem>(item->amount, static_cast<MissileRigItem*>(item)->rigName);
 		}
 
 		throw "unrecognized item type " + std::to_string(static_cast<std::underlying_type<ItemType>::type>(item->type));

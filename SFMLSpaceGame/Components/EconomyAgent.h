@@ -51,8 +51,8 @@ public:
 
 	EconomyID GetEconomyID() const;
 	
-	void AddItem(const Item& item);
-	void RemoveItem(const Item& item);
+	void AddItem(std::shared_ptr<Item> item);
+	void RemoveItem(std::shared_ptr<Item> item);
 
 	void GiveCredits(unsigned int credits);
 	void TakeCredits(unsigned int credits);

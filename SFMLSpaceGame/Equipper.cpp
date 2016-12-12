@@ -12,14 +12,14 @@ namespace Equipper
 {
 	namespace
 	{
-		void DoLaserRigEquip(const LaserRigItem& laserRig, EntityID id, size_t slot)
+		void DoLaserRigEquip(std::shared_ptr<LaserRigItem> laserRig, EntityID id, size_t slot)
 		{
 			const auto handle = EntityManager::Get(id);
 			auto& shipStats = handle->GetComponent<ShipStatsComponent>();
-			shipStats->GetDirGunData()->LoadNewLaserRig(laserRig.rigName, slot);
+			shipStats->GetDirGunData()->LoadNewLaserRig(laserRig->rigName, slot);
 		}
 
-		Item DoLaserRigUnEquip(EntityID id, size_t slot)
+		std::shared_ptr<Item> DoLaserRigUnEquip(EntityID id, size_t slot)
 		{
 			// Get the item
 			const auto handle = EntityManager::Get(id);
@@ -27,8 +27,8 @@ namespace Equipper
 			const auto& rig = shipStats->GetDirGunData()->rigs[slot];
 
 			// Copy rig name
-			auto item = ItemFactory::Create<ItemType::LaserRig>(1);
-			item.rigName = rig->name;
+			auto item = ItemFactory::Create(ItemType::LaserRig, 1);
+			static_cast<LaserRigItem*>(item.get())->rigName = rig->name;
 			
 			// "remove" the old item
 			shipStats->GetDirGunData()->rigs[slot] = nullptr;
@@ -36,14 +36,14 @@ namespace Equipper
 			return item;
 		}
 
-		void DoMissileRigEquip(const MissileRigItem& missileRig, EntityID id, size_t slot)
+		void DoMissileRigEquip(std::shared_ptr<MissileRigItem> missileRig, EntityID id, size_t slot)
 		{
 			const auto handle = EntityManager::Get(id);
 			auto& shipStats = handle->GetComponent<ShipStatsComponent>();
-			shipStats->GetMissileLauncherData()->LoadNewMissileRig(missileRig.rigName, slot);
+			shipStats->GetMissileLauncherData()->LoadNewMissileRig(missileRig->rigName, slot);
 		}
 
-		Item DoMissileRigUnEquip(EntityID id, size_t slot)
+		std::shared_ptr<Item> DoMissileRigUnEquip(EntityID id, size_t slot)
 		{
 			// Get the item
 			const auto handle = EntityManager::Get(id);
@@ -51,8 +51,8 @@ namespace Equipper
 			const auto& rig = shipStats->GetMissileLauncherData()->rigs[slot];
 
 			// Copy rig name
-			auto item = ItemFactory::Create<ItemType::MissileRig>(1);
-			item.rigName = rig->name;
+			auto item = ItemFactory::Create(ItemType::MissileRig, 1);
+			static_cast<MissileRigItem*>(item.get())->rigName = rig->name;
 
 			// "remove" the old item
 			shipStats->GetMissileLauncherData()->rigs[slot] = nullptr;
@@ -75,22 +75,22 @@ namespace Equipper
 		}
 	}
 
-	void Equip(const Item& item, EntityID id, size_t slot)
+	void Equip(std::shared_ptr<Item> item, EntityID id, size_t slot)
 	{
-		switch(item.type)
+		switch(item->type)
 		{
 		case ItemType::LaserRig: 
-			DoLaserRigEquip(ItemFactory::Create<ItemType::LaserRig>(1, static_cast<const LaserRigItem*>(&item)->rigName), id, slot);
+			DoLaserRigEquip(std::dynamic_pointer_cast<LaserRigItem>(item), id, slot);
 			break;
 		case ItemType::MissileRig:
-			DoMissileRigEquip(ItemFactory::Create<ItemType::MissileRig>(1, static_cast<const MissileRigItem*>(&item)->rigName), id, slot);
+			DoMissileRigEquip(std::dynamic_pointer_cast<MissileRigItem>(item), id, slot);
 			break;
 		default: 
 			throw "unrecognized item type in call to Equipper::Equip";
 		}
 	}
 
-	Item Unequip(ItemType type, EntityID id, size_t slot)
+	std::shared_ptr<Item> Unequip(ItemType type, EntityID id, size_t slot)
 	{
 		switch (type)
 		{

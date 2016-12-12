@@ -28,8 +28,8 @@ private:
 	void OnBuyScaleChange();
 	void OnSellScaleChange();
 
-	void OnBuyItemChange(const Item& item);
-	void OnSellItemChange(const Item& item);
+	void OnBuyItemChange(std::shared_ptr<Item> item);
+	void OnSellItemChange(std::shared_ptr<Item> item);
 
 	void OnBuyClick();
 	void OnSellClick();

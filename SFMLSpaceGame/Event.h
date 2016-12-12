@@ -46,9 +46,9 @@ public:
 class ItemPickupEvent : public Event
 {
 public:
-	explicit ItemPickupEvent(const Item& _item);
+	explicit ItemPickupEvent(std::shared_ptr<Item> _item);
 
-	Item item;
+	std::shared_ptr<Item> item;
 };
 
 // simplifies syntax
