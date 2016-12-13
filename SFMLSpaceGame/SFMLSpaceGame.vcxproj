@@ -244,6 +244,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemPriceRangeSet.cpp" />
     <ClCompile Include="ItemPriceSet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Components\ParallaxMovement.cpp" />

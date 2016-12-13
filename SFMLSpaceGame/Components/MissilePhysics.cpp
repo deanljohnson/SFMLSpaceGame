@@ -13,6 +13,7 @@
 #ifndef M_TAU
 #define M_TAU (float)(M_PI + M_PI)
 #endif
+#include <GameTime.h>
 
 //constrains a body's angle to be in the range [0, 2PI)
 inline void WrapBodyAngle(b2Body& body)
@@ -70,7 +71,7 @@ void MissilePhysics::Update()
 	m_position.position = m_body->GetPosition();
 	m_rotation.SetRadians(m_body->GetAngle());
 	
-	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_thrust, true);
+	m_body->ApplyForceToCenter(m_rotation.GetHeading() * m_thrust * GameTime::deltaTime, true);
 }
 
 bool MissilePhysics::HandleCollisions()

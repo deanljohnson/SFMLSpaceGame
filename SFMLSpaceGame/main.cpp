@@ -29,7 +29,7 @@ int main()
 
 	const std::string TITLE = "Space Game";
 	sf::RenderWindow window(GetVideoMode(), TITLE);
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
 	GAME_WINDOW = &window;
 
 	UI ui;
@@ -97,6 +97,7 @@ int main()
 		GAME_WINDOW->setTitle(TITLE
 			+ " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime))
 			+ " Render FPS: " + std::to_string(static_cast<int>(1.f / renderTime))
+			+ " GameLoop FPS: " + std::to_string(static_cast<int>(1.f / (updateTime + renderTime)))
 			+ " Draw Calls: " + std::to_string(DRAW_CALLS));
 #endif
 

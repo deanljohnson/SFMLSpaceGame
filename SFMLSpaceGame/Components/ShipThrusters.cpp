@@ -37,6 +37,11 @@ float ShipThrust::GetTurningForce(ThrustDirection dir)
 		return -Steer;
 	case SteerRight:
 		return Steer;
+	case Front: break;
+	case Left: break;
+	case Right: break;
+	case ThrustDirection::Reverse: break;
+	default: break;
 	}
 
 	return 0.f;

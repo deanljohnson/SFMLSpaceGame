@@ -185,7 +185,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -198,7 +198,7 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">Images-NoCopyToOutput/TradeIcons/Food.png</key>
-            <key type="filename">Images-NoCopyToOutput/TradeIcons/Fuel.png</key>
+            <key type="filename">Images-NoCopyToOutput/TradeIcons/FuelCells.png</key>
             <key type="filename">Images-NoCopyToOutput/TradeIcons/LaserRig.png</key>
             <key type="filename">Images-NoCopyToOutput/TradeIcons/MissileRig.png</key>
             <key type="filename">Images-NoCopyToOutput/TradeIcons/Narcotics.png</key>
@@ -219,11 +219,11 @@
         <key>fileList</key>
         <array>
             <filename>Images-NoCopyToOutput/TradeIcons/Food.png</filename>
-            <filename>Images-NoCopyToOutput/TradeIcons/Fuel.png</filename>
             <filename>Images-NoCopyToOutput/TradeIcons/LaserRig.png</filename>
             <filename>Images-NoCopyToOutput/TradeIcons/MissileRig.png</filename>
             <filename>Images-NoCopyToOutput/TradeIcons/Narcotics.png</filename>
             <filename>Images-NoCopyToOutput/TradeIcons/Ore.png</filename>
+            <filename>Images-NoCopyToOutput/TradeIcons/FuelCells.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
@@ -232,9 +232,9 @@
         <key>ignoredWarnings</key>
         <array/>
         <key>commonDivisorX</key>
-        <uint>1</uint>
+        <uint>52</uint>
         <key>commonDivisorY</key>
-        <uint>1</uint>
+        <uint>2</uint>
         <key>packNormalMaps</key>
         <false/>
         <key>autodetectNormalMaps</key>

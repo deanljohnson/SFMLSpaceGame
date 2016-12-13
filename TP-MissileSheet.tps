@@ -197,9 +197,9 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Images-NoCopyToOutput/Human-Missile-1.png</key>
-            <key type="filename">Images-NoCopyToOutput/Human-Missile-2.png</key>
-            <key type="filename">Images-NoCopyToOutput/Human-Missile-3.png</key>
+            <key type="filename">Images-NoCopyToOutput/Human-Missile-Blue.png</key>
+            <key type="filename">Images-NoCopyToOutput/Human-Missile-Green.png</key>
+            <key type="filename">Images-NoCopyToOutput/Human-Missile-Red.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -215,9 +215,9 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>Images-NoCopyToOutput/Human-Missile-1.png</filename>
-            <filename>Images-NoCopyToOutput/Human-Missile-2.png</filename>
-            <filename>Images-NoCopyToOutput/Human-Missile-3.png</filename>
+            <filename>Images-NoCopyToOutput/Human-Missile-Blue.png</filename>
+            <filename>Images-NoCopyToOutput/Human-Missile-Green.png</filename>
+            <filename>Images-NoCopyToOutput/Human-Missile-Red.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -432,6 +432,9 @@
     <ClCompile Include="Components\StationStatsComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ItemPriceRangeSet.cpp">
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
