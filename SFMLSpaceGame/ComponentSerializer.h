@@ -100,6 +100,8 @@ public:
 		ComponentID id;
 		ar(id);
 
+		// ComponentID::max is used as a flag to indicate the end of 
+		// component section in the serialized representation
 		while (id != std::numeric_limits<ComponentID>::max())
 		{
 			Load(id, ar, ent);

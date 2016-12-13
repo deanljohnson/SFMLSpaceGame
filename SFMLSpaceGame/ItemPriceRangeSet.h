@@ -2,28 +2,25 @@
 #include <unordered_map>
 #include <Item.h>
 #include <ItemPrice.h>
+#include <Range.h>
 #include <cereal/types/unordered_map.hpp>
 
-// Stores the prices of different item types
-class ItemPriceSet 
+class ItemPriceRangeSet 
 {
 private:
-	std::unordered_map<ItemType, std::unordered_map<std::string, Price>> m_prices;
+	std::unordered_map<ItemType, std::unordered_map<std::string, Range<Price>>> m_priceRanges;
 public:
-	bool HasPrice(ItemType type, const std::string& detail = Item::NO_DETAIL);
+	bool HasRange(ItemType type, const std::string& detail = Item::NO_DETAIL);
 
-	// Gets the price of the given item type.
-	// Returns 0 if the item type is not present
-	// in this ItemPriceSet
-	Price GetPrice(ItemType type, const std::string& detail = Item::NO_DETAIL);
+	Range<Price> GetRange(ItemType type, const std::string& detail = Item::NO_DETAIL);
 
-	void SetPrice(ItemType type, Price price);
-	void SetPrice(ItemType type, const std::string& detail, Price price);
+	void SetRange(ItemType type, Range<Price> range);
+	void SetRange(ItemType type, const std::string& detail, Range<Price> range);
 
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(cereal::make_nvp("prices", m_prices));
+		archive(cereal::make_nvp("ranges", m_ranges));
 	}
 };
 
@@ -32,7 +29,7 @@ namespace cereal
 {
 	template<class Archive, class C, class A,
 		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae>
-	inline void save(Archive& ar, const std::unordered_map<ItemType, std::unordered_map<std::string, Price>, C, A>& map)
+	inline void save(Archive& ar, const std::unordered_map<ItemType, std::unordered_map<std::string, Range<Price>>, C, A>& map)
 	{
 		for (const auto& i : map)
 		{
@@ -42,7 +39,7 @@ namespace cereal
 
 	template<class Archive, class C, class A,
 		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae>
-	inline void save(Archive& ar, const std::unordered_map<std::string, Price, C, A>& map)
+	inline void save(Archive& ar, const std::unordered_map<std::string, Range<Price>, C, A>& map)
 	{
 		for (const auto& i : map)
 		{
@@ -52,7 +49,7 @@ namespace cereal
 
 	template<class Archive, class C, class A,
 		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae>
-		inline void load(Archive& ar, std::unordered_map<ItemType, std::unordered_map<std::string, Price>, C, A>& map)
+	inline void load(Archive& ar, std::unordered_map<ItemType, std::unordered_map<std::string, Range<Price>>, C, A>& map)
 	{
 		map.clear();
 
@@ -65,14 +62,14 @@ namespace cereal
 				break;
 
 			ItemType key{ StringToItemType[namePtr] };
-			std::unordered_map<std::string, Price> value; ar(value);
+			std::unordered_map<std::string, Range<Price>> value; ar(value);
 			hint = map.emplace_hint(hint, std::move(key), move(value));
 		}
 	}
 
 	template<class Archive, class C, class A,
 		traits::EnableIf<traits::is_text_archive<Archive>::value> = traits::sfinae>
-	inline void load(Archive& ar, std::unordered_map<std::string, Price, C, A>& map)
+	inline void load(Archive& ar, std::unordered_map<std::string, Range<Price>, C, A>& map)
 	{
 		map.clear();
 
@@ -85,7 +82,7 @@ namespace cereal
 				break;
 
 			std::string key = namePtr;
-			Price value; ar(value);
+			Range<Price> value; ar(value);
 			hint = map.emplace_hint(hint, move(key), std::move(value));
 		}
 	}

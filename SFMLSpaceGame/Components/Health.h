@@ -34,6 +34,4 @@ public:
 
 	void SetHealth(float hp);
 	void RemoveHealth(float amt);
-
-	
 };

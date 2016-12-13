@@ -306,9 +306,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Economy</Filter>
     </ClCompile>
-    <ClCompile Include="ItemPrice.cpp">
-      <Filter>Source Files\Economy</Filter>
-    </ClCompile>
     <ClCompile Include="ItemPriceSet.cpp">
       <Filter>Source Files\Economy</Filter>
     </ClCompile>
@@ -904,6 +901,12 @@
     </ClInclude>
     <ClInclude Include="Components\Interfaces\Renderable.h">
       <Filter>Header Files\Components\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Range.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPriceRangeSet.h">
+      <Filter>Header Files\Economy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
