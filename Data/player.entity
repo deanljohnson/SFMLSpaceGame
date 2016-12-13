@@ -170,17 +170,8 @@
             }
         },
         "value27": 9,
-        "value28": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value29": 10,
-        "value30": {
+        "value28": 10,
+        "value29": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -196,18 +187,9 @@
                 }
             }
         },
-        "value31": 11,
+        "value30": 11,
+        "value31": 13,
         "value32": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value33": 13,
-        "value34": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -217,18 +199,9 @@
                 }
             }
         },
-        "value35": 14,
-        "value36": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value37": 15,
-        "value38": {
+        "value33": 14,
+        "value34": 15,
+        "value35": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -238,18 +211,9 @@
                 }
             }
         },
-        "value39": 16,
-        "value40": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value41": 18,
-        "value42": {
+        "value36": 16,
+        "value37": 18,
+        "value38": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -259,18 +223,9 @@
                 }
             }
         },
-        "value43": 19,
-        "value44": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value45": 20,
-        "value46": {
+        "value39": 19,
+        "value40": 20,
+        "value41": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -280,8 +235,8 @@
                 }
             }
         },
-        "value47": 21,
-        "value48": {
+        "value42": 21,
+        "value43": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -291,8 +246,8 @@
                 }
             }
         },
-        "value49": 22,
-        "value50": {
+        "value44": 22,
+        "value45": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -302,8 +257,8 @@
                 }
             }
         },
-        "value51": 23,
-        "value52": {
+        "value46": 23,
+        "value47": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -313,8 +268,8 @@
                 }
             }
         },
-        "value53": 30,
-        "value54": {
+        "value48": 30,
+        "value49": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -325,8 +280,8 @@
                 }
             }
         },
-        "value55": 32,
-        "value56": {
+        "value50": 32,
+        "value51": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -337,28 +292,10 @@
                 }
             }
         },
-        "value57": 33,
-        "value58": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value59": 34,
-        "value60": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value61": 35,
-        "value62": {
+        "value52": 33,
+        "value53": 34,
+        "value54": 35,
+        "value55": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -372,18 +309,9 @@
                 }
             }
         },
-        "value63": 36,
-        "value64": {
-            "polymorphic_id": 1073741824,
-            "ptr_wrapper": {
-                "valid": 1,
-                "data": {
-                    "value0": 0
-                }
-            }
-        },
-        "value65": 38,
-        "value66": {
+        "value56": 36,
+        "value57": 38,
+        "value58": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -399,8 +327,8 @@
                 }
             }
         },
-        "value67": 40,
-        "value68": {
+        "value59": 40,
+        "value60": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -414,7 +342,7 @@
                                 "id": 2147483649,
                                 "data": {
                                     "value0": {
-                                        "type": 0,
+                                        "type": "Credits",
                                         "amount": 1000
                                     }
                                 }
@@ -427,7 +355,7 @@
                                 "id": 2147483650,
                                 "data": {
                                     "value0": {
-                                        "type": 2,
+                                        "type": "Ore",
                                         "amount": 1000
                                     }
                                 }
@@ -440,7 +368,7 @@
                                 "id": 2147483651,
                                 "data": {
                                     "value0": {
-                                        "type": 3,
+                                        "type": "Food",
                                         "amount": 1000
                                     }
                                 }
@@ -450,50 +378,42 @@
                 }
             }
         },
-        "value69": 42,
-        "value70": {
+        "value61": 42,
+        "value62": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
                     "value0": 0,
-                    "econ_id": "econ_3756",
+                    "econ_id": "econ_12834",
                     "buy": {
                         "value0": {
-                            "ItemType": 3,
-                            "Prices": {
+                            "Food": {
                                 "": 8
                             },
-                            "ItemType": 1,
-                            "Prices": {
+                            "FuelCells": {
                                 "": 12
                             },
-                            "ItemType": 4,
-                            "Prices": {
+                            "Narcotics": {
                                 "": 50
                             },
-                            "ItemType": 2,
-                            "Prices": {
+                            "Ore": {
                                 "": 90
                             }
                         }
                     },
                     "sell": {
                         "value0": {
-                            "ItemType": 3,
-                            "Prices": {
+                            "Food": {
                                 "": 12
                             },
-                            "ItemType": 1,
-                            "Prices": {
+                            "FuelCells": {
                                 "": 12
                             },
-                            "ItemType": 4,
-                            "Prices": {
+                            "Narcotics": {
                                 "": 50
                             },
-                            "ItemType": 2,
-                            "Prices": {
+                            "Ore": {
                                 "": 120
                             }
                         }
@@ -501,8 +421,8 @@
                 }
             }
         },
-        "value71": 44,
-        "value72": {
+        "value63": 44,
+        "value64": {
             "polymorphic_id": 1073741824,
             "ptr_wrapper": {
                 "valid": 1,
@@ -512,6 +432,6 @@
                 }
             }
         },
-        "value73": 4294967295
+        "value65": 4294967295
     }
 }

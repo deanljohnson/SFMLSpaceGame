@@ -20,7 +20,7 @@ namespace Internal
 template<typename T>
 inline ComponentID GetComponentTypeID() noexcept
 {
-	//make sure this is only called with type that inherit
+	//make sure this is only called with types that inherit
 	//from component
 	static_assert(std::is_base_of<Component, T>::value,
 		"T must inherit from Component");

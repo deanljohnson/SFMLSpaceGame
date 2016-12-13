@@ -72,7 +72,7 @@ void EntityFactory::Init()
 
 EntityID EntityFactory::CreatePlayer(const b2Vec2& p, float radians)
 {
-	if (false)
+	if (true)
 	{
 		Serializer<> s;
 		auto ent = s.Load<Entity>("player");

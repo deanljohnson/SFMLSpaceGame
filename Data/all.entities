@@ -175,17 +175,8 @@
                             }
                         },
                         "value27": 9,
-                        "value28": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value29": 10,
-                        "value30": {
+                        "value28": 10,
+                        "value29": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -201,18 +192,9 @@
                                 }
                             }
                         },
-                        "value31": 11,
+                        "value30": 11,
+                        "value31": 13,
                         "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value33": 13,
-                        "value34": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -222,18 +204,9 @@
                                 }
                             }
                         },
-                        "value35": 14,
-                        "value36": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value37": 15,
-                        "value38": {
+                        "value33": 14,
+                        "value34": 15,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -243,18 +216,9 @@
                                 }
                             }
                         },
-                        "value39": 16,
-                        "value40": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value41": 18,
-                        "value42": {
+                        "value36": 16,
+                        "value37": 18,
+                        "value38": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -264,18 +228,9 @@
                                 }
                             }
                         },
-                        "value43": 19,
-                        "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value45": 20,
-                        "value46": {
+                        "value39": 19,
+                        "value40": 20,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -285,8 +240,8 @@
                                 }
                             }
                         },
-                        "value47": 21,
-                        "value48": {
+                        "value42": 21,
+                        "value43": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -296,8 +251,8 @@
                                 }
                             }
                         },
-                        "value49": 22,
-                        "value50": {
+                        "value44": 22,
+                        "value45": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -307,8 +262,8 @@
                                 }
                             }
                         },
-                        "value51": 23,
-                        "value52": {
+                        "value46": 23,
+                        "value47": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -318,8 +273,8 @@
                                 }
                             }
                         },
-                        "value53": 30,
-                        "value54": {
+                        "value48": 30,
+                        "value49": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -330,8 +285,8 @@
                                 }
                             }
                         },
-                        "value55": 32,
-                        "value56": {
+                        "value50": 32,
+                        "value51": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -342,28 +297,10 @@
                                 }
                             }
                         },
-                        "value57": 33,
-                        "value58": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value59": 34,
-                        "value60": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value61": 35,
-                        "value62": {
+                        "value52": 33,
+                        "value53": 34,
+                        "value54": 35,
+                        "value55": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -377,18 +314,9 @@
                                 }
                             }
                         },
-                        "value63": 36,
-                        "value64": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0
-                                }
-                            }
-                        },
-                        "value65": 38,
-                        "value66": {
+                        "value56": 36,
+                        "value57": 38,
+                        "value58": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -404,8 +332,8 @@
                                 }
                             }
                         },
-                        "value67": 40,
-                        "value68": {
+                        "value59": 40,
+                        "value60": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -419,7 +347,7 @@
                                                 "id": 2147483649,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -432,7 +360,7 @@
                                                 "id": 2147483650,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -445,7 +373,7 @@
                                                 "id": 2147483651,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -455,59 +383,51 @@
                                 }
                             }
                         },
-                        "value69": 42,
-                        "value70": {
+                        "value61": 42,
+                        "value62": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_3756",
+                                    "econ_id": "econ_12834",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
-                                                "": 8
-                                            },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "FuelCells": {
+                                                "": 12
+                                            },
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
-                                                "": 90
+                                            "Ore": {
+                                                "": 120
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
+                                                "": 8
+                                            },
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
-                                                "": 12
-                                            },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
-                                                "": 120
+                                            "Ore": {
+                                                "": 90
                                             }
                                         }
                                     }
                                 }
                             }
                         },
-                        "value71": 44,
-                        "value72": {
+                        "value63": 44,
+                        "value64": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -517,7 +437,7 @@
                                 }
                             }
                         },
-                        "value73": 4294967295
+                        "value65": 4294967295
                     }
                 }
             },
@@ -608,16 +528,7 @@
                             }
                         },
                         "value11": 43,
-                        "value12": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 2
-                                }
-                            }
-                        },
-                        "value13": 4294967295
+                        "value12": 4294967295
                     }
                 }
             },
@@ -820,17 +731,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 3
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -840,8 +742,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -852,8 +754,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -867,8 +769,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -881,8 +783,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -893,18 +795,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 3
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -918,8 +811,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -932,7 +825,7 @@
                                                 "id": 2147483652,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -944,7 +837,7 @@
                                                 "id": 2147483653,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -956,7 +849,7 @@
                                                 "id": 2147483654,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -966,50 +859,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_2966",
+                                    "econ_id": "econ_13327",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -1017,8 +902,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1028,7 +913,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -1231,17 +1116,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 4
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1251,8 +1127,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1263,8 +1139,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1278,8 +1154,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1292,8 +1168,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1304,18 +1180,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 4
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1329,8 +1196,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1343,7 +1210,7 @@
                                                 "id": 2147483655,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1355,7 +1222,7 @@
                                                 "id": 2147483656,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1367,7 +1234,7 @@
                                                 "id": 2147483657,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1377,50 +1244,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_25014",
+                                    "econ_id": "econ_7865",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -1428,8 +1287,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1439,7 +1298,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -1642,17 +1501,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 5
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1662,8 +1512,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1674,8 +1524,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1689,8 +1539,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1703,8 +1553,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1715,18 +1565,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 5
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1740,8 +1581,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1754,7 +1595,7 @@
                                                 "id": 2147483658,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1766,7 +1607,7 @@
                                                 "id": 2147483659,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1778,7 +1619,7 @@
                                                 "id": 2147483660,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -1788,50 +1629,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_12785",
+                                    "econ_id": "econ_17385",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -1839,8 +1672,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1850,7 +1683,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -2053,17 +1886,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 6
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2073,8 +1897,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2085,8 +1909,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2100,8 +1924,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2114,8 +1938,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2126,18 +1950,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 6
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2151,8 +1966,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2165,7 +1980,7 @@
                                                 "id": 2147483661,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2177,7 +1992,7 @@
                                                 "id": 2147483662,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2189,7 +2004,7 @@
                                                 "id": 2147483663,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2199,50 +2014,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_24033",
+                                    "econ_id": "econ_18429",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -2250,8 +2057,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2261,7 +2068,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -2464,17 +2271,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 7
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2484,8 +2282,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2496,8 +2294,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2511,8 +2309,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2525,8 +2323,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2537,18 +2335,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 7
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2562,8 +2351,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2576,7 +2365,7 @@
                                                 "id": 2147483664,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2588,7 +2377,7 @@
                                                 "id": 2147483665,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2600,7 +2389,7 @@
                                                 "id": 2147483666,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2610,50 +2399,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_1758",
+                                    "econ_id": "econ_14151",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -2661,8 +2442,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2672,7 +2453,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -2875,17 +2656,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 8
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2895,8 +2667,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2907,8 +2679,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2922,8 +2694,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2936,8 +2708,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2948,18 +2720,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 8
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2973,8 +2736,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2987,7 +2750,7 @@
                                                 "id": 2147483667,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -2999,7 +2762,7 @@
                                                 "id": 2147483668,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3011,7 +2774,7 @@
                                                 "id": 2147483669,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3021,50 +2784,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_15726",
+                                    "econ_id": "econ_13187",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -3072,8 +2827,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3083,7 +2838,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -3286,17 +3041,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 9
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3306,8 +3052,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3318,8 +3064,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3333,8 +3079,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3347,8 +3093,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3359,18 +3105,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 9
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3384,8 +3121,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3398,7 +3135,7 @@
                                                 "id": 2147483670,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3410,7 +3147,7 @@
                                                 "id": 2147483671,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3422,7 +3159,7 @@
                                                 "id": 2147483672,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3432,50 +3169,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_7508",
+                                    "econ_id": "econ_27250",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -3483,8 +3212,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3494,7 +3223,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -3697,17 +3426,8 @@
                             }
                         },
                         "value31": 19,
-                        "value32": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 10
-                                }
-                            }
-                        },
-                        "value33": 20,
-                        "value34": {
+                        "value32": 20,
+                        "value33": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3717,8 +3437,8 @@
                                 }
                             }
                         },
-                        "value35": 28,
-                        "value36": {
+                        "value34": 28,
+                        "value35": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3729,8 +3449,8 @@
                                 }
                             }
                         },
-                        "value37": 29,
-                        "value38": {
+                        "value36": 29,
+                        "value37": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3744,8 +3464,8 @@
                                 }
                             }
                         },
-                        "value39": 31,
-                        "value40": {
+                        "value38": 31,
+                        "value39": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3758,8 +3478,8 @@
                                 }
                             }
                         },
-                        "value41": 32,
-                        "value42": {
+                        "value40": 32,
+                        "value41": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3770,18 +3490,9 @@
                                 }
                             }
                         },
-                        "value43": 33,
+                        "value42": 33,
+                        "value43": 35,
                         "value44": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 10
-                                }
-                            }
-                        },
-                        "value45": 35,
-                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3795,8 +3506,8 @@
                                 }
                             }
                         },
-                        "value47": 40,
-                        "value48": {
+                        "value45": 40,
+                        "value46": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3809,7 +3520,7 @@
                                                 "id": 2147483673,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3821,7 +3532,7 @@
                                                 "id": 2147483674,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 2,
+                                                        "type": "Ore",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3833,7 +3544,7 @@
                                                 "id": 2147483675,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 3,
+                                                        "type": "Food",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -3843,50 +3554,42 @@
                                 }
                             }
                         },
-                        "value49": 42,
-                        "value50": {
+                        "value47": 42,
+                        "value48": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_27213",
+                                    "econ_id": "econ_25838",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 8
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 90
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             }
                                         }
@@ -3894,8 +3597,8 @@
                                 }
                             }
                         },
-                        "value51": 44,
-                        "value52": {
+                        "value49": 44,
+                        "value50": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3905,7 +3608,7 @@
                                 }
                             }
                         },
-                        "value53": 4294967295
+                        "value51": 4294967295
                     }
                 }
             },
@@ -4033,7 +3736,7 @@
                                                 "id": 2147483676,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 0
                                                     }
                                                 }
@@ -4046,7 +3749,7 @@
                                                 "id": 2147483677,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 1,
+                                                        "type": "FuelCells",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -4059,7 +3762,7 @@
                                                 "id": 2147483678,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 5,
+                                                        "type": "LaserRig",
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
@@ -4073,7 +3776,7 @@
                                                 "id": 2147483679,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 6,
+                                                        "type": "MissileRig",
                                                         "amount": 2
                                                     },
                                                     "rigName": "Hammer"
@@ -4091,51 +3794,41 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_5907",
+                                    "econ_id": "econ_28947",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 110
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             },
-                                            "ItemType": 5,
-                                            "Prices": {
+                                            "LaserRig": {
                                                 "Cannon-Two": 900
                                             },
-                                            "ItemType": 6,
-                                            "Prices": {
+                                            "MissileRig": {
                                                 "Hammer": 5000
                                             }
                                         }
@@ -4282,7 +3975,7 @@
                                                 "id": 2147483680,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 0
                                                     }
                                                 }
@@ -4294,7 +3987,7 @@
                                                 "id": 2147483681,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 1,
+                                                        "type": "FuelCells",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -4306,7 +3999,7 @@
                                                 "id": 2147483682,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 5,
+                                                        "type": "LaserRig",
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
@@ -4319,7 +4012,7 @@
                                                 "id": 2147483683,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 6,
+                                                        "type": "MissileRig",
                                                         "amount": 2
                                                     },
                                                     "rigName": "Hammer"
@@ -4337,51 +4030,41 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_2210",
+                                    "econ_id": "econ_3463",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 110
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             },
-                                            "ItemType": 5,
-                                            "Prices": {
+                                            "LaserRig": {
                                                 "Cannon-Two": 900
                                             },
-                                            "ItemType": 6,
-                                            "Prices": {
+                                            "MissileRig": {
                                                 "Hammer": 5000
                                             }
                                         }
@@ -4528,7 +4211,7 @@
                                                 "id": 2147483684,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 0
                                                     }
                                                 }
@@ -4540,7 +4223,7 @@
                                                 "id": 2147483685,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 1,
+                                                        "type": "FuelCells",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -4552,7 +4235,7 @@
                                                 "id": 2147483686,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 5,
+                                                        "type": "LaserRig",
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
@@ -4565,7 +4248,7 @@
                                                 "id": 2147483687,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 6,
+                                                        "type": "MissileRig",
                                                         "amount": 2
                                                     },
                                                     "rigName": "Hammer"
@@ -4583,51 +4266,41 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_29571",
+                                    "econ_id": "econ_6766",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 110
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             },
-                                            "ItemType": 5,
-                                            "Prices": {
+                                            "LaserRig": {
                                                 "Cannon-Two": 900
                                             },
-                                            "ItemType": 6,
-                                            "Prices": {
+                                            "MissileRig": {
                                                 "Hammer": 5000
                                             }
                                         }
@@ -4774,7 +4447,7 @@
                                                 "id": 2147483688,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 0,
+                                                        "type": "Credits",
                                                         "amount": 0
                                                     }
                                                 }
@@ -4786,7 +4459,7 @@
                                                 "id": 2147483689,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 1,
+                                                        "type": "FuelCells",
                                                         "amount": 1000
                                                     }
                                                 }
@@ -4798,7 +4471,7 @@
                                                 "id": 2147483690,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 5,
+                                                        "type": "LaserRig",
                                                         "amount": 4
                                                     },
                                                     "rigName": "Cannon-Two"
@@ -4811,7 +4484,7 @@
                                                 "id": 2147483691,
                                                 "data": {
                                                     "value0": {
-                                                        "type": 6,
+                                                        "type": "MissileRig",
                                                         "amount": 2
                                                     },
                                                     "rigName": "Hammer"
@@ -4829,51 +4502,41 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_16032",
+                                    "econ_id": "econ_7713",
                                     "buy": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 110
                                             }
                                         }
                                     },
                                     "sell": {
                                         "value0": {
-                                            "ItemType": 3,
-                                            "Prices": {
+                                            "Food": {
                                                 "": 12
                                             },
-                                            "ItemType": 1,
-                                            "Prices": {
+                                            "FuelCells": {
                                                 "": 12
                                             },
-                                            "ItemType": 4,
-                                            "Prices": {
+                                            "Narcotics": {
                                                 "": 50
                                             },
-                                            "ItemType": 2,
-                                            "Prices": {
+                                            "Ore": {
                                                 "": 120
                                             },
-                                            "ItemType": 5,
-                                            "Prices": {
+                                            "LaserRig": {
                                                 "Cannon-Two": 900
                                             },
-                                            "ItemType": 6,
-                                            "Prices": {
+                                            "MissileRig": {
                                                 "Hammer": 5000
                                             }
                                         }
@@ -4977,7 +4640,7 @@
                                     "value0": 15,
                                     "Ore": {
                                         "value0": {
-                                            "type": 2,
+                                            "type": "Ore",
                                             "amount": 1000
                                         }
                                     }

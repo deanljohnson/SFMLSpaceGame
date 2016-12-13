@@ -4,13 +4,29 @@
 #include <cereal\archives\binary.hpp>
 #include <cereal\types\memory.hpp>
 #include <Components\Component.h>
+#include <DefaultSerializeable.h>
 
 class Entity;
 
 class ComponentSerializer
 {
 private:
-	template<class Archive, class T>
+	template<class Archive, class T,
+		typename std::enable_if<std::is_base_of<DefaultSerializeable<T>, T>::value>::type* = nullptr>
+	static bool LoadComponents(ComponentID id, Archive& ar, Entity& ent)
+	{
+		if (id != GetComponentTypeID<T>())
+			return false;
+
+		// Default serializeable components do not have any data
+		// associated with them, simply add one to the entity
+		ent.AddComponent<T>();
+
+		return true;
+	}
+
+	template<class Archive, class T,
+		typename std::enable_if<!std::is_base_of<DefaultSerializeable<T>, T>::value>::type* = nullptr>
 	static bool LoadComponents(ComponentID id, Archive& ar, Entity& ent)
 	{
 		if (id != GetComponentTypeID<T>())
@@ -30,7 +46,21 @@ private:
 			LoadComponents<Archive, TCompB, TCompTypes...>(id, ar, ent);
 	}
 
-	template<class Archive, class T>
+	template<class Archive, class T, 
+		typename std::enable_if<std::is_base_of<DefaultSerializeable<T>, T>::value>::type* = nullptr>
+	static bool SaveComponents(ComponentID id, Archive& ar, const Entity& ent) 
+	{
+		if (id != GetComponentTypeID<T>())
+			return false;
+
+		// Defualt serializeable components have no data associated with them
+		// the ComponentID is enough to load them
+		ar(id);
+		return true;
+	}
+
+	template<class Archive, class T,
+		typename std::enable_if<!std::is_base_of<DefaultSerializeable<T>, T>::value>::type* = nullptr>
 	static bool SaveComponents(ComponentID id, Archive& ar, const Entity& ent)
 	{
 		if (id != GetComponentTypeID<T>())

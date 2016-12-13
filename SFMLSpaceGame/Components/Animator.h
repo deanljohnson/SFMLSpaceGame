@@ -7,7 +7,7 @@
 #include <Components/Interfaces/Updateable.h>
 
 
-class Animator : public Component, public DefaultSerializeable<Animator>, public Updateable
+class Animator : public Component, public Updateable
 {
 private:
 	Sprite& m_sprite;

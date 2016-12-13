@@ -5,7 +5,7 @@
 #include <DefaultSerializeable.h>
 #include <Components/Interfaces/Renderable.h>
 
-class ShieldHitAnimator : public Component, public DefaultSerializeable<ShieldHitAnimator>, public Updateable, public Renderable
+class ShieldHitAnimator : public Component, public Updateable, public Renderable
 {
 private:
 	bool m_visible;
