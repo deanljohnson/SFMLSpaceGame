@@ -62,7 +62,7 @@ void Economy::Init()
 	m_econGraph.Connect("hello", "boo");
 	//m_econGraph.Remove("boo");
 
-	if (m_econGraph.AreConnected("hello", "boo"))
+	if (m_econGraph.AreNeighbors("hello", "boo"))
 	{
 		printf("bingo\n");
 	}
@@ -71,8 +71,18 @@ void Economy::Init()
 	m_econGraph.Add("hello2", "d");
 	m_econGraph.Connect("hello", "hello1");
 	m_econGraph.Connect("hello", "hello2");
+	m_econGraph.Add("hello-deep", "hello-deep");
+	m_econGraph.Connect("hello2", "hello-deep");
 
 	m_econGraph.BreadthFirstTraverse("hello",
+		[](std::string& data)
+	{
+		printf(data.c_str());
+		printf("\n");
+		return true;
+	});
+
+	m_econGraph.DepthFirstTraverse("hello",
 		[](std::string& data)
 	{
 		printf(data.c_str());
