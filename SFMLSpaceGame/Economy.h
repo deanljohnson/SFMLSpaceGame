@@ -15,7 +15,7 @@ namespace Economy
 	Price GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 	Price GetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 
-	// Calculates the best trade targeting a specific
+	/*// Calculates the best trade targeting a specific
 	// mask of EconomyAgentType's, according to a filter
 	// function. This filter function returns whether or not
 	// to continue considering this agent as a possible 
@@ -26,7 +26,7 @@ namespace Economy
 	// favorability of trading with the given agent.
 	std::pair<EconomyAgent*, ItemType> GetBestPurchase(
 		EconomyAgentType targetType, 
-		std::function<bool(const EconomyAgent&, long&, ItemType)> filter);
+		std::function<bool(const EconomyAgent&, long&, ItemType)> filter);*/
 
 	// Moves the given Item (type and amount) from the source to the target
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);

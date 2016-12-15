@@ -8,7 +8,7 @@
 
 enum class ItemType
 {
-	Credits, FuelCells, Ore, Food, Narcotics, LaserRig, MissileRig
+	Credits, FuelCells, Ore, Food, Narcotics, LaserRig, MissileRig, Count
 };
 
 extern std::unordered_map<ItemType, std::string> ItemTypeToString;

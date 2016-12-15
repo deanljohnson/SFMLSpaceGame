@@ -4,7 +4,9 @@
 #include <Economy.h>
 #include <Components/EconomyAgent.h>
 #include <ItemPriceLevelSet.h>
+#include <GraphMap.h>
 
+GraphMap<std::string, std::string> m_econGraph;
 std::shared_ptr<ItemPriceLevelSet> m_defaultPrices;
 std::unordered_map<EconomyAgentType, std::shared_ptr<ItemPriceLevelSet>> m_overriddenPrices;
 std::unordered_map<EconomyID, EconomyAgent*> m_econToAgentMap;
@@ -49,6 +51,42 @@ void Economy::Init()
 	Serializer<> ser;
 	auto iplsPtr = ser.Load<ItemPriceLevelSet>("EconomyBase");
 	m_defaultPrices = std::shared_ptr<ItemPriceLevelSet>(iplsPtr);
+
+	m_econGraph.Add("hello", "a");
+	m_econGraph.Add("boo", "b");
+	m_econGraph.Remove("hello");
+	m_econGraph.Add("hello", "a");
+	m_econGraph.Connect("hello", "boo");
+	m_econGraph.Disconnect("hello", "boo");
+	m_econGraph["boo"] = "b";
+	m_econGraph.Connect("hello", "boo");
+	//m_econGraph.Remove("boo");
+
+	if (m_econGraph.AreConnected("hello", "boo"))
+	{
+		printf("bingo\n");
+	}
+
+	m_econGraph.Add("hello1", "c");
+	m_econGraph.Add("hello2", "d");
+	m_econGraph.Connect("hello", "hello1");
+	m_econGraph.Connect("hello", "hello2");
+
+	m_econGraph.BreadthFirstTraverse("hello",
+		[](std::string& data)
+	{
+		printf(data.c_str());
+		printf("\n");
+		return true;
+	});
+
+
+	for (auto it = m_econGraph.NeighborBegin("hello");
+		it != m_econGraph.NeighborEnd("hello"); ++it)
+	{
+		printf(it->c_str());
+		printf("\n");
+	}
 }
 
 void Economy::AddAgent(EconomyAgent& agent)
@@ -111,7 +149,7 @@ Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType, const std
 	return sellPrice * 1.15f;
 }
 
-std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType targetType, 
+/*std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType targetType, 
 	std::function<bool(const EconomyAgent&, long&, ItemType)> filter)
 {
 	Price mostPriceDifference = 0;
@@ -158,7 +196,7 @@ std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType tar
 			}
 		}
 	}
-}
+}*/
 
 void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
 {

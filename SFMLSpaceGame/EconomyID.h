@@ -18,16 +18,15 @@ public:
 	}
 	
 private:
-	static std::string DEFAULT_ID;
+	static long long DEFAULT_ID;
 
 	EconomyID();
-	explicit EconomyID(const std::string& id, EconomyAgentType agentType);
+	explicit EconomyID(long long id, EconomyAgentType agentType);
 public:
-	~EconomyID();
 	static EconomyID Create(EconomyAgentType agentType = EconomyAgentType::None);
 	static EconomyID GetDefault();
 
-	std::string ID;
+	long long ID;
 	EconomyAgentType agentType;
 
 	bool IsDefault() const;
@@ -60,8 +59,7 @@ namespace std
 	{
 		size_t operator()(const EconomyID& k) const
 		{
-			// Compute individual hash values for two data members and combine them using XOR and bit shifting
-			return hash<string>()(k.ID);
+			return hash<long long>()(k.ID);
 		}
 	};
 }

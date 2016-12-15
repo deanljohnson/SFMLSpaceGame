@@ -923,6 +923,9 @@
     <ClInclude Include="EconomyAgentType.h">
       <Filter>Header Files\Economy</Filter>
     </ClInclude>
+    <ClInclude Include="GraphMap.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">
