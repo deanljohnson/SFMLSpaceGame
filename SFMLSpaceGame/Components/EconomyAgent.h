@@ -1,12 +1,11 @@
 #pragma once
 #include <EconomyID.h>
-#include <Economy.h>
 #include <Item.h>
-#include <ItemPrice.h>
-#include <PriceSupplier.h>
 #include <cereal/access.hpp>
+#include <ItemPrice.h>
 
 class Inventory;
+class PriceSupplier;
 
 class EconomyAgent : public Component
 {
@@ -21,9 +20,7 @@ private:
 	void serialize(Archive& ar)
 	{
 		ar(entity.GetID(), 
-			cereal::make_nvp("econ_id", m_id), 
-			cereal::make_nvp("buy", Economy::GetBuyPriceSet(m_id)), 
-			cereal::make_nvp("sell", Economy::GetSellPriceSet(m_id)));
+			cereal::make_nvp("econ_id", m_id));
 	}
 
 	template <class Archive>
@@ -31,22 +28,16 @@ private:
 	{
 		EntityID selfID;
 		EconomyID econID = EconomyID::GetDefault();
-		ItemPriceSet buyPrices;
-		ItemPriceSet sellPrices;
 
 		ar(selfID, 
-			cereal::make_nvp("econ_id", econID),
-			cereal::make_nvp("buy", buyPrices),
-			cereal::make_nvp("sell", sellPrices));
-		construct(selfID, econID, buyPrices, sellPrices);
+			cereal::make_nvp("econ_id", econID));
+		construct(selfID, econID);
 	}
 
 	EconomyAgent(EntityID ent, 
-				const EconomyID& id,
-				const ItemPriceSet& buyPrices, 
-				const ItemPriceSet& sellPrices);
+				const EconomyID& id);
 public:
-	explicit EconomyAgent(EntityID ent);
+	explicit EconomyAgent(EntityID ent, EconomyAgentType agentType);
 	~EconomyAgent();
 
 	EconomyID GetEconomyID() const;
@@ -57,19 +48,10 @@ public:
 	void GiveCredits(unsigned int credits);
 	void TakeCredits(unsigned int credits);
 
-	bool Buys(ItemType itemType);
-	bool Sells(ItemType itemType);
+	size_t GetAmountOfItem(ItemType type, const std::string& detail);
 
-	unsigned GetBuyPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
-	unsigned GetSellPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
-
-	void SetBuyPrice(ItemType itemType, Price price);
-	void SetBuyPrice(ItemType itemType, const std::string& detail, Price price);
-	void SetSellPrice(ItemType itemType, Price price);
-	void SetSellPrice(ItemType itemType, const std::string& detail, Price price);
-
-	void SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices);
-	void SetSellPrices(std::initializer_list<std::pair<ItemType, Price>> prices);
+	Price GetBuyPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
+	Price GetSellPrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 
 	PriceSupplier GetBuyPrices();
 	PriceSupplier GetSellPrices();

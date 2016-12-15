@@ -16,7 +16,7 @@ std::unordered_map<ItemType, std::string> ItemTypeToString{
 	std::make_pair(ItemType::MissileRig, "MissileRig")
 };
 
-extern std::unordered_map<std::string, ItemType> StringToItemType{
+std::unordered_map<std::string, ItemType> StringToItemType{
 	std::make_pair("Credits", ItemType::Credits),
 	std::make_pair("FuelCells", ItemType::FuelCells),
 	std::make_pair("Ore", ItemType::Ore),

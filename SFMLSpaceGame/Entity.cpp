@@ -50,6 +50,9 @@ void Entity::OnDestroy()
 	
 	for (auto& c : m_components)
 	{
+		// deactivate all components
+		c.second->SetActive(false);
+		// notify components on destruction
 		c.second->OnDestroy();
 	}
 }

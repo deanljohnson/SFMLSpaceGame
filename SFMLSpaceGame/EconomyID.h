@@ -1,11 +1,11 @@
 #pragma once
-#include <string>
+#include <EconomyAgentType.h>
 
 class EconomyID
 {
 public:
 	EconomyID(const EconomyID& other)
-		: m_id{other.m_id}
+		: ID{other.ID }
 	{
 	}
 
@@ -13,36 +13,43 @@ public:
 	{
 		if (this == &other)
 			return *this;
-		m_id = other.m_id;
+		ID = other.ID;
 		return *this;
 	}
 	
 private:
 	static std::string DEFAULT_ID;
-	std::string m_id;
 
 	EconomyID();
-	explicit EconomyID(const std::string& id);
+	explicit EconomyID(const std::string& id, EconomyAgentType agentType);
 public:
 	~EconomyID();
-	static EconomyID Create();
+	static EconomyID Create(EconomyAgentType agentType = EconomyAgentType::None);
 	static EconomyID GetDefault();
+
+	std::string ID;
+	EconomyAgentType agentType;
 
 	bool IsDefault() const;
 	bool operator ==(const EconomyID& other) const;
 	bool operator !=(const EconomyID& other) const;
-	std::string GetStringID() const;
+	
 
 	template<class Archive>
-	std::string save_minimal(const Archive& ar) const
+	void save(Archive& ar) const
 	{
-		return m_id;
+		ar(cereal::make_nvp("ID", ID),
+			cereal::make_nvp("type", EconomyAgentTypeToString[agentType]));
 	}
 
 	template<class Archive>
-	void load_minimal(const Archive& ar, const std::string& val)
+	void load(Archive& ar)
 	{
-		m_id = val;
+		std::string agentTypeString;
+		ar(cereal::make_nvp("ID", ID),
+			cereal::make_nvp("type", agentTypeString));
+
+		agentType = StringToEconomyAgentType[agentTypeString];
 	}
 };
 
@@ -54,7 +61,7 @@ namespace std
 		size_t operator()(const EconomyID& k) const
 		{
 			// Compute individual hash values for two data members and combine them using XOR and bit shifting
-			return hash<string>()(k.GetStringID());
+			return hash<string>()(k.ID);
 		}
 	};
 }

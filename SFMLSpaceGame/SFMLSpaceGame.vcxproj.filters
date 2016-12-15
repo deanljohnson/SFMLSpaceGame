@@ -432,7 +432,10 @@
     <ClCompile Include="Components\StationStatsComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="ItemPriceRangeSet.cpp">
+    <ClCompile Include="ItemPriceLevelSet.cpp">
+      <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="EconomyAgentType.cpp">
       <Filter>Source Files\Economy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -908,7 +911,16 @@
     <ClInclude Include="Range.h">
       <Filter>Header Files\DataManagement</Filter>
     </ClInclude>
-    <ClInclude Include="ItemPriceRangeSet.h">
+    <ClInclude Include="ItemPriceSerialization.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPriceLevel.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPriceLevelSet.h">
+      <Filter>Header Files\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="EconomyAgentType.h">
       <Filter>Header Files\Economy</Filter>
     </ClInclude>
   </ItemGroup>

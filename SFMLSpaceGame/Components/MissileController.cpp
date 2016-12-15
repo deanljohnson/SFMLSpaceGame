@@ -67,6 +67,11 @@ void MissileController::Update()
 		else if (totalRotation > 0.01f)
 			SteerRight(lerpFactor);
 	}
+	else
+	{
+		entity->Destroy();
+		return;
+	}
 
 	b2Body* body = m_physics.GetBody();
 

@@ -37,6 +37,10 @@ private:
 	}
 
 public:
+	virtual ~Item()
+	{
+	}
+
 	const static std::string NO_DETAIL;
 
 	ItemType type;

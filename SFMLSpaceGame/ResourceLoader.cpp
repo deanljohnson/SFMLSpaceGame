@@ -160,9 +160,7 @@ std::shared_ptr<LaserRig> LoadRig<LaserRig>(const std::string& name)
 		return it->second;
 	}
 
-	LaserRig* laser = serializer.Load<LaserRig>(name);
-
-	auto elem = std::shared_ptr<LaserRig>(laser);
+	auto elem = std::make_shared<LaserRig>(*serializer.Load<LaserRig>(name));
 	loadedLaserRigs.insert(make_pair(name, elem));
 
 	return elem;
@@ -177,9 +175,7 @@ std::shared_ptr<MissileRig> LoadRig<MissileRig>(const std::string& name)
 		return it->second;
 	}
 
-	MissileRig* missileRig = serializer.Load<MissileRig>(name);
-
-	auto elem = std::shared_ptr<MissileRig>(missileRig);
+	auto elem = std::make_shared<MissileRig>(*serializer.Load<MissileRig>(name));
 	loadedMissileRigs.insert(make_pair(name, elem));
 
 	return elem;
@@ -194,9 +190,7 @@ std::shared_ptr<MiningRig> LoadRig<MiningRig>(const std::string& name)
 		return it->second;
 	}
 
-	MiningRig* miningRig = serializer.Load<MiningRig>(name);
-
-	auto elem = std::shared_ptr<MiningRig>(miningRig);
+	auto elem = std::make_shared<MiningRig>(*serializer.Load<MiningRig>(name));
 	loadedMiningRigs.insert(make_pair(name, elem));
 
 	return elem;
@@ -253,9 +247,7 @@ std::shared_ptr<AnimationDefinition> LoadAnimation(const std::string& id)
 		return it->second;
 	}
 
-	AnimationDefinition* animDef = serializer.Load<AnimationDefinition>(id);
-
-	auto elem = std::shared_ptr<AnimationDefinition>(animDef);
+	auto elem = std::make_shared<AnimationDefinition>(*serializer.Load<AnimationDefinition>(id));
 	loadedAnimations.insert(make_pair(id, elem));
 
 	return elem;

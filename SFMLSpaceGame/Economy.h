@@ -1,6 +1,7 @@
 #pragma once
 #include <ItemPriceSet.h>
 #include <EconomyID.h>
+#include <ItemPriceSerialization.h> // included simply to make sure the templated functions inside are defined
 
 class EconomyAgent;
 
@@ -8,24 +9,24 @@ namespace Economy
 {
 	void Init();
 
-	void AddAgent(const EconomyAgent& agent);
-	void AddAgent(const EconomyAgent& agent, const ItemPriceSet& sellPriceSet, const ItemPriceSet& buyPriceSet);
+	void AddAgent(EconomyAgent& agent);
 	void RemoveAgent(const EconomyAgent& agent);
-
-	bool Buys(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
-	bool Sells(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 
 	Price GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 	Price GetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
-	Price GetBaselinePrice(ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 
-	ItemPriceSet& GetBuyPriceSet(const EconomyID& ident);
-	ItemPriceSet& GetSellPriceSet(const EconomyID& ident);
-
-	void SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price);
-	void SetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price);
-	void SetSellPrice(const EconomyID& ident, ItemType itemType, Price price);
-	void SetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price);
+	// Calculates the best trade targeting a specific
+	// mask of EconomyAgentType's, according to a filter
+	// function. This filter function returns whether or not
+	// to continue considering this agent as a possible 
+	// trade. The passed in long reference is the difference
+	// between the cost of purchasing all of a certain item type
+	// and the average cost of purchasing that many items. 
+	// You may modify this value to influence the
+	// favorability of trading with the given agent.
+	std::pair<EconomyAgent*, ItemType> GetBestPurchase(
+		EconomyAgentType targetType, 
+		std::function<bool(const EconomyAgent&, long&, ItemType)> filter);
 
 	// Moves the given Item (type and amount) from the source to the target
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);

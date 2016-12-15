@@ -4,21 +4,19 @@
 #include <Components/EconomyAgent.h>
 #include <Components/Inventory.h>
 #include <Entity.h>
+#include <Economy.h>
 
-EconomyAgent::EconomyAgent(EntityID ent, 
-							const EconomyID& id, 
-							const ItemPriceSet& buyPrices, 
-							const ItemPriceSet& sellPrices)
+EconomyAgent::EconomyAgent(EntityID ent, const EconomyID& id)
 	: Component(ent),
-	  m_id(id),
-	  m_inventory(entity->GetComponent<Inventory>())
+	m_id(id),
+	m_inventory(entity->GetComponent<Inventory>())
 {
-	Economy::AddAgent(*this, buyPrices, sellPrices);
+	Economy::AddAgent(*this);
 }
 
-EconomyAgent::EconomyAgent(EntityID ent)
+EconomyAgent::EconomyAgent(EntityID ent, EconomyAgentType agentType)
 	: Component(ent),
-	  m_id(EconomyID::Create()),
+	  m_id(EconomyID::Create(agentType)),
 	  m_inventory(entity->GetComponent<Inventory>())
 {
 	Economy::AddAgent(*this);
@@ -53,60 +51,26 @@ void EconomyAgent::TakeCredits(unsigned int credits)
 	m_inventory.SetCredits(m_inventory.GetCredits() - credits);
 }
 
-bool EconomyAgent::Buys(ItemType itemType)
+size_t EconomyAgent::GetAmountOfItem(ItemType type, const std::string& detail)
 {
-	return Economy::Buys(m_id, itemType);
+	for (auto& i : m_inventory)
+	{
+		if (i->type == type
+			&& detail == i->GetDetail())
+			return i->amount;
+	}
+
+	return 0;
 }
 
-bool EconomyAgent::Sells(ItemType itemType)
-{
-	return Economy::Sells(m_id, itemType);
-}
-
-unsigned EconomyAgent::GetBuyPrice(ItemType itemType, const std::string& detail)
+Price EconomyAgent::GetBuyPrice(ItemType itemType, const std::string& detail)
 {
 	return Economy::GetBuyPrice(m_id, itemType, detail);
 }
 
-unsigned EconomyAgent::GetSellPrice(ItemType itemType, const std::string& detail)
+Price EconomyAgent::GetSellPrice(ItemType itemType, const std::string& detail)
 {
 	return Economy::GetSellPrice(m_id, itemType, detail);
-}
-
-void EconomyAgent::SetBuyPrice(ItemType itemType, Price price)
-{
-	Economy::SetBuyPrice(m_id, itemType, price);
-}
-
-void EconomyAgent::SetBuyPrice(ItemType itemType, const std::string& detail, Price price)
-{
-	Economy::SetBuyPrice(m_id, itemType, detail, price);
-}
-
-void EconomyAgent::SetSellPrice(ItemType itemType, Price price)
-{
-	Economy::SetSellPrice(m_id, itemType, price);
-}
-
-void EconomyAgent::SetSellPrice(ItemType itemType, const std::string& detail, Price price)
-{
-	Economy::SetSellPrice(m_id, itemType, detail, price);
-}
-
-void EconomyAgent::SetBuyPrices(std::initializer_list<std::pair<ItemType, Price>> prices)
-{
-	for (auto& p : prices)
-	{
-		SetBuyPrice(p.first, p.second);
-	}
-}
-
-void EconomyAgent::SetSellPrices(std::initializer_list<std::pair<ItemType, Price>> prices)
-{
-	for (auto& p : prices)
-	{
-		SetSellPrice(p.first, p.second);
-	}
 }
 
 PriceSupplier EconomyAgent::GetBuyPrices()

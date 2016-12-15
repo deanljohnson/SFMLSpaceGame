@@ -8,7 +8,6 @@
 #include <EntityHandle.h>
 #include <Components\Components.h>
 #include <PlayerData.h>
-#include <Economy.h>
 #include <MissileStats.h>
 #include <StationStats.h>
 #include <ItemFactory.h>
@@ -280,22 +279,11 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	ent->AddComponent<DamageOnAttacked>();
 	ent->AddComponent<ShieldHitAnimator, float>(.75f);
 	ent->AddComponent<Inventory>();
-	auto& econAgent = ent->AddComponent<EconomyAgent>();
 
+	auto& econAgent = ent->AddComponent<EconomyAgent, EconomyAgentType>(EconomyAgentType::MerchantVessel);
 	econAgent.AddItem(ItemFactory::Create<ItemType::Credits>(1000));
 	econAgent.AddItem(ItemFactory::Create<ItemType::Ore>(1000));
 	econAgent.AddItem(ItemFactory::Create<ItemType::Food>(1000));
-
-	econAgent.SetSellPrices(
-	{
-		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 20 },
-		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
-	});
-	econAgent.SetBuyPrices(
-	{
-		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) - 10 },
-		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) - 2 }
-	});
 
 	if (npc)
 	{
@@ -308,7 +296,6 @@ void EntityFactory::MakeIntoShip(EntityHandle& ent, const std::string& shipName,
 	auto& thrustAnim = ent->AddComponent<ThrusterAnimator>();
 	for (auto tl : shipStats->GetThrusterLocations())
 	{
-		
 		auto& spr = ent->AddComponent<Sprite, const std::string&>("exhaust-one", OriginOption::MiddleRight);
 		ent->AddComponent<Animator, const std::string&, int>("exhaust-one", ent->GetComponentID<Sprite>(spr));
 		thrustAnim.AddSprite(&spr);
@@ -332,24 +319,10 @@ void EntityFactory::MakeIntoStation(EntityHandle& ent, const std::string& statio
 	ent->AddComponent<Text, const std::string&>("Press E to Interact");
 	ent->AddComponent<KeyListener, std::initializer_list<sf::Keyboard::Key>>({ sf::Keyboard::E });
 
-	auto& econAgent = ent->AddComponent<EconomyAgent>();
-	econAgent.AddItem(ItemFactory::Create<ItemType::FuelCells>(1000));
+	auto& econAgent = ent->AddComponent<EconomyAgent, EconomyAgentType>(EconomyAgentType::TradeStation);
+	econAgent.AddItem(ItemFactory::Create<ItemType::FuelCells>(1200));
 	econAgent.AddItem(ItemFactory::Create<ItemType::LaserRig>(4, "Cannon-Two"));
 	econAgent.AddItem(ItemFactory::Create<ItemType::MissileRig>(2, "Hammer"));
-
-	econAgent.SetSellPrices(
-	{
-		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 20 },
-		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 },
-		{ ItemType::FuelCells, Economy::GetBaselinePrice(ItemType::FuelCells) }
-	});
-	econAgent.SetBuyPrices(
-	{
-		{ ItemType::Ore, Economy::GetBaselinePrice(ItemType::Ore) + 10 },
-		{ ItemType::Food, Economy::GetBaselinePrice(ItemType::Food) + 2 }
-	});
-	econAgent.SetSellPrice(ItemType::LaserRig, "Cannon-Two", 900);
-	econAgent.SetSellPrice(ItemType::MissileRig, "Hammer", 5000);
 
 	ent->ApplyInitializer(EntityInitializer::Type::StationInteractListenerSetup);
 	ent->ApplyInitializer(EntityInitializer::Type::StationSpriteBoundsColliderSetup);

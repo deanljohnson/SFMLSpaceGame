@@ -390,38 +390,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "econ_id": "econ_17847",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_20807",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -866,38 +837,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "econ_id": "econ_5012",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_17041",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -1251,38 +1193,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "econ_id": "econ_2927",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_11349",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -1636,38 +1549,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "econ_id": "econ_21627",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_32654",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -2021,38 +1905,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "econ_id": "econ_10412",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_14340",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -2406,38 +2261,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "econ_id": "econ_6795",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_3376",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -2791,38 +2617,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "econ_id": "econ_17477",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_4914",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -3176,38 +2973,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "econ_id": "econ_10498",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_11535",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -3561,38 +3329,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "econ_id": "econ_30014",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 8
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 90
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_26238",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -3750,7 +3489,7 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": "FuelCells",
-                                                        "amount": 1000
+                                                        "amount": 1200
                                                     }
                                                 }
                                             }
@@ -3794,44 +3533,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "econ_id": "econ_166",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 110
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            },
-                                            "LaserRig": {
-                                                "Cannon-Two": 900
-                                            },
-                                            "MissileRig": {
-                                                "Hammer": 5000
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_17674",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -3988,7 +3692,7 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": "FuelCells",
-                                                        "amount": 1000
+                                                        "amount": 1200
                                                     }
                                                 }
                                             }
@@ -4030,44 +3734,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 12,
-                                    "econ_id": "econ_12231",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 110
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            },
-                                            "LaserRig": {
-                                                "Cannon-Two": 900
-                                            },
-                                            "MissileRig": {
-                                                "Hammer": 5000
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_26888",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -4224,7 +3893,7 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": "FuelCells",
-                                                        "amount": 1000
+                                                        "amount": 1200
                                                     }
                                                 }
                                             }
@@ -4266,44 +3935,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 13,
-                                    "econ_id": "econ_2373",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 110
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            },
-                                            "LaserRig": {
-                                                "Cannon-Two": 900
-                                            },
-                                            "MissileRig": {
-                                                "Hammer": 5000
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_23964",
+                                        "type": ""
                                     }
                                 }
                             }
@@ -4460,7 +4094,7 @@
                                                 "data": {
                                                     "value0": {
                                                         "type": "FuelCells",
-                                                        "amount": 1000
+                                                        "amount": 1200
                                                     }
                                                 }
                                             }
@@ -4502,44 +4136,9 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 14,
-                                    "econ_id": "econ_30549",
-                                    "buy": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 110
-                                            }
-                                        }
-                                    },
-                                    "sell": {
-                                        "prices": {
-                                            "Food": {
-                                                "": 12
-                                            },
-                                            "FuelCells": {
-                                                "": 12
-                                            },
-                                            "Narcotics": {
-                                                "": 50
-                                            },
-                                            "Ore": {
-                                                "": 120
-                                            },
-                                            "LaserRig": {
-                                                "Cannon-Two": 900
-                                            },
-                                            "MissileRig": {
-                                                "Hammer": 5000
-                                            }
-                                        }
+                                    "econ_id": {
+                                        "ID": "econ_16362",
+                                        "type": ""
                                     }
                                 }
                             }

@@ -1,0 +1,75 @@
+{
+	"Economy": {
+		"buyLevels": {
+			"FuelCells": {
+				"": {
+					"minAmount": 100,
+					"maxPrice": 20,
+					"targetAmount": 1000,
+					"targetPrice": 15,
+					"maxAmount": 2000,
+					"minPrice": 10
+				}
+			},
+			"Ore": {
+				"": {
+					"minAmount": 0,
+					"maxPrice": 40,
+					"targetAmount": 1000,
+					"targetPrice": 20,
+					"maxAmount": 2000,
+					"minPrice": 10
+				}
+			},
+			"Food": {
+				"": {
+					"minAmount": 1000,
+					"maxPrice": 15,
+					"targetAmount": 5000,
+					"targetPrice": 12,
+					"maxAmount": 10000,
+					"minPrice": 8
+				}
+				
+			},
+			"Narcotics": {
+				"": {
+					"minAmount": 0,
+					"maxPrice": 100,
+					"targetAmount": 50,
+					"targetPrice": 50,
+					"maxAmount": 100,
+					"minPrice": 10
+				}
+			},
+			"LaserRig": {
+				"Cannon-One": {
+					"minAmount": 5,
+					"maxPrice": 500,
+					"targetAmount": 10,
+					"targetPrice": 400,
+					"maxAmount": 15,
+					"minPrice": 300
+				},
+				"Cannon-Two": {
+					"minAmount": 0,
+					"maxPrice": 1600,
+					"targetAmount": 2,
+					"targetPrice": 1400,
+					"maxAmount": 5,
+					"minPrice": 1000
+				}
+			},
+			"MissileRig": {
+				"Hammer": {
+					"minAmount": 0,
+					"maxPrice": 6000,
+					"targetAmount": 2,
+					"targetPrice": 5000,
+					"maxAmount": 4,
+					"minPrice": 3000
+				}
+			}
+		}
+	}
+}

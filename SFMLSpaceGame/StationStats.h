@@ -8,7 +8,17 @@ private:
 	friend class cereal::access;
 
 	template<class Archive>
-	void serialize(Archive& ar)
+	void save(Archive& ar) const
+	{
+		ar(CEREAL_NVP(imageLocation),
+			CEREAL_NVP(hasShipEditor),
+			CEREAL_NVP(hasRigEditor),
+			CEREAL_NVP(hasChangeShip),
+			CEREAL_NVP(hasTrade));
+	}
+
+	template<class Archive>
+	void load(Archive& ar)
 	{
 		ar(CEREAL_NVP(imageLocation),
 			CEREAL_NVP(hasShipEditor),

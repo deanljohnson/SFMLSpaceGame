@@ -7,21 +7,24 @@
 #include <EntityManager.h>
 
 #include <PlayerData.h>
-#include <UI\InventoryWindow.h>
-#include <UI\StationWindow.h>
-#include <Components\Position.h>
-#include <Components\Physics.h>
-#include <Components\MissilePhysics.h>
-#include <Components\Sprite.h>
-#include <Components\Shields.h>
-#include <Components\KeyListener.h>
-#include <Components\Inventory.h>
-#include <Components\ItemPickup.h>
-#include <Components\ThrusterAnimator.h>
-#include <Components\ShipStatsComponent.h>
-#include <Components\DamageOnAttacked.h>
-#include <Components\EntitySensor.h>
-#include <Components\Text.h>
+#include <StationStats.h>
+#include <UI/InventoryWindow.h>
+#include <UI/StationWindow.h>
+#include <Components/Position.h>
+#include <Components/Physics.h>
+#include <Components/MissilePhysics.h>
+#include <Components/Sprite.h>
+#include <Components/Shields.h>
+#include <Components/KeyListener.h>
+#include <Components/Inventory.h>
+#include <Components/ItemPickup.h>
+#include <Components/ThrusterAnimator.h>
+#include <Components/ShipStatsComponent.h>
+#include <Components/DamageOnAttacked.h>
+#include <Components/EntitySensor.h>
+#include <Components/Text.h>
+#include <Components/StationStatsComponent.h>
+#include <Components/EconomyAgent.h>
 #include <CollisionGroups.h>
 #include <VectorMath.h>
 
@@ -243,6 +246,7 @@ void EntityInitializer::Execute(EntityInitializer::Type initType, Entity& ent)
 		break;
 	case EntityInitializer::Type::SetActivePlayerID:
 		DoSetActivePlayerID(ent);
+		break;
 		break;
 	case Count: break;
 	default: throw "unrecognized initializer";

@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include <ItemPriceSet.h>
 
-bool ItemPriceSet::HasPrice(ItemType type, const std::string& detail)
+bool ItemPriceSet::HasPrice(ItemType type, const std::string& detail) const
 {
 	auto it = m_prices.find(type);
 	if (it == m_prices.end())
@@ -12,13 +12,13 @@ bool ItemPriceSet::HasPrice(ItemType type, const std::string& detail)
 	return it->second.find(detail) != it->second.end();
 }
 
-Price ItemPriceSet::GetPrice(ItemType type, const std::string& detail)
+Price ItemPriceSet::GetPrice(ItemType type, const std::string& detail) const
 {
 	auto it = m_prices.find(type);
 	if (it == m_prices.end())
 		return 0;
 
-	return it->second[detail];
+	return it->second.at(detail);
 }
 
 void ItemPriceSet::SetPrice(ItemType type, Price price)
@@ -29,4 +29,14 @@ void ItemPriceSet::SetPrice(ItemType type, Price price)
 void ItemPriceSet::SetPrice(ItemType type, const std::string& detail, Price price)
 {
 	m_prices[type][detail] = price;
+}
+
+ItemPriceSet::iterator ItemPriceSet::begin()
+{
+	return m_prices.begin();
+}
+
+ItemPriceSet::iterator ItemPriceSet::end()
+{
+	return m_prices.end();
 }

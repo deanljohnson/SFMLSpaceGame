@@ -8,12 +8,12 @@ std::string EconomyID::DEFAULT_ID = "econ_0";
 std::unordered_set<EconomyID> m_existingIDs{};
 
 EconomyID::EconomyID()
-	: m_id(DEFAULT_ID)
+	: ID(DEFAULT_ID), agentType(EconomyAgentType::None)
 {
 }
 
-EconomyID::EconomyID(const std::string& id)
-	: m_id(id)
+EconomyID::EconomyID(const std::string& id, EconomyAgentType agentType)
+	: ID(id), agentType(agentType)
 {
 }
 
@@ -26,20 +26,20 @@ EconomyID::~EconomyID()
 		m_existingIDs.erase(*this);
 }
 
-EconomyID EconomyID::Create()
+EconomyID EconomyID::Create(EconomyAgentType agentType)
 {
 	std::stringstream ss;
 	ss << "econ_" << rand();
 
 	// Find a new ID
-	EconomyID id{ ss.str() };
+	EconomyID id{ ss.str(), agentType };
 	while (m_existingIDs.find(id) != m_existingIDs.end())
 	{
 		// reset the stream
 		std::stringstream().swap(ss);
 
 		ss << "econ_" << rand();
-		id = EconomyID(ss.str());
+		id.ID = ss.str();
 	}
 
 	m_existingIDs.emplace(id);
@@ -54,20 +54,15 @@ EconomyID EconomyID::GetDefault()
 
 bool EconomyID::IsDefault() const
 {
-	return m_id == DEFAULT_ID;
+	return ID == DEFAULT_ID;
 }
 
 bool EconomyID::operator==(const EconomyID& other) const
 {
-	return m_id == other.m_id;
+	return ID == other.ID;
 }
 
 bool EconomyID::operator!=(const EconomyID& other) const
 {
 	return !(*this == other);
-}
-
-std::string EconomyID::GetStringID() const
-{
-	return m_id;
 }

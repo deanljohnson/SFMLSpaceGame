@@ -3,109 +3,161 @@
 #include "stdafx.h"
 #include <Economy.h>
 #include <Components/EconomyAgent.h>
+#include <ItemPriceLevelSet.h>
 
-ItemPriceSet m_defaultSet;
-std::unordered_map<EconomyID, ItemPriceSet> m_sellPrices;
-std::unordered_map<EconomyID, ItemPriceSet> m_buyPrices;
+std::shared_ptr<ItemPriceLevelSet> m_defaultPrices;
+std::unordered_map<EconomyAgentType, std::shared_ptr<ItemPriceLevelSet>> m_overriddenPrices;
+std::unordered_map<EconomyID, EconomyAgent*> m_econToAgentMap;
+
+namespace
+{
+	Price ComputePrice(const ItemPriceLevel& priceLevel, size_t curAmount)
+	{
+		// base cases requiring no calculation
+		if (priceLevel.minAmount == priceLevel.maxAmount) return priceLevel.targetPrice;
+		if (curAmount < priceLevel.minAmount) return priceLevel.maxPrice;
+		if (curAmount > priceLevel.maxAmount) return priceLevel.minPrice;
+		if (curAmount == priceLevel.targetAmount) return priceLevel.targetPrice;
+
+		// We have more items then desired, price will be lower
+		if (curAmount > priceLevel.targetAmount)
+		{
+			auto amtSpread = priceLevel.maxAmount - priceLevel.targetAmount;
+			auto overage = curAmount - priceLevel.targetAmount;
+			auto overageRatio = static_cast<float>(overage) / static_cast<float>(amtSpread);
+
+			auto priceSpread = priceLevel.targetPrice - priceLevel.minPrice;
+			auto priceAdjustment = static_cast<Price>(priceSpread * overageRatio);
+			return priceLevel.targetPrice - priceAdjustment;
+		}
+		// We have less items then desired, price will be higher
+		else //if (curAmount < priceLevel.targetAmount) // Always true at this point
+		{
+			auto amtSpread = priceLevel.targetAmount - priceLevel.minAmount;
+			auto underage = priceLevel.targetAmount - curAmount;
+			auto underageRatio = static_cast<float>(underage) / static_cast<float>(amtSpread);
+
+			auto priceSpread = priceLevel.maxPrice - priceLevel.targetPrice;
+			auto priceAdjustment = static_cast<Price>(priceSpread * underageRatio);
+			return priceLevel.targetPrice + priceAdjustment;
+		}
+	}
+}
 
 void Economy::Init()
 {
-	m_defaultSet.SetPrice(ItemType::Food, 10);
-	m_defaultSet.SetPrice(ItemType::FuelCells, 12);
-	m_defaultSet.SetPrice(ItemType::Narcotics, 50);
-	m_defaultSet.SetPrice(ItemType::Ore, 100);
+	Serializer<> ser;
+	auto iplsPtr = ser.Load<ItemPriceLevelSet>("EconomyBase");
+	m_defaultPrices = std::shared_ptr<ItemPriceLevelSet>(iplsPtr);
 }
 
-void Economy::AddAgent(const EconomyAgent& agent)
+void Economy::AddAgent(EconomyAgent& agent)
 {
-	AddAgent(agent, m_defaultSet, m_defaultSet);
-}
-
-void Economy::AddAgent(const EconomyAgent& agent, const ItemPriceSet& sellPriceSet, const ItemPriceSet& buyPriceSet)
-{
-	m_sellPrices.emplace(agent.GetEconomyID(), sellPriceSet);
-	m_buyPrices.emplace(agent.GetEconomyID(), buyPriceSet);
+	m_econToAgentMap.emplace(std::make_pair(agent.GetEconomyID(), &agent));
 }
 
 void Economy::RemoveAgent(const EconomyAgent& agent)
 {
-	m_sellPrices.erase(agent.GetEconomyID());
-	m_buyPrices.erase(agent.GetEconomyID());
-}
-
-bool Economy::Buys(const EconomyID& ident, ItemType itemType, const std::string& detail)
-{
-	auto it = m_buyPrices.find(ident);
-	if (it == m_buyPrices.end())
-		return false;
-
-	return it->second.HasPrice(itemType, detail);
-}
-
-bool Economy::Sells(const EconomyID& ident, ItemType itemType, const std::string& detail)
-{
-	auto it = m_sellPrices.find(ident);
-	if (it == m_sellPrices.end())
-		return false;
-
-	return it->second.HasPrice(itemType, detail);
+	m_econToAgentMap.erase(agent.GetEconomyID());
 }
 
 Price Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
-	auto it = m_buyPrices.find(ident);
-	if (it == m_buyPrices.end())
-		return 0;
+	auto* agent = m_econToAgentMap[ident];
+	auto amt = agent->GetAmountOfItem(itemType, detail);
+	Price buyPrice;
 
-	return it->second.GetPrice(itemType, detail);
+	// If there exists a price override for this agent type, item type, and item detail
+	auto it = m_overriddenPrices.find(ident.agentType);
+	if (it != m_overriddenPrices.end() 
+		&& it->second->HasLevel(itemType, detail))
+	{
+		buyPrice = ComputePrice(it->second->GetLevel(itemType, detail), amt);
+	}
+	else
+	{
+		buyPrice = ComputePrice(m_defaultPrices->GetLevel(itemType, detail), amt);
+	}
+
+	// buy prices are biased to always be less than normal,
+	// which matches with the expectation that when
+	// you are buying something you are trying to 
+	// get the best deal
+	return buyPrice * .85f;
 }
 
 Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail)
 {
-	auto it = m_sellPrices.find(ident);
-	if (it == m_sellPrices.end())
-		return 0;
+	auto* agent = m_econToAgentMap[ident];
+	auto amt = agent->GetAmountOfItem(itemType, detail);
+	Price sellPrice;
 
-	return it->second.GetPrice(itemType, detail);
+	// If there exists a price override for this agent type, item type, and item detail
+	auto it = m_overriddenPrices.find(ident.agentType);
+	if (it != m_overriddenPrices.end()
+		&& it->second->HasLevel(itemType, detail))
+	{
+		sellPrice = ComputePrice(it->second->GetLevel(itemType, detail), amt);
+	}
+	else
+	{
+		sellPrice = ComputePrice(m_defaultPrices->GetLevel(itemType, detail), amt);
+	}
+
+	// sell prices are biased to always be more than normal,
+	// which matches with the expectation that when
+	// you are selling something you are trying to 
+	// make the most money
+	return sellPrice * 1.15f;
 }
 
-Price Economy::GetBaselinePrice(ItemType itemType, const std::string& detail)
+std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType targetType, 
+	std::function<bool(const EconomyAgent&, long&, ItemType)> filter)
 {
-	return m_defaultSet.GetPrice(itemType, detail);
-}
+	Price mostPriceDifference = 0;
+	ItemType typeToTrade = ItemType::Credits;
+	EconomyAgent* agentToTradeWith = nullptr;
+	for (auto& i : m_econToAgentMap)
+	{
+		// If this agent is not of the right type
+		if ((static_cast<int>(i.first.agentType) & static_cast<int>(targetType)) == 0)
+			continue;
 
-ItemPriceSet& Economy::GetBuyPriceSet(const EconomyID& ident)
-{
-	return m_buyPrices.find(ident)->second;
-}
+		for (auto& itemTypeToDetailMap : *m_defaultPrices)
+		{
+			for (auto& detailToPriceMap : itemTypeToDetailMap.second)
+			{
+				size_t agentsAmount = i.second->GetAmountOfItem(itemTypeToDetailMap.first, detailToPriceMap.first);
 
-ItemPriceSet& Economy::GetSellPriceSet(const EconomyID& ident)
-{
-	return m_sellPrices.find(ident)->second;
-}
+				if (agentsAmount == 0) 
+					continue;
 
-void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, Price price)
-{
-	auto it = m_buyPrices.find(ident);
-	it->second.SetPrice(itemType, price);
-}
+				// the cost of buying out this locations stock of a given item
+				Price purchasePrice = ComputePrice(detailToPriceMap.second, agentsAmount);
+				purchasePrice *= agentsAmount;
 
-void Economy::SetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price)
-{
-	auto it = m_buyPrices.find(ident);
-	it->second.SetPrice(itemType, detail, price);
-}
+				auto defaultPriceLevel = (*m_defaultPrices)[itemTypeToDetailMap.first].at(detailToPriceMap.first);
+				Price avgPrice = defaultPriceLevel.targetPrice * agentsAmount;
 
-void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, Price price)
-{
-	auto it = m_sellPrices.find(ident);
-	it->second.SetPrice(itemType, price);
-}
+				// If the cost is more than the average, we will simply ignore this agent
+				// In the future it would be better to continue considering this agent
+				if (purchasePrice > avgPrice)
+					continue;
 
-void Economy::SetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail, Price price)
-{
-	auto it = m_sellPrices.find(ident);
-	it->second.SetPrice(itemType, detail, price);
+				long dif = static_cast<long>(avgPrice) - static_cast<long>(purchasePrice);
+				if (!filter(*i.second, dif, itemTypeToDetailMap.first))
+					continue;
+
+				Price priceDif = dif;
+				if (priceDif > mostPriceDifference)
+				{
+					mostPriceDifference = priceDif;
+					typeToTrade = itemTypeToDetailMap.first;
+					agentToTradeWith = i.second;
+				}
+			}
+		}
+	}
 }
 
 void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
@@ -116,10 +168,10 @@ void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::sha
 
 void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, std::shared_ptr<Item> item)
 {
-	TransferItems(seller, target, item);
-
 	// get the price for a single instance of the item
 	Price sellPrice = GetSellPrice(seller.GetEconomyID(), item->type, item->GetDetail());
+
+	TransferItems(seller, target, item);
 
 	// determine the price for the total number of items sold
 	sellPrice *= item->amount;
@@ -130,14 +182,14 @@ void Economy::DoSell(EconomyAgent& seller, EconomyAgent& target, std::shared_ptr
 
 void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<Item> item)
 {
+	// get the price for a single instance of the item
+	Price buyPrice = GetBuyPrice(buyer.GetEconomyID(), item->type, item->GetDetail());
+
 	TransferItems(source, buyer, item);
 
-	// get the price for a single instance of the item
-	Price sellPrice = GetBuyPrice(buyer.GetEconomyID(), item->type, item->GetDetail());
-
 	// determine the price for the total number of items bought
-	sellPrice *= item->amount;
+	buyPrice *= item->amount;
 
-	buyer.TakeCredits(sellPrice);
-	source.GiveCredits(sellPrice);
+	buyer.TakeCredits(buyPrice);
+	source.GiveCredits(buyPrice);
 }
