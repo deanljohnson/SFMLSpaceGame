@@ -55,7 +55,7 @@ private:
 
 		// Defualt serializeable components have no data associated with them
 		// the ComponentID is enough to load them
-		ar(id);
+		ar(cereal::make_nvp("compID", id));
 		return true;
 	}
 
@@ -67,13 +67,13 @@ private:
 			return false;
 
 		std::unique_ptr<T> comp{ &ent.GetComponent<T>() };
-		ar(id);
+		ar(cereal::make_nvp("compID", id));
 		ar(comp);
 
 		while (comp->next != nullptr) 
 		{
 			comp = std::unique_ptr<T>(static_cast<T*>(comp.release()->next));
-			ar(id);
+			ar(cereal::make_nvp("compID", id));
 			ar(comp);
 		}
 		comp.release();
@@ -93,12 +93,13 @@ private:
 	static void Load(ComponentID id, cereal::BinaryInputArchive& ar, Entity& ent);
 	static void Save(ComponentID id, cereal::JSONOutputArchive& ar, const Entity& ent);
 	static void Save(ComponentID id, cereal::BinaryOutputArchive& ar, const Entity& ent);
+	static void Save(ComponentID id, cereal::BasicOutputArchive& ar, const Entity& ent);
 public:
 	template<class Archive>
 	static void SerializeIn(Archive& ar, Entity& ent)
 	{
 		ComponentID id;
-		ar(id);
+		ar(cereal::make_nvp("compID", id));
 
 		// ComponentID::max is used as a flag to indicate the end of 
 		// component section in the serialized representation
@@ -106,7 +107,7 @@ public:
 		{
 			Load(id, ar, ent);
 
-			ar(id); // get the next component ID
+			ar(cereal::make_nvp("compID", id)); // get the next component ID
 		}
 	}
 
@@ -123,6 +124,6 @@ public:
 
 		// ComponentID::max is used as a flag to indicate the end of 
 		// component section in the serialized representation
-		ar(std::numeric_limits<ComponentID>::max());
+		ar(cereal::make_nvp("compID", std::numeric_limits<ComponentID>::max()));
 	}
 };

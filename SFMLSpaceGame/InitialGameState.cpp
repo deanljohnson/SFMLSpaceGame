@@ -31,6 +31,8 @@
 #include <UI/InventoryWindow.h>
 #include <UI/ContextMenu.h>
 
+#include <WorldDefinition.h>
+
 //#include <LaserRig.h>
 void TestRun()
 {
@@ -107,39 +109,27 @@ void InitialGameState::Init()
 
 	if (false)
 	{
-		auto ser = new Serializer<>();
-		ser->Load<EntityManager>("all");
+		auto ser = Serializer<>();
+
+		ser.Load<EntityManager>("all");
 	}
 	else
 	{
-		auto playerID = EntityFactory::CreatePlayer();
+		auto ser = Serializer<>();
+		ser.Load<WorldDefinition>("starter-world");
+
+		EntityFactory::CreatePlayer();
 
 		EntityFactory::CreateMusicPlayer(MUSIC_ONE);
-		EntityFactory::CreateBackground(BGONE_FRONT, playerID);
-
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-		AddEnemy();
-
-		EntityFactory::CreateStation("Human-Station", b2Vec2(7, 0));
-		EntityFactory::CreateStation("Human-Station", b2Vec2(40, 0));
-		EntityFactory::CreateStation("Human-Station", b2Vec2(7, 40));
-		EntityFactory::CreateStation("Human-Station", b2Vec2(40, 40));
-
-		EntityFactory::CreateAsteroid(b2Vec2(20, 20));
+		EntityFactory::CreateBackground(BGONE_FRONT, PlayerData::GetActive()->GetID());
 
 		EntityFactory::CreateSpawner(5.f, "Human-Fighter", b2Vec2(8.f, 8.f));
 		m_playerSpawnerID = EntityFactory::CreatePlayerSpawner(b2Vec2(0.f, 0.f));
 		
 
 		auto entMan = new EntityManager();
-		auto ser = new Serializer<>();
-		ser->Save<EntityManager>(entMan, "all", "EntMan");
+		
+		ser.Save<EntityManager>(entMan, "all", "EntMan");
 	}
 
 	m_impl->m_shieldStateDisplay.SetTarget(PlayerData::GetActive()->GetID());

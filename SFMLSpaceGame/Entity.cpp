@@ -43,6 +43,17 @@ void Entity::Render(sf::RenderTarget& target, sf::RenderStates& states)
 	}
 }
 
+bool Entity::isAlive() const noexcept
+{
+	return m_alive;
+}
+
+void Entity::Destroy() 
+{
+	m_alive = false;
+	OnDestroy();
+}
+
 void Entity::OnDestroy() 
 {
 	if (destroyCallback)
@@ -55,6 +66,32 @@ void Entity::OnDestroy()
 		// notify components on destruction
 		c.second->OnDestroy();
 	}
+}
+
+bool Entity::isActive() const noexcept
+{
+	return m_active;
+}
+
+void Entity::SetActive(bool val) noexcept
+{
+	m_active = val;
+}
+
+const std::string& Entity::GetName() const noexcept
+{
+	return m_name;
+}
+
+void Entity::SetName(const std::string& name) noexcept
+{
+	EntityManager::OnEntityNameChange(m_id, name, m_name);
+	m_name = name;
+}
+
+EntityID Entity::GetID() const noexcept
+{
+	return m_id;
 }
 
 void Entity::ApplyInitializer(EntityInitializer::Type init)

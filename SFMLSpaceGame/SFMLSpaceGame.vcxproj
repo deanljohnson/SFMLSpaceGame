@@ -306,10 +306,13 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\UIDefaults.cpp" />
     <ClCompile Include="UI\WidgetHelpers.cpp" />
+    <ClCompile Include="WorldDefinition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationDefinition.h" />
+    <ClInclude Include="AsteroidRecord.h" />
+    <ClInclude Include="BasicArchive.h" />
     <ClInclude Include="BatchIndex.h" />
     <ClInclude Include="Box2DSerialization.h" />
     <ClInclude Include="ComponentSerializer.h" />
@@ -380,7 +383,9 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Range.h" />
     <ClInclude Include="RenderBatch.h" />
     <ClInclude Include="Rig.h" />
+    <ClInclude Include="ShipRecord.h" />
     <ClInclude Include="SpriteKey.h" />
+    <ClInclude Include="StationRecord.h" />
     <ClInclude Include="StationStats.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Targeter.h" />
@@ -470,6 +475,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="LaserRig.h" />
     <ClInclude Include="WorldConstants.h" />
+    <ClInclude Include="WorldDefinition.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc" />

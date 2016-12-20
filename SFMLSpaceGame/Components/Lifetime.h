@@ -5,6 +5,7 @@ class Lifetime : public Component, public Updateable
 {
 private:
 	float m_lifetime;
+	float m_destroy;
 
 	friend class cereal::access;
 
@@ -12,7 +13,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_lifetime);
+		ar(entity.GetID(), m_lifetime, m_destroy);
 	}
 
 	template <class Archive>
@@ -20,11 +21,12 @@ private:
 	{
 		EntityID selfID;
 		float lifetime;
-		ar(selfID, lifetime);
-		construct(selfID, lifetime);
+		bool destroy;
+		ar(selfID, lifetime, destroy);
+		construct(selfID, lifetime, destroy);
 	}
 public:
-	Lifetime(EntityID ent, float lifetime);
+	Lifetime(EntityID ent, float lifetime, bool destoryOnTimeExpire = true);
 
 	virtual void Update() override;
 };

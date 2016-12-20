@@ -7,6 +7,10 @@
 #include <cereal\archives\json.hpp>
 #include <cereal\archives\binary.hpp>
 
+#include <cereal\types\utility.hpp>
+
+#include <BasicArchive.h>
+
 #ifdef RELEASE
 #ifndef DATA_PATH
 #define DATA_PATH "Data\\"
@@ -79,7 +83,7 @@ public:
 		std::ifstream is(DATA_PATH + name, mode);
 		if (is.fail())
 		{
-			std::cout << "Unable to fine the file " << name << "\n";
+			std::cout << "Unable to find the file " << name << "\n";
 		}
 
 		// Create the cereal archive from the input stream
@@ -107,6 +111,11 @@ public:
 			? std::ios::out | std::ios::binary
 			: std::ios::out;
 		std::ofstream os(DATA_PATH + fileName, mode);
+
+		//cereal::BasicOutputArchive arB(os);
+		//arB(std::string("hello"));
+		//arB(std::make_pair(std::string("hello"), 7));
+		//arB(cereal::make_nvp(rootName, *obj));
 
 		OUT_ARCHIVE ar(os);
 		ar(cereal::make_nvp(rootName, *obj));

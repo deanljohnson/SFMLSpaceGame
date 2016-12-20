@@ -9,12 +9,12 @@ private:
 	static std::shared_ptr<PlayerData> m_activeData;
 
 	EntityID m_ID;
-	std::string m_shipName;
+	std::string m_shipID;
 	std::function<void(const std::string&)> m_shipChangeCallback;
 public:
-	explicit PlayerData(const std::string& shipName);
+	explicit PlayerData(const std::string& shipID);
 
-	void SetPlayerShip(const std::string& shipName);
+	void SetPlayerShip(const std::string& shipID);
 	std::string GetPlayerShip() const;
 
 	void SetShipChangeCallback(std::function<void(const std::string&)> callback);

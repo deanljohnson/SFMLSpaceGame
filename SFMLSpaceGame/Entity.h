@@ -22,6 +22,7 @@ class Entity
 private:
 	bool m_alive{ true };
 	bool m_active{ true };
+	std::string m_name{""};
 
 	std::multimap<ComponentID, std::unique_ptr<Component>> m_components;
 	std::vector<ComponentID> m_updateableComponents;
@@ -38,7 +39,7 @@ private:
 	template<class T,
 		typename std::enable_if<!std::is_base_of<Updateable, T>::value
 		&& !std::is_base_of<Renderable, T>::value>::type* = nullptr>
-		void EmplaceComponent(ComponentID id, T* comp)
+	void EmplaceComponent(ComponentID id, T* comp)
 	{
 		//add to our set of components
 		m_components.emplace(id, std::unique_ptr<T>(comp));
@@ -125,7 +126,16 @@ private:
 	template<class Archive>
 	void save(Archive& ar) const
 	{
-		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
+		ar(cereal::make_nvp("ID", m_id));
+
+		// Serialize the entity's name, only if it has one
+		if (!m_name.empty())
+			ar(cereal::make_nvp("name", m_name));
+
+		ar(cereal::make_nvp("active", m_active),
+			cereal::make_nvp("groups", m_groupBitset),
+			cereal::make_nvp("initializers", m_initializerBitset));
+
 		// Save components
 		ComponentSerializer::SerializeOut<Archive>(ar, *this);
 	}
@@ -133,7 +143,18 @@ private:
 	template<class Archive>
 	void load(Archive& ar)
 	{
-		ar(m_id, m_alive, m_active, m_groupBitset, m_initializerBitset);
+		ar(cereal::make_nvp("ID", m_id));
+
+		// Load the entities name, if the data has a name field
+		std::string nextNode = ar.getNodeName();
+		if (nextNode == "name")
+			ar(m_name, cereal::make_nvp("active", m_active));
+		else
+			ar(m_active);
+
+		ar(cereal::make_nvp("groups", m_groupBitset),
+			cereal::make_nvp("initializers", m_initializerBitset));
+
 		OnDeserialize();
 
 		// Load components
@@ -168,8 +189,6 @@ public:
 		return *this;
 	}
 
-	// Declared only for serialization support
-	//Entity() {}
 	explicit Entity(EntityID id) 
 		: m_id(id)
 	{
@@ -181,14 +200,17 @@ public:
 	void Update();
 	void Render(sf::RenderTarget& target, sf::RenderStates& states);
 
-	inline bool isAlive() const { return m_alive; }
-	inline void Destroy() { m_alive = false; OnDestroy(); }
+	bool isAlive() const noexcept;
+	void Destroy();
 	void OnDestroy();
 
-	inline bool isActive() const { return m_active; }
-	inline void SetActive(bool val) { m_active = val; }
+	bool isActive() const noexcept;
+	void SetActive(bool val) noexcept;
 
-	inline EntityID GetID() const { return m_id; }
+	const std::string& GetName() const noexcept;
+	void SetName(const std::string& name) noexcept;
+
+	EntityID GetID() const noexcept;
 
 	void ApplyInitializer(EntityInitializer::Type init);
 

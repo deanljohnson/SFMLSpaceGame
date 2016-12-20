@@ -7,7 +7,19 @@
 EntityID EntityManager::m_nextID = ENTITY_ID_NULL;
 std::vector<std::unique_ptr<Entity>> EntityManager::m_entities{};
 std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> EntityManager::m_entityHandles{};
+std::unordered_map<std::string, EntityID> EntityManager::m_namedEntities;
 std::array<std::vector<Entity*>, maxGroups> EntityManager::m_groupedEntities{};
+
+void EntityManager::OnEntityNameChange(EntityID id, const std::string& name, const std::string& oldName) 
+{
+	auto existing = m_namedEntities.find(oldName);
+	if (existing != m_namedEntities.end()) 
+	{
+		m_namedEntities.erase(existing);
+	}
+
+	m_namedEntities[name] = id;
+}
 
 void EntityManager::Clear()
 {
@@ -19,6 +31,7 @@ void EntityManager::Clear()
 
 	m_entityHandles.clear();
 	m_entities.clear();
+	m_namedEntities.clear();
 }
 
 void EntityManager::Refresh()
@@ -44,6 +57,10 @@ void EntityManager::Refresh()
 			{
 				if (!entity->isAlive())
 				{
+					const std::string& entName = entity->GetName();
+					if (!entName.empty())
+						m_namedEntities.erase(entName);
+
 					m_entityHandles.erase(entity->GetID());
 					return true;
 				}
@@ -137,6 +154,13 @@ bool EntityManager::IsValidID(EntityID id)
 EntityHandle EntityManager::Get(EntityID id)
 {
 	return *m_entityHandles.find(id)->second.get();
+}
+
+EntityHandle EntityManager::GetByName(const std::string& name) 
+{
+	EntityID id = m_namedEntities[name];
+
+	return Get(id);
 }
 
 void EntityManager::AddToGroup(Entity* ent, Group group)

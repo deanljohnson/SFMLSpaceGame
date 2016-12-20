@@ -94,6 +94,9 @@
     <Filter Include="Header Files\Components\Interfaces">
       <UniqueIdentifier>{af27633a-808b-4fc9-b526-df556562ee3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataManagement\Records">
+      <UniqueIdentifier>{debf0053-e708-409b-8280-f4532e5987c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -437,6 +440,9 @@
     </ClCompile>
     <ClCompile Include="EconomyAgentType.cpp">
       <Filter>Source Files\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldDefinition.cpp">
+      <Filter>Source Files\DataManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -925,6 +931,21 @@
     </ClInclude>
     <ClInclude Include="GraphMap.h">
       <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldDefinition.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="StationRecord.h">
+      <Filter>Header Files\DataManagement\Records</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipRecord.h">
+      <Filter>Header Files\DataManagement\Records</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidRecord.h">
+      <Filter>Header Files\DataManagement\Records</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicArchive.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

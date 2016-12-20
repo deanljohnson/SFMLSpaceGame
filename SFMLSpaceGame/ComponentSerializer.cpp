@@ -4,6 +4,7 @@
 #include <ComponentSerializer.h>
 #include <Entity.h>
 #include <Components\Components.h>
+#include <BasicArchive.h>
 
 #ifndef ALL_COMPONENTS
 #define ALL_COMPONENTS Position, \
@@ -82,4 +83,11 @@ void ComponentSerializer::Save(ComponentID id,
 								const Entity& ent)
 {
 	SaveComponents<cereal::BinaryOutputArchive, ALL_COMPONENTS>(id, ar, ent);
+}
+
+void ComponentSerializer::Save(ComponentID id,
+	cereal::BasicOutputArchive& ar,
+	const Entity& ent)
+{
+	SaveComponents<cereal::BasicOutputArchive, ALL_COMPONENTS>(id, ar, ent);
 }

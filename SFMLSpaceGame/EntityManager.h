@@ -20,7 +20,11 @@ private:
 	static EntityID m_nextID;
 	static std::vector<std::unique_ptr<Entity>> m_entities;
 	static std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> m_entityHandles;
+	static std::unordered_map<std::string, EntityID> m_namedEntities;
 	static std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
+
+	friend class Entity;
+	static void OnEntityNameChange(EntityID id, const std::string& name, const std::string& oldName = "");
 
 	friend class cereal::access;
 
@@ -54,6 +58,7 @@ public:
 
 	static bool IsValidID(EntityID id);
 	static EntityHandle Get(EntityID id);
+	static EntityHandle GetByName(const std::string& name);
 
 	static EntityHandle AddEntity();
 	static EntityHandle AddEntity(Entity* ent);

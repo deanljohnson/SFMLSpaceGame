@@ -5,27 +5,27 @@
 
 std::shared_ptr<PlayerData> PlayerData::m_activeData{ nullptr };
 
-PlayerData::PlayerData(const std::string& shipName)
+PlayerData::PlayerData(const std::string& shipID)
 	: m_ID(ENTITY_ID_NULL),
-	  m_shipName(shipName),
-	  m_shipChangeCallback(nullptr)
+	m_shipID(shipID),
+	m_shipChangeCallback(nullptr)
 {
 }
 
-void PlayerData::SetPlayerShip(const std::string& shipName)
+void PlayerData::SetPlayerShip(const std::string& shipID)
 {
-	if (m_shipName == shipName)
+	if (m_shipID == shipID)
 		return;
 
-	m_shipName = shipName;
+	m_shipID = shipID;
 
 	if (m_shipChangeCallback != nullptr)
-		m_shipChangeCallback(m_shipName);
+		m_shipChangeCallback(m_shipID);
 }
 
 std::string PlayerData::GetPlayerShip() const
 {
-	return m_shipName;
+	return m_shipID;
 }
 
 void PlayerData::SetShipChangeCallback(std::function<void(const std::string&)> callback)

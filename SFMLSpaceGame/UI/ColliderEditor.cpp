@@ -122,7 +122,7 @@ void ColliderEditor::OnSave()
 {
 	auto colliderVerts = &m_targetStats->GetColliderVertices();
 	colliderVerts->clear();
-	for (int i = 0; i < m_verts.getVertexCount(); i++)
+	for (size_t i = 0; i < m_verts.getVertexCount(); i++)
 	{
 		auto& v = m_verts[i];
 		colliderVerts->push_back(v.position - m_shipImage.getPosition());

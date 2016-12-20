@@ -5,9 +5,10 @@
 #include <GameTime.h>
 #include <Entity.h>
 
-Lifetime::Lifetime(EntityID ent, float lifetime)
+Lifetime::Lifetime(EntityID ent, float lifetime, bool destroyOnExpire)
 	: Component(ent),
-	  m_lifetime(lifetime)
+	m_lifetime(lifetime),
+	m_destroy(destroyOnExpire)
 {}
 
 void Lifetime::Update()
@@ -15,5 +16,10 @@ void Lifetime::Update()
 	m_lifetime -= GameTime::deltaTime;
 
 	if (m_lifetime <= 0)
-		entity->Destroy();
+	{
+		if (m_destroy)
+			entity->Destroy();
+		else
+			entity->SetActive(false);
+	}
 }

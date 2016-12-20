@@ -13,6 +13,10 @@
 #include <ItemFactory.h>
 #include <SpriteKey.h>
 
+#include <StationRecord.h>
+#include <ShipRecord.h>
+#include <AsteroidRecord.h>
+
 void EntityFactory::Init()
 {
 	// Calling these sets the order in which components
@@ -114,18 +118,29 @@ EntityID EntityFactory::CreateMissile(std::shared_ptr<MissileStats> missile, Ent
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateShip(const std::string& shipName, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateShip(const std::string& shipID, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(NON_PLAYER_SHIP_GROUP);
-	MakeIntoShip(ent, shipName, p, radians, true);
+	MakeIntoShip(ent, shipID, p, radians, true);
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateStation(const std::string& stationID, const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateShip(const ShipRecord& record)
+{
+	return CreateShip(record.ID, record.pos, record.angle);
+}
+
+EntityID EntityFactory::CreateStation(const std::string& stationID, const std::string& stationName, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(STATION_GROUP);
+	ent->SetName(stationName);
 	MakeIntoStation(ent, stationID, p, radians);
 	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateStation(const StationRecord& record) 
+{
+	return CreateStation(record.ID, record.name, record.pos, record.angle);
 }
 
 EntityID EntityFactory::CreateExplosion(const std::string& explosionID, const b2Vec2& p)
@@ -153,11 +168,16 @@ EntityID EntityFactory::CreatPickup(const std::string& pickupType, const b2Vec2&
 	return ent.GetID();
 }
 
-EntityID EntityFactory::CreateAsteroid(const b2Vec2& p, float radians)
+EntityID EntityFactory::CreateAsteroid(const SpriteKey& sprite, const b2Vec2& p, float radians)
 {
 	auto ent = EntityManager::AddEntity(ASTEROID_GROUP);
-	MakeIntoAsteroid(ent, p, radians);
+	MakeIntoAsteroid(ent, sprite, p, radians);
 	return ent.GetID();
+}
+
+EntityID EntityFactory::CreateAsteroid(const AsteroidRecord& record)
+{
+	return CreateAsteroid(record.sprite, record.pos, record.angle);
 }
 
 EntityID EntityFactory::CreateSpawner(float time, const std::string& shipID, const b2Vec2& pos)
@@ -250,11 +270,11 @@ void EntityFactory::MakeIntoMissile(EntityHandle& ent, std::shared_ptr<MissileSt
 	ent->ApplyInitializer(EntityInitializer::Type::MissileSpriteBoundsColliderSetup);
 }
 
-void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const b2Vec2& p, float radians)
+void EntityFactory::MakeIntoAsteroid(EntityHandle& ent, const SpriteKey& key, const b2Vec2& p, float radians)
 {
 	ent->AddComponent<Position, const b2Vec2&>(p);
 	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<Sprite, const SpriteKey&, OriginOption>({ "asteroid-one", 5 }, OriginOption::Center);
+	ent->AddComponent<Sprite, const SpriteKey&, OriginOption>(key, OriginOption::Center);
 	ent->AddComponent<Physics>();
 	auto& ore = ent->AddComponent<OreVein>();
 	ore.SetAmount(1000);
