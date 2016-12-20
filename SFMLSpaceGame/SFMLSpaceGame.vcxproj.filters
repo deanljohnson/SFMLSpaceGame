@@ -1031,5 +1031,8 @@
     <None Include="..\Data\Human-Station.Station">
       <Filter>Data</Filter>
     </None>
+    <None Include="..\Data\starter-world.World">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>

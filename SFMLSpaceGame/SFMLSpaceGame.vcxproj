@@ -507,6 +507,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <None Include="..\Data\Mosquito.MissileRig" />
     <None Include="..\Data\player.entity" />
     <None Include="..\Data\ships.atlasmap-s" />
+    <None Include="..\Data\starter-world.World" />
     <None Include="..\Data\trade-icons.atlasmap-s" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
