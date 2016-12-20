@@ -163,8 +163,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Sprite.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Animation.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityID.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Updateable.h"
 		]
-		Lines = 42
+		Lines = 43
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -173,6 +174,7 @@ Files = {
 			"cereal\\access.hpp"
 			"Animation.h"
 			"EntityID.h"
+			"Components/Interfaces/Updateable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\BulletPhysics.cpp" = {
@@ -233,13 +235,15 @@ Files = {
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\CirclePrimitive.h" = {
 		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Renderable.h"
 		]
-		Lines = 38
+		Lines = 39
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"SFML/Graphics/CircleShape.hpp"
 			"cereal/access.hpp"
+			"Components/Interfaces/Renderable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\CollisionFilterComponent.cpp" = {
@@ -343,10 +347,11 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EconomyAgent.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ParallaxTargetAssigner.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ShipStatsComponent.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Animator.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\OreVein.h"
 		]
-		Lines = 47
+		Lines = 48
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -394,6 +399,7 @@ Files = {
 			"Components/EconomyAgent.h"
 			"Components/ParallaxTargetAssigner.h"
 			"Components/ShipStatsComponent.h"
+			"Components/StationStatsComponent.h"
 			"Components/Animator.h"
 			"Components/OreVein.h"
 		]
@@ -464,8 +470,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Interfaces\\Gun.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\HardPoint.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Updateable.h"
 		]
-		Lines = 118
+		Lines = 119
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -475,6 +482,7 @@ Files = {
 			"cereal/cereal.hpp"
 			"cereal/types/vector.hpp"
 			"HardPoint.h"
+			"Components/Interfaces/Updateable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\DirectionalKeyboardInput.cpp" = {
@@ -538,8 +546,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EconomyAgent.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Inventory.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h"
 		]
-		Lines = 120
+		Lines = 84
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -547,26 +556,23 @@ Files = {
 			"Components/EconomyAgent.h"
 			"Components/Inventory.h"
 			"Entity.h"
+			"Economy.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EconomyAgent.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EconomyID.h"
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.h"
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\PriceSupplier.h"
 		]
-		Lines = 76
+		Lines = 58
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"EconomyID.h"
-			"Economy.h"
 			"Item.h"
-			"ItemPrice.h"
-			"PriceSupplier.h"
 			"cereal/access.hpp"
+			"ItemPrice.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EntitySensor.cpp" = {
@@ -668,12 +674,30 @@ Files = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityID.h"
 		]
-		Lines = 39
+		Lines = 37
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"EntityID.h"
 			"cereal/access.hpp"
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Renderable.h" = {
+		AbsoluteIncludes = [
+		]
+		Lines = 6
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Updateable.h" = {
+		AbsoluteIncludes = [
+		]
+		Lines = 6
+		LocalIncludes = [
+		]
+		SystemIncludes = [
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Inventory.cpp" = {
@@ -890,7 +914,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\VectorMath.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h"
 		]
-		Lines = 107
+		Lines = 114
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -915,7 +939,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\MissileRig.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\DefaultSerializeable.h"
 		]
-		Lines = 71
+		Lines = 75
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -936,8 +960,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\CollisionGroups.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\GameState.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\MissileStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\GameTime.h"
 		]
-		Lines = 174
+		Lines = 175
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -950,6 +975,7 @@ Files = {
 			"CollisionGroups.h"
 			"GameState.h"
 			"MissileStats.h"
+			"GameTime.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\MissilePhysics.h" = {
@@ -1260,8 +1286,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Shields.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ExtendedMath.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\DefaultSerializeable.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Renderable.h"
 		]
-		Lines = 51
+		Lines = 52
 		LocalIncludes = [
 			"Shields.h"
 		]
@@ -1269,6 +1296,7 @@ Files = {
 			"SFML/Graphics/VertexArray.hpp"
 			"ExtendedMath.h"
 			"DefaultSerializeable.h"
+			"Components/Interfaces/Renderable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Shields.cpp" = {
@@ -1441,7 +1469,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
 		]
-		Lines = 154
+		Lines = 159
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -1459,13 +1487,15 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ShipThrusters.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Component.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Updateable.h"
 		]
-		Lines = 90
+		Lines = 91
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"Components/Component.h"
 			"cereal/cereal.hpp"
+			"Components/Interfaces/Updateable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\SmoothCameraFollow.cpp" = {
@@ -1600,6 +1630,29 @@ Files = {
 			"Components/Component.h"
 		]
 	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.cpp" = {
+		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
+		]
+		Lines = 16
+		LocalIncludes = [
+			"stdafx.h"
+		]
+		SystemIncludes = [
+			"Components/StationStatsComponent.h"
+			"StationStats.h"
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.h" = {
+		AbsoluteIncludes = [
+		]
+		Lines = 31
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+		]
+	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Text.cpp" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Text.h"
@@ -1710,13 +1763,15 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\TilingBackground.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Renderable.h"
 		]
-		Lines = 37
+		Lines = 38
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"ResourceLoader.h"
 			"SFML/Graphics/Sprite.hpp"
+			"Components/Interfaces/Renderable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ZoomHandler.cpp" = {
@@ -1725,7 +1780,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\WorldConstants.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\GameState.h"
 		]
-		Lines = 41
+		Lines = 54
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -1739,7 +1794,7 @@ Files = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Component.h"
 		]
-		Lines = 36
+		Lines = 38
 		LocalIncludes = [
 			"Component.h"
 		]
@@ -1754,7 +1809,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Components.h"
 		]
-		Lines = 113
+		Lines = 85
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -1767,8 +1822,9 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ComponentSerializer.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Component.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\DefaultSerializeable.h"
 		]
-		Lines = 96
+		Lines = 128
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -1777,6 +1833,7 @@ Files = {
 			"cereal\\archives\\binary.hpp"
 			"cereal\\types\\memory.hpp"
 			"Components\\Component.h"
+			"DefaultSerializeable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ContactFilter.cpp" = {
@@ -1823,27 +1880,31 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EconomyAgent.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevelSet.h"
 		]
-		Lines = 143
+		Lines = 119
 		LocalIncludes = [
 			"stdafx.h"
 		]
 		SystemIncludes = [
 			"Economy.h"
 			"Components/EconomyAgent.h"
+			"ItemPriceLevelSet.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceSet.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EconomyID.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceSerialization.h"
 		]
-		Lines = 40
+		Lines = 28
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"ItemPriceSet.h"
 			"EconomyID.h"
+			"ItemPriceSerialization.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EconomyID.cpp" = {
@@ -1887,16 +1948,17 @@ Files = {
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h" = {
 		AbsoluteIncludes = [
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EventQueue.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Component.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ComponentSerializer.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Group.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityID.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EventQueue.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityInitializer.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Updateable.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Interfaces\\Renderable.h"
 		]
-		Lines = 205
+		Lines = 256
 		LocalIncludes = [
-			"EventQueue.h"
 		]
 		SystemIncludes = [
 			"vector"
@@ -1908,9 +1970,12 @@ Files = {
 			"SFML/Graphics/RenderTarget.hpp"
 			"Group.h"
 			"EntityID.h"
+			"EventQueue.h"
 			"cereal\\access.hpp"
 			"cereal\\types\\bitset.hpp"
 			"EntityInitializer.h"
+			"Components/Interfaces/Updateable.h"
+			"Components/Interfaces/Renderable.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityFactory.cpp" = {
@@ -1923,12 +1988,12 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityHandle.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Components.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\PlayerData.h"
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\MissileStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemFactory.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SpriteKey.h"
 		]
-		Lines = 351
+		Lines = 330
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -1940,8 +2005,8 @@ Files = {
 			"EntityHandle.h"
 			"Components\\Components.h"
 			"PlayerData.h"
-			"Economy.h"
 			"MissileStats.h"
+			"StationStats.h"
 			"ItemFactory.h"
 			"SpriteKey.h"
 		]
@@ -2035,6 +2100,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityFactory.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityManager.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\PlayerData.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\InventoryWindow.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\StationWindow.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Position.h"
@@ -2050,10 +2116,12 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\DamageOnAttacked.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EntitySensor.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Text.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\EconomyAgent.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\CollisionGroups.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\VectorMath.h"
 		]
-		Lines = 258
+		Lines = 262
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2063,21 +2131,24 @@ Files = {
 			"EntityFactory.h"
 			"EntityManager.h"
 			"PlayerData.h"
-			"UI\\InventoryWindow.h"
-			"UI\\StationWindow.h"
-			"Components\\Position.h"
-			"Components\\Physics.h"
-			"Components\\MissilePhysics.h"
-			"Components\\Sprite.h"
-			"Components\\Shields.h"
-			"Components\\KeyListener.h"
-			"Components\\Inventory.h"
-			"Components\\ItemPickup.h"
-			"Components\\ThrusterAnimator.h"
-			"Components\\ShipStatsComponent.h"
-			"Components\\DamageOnAttacked.h"
-			"Components\\EntitySensor.h"
-			"Components\\Text.h"
+			"StationStats.h"
+			"UI/InventoryWindow.h"
+			"UI/StationWindow.h"
+			"Components/Position.h"
+			"Components/Physics.h"
+			"Components/MissilePhysics.h"
+			"Components/Sprite.h"
+			"Components/Shields.h"
+			"Components/KeyListener.h"
+			"Components/Inventory.h"
+			"Components/ItemPickup.h"
+			"Components/ThrusterAnimator.h"
+			"Components/ShipStatsComponent.h"
+			"Components/DamageOnAttacked.h"
+			"Components/EntitySensor.h"
+			"Components/Text.h"
+			"Components/StationStatsComponent.h"
+			"Components/EconomyAgent.h"
 			"CollisionGroups.h"
 			"VectorMath.h"
 		]
@@ -2133,7 +2204,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityManager.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ShipStatsComponent.h"
 		]
-		Lines = 79
+		Lines = 118
 		LocalIncludes = [
 			"stdafx.h"
 			"Entity.h"
@@ -2219,7 +2290,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\FileSystem.h"
 		]
-		Lines = 51
+		Lines = 58
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2231,7 +2302,7 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\FileSystem.h" = {
 		AbsoluteIncludes = [
 		]
-		Lines = 34
+		Lines = 36
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2475,7 +2546,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
 		]
-		Lines = 96
+		Lines = 133
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2490,7 +2561,7 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h" = {
 		AbsoluteIncludes = [
 		]
-		Lines = 156
+		Lines = 219
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2502,33 +2573,71 @@ Files = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
 		]
-		Lines = 78
+		Lines = 83
 		LocalIncludes = [
 		]
 		SystemIncludes = [
 			"Item.h"
 		]
 	}
-	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.cpp" = {
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.h" = {
 		AbsoluteIncludes = [
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
+		]
+		Lines = 3
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevel.h" = {
+		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.h"
 		]
-		Lines = 48
+		Lines = 28
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+			"ItemPrice.h"
+			"cereal/access.hpp"
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevelSet.cpp" = {
+		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevelSet.h"
+		]
+		Lines = 37
 		LocalIncludes = [
 			"stdafx.h"
 		]
 		SystemIncludes = [
-			"ItemPrice.h"
+			"ItemPriceLevelSet.h"
 		]
 	}
-	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.h" = {
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevelSet.h" = {
 		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceLevel.h"
 		]
-		Lines = 24
+		Lines = 25
 		LocalIncludes = [
 		]
 		SystemIncludes = [
+			"unordered_map"
+			"Item.h"
+			"ItemPriceLevel.h"
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceSerialization.h" = {
+		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
+		]
+		Lines = 68
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+			"Item.h"
+			"cereal/types/unordered_map.hpp"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceSet.cpp" = {
@@ -2536,7 +2645,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPriceSet.h"
 		]
-		Lines = 32
+		Lines = 42
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2549,7 +2658,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Item.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemPrice.h"
 		]
-		Lines = 93
+		Lines = 33
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2585,7 +2694,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\GameState.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Economy.h"
 		]
-		Lines = 110
+		Lines = 111
 		LocalIncludes = [
 			"stdafx.h"
 			"EntityFactory.h"
@@ -2822,7 +2931,7 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\resource.h" = {
 		AbsoluteIncludes = [
 		]
-		Lines = 83
+		Lines = 68
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2835,12 +2944,13 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\resource.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\FileSystem.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\AnimationDefinition.h"
 		]
-		Lines = 328
+		Lines = 330
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2851,6 +2961,7 @@ Files = {
 			"map"
 			"assert.h"
 			"ShipStats.h"
+			"StationStats.h"
 			"Serializer.h"
 			"FileSystem.h"
 			"TextureMap.h"
@@ -2863,7 +2974,7 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h" = {
 		AbsoluteIncludes = [
 		]
-		Lines = 36
+		Lines = 38
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2944,7 +3055,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipResourceSelector.h"
 		]
-		Lines = 17
+		Lines = 25
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -2954,11 +3065,9 @@ Files = {
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipResourceSelector.h" = {
 		AbsoluteIncludes = [
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
 		]
-		Lines = 20
+		Lines = 15
 		LocalIncludes = [
-			"ResourceLoader.h"
 		]
 		SystemIncludes = [
 		]
@@ -2984,8 +3093,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\MiningLaser.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\Shields.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SFMLSerialization.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SpriteKey.h"
 		]
-		Lines = 78
+		Lines = 79
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -2996,6 +3106,7 @@ Files = {
 			"Components/Shields.h"
 			"cereal/types/vector.hpp"
 			"SFMLSerialization.h"
+			"SpriteKey.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SpawnLocationSelector.cpp" = {
@@ -3067,6 +3178,31 @@ Files = {
 		LocalIncludes = [
 		]
 		SystemIncludes = [
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.cpp" = {
+		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
+		]
+		Lines = 18
+		LocalIncludes = [
+			"stdafx.h"
+		]
+		SystemIncludes = [
+			"StationStats.h"
+		]
+	}
+	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h" = {
+		AbsoluteIncludes = [
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SpriteKey.h"
+		]
+		Lines = 39
+		LocalIncludes = [
+		]
+		SystemIncludes = [
+			"cereal/access.hpp"
+			"SpriteKey.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\stdafx.cpp" = {
@@ -3234,7 +3370,7 @@ Files = {
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h" = {
 		AbsoluteIncludes = [
 		]
-		Lines = 104
+		Lines = 118
 		LocalIncludes = [
 		]
 		SystemIncludes = [
@@ -3253,8 +3389,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ColliderEditor.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 142
+		Lines = 143
 		LocalIncludes = [
 			"stdafx.h"
 			"UI.h"
@@ -3264,13 +3401,14 @@ Files = {
 			"UI/ColliderEditor.h"
 			"Serializer.h"
 			"ShipStats.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ColliderEditor.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\GameWindow.h"
 		]
-		Lines = 38
+		Lines = 40
 		LocalIncludes = [
 			"GameWindow.h"
 		]
@@ -3381,8 +3519,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\VectorMath.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 277
+		Lines = 278
 		LocalIncludes = [
 			"stdafx.h"
 			"UI.h"
@@ -3393,6 +3532,7 @@ Files = {
 			"VectorMath.h"
 			"ShipStats.h"
 			"Serializer.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\HardPointEditor.h" = {
@@ -3400,7 +3540,7 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\GameWindow.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\HardPointWidget.h"
 		]
-		Lines = 50
+		Lines = 52
 		LocalIncludes = [
 			"GameWindow.h"
 		]
@@ -3451,30 +3591,31 @@ Files = {
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ImageSelector.cpp" = {
 		AbsoluteIncludes = [
-			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\UI.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ImageSelector.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\UI.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\FileSystem.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 52
+		Lines = 113
 		LocalIncludes = [
 			"stdafx.h"
-			"UI.h"
 		]
 		SystemIncludes = [
 			"UI/ImageSelector.h"
+			"UI/UI.h"
 			"FileSystem.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ImageSelector.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\GameWindow.h"
 		]
-		Lines = 15
+		Lines = 28
 		LocalIncludes = [
-			"GameWindow.h"
 		]
 		SystemIncludes = [
-			"SFGUI/Window.hpp"
+			"UI/GameWindow.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\InventoryItemWidget.cpp" = {
@@ -3561,8 +3702,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\ShipStatsComponent.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ItemFactory.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 211
+		Lines = 219
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -3578,6 +3720,7 @@ Files = {
 			"Components/ShipStatsComponent.h"
 			"ItemFactory.h"
 			"Entity.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\InventoryWindow.h" = {
@@ -3715,8 +3858,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ResourceLoader.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\SpriteKey.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 155
+		Lines = 180
 		LocalIncludes = [
 			"stdafx.h"
 		]
@@ -3728,6 +3872,7 @@ Files = {
 			"ResourceLoader.h"
 			"Serializer.h"
 			"SpriteKey.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\MissileRigEditorWidget.h" = {
@@ -3887,8 +4032,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\UIDefaults.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 486
+		Lines = 487
 		LocalIncludes = [
 			"stdafx.h"
 			"UI.h"
@@ -3905,6 +4051,7 @@ Files = {
 			"UI/UIDefaults.h"
 			"Serializer.h"
 			"ShipStats.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ShipEditorWindow.h" = {
@@ -4007,8 +4154,13 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\StationWindow.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\StationTradeWindow.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\PlayerData.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityManager.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\EntityHandle.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Entity.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\StationStats.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Components\\StationStatsComponent.h"
 		]
-		Lines = 64
+		Lines = 122
 		LocalIncludes = [
 			"stdafx.h"
 			"UI.h"
@@ -4018,13 +4170,18 @@ Files = {
 			"UI/StationWindow.h"
 			"UI/StationTradeWindow.h"
 			"PlayerData.h"
+			"EntityManager.h"
+			"EntityHandle.h"
+			"Entity.h"
+			"StationStats.h"
+			"Components/StationStatsComponent.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\StationWindow.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\GameWindow.h"
 		]
-		Lines = 12
+		Lines = 16
 		LocalIncludes = [
 			"GameWindow.h"
 		]
@@ -4061,8 +4218,9 @@ Files = {
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ThrusterLocationEditor.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\ShipStats.h"
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\Serializer.h"
+			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\TextureMap.h"
 		]
-		Lines = 138
+		Lines = 139
 		LocalIncludes = [
 			"stdafx.h"
 			"UI.h"
@@ -4072,13 +4230,14 @@ Files = {
 			"UI/ThrusterLocationEditor.h"
 			"ShipStats.h"
 			"Serializer.h"
+			"TextureMap.h"
 		]
 	}
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\ThrusterLocationEditor.h" = {
 		AbsoluteIncludes = [
 			"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame\\UI\\GameWindow.h"
 		]
-		Lines = 38
+		Lines = 40
 		LocalIncludes = [
 			"GameWindow.h"
 		]
@@ -4188,11 +4347,11 @@ IncludeDirectories = [
 	"C:\\Users\\Dean\\Documents\\Visual Studio 2015\\Projects\\SFMLSpaceGame\\SFMLSpaceGame"
 ]
 LastScan = {
-	Day = 9
-	Hour = 23
-	Minute = 21
+	Day = 13
+	Hour = 4
+	Minute = 18
 	Month = 12
-	Second = 1
+	Second = 55
 	Year = 2016
 }
 ScanDirectories = [
