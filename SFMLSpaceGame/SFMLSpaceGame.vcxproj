@@ -490,8 +490,24 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Data\Alien-One.ship" />
+    <None Include="..\Data\all.entities" />
+    <None Include="..\Data\asteroid-one.anim" />
+    <None Include="..\Data\Cannon-One.LaserRig" />
+    <None Include="..\Data\Cannon-Two.LaserRig" />
+    <None Include="..\Data\EconomyBase.ItemPriceLevels" />
+    <None Include="..\Data\exhaust-one.anim" />
+    <None Include="..\Data\explosion-one.anim" />
+    <None Include="..\Data\Hammer.MissileRig" />
+    <None Include="..\Data\Human-Battlecruiser.ship" />
     <None Include="..\Data\Human-Fighter.ship" />
+    <None Include="..\Data\Human-Station.Station" />
     <None Include="..\Data\LaserOne.projectile" />
+    <None Include="..\Data\Mining-Laser-One.MiningRig" />
+    <None Include="..\Data\missiles.atlasmap-s" />
+    <None Include="..\Data\Mosquito.MissileRig" />
+    <None Include="..\Data\player.entity" />
+    <None Include="..\Data\ships.atlasmap-s" />
+    <None Include="..\Data\trade-icons.atlasmap-s" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

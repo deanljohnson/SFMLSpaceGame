@@ -983,5 +983,53 @@
     <None Include="..\Data\Alien-One.ship">
       <Filter>Data</Filter>
     </None>
+    <None Include="..\Data\asteroid-one.anim">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\exhaust-one.anim">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\explosion-one.anim">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\missiles.atlasmap-s">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\ships.atlasmap-s">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\trade-icons.atlasmap-s">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\all.entities">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\player.entity">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\EconomyBase.ItemPriceLevels">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Cannon-One.LaserRig">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Cannon-Two.LaserRig">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Mining-Laser-One.MiningRig">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Hammer.MissileRig">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Mosquito.MissileRig">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Human-Battlecruiser.ship">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="..\Data\Human-Station.Station">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>
