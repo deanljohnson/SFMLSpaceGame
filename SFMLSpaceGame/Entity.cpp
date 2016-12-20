@@ -83,12 +83,6 @@ const std::string& Entity::GetName() const noexcept
 	return m_name;
 }
 
-void Entity::SetName(const std::string& name) noexcept
-{
-	EntityManager::OnEntityNameChange(m_id, name, m_name);
-	m_name = name;
-}
-
 EntityID Entity::GetID() const noexcept
 {
 	return m_id;

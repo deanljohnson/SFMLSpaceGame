@@ -352,6 +352,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Economy.h" />
     <ClInclude Include="EconomyAgentType.h" />
     <ClInclude Include="EconomyID.h" />
+    <ClInclude Include="EconomyRecord.h" />
     <ClInclude Include="EntityHandle.h" />
     <ClInclude Include="EntityHelpers.h" />
     <ClInclude Include="EntityID.h" />
@@ -373,6 +374,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="ItemPriceSet.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MapSerialization.h" />
     <ClInclude Include="MiningLaserTargeter.h" />
     <ClInclude Include="MiningRig.h" />
     <ClInclude Include="MissileRig.h" />

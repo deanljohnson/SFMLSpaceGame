@@ -1,6 +1,6 @@
 {
     "player": {
-        "ID": 2087,
+        "ID": 11,
         "active": true,
         "groups": {
             "type": 0,
@@ -16,10 +16,10 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": {
-                        "v.x": 0.0,
-                        "v.y": 0.0
+                        "x": 0.0,
+                        "y": 0.0
                     }
                 }
             }
@@ -30,7 +30,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 0.0
                 }
             }
@@ -41,7 +41,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": {
                         "type": 3,
                         "texID": "ships",
@@ -49,8 +49,8 @@
                     },
                     "value2": 0,
                     "value3": {
-                        "v.x": 0.0,
-                        "v.y": 0.0
+                        "x": 0.0,
+                        "y": 0.0
                     }
                 }
             }
@@ -61,15 +61,15 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": {
                         "type": 1,
                         "texID": "exhaust-one"
                     },
                     "value2": 1,
                     "value3": {
-                        "v.x": -0.3700000047683716,
-                        "v.y": -0.10000002384185791
+                        "x": -0.3700000047683716,
+                        "y": -0.10000002384185791
                     }
                 }
             }
@@ -80,15 +80,15 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": {
                         "type": 1,
                         "texID": "exhaust-one"
                     },
                     "value2": 1,
                     "value3": {
-                        "v.x": -0.3799999952316284,
-                        "v.y": 0.10999998450279236
+                        "x": -0.3799999952316284,
+                        "y": 0.10999998450279236
                     }
                 }
             }
@@ -99,7 +99,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": "exhaust-one",
                     "value2": 1
                 }
@@ -111,7 +111,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": "exhaust-one",
                     "value2": 2
                 }
@@ -123,7 +123,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 7,
                     "value2": 0.0,
                     "value3": 0.0,
@@ -137,7 +137,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 0.75
                 }
             }
@@ -148,7 +148,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 2,
                     "value2": 1.0
                 }
@@ -160,10 +160,10 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": {
-                        "v.x": 0.0,
-                        "v.y": 0.0
+                        "x": 0.0,
+                        "y": 0.0
                     }
                 }
             }
@@ -175,11 +175,11 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": "Alien-One",
                     "value2": {
-                        "v.x": -431602080.0,
-                        "v.y": -431602080.0
+                        "x": -431602080.0,
+                        "y": -431602080.0
                     },
                     "value3": 0.0,
                     "value4": 1.0
@@ -193,7 +193,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 1.5
                 }
             }
@@ -205,7 +205,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 801
                 }
             }
@@ -217,7 +217,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 0
                 }
             }
@@ -229,7 +229,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": -1
                 }
             }
@@ -240,7 +240,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 0
                 }
             }
@@ -251,7 +251,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 1
                 }
             }
@@ -262,7 +262,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 2
                 }
             }
@@ -273,7 +273,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 1.0,
                     "value2": 1.0
                 }
@@ -285,7 +285,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 100.0,
                     "value2": 100.0
                 }
@@ -299,7 +299,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": 0.0,
                     "value2": [
                         1,
@@ -315,7 +315,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": [
                         8,
                         27,
@@ -332,7 +332,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": [
                         {
                             "polymorphic_id": 2147483649,
@@ -383,9 +383,9 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "econ_id": {
-                        "ID": 26,
+                        "ID": 10,
                         "type": ""
                     }
                 }
@@ -397,7 +397,7 @@
             "ptr_wrapper": {
                 "valid": 1,
                 "data": {
-                    "value0": 2087,
+                    "value0": 11,
                     "value1": "Alien-One"
                 }
             }

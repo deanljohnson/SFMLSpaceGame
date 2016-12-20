@@ -10,17 +10,6 @@ std::unordered_map<EntityID, std::unique_ptr<EntityHandle>> EntityManager::m_ent
 std::unordered_map<std::string, EntityID> EntityManager::m_namedEntities;
 std::array<std::vector<Entity*>, maxGroups> EntityManager::m_groupedEntities{};
 
-void EntityManager::OnEntityNameChange(EntityID id, const std::string& name, const std::string& oldName) 
-{
-	auto existing = m_namedEntities.find(oldName);
-	if (existing != m_namedEntities.end()) 
-	{
-		m_namedEntities.erase(existing);
-	}
-
-	m_namedEntities[name] = id;
-}
-
 void EntityManager::Clear()
 {
 	for (auto i(0u); i < maxGroups; i++)
@@ -130,9 +119,9 @@ EntityHandle EntityManager::AddEntity()
 	return EntityHandle(*hanPtr);
 }
 
-EntityHandle EntityManager::AddEntity(Group group)
+EntityHandle EntityManager::AddEntity(Group group, const std::string& name)
 {
-	Entity* e{ new Entity(m_nextID++) };
+	Entity* e{ new Entity(m_nextID++, name) };
 	std::unique_ptr<Entity> uPtr(e);
 
 	EntityHandle* hanPtr{ new EntityHandle(e, e->GetID()) };
@@ -140,6 +129,11 @@ EntityHandle EntityManager::AddEntity(Group group)
 
 	m_entities.emplace_back(move(uPtr));
 	m_entityHandles.emplace(make_pair(e->GetID(), move(handle)));
+
+	if (!name.empty())
+	{
+		m_namedEntities[name] = e->GetID();
+	}
 
 	e->AddToGroup(group);
 

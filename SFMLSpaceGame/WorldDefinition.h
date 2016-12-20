@@ -1,19 +1,25 @@
 #pragma once
-#include <EntityFactory.h>
 #include <StationRecord.h>
 #include <ShipRecord.h>
 #include <AsteroidRecord.h>
+#include <EconomyRecord.h>
 
 class WorldDefinition 
 {
 private:
 	enum class ObjectType 
 	{
-		Station, Ship, Asteroid
+		Station, Ship, Asteroid, Economy
 	};
 
 	static std::unordered_map<std::string, ObjectType> StringToObjectType;
 	static std::unordered_map<ObjectType, std::string> ObjectTypeToString;
+
+	void HandleLoad(const StationRecord& record);
+	void HandleLoad(const ShipRecord& record);
+	void HandleLoad(const AsteroidRecord& record);
+	void HandleLoad(const EconomyRecord& record);
+
 	friend class cereal::access;
 
 	template<class Archive>
@@ -32,20 +38,25 @@ private:
 			case ObjectType::Station: {
 				StationRecord record;
 				ar(record);
-				EntityFactory::CreateStation(record);
+				HandleLoad(record);
 				break;
 				}
 			case ObjectType::Ship: {
 				ShipRecord record;
 				ar(record);
-				EntityFactory::CreateShip(record);
+				HandleLoad(record);
 				break;
 				}
 			case ObjectType::Asteroid: {
 				AsteroidRecord record;
 				ar(record);
-				EntityFactory::CreateAsteroid(record);
+				HandleLoad(record);
 				break;
+				}
+			case ObjectType::Economy: {
+				EconomyRecord record;
+				ar(record);
+				HandleLoad(record);
 				}
 			}
 		}

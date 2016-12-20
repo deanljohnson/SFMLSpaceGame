@@ -23,9 +23,6 @@ private:
 	static std::unordered_map<std::string, EntityID> m_namedEntities;
 	static std::array<std::vector<Entity*>, maxGroups> m_groupedEntities;
 
-	friend class Entity;
-	static void OnEntityNameChange(EntityID id, const std::string& name, const std::string& oldName = "");
-
 	friend class cereal::access;
 
 	template<typename Archive>
@@ -62,7 +59,7 @@ public:
 
 	static EntityHandle AddEntity();
 	static EntityHandle AddEntity(Entity* ent);
-	static EntityHandle AddEntity(Group group);
+	static EntityHandle AddEntity(Group group, const std::string& name = "");
 
 	static void AddToGroup(Entity* ent, Group group);
 	static const std::vector<Entity*>& GetEntitiesByGroup(Group group);

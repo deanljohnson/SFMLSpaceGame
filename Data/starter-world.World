@@ -4,8 +4,8 @@
 			"ID": "Human-Station",
 			"name": "Oakland",
 			"pos": {
-				"v.x": 7.0,
-				"v.y": 0.0
+				"x": 7.0,
+				"y": 0.0
 			},
 			"ang": 0.0
 		},
@@ -13,8 +13,8 @@
 			"ID": "Human-Station",
 			"name": "Milpitas",
 			"pos": {
-				"v.x": 40.0,
-				"v.y": 0.0
+				"x": 40.0,
+				"y": 0.0
 			},
 			"ang": 0.0
 		},
@@ -22,8 +22,8 @@
 			"ID": "Human-Station",
 			"name": "San Jose",
 			"pos": {
-				"v.x": 40.0,
-				"v.y": 40.0
+				"x": 40.0,
+				"y": 40.0
 			},
 			"ang": 0.0
 		},
@@ -31,56 +31,56 @@
 			"ID": "Human-Station",
 			"name": "San Francisco",
 			"pos": {
-				"v.x": 7.0,
-				"v.y": 40.0
+				"x": 7.0,
+				"y": 40.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 5.0,
-				"v.y": 5.0
+				"x": 5.0,
+				"y": 5.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 7.0,
-				"v.y": 5.0
+				"x": 7.0,
+				"y": 5.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 9.0,
-				"v.y": 5.0
+				"x": 9.0,
+				"y": 5.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 5.0,
-				"v.y": 7.0
+				"x": 5.0,
+				"y": 7.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 7.0,
-				"v.y": 7.0
+				"x": 7.0,
+				"y": 7.0
 			},
 			"ang": 0.0
 		},
 		"Ship": {
 			"ID": "Human-Fighter",
 			"pos": {
-				"v.x": 9.0,
-				"v.y": 7.0
+				"x": 9.0,
+				"y": 7.0
 			},
 			"ang": 0.0
 		},
@@ -91,10 +91,30 @@
 				"index": 5
 			},
 			"pos": {
-				"v.x": 20.0,
-				"v.y": 20.0
+				"x": 20.0,
+				"y": 20.0
 			},
 			"ang": 0.0
+		},
+		"Economy": {
+			"tradeConnections": [
+				{
+					"first": "Oakland",
+					"second": "San Francisco"
+				},
+				{
+					"first": "Oakland",
+					"second": "Milpitas"
+				},
+				{
+					"first": "San Jose",
+					"second": "San Francisco"
+				},
+				{
+					"first": "San Jose",
+					"second": "Milpitas"
+				}
+			]
 		}
 	}
 }

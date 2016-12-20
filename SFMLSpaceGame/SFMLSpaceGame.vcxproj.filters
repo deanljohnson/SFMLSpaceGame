@@ -947,6 +947,12 @@
     <ClInclude Include="BasicArchive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EconomyRecord.h">
+      <Filter>Header Files\DataManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="MapSerialization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLSpaceGame.rc">

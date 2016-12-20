@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
 #include <Box2D\Common\b2Math.h>
 
-struct StationRecord {
+struct StationRecord 
+{
 	std::string ID;
 	std::string name;
 	b2Vec2 pos;

@@ -3,6 +3,7 @@
 #include <EconomyID.h>
 #include <ItemPriceSerialization.h> // included simply to make sure the templated functions inside are defined
 
+struct EconomyRecord;
 class EconomyAgent;
 
 namespace Economy
@@ -38,4 +39,6 @@ namespace Economy
 	// Transfer the given Item (type and amount) from the source to the buyer
 	// and adjust credits of each agent based on the buyers buy amount
 	void DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<Item> item);
+
+	void LoadFromRecord(const EconomyRecord& record);
 }

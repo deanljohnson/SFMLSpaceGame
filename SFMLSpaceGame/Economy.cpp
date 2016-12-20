@@ -5,11 +5,14 @@
 #include <Components/EconomyAgent.h>
 #include <ItemPriceLevelSet.h>
 #include <GraphMap.h>
+#include <EconomyRecord.h>
+#include <Entity.h>
 
-GraphMap<std::string, std::string> m_econGraph;
+GraphMap<std::string, EconomyAgent*> m_econGraph;
 std::shared_ptr<ItemPriceLevelSet> m_defaultPrices;
 std::unordered_map<EconomyAgentType, std::shared_ptr<ItemPriceLevelSet>> m_overriddenPrices;
 std::unordered_map<EconomyID, EconomyAgent*> m_econToAgentMap;
+std::unordered_map<std::string, EconomyAgent*> m_nameToAgentMap;
 
 namespace
 {
@@ -51,62 +54,26 @@ void Economy::Init()
 	Serializer<> ser;
 	auto iplsPtr = ser.Load<ItemPriceLevelSet>("EconomyBase");
 	m_defaultPrices = std::shared_ptr<ItemPriceLevelSet>(iplsPtr);
-
-	m_econGraph.Add("hello", "a");
-	m_econGraph.Add("boo", "b");
-	m_econGraph.Remove("hello");
-	m_econGraph.Add("hello", "a");
-	m_econGraph.Connect("hello", "boo");
-	m_econGraph.Disconnect("hello", "boo");
-	m_econGraph["boo"] = "b";
-	m_econGraph.Connect("hello", "boo");
-	//m_econGraph.Remove("boo");
-
-	if (m_econGraph.AreNeighbors("hello", "boo"))
-	{
-		printf("bingo\n");
-	}
-
-	m_econGraph.Add("hello1", "c");
-	m_econGraph.Add("hello2", "d");
-	m_econGraph.Connect("hello", "hello1");
-	m_econGraph.Connect("hello", "hello2");
-	m_econGraph.Add("hello-deep", "hello-deep");
-	m_econGraph.Connect("hello2", "hello-deep");
-
-	m_econGraph.BreadthFirstTraverse("hello",
-		[](std::string& data)
-	{
-		printf(data.c_str());
-		printf("\n");
-		return true;
-	});
-
-	m_econGraph.DepthFirstTraverse("hello",
-		[](std::string& data)
-	{
-		printf(data.c_str());
-		printf("\n");
-		return true;
-	});
-
-
-	for (auto it = m_econGraph.NeighborBegin("hello");
-		it != m_econGraph.NeighborEnd("hello"); ++it)
-	{
-		printf(it->c_str());
-		printf("\n");
-	}
 }
 
 void Economy::AddAgent(EconomyAgent& agent)
 {
 	m_econToAgentMap.emplace(std::make_pair(agent.GetEconomyID(), &agent));
+
+	if (!agent.entity->GetName().empty())
+	{
+		m_nameToAgentMap.emplace(make_pair(agent.entity->GetName(), &agent));
+	}
 }
 
 void Economy::RemoveAgent(const EconomyAgent& agent)
 {
 	m_econToAgentMap.erase(agent.GetEconomyID());
+
+	if (!agent.entity->GetName().empty())
+	{
+		m_nameToAgentMap.erase(agent.entity->GetName());
+	}
 }
 
 Price Economy::GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail)
@@ -240,4 +207,21 @@ void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<I
 
 	buyer.TakeCredits(buyPrice);
 	source.GiveCredits(buyPrice);
+}
+
+void Economy::LoadFromRecord(const EconomyRecord& record)
+{
+	for (auto& connectionPair : record.tradeConnections)
+	{
+		if (!m_econGraph.Contains(connectionPair.first))
+		{
+			m_econGraph.Add(connectionPair.first, m_nameToAgentMap[connectionPair.first]);
+		}
+		if (!m_econGraph.Contains(connectionPair.second))
+		{
+			m_econGraph.Add(connectionPair.second, m_nameToAgentMap[connectionPair.second]);
+		}
+
+		m_econGraph.Connect(connectionPair.first, connectionPair.second);
+	}
 }

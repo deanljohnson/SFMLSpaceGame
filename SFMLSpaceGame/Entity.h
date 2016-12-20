@@ -189,8 +189,9 @@ public:
 		return *this;
 	}
 
-	explicit Entity(EntityID id) 
-		: m_id(id)
+	explicit Entity(EntityID id, const std::string& name = "") 
+		: m_name(name),
+		m_id(id)
 	{
 	}
 
@@ -208,7 +209,6 @@ public:
 	void SetActive(bool val) noexcept;
 
 	const std::string& GetName() const noexcept;
-	void SetName(const std::string& name) noexcept;
 
 	EntityID GetID() const noexcept;
 

@@ -132,8 +132,7 @@ EntityID EntityFactory::CreateShip(const ShipRecord& record)
 
 EntityID EntityFactory::CreateStation(const std::string& stationID, const std::string& stationName, const b2Vec2& p, float radians)
 {
-	auto ent = EntityManager::AddEntity(STATION_GROUP);
-	ent->SetName(stationName);
+	auto ent = EntityManager::AddEntity(STATION_GROUP, stationName);
 	MakeIntoStation(ent, stationID, p, radians);
 	return ent.GetID();
 }

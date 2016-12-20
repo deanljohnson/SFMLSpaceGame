@@ -5,8 +5,9 @@
 // Must be placed in cereal namespace in order to be found by cereal
 namespace cereal {
 	template<class Archive>
-	void serialize(Archive& archive, b2Vec2& v) 
+	void serialize(Archive& ar, b2Vec2& v) 
 	{
-		archive(CEREAL_NVP(v.x), CEREAL_NVP(v.y));
+		ar(cereal::make_nvp("x", v.x), 
+			cereal::make_nvp("y", v.y));
 	}
 }
