@@ -4,6 +4,7 @@
 #include <Components/GameWorldClickListener.h>
 #include <Interfaces/MouseListener.h>
 #include <GameState.h>
+#include <GameView.h>
 
 GameWorldClickListener::GameWorldClickListener(EntityID ent)
 	: Component(ent),
@@ -168,7 +169,7 @@ void GameWorldClickListener::Update()
 			GameState::pendingEvents.erase(GameState::pendingEvents.begin() + i);
 	}
 
-	b2Vec2 mousePos = GetWorldMouseLocation();
+	b2Vec2 mousePos = GameView::GetWorldMouseLocation();
 	if (m_leftClickedState == Down || m_leftClickedState == Held) 
 	{
 		for (auto listener : m_leftHeldListeners) 

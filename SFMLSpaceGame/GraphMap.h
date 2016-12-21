@@ -179,6 +179,9 @@ public:
 	// have been visited
 	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func, size_t depthLimit)
 	{
+		if (depthLimit == 0)
+			BreadthFirstTraverse(start, func);
+
 		std::unordered_map<Vertex*, bool> visited;
 		std::queue<Vertex*> pending;
 
@@ -186,7 +189,7 @@ public:
 		size_t elemsToDepthIncrease = 1;
 		size_t nextElemsToDepthIncrease = 0;
 
-		pending.push(m_vertices.at(start).get());
+		pending.push(m_vertices.at(start.empty() ? (*m_vertices.begin()).first : start).get());
 		while (!pending.empty())
 		{
 			Vertex* cur = pending.front();
@@ -220,7 +223,7 @@ public:
 		std::unordered_map<Vertex*, bool> visited;
 		std::queue<Vertex*> pending;
 
-		pending.push(m_vertices.at(start).get());
+		pending.push(m_vertices.at(start.empty() ? (*m_vertices.begin()).first : start).get());
 		while (!pending.empty())
 		{
 			Vertex* cur = pending.front();

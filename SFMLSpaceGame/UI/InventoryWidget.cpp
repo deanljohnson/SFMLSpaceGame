@@ -7,6 +7,7 @@
 #include <Components/Inventory.h>
 #include <UI/ItemContextProvider.h>
 #include <Entity.h>
+#include <GameView.h>
 
 InventoryWidget::InventoryWidget()
 	: m_selected(-1)
@@ -143,7 +144,7 @@ void InventoryWidget::OnRightClick(int index)
 		return;
 
 	auto contextMenu = GameWindow::GetWindow<ContextMenu>("context_menu");
-	contextMenu->SetPosition(GetScreenMouseLocation() - sf::Vector2f{5,5});
+	contextMenu->SetPosition(GameView::GetScreenMouseLocation() - sf::Vector2f{5,5});
 	contextMenu->Show(true);
 
 	contextMenu->ClearOptions();

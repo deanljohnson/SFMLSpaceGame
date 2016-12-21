@@ -13,6 +13,7 @@
 #include <EntityHelpers.h>
 #include <VectorMath.h>
 #include <Entity.h>
+#include <GameView.h>
 
 MissileLauncher::MissileLauncher(EntityID ent)
 	: Component(ent),
@@ -46,7 +47,7 @@ void MissileLauncher::FireWeapon(int i, EntityID target)
 	auto hp = m_launcherData->hardPoints[i];
 
 	// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
-	auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
+	auto offset = (hp.positionOffset * GameView::METERS_PER_PIXEL) - m_sprite.GetOrigin();
 
 	EntityFactory::CreateMissile(m_launcherData->rigs[i]->missile, entity->GetID(), target,
 		m_position.position + Rotate(offset, rot),

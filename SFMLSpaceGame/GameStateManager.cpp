@@ -5,6 +5,13 @@
 #include <InitialGameState.h>
 #include <MainMenuState.h>
 
+GameStateManager* GameStateManager::Singleton{ nullptr };
+
+GameStateManager::GameStateManager()
+{
+	Singleton = this;
+}
+
 void GameStateManager::Init()
 {
 	PushState(std::make_unique<MainMenuState>());

@@ -8,10 +8,10 @@
 #include <Components/SoundSource.h>
 #include <EntityFactory.h>
 #include <VectorMath.h>
-#include <WorldConstants.h>
 #include <GameTime.h>
 #include <LaserRig.h>
 #include <Entity.h>
+#include <GameView.h>
 
 DirectionalGun::DirectionalGun(EntityID ent)
 	: Component(ent),
@@ -39,7 +39,7 @@ void DirectionalGun::FireWeapon(int i)
 	auto hp = m_gunData->hardPoints[i];
 
 	// hard point offset is stored in pixel coordinates irrespective of the origin, must convert
-	auto offset = (hp.positionOffset * METERS_PER_PIXEL) - m_sprite.GetOrigin();
+	auto offset = (hp.positionOffset * GameView::METERS_PER_PIXEL) - m_sprite.GetOrigin();
 
 	EntityFactory::CreateProjectile(m_gunData->rigs[i]->projectile, entity->GetID(),
 		m_position.position + Rotate(offset, rot),

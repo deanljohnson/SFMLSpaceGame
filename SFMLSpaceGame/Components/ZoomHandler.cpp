@@ -2,18 +2,8 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <Components/ZoomHandler.h>
-#include <WorldConstants.h>
+#include <GameView.h>
 #include <GameState.h>
-
-namespace
-{
-	void ApplyZoom(float zoomAmount)
-	{
-		auto v = GAME_WINDOW->getView();
-		v.zoom(zoomAmount);
-		GAME_WINDOW->setView(v);
-	}
-}
 
 ZoomHandler::ZoomHandler(EntityID ent)
 	: Component(ent)
@@ -24,7 +14,7 @@ ZoomHandler::ZoomHandler(EntityID ent)
 ZoomHandler::~ZoomHandler()
 {
 	// Reset the zoom
-	ApplyZoom(1.f / m_totalZoom);
+	GameView::ZoomGameView(1.f / m_totalZoom);
 }
 
 void ZoomHandler::Update()
@@ -43,7 +33,7 @@ void ZoomHandler::Update()
 
 			// The change in zoom factor
 			float zoomAmount = (m_zoomFactor / m_lastZoom);
-			ApplyZoom(zoomAmount);
+			GameView::ZoomGameView(zoomAmount);
 
 			m_totalZoom *= zoomAmount;
 			m_lastZoom = m_zoomFactor;

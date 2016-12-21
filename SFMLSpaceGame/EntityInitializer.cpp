@@ -7,7 +7,6 @@
 #include <EntityManager.h>
 
 #include <PlayerData.h>
-#include <StationStats.h>
 #include <UI/InventoryWindow.h>
 #include <UI/StationWindow.h>
 #include <Components/Position.h>
@@ -23,10 +22,9 @@
 #include <Components/DamageOnAttacked.h>
 #include <Components/EntitySensor.h>
 #include <Components/Text.h>
-#include <Components/StationStatsComponent.h>
-#include <Components/EconomyAgent.h>
 #include <CollisionGroups.h>
 #include <VectorMath.h>
+#include <GameView.h>
 
 void DoPlayerKeyListenerSetup(Entity& ent) 
 {
@@ -90,7 +88,7 @@ void DoSetThrusterLocations(Entity& ent)
 
 	for (size_t i = 0; i < thrusterLocations.size(); i++)
 	{
-		auto tl = thrusterLocations[i] * METERS_PER_PIXEL;
+		auto tl = thrusterLocations[i] * GameView::METERS_PER_PIXEL;
 		thrusterSprites[i]->SetOffset(SFMLVecToB2Vec(tl - origin));
 	}
 }
@@ -130,7 +128,7 @@ void DoAssignShipStatsData(Entity& ent)
 	auto shape = sf::ConvexShape(verts.size());
 	for (size_t i = 0; i < verts.size(); i++)
 	{
-		shape.setPoint(i, (verts[i] * METERS_PER_PIXEL) - origin);
+		shape.setPoint(i, (verts[i] * GameView::METERS_PER_PIXEL) - origin);
 	}
 
 	phys.AddShape(shape, .2f, IS_SHIP, COLLIDES_WITH_SOLIDS | COLLIDES_WITH_SENSOR);

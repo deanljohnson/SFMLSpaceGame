@@ -33,6 +33,7 @@
 
 #include <WorldDefinition.h>
 #include <Economy.h>
+#include <GameView.h>
 
 //#include <LaserRig.h>
 void TestRun()
@@ -231,7 +232,7 @@ void InitialGameState::Render(sf::RenderTarget& target)
 	pendingEvents.clear();
 
 	sf::RenderStates rendStates;
-	rendStates.transform.scale(PIXELS_PER_METER, PIXELS_PER_METER);
+	rendStates.transform.scale(GameView::PIXELS_PER_METER, GameView::PIXELS_PER_METER);
 	
 	EntityManager::Render(target, rendStates);
 	RenderBatch::RenderAll(target, rendStates);

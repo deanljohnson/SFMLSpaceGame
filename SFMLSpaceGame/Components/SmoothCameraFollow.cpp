@@ -4,7 +4,7 @@
 #include <Components/SmoothCameraFollow.h>
 #include <Components/Position.h>
 #include <Entity.h>
-#include <WorldConstants.h>
+#include <GameView.h>
 
 SmoothCameraFollow::SmoothCameraFollow(EntityID ent)
 	: Component(ent),
@@ -15,9 +15,9 @@ SmoothCameraFollow::SmoothCameraFollow(EntityID ent)
 
 void SmoothCameraFollow::Update()
 {
-	auto v = GAME_WINDOW->getView();
-	v.setCenter(MapWorldToPixel(m_lastPosition));
-	GAME_WINDOW->setView(v);
-
-	m_lastPosition = m_position.position;
+	if (m_lastPosition != m_position.position)
+	{
+		GameView::SetGameViewCenter(m_lastPosition);
+		m_lastPosition = m_position.position;
+	}
 }

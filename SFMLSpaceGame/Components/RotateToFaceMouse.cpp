@@ -4,8 +4,8 @@
 #include <Components/RotateToFaceMouse.h>
 #include <Components/Physics.h>
 #include <Components/ShipThrusters.h>
-#include <WorldConstants.h>
 #include <Entity.h>
+#include <GameView.h>
 
 RotateToFaceMouse::RotateToFaceMouse(EntityID ent, float smoothingScale)
 	: Component(ent), 
@@ -17,7 +17,7 @@ RotateToFaceMouse::RotateToFaceMouse(EntityID ent, float smoothingScale)
 
 void RotateToFaceMouse::Update() 
 {
-	b2Vec2 mousePos = GetWorldMouseLocation();
+	b2Vec2 mousePos = GameView::GetWorldMouseLocation();
 
 	b2Vec2 difVector = mousePos - m_physics.GetPosition();
 	float targetAngle = atan2f(difVector.y, difVector.x);

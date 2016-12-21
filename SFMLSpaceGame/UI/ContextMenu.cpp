@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/ContextMenu.h>
+#include <GameView.h>
 
 ContextMenu::ContextMenu() 
 	: GameWindow("context_menu"),
@@ -49,7 +50,7 @@ void ContextMenu::OpenGroupWindow(std::weak_ptr<sfg::Window> groupWindow)
 		throw "Ptr to group window expired in context menu";
 	auto gw = groupWindow.lock();
 	// Place group popup at mouse
-	gw->SetPosition(GetScreenMouseLocation() - sf::Vector2f{ 5,5 });
+	gw->SetPosition(GameView::GetScreenMouseLocation() - sf::Vector2f{ 5,5 });
 	gw->Show(true);
 	m_groupOpen = true;
 	// Make sure the popup is not covered

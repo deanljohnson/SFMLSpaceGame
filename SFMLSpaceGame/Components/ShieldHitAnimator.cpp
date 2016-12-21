@@ -61,6 +61,7 @@ void ShieldHitAnimator::Render(sf::RenderTarget& target, sf::RenderStates states
 
 	states.transform.combine(m_transform);
 
+	DRAW_CALLS++;
 	target.draw(m_vertextArray, states);
 }
 

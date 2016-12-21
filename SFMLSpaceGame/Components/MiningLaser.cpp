@@ -14,6 +14,7 @@
 #include <GameTime.h>
 #include <EntityManager.h>
 #include <ItemFactory.h>
+#include <GameView.h>
 
 namespace {
 	MiningLaserTargeter targeter{2.5f};
@@ -188,8 +189,8 @@ void MiningLaser::SetLaserData(MiningLaserData* data)
 	m_laserData = data;
 
 	m_batchIndex = RenderBatch::Get(m_laserData->rig->imageLocation)->Add();
-	m_miningLaserThickness = m_batchIndex->GetRect().height * METERS_PER_PIXEL;
+	m_miningLaserThickness = m_batchIndex->GetRect().height * GameView::METERS_PER_PIXEL;
 	m_batchIndex->SetColor(sf::Color::Transparent);
-	m_batchIndex->SetOrigin({ 0, m_miningLaserThickness / 2.f * METERS_PER_PIXEL });
+	m_batchIndex->SetOrigin({ 0, m_miningLaserThickness / 2.f * GameView::METERS_PER_PIXEL });
 	m_batchIndex->GetTexture()->setRepeated(true);
 }

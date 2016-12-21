@@ -16,6 +16,10 @@ private:
 	std::unique_ptr<GameState> m_nextState;
 
 public:
+	static GameStateManager* Singleton;
+
+	GameStateManager();
+
 	void Init();
 	void CleanUp();
 

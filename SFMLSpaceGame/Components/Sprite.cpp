@@ -12,6 +12,7 @@
 #include <BatchIndex.h>
 #include <AnimationDefinition.h>
 #include <TextureMap.h>
+#include <GameView.h>
 
 void Sprite::InitializeBatchRender()
 {
@@ -30,7 +31,7 @@ void Sprite::InitializeBatchRender()
 
 	auto rect = m_batchIndex->GetRect();
 
-	m_batchIndex->SetScale(sf::Vector2f(METERS_PER_PIXEL, METERS_PER_PIXEL));
+	m_batchIndex->SetScale(sf::Vector2f(GameView::METERS_PER_PIXEL, GameView::METERS_PER_PIXEL));
 	m_batchIndex->SetOrigin(SpriteHelpers::GetOrigin(rect, m_originOption));
 
 	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position + Rotate(m_offset, m_rotation.GetRadians())));
@@ -79,7 +80,7 @@ void Sprite::SetOffset(const b2Vec2& v)
 
 void Sprite::SetScale(float x, float y)
 {
-	m_batchIndex->SetScale({ (x * METERS_PER_PIXEL), (y * METERS_PER_PIXEL) });
+	m_batchIndex->SetScale({ (x * GameView::METERS_PER_PIXEL), (y * GameView::METERS_PER_PIXEL) });
 }
 
 void Sprite::SetTextureRect(const sf::IntRect& rect) 

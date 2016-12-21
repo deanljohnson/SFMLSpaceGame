@@ -238,6 +238,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="GameView.cpp" />
     <ClCompile Include="InitialGameState.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
@@ -362,6 +363,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="GameView.h" />
     <ClInclude Include="GraphMap.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="HardPoint.h" />

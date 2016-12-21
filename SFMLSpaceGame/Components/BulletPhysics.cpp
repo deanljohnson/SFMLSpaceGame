@@ -147,7 +147,7 @@ void BulletPhysics::CreateBody()
 	bodyDef.angle = m_rotation.GetRadians();
 	bodyDef.fixedRotation = true;
 	bodyDef.type = b2_dynamicBody;
-	bodyDef.bullet = true;
+	bodyDef.bullet = false;
 
 	m_body = GameState::world.CreateBody(&bodyDef);
 

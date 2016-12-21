@@ -9,13 +9,8 @@
 #include "EntityFactory.h"
 #include "UI/UI.h"
 #include "UI/GameWindow.h"
+#include <GameView.h>
 
-#ifdef _DEBUG
-#define DEBUG_PRINT(format, ...) printf(format, __VA_ARGS__)
-#endif
-
-sf::RenderWindow* GAME_WINDOW;
-GameStateManager* GAME_STATE_MANAGER;
 size_t DRAW_CALLS = 0;
 
 sf::VideoMode GetVideoMode()
@@ -30,7 +25,7 @@ int main()
 	const std::string TITLE = "Space Game";
 	sf::RenderWindow window(GetVideoMode(), TITLE);
 	//window.setFramerateLimit(60);
-	GAME_WINDOW = &window;
+	GameView::SetWindow(&window);
 
 	UI ui;
 	ui.SetSize(window.getSize());
@@ -40,7 +35,6 @@ int main()
 
 	GameStateManager game_manager{};
 	game_manager.Init();
-	GAME_STATE_MANAGER = &game_manager;
 
 	sf::Clock clock{};
 
@@ -94,7 +88,7 @@ int main()
 		
 #ifdef _DEBUG
 		float renderTime = clock.getElapsedTime().asSeconds() - updateTime;
-		GAME_WINDOW->setTitle(TITLE
+		window.setTitle(TITLE
 			+ " Update FPS: " + std::to_string(static_cast<int>(1.f / updateTime))
 			+ " Render FPS: " + std::to_string(static_cast<int>(1.f / renderTime))
 			+ " GameLoop FPS: " + std::to_string(static_cast<int>(1.f / (updateTime + renderTime)))

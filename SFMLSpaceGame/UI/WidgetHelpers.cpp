@@ -2,7 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include <UI/WidgetHelpers.h>
-#include <WorldConstants.h>
+#include <GameView.h>
 
 namespace WidgetHelpers
 {
@@ -15,9 +15,9 @@ namespace WidgetHelpers
 
 	sf::Vector2f GetRelativeMousePos(std::shared_ptr<sfg::Widget> widget)
 	{
-		auto mousePos = sf::Mouse::getPosition(*GAME_WINDOW);
+		auto mousePos = GameView::GetScreenMouseLocation();
 		auto canvasPos = widget->GetAbsolutePosition();
-		return sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - canvasPos;
+		return mousePos - canvasPos;
 	}
 
 	bool MouseInWidget(std::shared_ptr<sfg::Widget> widget) 

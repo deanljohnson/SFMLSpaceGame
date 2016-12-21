@@ -29,9 +29,9 @@ namespace Economy
 	// that which is cheapest in relation to it's average 
 	// sell price.
 	std::pair<ItemType, EconomyAgent*> FindBestPurchase(
-		const std::string& start,
-		size_t searchRange,
-		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter);
+		const std::string& start = "",
+		size_t searchRange = 0,
+		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter = nullptr);
 
 	// Moves the given Item (type and amount) from the source to the target
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);

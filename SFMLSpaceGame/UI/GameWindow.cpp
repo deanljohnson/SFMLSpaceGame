@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include <UI/GameWindow.h>
 #include "UI.h"
-#include <WorldConstants.h>
+#include <GameView.h>
 
 int GameWindow::m_windowsWithMouse = 0;
 int GameWindow::m_elementsWithKeyboardFocus = 0;
@@ -42,8 +42,7 @@ bool GameWindow::MouseInWindow()
 		return true;
 
 	// Get the mouse pos within the window as a Vector2f
-	auto mousePosI = sf::Mouse::getPosition(*GAME_WINDOW);
-	auto mousePos = sf::Vector2f(static_cast<float>(mousePosI.x), static_cast<float>(mousePosI.y));
+	auto mousePos = GameView::GetScreenMouseLocation();
 	
 	for (auto& kvp : m_windows)
 	{

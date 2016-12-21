@@ -4,6 +4,7 @@
 #include <Components/ShipAI.h>
 #include <Components/Position.h>
 #include <Components/ShipController.h>
+#include <Components/EconomyAgent.h>
 #include <EntityManager.h>
 #include <EntityGroups.h>
 #include <Event.h>
@@ -49,23 +50,23 @@ void ShipAI::ProcessAIState()
 	{
 	case AIState::None:
 		m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
-		FindStation();
+		FindTrade();
 		break;
 	case AIState::AttackingShip:
 		// target is dead or otherwise "gone"
-		if (!m_targetHandle.IsValid())
+		if (!EntityManager::IsValidID(m_targetID))
 		{
 			m_controller.Clear();
 			m_currentState = AIState::None;
 		}			
 		break;
 	case AIState::MovingToStation:
-		if (m_targetHandle.IsValid())
+		if (EntityManager::IsValidID(m_targetID))
 		{
 			float dist = (m_position - *m_stationPosition).LengthSquared();
 			if (dist < m_shipStats->approachDistance * m_shipStats->approachDistance * 1.15f)
 			{
-				m_lastStationReached = m_targetHandle.GetID();
+				m_lastStationReached = m_targetID;
 				m_currentState = AIState::None;
 			}
 		}
@@ -79,9 +80,7 @@ void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 	if (!EntityManager::IsValidID(event->attackerID))
 		return;
 
-	auto ent = EntityManager::Get(event->attackerID);
-
-	m_targetHandle = ent;
+	m_targetID = event->attackerID;
 
 	m_controller.SetTarget(event->attackerID);
 	m_controller.Set(StrafeToTargetsRearForAttack);
@@ -91,22 +90,28 @@ void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 	m_currentState = AIState::AttackingShip;
 }
 
-void ShipAI::FindStation()
+#include <Economy.h>
+
+void ShipAI::FindTrade()
 {
-	auto& stations = EntityManager::GetEntitiesByGroup(STATION_GROUP);
+	/*auto& stations = EntityManager::GetEntitiesByGroup(STATION_GROUP);
 
 	int index = rand() % stations.size();
 	while (stations[index]->GetID() == m_lastStationReached)
 		index = rand() % stations.size();
 
 	Entity* station = stations[index];
-	/*Entity* station = EntityHelpers::GetClosestEntity(entity, stations, [this](Entity* e) { return e->GetID() != m_lastStationReached; });
-	if (station == nullptr)
-		return;*/
+	*/
+	// If the last station we reached is not a valid ID, we don't have a start station (empty name)
+	std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
+		? ""
+		: EntityManager::Get(m_lastStationReached)->GetName();
 
-	m_targetHandle = EntityManager::Get(station->GetID());
-	m_stationPosition = &m_targetHandle->GetComponent<Position>();
-	m_controller.SetTarget(m_targetHandle->GetID());
+	std::pair<ItemType, EconomyAgent*> trade = Economy::FindBestPurchase(startStationName, 2, nullptr);
+
+	EntityHandle handle = EntityManager::Get(trade.second->GetEntityID());
+	m_stationPosition = &handle->GetComponent<Position>();
+	m_controller.SetTarget(handle->GetID());
 	m_controller.Set(Maneuvers::Approach);
 	m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
 

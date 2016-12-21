@@ -89,6 +89,7 @@ inline sf::Vector2f AtAngleDegrees(float deg)
 	return sf::Vector2f(cosf(rad), sinf(rad));
 }
 
+// Returns a unit vector in the given direction
 inline sf::Vector2f AtAngleRad(float rad)
 {
 	return sf::Vector2f(cosf(rad), sinf(rad));

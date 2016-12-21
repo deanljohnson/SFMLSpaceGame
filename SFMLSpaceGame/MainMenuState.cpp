@@ -4,6 +4,7 @@
 #include <MainMenuState.h>
 #include <GameStateManager.h>
 #include <InitialGameState.h>
+#include <GameView.h>
 
 MainMenuState::MainMenuState()
 {
@@ -13,9 +14,9 @@ void MainMenuState::Init()
 {
 	m_mainMenu.Show(true);
 	m_mainMenu.CenterOnScreen();
-
-	m_mainMenu.SetStartGameCallback([] { GAME_STATE_MANAGER->SetNextState(std::make_unique<InitialGameState>()); });
-	m_mainMenu.SetExitCallback([] { GAME_WINDOW->close(); });
+	
+	m_mainMenu.SetStartGameCallback([] { GameStateManager::Singleton->SetNextState(std::make_unique<InitialGameState>()); });
+	m_mainMenu.SetExitCallback([] { GameView::CloseWindow(); });
 }
 
 void MainMenuState::CleanUp()

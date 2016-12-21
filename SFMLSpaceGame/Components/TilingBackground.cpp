@@ -7,6 +7,7 @@
 #include <Components/Position.h>
 #include <WorldConstants.h>
 #include <VectorMath.h>
+#include <GameView.h>
 
 TilingBackground::TilingBackground(EntityID ent, ResourceID resourceID)
 	: Component(ent),
@@ -17,7 +18,7 @@ TilingBackground::TilingBackground(EntityID ent, ResourceID resourceID)
 	m_sprite = sf::Sprite(*m_tex.get());
 
 	//scale to be in terms of meters - the render function will scale back to pixels
-	m_sprite.scale(2.f * METERS_PER_PIXEL, 2.f * METERS_PER_PIXEL);
+	m_sprite.scale(2.f * GameView::METERS_PER_PIXEL, 2.f * GameView::METERS_PER_PIXEL);
 }
 
 void TilingBackground::Update()

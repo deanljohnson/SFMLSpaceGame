@@ -1,5 +1,5 @@
 #pragma once
-#include <EntityManager.h>
+#include <EntityID.h>
 
 class ShipController;
 class AttackedEvent;
@@ -16,13 +16,13 @@ private:
 	std::shared_ptr<ShipStats> m_shipStats;
 	ShipController& m_controller;
 	Position& m_position;
-	EntityHandle m_targetHandle;
+	EntityID m_targetID;
 
 	void ProcessEvents();
 	void ProcessAIState();
 	void HandleAttackedEvent(AttackedEvent* event);
 
-	void FindStation();
+	void FindTrade();
 
 	friend class cereal::access;
 
@@ -30,7 +30,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_shipStatsID, m_currentState, m_lastStationReached, m_targetHandle.GetID());
+		ar(entity.GetID(), m_shipStatsID, m_currentState, m_lastStationReached, m_targetID);
 	}
 
 	template <class Archive>
@@ -41,11 +41,9 @@ private:
 		ar(selfID, shipStatsID);
 		construct(selfID, shipStatsID);
 
-		EntityID targetID;
 		ar(construct->m_currentState,
 			construct->m_lastStationReached,
-			targetID);
-		construct->m_targetHandle = EntityManager::Get(targetID);
+			construct->m_targetID);
 	}
 public:
 	explicit ShipAI(EntityID ent, const std::string& shipID);

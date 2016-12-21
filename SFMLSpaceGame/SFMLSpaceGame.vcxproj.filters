@@ -447,6 +447,9 @@
     <ClCompile Include="ProjectileFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -957,6 +960,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProjectileFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
