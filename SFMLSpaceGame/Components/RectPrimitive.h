@@ -40,4 +40,8 @@ public:
 	~RectPrimitive();
 
 	virtual void Update() override;
+	void SetSize(float w, float h);
+
+	virtual void OnEntityEnable() override;
+	virtual void OnEntityDisable() override;
 };

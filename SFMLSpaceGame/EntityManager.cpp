@@ -65,7 +65,11 @@ void EntityManager::Update()
 		auto& curGroup( m_groupedEntities[i] );
 
 		for (auto& e : curGroup)
-			e->Update();
+		{
+			if (e->isActive())
+				e->Update();
+		}
+			
 	}
 }
 

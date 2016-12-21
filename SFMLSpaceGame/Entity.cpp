@@ -75,7 +75,23 @@ bool Entity::isActive() const noexcept
 
 void Entity::SetActive(bool val) noexcept
 {
+	if (m_active == val) return;
 	m_active = val;
+
+	if (m_active)
+	{
+		for (auto& c : m_components)
+		{
+			c.second->OnEntityEnable();
+		}
+	}
+	else
+	{
+		for (auto& c : m_components)
+		{
+			c.second->OnEntityDisable();
+		}
+	}
 }
 
 const std::string& Entity::GetName() const noexcept

@@ -45,3 +45,24 @@ void RectPrimitive::Update()
 	m_batchIndex->SetPosition(B2VecToSFMLVec(m_position.position));
 	m_batchIndex->SetRotation(m_rotation.GetRadians());
 }
+
+void RectPrimitive::SetSize(float w, float h)
+{
+	sf::RectangleShape rect = sf::RectangleShape({ w, h });
+	(*m_batchIndex)[0].position = rect.getPoint(0);
+	(*m_batchIndex)[1].position = rect.getPoint(1);
+	(*m_batchIndex)[2].position = rect.getPoint(2);
+	(*m_batchIndex)[3].position = rect.getPoint(3);
+
+	m_batchIndex->SetOrigin({ w / 2.f, h / 2.f });
+}
+
+void RectPrimitive::OnEntityEnable()
+{
+	m_batchIndex->SetColor(sf::Color::Green);
+}
+
+void RectPrimitive::OnEntityDisable()
+{
+	m_batchIndex->SetColor(sf::Color::Transparent);
+}

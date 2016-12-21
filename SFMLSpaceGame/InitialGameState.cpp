@@ -11,7 +11,7 @@
 #include <RenderBatch.h>
 #include <Components/Position.h>
 #include <Serializer.h>
-#include "Entity.h"
+#include <Entity.h>
 
 #include <UI/ShipEditorWindow.h>
 #include <UI/RigEditor.h>
@@ -32,6 +32,7 @@
 #include <UI/ContextMenu.h>
 
 #include <WorldDefinition.h>
+#include <Economy.h>
 
 //#include <LaserRig.h>
 void TestRun()
@@ -206,15 +207,20 @@ void InitialGameState::Update()
 		UnloadUnusedResources();
 	}
 
+	// Update UI
 	GameWindow::UpdateAllWindows();
 
 	HandlePause();
 	if (m_paused) return;
 
 	pendingGameEvents.Update();
-
+	
+	// Update physics
 	m_stepper.Step(world, GameTime::deltaTime);
 
+	Economy::Update();
+
+	// Update entities
 	EntityManager::Refresh();
 	EntityManager::Update();
 }

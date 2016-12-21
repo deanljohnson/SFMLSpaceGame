@@ -29,7 +29,6 @@ namespace EntityFactory
 
 	void MakeIntoPlayer(EntityHandle& ent, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoBackground(EntityHandle& ent, ResourceID backgroundID, EntityID parallaxTarget);
-	void MakeIntoBullet(EntityHandle& ent, std::shared_ptr<ProjectileStats> proj, EntityID sourceEntity, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoMissile(EntityHandle& ent, std::shared_ptr<MissileStats> missile, EntityID sourceEntity, EntityID target, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoAsteroid(EntityHandle& ent, const SpriteKey& key, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f);
 	void MakeIntoShip(EntityHandle& ent, const std::string& shipName, const b2Vec2& p = b2Vec2(0.f, 0.f), float radians = 0.f, bool npc = true);

@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include <Economy.h>
 #include <Components/EconomyAgent.h>
-#include <Components/Inventory.h>
+#include <Components/Inventory.h> // needed for lambda.
 #include <ItemPriceLevelSet.h>
 #include <GraphMap.h>
 #include <EconomyRecord.h>
@@ -55,6 +55,11 @@ void Economy::Init()
 	Serializer<> ser;
 	auto iplsPtr = ser.Load<ItemPriceLevelSet>("EconomyBase");
 	m_defaultPrices = std::shared_ptr<ItemPriceLevelSet>(iplsPtr);
+}
+
+void Economy::Update()
+{
+
 }
 
 void Economy::AddAgent(EconomyAgent& agent)
@@ -179,55 +184,6 @@ std::pair<ItemType, EconomyAgent*> Economy::FindBestPurchase(const std::string& 
 
 	return std::make_pair(typeToTrade, agentToTradeWith);
 }
-
-/*std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType targetType, 
-	std::function<bool(const EconomyAgent&, long&, ItemType)> filter)
-{
-	Price mostPriceDifference = 0;
-	ItemType typeToTrade = ItemType::Credits;
-	EconomyAgent* agentToTradeWith = nullptr;
-	for (auto& i : m_econToAgentMap)
-	{
-		// If this agent is not of the right type
-		if ((static_cast<int>(i.first.agentType) & static_cast<int>(targetType)) == 0)
-			continue;
-
-		for (auto& itemTypeToDetailMap : *m_defaultPrices)
-		{
-			for (auto& detailToPriceMap : itemTypeToDetailMap.second)
-			{
-				size_t agentsAmount = i.second->GetAmountOfItem(itemTypeToDetailMap.first, detailToPriceMap.first);
-
-				if (agentsAmount == 0) 
-					continue;
-
-				// the cost of buying out this locations stock of a given item
-				Price purchasePrice = ComputePrice(detailToPriceMap.second, agentsAmount);
-				purchasePrice *= agentsAmount;
-
-				auto defaultPriceLevel = (*m_defaultPrices)[itemTypeToDetailMap.first].at(detailToPriceMap.first);
-				Price avgPrice = defaultPriceLevel.targetPrice * agentsAmount;
-
-				// If the cost is more than the average, we will simply ignore this agent
-				// In the future it would be better to continue considering this agent
-				if (purchasePrice > avgPrice)
-					continue;
-
-				long dif = static_cast<long>(avgPrice) - static_cast<long>(purchasePrice);
-				if (!filter(*i.second, dif, itemTypeToDetailMap.first))
-					continue;
-
-				Price priceDif = dif;
-				if (priceDif > mostPriceDifference)
-				{
-					mostPriceDifference = priceDif;
-					typeToTrade = itemTypeToDetailMap.first;
-					agentToTradeWith = i.second;
-				}
-			}
-		}
-	}
-}*/
 
 void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
 {

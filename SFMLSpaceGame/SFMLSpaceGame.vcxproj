@@ -255,6 +255,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClCompile Include="MiningLaserTargeter.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PriceSupplier.cpp" />
+    <ClCompile Include="ProjectileFactory.cpp" />
     <ClCompile Include="RenderBatch.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Components\RotateToFaceMouse.cpp" />
@@ -381,6 +382,7 @@ XCOPY "$(SolutionDir)Images" "$(TargetDir)\Images\" /S /Y</Command>
     <ClInclude Include="MissileStats.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PriceSupplier.h" />
+    <ClInclude Include="ProjectileFactory.h" />
     <ClInclude Include="ProjectileStats.h" />
     <ClInclude Include="Range.h" />
     <ClInclude Include="RenderBatch.h" />

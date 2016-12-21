@@ -7,6 +7,7 @@
 
 Lifetime::Lifetime(EntityID ent, float lifetime, bool destroyOnExpire)
 	: Component(ent),
+	m_maxLifetime(lifetime),
 	m_lifetime(lifetime),
 	m_destroy(destroyOnExpire)
 {}
@@ -22,4 +23,9 @@ void Lifetime::Update()
 		else
 			entity->SetActive(false);
 	}
+}
+
+void Lifetime::Reset()
+{
+	m_lifetime = m_maxLifetime;
 }

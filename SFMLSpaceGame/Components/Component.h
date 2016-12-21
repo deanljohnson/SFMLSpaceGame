@@ -68,4 +68,7 @@ public:
 
 	// Called when a component is disabled.
 	virtual void OnDisable() {}
+
+	virtual void OnEntityEnable() {}
+	virtual void OnEntityDisable() {}
 };

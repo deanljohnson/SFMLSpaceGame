@@ -10,6 +10,7 @@
 #include <PlayerData.h>
 #include <MissileStats.h>
 #include <StationStats.h>
+#include <ProjectileFactory.h>
 #include <ItemFactory.h>
 #include <SpriteKey.h>
 
@@ -106,9 +107,7 @@ EntityID EntityFactory::CreateBackground(ResourceID backgroundID, EntityID paral
 
 EntityID EntityFactory::CreateProjectile(std::shared_ptr<ProjectileStats> proj, EntityID sourceEntity, const b2Vec2& p, float radians)
 {
-	auto ent = EntityManager::AddEntity(PROJECTILE_GROUP);
-	MakeIntoBullet(ent, proj, sourceEntity, p, radians);
-	return ent.GetID();
+	return ProjectileFactory::CreateProjectile(proj, sourceEntity, p, radians);
 }
 
 EntityID EntityFactory::CreateMissile(std::shared_ptr<MissileStats> missile, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)
@@ -244,16 +243,6 @@ void EntityFactory::MakeIntoBackground(EntityHandle& ent, ResourceID backgroundI
 	ent->AddComponent<TilingBackground, ResourceID>(backgroundID);
 	ent->AddComponent<ParallaxMovement, EntityID, float>(parallaxTarget, .1f);
 	ent->AddComponent<ParallaxTargetAssigner>();
-}
-
-void EntityFactory::MakeIntoBullet(EntityHandle& ent, std::shared_ptr<ProjectileStats> projStats, EntityID sourceEntity, const b2Vec2& p, float radians)
-{
-	ent->AddComponent<Position, const b2Vec2&>(p);
-	ent->AddComponent<Rotation, float>(radians);
-	ent->AddComponent<BulletPhysics, EntityID, std::shared_ptr<ProjectileStats>>(sourceEntity, projStats);
-	ent->AddComponent<CollisionFilterComponent, EntityID>(sourceEntity);
-	ent->AddComponent<RectPrimitive, float, float>(projStats->size.x, projStats->size.y);
-	ent->AddComponent<Lifetime, float>(projStats->lifeTime);
 }
 
 void EntityFactory::MakeIntoMissile(EntityHandle& ent, std::shared_ptr<MissileStats> missile, EntityID sourceEntity, EntityID target, const b2Vec2& p, float radians)

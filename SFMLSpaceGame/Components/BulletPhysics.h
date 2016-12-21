@@ -16,9 +16,13 @@ private:
 	float m_speed;
 	float m_damage;
 	b2Vec2 m_size;
+	b2Vec2 m_vel;
 
 	//returns whether or not a collision happened
 	bool HandleCollisions();
+
+	void CreateBody();
+	void CreateFixture();
 
 	friend class cereal::access;
 
@@ -47,4 +51,11 @@ public:
 	~BulletPhysics();
 
 	virtual void Update() override;
+	void SetSourceEntity(EntityID sourceEnt);
+	void SetStats(std::shared_ptr<ProjectileStats> proj);
+	void SetPosition(const b2Vec2& pos);
+	void SetAngle(float radians);
+
+	virtual void OnEntityEnable() override;
+	virtual void OnEntityDisable() override;
 };

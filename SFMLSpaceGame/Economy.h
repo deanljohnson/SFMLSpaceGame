@@ -1,14 +1,16 @@
 #pragma once
-#include <ItemPriceSet.h>
-#include <EconomyID.h>
+#include <ItemPrice.h>
 #include <ItemPriceSerialization.h> // included simply to make sure the templated functions inside are defined
 
 struct EconomyRecord;
 class EconomyAgent;
+class EconomyID;
 
 namespace Economy
 {
 	void Init();
+
+	void Update();
 
 	void AddAgent(EconomyAgent& agent);
 	void RemoveAgent(const EconomyAgent& agent);
@@ -17,19 +19,6 @@ namespace Economy
 	Price GetBuyPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
 	// Gets the price of selling a single item of the given type and detail
 	Price GetSellPrice(const EconomyID& ident, ItemType itemType, const std::string& detail = Item::NO_DETAIL);
-
-	/*// Calculates the best trade targeting a specific
-	// mask of EconomyAgentType's, according to a filter
-	// function. This filter function returns whether or not
-	// to continue considering this agent as a possible 
-	// trade. The passed in long reference is the difference
-	// between the cost of purchasing all of a certain item type
-	// and the average cost of purchasing that many items. 
-	// You may modify this value to influence the
-	// favorability of trading with the given agent.
-	std::pair<EconomyAgent*, ItemType> GetBestPurchase(
-		EconomyAgentType targetType, 
-		std::function<bool(const EconomyAgent&, long&, ItemType)> filter);*/
 
 	// Finds the best purchase to make within the given 
 	// searchRange from the given start. The passed in 

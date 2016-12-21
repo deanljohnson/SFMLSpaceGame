@@ -19,28 +19,10 @@ BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, float speed, floa
 	  m_damage(damage),
 	  m_size(size)
 {
-	b2BodyDef bodyDef;
-	bodyDef.position.Set(m_position.X(), m_position.Y());
-	bodyDef.angle = m_rotation.GetRadians();
-	bodyDef.fixedRotation = true;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.bullet = true;
+	CreateBody();
 
-	m_body = GameState::world.CreateBody(&bodyDef);
-
-	b2FixtureDef fixDef;
-	fixDef.density = 1.f;
-	fixDef.isSensor = true;
-
-	fixDef.filter.categoryBits = IS_BULLET;
-	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
-	b2PolygonShape shape;
-	shape.SetAsBox(size.x / 2.f, size.y / 2.f);
-	fixDef.shape = &shape;
-
-	m_body->CreateFixture(&fixDef);
-
-	m_body->SetUserData(entity.GetRawPointer());
+	m_vel = b2Vec2(cos(m_rotation.GetRadians()),
+		sin(m_rotation.GetRadians())) * m_speed;
 }
 
 BulletPhysics::BulletPhysics(EntityID ent, EntityID sourceEnt, std::shared_ptr<ProjectileStats> proj)
@@ -63,10 +45,56 @@ void BulletPhysics::Update()
 	m_position.position = m_body->GetPosition();
 	m_rotation.SetRadians(m_body->GetAngle());
 
-	// TODO: Cache the velocity vector to avoid cos/sin being repeatedly called
 	// Move the bullet forward at full speed
-	m_body->SetLinearVelocity(b2Vec2(cos(m_rotation.GetRadians()), 
-									sin(m_rotation.GetRadians())) * m_speed);
+	m_body->SetLinearVelocity(m_vel);
+}
+
+void BulletPhysics::SetSourceEntity(EntityID sourceEnt)
+{
+	m_sourceEntity = sourceEnt;
+}
+
+void BulletPhysics::SetStats(std::shared_ptr<ProjectileStats> proj)
+{
+	m_speed = proj->speed;
+	m_damage = proj->damage;
+	m_size = proj->size;
+
+	m_vel = b2Vec2(cos(m_rotation.GetRadians()),
+		sin(m_rotation.GetRadians())) * m_speed;
+
+	// Remove fixtures from projectile
+	b2Fixture* fix;
+	while (fix = m_body->GetFixtureList())
+	{
+		m_body->DestroyFixture(fix);
+	}
+
+	CreateFixture();
+}
+
+void BulletPhysics::SetPosition(const b2Vec2& pos)
+{
+	m_position.position = pos;
+	m_body->SetTransform(pos, m_body->GetAngle());
+}
+
+void BulletPhysics::SetAngle(float radians)
+{
+	m_rotation.SetRadians(radians);
+	m_body->SetTransform(m_body->GetPosition(), radians);
+}
+
+void BulletPhysics::OnEntityEnable()
+{
+	CreateBody();
+}
+
+void BulletPhysics::OnEntityDisable()
+{
+	if (m_body != nullptr)
+		GameState::world.DestroyBody(m_body);
+	m_body = nullptr;
 }
 
 bool BulletPhysics::HandleCollisions()
@@ -112,3 +140,33 @@ bool BulletPhysics::HandleCollisions()
 	return true;
 }
 
+void BulletPhysics::CreateBody()
+{
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(m_position.X(), m_position.Y());
+	bodyDef.angle = m_rotation.GetRadians();
+	bodyDef.fixedRotation = true;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.bullet = true;
+
+	m_body = GameState::world.CreateBody(&bodyDef);
+
+	CreateFixture();
+
+	m_body->SetUserData(entity.GetRawPointer());
+}
+
+void BulletPhysics::CreateFixture()
+{
+	b2FixtureDef fixDef;
+	fixDef.density = 1.f;
+	fixDef.isSensor = true;
+
+	fixDef.filter.categoryBits = IS_BULLET;
+	fixDef.filter.maskBits = COLLIDES_WITH_SHIP | COLLIDES_WITH_STATION;
+	b2PolygonShape shape;
+	shape.SetAsBox(m_size.x / 2.f, m_size.y / 2.f);
+	fixDef.shape = &shape;
+
+	m_body->CreateFixture(&fixDef);
+}

@@ -16,3 +16,8 @@ bool CollisionFilterComponent::ShouldCollide(Entity* other)
 	if (!m_noCollision.IsValid()) return false;
 	return m_noCollision->GetID() != other->GetID();
 }
+
+void CollisionFilterComponent::SetNoCollisionEntity(EntityID noCollision)
+{
+	m_noCollision = EntityManager::Get(noCollision);
+}

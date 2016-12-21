@@ -28,4 +28,5 @@ private:
 public:
 	CollisionFilterComponent(EntityID ent, EntityID noCollision);
 	bool ShouldCollide(Entity* other);
+	void SetNoCollisionEntity(EntityID noCollision);
 };
