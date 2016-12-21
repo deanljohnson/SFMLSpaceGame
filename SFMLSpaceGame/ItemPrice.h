@@ -1,3 +1,3 @@
 #pragma once
 
-typedef unsigned int Price;
+typedef int64_t Price;

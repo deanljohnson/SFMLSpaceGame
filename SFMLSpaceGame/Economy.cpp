@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include <Economy.h>
 #include <Components/EconomyAgent.h>
+#include <Components/Inventory.h>
 #include <ItemPriceLevelSet.h>
 #include <GraphMap.h>
 #include <EconomyRecord.h>
@@ -124,6 +125,59 @@ Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType, const std
 	// you are selling something you are trying to 
 	// make the most money
 	return sellPrice * 1.15f;
+}
+
+std::pair<ItemType, EconomyAgent*> Economy::FindBestPurchase(const std::string& start, 
+		size_t searchRange, 
+		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter)
+{
+	Price mostPriceDifference = 0;
+	ItemType typeToTrade = ItemType::Credits;
+	EconomyAgent* agentToTradeWith = nullptr;
+
+	m_econGraph.BreadthFirstTraverse(start, 
+	[searchRange, filter, &mostPriceDifference, &typeToTrade, &agentToTradeWith]
+	(EconomyAgent*& curAgent) -> bool
+	{
+		// For each item this agent has
+		for (auto& item : curAgent->GetInventory())
+		{
+			// Credits aren't traded
+			if (item->type == ItemType::Credits)
+				continue;
+
+			// The price this agent will sell the item for
+			Price purchasePrice = GetBuyPrice(curAgent->GetEconomyID(), item->type, item->GetDetail());
+			purchasePrice *= item->amount;
+
+			// The average price this item is sold for
+			Price avgPrice = m_defaultPrices->GetLevel(item->type, item->GetDetail()).targetPrice;
+			avgPrice *= item->amount;
+
+			// If the cost is more than the average, we will simply ignore this agent
+			// In the future it would be better to continue considering this agent
+			if (purchasePrice > avgPrice)
+				continue;
+
+			Price dif = avgPrice - purchasePrice;
+
+			// If the filter returns false, we abort this trade
+			if (filter 
+				&& !filter(*curAgent, dif, item->type))
+				continue;
+
+			if (dif > mostPriceDifference)
+			{
+				mostPriceDifference = dif;
+				typeToTrade = item->type;
+				agentToTradeWith = curAgent;
+			}
+		}
+
+		return true;
+	}, searchRange);
+
+	return std::make_pair(typeToTrade, agentToTradeWith);
 }
 
 /*std::pair<EconomyAgent*, ItemType> Economy::GetBestPurchase(EconomyAgentType targetType, 

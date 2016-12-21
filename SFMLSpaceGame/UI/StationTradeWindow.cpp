@@ -146,7 +146,7 @@ void StationTradeWindow::OnBuyItemChange(std::shared_ptr<Item> item)
 		// they want
 		amt = sellPrice == 0 
 			? item->amount
-			: std::min(amt, playerCredits / sellPrice);
+			: std::min(amt, playerCredits / (unsigned)sellPrice);
 	}
 
 	adjustment->SetUpper(amt);

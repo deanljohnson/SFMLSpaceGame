@@ -177,10 +177,14 @@ public:
 	// If the function returns false, the search is 
 	// terminated, else it continues until all elements
 	// have been visited
-	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func)
+	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func, size_t depthLimit)
 	{
 		std::unordered_map<Vertex*, bool> visited;
 		std::queue<Vertex*> pending;
+
+		size_t currentDepth = 0;
+		size_t elemsToDepthIncrease = 1;
+		size_t nextElemsToDepthIncrease = 0;
 
 		pending.push(m_vertices.at(start).get());
 		while (!pending.empty())
@@ -196,10 +200,47 @@ public:
 			for (auto& n : cur->neighbors)
 			{
 				if (!visited[n])
+				{
 					pending.push(n);
+					nextElemsToDepthIncrease++;
+				}
+			}
+
+			if (--elemsToDepthIncrease == 0)
+			{
+				if (++currentDepth > depthLimit) 
+					return;
+				elemsToDepthIncrease = nextElemsToDepthIncrease;
+				nextElemsToDepthIncrease = 0;
 			}
 		}
 	}
+	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func)
+	{
+		std::unordered_map<Vertex*, bool> visited;
+		std::queue<Vertex*> pending;
+
+		pending.push(m_vertices.at(start).get());
+		while (!pending.empty())
+		{
+			Vertex* cur = pending.front();
+			pending.pop();
+
+			if (!func(cur->data))
+				return;
+
+			visited[cur] = true;
+
+			for (auto& n : cur->neighbors)
+			{
+				if (!visited[n])
+				{
+					pending.push(n);
+				}
+			}
+		}
+	}
+
 
 	// Performs DFS starting from the given key's vertex.
 	// Applies the function to every TData in the search.

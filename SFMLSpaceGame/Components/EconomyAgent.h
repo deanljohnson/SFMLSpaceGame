@@ -55,4 +55,6 @@ public:
 
 	PriceSupplier GetBuyPrices();
 	PriceSupplier GetSellPrices();
+
+	Inventory& GetInventory();
 };

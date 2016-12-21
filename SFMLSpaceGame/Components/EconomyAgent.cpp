@@ -82,3 +82,8 @@ PriceSupplier EconomyAgent::GetSellPrices()
 {
 	return PriceSupplier(m_id, false);
 }
+
+Inventory& EconomyAgent::GetInventory()
+{
+	return m_inventory;
+}
