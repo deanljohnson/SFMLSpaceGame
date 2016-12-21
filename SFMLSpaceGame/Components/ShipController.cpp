@@ -25,7 +25,7 @@ ShipController::ShipController(EntityID ent, const std::string& shipStatsID)
 void ShipController::Update()
 {
 	// Run any active behavior
-	if (m_target == nullptr || !m_targetHandle.IsValid()) return; // From here down requires a valid ID
+	if (m_target == nullptr || !EntityManager::IsValidID(m_targetID)) return; // From here down requires a valid ID
 
 	if (m_activeBehaviours[Follow]) FollowTarget();
 	if (m_activeBehaviours[Intercept]) InterceptTarget();
@@ -117,9 +117,10 @@ void ShipController::Clear()
 
 void ShipController::SetTarget(EntityID target)
 {
-	m_targetHandle = EntityManager::Get(target);
+	m_targetID = target;
+	EntityHandle targetHandle = EntityManager::Get(target);
 
-	assert(m_targetHandle->HasComponent<Physics>()
-		&& m_targetHandle->GetID() != entity->GetID());
-	m_target = &m_targetHandle->GetComponent<Physics>();
+	assert(targetHandle->HasComponent<Physics>()
+		&& targetHandle->GetID() != GetEntityID());
+	m_target = &targetHandle->GetComponent<Physics>();
 }

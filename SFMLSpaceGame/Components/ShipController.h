@@ -1,6 +1,4 @@
 #pragma once
-#include "Component.h"
-#include <EntityHandle.h>
 
 class ShipStats;
 class DirectionalGun;
@@ -32,7 +30,7 @@ private:
 	DirectionalGun& m_dirGuns;
 
 	Physics* m_target{ nullptr };
-	EntityHandle m_targetHandle;
+	EntityID m_targetID;
 
 	ManeuverBitset m_activeBehaviours;
 
@@ -54,7 +52,7 @@ private:
 	template <class Archive>
 	void serialize(Archive& ar)
 	{
-		ar(entity.GetID(), m_statsID, m_targetHandle.GetID());
+		ar(GetEntityID(), m_statsID, m_targetID);
 	}
 
 	template <class Archive>

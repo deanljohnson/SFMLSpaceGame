@@ -9,8 +9,8 @@
 #include <Group.h>
 #include <EntityID.h>
 #include <EventQueue.h>
-#include <cereal\access.hpp>
-#include <cereal\types\bitset.hpp> // needed to serialize component bitset
+#include <cereal/access.hpp>
+#include <cereal/types/bitset.hpp> // needed to serialize component bitset
 #include <EntityInitializer.h>
 #include <Components/Interfaces/Updateable.h>
 #include <Components/Interfaces/Renderable.h>
@@ -166,28 +166,6 @@ public:
 
 	// used only for serialization
 	Entity() : m_id(ENTITY_ID_NULL) {}
-
-	Entity(const Entity& other) = delete;
-
-	Entity(Entity&& other)
-		: m_alive{other.m_alive},
-		  m_active{other.m_active},
-		  m_components{std::move(other.m_components)},
-		  m_componentArray{},
-		  m_componentBitset{std::move(other.m_componentBitset)},
-		  m_groupBitset{std::move(other.m_groupBitset)},
-		  m_id{other.m_id},
-		  destroyCallback{std::move(other.destroyCallback)},
-		  events{}
-	{
-	}
-
-	Entity& operator=(Entity& other)
-	{
-		using std::swap;
-		swap(*this, other);
-		return *this;
-	}
 
 	explicit Entity(EntityID id, const std::string& name = "") 
 		: m_name(name),

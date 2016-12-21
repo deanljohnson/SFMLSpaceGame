@@ -6,9 +6,9 @@
 #include <Components/ShipController.h>
 #include <Components/EconomyAgent.h>
 #include <EntityManager.h>
-#include <EntityGroups.h>
 #include <Event.h>
 #include <Entity.h>
+#include <Economy.h>
 
 namespace
 {
@@ -90,18 +90,8 @@ void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 	m_currentState = AIState::AttackingShip;
 }
 
-#include <Economy.h>
-
 void ShipAI::FindTrade()
 {
-	/*auto& stations = EntityManager::GetEntitiesByGroup(STATION_GROUP);
-
-	int index = rand() % stations.size();
-	while (stations[index]->GetID() == m_lastStationReached)
-		index = rand() % stations.size();
-
-	Entity* station = stations[index];
-	*/
 	// If the last station we reached is not a valid ID, we don't have a start station (empty name)
 	std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
 		? ""

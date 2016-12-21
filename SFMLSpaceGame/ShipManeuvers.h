@@ -1,6 +1,6 @@
 #pragma once
-#include "Components/Physics.h"
-#include "Components/ShipThrusters.h"
+#include <Components/Physics.h>
+#include <Components/ShipThrusters.h>
 
 namespace ShipManeuvers
 {
