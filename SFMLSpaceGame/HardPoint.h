@@ -1,5 +1,5 @@
 #pragma once
-#include <Box2D.h>
+#include <Box2D/Common/b2Math.h>
 
 // Defines the position and angle of
 // a ships weapon

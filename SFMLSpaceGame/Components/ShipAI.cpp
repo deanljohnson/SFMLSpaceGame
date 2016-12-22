@@ -10,6 +10,7 @@
 #include <Entity.h>
 #include <Economy.h>
 #include <FindBestPurchaseJob.h>
+#include <FindBestSaleJob.h>
 
 namespace
 {
@@ -92,8 +93,10 @@ void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 
 	m_currentState = AIState::AttackingShip;
 
-	// Forget about any running purchase jobs
+	// Forget about any running trade jobs
 	m_findPurchaseJob = nullptr;
+	m_findSaleJob = nullptr;
+	m_purchaseResult = nullptr;
 }
 
 void ShipAI::FindTrade()
@@ -103,26 +106,90 @@ void ShipAI::FindTrade()
 	{
 		if (m_findPurchaseJob->IsFinished())
 		{
-			const FindPurchaseJobResult& trade = m_findPurchaseJob->GetResult();
-			
-			EntityHandle handle = EntityManager::Get(trade.agent->GetEntityID());
-			m_stationPosition = &handle->GetComponent<Position>();
-			m_controller.Clear();
-			m_controller.SetTarget(handle->GetID());
-			m_controller.Set(Maneuvers::Approach);
-			m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
-
-			m_currentState = AIState::MovingToStation;
+			ProcessFinishedPurchaseJob();
+		}
+	}
+	// If we are waiting on a find sale job
+	else if (m_findSaleJob != nullptr)
+	{
+		if (m_findSaleJob->IsFinished())
+		{
+			ProcessFinishedSaleJob();
 		}
 	}
 	else
 	{
-		// If the last station we reached is not a valid ID, we don't have a start station (empty name)
-		std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
-			? ""
-			: EntityManager::Get(m_lastStationReached)->GetName();
-
-		m_findPurchaseJob = std::make_shared<FindBestPurchaseJob>(startStationName, 2, nullptr);
-		Economy::EnqueueJob(m_findPurchaseJob);
+		if (m_purchaseResult == nullptr)
+			CreatePurchaseJob();
+		else CreateSaleJob();
 	}
+}
+
+void ShipAI::CreatePurchaseJob()
+{
+	// If the last station we reached is not a valid ID, we don't have a start station (empty name)
+	std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
+		? ""
+		: EntityManager::Get(m_lastStationReached)->GetName();
+
+	m_findPurchaseJob = std::make_shared<FindBestPurchaseJob>(startStationName, 2, nullptr);
+	Economy::EnqueueJob(m_findPurchaseJob);
+}
+
+void ShipAI::CreateSaleJob()
+{
+	// If the last station we reached is not a valid ID, we don't have a start station (empty name)
+	std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
+		? ""
+		: EntityManager::Get(m_lastStationReached)->GetName();
+
+	// The amount of the item we are selling that this agent has
+	unsigned int amt = entity->GetComponent<EconomyAgent>().GetAmountOfItem(m_purchaseResult->type, m_purchaseResult->detail);
+
+	auto filter = [this](const EconomyAgent& agent, Price&) -> bool
+	{
+		return m_targetID != agent.GetEntityID();
+	};
+
+	m_findSaleJob = std::make_shared<FindBestSaleJob>(m_purchaseResult->type, m_purchaseResult->detail, amt, 
+														startStationName, 2, filter);
+	Economy::EnqueueJob(m_findSaleJob);
+}
+
+void ShipAI::ProcessFinishedPurchaseJob()
+{
+	assert(m_findPurchaseJob->IsFinished());
+
+	m_purchaseResult = std::make_unique<FindPurchaseJobResult>(m_findPurchaseJob->GetResult());
+	m_targetID = m_purchaseResult->agent->GetEntityID();
+
+	EntityHandle handle = EntityManager::Get(m_targetID);
+	m_stationPosition = &handle->GetComponent<Position>();
+	m_controller.Clear();
+	m_controller.SetTarget(m_targetID);
+	m_controller.Set(Maneuvers::Approach);
+	m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
+
+	m_currentState = AIState::MovingToStation;
+
+	m_findPurchaseJob = nullptr;
+}
+
+void ShipAI::ProcessFinishedSaleJob()
+{
+	assert(m_findSaleJob->IsFinished());
+
+	const FindSaleJobResult& trade = m_findSaleJob->GetResult();
+	m_targetID = trade.agent->GetEntityID();
+
+	EntityHandle handle = EntityManager::Get(m_targetID);
+	m_stationPosition = &handle->GetComponent<Position>();
+	m_controller.Clear();
+	m_controller.SetTarget(m_targetID);
+	m_controller.Set(Maneuvers::Approach);
+	m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
+
+	m_currentState = AIState::MovingToStation;
+
+	m_findSaleJob = nullptr;
 }

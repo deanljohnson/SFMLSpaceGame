@@ -6,6 +6,7 @@ struct EconomyRecord;
 class EconomyAgent;
 class EconomyID;
 class FindBestPurchaseJob;
+class FindBestSaleJob;
 struct FindPurchaseJobResult;
 struct FindSaleJobResult;
 
@@ -43,6 +44,7 @@ namespace Economy
 		std::function<bool(const EconomyAgent&, Price&)> filter = nullptr);
 
 	void EnqueueJob(std::shared_ptr<FindBestPurchaseJob> job);
+	void EnqueueJob(std::shared_ptr<FindBestSaleJob> job);
 
 	// Moves the given Item (type and amount) from the source to the target
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);

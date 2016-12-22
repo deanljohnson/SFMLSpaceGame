@@ -4,6 +4,8 @@
 class ShipController;
 class AttackedEvent;
 class FindBestPurchaseJob;
+class FindBestSaleJob;
+struct FindPurchaseJobResult;
 
 class ShipAI : public Component, public Updateable
 {
@@ -19,13 +21,21 @@ private:
 	Position& m_position;
 	EntityID m_targetID;
 
+	std::unique_ptr<FindPurchaseJobResult> m_purchaseResult;
+
 	std::shared_ptr<FindBestPurchaseJob> m_findPurchaseJob;
+	std::shared_ptr<FindBestSaleJob> m_findSaleJob;
 
 	void ProcessEvents();
 	void ProcessAIState();
 	void HandleAttackedEvent(AttackedEvent* event);
 
 	void FindTrade();
+	void CreatePurchaseJob();
+	void CreateSaleJob();
+
+	void ProcessFinishedPurchaseJob();
+	void ProcessFinishedSaleJob();
 
 	friend class cereal::access;
 

@@ -24,6 +24,9 @@ std::unordered_map<std::string, EconomyAgent*> m_nameToAgentMap;
 std::mutex m_findBestPurchaseQueueLock;
 std::queue<std::shared_ptr<FindBestPurchaseJob>> m_findBestPurchaseJobs;
 
+std::mutex m_findBestSaleQueueLock;
+std::queue<std::shared_ptr<FindBestSaleJob>> m_findBestSaleJobs;
+
 namespace
 {
 	Price ComputePrice(const ItemPriceLevel& priceLevel, size_t curAmount)
@@ -57,6 +60,40 @@ namespace
 			return priceLevel.targetPrice + priceAdjustment;
 		}
 	}
+
+	void ProcessPurchaseJobs()
+	{
+		// lock the queue
+		std::lock_guard<std::mutex> lock(m_findBestPurchaseQueueLock);
+
+		// Spawn a new thread for every job
+		while (!m_findBestPurchaseJobs.empty())
+		{
+			auto& job = m_findBestPurchaseJobs.front();
+			m_findBestPurchaseJobs.pop();
+			std::thread t(&FindBestPurchaseJob::Do, &*job);
+			// when the thread goes out of scope,
+			// do not terminate it's execution
+			t.detach();
+		}
+	}
+
+	void ProcessSaleJobs()
+	{
+		// lock the queue
+		std::lock_guard<std::mutex> lock(m_findBestSaleQueueLock);
+
+		// Spawn a new thread for every job
+		while (!m_findBestSaleJobs.empty())
+		{
+			auto& job = m_findBestSaleJobs.front();
+			m_findBestSaleJobs.pop();
+			std::thread t(&FindBestSaleJob::Do, &*job);
+			// when the thread goes out of scope,
+			// do not terminate it's execution
+			t.detach();
+		}
+	}
 }
 
 void Economy::Init()
@@ -68,19 +105,8 @@ void Economy::Init()
 
 void Economy::Update()
 {
-	// lock the queue
-	std::lock_guard<std::mutex> lock(m_findBestPurchaseQueueLock);
-
-	// Spawn a new thread for every job
-	while (!m_findBestPurchaseJobs.empty())
-	{
-		auto& job = m_findBestPurchaseJobs.front();
-		m_findBestPurchaseJobs.pop();
-		std::thread t(&FindBestPurchaseJob::Do, &*job);
-		// when the thread goes out of scope,
-		// do not terminate it's execution
-		t.detach();
-	}
+	ProcessPurchaseJobs();
+	ProcessSaleJobs();
 }
 
 void Economy::AddAgent(EconomyAgent& agent)
@@ -157,7 +183,7 @@ FindPurchaseJobResult Economy::FindBestPurchase(const std::string& start,
 		size_t searchRange, 
 		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter)
 {
-	Price mostPriceDifference = 0;
+	Price mostPriceDifference = std::numeric_limits<Price>::min();
 	ItemType typeToTrade = ItemType::Credits;
 	std::string detailToTrade = Item::NO_DETAIL;
 	EconomyAgent* agentToTradeWith = nullptr;
@@ -215,7 +241,7 @@ FindPurchaseJobResult Economy::FindBestPurchase(const std::string& start,
 
 FindSaleJobResult Economy::FindBestSale(ItemType typeToSell, const std::string& detail, size_t amountToSell, const std::string& start, size_t searchRange, std::function<bool(const EconomyAgent&, Price&)> filter)
 {
-	Price mostPriceDifference = 0;
+	Price mostPriceDifference = std::numeric_limits<Price>::min();
 	EconomyAgent* agentToTradeWith = nullptr;
 
 	{
@@ -235,15 +261,15 @@ FindSaleJobResult Economy::FindBestSale(ItemType typeToSell, const std::string& 
 
 			// If the cost is less than the average, we will simply ignore this agent
 			// In the future it would be better to continue considering this agent
-			if (purchasePrice < avgPrice)
-				return false;
+			//if (purchasePrice < avgPrice)
+				//return false;
 
 			Price dif = purchasePrice - avgPrice;
 
 			// If the filter returns false, we abort this trade
 			if (filter
 				&& !filter(*curAgent, dif))
-				return false;
+				return true;
 
 			if (dif > mostPriceDifference)
 			{
@@ -262,6 +288,12 @@ void Economy::EnqueueJob(std::shared_ptr<FindBestPurchaseJob> job)
 {
 	std::lock_guard<std::mutex> lock(m_findBestPurchaseQueueLock);
 	m_findBestPurchaseJobs.push(job);
+}
+
+void Economy::EnqueueJob(std::shared_ptr<FindBestSaleJob> job)
+{
+	std::lock_guard<std::mutex> lock(m_findBestSaleQueueLock);
+	m_findBestSaleJobs.push(job);
 }
 
 void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)

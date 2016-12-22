@@ -12,7 +12,7 @@ Component::Component(EntityID ent)
 	: next(nullptr), entity(EntityManager::Get(ent))
 {}
 
-EntityID Component::GetEntityID()
+EntityID Component::GetEntityID() const
 {
 	return entity.GetID();
 }

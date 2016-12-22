@@ -47,7 +47,7 @@ public:
 	Component* next{ nullptr }; // allows multiple components of a single type on an entity
 	EntityHandle entity;
 	
-	EntityID GetEntityID();
+	EntityID GetEntityID() const;
 
 	virtual void Update(){};
 	virtual void OnDestroy(){};
