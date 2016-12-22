@@ -8,12 +8,21 @@
 #include <GraphMap.h>
 #include <EconomyRecord.h>
 #include <Entity.h>
+#include <FindBestPurchaseJob.h>
+#include <FindBestSaleJob.h>
+#include <shared_mutex>
 
+// controls access to the economy GraphMap
+std::shared_mutex m_graphLock;
 GraphMap<std::string, EconomyAgent*> m_econGraph;
+
 std::shared_ptr<ItemPriceLevelSet> m_defaultPrices;
 std::unordered_map<EconomyAgentType, std::shared_ptr<ItemPriceLevelSet>> m_overriddenPrices;
 std::unordered_map<EconomyID, EconomyAgent*> m_econToAgentMap;
 std::unordered_map<std::string, EconomyAgent*> m_nameToAgentMap;
+
+std::mutex m_findBestPurchaseQueueLock;
+std::queue<std::shared_ptr<FindBestPurchaseJob>> m_findBestPurchaseJobs;
 
 namespace
 {
@@ -59,7 +68,19 @@ void Economy::Init()
 
 void Economy::Update()
 {
+	// lock the queue
+	std::lock_guard<std::mutex> lock(m_findBestPurchaseQueueLock);
 
+	// Spawn a new thread for every job
+	while (!m_findBestPurchaseJobs.empty())
+	{
+		auto& job = m_findBestPurchaseJobs.front();
+		m_findBestPurchaseJobs.pop();
+		std::thread t(&FindBestPurchaseJob::Do, &*job);
+		// when the thread goes out of scope,
+		// do not terminate it's execution
+		t.detach();
+	}
 }
 
 void Economy::AddAgent(EconomyAgent& agent)
@@ -132,57 +153,115 @@ Price Economy::GetSellPrice(const EconomyID& ident, ItemType itemType, const std
 	return sellPrice * 1.15f;
 }
 
-std::pair<ItemType, EconomyAgent*> Economy::FindBestPurchase(const std::string& start, 
+FindPurchaseJobResult Economy::FindBestPurchase(const std::string& start,
 		size_t searchRange, 
 		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter)
 {
 	Price mostPriceDifference = 0;
 	ItemType typeToTrade = ItemType::Credits;
+	std::string detailToTrade = Item::NO_DETAIL;
 	EconomyAgent* agentToTradeWith = nullptr;
 
-	m_econGraph.BreadthFirstTraverse(start, 
-	[searchRange, filter, &mostPriceDifference, &typeToTrade, &agentToTradeWith]
-	(EconomyAgent*& curAgent) -> bool
 	{
-		// For each item this agent has
-		for (auto& item : curAgent->GetInventory())
-		{
-			// Credits aren't traded
-			if (item->type == ItemType::Credits)
-				continue;
+		std::shared_lock<std::shared_mutex> lock(m_graphLock);
 
-			// The price this agent will sell the item for
-			Price purchasePrice = GetBuyPrice(curAgent->GetEconomyID(), item->type, item->GetDetail());
-			purchasePrice *= item->amount;
+		m_econGraph.BreadthFirstTraverse(start,
+			[searchRange, filter, &mostPriceDifference, &typeToTrade, &detailToTrade, &agentToTradeWith]
+		(EconomyAgent*& curAgent) -> bool
+		{
+			std::shared_lock<std::shared_mutex> l(curAgent->GetInventory().lock);
+			// For each item this agent has
+			for (auto& item : std::as_const(curAgent->GetInventory()))
+			{
+				// Credits aren't traded
+				if (item->type == ItemType::Credits)
+					continue;
+
+				// The price this agent will sell the item for
+				Price sellPrice = GetSellPrice(curAgent->GetEconomyID(), item->type, item->GetDetail());
+				sellPrice *= item->amount;
+
+				// The average price this item is sold for
+				Price avgPrice = m_defaultPrices->GetLevel(item->type, item->GetDetail()).targetPrice;
+				avgPrice *= item->amount;
+
+				// If the cost is more than the average, we will simply ignore this agent
+				// In the future it would be better to continue considering this agent
+				//if (sellPrice > avgPrice)
+				//continue;
+
+				Price dif = avgPrice - sellPrice;
+
+				// If the filter returns false, we abort this trade
+				if (filter
+					&& !filter(*curAgent, dif, item->type))
+					continue;
+
+				if (dif > mostPriceDifference)
+				{
+					mostPriceDifference = dif;
+					typeToTrade = item->type;
+					detailToTrade = item->GetDetail();
+					agentToTradeWith = curAgent;
+				}
+			}
+
+			return true;
+		}, searchRange);
+	} // end shared graph lock
+
+	return FindPurchaseJobResult(typeToTrade, detailToTrade, agentToTradeWith);
+}
+
+FindSaleJobResult Economy::FindBestSale(ItemType typeToSell, const std::string& detail, size_t amountToSell, const std::string& start, size_t searchRange, std::function<bool(const EconomyAgent&, Price&)> filter)
+{
+	Price mostPriceDifference = 0;
+	EconomyAgent* agentToTradeWith = nullptr;
+
+	{
+		std::shared_lock<std::shared_mutex> lock(m_graphLock);
+
+		m_econGraph.BreadthFirstTraverse(start,
+			[typeToSell, detail, amountToSell, searchRange, filter, &mostPriceDifference, &agentToTradeWith]
+		(EconomyAgent*& curAgent) -> bool
+		{
+			// The price this agent will buy the item for
+			Price purchasePrice = GetBuyPrice(curAgent->GetEconomyID(), typeToSell, detail);
+			purchasePrice *= amountToSell;
 
 			// The average price this item is sold for
-			Price avgPrice = m_defaultPrices->GetLevel(item->type, item->GetDetail()).targetPrice;
-			avgPrice *= item->amount;
+			Price avgPrice = m_defaultPrices->GetLevel(typeToSell, detail).targetPrice;
+			avgPrice *= amountToSell;
 
-			// If the cost is more than the average, we will simply ignore this agent
+			// If the cost is less than the average, we will simply ignore this agent
 			// In the future it would be better to continue considering this agent
-			if (purchasePrice > avgPrice)
-				continue;
+			if (purchasePrice < avgPrice)
+				return false;
 
-			Price dif = avgPrice - purchasePrice;
+			Price dif = purchasePrice - avgPrice;
 
 			// If the filter returns false, we abort this trade
-			if (filter 
-				&& !filter(*curAgent, dif, item->type))
-				continue;
+			if (filter
+				&& !filter(*curAgent, dif))
+				return false;
 
 			if (dif > mostPriceDifference)
 			{
 				mostPriceDifference = dif;
-				typeToTrade = item->type;
 				agentToTradeWith = curAgent;
 			}
-		}
 
-		return true;
-	}, searchRange);
+			return true;
+		}, searchRange);
+	} // end shared graph lock
 
-	return std::make_pair(typeToTrade, agentToTradeWith);
+	return FindSaleJobResult(agentToTradeWith);
+}
+
+void Economy::EnqueueJob(std::shared_ptr<FindBestPurchaseJob> job)
+{
+	std::lock_guard<std::mutex> lock(m_findBestPurchaseQueueLock);
+	m_findBestPurchaseJobs.push(job);
 }
 
 void Economy::TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item)
@@ -221,6 +300,8 @@ void Economy::DoBuy(EconomyAgent& source, EconomyAgent& buyer, std::shared_ptr<I
 
 void Economy::LoadFromRecord(const EconomyRecord& record)
 {
+	std::unique_lock<std::shared_mutex> lock(m_graphLock);
+
 	for (auto& connectionPair : record.tradeConnections)
 	{
 		if (!m_econGraph.Contains(connectionPair.first))

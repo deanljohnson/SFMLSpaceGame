@@ -53,7 +53,8 @@ void EconomyAgent::TakeCredits(unsigned int credits)
 
 size_t EconomyAgent::GetAmountOfItem(ItemType type, const std::string& detail)
 {
-	for (auto& i : m_inventory)
+	std::shared_lock<std::shared_mutex> l(m_inventory.lock);
+	for (const auto& i : std::as_const(m_inventory))
 	{
 		if (i->type == type
 			&& detail == i->GetDetail())

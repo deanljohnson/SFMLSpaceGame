@@ -97,7 +97,7 @@ void InitialGameState::Init()
 	PlayerData::GetActive()->SetShipChangeCallback(
 		[this](const std::string& newName) {
 		auto playerHandle = EntityManager::Get(PlayerData::GetActive()->GetID());
-		auto playerPos = playerHandle->GetComponent<Position>();
+		auto& playerPos = playerHandle->GetComponent<Position>();
 
 		auto playerSpawner = EntityManager::Get(m_playerSpawnerID);
 		auto spawnerPos = &playerSpawner->GetComponent<Position>();

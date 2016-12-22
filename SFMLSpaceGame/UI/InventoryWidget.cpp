@@ -46,39 +46,42 @@ void InventoryWidget::SetTarget(EntityID id)
 	m_itemWidgets.clear();
 
 	int i = 0;
-	for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 	{
-		auto itemPtr = it->get();
-		// Credits are not shown in the inventory
-		if (itemPtr->type == ItemType::Credits)
+		std::shared_lock<std::shared_mutex> l(inven.lock);
+		for (auto it = inven.begin(); it != inven.end(); ++it, ++i)
 		{
-			// we do not our index incremented as we 
-			// continue the loop in this case
-			i--;
-			continue;
-		}
+			auto itemPtr = it->get();
+			// Credits are not shown in the inventory
+			if (itemPtr->type == ItemType::Credits)
+			{
+				// we do not our index incremented as we 
+				// continue the loop in this case
+				i--;
+				continue;
+			}
 
-		auto item = InventoryItemWidget::Create("trade-icons", *it);
+			auto item = InventoryItemWidget::Create("trade-icons", *it);
 
-		if (m_prices.HasPriceForType(itemPtr->type, itemPtr->GetDetail()))
-		{
-			item->SetItemPrice(m_prices.GetPriceForType(itemPtr->type, itemPtr->GetDetail()));
-		}
+			if (m_prices.HasPriceForType(itemPtr->type, itemPtr->GetDetail()))
+			{
+				item->SetItemPrice(m_prices.GetPriceForType(itemPtr->type, itemPtr->GetDetail()));
+			}
 
-		item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
-			[this, i]()
+			item->GetSignal(InventoryItemWidget::OnLeftClick).Connect(
+				[this, i]()
 			{
 				Select(i);
 			});
-		item->GetSignal(InventoryItemWidget::OnRightClick).Connect(
-			[this, i]()
+			item->GetSignal(InventoryItemWidget::OnRightClick).Connect(
+				[this, i]()
 			{
 				OnRightClick(i);
 			});
 
-		m_itemWidgets.push_back(item);
-		item->SetRequisition({ 0,50 });
-		m_scrollWindowBox->Pack(item);
+			m_itemWidgets.push_back(item);
+			item->SetRequisition({ 0,50 });
+			m_scrollWindowBox->Pack(item);
+		}
 	}
 
 	// this cast to int is required. The compilers tries

@@ -23,14 +23,14 @@ void EntityFactory::Init()
 	// Calling these sets the order in which components
 	// are updated. Also, it keeps things consistent 
 	// when it comes to entity serialization
-
+	GetComponentTypeID<Physics>();
 	GetComponentTypeID<Position>();
 	GetComponentTypeID<Rotation>();
 	GetComponentTypeID<Sprite>();
 	GetComponentTypeID<Animator>();
 	GetComponentTypeID<Shields>();
 	GetComponentTypeID<ShieldHitAnimator>();
-	GetComponentTypeID<Physics>();
+	
 	GetComponentTypeID<SmoothCameraFollow>();
 	GetComponentTypeID<ParallaxMovement>();
 	GetComponentTypeID<DirectionalKeyboardInput>();

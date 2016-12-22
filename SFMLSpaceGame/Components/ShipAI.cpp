@@ -9,6 +9,7 @@
 #include <Event.h>
 #include <Entity.h>
 #include <Economy.h>
+#include <FindBestPurchaseJob.h>
 
 namespace
 {
@@ -67,6 +68,7 @@ void ShipAI::ProcessAIState()
 			if (dist < m_shipStats->approachDistance * m_shipStats->approachDistance * 1.15f)
 			{
 				m_lastStationReached = m_targetID;
+				m_controller.Clear();
 				m_currentState = AIState::None;
 			}
 		}
@@ -83,27 +85,44 @@ void ShipAI::HandleAttackedEvent(AttackedEvent* event)
 	m_targetID = event->attackerID;
 
 	m_controller.SetTarget(event->attackerID);
+	m_controller.Clear();
 	m_controller.Set(StrafeToTargetsRearForAttack);
 	m_controller.Set(FireGunsWhenFacingTarget);
 	m_controller.SetThrusterPower(HIGH_THRUSTER_POWER);
 
 	m_currentState = AIState::AttackingShip;
+
+	// Forget about any running purchase jobs
+	m_findPurchaseJob = nullptr;
 }
 
 void ShipAI::FindTrade()
 {
-	// If the last station we reached is not a valid ID, we don't have a start station (empty name)
-	std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
-		? ""
-		: EntityManager::Get(m_lastStationReached)->GetName();
+	// If we are waiting on a find purchase job
+	if (m_findPurchaseJob != nullptr)
+	{
+		if (m_findPurchaseJob->IsFinished())
+		{
+			const FindPurchaseJobResult& trade = m_findPurchaseJob->GetResult();
+			
+			EntityHandle handle = EntityManager::Get(trade.agent->GetEntityID());
+			m_stationPosition = &handle->GetComponent<Position>();
+			m_controller.Clear();
+			m_controller.SetTarget(handle->GetID());
+			m_controller.Set(Maneuvers::Approach);
+			m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
 
-	std::pair<ItemType, EconomyAgent*> trade = Economy::FindBestPurchase(startStationName, 2, nullptr);
+			m_currentState = AIState::MovingToStation;
+		}
+	}
+	else
+	{
+		// If the last station we reached is not a valid ID, we don't have a start station (empty name)
+		std::string startStationName = m_lastStationReached == ENTITY_ID_NULL || !EntityManager::IsValidID(m_lastStationReached)
+			? ""
+			: EntityManager::Get(m_lastStationReached)->GetName();
 
-	EntityHandle handle = EntityManager::Get(trade.second->GetEntityID());
-	m_stationPosition = &handle->GetComponent<Position>();
-	m_controller.SetTarget(handle->GetID());
-	m_controller.Set(Maneuvers::Approach);
-	m_controller.SetThrusterPower(LOW_THRUSTER_POWER);
-
-	m_currentState = AIState::MovingToStation;
+		m_findPurchaseJob = std::make_shared<FindBestPurchaseJob>(startStationName, 2, nullptr);
+		Economy::EnqueueJob(m_findPurchaseJob);
+	}
 }

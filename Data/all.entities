@@ -23,10 +23,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": {
-                                        "x": 7.0,
-                                        "y": 0.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 10.0
                                 }
                             }
                         },
@@ -37,12 +35,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 0,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 7.0,
+                                        "y": 0.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 0,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -57,18 +69,6 @@
                                         "x": 0.0,
                                         "y": 0.0
                                     }
-                                }
-                            }
-                        },
-                        "compID": 6,
-                        "value3": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 0,
-                                    "value1": 2,
-                                    "value2": 10.0
                                 }
                             }
                         },
@@ -228,10 +228,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 1,
-                                    "value1": {
-                                        "x": 40.0,
-                                        "y": 0.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 10.0
                                 }
                             }
                         },
@@ -242,12 +240,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 1,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 40.0,
+                                        "y": 0.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 1,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -262,18 +274,6 @@
                                         "x": 0.0,
                                         "y": 0.0
                                     }
-                                }
-                            }
-                        },
-                        "compID": 6,
-                        "value3": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 1,
-                                    "value1": 2,
-                                    "value2": 10.0
                                 }
                             }
                         },
@@ -429,10 +429,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 2,
-                                    "value1": {
-                                        "x": 40.0,
-                                        "y": 40.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 10.0
                                 }
                             }
                         },
@@ -443,12 +441,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 2,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 40.0,
+                                        "y": 40.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 2,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -463,18 +475,6 @@
                                         "x": 0.0,
                                         "y": 0.0
                                     }
-                                }
-                            }
-                        },
-                        "compID": 6,
-                        "value3": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 2,
-                                    "value1": 2,
-                                    "value2": 10.0
                                 }
                             }
                         },
@@ -630,10 +630,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": {
-                                        "x": 7.0,
-                                        "y": 40.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 10.0
                                 }
                             }
                         },
@@ -644,12 +642,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 3,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 7.0,
+                                        "y": 40.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 3,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -664,18 +676,6 @@
                                         "x": 0.0,
                                         "y": 0.0
                                     }
-                                }
-                            }
-                        },
-                        "compID": 6,
-                        "value3": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 3,
-                                    "value1": 2,
-                                    "value2": 10.0
                                 }
                             }
                         },
@@ -830,10 +830,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": {
-                                        "x": 5.0,
-                                        "y": 5.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -844,12 +842,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 5.0,
+                                        "y": 5.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 4,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -868,8 +880,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -887,8 +899,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -906,8 +918,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -918,8 +930,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -930,8 +942,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -944,17 +956,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 4,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -962,8 +963,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 4,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -1187,10 +1187,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": {
-                                        "x": 7.0,
-                                        "y": 5.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -1201,12 +1199,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 7.0,
+                                        "y": 5.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 5,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1225,8 +1237,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1244,8 +1256,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1263,8 +1275,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1275,8 +1287,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1287,8 +1299,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1301,17 +1313,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 5,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -1319,8 +1320,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 5,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -1542,10 +1542,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": {
-                                        "x": 9.0,
-                                        "y": 5.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -1556,12 +1554,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 9.0,
+                                        "y": 5.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 6,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1580,8 +1592,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1599,8 +1611,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1618,8 +1630,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1630,8 +1642,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1642,8 +1654,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1656,17 +1668,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 6,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -1674,8 +1675,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 6,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -1897,10 +1897,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": {
-                                        "x": 5.0,
-                                        "y": 7.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -1911,12 +1909,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 5.0,
+                                        "y": 7.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 7,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1935,8 +1947,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1954,8 +1966,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1973,8 +1985,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1985,8 +1997,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -1997,8 +2009,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2011,17 +2023,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 7,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -2029,8 +2030,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 7,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -2252,10 +2252,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": {
-                                        "x": 7.0,
-                                        "y": 7.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -2266,12 +2264,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 7.0,
+                                        "y": 7.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 8,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2290,8 +2302,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2309,8 +2321,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2328,8 +2340,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2340,8 +2352,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2352,8 +2364,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2366,17 +2378,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 8,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -2384,8 +2385,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 8,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -2607,10 +2607,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": {
-                                        "x": 9.0,
-                                        "y": 7.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -2621,12 +2619,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 9.0,
+                                        "y": 7.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 9,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2645,8 +2657,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2664,8 +2676,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2683,8 +2695,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2695,8 +2707,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2707,8 +2719,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2721,17 +2733,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 9,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -2739,8 +2740,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 9,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -2962,10 +2962,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": {
-                                        "x": 20.0,
-                                        "y": 20.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -2976,12 +2974,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 10,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 20.0,
+                                        "y": 20.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 10,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -2997,18 +3009,6 @@
                                         "x": 0.0,
                                         "y": 0.0
                                     }
-                                }
-                            }
-                        },
-                        "compID": 6,
-                        "value3": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 10,
-                                    "value1": 2,
-                                    "value2": 1.0
                                 }
                             }
                         },
@@ -3053,10 +3053,8 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "value1": {
-                                        "x": 0.0,
-                                        "y": 0.0
-                                    }
+                                    "value1": 2,
+                                    "value2": 1.0
                                 }
                             }
                         },
@@ -3067,12 +3065,26 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "value1": 0.0
+                                    "value1": {
+                                        "x": 0.0,
+                                        "y": 0.0
+                                    }
                                 }
                             }
                         },
                         "compID": 2,
                         "value2": {
+                            "polymorphic_id": 1073741824,
+                            "ptr_wrapper": {
+                                "valid": 1,
+                                "data": {
+                                    "value0": 11,
+                                    "value1": 0.0
+                                }
+                            }
+                        },
+                        "compID": 3,
+                        "value3": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3091,8 +3103,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value3": {
+                        "compID": 3,
+                        "value4": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3110,8 +3122,8 @@
                                 }
                             }
                         },
-                        "compID": 2,
-                        "value4": {
+                        "compID": 3,
+                        "value5": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3129,8 +3141,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value5": {
+                        "compID": 4,
+                        "value6": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3141,8 +3153,8 @@
                                 }
                             }
                         },
-                        "compID": 3,
-                        "value6": {
+                        "compID": 4,
+                        "value7": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3153,8 +3165,8 @@
                                 }
                             }
                         },
-                        "compID": 4,
-                        "value7": {
+                        "compID": 5,
+                        "value8": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
                                 "valid": 1,
@@ -3167,17 +3179,6 @@
                                 }
                             }
                         },
-                        "compID": 5,
-                        "value8": {
-                            "polymorphic_id": 1073741824,
-                            "ptr_wrapper": {
-                                "valid": 1,
-                                "data": {
-                                    "value0": 11,
-                                    "value1": 0.75
-                                }
-                            }
-                        },
                         "compID": 6,
                         "value9": {
                             "polymorphic_id": 1073741824,
@@ -3185,8 +3186,7 @@
                                 "valid": 1,
                                 "data": {
                                     "value0": 11,
-                                    "value1": 2,
-                                    "value2": 1.0
+                                    "value1": 0.75
                                 }
                             }
                         },
@@ -3482,7 +3482,7 @@
                             "type": 0,
                             "data": 0
                         },
-                        "compID": 0,
+                        "compID": 1,
                         "value0": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
@@ -3542,7 +3542,7 @@
                             "type": 0,
                             "data": 0
                         },
-                        "compID": 0,
+                        "compID": 1,
                         "value0": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {
@@ -3574,7 +3574,7 @@
                             "type": 0,
                             "data": 0
                         },
-                        "compID": 0,
+                        "compID": 1,
                         "value0": {
                             "polymorphic_id": 1073741824,
                             "ptr_wrapper": {

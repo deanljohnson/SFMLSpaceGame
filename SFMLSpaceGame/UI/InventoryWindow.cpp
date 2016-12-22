@@ -114,7 +114,7 @@ void InventoryWindow::LoadShipImage()
 
 void InventoryWindow::LoadHullState()
 {
-	auto health = m_targetHandle->GetComponent<Health>();
+	auto& health = m_targetHandle->GetComponent<Health>();
 	float curHealth = health.GetHealthNormalized() * 100;
 
 	std::stringstream ss;
@@ -125,7 +125,7 @@ void InventoryWindow::LoadHullState()
 
 void InventoryWindow::LoadCredits()
 {
-	auto inven = m_targetHandle->GetComponent<Inventory>();
+	auto& inven = m_targetHandle->GetComponent<Inventory>();
 	int curCredits = inven.GetCredits();
 
 	std::stringstream ss;

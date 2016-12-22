@@ -5,6 +5,9 @@
 struct EconomyRecord;
 class EconomyAgent;
 class EconomyID;
+class FindBestPurchaseJob;
+struct FindPurchaseJobResult;
+struct FindSaleJobResult;
 
 namespace Economy
 {
@@ -28,10 +31,18 @@ namespace Economy
 	// trade from being considered. The best purchase is 
 	// that which is cheapest in relation to it's average 
 	// sell price.
-	std::pair<ItemType, EconomyAgent*> FindBestPurchase(
+	FindPurchaseJobResult FindBestPurchase(
 		const std::string& start = "",
 		size_t searchRange = 0,
 		std::function<bool(const EconomyAgent&, Price&, ItemType)> filter = nullptr);
+
+	FindSaleJobResult FindBestSale(
+		ItemType typeToSell, const std::string& detail, size_t amountToSell,
+		const std::string& start = "",
+		size_t searchRange = 0,
+		std::function<bool(const EconomyAgent&, Price&)> filter = nullptr);
+
+	void EnqueueJob(std::shared_ptr<FindBestPurchaseJob> job);
 
 	// Moves the given Item (type and amount) from the source to the target
 	void TransferItems(EconomyAgent& source, EconomyAgent& target, std::shared_ptr<Item> item);

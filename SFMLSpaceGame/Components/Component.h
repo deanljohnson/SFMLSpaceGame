@@ -40,6 +40,7 @@ private:
 	bool m_active{ true };
 public:
 	Component();
+	Component(const Component& copy) = delete;
 	explicit Component(EntityID ent);
 	virtual ~Component() {};
 

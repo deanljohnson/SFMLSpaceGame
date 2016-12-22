@@ -3,6 +3,7 @@
 
 class ShipController;
 class AttackedEvent;
+class FindBestPurchaseJob;
 
 class ShipAI : public Component, public Updateable
 {
@@ -17,6 +18,8 @@ private:
 	ShipController& m_controller;
 	Position& m_position;
 	EntityID m_targetID;
+
+	std::shared_ptr<FindBestPurchaseJob> m_findPurchaseJob;
 
 	void ProcessEvents();
 	void ProcessAIState();

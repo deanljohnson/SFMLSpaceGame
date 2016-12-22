@@ -68,6 +68,7 @@ void DoShipDestroyedCallback(Entity& ent)
 		auto pickupHandle = EntityManager::Get(pickupID);
 		auto& pickup = pickupHandle->GetComponent<ItemPickup>();
 
+		std::shared_lock<std::shared_mutex> l(inventory.lock);
 		for (auto item : inventory)
 		{
 			pickup.AddItem(item);

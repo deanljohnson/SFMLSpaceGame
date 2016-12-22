@@ -146,7 +146,7 @@ public:
 		}
 	}
 
-	bool AreNeighbors(const TKey& a, const TKey& b)
+	bool AreNeighbors(const TKey& a, const TKey& b) const
 	{
 		auto& aVert = m_vertices.at(a);
 		auto& bVert = m_vertices.at(b);
@@ -177,7 +177,7 @@ public:
 	// If the function returns false, the search is 
 	// terminated, else it continues until all elements
 	// have been visited
-	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func, size_t depthLimit)
+	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func, size_t depthLimit) const
 	{
 		if (depthLimit == 0)
 			BreadthFirstTraverse(start, func);
@@ -218,7 +218,7 @@ public:
 			}
 		}
 	}
-	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func)
+	void BreadthFirstTraverse(const TKey& start, std::function<bool(TData&)> func) const
 	{
 		std::unordered_map<Vertex*, bool> visited;
 		std::queue<Vertex*> pending;
@@ -250,7 +250,7 @@ public:
 	// If the function returns false, the search is 
 	// terminated, else it continues until all elements
 	// have been visited
-	void DepthFirstTraverse(const TKey& start, std::function<bool(TData&)> func)
+	void DepthFirstTraverse(const TKey& start, std::function<bool(TData&)> func) const
 	{
 		std::unordered_map<Vertex*, bool> visited;
 		std::stack<Vertex*> pending;
@@ -274,22 +274,22 @@ public:
 		}
 	}
 
-	NeighborIterator NeighborBegin(const TKey& key)
+	NeighborIterator NeighborBegin(const TKey& key) const
 	{
 		return m_vertices.at(key)->begin();
 	}
 
-	NeighborIterator NeighborEnd(const TKey& key)
+	NeighborIterator NeighborEnd(const TKey& key) const
 	{
 		return m_vertices.at(key)->end();
 	}
 
-	bool Contains(const TKey& key) 
+	bool Contains(const TKey& key) const
 	{
 		return m_vertices.find(key) != m_vertices.end();
 	}
 
-	TData& operator[](const TKey& key)
+	TData& operator[](const TKey& key) const
 	{
 		return m_vertices.at(key)->data;
 	}

@@ -20,9 +20,11 @@ void Inventory::Update()
 	}
 }
 
-int Inventory::GetCredits()
+int Inventory::GetCredits() 
 {
-	for (auto& i : *this)
+	std::shared_lock<std::shared_mutex> l(lock);
+
+	for (const auto& i : std::as_const(*this))
 	{
 		if (i->type == ItemType::Credits)
 			return i->amount;
@@ -33,6 +35,8 @@ int Inventory::GetCredits()
 
 void Inventory::SetCredits(int c)
 {
+	std::shared_lock<std::shared_mutex> l(lock);
+
 	for (auto& i : *this)
 	{
 		if (i->type == ItemType::Credits)
@@ -47,6 +51,7 @@ void Inventory::AddItem(std::shared_ptr<Item> item)
 {
 	bool stacked = false;
 
+	std::unique_lock<std::shared_mutex> l(lock);
 	for (auto& i : *this)
 	{
 		if (i->AreStackable(*item))
@@ -63,6 +68,8 @@ void Inventory::AddItem(std::shared_ptr<Item> item)
 void Inventory::RemoveItem(std::shared_ptr<Item> item)
 {
 	bool detailed = item->IsDetailed();
+
+	std::unique_lock<std::shared_mutex> l(lock);
 	for (size_t i = 0; i < m_items.size(); i++)
 	{
 		if (m_items[i]->AreStackable(*item))
@@ -70,7 +77,7 @@ void Inventory::RemoveItem(std::shared_ptr<Item> item)
 			if (item->amount >= m_items[i]->amount)
 				m_items.erase(m_items.begin() + i);
 			else
-				m_items[i]->amount = m_items[i]->amount - item->amount;
+				m_items[i]->amount -= item->amount;
 
 			return;
 		}

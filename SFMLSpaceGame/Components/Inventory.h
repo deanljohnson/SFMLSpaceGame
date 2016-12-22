@@ -1,6 +1,7 @@
 #pragma once
 #include <Item.h>
 #include <vector>
+#include <shared_mutex>
 #include <cereal/access.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/types/memory.hpp>
@@ -29,6 +30,11 @@ private:
 		ar(construct->m_items);
 	}
 public:
+	// a lock to control access to this inventory.
+	// To maintain thread safety, iteration must be
+	// locked with atleast a shared_lock of this mutex.
+	std::shared_mutex lock;
+
 	explicit Inventory(EntityID ent);
 
 	virtual void Update() override;
@@ -44,4 +50,7 @@ public:
 
 	iterator begin() { return m_items.begin(); }
 	iterator end() { return m_items.end(); }
+
+	const_iterator begin() const { return m_items.cbegin(); }
+	const_iterator end() const { return m_items.cend(); }
 };

@@ -15,7 +15,7 @@ Entity* EntityHelpers::GetClosestEntity(Entity* subject,
 		|| !subject->HasComponent<Position>())
 		return nullptr;
 
-	auto subjPos = subject->GetComponent<Position>();
+	auto& subjPos = subject->GetComponent<Position>();
 
 	return GetClosestEntity(subjPos.position, 
 							source, 
