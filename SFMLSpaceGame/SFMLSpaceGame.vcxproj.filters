@@ -109,6 +109,9 @@
     <Filter Include="Header Files\Jobs\Results">
       <UniqueIdentifier>{863c1388-bda0-45ec-b545-16a9cc1a0f7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{d67df933-c596-43a9-9ded-ed358dbae9e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -1090,6 +1093,45 @@
     </None>
     <None Include="..\Data\starter-world.World">
       <Filter>Data</Filter>
+    </None>
+    <None Include="..\libs\openal32.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-audio-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-audio-d-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-graphics-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-graphics-d-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-network-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-network-d-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-system-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-system-d-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-window-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfml-window-d-2.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfgui.dll">
+      <Filter>libs</Filter>
+    </None>
+    <None Include="..\libs\sfgui-d.dll">
+      <Filter>libs</Filter>
     </None>
   </ItemGroup>
 </Project>
